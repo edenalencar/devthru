@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 240 9% 97%;
+    /* #f6f6f8 */
+    --foreground: 219 35% 8%;
+    /* #0d121b */
+    --card: 0 0% 100%;
+    /* #ffffff */
+    --card-foreground: 219 35% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 219 35% 8%;
+    --primary: 220 85% 50%;
+    /* #135bec */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 27% 93%;
+    /* #e7ebf3 */
+    --secondary-foreground: 220 85% 50%;
+    --muted: 220 27% 93%;
+    --muted-foreground: 220 34% 45%;
+    /* #4c669a */
+    --accent: 220 27% 93%;
+    --accent-foreground: 220 85% 50%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 27% 93%;
+    /* #e7ebf3 */
+    --input: 220 27% 93%;
+    --ring: 220 85% 50%;
+    --radius: 0.75rem;
+    /* Rounded-xl */
+  }
+
+  .dark {
+    --background: 218 36% 10%;
+    /* #101622 */
+    --foreground: 228 33% 98%;
+    /* #f8f9fc */
+    --card: 220 26% 14%;
+    /* #1a202c */
+    --card-foreground: 228 33% 98%;
+    --popover: 220 26% 14%;
+    --popover-foreground: 228 33% 98%;
+    --primary: 220 85% 50%;
+    /* #135bec - Keeping same blue for brand consistency */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 218 23% 23%;
+    /* #2d3748 */
+    --secondary-foreground: 228 33% 98%;
+    --muted: 218 23% 23%;
+    --muted-foreground: 218 17% 69%;
+    /* #a0aec0 */
+    --accent: 218 23% 23%;
+    --accent-foreground: 228 33% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 218 23% 23%;
+    /* #2d3748 */
+    --input: 218 23% 23%;
+    --ring: 220 85% 50%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: var(--font-sans);
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
 }
