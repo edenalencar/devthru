@@ -1,8 +1,15 @@
+"use server"
+
 import { createClient } from "../supabase/server"
 import { randomBytes } from "crypto"
 
-export async function generateApiKey(userId: string) {
-    const supabase = createClient()
+export async function generateApiKey() {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+        throw new Error("Unauthorized")
+    }
 
     // Generate a random API key
     const apiKey = `dk_${randomBytes(24).toString('hex')}`
@@ -10,7 +17,7 @@ export async function generateApiKey(userId: string) {
     const { error } = await supabase
         .from('profiles')
         .update({ api_key: apiKey })
-        .eq('id', userId)
+        .eq('id', user.id)
 
     if (error) throw error
 
@@ -18,7 +25,7 @@ export async function generateApiKey(userId: string) {
 }
 
 export async function validateApiKey(apiKey: string) {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const { data, error } = await supabase
         .from('profiles')
@@ -31,13 +38,18 @@ export async function validateApiKey(apiKey: string) {
     return data
 }
 
-export async function revokeApiKey(userId: string) {
-    const supabase = createClient()
+export async function revokeApiKey() {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+        throw new Error("Unauthorized")
+    }
 
     const { error } = await supabase
         .from('profiles')
         .update({ api_key: null })
-        .eq('id', userId)
+        .eq('id', user.id)
 
     if (error) throw error
 }

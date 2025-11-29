@@ -58,7 +58,6 @@ export async function updateSession(request: NextRequest) {
 
     // Protected routes
     if (request.nextUrl.pathname.startsWith('/dashboard') ||
-        request.nextUrl.pathname.startsWith('/profile') ||
         request.nextUrl.pathname.startsWith('/api/v1')) {
         if (!user) {
             return NextResponse.redirect(new URL('/login', request.url))

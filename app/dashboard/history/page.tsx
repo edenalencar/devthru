@@ -5,8 +5,7 @@ import { Download, Loader2, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { HistoryCard } from '@/components/tools/history-card'
 import { HistoryFilters } from '@/components/tools/history-filters'
-import { Navbar } from '@/components/layout/navbar'
-import { Footer } from '@/components/layout/footer'
+
 import { toast } from 'sonner'
 import {
     getHistoryWithFilters,
@@ -149,144 +148,136 @@ export default function HistoryPage() {
     const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
 
     return (
-        <div className="flex min-h-screen flex-col">
-            <Navbar />
+        <div className="space-y-8 max-w-6xl">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                <div>
+                    <h1 className="text-3xl font-bold">Histórico de Gerações</h1>
+                    <p className="text-muted-foreground mt-1">
+                        {totalCount} {totalCount === 1 ? 'item salvo' : 'itens salvos'}
+                    </p>
+                </div>
 
-            <main className="flex-1">
-                <div className="container mx-auto py-8 px-4 max-w-6xl">
-                    {/* Header */}
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-                        <div>
-                            <h1 className="text-3xl font-bold">Histórico de Gerações</h1>
-                            <p className="text-muted-foreground mt-1">
-                                {totalCount} {totalCount === 1 ? 'item salvo' : 'itens salvos'}
-                            </p>
-                        </div>
-
-                        <div className="flex gap-2">
-                            {selectedItems.size > 0 && (
-                                <Button
-                                    variant="destructive"
-                                    size="sm"
-                                    onClick={handleDeleteSelected}
-                                    className="gap-2"
-                                >
-                                    <Trash2 className="h-4 w-4" />
-                                    Deletar ({selectedItems.size})
-                                </Button>
-                            )}
-
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" size="sm" className="gap-2">
-                                        <Download className="h-4 w-4" />
-                                        Exportar
-                                    </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                    <DropdownMenuItem onClick={() => handleExport('csv')}>
-                                        Exportar como CSV
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={() => handleExport('json')}>
-                                        Exportar como JSON
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={() => handleExport('excel')}>
-                                        Exportar como Excel
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </div>
-                    </div>
-
-                    {/* Filters */}
-                    <div className="mb-6">
-                        <HistoryFilters
-                            searchQuery={searchQuery}
-                            onSearchChange={setSearchQuery}
-                            selectedTool={selectedTool}
-                            onToolChange={setSelectedTool}
-                            dateFrom={dateFrom}
-                            onDateFromChange={setDateFrom}
-                            dateTo={dateTo}
-                            onDateToChange={setDateTo}
-                            onClearFilters={handleClearFilters}
-                        />
-                    </div>
-
-                    {/* Loading State */}
-                    {loading && (
-                        <div className="flex justify-center items-center py-12">
-                            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-                        </div>
+                <div className="flex gap-2">
+                    {selectedItems.size > 0 && (
+                        <Button
+                            variant="destructive"
+                            size="sm"
+                            onClick={handleDeleteSelected}
+                            className="gap-2"
+                        >
+                            <Trash2 className="h-4 w-4" />
+                            Deletar ({selectedItems.size})
+                        </Button>
                     )}
 
-                    {/* Empty State */}
-                    {!loading && history.length === 0 && (
-                        <div className="text-center py-12">
-                            <p className="text-muted-foreground text-lg">
-                                {searchQuery || selectedTool !== 'all' || dateFrom || dateTo
-                                    ? 'Nenhum item encontrado com os filtros aplicados'
-                                    : 'Você ainda não salvou nenhum item no histórico'}
-                            </p>
-                            {(searchQuery || selectedTool !== 'all' || dateFrom || dateTo) && (
-                                <Button
-                                    variant="outline"
-                                    onClick={handleClearFilters}
-                                    className="mt-4"
-                                >
-                                    Limpar Filtros
-                                </Button>
-                            )}
-                        </div>
-                    )}
-
-                    {/* History List */}
-                    {!loading && history.length > 0 && (
-                        <div className="space-y-4">
-                            {history.map((item) => (
-                                <HistoryCard
-                                    key={item.id}
-                                    id={item.id}
-                                    toolName={item.toolName}
-                                    timestamp={item.timestamp}
-                                    input={item.input}
-                                    output={item.output}
-                                    onDelete={handleDelete}
-                                />
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Pagination */}
-                    {!loading && totalPages > 1 && (
-                        <div className="flex justify-center items-center gap-2 mt-8">
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                                disabled={currentPage === 1}
-                            >
-                                Anterior
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="sm" className="gap-2">
+                                <Download className="h-4 w-4" />
+                                Exportar
                             </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuItem onClick={() => handleExport('csv')}>
+                                Exportar como CSV
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleExport('json')}>
+                                Exportar como JSON
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleExport('excel')}>
+                                Exportar como Excel
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+            </div>
 
-                            <span className="text-sm text-muted-foreground px-4">
-                                Página {currentPage} de {totalPages}
-                            </span>
+            {/* Filters */}
+            <div className="mb-6">
+                <HistoryFilters
+                    searchQuery={searchQuery}
+                    onSearchChange={setSearchQuery}
+                    selectedTool={selectedTool}
+                    onToolChange={setSelectedTool}
+                    dateFrom={dateFrom}
+                    onDateFromChange={setDateFrom}
+                    dateTo={dateTo}
+                    onDateToChange={setDateTo}
+                    onClearFilters={handleClearFilters}
+                />
+            </div>
 
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                                disabled={currentPage === totalPages}
-                            >
-                                Próxima
-                            </Button>
-                        </div>
+            {/* Loading State */}
+            {loading && (
+                <div className="flex justify-center items-center py-12">
+                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                </div>
+            )}
+
+            {/* Empty State */}
+            {!loading && history.length === 0 && (
+                <div className="text-center py-12">
+                    <p className="text-muted-foreground text-lg">
+                        {searchQuery || selectedTool !== 'all' || dateFrom || dateTo
+                            ? 'Nenhum item encontrado com os filtros aplicados'
+                            : 'Você ainda não salvou nenhum item no histórico'}
+                    </p>
+                    {(searchQuery || selectedTool !== 'all' || dateFrom || dateTo) && (
+                        <Button
+                            variant="outline"
+                            onClick={handleClearFilters}
+                            className="mt-4"
+                        >
+                            Limpar Filtros
+                        </Button>
                     )}
                 </div>
-            </main>
+            )}
 
-            <Footer />
+            {/* History List */}
+            {!loading && history.length > 0 && (
+                <div className="space-y-4">
+                    {history.map((item) => (
+                        <HistoryCard
+                            key={item.id}
+                            id={item.id}
+                            toolName={item.toolName}
+                            timestamp={item.timestamp}
+                            input={item.input}
+                            output={item.output}
+                            onDelete={handleDelete}
+                        />
+                    ))}
+                </div>
+            )}
+
+            {/* Pagination */}
+            {!loading && totalPages > 1 && (
+                <div className="flex justify-center items-center gap-2 mt-8">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                        disabled={currentPage === 1}
+                    >
+                        Anterior
+                    </Button>
+
+                    <span className="text-sm text-muted-foreground px-4">
+                        Página {currentPage} de {totalPages}
+                    </span>
+
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                        disabled={currentPage === totalPages}
+                    >
+                        Próxima
+                    </Button>
+                </div>
+            )}
         </div>
     )
 }

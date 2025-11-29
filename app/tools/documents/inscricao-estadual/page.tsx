@@ -15,12 +15,12 @@ import { generateIE, validateIE, formatIE, IE_STATES } from '@/lib/utils/validat
 import { useUser } from '@/lib/hooks/use-user'
 
 export default function InscricaoEstadualPage() {
-    const [selectedUF, setSelectedUF] = useState('SP')
+    const [selectedUF, setSelectedUF] = useState(IE_STATES[0].uf)
     const [generatedIE, setGeneratedIE] = useState('')
     const [validateInput, setValidateInput] = useState('')
     const [validateResult, setValidateResult] = useState<boolean | null>(null)
     const [activeTab, setActiveTab] = useState<'generate' | 'validate' | 'bulk'>('generate')
-    const { user } = useUser()
+    const { user, isPro } = useUser()
 
     const handleGenerate = () => {
         const ie = generateIE(selectedUF)
@@ -34,7 +34,6 @@ export default function InscricaoEstadualPage() {
     }
 
     const stateInfo = IE_STATES.find(s => s.uf === selectedUF)
-    const isPro = user?.subscription_tier === 'pro'
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -163,8 +162,8 @@ export default function InscricaoEstadualPage() {
                                 {validateResult !== null && (
                                     <div
                                         className={`flex items-center gap-2 p-4 rounded-lg ${validateResult
-                                                ? 'bg-green-500/10 text-green-600 dark:text-green-400'
-                                                : 'bg-red-500/10 text-red-600 dark:text-red-400'
+                                            ? 'bg-green-500/10 text-green-600 dark:text-green-400'
+                                            : 'bg-red-500/10 text-red-600 dark:text-red-400'
                                             }`}
                                     >
                                         {validateResult ? (

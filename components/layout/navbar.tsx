@@ -73,7 +73,7 @@ export function Navbar() {
                 {/* Desktop Navigation - Center */}
                 <nav className="hidden md:flex flex-1 justify-center">
                     <div className="flex items-center gap-6">
-                        {navLinks.filter(link => link.href !== '/dashboard' || user).map((link) => (
+                        {navLinks.filter(link => link.href !== '/dashboard').map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
@@ -99,7 +99,7 @@ export function Navbar() {
                                     </Avatar>
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-56 bg-white dark:bg-zinc-950" align="end" forceMount>
+                            <DropdownMenuContent className="w-56 bg-[hsl(var(--popover))] text-[hsl(var(--popover-foreground))]" align="end" forceMount>
                                 <DropdownMenuLabel className="font-normal">
                                     <div className="flex flex-col space-y-1">
                                         <p className="text-sm font-medium leading-none">
@@ -112,7 +112,7 @@ export function Navbar() {
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem asChild>
-                                    <Link href="/profile">
+                                    <Link href="/dashboard/profile">
                                         <User className="mr-2 h-4 w-4" />
                                         <span>Perfil</span>
                                     </Link>
@@ -124,7 +124,7 @@ export function Navbar() {
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem asChild>
-                                    <Link href="/settings">
+                                    <Link href="/dashboard/settings">
                                         <Settings className="mr-2 h-4 w-4" />
                                         <span>Configurações</span>
                                     </Link>
@@ -170,7 +170,7 @@ export function Navbar() {
             {mobileMenuOpen && (
                 <div className="border-t md:hidden bg-card dark:bg-background">
                     <div className="flex flex-col gap-4 p-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                        {navLinks.filter(link => link.href !== '/dashboard' || user).map((link) => (
+                        {navLinks.filter(link => link.href !== '/dashboard').map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
