@@ -183,7 +183,7 @@ export const openApiSpec = {
                         required: true,
                         schema: {
                             type: 'string',
-                            enum: ['cpf', 'cnpj', 'rg', 'cnh', 'name', 'email', 'phone', 'address', 'uuid', 'password', 'lorem'],
+                            enum: ['cpf', 'cnpj', 'rg', 'cnh', 'inscricao-estadual', 'titulo-eleitor', 'pis', 'name', 'email', 'phone', 'address', 'person', 'uuid', 'password', 'lorem'],
                         },
                         description: 'Tool to use for generation',
                     },
@@ -273,7 +273,7 @@ export const openApiSpec = {
                         required: true,
                         schema: {
                             type: 'string',
-                            enum: ['cpf', 'cnpj'],
+                            enum: ['cpf', 'cnpj', 'inscricao-estadual', 'titulo-eleitor', 'pis'],
                         },
                         description: 'Document type to validate',
                     },

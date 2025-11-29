@@ -75,7 +75,7 @@ export default function PricingPage() {
 
                     <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                         {/* Free Plan */}
-                        <Card>
+                        <Card className="flex flex-col">
                             <CardHeader>
                                 <CardTitle className="text-2xl">Gratuito</CardTitle>
                                 <CardDescription>Para desenvolvedores individuais</CardDescription>
@@ -100,7 +100,7 @@ export default function PricingPage() {
                                     </li>
                                 </ul>
                             </CardContent>
-                            <CardFooter>
+                            <CardFooter className="mt-auto">
                                 <Button className="w-full" variant="outline" disabled>
                                     Plano Atual
                                 </Button>
@@ -108,7 +108,7 @@ export default function PricingPage() {
                         </Card>
 
                         {/* Pro Plan */}
-                        <Card className="border-primary relative overflow-hidden">
+                        <Card className="border-primary relative overflow-hidden flex flex-col">
                             <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold">
                                 POPULAR
                             </div>
@@ -144,7 +144,7 @@ export default function PricingPage() {
                                     </li>
                                 </ul>
                             </CardContent>
-                            <CardFooter>
+                            <CardFooter className="mt-auto">
                                 <Button
                                     className="w-full"
                                     onClick={() => handleSubscribe("price_1SYSlbJzedEYbjzZMG9r6nw9")}
@@ -159,7 +159,7 @@ export default function PricingPage() {
                         </Card>
 
                         {/* Enterprise Plan */}
-                        <Card>
+                        <Card className="flex flex-col">
                             <CardHeader>
                                 <CardTitle className="text-2xl">Enterprise</CardTitle>
                                 <CardDescription>Para times e empresas</CardDescription>
@@ -192,7 +192,7 @@ export default function PricingPage() {
                                     </li>
                                 </ul>
                             </CardContent>
-                            <CardFooter>
+                            <CardFooter className="mt-auto">
                                 <Button
                                     className="w-full"
                                     variant="outline"

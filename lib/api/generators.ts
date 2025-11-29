@@ -1,6 +1,14 @@
 import { generateCPF, formatCPF } from '@/lib/utils/validators/cpf'
 import { generateCNPJ, formatCNPJ } from '@/lib/utils/validators/cnpj'
 import { generateIE, formatIE } from '@/lib/utils/validators/inscricao-estadual'
+import { generateTituloEleitor, formatTituloEleitor } from '@/lib/utils/validators/titulo-eleitor'
+import { generatePIS, formatPIS } from '@/lib/utils/validators/pis'
+import { generateRG } from '@/lib/utils/generators/rg'
+import { generateCNH } from '@/lib/utils/generators/cnh'
+import { generateName } from '@/lib/utils/generators/names'
+import { generateEmail, generatePhone } from '@/lib/utils/generators/contact'
+import { generateAddress } from '@/lib/utils/generators/address'
+import { generatePerson } from '@/lib/utils/validators/person'
 
 // Generator functions map
 export const generators = {
@@ -13,54 +21,42 @@ export const generators = {
         return options.formatted ? formatCNPJ(cnpj) : cnpj
     },
     rg: (options: any = {}) => {
-        // Simple RG generator
-        const digits = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10))
-        const rg = digits.join('')
-        if (options.formatted) {
-            return `${rg.slice(0, 2)}.${rg.slice(2, 5)}.${rg.slice(5, 8)}-${rg.slice(8)}`
-        }
-        return rg
+        return generateRG(options.formatted)
     },
     cnh: (options: any = {}) => {
-        // Simple CNH generator (11 digits)
-        const digits = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10))
-        return digits.join('')
+        return generateCNH()
     },
     'inscricao-estadual': (options: any = {}) => {
         const uf = options.uf || 'SP'
         const ie = generateIE(uf)
         return options.formatted ? formatIE(ie, uf) : ie
     },
+    'titulo-eleitor': (options: any = {}) => {
+        const uf = options.uf || 'SP'
+        const titulo = generateTituloEleitor(uf)
+        return options.formatted ? formatTituloEleitor(titulo) : titulo
+    },
+    pis: (options: any = {}) => {
+        const pis = generatePIS()
+        return options.formatted ? formatPIS(pis) : pis
+    },
     name: (options: any = {}) => {
-        const firstNames = ['João', 'Maria', 'Pedro', 'Ana', 'Carlos', 'Julia', 'Lucas', 'Beatriz']
-        const lastNames = ['Silva', 'Santos', 'Oliveira', 'Souza', 'Costa', 'Ferreira', 'Rodrigues']
-        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)]
-        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)]
-        return `${firstName} ${lastName}`
+        return generateName()
     },
     email: (options: any = {}) => {
-        const domains = ['gmail.com', 'outlook.com', 'yahoo.com', 'hotmail.com']
-        const username = Math.random().toString(36).substring(2, 10)
-        const domain = options.domain || domains[Math.floor(Math.random() * domains.length)]
-        return `${username}@${domain}`
+        // If name is provided in options, use it to generate email
+        const name = options.name || generateName()
+        return generateEmail(name)
     },
     phone: (options: any = {}) => {
-        const ddd = Math.floor(Math.random() * 90) + 10
-        const prefix = 9
-        const number = Math.floor(Math.random() * 100000000).toString().padStart(8, '0')
-        const phone = `${ddd}${prefix}${number}`
-        if (options.formatted) {
-            return `(${ddd}) ${prefix}${number.slice(0, 4)}-${number.slice(4)}`
-        }
-        return phone
+        return generatePhone(options.mobile !== false) // Default to mobile
     },
     address: (options: any = {}) => {
-        const streets = ['Rua das Flores', 'Av. Brasil', 'Rua Principal', 'Av. Paulista']
-        const cities = ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba']
-        const street = streets[Math.floor(Math.random() * streets.length)]
-        const number = Math.floor(Math.random() * 2000) + 1
-        const city = cities[Math.floor(Math.random() * cities.length)]
-        return `${street}, ${number} - ${city}`
+        const addr = generateAddress()
+        return addr.full
+    },
+    person: (options: any = {}) => {
+        return generatePerson()
     },
     uuid: (options: any = {}) => {
         return crypto.randomUUID()

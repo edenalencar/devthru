@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -15,6 +15,7 @@ export const toolCategories = [
     { id: "documents", name: "Documentos Pessoais", icon: FileText },
     { id: "business", name: "Dados Empresariais", icon: Code2 },
     { id: "personal", name: "Dados Pessoais", icon: User },
+    { id: "text", name: "Texto e Conversão", icon: AlignLeft },
     { id: "utilities", name: "Utilidades", icon: Hash },
     { id: "financial", name: "Dados Financeiros", icon: CreditCard },
     { id: "vehicles", name: "Veículos", icon: Car },
@@ -58,8 +59,44 @@ export const tools: Tool[] = [
         icon: Car,
         href: "/tools/documents/cnh",
     },
+    {
+        id: "inscricao-estadual",
+        name: "Inscrição Estadual",
+        title: "Inscrição Estadual",
+        description: "Gere e valide Inscrições Estaduais de todas as UFs",
+        category: "documents",
+        icon: FileText,
+        href: "/tools/documents/inscricao-estadual",
+    },
+    {
+        id: "titulo-eleitor",
+        name: "Título de Eleitor",
+        title: "Gerador de Título de Eleitor",
+        description: "Gere e valide números de Título de Eleitor por estado",
+        category: "documents",
+        icon: FileText,
+        href: "/tools/documents/titulo-eleitor",
+    },
+    {
+        id: "pis",
+        name: "Gerador de PIS/PASEP",
+        title: "Gerador de PIS/PASEP",
+        description: "Gere e valide números de PIS/PASEP/NIT/NIS",
+        category: "documents",
+        icon: FileText,
+        href: "/tools/documents/pis",
+    },
 
     // Dados Pessoais
+    {
+        id: "person",
+        name: "Gerador de Pessoa",
+        title: "Gerador de Pessoa Completa",
+        description: "Gere um perfil completo com nome, documentos, endereço e mais",
+        category: "personal",
+        icon: User,
+        href: "/tools/personal/person",
+    },
     {
         id: "name",
         name: "Gerador de Nomes",
@@ -95,6 +132,44 @@ export const tools: Tool[] = [
         category: "personal",
         icon: Mail,
         href: "/tools/personal/email",
+    },
+
+    // Ferramentas de Texto
+    {
+        id: "character-counter",
+        name: "Contador de Caracteres",
+        title: "Contador de Caracteres",
+        description: "Conte caracteres, palavras, linhas e parágrafos em tempo real",
+        category: "text",
+        icon: Type,
+        href: "/tools/text/character-counter",
+    },
+    {
+        id: "case-converter",
+        name: "Conversor de Case",
+        title: "Conversor de Case",
+        description: "Converta textos para uppercase, lowercase, camelCase e mais",
+        category: "text",
+        icon: CaseSensitive,
+        href: "/tools/text/case-converter",
+    },
+    {
+        id: "slug-generator",
+        name: "Gerador de Slug",
+        title: "Gerador de Slug",
+        description: "Transforme textos em URLs amigáveis (slugs) para SEO",
+        category: "text",
+        icon: Link,
+        href: "/tools/text/slug-generator",
+    },
+    {
+        id: "diff-checker",
+        name: "Comparador de Texto",
+        title: "Diff Checker",
+        description: "Compare dois textos e visualize as diferenças",
+        category: "text",
+        icon: GitCompare,
+        href: "/tools/text/diff-checker",
     },
 
     // Utilidades

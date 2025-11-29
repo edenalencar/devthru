@@ -94,7 +94,7 @@ export default function ProfilePage() {
         <div className="flex min-h-screen flex-col">
             <Navbar />
 
-            <main className="flex-1 container py-12">
+            <main className="flex-1 container mx-auto max-w-6xl py-12 px-4 sm:px-6 lg:px-8">
                 <div className="mb-8 flex items-center justify-between">
                     <div>
                         <h1 className="text-3xl font-bold">Meu Perfil</h1>

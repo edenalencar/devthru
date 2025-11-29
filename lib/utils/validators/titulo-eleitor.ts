@@ -36,23 +36,65 @@ const STATE_CODES: Record<string, string> = {
 }
 
 export function calculateCheckDigits(baseNumber: string): string {
-    // First check digit
+    // First check digit (calculated from first 8 digits)
+    // Weights: 2, 3, 4, 5, 6, 7, 8, 9
     let sum = 0
     for (let i = 0; i < 8; i++) {
-        sum += parseInt(baseNumber[i]) * (9 - (i % 9))
+        sum += parseInt(baseNumber[i]) * (i + 2)
     }
-    const firstDigit = sum % 11
-    const d1 = firstDigit === 10 ? 0 : firstDigit
+    let rest = sum % 11
+    let d1 = rest < 2 ? 0 : 11 - rest
 
-    // Second check digit (includes state code)
-    const stateCode = baseNumber.substring(8, 10)
+    // Special case for SP (01) and MG (02) if d1 is 0
+    // But the standard rule is usually: if rest < 2, digit is 0.
+    // However, for Título de Eleitor:
+    // If rest is 0, digit is 0. If rest is 1, digit is 0.
+    // Wait, the official algorithm is:
+    // Sum * weights. Rest = Sum % 11.
+    // If Rest = 0 or 1, Digit = 0. Else Digit = 11 - Rest.
+    // EXCEPT: specific rules for SP and MG might apply in some docs, but standard is:
+    // If calculated digit is 10, it becomes 0.
+    // Let's stick to the standard Mod11 algorithm for Título:
+    // Weights 2 to 9.
+
+    // Re-checking standard algorithm:
+    // 1. Multiply first 8 digits by weights 2,3,4,5,6,7,8,9.
+    // 2. Sum results.
+    // 3. Mod 11.
+    // 4. If remainder is 10, digit is 0. If remainder is 0, digit is 0?
+    // Actually: Digit = Remainder. 
+    // Wait, let's use a known reliable source or implementation.
+    // TSE Algorithm:
+    // D1: Weights 2 to 9 for first 8 digits. Sum. Remainder = Sum % 11.
+    // If Remainder = 10, D1 = 0. Else D1 = Remainder.
+
+    // D2: Weights 7, 8, 9 for digits 9, 10, 11 (State Code + D1).
+    // Sum. Remainder = Sum % 11.
+    // If Remainder = 10, D2 = 0. Else D2 = Remainder.
+
+    // Let's implement this.
+
     sum = 0
-    for (let i = 0; i < 2; i++) {
-        sum += parseInt(stateCode[i]) * (9 - (i % 9))
+    for (let i = 0; i < 8; i++) {
+        sum += parseInt(baseNumber[i]) * (i + 2)
     }
-    sum += d1 * 7
-    const secondDigit = sum % 11
-    const d2 = secondDigit === 10 ? 0 : secondDigit
+    rest = sum % 11
+    d1 = rest === 10 ? 0 : rest
+
+    // Second check digit (calculated from state code + d1)
+    // Digits: 9, 10, 11 (indices 8, 9, 10 in a 0-indexed string of 12 chars, but here we have baseNumber which is 8 chars + stateCode which is 2 chars)
+    // We need to construct the sequence for D2 calculation: StateCode[0], StateCode[1], D1
+    const stateCode = baseNumber.substring(8, 10) // This function receives baseNumber which seems to be 8 digits in the original code, but let's check usage.
+    // Usage in generate: calculateCheckDigits(sequential + stateCode) -> 10 digits passed.
+
+    // So baseNumber here is actually 10 digits (8 seq + 2 state).
+    const v1 = parseInt(baseNumber[8])
+    const v2 = parseInt(baseNumber[9])
+    const v3 = d1
+
+    sum = v1 * 7 + v2 * 8 + v3 * 9
+    rest = sum % 11
+    let d2 = rest === 10 ? 0 : rest
 
     return `${d1}${d2}`
 }

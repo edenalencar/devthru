@@ -97,7 +97,7 @@ export function Footer() {
                         <h3 className="font-semibold">Recursos</h3>
                         <ul className="space-y-2 text-sm">
                             <li>
-                                <Link href="/api-docs" className="text-muted-foreground hover:text-primary transition-colors">
+                                <Link href="/docs/api" className="text-muted-foreground hover:text-primary transition-colors">
                                     Documentação API
                                 </Link>
                             </li>

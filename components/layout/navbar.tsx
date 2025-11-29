@@ -73,7 +73,7 @@ export function Navbar() {
                 {/* Desktop Navigation - Center */}
                 <nav className="hidden md:flex flex-1 justify-center">
                     <div className="flex items-center gap-6">
-                        {navLinks.map((link) => (
+                        {navLinks.filter(link => link.href !== '/dashboard' || user).map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
@@ -99,7 +99,7 @@ export function Navbar() {
                                     </Avatar>
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-56" align="end" forceMount>
+                            <DropdownMenuContent className="w-56 bg-white dark:bg-zinc-950" align="end" forceMount>
                                 <DropdownMenuLabel className="font-normal">
                                     <div className="flex flex-col space-y-1">
                                         <p className="text-sm font-medium leading-none">
@@ -170,7 +170,7 @@ export function Navbar() {
             {mobileMenuOpen && (
                 <div className="border-t md:hidden bg-card dark:bg-background">
                     <div className="flex flex-col gap-4 p-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                        {navLinks.map((link) => (
+                        {navLinks.filter(link => link.href !== '/dashboard' || user).map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
