@@ -1,5 +1,6 @@
 import { generateCPF, formatCPF } from '@/lib/utils/validators/cpf'
 import { generateCNPJ, formatCNPJ } from '@/lib/utils/validators/cnpj'
+import { generateIE, formatIE } from '@/lib/utils/validators/inscricao-estadual'
 
 // Generator functions map
 export const generators = {
@@ -24,6 +25,11 @@ export const generators = {
         // Simple CNH generator (11 digits)
         const digits = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10))
         return digits.join('')
+    },
+    'inscricao-estadual': (options: any = {}) => {
+        const uf = options.uf || 'SP'
+        const ie = generateIE(uf)
+        return options.formatted ? formatIE(ie, uf) : ie
     },
     name: (options: any = {}) => {
         const firstNames = ['João', 'Maria', 'Pedro', 'Ana', 'Carlos', 'Julia', 'Lucas', 'Beatriz']
