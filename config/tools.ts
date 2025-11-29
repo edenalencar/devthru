@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -16,6 +16,7 @@ export const toolCategories = [
     { id: "business", name: "Dados Empresariais", icon: Code2 },
     { id: "personal", name: "Dados Pessoais", icon: User },
     { id: "text", name: "Texto e Conversão", icon: AlignLeft },
+    { id: "converters", name: "Conversores", icon: ArrowRightLeft },
     { id: "utilities", name: "Utilidades", icon: Hash },
     { id: "financial", name: "Dados Financeiros", icon: CreditCard },
     { id: "vehicles", name: "Veículos", icon: Car },
@@ -170,6 +171,35 @@ export const tools: Tool[] = [
         category: "text",
         icon: GitCompare,
         href: "/tools/text/diff-checker",
+    },
+
+    // Conversores
+    {
+        id: "unit-converter",
+        name: "Conversor de Unidades",
+        title: "Conversor de Unidades",
+        description: "Converta unidades de comprimento, peso, temperatura e mais",
+        category: "converters",
+        icon: ArrowRightLeft,
+        href: "/tools/converters/unit",
+    },
+    {
+        id: "base-converter",
+        name: "Conversor de Bases",
+        title: "Conversor de Bases Numéricas",
+        description: "Converta números entre decimal, binário, hexadecimal e octal",
+        category: "converters",
+        icon: Calculator,
+        href: "/tools/converters/base",
+    },
+    {
+        id: "currency-converter",
+        name: "Conversor de Moedas",
+        title: "Conversor de Moedas",
+        description: "Converta valores entre diferentes moedas com taxas atualizadas",
+        category: "converters",
+        icon: Coins,
+        href: "/tools/converters/currency",
     },
 
     // Utilidades
