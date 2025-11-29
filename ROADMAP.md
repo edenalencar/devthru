@@ -335,24 +335,6 @@ GET  /api/v1/usage (estatísticas de uso)
 - [x] Conversor de Bases Numéricas
 
 ### Fase 4 - Dev Tools (2-3 meses)
-- [x] Gerador de Regex
-- [x] Minificador/Beautifier
-- [x] Gerador de Mock Data
-- [x] Timestamp Converter
-
-### Fase 5 - Imagem e UX (1-2 meses)
-- [ ] Gerador de Placeholder
-- [ ] Favicon Generator
-- [ ] Dark Mode Aprimorado
-- [ ] Atalhos de Teclado
-- [ ] Tour Interativo
-- [ ] Busca Global
-
-### Fase 6 - Colaboração (2-3 meses)
-- [ ] Sistema de Favoritos
-- [ ] Analytics
-- [ ] Sistema de Compartilhamento
-- [ ] Modo Batch Avançado
 
 ### Fase 7 - Integrações (2-3 meses)
 - [ ] Zapier/Make
