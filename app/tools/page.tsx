@@ -108,19 +108,7 @@ export default function ToolsPage() {
                         </div>
                     )}
 
-                    {/* Coming Soon */}
-                    <div className="mt-16 text-center">
-                        <h2 className="text-2xl font-bold mb-4">Mais Ferramentas em Breve</h2>
-                        <p className="text-muted-foreground mb-6">
-                            Estamos constantemente adicionando novas ferramentas. Fique atento!
-                        </p>
-                        <div className="flex flex-wrap gap-3 justify-center">
-                            <Badge variant="outline">Gerador de Cartão de Crédito</Badge>
-                            <Badge variant="outline">Validador de XML</Badge>
-                            <Badge variant="outline">Converter Imagem</Badge>
-                            <Badge variant="outline">Minificar CSS/JS</Badge>
-                        </div>
-                    </div>
+
                 </div>
             </main>
 

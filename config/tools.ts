@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -326,6 +326,134 @@ export const tools: Tool[] = [
         icon: Braces,
         href: "/tools/utilities/json",
     },
+
+    // Finance Tools
+    {
+        id: "iban-validator",
+        name: "Validador de IBAN",
+        title: "Validador de IBAN",
+        description: "Valide e gere códigos IBAN internacionais",
+        category: "financial",
+        icon: CreditCard,
+        href: "/tools/finance/iban-validator",
+    },
+    {
+        id: "tax-calculator",
+        name: "Calculadora de Impostos",
+        title: "Calculadora Simples Nacional",
+        description: "Calcule impostos do Simples Nacional",
+        category: "financial",
+        icon: Calculator,
+        href: "/tools/finance/tax-calculator",
+    },
+    {
+        id: "boleto-generator",
+        name: "Gerador de Boleto",
+        title: "Gerador de Boleto (Mock)",
+        description: "Gere boletos visuais para testes",
+        category: "financial",
+        icon: Barcode,
+        href: "/tools/finance/boleto-generator",
+    },
+
+    // Document Tools
+    {
+        id: "contract-generator",
+        name: "Gerador de Contratos",
+        title: "Gerador de Contratos",
+        description: "Crie contratos personalizados (Serviços, NDA)",
+        category: "documents",
+        icon: FileText,
+        href: "/tools/documents/contract-generator",
+    },
+    {
+        id: "certificate-generator",
+        name: "Gerador de Certificados",
+        title: "Gerador de Certificados",
+        description: "Crie certificados para cursos e eventos",
+        category: "documents",
+        icon: Award,
+        href: "/tools/documents/certificate-generator",
+    },
+    {
+        id: "ocr",
+        name: "OCR de Imagem",
+        title: "OCR - Extrair Texto",
+        description: "Extraia texto de imagens usando IA",
+        category: "image",
+        icon: Image,
+        href: "/tools/image/ocr",
+    },
+
+    // Text/Utility Tools
+    {
+        id: "email-validator",
+        name: "Validador de Email",
+        title: "Validador de Email",
+        description: "Verifique se um email é válido e não temporário",
+        category: "text",
+        icon: Mail,
+        href: "/tools/text/email-validator",
+    },
+    {
+        id: "email-signature",
+        name: "Assinatura de Email",
+        title: "Gerador de Assinatura",
+        description: "Crie assinaturas de email profissionais",
+        category: "text",
+        icon: Mail,
+        href: "/tools/text/email-signature",
+    },
+    {
+        id: "deadline-calculator",
+        name: "Calculadora de Prazo",
+        title: "Calculadora de Prazo",
+        description: "Calcule datas finais com dias úteis e feriados",
+        category: "utilities",
+        icon: Calendar,
+        href: "/tools/utilities/deadline-calculator",
+    },
+
+    // Personal Tools
+    {
+        id: "lgpd-data",
+        name: "Gerador LGPD",
+        title: "Ferramentas LGPD",
+        description: "Gere dados fictícios ou anonimize dados reais",
+        category: "personal",
+        icon: Shield,
+        href: "/tools/personal/lgpd-data",
+    },
+
+    // Final Tools
+    {
+        id: "credit-card-generator",
+        name: "Gerador de Cartão",
+        title: "Gerador de Cartão de Crédito",
+        description: "Gere números de cartão válidos para testes",
+        category: "financial",
+        icon: CreditCard,
+        href: "/tools/finance/credit-card-generator",
+    },
+    {
+        id: "xml-validator",
+        name: "Validador de XML",
+        title: "Validador de XML",
+        description: "Verifique a sintaxe de arquivos XML",
+        category: "utilities",
+        icon: FileCode,
+        href: "/tools/utilities/xml-validator",
+    },
+    {
+        id: "image-converter",
+        name: "Conversor de Imagem",
+        title: "Conversor de Imagem",
+        description: "Converta imagens (PNG, JPEG, WEBP)",
+        category: "image",
+        icon: Image,
+        href: "/tools/image/converter",
+    },
+
 ]
 
 export function getToolsByCategory(categoryId: string): Tool[] {

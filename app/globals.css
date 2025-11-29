@@ -14,19 +14,19 @@
     --primary: 220 85% 50%;
     /* #135bec */
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 27% 93%;
-    /* #e7ebf3 */
+    --secondary: 220 20% 90%;
+    /* #e2e6ea */
     --secondary-foreground: 220 85% 50%;
-    --muted: 220 27% 93%;
+    --muted: 220 20% 90%;
     --muted-foreground: 220 34% 45%;
     /* #4c669a */
-    --accent: 220 27% 93%;
+    --accent: 220 20% 90%;
     --accent-foreground: 220 85% 50%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 27% 93%;
-    /* #e7ebf3 */
-    --input: 220 27% 93%;
+    --border: 220 20% 85%;
+    /* #d1d5db */
+    --input: 220 20% 85%;
     --ring: 220 85% 50%;
     --radius: 0.75rem;
     /* Rounded-xl */
