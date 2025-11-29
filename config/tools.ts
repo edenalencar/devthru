@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -18,6 +18,7 @@ export const toolCategories = [
     { id: "text", name: "Texto e Conversão", icon: AlignLeft },
     { id: "converters", name: "Conversores", icon: ArrowRightLeft },
     { id: "development", name: "Dev Tools", icon: Terminal },
+    { id: "image", name: "Imagens", icon: Image },
     { id: "utilities", name: "Utilidades", icon: Hash },
     { id: "financial", name: "Dados Financeiros", icon: CreditCard },
     { id: "vehicles", name: "Veículos", icon: Car },
@@ -239,6 +240,26 @@ export const tools: Tool[] = [
         category: "development",
         icon: Clock,
         href: "/tools/development/timestamp",
+    },
+
+    // Ferramentas de Imagem
+    {
+        id: "placeholder-generator",
+        name: "Gerador de Placeholder",
+        title: "Gerador de Imagens Placeholder",
+        description: "Crie imagens placeholder personalizadas para seus projetos",
+        category: "image",
+        icon: Image,
+        href: "/tools/image/placeholder",
+    },
+    {
+        id: "favicon-generator",
+        name: "Gerador de Favicon",
+        title: "Gerador de Favicon",
+        description: "Gere favicons em diversos tamanhos a partir de uma imagem",
+        category: "image",
+        icon: Image,
+        href: "/tools/image/favicon",
     },
 
     // Utilidades

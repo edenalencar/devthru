@@ -335,10 +335,10 @@ GET  /api/v1/usage (estatísticas de uso)
 - [x] Conversor de Bases Numéricas
 
 ### Fase 4 - Dev Tools (2-3 meses)
-- [ ] Gerador de Regex
-- [ ] Minificador/Beautifier
-- [ ] Gerador de Mock Data
-- [ ] Timestamp Converter
+- [x] Gerador de Regex
+- [x] Minificador/Beautifier
+- [x] Gerador de Mock Data
+- [x] Timestamp Converter
 
 ### Fase 5 - Imagem e UX (1-2 meses)
 - [ ] Gerador de Placeholder

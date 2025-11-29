@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/navigation"
 
+import { CommandMenu } from "@/components/command-menu"
+
 const Logo = () => (
     <div className="flex items-center gap-3 text-slate-900 dark:text-white">
         <div className="size-8 text-primary">
@@ -52,6 +54,7 @@ export function Navbar() {
         })
 
         return () => subscription.unsubscribe()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleSignOut = async () => {
@@ -87,6 +90,7 @@ export function Navbar() {
 
                 {/* Actions - Right */}
                 <div className="hidden md:flex items-center gap-3">
+                    <CommandMenu />
                     <ThemeToggle />
 
                     {user ? (

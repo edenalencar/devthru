@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/toaster";
 import { siteConfig } from "@/config/site";
 
+import { OnboardingTour } from "@/components/onboarding-tour";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -81,6 +83,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <OnboardingTour />
           <Toaster />
         </ThemeProvider>
       </body>
