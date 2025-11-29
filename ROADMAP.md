@@ -317,22 +317,22 @@ GET  /api/v1/usage (estatísticas de uso)
 ## 🗓️ Roadmap Sugerido
 
 ### Fase 1 - Fundação (1-2 meses)
-- [ ] Sistema de Histórico
-- [ ] API Pública v1
-- [ ] Documentação da API
-- [ ] Sistema de API Keys
+- [x] Sistema de Histórico
+- [x] API Pública v1
+- [x] Documentação da API
+- [x] Sistema de API Keys
 
 ### Fase 2 - Expansão de Ferramentas (2-3 meses)
-- [ ] Título de Eleitor
-- [ ] PIS/PASEP
-- [ ] Gerador de Pessoa Completa
-- [ ] Ferramentas de Texto (contador, conversor, slug)
-- [ ] Diff Checker
+- [x] Título de Eleitor
+- [x] PIS/PASEP
+- [x] Gerador de Pessoa Completa
+- [x] Ferramentas de Texto (contador, conversor, slug)
+- [x] Diff Checker
 
 ### Fase 3 - Conversores (1-2 meses)
-- [ ] Conversor de Unidades
-- [ ] Conversor de Moedas
-- [ ] Conversor de Bases Numéricas
+- [x] Conversor de Unidades
+- [x] Conversor de Moedas
+- [x] Conversor de Bases Numéricas
 
 ### Fase 4 - Dev Tools (2-3 meses)
 - [ ] Gerador de Regex

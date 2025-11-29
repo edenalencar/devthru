@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -17,6 +17,7 @@ export const toolCategories = [
     { id: "personal", name: "Dados Pessoais", icon: User },
     { id: "text", name: "Texto e Conversão", icon: AlignLeft },
     { id: "converters", name: "Conversores", icon: ArrowRightLeft },
+    { id: "development", name: "Dev Tools", icon: Terminal },
     { id: "utilities", name: "Utilidades", icon: Hash },
     { id: "financial", name: "Dados Financeiros", icon: CreditCard },
     { id: "vehicles", name: "Veículos", icon: Car },
@@ -200,6 +201,44 @@ export const tools: Tool[] = [
         category: "converters",
         icon: Coins,
         href: "/tools/converters/currency",
+    },
+
+    // Ferramentas de Desenvolvimento
+    {
+        id: "regex-generator",
+        name: "Gerador de Regex",
+        title: "Gerador e Testador de Regex",
+        description: "Crie, teste e entenda expressões regulares",
+        category: "development",
+        icon: Terminal,
+        href: "/tools/development/regex",
+    },
+    {
+        id: "minifier",
+        name: "Minificador de Código",
+        title: "Minificador e Beautifier",
+        description: "Minifique ou formate código CSS, JS, HTML e SQL",
+        category: "development",
+        icon: FileCode,
+        href: "/tools/development/minifier",
+    },
+    {
+        id: "mock-data",
+        name: "Gerador de Mock Data",
+        title: "Gerador de Dados Mock",
+        description: "Gere dados JSON aleatórios para testes e protótipos",
+        category: "development",
+        icon: Database,
+        href: "/tools/development/mock-data",
+    },
+    {
+        id: "timestamp-converter",
+        name: "Conversor de Timestamp",
+        title: "Conversor de Timestamp",
+        description: "Converta timestamps Unix para data legível e vice-versa",
+        category: "development",
+        icon: Clock,
+        href: "/tools/development/timestamp",
     },
 
     // Utilidades
