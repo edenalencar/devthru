@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { CopyButton } from "@/components/copy-button"
+import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
@@ -96,12 +96,15 @@ export default function EmailGeneratorPage() {
                                     )}
                                 </div>
 
-                                <div className="flex items-center space-x-2">
-                                    <div className="flex-1 p-4 bg-muted rounded-lg text-center text-xl font-medium break-all">
-                                        {email}
-                                    </div>
-                                    <CopyButton text={email} />
-                                </div>
+                                {email && (
+                                    <ToolResult
+                                        result={email}
+                                        toolId="email"
+                                        toolName="Email"
+                                        input={{ domainType, customDomain }}
+                                        successMessage="Email gerado com sucesso"
+                                    />
+                                )}
 
                                 <Button onClick={handleGenerate} className="w-full">
                                     <RefreshCw className="mr-2 h-4 w-4" />

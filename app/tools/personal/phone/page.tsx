@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { CopyButton } from "@/components/copy-button"
+import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
@@ -124,12 +124,15 @@ export default function PhoneGeneratorPage() {
                                     </div>
                                 </div>
 
-                                <div className="flex items-center space-x-2">
-                                    <div className="flex-1 p-4 bg-muted rounded-lg text-center text-2xl font-mono tracking-wider">
-                                        {phone}
-                                    </div>
-                                    <CopyButton text={phone} />
-                                </div>
+                                {phone && (
+                                    <ToolResult
+                                        result={phone}
+                                        toolId="phone"
+                                        toolName="Telefone"
+                                        input={{ type, formatted }}
+                                        successMessage="Telefone gerado com sucesso"
+                                    />
+                                )}
 
                                 <Button onClick={handleGenerate} className="w-full">
                                     <RefreshCw className="mr-2 h-4 w-4" />

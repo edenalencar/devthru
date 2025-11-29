@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CopyButton } from "@/components/copy-button"
+import { ToolResult } from "@/components/tools/tool-result"
 import { generateCNPJ, validateCNPJ, formatCNPJ } from "@/lib/utils/validators/cnpj"
 import { Code2, CheckCircle2, XCircle } from "lucide-react"
 
@@ -67,20 +67,13 @@ export default function CNPJGeneratorPage() {
                                 </Button>
 
                                 {generatedCNPJ && (
-                                    <div className="space-y-3">
-                                        <div className="rounded-lg border bg-muted p-4">
-                                            <div className="flex items-center justify-between">
-                                                <code className="text-2xl font-mono font-bold">
-                                                    {generatedCNPJ}
-                                                </code>
-                                                <CopyButton text={generatedCNPJ} />
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                            <CheckCircle2 className="h-4 w-4 text-accent" />
-                                            CNPJ válido gerado com sucesso
-                                        </div>
-                                    </div>
+                                    <ToolResult
+                                        result={generatedCNPJ}
+                                        toolId="cnpj"
+                                        toolName="CNPJ"
+                                        input={{ formatted }}
+                                        successMessage="CNPJ válido gerado com sucesso"
+                                    />
                                 )}
                             </CardContent>
                         </Card>

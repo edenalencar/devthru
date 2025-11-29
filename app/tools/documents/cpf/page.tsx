@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
-import { CopyButton } from "@/components/copy-button"
+import { ToolResult } from "@/components/tools/tool-result"
 import { generateCPF, validateCPF, formatCPF } from "@/lib/utils/validators/cpf"
 import { FileText, CheckCircle2, XCircle } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
@@ -118,20 +118,13 @@ export default function CPFGeneratorPage() {
                                     </Button>
 
                                     {generatedCPF && (
-                                        <div className="space-y-3">
-                                            <div className="rounded-lg border bg-muted p-4">
-                                                <div className="flex items-center justify-between">
-                                                    <code className="text-2xl font-mono font-bold">
-                                                        {generatedCPF}
-                                                    </code>
-                                                    <CopyButton text={generatedCPF} />
-                                                </div>
-                                            </div>
-                                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                                <CheckCircle2 className="h-4 w-4 text-accent" />
-                                                CPF válido gerado com sucesso
-                                            </div>
-                                        </div>
+                                        <ToolResult
+                                            result={generatedCPF}
+                                            toolId="cpf"
+                                            toolName="CPF"
+                                            input={{ formatted }}
+                                            successMessage="CPF válido gerado com sucesso"
+                                        />
                                     )}
                                 </CardContent>
                             </Card>

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { CopyButton } from "@/components/copy-button"
+import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
@@ -104,12 +104,15 @@ export default function NameGeneratorPage() {
                                     </RadioGroup>
                                 </div>
 
-                                <div className="flex items-center space-x-2">
-                                    <div className="flex-1 p-4 bg-muted rounded-lg text-center text-xl font-medium">
-                                        {name}
-                                    </div>
-                                    <CopyButton text={name} />
-                                </div>
+                                {name && (
+                                    <ToolResult
+                                        result={name}
+                                        toolId="name"
+                                        toolName="Nome"
+                                        input={{ gender }}
+                                        successMessage="Nome gerado com sucesso"
+                                    />
+                                )}
 
                                 <Button onClick={handleGenerate} className="w-full">
                                     <RefreshCw className="mr-2 h-4 w-4" />

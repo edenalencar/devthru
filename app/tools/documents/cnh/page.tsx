@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { CopyButton } from "@/components/copy-button"
+import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
@@ -128,12 +128,15 @@ export default function CNHGeneratorPage() {
                                 <CardDescription>Gere um único número de CNH</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
-                                <div className="flex items-center space-x-2">
-                                    <div className="flex-1 p-4 bg-muted rounded-lg text-center text-2xl font-mono tracking-wider">
-                                        {cnh}
-                                    </div>
-                                    <CopyButton text={cnh} />
-                                </div>
+                                {cnh && (
+                                    <ToolResult
+                                        result={cnh}
+                                        toolId="cnh"
+                                        toolName="CNH"
+                                        input={{ withPunctuation }}
+                                        successMessage="CNH gerada com sucesso"
+                                    />
+                                )}
 
                                 <Button onClick={handleGenerate} className="w-full">
                                     <RefreshCw className="mr-2 h-4 w-4" />

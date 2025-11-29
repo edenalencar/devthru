@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CopyButton } from "@/components/copy-button"
+import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
@@ -76,12 +76,15 @@ export default function AddressGeneratorPage() {
                                 <CardDescription>Gere um único endereço completo</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
-                                <div className="flex items-center space-x-2">
-                                    <div className="flex-1 p-4 bg-muted rounded-lg text-center text-lg font-medium break-words">
-                                        {address}
-                                    </div>
-                                    <CopyButton text={address} />
-                                </div>
+                                {address && (
+                                    <ToolResult
+                                        result={address}
+                                        toolId="address"
+                                        toolName="Endereço"
+                                        input={{}}
+                                        successMessage="Endereço gerado com sucesso"
+                                    />
+                                )}
 
                                 <Button onClick={handleGenerate} className="w-full">
                                     <RefreshCw className="mr-2 h-4 w-4" />
