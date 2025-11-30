@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Icon } from "@/components/ui/icon"
@@ -43,9 +44,12 @@ export default function AboutPage() {
                                 </p>
                             </div>
                             <div className="relative aspect-video overflow-hidden rounded-xl border bg-background shadow-xl">
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                                    <Icon name="code" className="h-24 w-24 text-primary/40" />
-                                </div>
+                                <Image
+                                    src="/images/about-dev-environment.png"
+                                    alt="Ambiente de desenvolvimento moderno"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
                     </div>
