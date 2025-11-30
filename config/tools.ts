@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -483,6 +483,25 @@ export const tools: Tool[] = [
         href: "/tools/automotive/renavam-chassis",
     },
 
+    // Dados Empresariais
+    {
+        id: "nfe-generator",
+        name: "Gerador de Chave NF-e",
+        title: "Gerador de Chave de Acesso NF-e",
+        description: "Gere chaves de acesso de Nota Fiscal Eletrônica válidas para testes",
+        category: "business",
+        icon: Barcode,
+        href: "/tools/business/nfe-generator",
+    },
+    {
+        id: "cnae-search",
+        name: "Busca de CNAE",
+        title: "Busca de CNAE",
+        description: "Pesquise códigos e descrições de atividades econômicas (CNAE)",
+        category: "business",
+        icon: Briefcase,
+        href: "/tools/business/cnae-search",
+    },
 ]
 
 export function getToolsByCategory(categoryId: string): Tool[] {
