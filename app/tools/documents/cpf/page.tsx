@@ -13,6 +13,7 @@ import { generateCPF, validateCPF, formatCPF } from "@/lib/utils/validators/cpf"
 import { FileText, CheckCircle2, XCircle } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
+import { ConfigurationManager } from "@/components/tools/configuration-manager"
 
 export default function CPFGeneratorPage() {
     const [generatedCPF, setGeneratedCPF] = useState("")
@@ -214,6 +215,23 @@ export default function CPFGeneratorPage() {
                                 </CardContent>
                             </Card>
                         )}
+                    </div>
+
+                    {/* Configuration Manager */}
+                    <div className="mt-8">
+                        <Card>
+                            <CardContent className="pt-6">
+                                <ConfigurationManager
+                                    toolId="cpf"
+                                    currentConfig={{ formatted }}
+                                    onLoadConfig={(config) => {
+                                        if (config.formatted !== undefined) {
+                                            setFormatted(config.formatted)
+                                        }
+                                    }}
+                                />
+                            </CardContent>
+                        </Card>
                     </div>
 
                     {/* Info Section */}

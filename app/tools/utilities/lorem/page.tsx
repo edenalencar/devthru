@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { CopyButton } from "@/components/copy-button"
 import { generateLoremIpsum } from "@/lib/utils/generators/lorem"
 import { Type } from "lucide-react"
+import { ConfigurationManager } from "@/components/tools/configuration-manager"
 
 export default function LoremIpsumPage() {
     const [text, setText] = useState("")
@@ -102,6 +103,15 @@ export default function LoremIpsumPage() {
                                 <Button onClick={handleGenerate} className="w-full" size="lg">
                                     Gerar Texto
                                 </Button>
+
+                                <ConfigurationManager
+                                    toolId="lorem-ipsum"
+                                    currentConfig={{ type, count }}
+                                    onLoadConfig={(config) => {
+                                        if (config.type) setType(config.type)
+                                        if (config.count) setCount(config.count)
+                                    }}
+                                />
                             </CardContent>
                         </Card>
 

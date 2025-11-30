@@ -9,6 +9,7 @@ import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
+import { ConfigurationManager } from "@/components/tools/configuration-manager"
 
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
@@ -142,6 +143,16 @@ export default function CNHGeneratorPage() {
                                     <RefreshCw className="mr-2 h-4 w-4" />
                                     Gerar Nova CNH
                                 </Button>
+
+                                <ConfigurationManager
+                                    toolId="cnh"
+                                    currentConfig={{ withPunctuation }}
+                                    onLoadConfig={(config) => {
+                                        if (config.withPunctuation !== undefined) {
+                                            setWithPunctuation(config.withPunctuation)
+                                        }
+                                    }}
+                                />
                             </CardContent>
                         </Card>
 

@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { ToolResult } from "@/components/tools/tool-result"
 import { generateCNPJ, validateCNPJ, formatCNPJ } from "@/lib/utils/validators/cnpj"
 import { Code2, CheckCircle2, XCircle } from "lucide-react"
+import { ConfigurationManager } from "@/components/tools/configuration-manager"
 
 export default function CNPJGeneratorPage() {
     const [generatedCNPJ, setGeneratedCNPJ] = useState("")
@@ -126,6 +127,23 @@ export default function CNPJGeneratorPage() {
                                         )}
                                     </div>
                                 )}
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {/* Configuration Manager */}
+                    <div className="mt-8">
+                        <Card>
+                            <CardContent className="pt-6">
+                                <ConfigurationManager
+                                    toolId="cnpj"
+                                    currentConfig={{ formatted }}
+                                    onLoadConfig={(config) => {
+                                        if (config.formatted !== undefined) {
+                                            setFormatted(config.formatted)
+                                        }
+                                    }}
+                                />
                             </CardContent>
                         </Card>
                     </div>

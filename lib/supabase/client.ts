@@ -131,6 +131,32 @@ export type Database = {
                     updated_at?: string
                 }
             }
+            user_configurations: {
+                Row: {
+                    id: string
+                    user_id: string
+                    tool_id: string
+                    name: string
+                    configuration: any
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    user_id: string
+                    tool_id: string
+                    name: string
+                    configuration: any
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    user_id?: string
+                    tool_id?: string
+                    name?: string
+                    configuration?: any
+                    created_at?: string
+                }
+            }
         }
     }
 }

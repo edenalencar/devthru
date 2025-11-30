@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { CopyButton } from "@/components/copy-button"
 import { generateUUID, generateMultipleUUIDs } from "@/lib/utils/generators/uuid"
 import { Hash } from "lucide-react"
+import { ConfigurationManager } from "@/components/tools/configuration-manager"
 
 export default function UUIDGeneratorPage() {
     const [generatedUUIDs, setGeneratedUUIDs] = useState<string[]>([])
@@ -66,6 +67,16 @@ export default function UUIDGeneratorPage() {
                                 <Button onClick={handleGenerate} className="w-full" size="lg">
                                     Gerar UUID{quantity > 1 ? "s" : ""}
                                 </Button>
+
+                                <ConfigurationManager
+                                    toolId="uuid-generator"
+                                    currentConfig={{ quantity }}
+                                    onLoadConfig={(config) => {
+                                        if (config.quantity !== undefined) {
+                                            setQuantity(config.quantity)
+                                        }
+                                    }}
+                                />
                             </CardContent>
                         </Card>
 

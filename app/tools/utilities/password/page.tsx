@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { CopyButton } from "@/components/copy-button"
 import { generatePassword, calculatePasswordStrength, type PasswordOptions } from "@/lib/utils/generators/password"
 import { Key, Shield } from "lucide-react"
+import { ConfigurationManager } from "@/components/tools/configuration-manager"
 
 export default function PasswordGeneratorPage() {
     const [password, setPassword] = useState("")
@@ -120,6 +121,16 @@ export default function PasswordGeneratorPage() {
                                 <Button onClick={handleGenerate} className="w-full" size="lg">
                                     Gerar Senha
                                 </Button>
+
+                                <ConfigurationManager
+                                    toolId="password-generator"
+                                    currentConfig={options}
+                                    onLoadConfig={(config) => {
+                                        if (config) {
+                                            setOptions(config)
+                                        }
+                                    }}
+                                />
                             </CardContent>
                         </Card>
 
