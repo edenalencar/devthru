@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -23,6 +23,12 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
     const [results, setResults] = useState<string[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
+
+    useEffect(() => {
+        if (limit > 0 && quantity > limit) {
+            setQuantity(limit)
+        }
+    }, [limit])
 
     const handleGenerate = async () => {
         setError(null)
@@ -71,16 +77,27 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
                         id="quantity"
                         type="number"
                         min={1}
-                        max={isPro ? 10000 : 50}
+                        max={limit}
                         value={quantity}
-                        onChange={(e) => setQuantity(parseInt(e.target.value) || 0)}
+                        onChange={(e) => {
+                            const val = parseInt(e.target.value) || 0
+                            // Allow typing, but maybe show warning? 
+                            // For now, let's just let them type but disable button if > limit
+                            setQuantity(val)
+                        }}
                     />
                 </div>
-                <Button onClick={handleGenerate} disabled={loading}>
+                <Button onClick={handleGenerate} disabled={loading || quantity > limit}>
                     {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     Gerar {label} em Massa
                 </Button>
             </div>
+
+            {quantity > limit && (
+                <p className="text-sm text-destructive font-medium">
+                    A quantidade excede o limite do seu plano ({limit}).
+                </p>
+            )}
 
             {error && (
                 <Alert variant="destructive">

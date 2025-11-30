@@ -20,7 +20,7 @@ export default function InscricaoEstadualPage() {
     const [validateInput, setValidateInput] = useState('')
     const [validateResult, setValidateResult] = useState<boolean | null>(null)
     const [activeTab, setActiveTab] = useState<'generate' | 'validate' | 'bulk'>('generate')
-    const { user, isPro } = useUser()
+    const { isPro, limit } = useUser()
 
     const handleGenerate = () => {
         const ie = generateIE(selectedUF)
@@ -200,7 +200,7 @@ export default function InscricaoEstadualPage() {
                                 <BulkGenerator
                                     generatorFn={() => formatIE(generateIE(selectedUF), selectedUF)}
                                     label="Inscrição Estadual"
-                                    limit={isPro ? 10000 : 50}
+                                    limit={limit}
                                     isPro={isPro}
                                 />
                             </CardContent>

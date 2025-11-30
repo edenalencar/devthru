@@ -13,6 +13,7 @@ import { CreditCard, CheckCircle2, XCircle } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useUser } from "@/lib/hooks/use-user"
 
 export default function IBANValidatorPage() {
     const [generatedIBAN, setGeneratedIBAN] = useState("")
@@ -20,34 +21,8 @@ export default function IBANValidatorPage() {
     const [validationInput, setValidationInput] = useState("")
     const [validationResult, setValidationResult] = useState<boolean | null>(null)
     const [activeTab, setActiveTab] = useState<'single' | 'bulk'>('single')
-    const [isPro, setIsPro] = useState(false)
-    const [loadingProfile, setLoadingProfile] = useState(true)
 
-    const supabase = createClient()
-
-    useEffect(() => {
-        checkSubscription()
-    }, [])
-
-    const checkSubscription = async () => {
-        try {
-            const { data: { user } } = await supabase.auth.getUser()
-            if (user) {
-                const { data: profile } = await supabase
-                    .from('profiles')
-                    .select('subscription_tier')
-                    .eq('id', user.id)
-                    .single()
-
-                const userProfile = profile as { subscription_tier: string } | null
-                setIsPro(userProfile?.subscription_tier === 'pro' || userProfile?.subscription_tier === 'enterprise')
-            }
-        } catch (error) {
-            console.error("Error checking subscription:", error)
-        } finally {
-            setLoadingProfile(false)
-        }
-    }
+    const { isPro, limit, loading: loadingProfile } = useUser()
 
     const handleGenerate = () => {
         const iban = generateIBAN(selectedCountry)
@@ -140,7 +115,7 @@ export default function IBANValidatorPage() {
                                 <CardHeader>
                                     <CardTitle>Geração em Massa</CardTitle>
                                     <CardDescription>
-                                        Gere múltiplos IBANs de uma vez. {isPro ? "Limite: 10.000 itens." : "Limite Grátis: 50 itens."}
+                                        Gere múltiplos IBANs de uma vez. Limite do seu plano: {limit} itens.
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
@@ -150,7 +125,7 @@ export default function IBANValidatorPage() {
                                             return formatIBAN(iban)
                                         }}
                                         label="IBANs"
-                                        limit={isPro ? 10000 : 50}
+                                        limit={limit}
                                         isPro={isPro}
                                     />
                                     <div className="mt-4">

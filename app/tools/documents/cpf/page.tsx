@@ -14,6 +14,7 @@ import { FileText, CheckCircle2, XCircle } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
+import { useUser } from "@/lib/hooks/use-user"
 
 export default function CPFGeneratorPage() {
     const [generatedCPF, setGeneratedCPF] = useState("")
@@ -21,34 +22,8 @@ export default function CPFGeneratorPage() {
     const [validationInput, setValidationInput] = useState("")
     const [validationResult, setValidationResult] = useState<boolean | null>(null)
     const [activeTab, setActiveTab] = useState<'single' | 'bulk'>('single')
-    const [isPro, setIsPro] = useState(false)
-    const [loadingProfile, setLoadingProfile] = useState(true)
 
-    const supabase = createClient()
-
-    useEffect(() => {
-        checkSubscription()
-    }, [])
-
-    const checkSubscription = async () => {
-        try {
-            const { data: { user } } = await supabase.auth.getUser()
-            if (user) {
-                const { data: profile } = await supabase
-                    .from('profiles')
-                    .select('subscription_tier')
-                    .eq('id', user.id)
-                    .single()
-
-                const userProfile = profile as { subscription_tier: string } | null
-                setIsPro(userProfile?.subscription_tier === 'pro' || userProfile?.subscription_tier === 'enterprise')
-            }
-        } catch (error) {
-            console.error("Error checking subscription:", error)
-        } finally {
-            setLoadingProfile(false)
-        }
-    }
+    const { isPro, limit, loading: loadingProfile } = useUser()
 
     const handleGenerate = () => {
         const cpf = generateCPF()
@@ -135,7 +110,7 @@ export default function CPFGeneratorPage() {
                                 <CardHeader>
                                     <CardTitle>Geração em Massa</CardTitle>
                                     <CardDescription>
-                                        Gere múltiplos CPFs de uma vez. {isPro ? "Limite: 10.000 itens." : "Limite Grátis: 50 itens."}
+                                        Gere múltiplos CPFs de uma vez. Limite do seu plano: {limit} itens.
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
@@ -145,7 +120,7 @@ export default function CPFGeneratorPage() {
                                             return formatted ? formatCPF(cpf) : cpf
                                         }}
                                         label="CPFs"
-                                        limit={isPro ? 10000 : 50}
+                                        limit={limit}
                                         isPro={isPro}
                                     />
                                     <div className="flex items-center space-x-2 mt-4">

@@ -13,16 +13,11 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import { Save, Trash2, Settings, Play, Loader2 } from "lucide-react"
+import { Save, Trash2, Settings, Play, Loader2, Lock } from "lucide-react"
 import { saveConfiguration, getConfigurations, deleteConfiguration } from "@/lib/actions/configurations"
 import { toast } from "sonner"
+import { useUser } from "@/lib/hooks/use-user"
+import { Badge } from "@/components/ui/badge"
 
 interface Configuration {
     id: string
@@ -43,6 +38,7 @@ export function ConfigurationManager({ toolId, currentConfig, onLoadConfig }: Co
     const [configurations, setConfigurations] = useState<Configuration[]>([])
     const [isLoading, setIsLoading] = useState(false)
     const [isSaving, setIsSaving] = useState(false)
+    const { permissions, isPro, isInTrial, loading: userLoading } = useUser()
 
     const fetchConfigurations = useCallback(async () => {
         setIsLoading(true)
@@ -62,6 +58,11 @@ export function ConfigurationManager({ toolId, currentConfig, onLoadConfig }: Co
     }, [fetchConfigurations])
 
     const handleSave = async () => {
+        if (!permissions.saved_configs_access.can_create) {
+            toast.error("Upgrade para Pro necessário para salvar configurações")
+            return
+        }
+
         if (!configName.trim()) {
             toast.error("Digite um nome para a configuração")
             return
@@ -78,6 +79,8 @@ export function ConfigurationManager({ toolId, currentConfig, onLoadConfig }: Co
             console.error("Error saving configuration:", error)
             if (error.message === "User not authenticated") {
                 toast.error("Você precisa estar logado para salvar configurações")
+            } else if (error.message.includes("Upgrade required")) {
+                toast.error("Upgrade para Pro necessário para salvar configurações")
             } else {
                 toast.error("Erro ao salvar configuração")
             }
@@ -87,12 +90,21 @@ export function ConfigurationManager({ toolId, currentConfig, onLoadConfig }: Co
     }
 
     const handleLoad = (config: Configuration) => {
+        if (!permissions.saved_configs_access.can_apply) {
+            toast.error("Upgrade para Pro necessário para carregar configurações salvas")
+            return
+        }
         onLoadConfig(config.configuration)
         toast.success(`Configuração "${config.name}" carregada!`)
     }
 
     const handleDelete = async (id: string, e: React.MouseEvent) => {
         e.stopPropagation() // Prevent triggering load
+        if (!permissions.saved_configs_access.can_delete) {
+            toast.error("Upgrade para Pro necessário para excluir configurações")
+            return
+        }
+
         try {
             await deleteConfiguration(id)
             toast.success("Configuração excluída")
@@ -103,17 +115,20 @@ export function ConfigurationManager({ toolId, currentConfig, onLoadConfig }: Co
         }
     }
 
+    const canSave = permissions.saved_configs_access.can_create
+
     return (
         <div className="space-y-4">
             <div className="flex items-center justify-between">
                 <h3 className="text-lg font-medium flex items-center gap-2">
                     <Settings className="h-5 w-5" />
                     Minhas Configurações
+                    {isInTrial && <Badge variant="secondary" className="text-xs">Trial Ativo</Badge>}
                 </h3>
                 <Dialog open={isOpen} onOpenChange={setIsOpen}>
                     <DialogTrigger asChild>
                         <Button variant="outline" size="sm" className="gap-2">
-                            <Save className="h-4 w-4" />
+                            {canSave ? <Save className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
                             Salvar Atual
                         </Button>
                     </DialogTrigger>
@@ -121,28 +136,45 @@ export function ConfigurationManager({ toolId, currentConfig, onLoadConfig }: Co
                         <DialogHeader>
                             <DialogTitle>Salvar Configuração</DialogTitle>
                             <DialogDescription>
-                                Salve as opções atuais para usar novamente depois.
+                                {canSave
+                                    ? "Salve as opções atuais para usar novamente depois."
+                                    : "Faça upgrade para o plano Pro para salvar suas configurações."}
                             </DialogDescription>
                         </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="name" className="text-right">
-                                    Nome
-                                </Label>
-                                <Input
-                                    id="name"
-                                    value={configName}
-                                    onChange={(e) => setConfigName(e.target.value)}
-                                    placeholder="Ex: CPF com Pontuação"
-                                    className="col-span-3"
-                                />
+
+                        {canSave ? (
+                            <div className="grid gap-4 py-4">
+                                <div className="grid grid-cols-4 items-center gap-4">
+                                    <Label htmlFor="name" className="text-right">
+                                        Nome
+                                    </Label>
+                                    <Input
+                                        id="name"
+                                        value={configName}
+                                        onChange={(e) => setConfigName(e.target.value)}
+                                        placeholder="Ex: CPF com Pontuação"
+                                        className="col-span-3"
+                                    />
+                                </div>
                             </div>
-                        </div>
+                        ) : (
+                            <div className="py-4 text-center">
+                                <p className="text-muted-foreground mb-4">
+                                    O plano Free permite apenas visualizar configurações salvas anteriormente (durante o trial).
+                                </p>
+                                <Button className="w-full" onClick={() => window.location.href = '/pricing'}>
+                                    Fazer Upgrade Agora
+                                </Button>
+                            </div>
+                        )}
+
                         <DialogFooter>
-                            <Button onClick={handleSave} disabled={isSaving}>
-                                {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                Salvar
-                            </Button>
+                            {canSave && (
+                                <Button onClick={handleSave} disabled={isSaving}>
+                                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    Salvar
+                                </Button>
+                            )}
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
@@ -159,26 +191,35 @@ export function ConfigurationManager({ toolId, currentConfig, onLoadConfig }: Co
                 </div>
             ) : (
                 <div className="grid gap-2 max-h-[300px] overflow-y-auto pr-2">
-                    {configurations.map((config) => (
-                        <div
-                            key={config.id}
-                            className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors cursor-pointer group"
-                            onClick={() => handleLoad(config)}
-                        >
-                            <div className="flex items-center gap-3">
-                                <Play className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <span className="font-medium">{config.name}</span>
-                            </div>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-8 w-8 text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-opacity"
-                                onClick={(e) => handleDelete(config.id, e)}
+                    {configurations.map((config) => {
+                        const isLocked = !permissions.saved_configs_access.can_apply
+                        return (
+                            <div
+                                key={config.id}
+                                className={`flex items-center justify-between p-3 rounded-lg border transition-colors cursor-pointer group ${isLocked ? 'bg-muted/50 opacity-75' : 'bg-card hover:bg-accent/50'
+                                    }`}
+                                onClick={() => handleLoad(config)}
                             >
-                                <Trash2 className="h-4 w-4" />
-                            </Button>
-                        </div>
-                    ))}
+                                <div className="flex items-center gap-3">
+                                    {isLocked ? (
+                                        <Lock className="h-4 w-4 text-muted-foreground" />
+                                    ) : (
+                                        <Play className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    )}
+                                    <span className="font-medium">{config.name}</span>
+                                </div>
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className={`h-8 w-8 text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-opacity ${isLocked ? 'hidden' : ''
+                                        }`}
+                                    onClick={(e) => handleDelete(config.id, e)}
+                                >
+                                    <Trash2 className="h-4 w-4" />
+                                </Button>
+                            </div>
+                        )
+                    })}
                 </div>
             )}
         </div>

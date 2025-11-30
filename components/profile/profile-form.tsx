@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { createClient } from "@/lib/supabase/client"
 import { Loader2, Upload, User } from "lucide-react"
 import { toast } from "sonner"
+import { isUserInTrial } from "@/lib/permissions"
 
 interface ProfileFormProps {
     user: any
@@ -34,7 +35,7 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
 
             const { error } = await supabase
                 .from("profiles")
-                .upsert(updates)
+                .upsert(updates as any)
 
             if (error) throw error
 
@@ -91,7 +92,7 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
                     email: user.email,
                     avatar_url: publicUrl,
                     updated_at: new Date().toISOString(),
-                })
+                } as any)
 
             toast.success("Foto de perfil atualizada!")
             onUpdate()
@@ -101,6 +102,27 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
             console.error(error)
         } finally {
             setUploading(false)
+        }
+    }
+
+    const [managingSubscription, setManagingSubscription] = useState(false)
+
+    const handleManageSubscription = async () => {
+        try {
+            setManagingSubscription(true)
+            const response = await fetch("/api/stripe/portal", {
+                method: "POST",
+            })
+
+            if (!response.ok) throw new Error("Failed to create portal session")
+
+            const { url } = await response.json()
+            window.location.href = url
+        } catch (error) {
+            toast.error("Erro ao abrir portal de assinatura")
+            console.error(error)
+        } finally {
+            setManagingSubscription(false)
         }
     }
 
@@ -148,16 +170,36 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
                             Seu plano de assinatura ativo.
                         </p>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium capitalize">
-                            {profile?.subscription_tier === 'pro' ? 'Pro' : 'Gratuito'}
-                        </span>
-                        <div className={`px-2.5 py-0.5 text-xs font-semibold rounded-full ${profile?.subscription_tier === 'pro'
-                                ? 'bg-primary/20 text-primary'
-                                : 'bg-secondary text-secondary-foreground'
-                            }`}>
-                            {profile?.subscription_tier === 'pro' ? 'PRO' : 'FREE'}
+                    <div className="flex flex-col items-end gap-3">
+                        <div className="flex items-center gap-2">
+                            <span className="text-sm font-medium capitalize">
+                                {isUserInTrial(profile) ? 'Trial (Pro)' : (profile?.subscription_tier === 'pro' || profile?.subscription_tier === 'business' ? profile.subscription_tier : 'Gratuito')}
+                            </span>
+                            <div className={`px-2.5 py-0.5 text-xs font-semibold rounded-full ${isUserInTrial(profile)
+                                ? 'bg-blue-500/20 text-blue-500'
+                                : (profile?.subscription_tier === 'pro' || profile?.subscription_tier === 'business'
+                                    ? 'bg-primary/20 text-primary'
+                                    : 'bg-secondary text-secondary-foreground')
+                                }`}>
+                                {isUserInTrial(profile) ? 'TRIAL' : (profile?.subscription_tier === 'pro' || profile?.subscription_tier === 'business' ? profile.subscription_tier.toUpperCase() : 'FREE')}
+                            </div>
                         </div>
+
+                        {profile?.stripe_customer_id ? (
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={handleManageSubscription}
+                                disabled={managingSubscription}
+                            >
+                                {managingSubscription && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                Gerenciar Assinatura
+                            </Button>
+                        ) : (
+                            <Button variant="default" size="sm" asChild>
+                                <a href="/pricing">Fazer Upgrade</a>
+                            </Button>
+                        )}
                     </div>
                 </div>
 

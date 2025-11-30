@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
+import { getPlanPermissions, isUserInTrial } from "@/lib/permissions"
 
 export async function saveConfiguration(toolId: string, name: string, configuration: any) {
     const supabase = await createClient()
@@ -11,6 +12,19 @@ export async function saveConfiguration(toolId: string, name: string, configurat
         throw new Error("User not authenticated")
     }
 
+    // Check permissions
+    const { data: profile } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single()
+
+    const permissions = getPlanPermissions(profile)
+
+    if (!permissions.saved_configs_access.can_create) {
+        throw new Error("Upgrade required to save configurations")
+    }
+
     const { error } = await supabase
         .from("user_configurations")
         .insert({
@@ -18,7 +32,7 @@ export async function saveConfiguration(toolId: string, name: string, configurat
             tool_id: toolId,
             name,
             configuration,
-        })
+        } as any)
 
     if (error) {
         throw new Error(error.message)

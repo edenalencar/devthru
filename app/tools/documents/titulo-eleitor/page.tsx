@@ -51,7 +51,7 @@ export default function TituloEleitorPage() {
     const [validateInput, setValidateInput] = useState('')
     const [validateResult, setValidateResult] = useState<boolean | null>(null)
     const [activeTab, setActiveTab] = useState<'generate' | 'validate' | 'bulk'>('generate')
-    const { user } = useUser()
+    const { isPro, limit } = useUser()
 
     const handleGenerate = () => {
         const titulo = generateTituloEleitor(selectedUF)
@@ -64,7 +64,7 @@ export default function TituloEleitorPage() {
         setValidateResult(isValid)
     }
 
-    const isPro = user?.subscription_tier === 'pro'
+
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -169,8 +169,8 @@ export default function TituloEleitorPage() {
                                 {validateResult !== null && (
                                     <div
                                         className={`flex items-center gap-2 p-4 rounded-lg ${validateResult
-                                                ? 'bg-green-500/10 text-green-600 dark:text-green-400'
-                                                : 'bg-red-500/10 text-red-600 dark:text-red-400'
+                                            ? 'bg-green-500/10 text-green-600 dark:text-green-400'
+                                            : 'bg-red-500/10 text-red-600 dark:text-red-400'
                                             }`}
                                     >
                                         {validateResult ? (
@@ -223,7 +223,7 @@ export default function TituloEleitorPage() {
                                 <BulkGenerator
                                     generatorFn={() => formatTituloEleitor(generateTituloEleitor(selectedUF))}
                                     label="Título de Eleitor"
-                                    limit={isPro ? 10000 : 50}
+                                    limit={limit}
                                     isPro={isPro}
                                 />
                             </CardContent>

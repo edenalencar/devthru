@@ -31,20 +31,20 @@ export function DeleteAccount() {
 
         try {
             setLoading(true)
-            const { data: { user } } = await supabase.auth.getUser()
-            if (!user) return
 
-            // Delete profile data
-            const { error } = await supabase
-                .from("profiles")
-                .delete()
-                .eq("id", user.id)
+            // Call the API to delete the user
+            const response = await fetch("/api/auth/delete-user", {
+                method: "DELETE",
+            })
 
-            if (error) throw error
+            if (!response.ok) {
+                throw new Error("Failed to delete account")
+            }
 
-            // Sign out
+            // Sign out locally to clear session
             await supabase.auth.signOut()
-            toast.success("Sua conta foi excluída.")
+
+            toast.success("Sua conta foi excluída permanentemente.")
             router.push("/")
             router.refresh()
         } catch (error) {

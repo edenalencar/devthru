@@ -3,10 +3,14 @@
 import { useEffect, useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 import { User } from "@supabase/supabase-js"
+import { getPlanPermissions, PlanPermissions, isUserInTrial } from "@/lib/permissions"
 
 export function useUser() {
     const [user, setUser] = useState<User | null>(null)
+    const [profile, setProfile] = useState<any>(null)
+    const [permissions, setPermissions] = useState<PlanPermissions>(getPlanPermissions(null))
     const [isPro, setIsPro] = useState(false)
+    const [isInTrial, setIsInTrial] = useState(false)
     const [loading, setLoading] = useState(true)
     const supabase = createClient()
 
@@ -18,15 +22,22 @@ export function useUser() {
 
                 if (user) {
                     // Fetch profile to check subscription
-                    const { data: profile } = await supabase
+                    const { data: profileData } = await supabase
                         .from("profiles")
-                        .select("subscription_tier")
+                        .select("*")
                         .eq("id", user.id)
                         .single()
 
-                    setIsPro(profile?.subscription_tier === "pro")
+                    setProfile(profileData)
+
+                    const perms = getPlanPermissions(profileData)
+                    setPermissions(perms)
+                    setIsPro(profileData?.subscription_tier === "pro" || profileData?.subscription_tier === "business" || isUserInTrial(profileData))
+                    setIsInTrial(isUserInTrial(profileData))
                 } else {
+                    setPermissions(getPlanPermissions(null))
                     setIsPro(false)
+                    setIsInTrial(false)
                 }
             } catch (error) {
                 console.error("Error fetching user:", error)
@@ -40,14 +51,22 @@ export function useUser() {
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
             setUser(session?.user ?? null)
             if (session?.user) {
-                const { data: profile } = await supabase
+                const { data: profileData } = await supabase
                     .from("profiles")
-                    .select("subscription_tier")
+                    .select("*")
                     .eq("id", session.user.id)
                     .single()
-                setIsPro(profile?.subscription_tier === "pro")
+
+                setProfile(profileData)
+                const perms = getPlanPermissions(profileData)
+                setPermissions(perms)
+                setIsPro(profileData?.subscription_tier === "pro" || profileData?.subscription_tier === "business" || isUserInTrial(profileData))
+                setIsInTrial(isUserInTrial(profileData))
             } else {
+                setProfile(null)
+                setPermissions(getPlanPermissions(null))
                 setIsPro(false)
+                setIsInTrial(false)
             }
             setLoading(false)
         })
@@ -59,8 +78,11 @@ export function useUser() {
 
     return {
         user,
+        profile,
+        permissions,
         isPro,
+        isInTrial,
         loading,
-        limit: isPro ? 10000 : 50
+        limit: permissions.generation_limit
     }
 }
