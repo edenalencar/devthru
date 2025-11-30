@@ -10,6 +10,7 @@ import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 const ddds = [
     11, 12, 13, 14, 15, 16, 17, 18, 19, // SP
@@ -115,10 +116,12 @@ export default function PhoneGeneratorPage() {
                                     </div>
 
                                     <div className="flex items-center space-x-2">
-                                        <Switch
+                                        <input
+                                            type="checkbox"
                                             id="formatted"
                                             checked={formatted}
-                                            onCheckedChange={setFormatted}
+                                            onChange={(e) => setFormatted(e.target.checked)}
+                                            className="h-4 w-4 rounded border-gray-300"
                                         />
                                         <Label htmlFor="formatted">Com formatação</Label>
                                     </div>
@@ -144,7 +147,9 @@ export default function PhoneGeneratorPage() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>Geração em Massa</CardTitle>
-                                <CardDescription>Gere múltiplos telefones de uma vez</CardDescription>
+                                <CardDescription>
+                                    {getPlanLimitMessage(limit)}
+                                </CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <BulkGenerator

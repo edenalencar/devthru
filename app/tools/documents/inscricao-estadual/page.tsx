@@ -13,6 +13,7 @@ import { BulkGenerator } from '@/components/tools/bulk-generator'
 import { RefreshCw, CheckCircle2, XCircle } from 'lucide-react'
 import { generateIE, validateIE, formatIE, IE_STATES } from '@/lib/utils/validators/inscricao-estadual'
 import { useUser } from '@/lib/hooks/use-user'
+import { getPlanLimitMessage } from "@/lib/constants"
 
 export default function InscricaoEstadualPage() {
     const [selectedUF, setSelectedUF] = useState(IE_STATES[0].uf)
@@ -193,7 +194,7 @@ export default function InscricaoEstadualPage() {
                             <CardHeader>
                                 <CardTitle>Geração em Lote</CardTitle>
                                 <CardDescription>
-                                    Gere múltiplas IEs de {stateInfo?.name || 'o estado selecionado'}
+                                    {getPlanLimitMessage(limit)}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>

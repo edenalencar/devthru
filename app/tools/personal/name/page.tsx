@@ -9,6 +9,7 @@ import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 const firstNamesMale = [
     "Miguel", "Arthur", "Gael", "Théo", "Heitor", "Ravi", "Davi", "Bernardo", "Noah", "Gabriel",
@@ -124,7 +125,9 @@ export default function NameGeneratorPage() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>Geração em Massa</CardTitle>
-                                <CardDescription>Gere múltiplos nomes de uma vez</CardDescription>
+                                <CardDescription>
+                                    {getPlanLimitMessage(limit)}
+                                </CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <BulkGenerator

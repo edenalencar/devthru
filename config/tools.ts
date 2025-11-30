@@ -21,7 +21,7 @@ export const toolCategories = [
     { id: "image", name: "Imagens", icon: Image },
     { id: "utilities", name: "Utilidades", icon: Hash },
     { id: "financial", name: "Dados Financeiros", icon: CreditCard },
-    { id: "vehicles", name: "Veículos", icon: Car },
+    { id: "automotive", name: "Veículos", icon: Car },
 ]
 
 export const tools: Tool[] = [
@@ -452,6 +452,35 @@ export const tools: Tool[] = [
         category: "image",
         icon: Image,
         href: "/tools/image/converter",
+    },
+
+    // Ferramentas Automotivas
+    {
+        id: "license-plate",
+        name: "Gerador de Placas",
+        title: "Gerador de Placas Veiculares",
+        description: "Gere e converta placas nos padrões Mercosul e Antigo",
+        category: "automotive",
+        icon: Car,
+        href: "/tools/automotive/license-plate",
+    },
+    {
+        id: "fipe",
+        name: "Tabela FIPE",
+        title: "Consulta Tabela FIPE",
+        description: "Consulte preços médios de veículos na Tabela FIPE",
+        category: "automotive",
+        icon: Calculator,
+        href: "/tools/automotive/fipe",
+    },
+    {
+        id: "renavam-chassis",
+        name: "Gerador de RENAVAM/Chassis",
+        title: "Gerador de RENAVAM e Chassis",
+        description: "Gere e valide códigos RENAVAM e Chassis (VIN) válidos",
+        category: "automotive",
+        icon: Shield,
+        href: "/tools/automotive/renavam-chassis",
     },
 
 ]

@@ -4,15 +4,14 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
 import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
-
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 export default function RGGeneratorPage() {
     const [rg, setRg] = useState<string>("")
@@ -29,9 +28,6 @@ export default function RGGeneratorPage() {
         const n7 = Math.floor(Math.random() * 10)
         const n8 = Math.floor(Math.random() * 10)
 
-        // Simple checksum for demonstration (RG rules vary by state in Brazil, this is a generic mock)
-        // In reality, many RGs don't have a strict checksum like CPF, but some states do.
-        // We'll generate a random check digit 0-9 or X.
         const d = Math.floor(Math.random() * 11)
         const digit = d === 10 ? "X" : d.toString()
 
@@ -47,7 +43,6 @@ export default function RGGeneratorPage() {
         setRg(generateRG())
     }
 
-    // Initial generation
     if (!rg) {
         handleGenerate()
     }
@@ -73,10 +68,12 @@ export default function RGGeneratorPage() {
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 <div className="flex items-center space-x-2">
-                                    <Switch
+                                    <input
+                                        type="checkbox"
                                         id="punctuation"
                                         checked={withPunctuation}
-                                        onCheckedChange={setWithPunctuation}
+                                        onChange={(e) => setWithPunctuation(e.target.checked)}
+                                        className="h-4 w-4 rounded border-gray-300"
                                     />
                                     <Label htmlFor="punctuation">Com pontuação</Label>
                                 </div>
@@ -111,7 +108,9 @@ export default function RGGeneratorPage() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>Geração em Massa</CardTitle>
-                                <CardDescription>Gere múltiplos RGs de uma vez</CardDescription>
+                                <CardDescription>
+                                    {getPlanLimitMessage(limit)}
+                                </CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <BulkGenerator

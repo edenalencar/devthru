@@ -15,6 +15,7 @@ import { createClient } from "@/lib/supabase/client"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 export default function CPFGeneratorPage() {
     const [generatedCPF, setGeneratedCPF] = useState("")
@@ -110,7 +111,7 @@ export default function CPFGeneratorPage() {
                                 <CardHeader>
                                     <CardTitle>Geração em Massa</CardTitle>
                                     <CardDescription>
-                                        Gere múltiplos CPFs de uma vez. Limite do seu plano: {limit} itens.
+                                        {getPlanLimitMessage(limit)}
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>

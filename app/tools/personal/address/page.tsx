@@ -7,6 +7,7 @@ import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 const streetTypes = ["Rua", "Avenida", "Travessa", "Alameda", "Praça", "Rodovia"]
 const streetNames = [
@@ -96,7 +97,9 @@ export default function AddressGeneratorPage() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>Geração em Massa</CardTitle>
-                                <CardDescription>Gere múltiplos endereços de uma vez</CardDescription>
+                                <CardDescription>
+                                    {getPlanLimitMessage(limit)}
+                                </CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <BulkGenerator

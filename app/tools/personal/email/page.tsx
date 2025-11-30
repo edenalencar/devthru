@@ -10,6 +10,7 @@ import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 const domains = [
     "gmail.com", "outlook.com", "yahoo.com", "hotmail.com", "uol.com.br", "bol.com.br", "terra.com.br", "icloud.com"
@@ -116,7 +117,9 @@ export default function EmailGeneratorPage() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>Geração em Massa</CardTitle>
-                                <CardDescription>Gere múltiplos emails de uma vez</CardDescription>
+                                <CardDescription>
+                                    {getPlanLimitMessage(limit)}
+                                </CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <BulkGenerator

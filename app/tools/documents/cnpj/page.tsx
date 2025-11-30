@@ -12,14 +12,21 @@ import { generateCNPJ, validateCNPJ, formatCNPJ } from "@/lib/utils/validators/c
 import { Code2, CheckCircle2, XCircle } from "lucide-react"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 
+import { BulkGenerator } from "@/components/tools/bulk-generator"
+import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
+
 export default function CNPJGeneratorPage() {
     const [generatedCNPJ, setGeneratedCNPJ] = useState("")
     const [formatted, setFormatted] = useState(true)
+    const [alphanumeric, setAlphanumeric] = useState(false)
     const [validationInput, setValidationInput] = useState("")
     const [validationResult, setValidationResult] = useState<boolean | null>(null)
 
+    const { isPro, limit } = useUser()
+
     const handleGenerate = () => {
-        const cnpj = generateCNPJ()
+        const cnpj = generateCNPJ(alphanumeric)
         setGeneratedCNPJ(formatted ? formatCNPJ(cnpj) : cnpj)
     }
 
@@ -51,16 +58,29 @@ export default function CNPJGeneratorPage() {
                                     Gere um CNPJ válido aleatório
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div className="flex items-center space-x-2">
-                                    <input
-                                        type="checkbox"
-                                        id="formatted"
-                                        checked={formatted}
-                                        onChange={(e) => setFormatted(e.target.checked)}
-                                        className="h-4 w-4 rounded border-gray-300"
-                                    />
-                                    <Label htmlFor="formatted">Formatar CNPJ (xx.xxx.xxx/xxxx-xx)</Label>
+                            <CardContent className="space-y-6">
+                                <div className="flex flex-col gap-4">
+                                    <div className="flex items-center space-x-2">
+                                        <input
+                                            type="checkbox"
+                                            id="formatted"
+                                            checked={formatted}
+                                            onChange={(e) => setFormatted(e.target.checked)}
+                                            className="h-4 w-4 rounded border-gray-300"
+                                        />
+                                        <Label htmlFor="formatted">Formatar CNPJ (xx.xxx.xxx/xxxx-xx)</Label>
+                                    </div>
+
+                                    <div className="flex items-center space-x-2">
+                                        <input
+                                            type="checkbox"
+                                            id="alphanumeric"
+                                            checked={alphanumeric}
+                                            onChange={(e) => setAlphanumeric(e.target.checked)}
+                                            className="h-4 w-4 rounded border-gray-300"
+                                        />
+                                        <Label htmlFor="alphanumeric">Gerar CNPJ Alfanumérico</Label>
+                                    </div>
                                 </div>
 
                                 <Button onClick={handleGenerate} className="w-full" size="lg">
@@ -72,63 +92,85 @@ export default function CNPJGeneratorPage() {
                                         result={generatedCNPJ}
                                         toolId="cnpj"
                                         toolName="CNPJ"
-                                        input={{ formatted }}
+                                        input={{ formatted, alphanumeric }}
                                         successMessage="CNPJ válido gerado com sucesso"
                                     />
                                 )}
                             </CardContent>
                         </Card>
 
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Validar CNPJ</CardTitle>
-                                <CardDescription>
-                                    Verifique se um CNPJ é válido
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="cnpj-input">CNPJ para validar</Label>
-                                    <Input
-                                        id="cnpj-input"
-                                        placeholder="00.000.000/0000-00"
-                                        value={validationInput}
-                                        onChange={(e) => setValidationInput(e.target.value)}
-                                        className="font-mono"
+                        <div className="space-y-8">
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Geração em Massa</CardTitle>
+                                    <CardDescription>
+                                        {getPlanLimitMessage(limit)}
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <BulkGenerator
+                                        generatorFn={() => {
+                                            const cnpj = generateCNPJ(alphanumeric)
+                                            return formatted ? formatCNPJ(cnpj) : cnpj
+                                        }}
+                                        label="CNPJs"
+                                        limit={limit}
+                                        isPro={isPro}
                                     />
-                                </div>
+                                </CardContent>
+                            </Card>
 
-                                <Button onClick={handleValidate} className="w-full" size="lg" variant="outline">
-                                    Validar
-                                </Button>
-
-                                {validationResult !== null && (
-                                    <div className="rounded-lg border p-4">
-                                        {validationResult ? (
-                                            <div className="flex items-center gap-3">
-                                                <CheckCircle2 className="h-6 w-6 text-accent" />
-                                                <div>
-                                                    <p className="font-semibold text-accent">CNPJ Válido</p>
-                                                    <p className="text-sm text-muted-foreground">
-                                                        Este CNPJ passou na validação
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            <div className="flex items-center gap-3">
-                                                <XCircle className="h-6 w-6 text-destructive" />
-                                                <div>
-                                                    <p className="font-semibold text-destructive">CNPJ Inválido</p>
-                                                    <p className="text-sm text-muted-foreground">
-                                                        Este CNPJ não passou na validação
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        )}
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Validar CNPJ</CardTitle>
+                                    <CardDescription>
+                                        Verifique se um CNPJ é válido
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent className="space-y-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="cnpj-input">CNPJ para validar</Label>
+                                        <Input
+                                            id="cnpj-input"
+                                            placeholder="00.000.000/0000-00"
+                                            value={validationInput}
+                                            onChange={(e) => setValidationInput(e.target.value)}
+                                            className="font-mono"
+                                        />
                                     </div>
-                                )}
-                            </CardContent>
-                        </Card>
+
+                                    <Button onClick={handleValidate} className="w-full" size="lg" variant="outline">
+                                        Validar
+                                    </Button>
+
+                                    {validationResult !== null && (
+                                        <div className="rounded-lg border p-4">
+                                            {validationResult ? (
+                                                <div className="flex items-center gap-3">
+                                                    <CheckCircle2 className="h-6 w-6 text-accent" />
+                                                    <div>
+                                                        <p className="font-semibold text-accent">CNPJ Válido</p>
+                                                        <p className="text-sm text-muted-foreground">
+                                                            Este CNPJ passou na validação
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-3">
+                                                    <XCircle className="h-6 w-6 text-destructive" />
+                                                    <div>
+                                                        <p className="font-semibold text-destructive">CNPJ Inválido</p>
+                                                        <p className="text-sm text-muted-foreground">
+                                                            Este CNPJ não passou na validação
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </CardContent>
+                            </Card>
+                        </div>
                     </div>
 
                     {/* Configuration Manager */}

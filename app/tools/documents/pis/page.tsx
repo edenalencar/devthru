@@ -12,6 +12,7 @@ import { BulkGenerator } from '@/components/tools/bulk-generator'
 import { RefreshCw, CheckCircle2, XCircle } from 'lucide-react'
 import { generatePIS, validatePIS, formatPIS } from '@/lib/utils/validators/pis'
 import { useUser } from '@/lib/hooks/use-user'
+import { getPlanLimitMessage } from "@/lib/constants"
 
 export default function PISPage() {
     const [generatedPIS, setGeneratedPIS] = useState('')
@@ -148,7 +149,7 @@ export default function PISPage() {
                             <CardHeader>
                                 <CardTitle>Geração em Lote</CardTitle>
                                 <CardDescription>
-                                    Gere múltiplos números de PIS/PASEP
+                                    {getPlanLimitMessage(limit)}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>

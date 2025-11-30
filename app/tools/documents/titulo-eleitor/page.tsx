@@ -1,56 +1,57 @@
-'use client'
+"use client"
 
-import { useState } from 'react'
-import { Navbar } from '@/components/layout/navbar'
-import { Footer } from '@/components/layout/footer'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Input } from '@/components/ui/input'
-import { ToolResult } from '@/components/tools/tool-result'
-import { BulkGenerator } from '@/components/tools/bulk-generator'
-import { RefreshCw, CheckCircle2, XCircle } from 'lucide-react'
-import { generateTituloEleitor, validateTituloEleitor, formatTituloEleitor } from '@/lib/utils/validators/titulo-eleitor'
-import { useUser } from '@/lib/hooks/use-user'
+import { useState } from "react"
+import { Navbar } from "@/components/layout/navbar"
+import { Footer } from "@/components/layout/footer"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
+import { ToolResult } from "@/components/tools/tool-result"
+import { BulkGenerator } from "@/components/tools/bulk-generator"
+import { RefreshCw, CheckCircle2, XCircle } from "lucide-react"
+import { generateTituloEleitor, validateTituloEleitor, formatTituloEleitor } from "@/lib/utils/validators/titulo-eleitor"
+import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 const STATES = [
-    { uf: 'SP', name: 'São Paulo' },
-    { uf: 'MG', name: 'Minas Gerais' },
-    { uf: 'RJ', name: 'Rio de Janeiro' },
-    { uf: 'BA', name: 'Bahia' },
-    { uf: 'RS', name: 'Rio Grande do Sul' },
-    { uf: 'PR', name: 'Paraná' },
-    { uf: 'PE', name: 'Pernambuco' },
-    { uf: 'CE', name: 'Ceará' },
-    { uf: 'PA', name: 'Pará' },
-    { uf: 'SC', name: 'Santa Catarina' },
-    { uf: 'MA', name: 'Maranhão' },
-    { uf: 'GO', name: 'Goiás' },
-    { uf: 'AM', name: 'Amazonas' },
-    { uf: 'ES', name: 'Espírito Santo' },
-    { uf: 'PB', name: 'Paraíba' },
-    { uf: 'RN', name: 'Rio Grande do Norte' },
-    { uf: 'MT', name: 'Mato Grosso' },
-    { uf: 'AL', name: 'Alagoas' },
-    { uf: 'PI', name: 'Piauí' },
-    { uf: 'DF', name: 'Distrito Federal' },
-    { uf: 'MS', name: 'Mato Grosso do Sul' },
-    { uf: 'SE', name: 'Sergipe' },
-    { uf: 'RO', name: 'Rondônia' },
-    { uf: 'TO', name: 'Tocantins' },
-    { uf: 'AC', name: 'Acre' },
-    { uf: 'AP', name: 'Amapá' },
-    { uf: 'RR', name: 'Roraima' },
-    { uf: 'EXTERIOR', name: 'Exterior' },
+    { uf: "AC", name: "Acre" },
+    { uf: "AL", name: "Alagoas" },
+    { uf: "AP", name: "Amapá" },
+    { uf: "AM", name: "Amazonas" },
+    { uf: "BA", name: "Bahia" },
+    { uf: "CE", name: "Ceará" },
+    { uf: "DF", name: "Distrito Federal" },
+    { uf: "ES", name: "Espírito Santo" },
+    { uf: "GO", name: "Goiás" },
+    { uf: "MA", name: "Maranhão" },
+    { uf: "MT", name: "Mato Grosso" },
+    { uf: "MS", name: "Mato Grosso do Sul" },
+    { uf: "MG", name: "Minas Gerais" },
+    { uf: "PA", name: "Pará" },
+    { uf: "PB", name: "Paraíba" },
+    { uf: "PR", name: "Paraná" },
+    { uf: "PE", name: "Pernambuco" },
+    { uf: "PI", name: "Piauí" },
+    { uf: "RJ", name: "Rio de Janeiro" },
+    { uf: "RN", name: "Rio Grande do Norte" },
+    { uf: "RS", name: "Rio Grande do Sul" },
+    { uf: "RO", name: "Rondônia" },
+    { uf: "RR", name: "Roraima" },
+    { uf: "SC", name: "Santa Catarina" },
+    { uf: "SP", name: "São Paulo" },
+    { uf: "SE", name: "Sergipe" },
+    { uf: "TO", name: "Tocantins" },
+    { uf: "EXTERIOR", name: "Exterior" },
 ]
 
 export default function TituloEleitorPage() {
-    const [selectedUF, setSelectedUF] = useState('SP')
-    const [generatedTitulo, setGeneratedTitulo] = useState('')
-    const [validateInput, setValidateInput] = useState('')
+    const [selectedUF, setSelectedUF] = useState(STATES[0].uf)
+    const [generatedTitulo, setGeneratedTitulo] = useState("")
+    const [validateInput, setValidateInput] = useState("")
     const [validateResult, setValidateResult] = useState<boolean | null>(null)
-    const [activeTab, setActiveTab] = useState<'generate' | 'validate' | 'bulk'>('generate')
+    const [activeTab, setActiveTab] = useState<"generate" | "validate" | "bulk">("generate")
     const { isPro, limit } = useUser()
 
     const handleGenerate = () => {
@@ -63,8 +64,6 @@ export default function TituloEleitorPage() {
         const isValid = validateTituloEleitor(validateInput)
         setValidateResult(isValid)
     }
-
-
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -83,27 +82,27 @@ export default function TituloEleitorPage() {
                     {/* Tab Buttons */}
                     <div className="flex gap-2 mb-6">
                         <Button
-                            variant={activeTab === 'generate' ? 'default' : 'outline'}
-                            onClick={() => setActiveTab('generate')}
+                            variant={activeTab === "generate" ? "default" : "outline"}
+                            onClick={() => setActiveTab("generate")}
                         >
                             Gerar
                         </Button>
                         <Button
-                            variant={activeTab === 'validate' ? 'default' : 'outline'}
-                            onClick={() => setActiveTab('validate')}
+                            variant={activeTab === "validate" ? "default" : "outline"}
+                            onClick={() => setActiveTab("validate")}
                         >
                             Validar
                         </Button>
                         <Button
-                            variant={activeTab === 'bulk' ? 'default' : 'outline'}
-                            onClick={() => setActiveTab('bulk')}
+                            variant={activeTab === "bulk" ? "default" : "outline"}
+                            onClick={() => setActiveTab("bulk")}
                         >
                             Geração em Lote
                         </Button>
                     </div>
 
                     {/* Generate Section */}
-                    {activeTab === 'generate' && (
+                    {activeTab === "generate" && (
                         <Card>
                             <CardHeader>
                                 <CardTitle>Gerar Título de Eleitor</CardTitle>
@@ -147,7 +146,7 @@ export default function TituloEleitorPage() {
                     )}
 
                     {/* Validate Section */}
-                    {activeTab === 'validate' && (
+                    {activeTab === "validate" && (
                         <Card>
                             <CardHeader>
                                 <CardTitle>Validar Título de Eleitor</CardTitle>
@@ -162,15 +161,15 @@ export default function TituloEleitorPage() {
                                         placeholder="0000 0000 0000"
                                         value={validateInput}
                                         onChange={(e) => setValidateInput(e.target.value)}
-                                        onKeyDown={(e) => e.key === 'Enter' && handleValidate()}
+                                        onKeyDown={(e) => e.key === "Enter" && handleValidate()}
                                     />
                                 </div>
 
                                 {validateResult !== null && (
                                     <div
                                         className={`flex items-center gap-2 p-4 rounded-lg ${validateResult
-                                            ? 'bg-green-500/10 text-green-600 dark:text-green-400'
-                                            : 'bg-red-500/10 text-red-600 dark:text-red-400'
+                                            ? "bg-green-500/10 text-green-600 dark:text-green-400"
+                                            : "bg-red-500/10 text-red-600 dark:text-red-400"
                                             }`}
                                     >
                                         {validateResult ? (
@@ -195,12 +194,12 @@ export default function TituloEleitorPage() {
                     )}
 
                     {/* Bulk Section */}
-                    {activeTab === 'bulk' && (
+                    {activeTab === "bulk" && (
                         <Card>
                             <CardHeader>
                                 <CardTitle>Geração em Lote</CardTitle>
                                 <CardDescription>
-                                    Gere múltiplos números de Título de Eleitor
+                                    {getPlanLimitMessage(limit)}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">

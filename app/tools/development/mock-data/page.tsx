@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -11,6 +11,8 @@ import { Database, Plus, Trash2, RefreshCw, Download } from "lucide-react"
 import { CopyButton } from "@/components/copy-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
+import { getPlanLimitMessage } from "@/lib/constants"
+import { useUser } from "@/lib/hooks/use-user"
 
 type FieldType = "string" | "number" | "boolean" | "email" | "date" | "name" | "uuid"
 
@@ -30,6 +32,14 @@ export default function MockDataGeneratorPage() {
     const [count, setCount] = useState<number>(10)
     const [result, setResult] = useState<string>("")
 
+    const { limit } = useUser()
+
+    useEffect(() => {
+        if (limit && count > limit) {
+            setCount(limit)
+        }
+    }, [limit, count])
+
     const addField = () => {
         setFields([...fields, { id: crypto.randomUUID(), name: `field_${fields.length + 1}`, type: "string" }])
     }
@@ -43,7 +53,13 @@ export default function MockDataGeneratorPage() {
     }
 
     const generateData = () => {
-        const data = Array.from({ length: count }, () => {
+        // Enforce limit
+        const actualCount = Math.min(count, limit)
+        if (actualCount !== count) {
+            setCount(actualCount)
+        }
+
+        const data = Array.from({ length: actualCount }, () => {
             const item: Record<string, string | number | boolean> = {}
             fields.forEach(field => {
                 switch (field.type) {
@@ -164,6 +180,9 @@ export default function MockDataGeneratorPage() {
                             <Card>
                                 <CardHeader>
                                     <CardTitle>Configurações</CardTitle>
+                                    <CardDescription>
+                                        {getPlanLimitMessage(limit)}
+                                    </CardDescription>
                                 </CardHeader>
                                 <CardContent className="flex items-end gap-4">
                                     <div className="space-y-2 flex-1">
@@ -171,7 +190,7 @@ export default function MockDataGeneratorPage() {
                                         <Input
                                             type="number"
                                             min="1"
-                                            max="1000"
+                                            max={limit}
                                             value={count}
                                             onChange={(e) => setCount(Number(e.target.value))}
                                         />

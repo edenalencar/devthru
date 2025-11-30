@@ -14,6 +14,7 @@ import { createClient } from "@/lib/supabase/client"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 export default function IBANValidatorPage() {
     const [generatedIBAN, setGeneratedIBAN] = useState("")
@@ -115,7 +116,7 @@ export default function IBANValidatorPage() {
                                 <CardHeader>
                                     <CardTitle>Geração em Massa</CardTitle>
                                     <CardDescription>
-                                        Gere múltiplos IBANs de uma vez. Limite do seu plano: {limit} itens.
+                                        {getPlanLimitMessage(limit)}
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>

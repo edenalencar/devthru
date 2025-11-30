@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { z } from "zod"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
@@ -15,6 +16,12 @@ const DISPOSABLE_DOMAINS = [
     "10minutemail.com", "throwawaymail.com", "getairmail.com"
 ]
 
+// Reserved domains for documentation and testing
+const RESERVED_DOMAINS = [
+    "example.com", "example.org", "example.net",
+    "test.com", "teste.com", "local.com", "localhost"
+]
+
 export default function EmailValidatorPage() {
     const [email, setEmail] = useState("")
     const [result, setResult] = useState<{ isValid: boolean, isDisposable: boolean, message: string } | null>(null)
@@ -25,9 +32,11 @@ export default function EmailValidatorPage() {
             return
         }
 
-        // Basic Regex Validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if (!emailRegex.test(email)) {
+        // Zod Validation
+        const emailSchema = z.string().email()
+        const validationResult = emailSchema.safeParse(email)
+
+        if (!validationResult.success) {
             setResult({ isValid: false, isDisposable: false, message: "Formato de email inválido" })
             return
         }
@@ -36,6 +45,12 @@ export default function EmailValidatorPage() {
         const domain = email.split('@')[1].toLowerCase()
         if (DISPOSABLE_DOMAINS.includes(domain)) {
             setResult({ isValid: true, isDisposable: true, message: "Email temporário detectado" })
+            return
+        }
+
+        // Reserved Domain Check
+        if (RESERVED_DOMAINS.includes(domain)) {
+            setResult({ isValid: true, isDisposable: true, message: "Domínio reservado/teste detectado" })
             return
         }
 
@@ -97,8 +112,8 @@ export default function EmailValidatorPage() {
                             <CardContent>
                                 {result ? (
                                     <div className={`rounded-lg border p-6 flex items-start gap-4 ${!result.isValid ? "bg-red-50 border-red-200 dark:bg-red-950/20" :
-                                            result.isDisposable ? "bg-yellow-50 border-yellow-200 dark:bg-yellow-950/20" :
-                                                "bg-green-50 border-green-200 dark:bg-green-950/20"
+                                        result.isDisposable ? "bg-yellow-50 border-yellow-200 dark:bg-yellow-950/20" :
+                                            "bg-green-50 border-green-200 dark:bg-green-950/20"
                                         }`}>
                                         {!result.isValid ? (
                                             <XCircle className="h-6 w-6 text-red-600 shrink-0" />
@@ -110,8 +125,8 @@ export default function EmailValidatorPage() {
 
                                         <div>
                                             <h3 className={`font-bold text-lg ${!result.isValid ? "text-red-700" :
-                                                    result.isDisposable ? "text-yellow-700" :
-                                                        "text-green-700"
+                                                result.isDisposable ? "text-yellow-700" :
+                                                    "text-green-700"
                                                 }`}>
                                                 {!result.isValid ? "Inválido" :
                                                     result.isDisposable ? "Email Temporário" :

@@ -1,27 +1,45 @@
 /**
  * Gera um CNPJ válido
  */
-export function generateCNPJ(): string {
-    const randomDigits = (): number[] => {
-        return Array.from({ length: 12 }, () => Math.floor(Math.random() * 10))
+export function generateCNPJ(alphanumeric: boolean = false): string {
+    const randomDigit = () => Math.floor(Math.random() * 10)
+    const randomChar = () => {
+        const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        return chars[Math.floor(Math.random() * chars.length)]
     }
 
-    const calculateDigit = (digits: number[], weights: number[]): number => {
-        const sum = digits.reduce((acc, digit, index) => {
-            return acc + digit * weights[index]
+    const getCharValue = (char: string | number): number => {
+        if (typeof char === 'number') return char
+        const code = char.charCodeAt(0)
+        return code - 48
+    }
+
+    const calculateDigit = (base: (string | number)[], weights: number[]): number => {
+        const sum = base.reduce((acc: number, char, index) => {
+            return acc + getCharValue(char) * weights[index]
         }, 0)
         const remainder = sum % 11
         return remainder < 2 ? 0 : 11 - remainder
     }
 
-    const digits = randomDigits()
+    let root: (string | number)[] = []
+
+    if (alphanumeric) {
+        // First 8 positions can be alphanumeric
+        root = Array.from({ length: 8 }, randomChar)
+        // Next 4 are numeric (order), usually 0001
+        root = [...root, 0, 0, 0, 1]
+    } else {
+        root = Array.from({ length: 12 }, randomDigit)
+    }
+
     const weights1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
     const weights2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
 
-    const digit1 = calculateDigit(digits, weights1)
-    const digit2 = calculateDigit([...digits, digit1], weights2)
+    const digit1 = calculateDigit(root, weights1)
+    const digit2 = calculateDigit([...root, digit1], weights2)
 
-    return [...digits, digit1, digit2].join("")
+    return [...root, digit1, digit2].join("")
 }
 
 /**
