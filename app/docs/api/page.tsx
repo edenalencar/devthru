@@ -132,7 +132,7 @@ print(data)
                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
                                     1
                                 </div>
-                                <div>
+                                <div className="flex-1 min-w-0">
                                     <h3 className="font-semibold mb-1">Obtenha sua API Key</h3>
                                     <p className="text-sm text-muted-foreground">
                                         Acesse <Link href="/settings/api-keys" className="text-primary hover:underline">/settings/api-keys</Link> e crie uma nova chave
@@ -144,7 +144,7 @@ print(data)
                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
                                     2
                                 </div>
-                                <div>
+                                <div className="flex-1 min-w-0">
                                     <h3 className="font-semibold mb-1">Faça sua primeira requisição</h3>
                                     <p className="text-sm text-muted-foreground mb-3">
                                         Use sua API key no header <code className="bg-muted px-1 rounded">x-api-key</code>
@@ -157,13 +157,13 @@ print(data)
                                         </TabsList>
                                         {Object.entries(codeExamples).map(([lang, code]) => (
                                             <TabsContent key={lang} value={lang}>
-                                                <div className="relative">
-                                                    <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
-                                                        <code>{code}</code>
-                                                    </pre>
-                                                    <div className="absolute top-2 right-2">
+                                                <div className="rounded-lg border bg-muted overflow-hidden">
+                                                    <div className="flex items-center justify-end px-4 py-2 border-b border-border/10 bg-muted/50">
                                                         <CopyButton text={code} />
                                                     </div>
+                                                    <pre className="p-4 overflow-x-auto text-sm">
+                                                        <code>{code}</code>
+                                                    </pre>
                                                 </div>
                                             </TabsContent>
                                         ))}
@@ -175,7 +175,7 @@ print(data)
                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
                                     3
                                 </div>
-                                <div>
+                                <div className="flex-1 min-w-0">
                                     <h3 className="font-semibold mb-1">Monitore seu uso</h3>
                                     <p className="text-sm text-muted-foreground">
                                         Acompanhe suas estatísticas em tempo real via <code className="bg-muted px-1 rounded">GET /api/v1/usage</code>
@@ -283,16 +283,21 @@ print(data)
                             <CardDescription>Limites de uso por plano de assinatura</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div className="border rounded-lg p-4">
+                            <div className="grid md:grid-cols-3 gap-4">
+                                <div className="border rounded-lg p-4 opacity-50">
                                     <h3 className="font-semibold mb-2">Free Plan</h3>
-                                    <p className="text-2xl font-bold mb-1">1,000</p>
-                                    <p className="text-sm text-muted-foreground">requests por mês</p>
+                                    <p className="text-2xl font-bold mb-1">-</p>
+                                    <p className="text-sm text-muted-foreground">Sem acesso à API</p>
                                 </div>
-                                <div className="border rounded-lg p-4 bg-primary/5">
+                                <div className="border rounded-lg p-4 opacity-50">
                                     <h3 className="font-semibold mb-2">Pro Plan</h3>
-                                    <p className="text-2xl font-bold mb-1">Ilimitado</p>
-                                    <p className="text-sm text-muted-foreground">sem limites de requisições</p>
+                                    <p className="text-2xl font-bold mb-1">-</p>
+                                    <p className="text-sm text-muted-foreground">Sem acesso à API</p>
+                                </div>
+                                <div className="border rounded-lg p-4 bg-primary/5 border-primary/20">
+                                    <h3 className="font-semibold mb-2">Business Plan</h3>
+                                    <p className="text-2xl font-bold mb-1">50,000</p>
+                                    <p className="text-sm text-muted-foreground">requests por mês</p>
                                 </div>
                             </div>
                             <p className="text-sm text-muted-foreground mt-4">
