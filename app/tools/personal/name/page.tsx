@@ -30,7 +30,7 @@ const lastNames = [
 ]
 
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 
 export default function NameGeneratorPage() {
     const [name, setName] = useState<string>("")
@@ -139,9 +139,26 @@ export default function NameGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Nomes</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Nomes cria nomes completos brasileiros aleatórios, combinando nomes e sobrenomes comuns.
+                                Você pode filtrar por gênero (masculino, feminino ou todos) para obter resultados mais específicos.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os nomes são gerados a partir de listas de nomes populares no Brasil e não representam pessoas reais.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

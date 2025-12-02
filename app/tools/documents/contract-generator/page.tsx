@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -141,10 +141,27 @@ export default function ContractGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Contratos</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Contratos oferece modelos pré-definidos para situações comuns, como prestação de serviços e locação.
+                                Preencha os campos variáveis e gere um documento PDF ou copie o texto para seu editor preferido.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Estes modelos servem como base e não substituem a consultoria jurídica de um advogado. Revise sempre o conteúdo antes de assinar.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

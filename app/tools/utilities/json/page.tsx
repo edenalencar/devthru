@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -203,7 +203,8 @@ export default function JSONFormatterPage() {
                 </div>
             </main>
 
-            <Footer />
+            
         </div>
     )
 }
+

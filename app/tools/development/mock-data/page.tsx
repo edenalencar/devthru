@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -225,9 +225,26 @@ export default function MockDataGeneratorPage() {
                             </Card>
                         </div>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Dados Mock</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Dados Mock permite criar conjuntos de dados fictícios em formato JSON para testes de software e prototipagem.
+                                Você pode definir a estrutura dos dados adicionando campos de diferentes tipos como nomes, emails, datas e números.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os dados gerados são aleatórios e não correspondem a informações reais de pessoas ou entidades.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

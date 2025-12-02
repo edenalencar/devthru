@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -181,10 +181,25 @@ export default function EmailSignaturePage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Assinatura</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Assinatura de Email cria assinaturas profissionais e personalizadas para seus emails.
+                                Compatível com Gmail, Outlook, Apple Mail e outros clientes, ele permite adicionar logo, links sociais e informações de contato com um design limpo e moderno.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> As imagens devem estar hospedadas publicamente para aparecerem corretamente nos emails dos destinatários.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-
-            <Footer />
         </div>
     )
 }
+

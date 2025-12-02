@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -137,7 +137,8 @@ export default function UUIDGeneratorPage() {
                 </div>
             </main>
 
-            <Footer />
+            
         </div>
     )
 }
+

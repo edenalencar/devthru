@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
@@ -92,8 +92,8 @@ export default function XMLValidatorPage() {
                             <CardContent>
                                 {result ? (
                                     <div className={`rounded-lg border p-6 flex items-start gap-4 ${result.isValid
-                                            ? "bg-green-50 border-green-200 dark:bg-green-950/20"
-                                            : "bg-red-50 border-red-200 dark:bg-red-950/20"
+                                        ? "bg-green-50 border-green-200 dark:bg-green-950/20"
+                                        : "bg-red-50 border-red-200 dark:bg-red-950/20"
                                         }`}>
                                         {result.isValid ? (
                                             <CheckCircle2 className="h-6 w-6 text-green-600 shrink-0" />
@@ -120,10 +120,27 @@ export default function XMLValidatorPage() {
                             </CardContent>
                         </Card>
                     </div>
-                </div>
-            </main>
 
-            <Footer />
-        </div>
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Validador de XML</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Validador de XML verifica a sintaxe de arquivos XML (eXtensible Markup Language) para garantir que estejam bem formados.
+                                Ele identifica erros de estruturação, tags não fechadas e outros problemas comuns que impedem o processamento correto do arquivo.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Esta ferramenta valida apenas a sintaxe (well-formedness) e não a conformidade com um Schema XSD ou DTD específico.
+                            </p>
+                        </CardContent>
+                    </Card>
+                </div>
+            </main >
+
+
+        </div >
     )
 }
+

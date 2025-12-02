@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react"
 import Image from "next/image"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -201,9 +201,26 @@ export default function FaviconGeneratorPage() {
                             </div>
                         )}
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Favicon</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Favicon cria ícones para seu site em todos os tamanhos necessários (16x16, 32x32, 180x180, etc.) a partir de uma única imagem.
+                                Ele gera um arquivo ZIP contendo os ícones e o código HTML necessário para inclusão.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Para melhores resultados, utilize uma imagem quadrada de alta resolução (pelo menos 512x512 pixels). O gerador suporta formatos PNG, JPG e WEBP.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

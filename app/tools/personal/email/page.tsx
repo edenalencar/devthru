@@ -17,7 +17,7 @@ const domains = [
 ]
 
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 
 export default function EmailGeneratorPage() {
     const [email, setEmail] = useState<string>("")
@@ -131,9 +131,26 @@ export default function EmailGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Email</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Email cria endereços de email temporários ou fictícios para uso em testes de software e cadastros.
+                                Você pode escolher entre provedores comuns ou definir um domínio personalizado.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Estes emails são fictícios e não possuem caixa de entrada real. Para emails temporários funcionais (que recebem mensagens), utilize serviços específicos de "temp mail".
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

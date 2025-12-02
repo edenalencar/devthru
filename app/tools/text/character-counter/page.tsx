@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Navbar } from '@/components/layout/navbar'
-import { Footer } from '@/components/layout/footer'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { countText } from '@/lib/utils/text'
@@ -67,10 +67,28 @@ export default function CharacterCounterPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Contador de Caracteres</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Contador de Caracteres é uma ferramenta simples e eficiente para analisar seus textos.
+                                Ele fornece estatísticas em tempo real sobre o número de caracteres, palavras, linhas e parágrafos,
+                                ajudando você a ajustar seu conteúdo para limites específicos de redes sociais ou documentos.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> A contagem é realizada localmente no seu navegador para garantir privacidade e velocidade.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

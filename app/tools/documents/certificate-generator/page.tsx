@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -149,10 +149,27 @@ export default function CertificateGeneratorPage() {
                             </div>
                         </div>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Certificados</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Certificados permite criar documentos profissionais para cursos, workshops e eventos.
+                                Você pode personalizar o nome do aluno, curso, instrutor e organização, gerando um arquivo PDF pronto para impressão.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> O certificado gerado é um modelo visual e não possui validação acadêmica oficial, a menos que emitido por uma instituição credenciada.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

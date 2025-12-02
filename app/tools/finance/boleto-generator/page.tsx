@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -229,10 +229,27 @@ export default function BoletoGeneratorPage() {
                             </div>
                         </div>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Boleto</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Boleto cria uma representação visual de um boleto bancário brasileiro para fins de teste de interface e impressão.
+                                Ele gera um código de barras fictício e formata o documento conforme os padrões bancários.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Este boleto é puramente ilustrativo (mock) e não possui valor financeiro nem registro bancário. Não tente pagá-lo.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

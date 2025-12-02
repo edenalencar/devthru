@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -225,9 +225,26 @@ export default function MinifierPage() {
                             </div>
                         )}
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Minificador de Código</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Minificador de Código ajuda a reduzir o tamanho de arquivos CSS, JSON, SQL, HTML e JavaScript removendo espaços desnecessários, comentários e quebras de linha.
+                                Também oferece a função de "Beautify" para tornar códigos minificados legíveis novamente.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> O processamento é feito inteiramente no seu navegador. Nenhum código é enviado para servidores externos.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

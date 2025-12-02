@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Navbar } from '@/components/layout/navbar'
-import { Footer } from '@/components/layout/footer'
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
@@ -148,10 +148,25 @@ export default function DiffCheckerPage() {
                             </CardContent>
                         </Card>
                     )}
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Comparador de Texto</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Comparador de Texto (Diff Checker) permite identificar diferenças entre dois blocos de texto.
+                                Ele destaca visualmente o que foi adicionado e removido, facilitando a revisão de códigos, documentos e versões de arquivos.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Ideal para desenvolvedores e revisores. Nenhuma informação é enviada para servidores externos.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-
-            <Footer />
         </div>
     )
 }
+

@@ -31,7 +31,7 @@ const ddds = [
 ]
 
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 
 export default function PhoneGeneratorPage() {
     const [phone, setPhone] = useState<string>("")
@@ -161,9 +161,26 @@ export default function PhoneGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Telefone</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Telefone cria números de celular e telefone fixo brasileiros, com DDDs de todos os estados.
+                                Você pode optar por gerar o número com ou sem a formatação padrão.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os números são gerados aleatoriamente seguindo o padrão brasileiro, mas não há garantia de que sejam linhas ativas ou inexistentes.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

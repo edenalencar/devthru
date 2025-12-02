@@ -29,7 +29,7 @@ const cities = [
 ]
 
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 
 export default function AddressGeneratorPage() {
     const [address, setAddress] = useState<string>("")
@@ -111,9 +111,26 @@ export default function AddressGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Endereços</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Endereços cria endereços brasileiros fictícios completos, incluindo rua, número, bairro, cidade, estado e CEP.
+                                É útil para testar formulários de cadastro, sistemas de entrega e validação de dados geográficos.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os endereços gerados são aleatórios e não correspondem necessariamente a locais reais. O CEP é gerado com um formato válido, mas pode não existir nos Correios.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

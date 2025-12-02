@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -253,10 +253,27 @@ export default function NfeGeneratorPage() {
                             </Card>
                         )}
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Chave NF-e</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Chave NF-e cria chaves de acesso válidas para Nota Fiscal Eletrônica (modelo 55) e Nota Fiscal de Consumidor Eletrônica (modelo 65).
+                                A ferramenta calcula automaticamente o dígito verificador com base nos dados informados, seguindo o padrão oficial da SEFAZ.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> As chaves geradas são para fins de teste e desenvolvimento. Não possuem validade fiscal.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

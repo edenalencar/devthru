@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
@@ -155,10 +155,27 @@ export default function OCRPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o OCR (Reconhecimento de Texto)</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                A ferramenta OCR (Optical Character Recognition) extrai texto de imagens carregadas.
+                                É ideal para digitalizar documentos, copiar texto de capturas de tela ou extrair informações de fotos.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> A precisão do reconhecimento depende da qualidade da imagem e da clareza do texto. O suporte atual inclui os idiomas Inglês e Português.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

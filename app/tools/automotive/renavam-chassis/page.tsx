@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -215,10 +215,27 @@ export default function RenavamChassisPage() {
                             </div>
                         </TabsContent>
                     </Tabs>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de RENAVAM e Chassis</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                Esta ferramenta gera números válidos de RENAVAM (Registro Nacional de Veículos Automotores) e Chassis (VIN - Vehicle Identification Number) para fins de teste de software.
+                                Os algoritmos utilizados seguem as regras oficiais de validação de dígitos verificadores.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os dados gerados são matematicamente válidos mas fictícios, não correspondendo a veículos reais.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

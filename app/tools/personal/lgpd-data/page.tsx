@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -181,10 +181,27 @@ export default function LGPDDataPage() {
                             </Card>
                         </div>
                     )}
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre as Ferramentas LGPD</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                As Ferramentas LGPD auxiliam desenvolvedores e DPOs na conformidade com a Lei Geral de Proteção de Dados.
+                                O Gerador cria dados fictícios para testes seguros, enquanto o Anonimizador mascara dados sensíveis em textos existentes.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> A anonimização realizada é baseada em substituição de padrões (máscara) e não é irreversível em todos os contextos. Para dados críticos de produção, utilize técnicas avançadas de criptografia ou tokenização.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

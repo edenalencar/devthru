@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -182,10 +182,27 @@ export default function CnaeSearchPage() {
                             </Card>
                         </div>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre a Busca de CNAE</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                A Busca de CNAE permite encontrar códigos da Classificação Nacional de Atividades Econômicas (CNAE) utilizados para identificar as atividades exercidas por empresas.
+                                A ferramenta consulta a base de dados oficial do IBGE para fornecer informações atualizadas.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> A escolha correta do CNAE é fundamental para a tributação e enquadramento legal da sua empresa.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

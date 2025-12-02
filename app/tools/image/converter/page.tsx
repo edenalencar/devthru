@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -186,10 +186,27 @@ export default function ImageConverterPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Conversor de Imagem</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Conversor de Imagem permite transformar arquivos de imagem entre os formatos PNG, JPEG e WEBP.
+                                Todo o processamento é feito localmente no seu navegador, garantindo privacidade e rapidez.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> A qualidade da conversão pode variar dependendo do formato de origem e destino. O formato WEBP geralmente oferece melhor compressão mantendo a qualidade.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

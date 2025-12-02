@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Navbar } from '@/components/layout/navbar'
-import { Footer } from '@/components/layout/footer'
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -74,10 +74,25 @@ export default function SlugGeneratorPage() {
                             </div>
                         )}
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Slug</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Slug transforma títulos e frases em URLs amigáveis (slugs) otimizadas para SEO.
+                                Ele remove acentos, caracteres especiais e espaços, criando strings limpas e legíveis ideais para links permanentes de blogs e sites.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Essencial para melhorar a estrutura de URLs do seu site e facilitar a indexação pelos motores de busca.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-
-            <Footer />
         </div>
     )
 }
+

@@ -9,7 +9,7 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { getPlanLimitMessage } from "@/lib/constants"
 
 export default function CNHGeneratorPage() {
@@ -116,9 +116,26 @@ export default function CNHGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de CNH</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de CNH cria números de Carteira Nacional de Habilitação válidos matematicamente para fins de teste de software.
+                                Ele utiliza o algoritmo oficial para calcular os dígitos verificadores.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os números gerados são fictícios e não correspondem a documentos reais. O uso é estritamente para desenvolvimento e testes.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

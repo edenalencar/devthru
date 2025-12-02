@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Navbar } from '@/components/layout/navbar'
-import { Footer } from '@/components/layout/footer'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ToolResult } from '@/components/tools/tool-result'
@@ -188,10 +188,27 @@ export default function PersonGeneratorPage() {
                             )}
                         </div>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de Pessoa</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Pessoa cria um perfil fictício completo, incluindo dados pessoais (nome, CPF, RG, data de nascimento), contato (email, telefone), endereço e até características físicas.
+                                É a ferramenta ideal para popular bancos de dados de teste com dados realistas.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Todos os documentos gerados (CPF, RG) são válidos algoritmicamente, mas não pertencem a pessoas reais. O uso é estritamente para fins de teste e desenvolvimento.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

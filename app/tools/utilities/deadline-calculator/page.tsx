@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -162,10 +162,27 @@ export default function DeadlineCalculatorPage() {
                             </CardContent>
                         </Card>
                     </div>
-                </div>
-            </main>
 
-            <Footer />
-        </div>
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre a Calculadora de Prazo</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                A Calculadora de Prazo permite calcular datas finais de projetos e tarefas, considerando dias úteis e feriados nacionais.
+                                É ideal para gerentes de projeto, advogados e profissionais que precisam controlar prazos rigorosos.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os feriados considerados são os nacionais fixos. Feriados móveis (como Carnaval e Páscoa) ou regionais não são incluídos automaticamente.
+                            </p>
+                        </CardContent>
+                    </Card>
+                </div>
+            </main >
+
+
+        </div >
     )
 }
+

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -209,9 +209,26 @@ export default function CurrencyConverterPage() {
                             )}
                         </CardContent>
                     </Card>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Conversor de Moedas</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Conversor de Moedas utiliza taxas de câmbio atualizadas diariamente pelo Banco Central Europeu para realizar conversões precisas entre diversas moedas mundiais.
+                                Ideal para viajantes, compras internacionais e planejamento financeiro.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> As taxas são atualizadas uma vez por dia (dias úteis) e podem apresentar pequenas variações em relação ao câmbio comercial em tempo real.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

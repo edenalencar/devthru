@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Calculator, DollarSign, Info } from "lucide-react"
 import { calculateSimplesNacional } from "@/lib/utils/calculators/tax"
-import { formatCurrency } from "@/lib/utils" // Assuming this exists, otherwise I'll implement inline or import from somewhere else. I'll check first or just implement inline to be safe.
 
 export default function TaxCalculatorPage() {
     const [revenue12Months, setRevenue12Months] = useState("")
@@ -170,10 +169,26 @@ export default function TaxCalculatorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre a Calculadora Simples Nacional</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                A Calculadora Simples Nacional estima o valor do imposto mensal (DAS) a ser pago por micro e pequenas empresas, com base no faturamento acumulado (RBT12) e no faturamento do mês atual.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os cálculos são baseados nas tabelas e alíquotas vigentes, mas podem haver variações devido a regras específicas de cada estado ou município (como ISS e ICMS). Utilize apenas como estimativa.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
+

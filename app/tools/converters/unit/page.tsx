@@ -64,7 +64,7 @@ const categories = {
 }
 
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 
 export default function UnitConverterPage() {
     const [activeTab, setActiveTab] = useState("length")
@@ -222,9 +222,26 @@ export default function UnitConverterPage() {
                             </CardContent>
                         </Card>
                     </Tabs>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Conversor de Unidades</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Conversor de Unidades é uma ferramenta versátil para transformar medidas de Comprimento, Peso, Temperatura, Área e Volume.
+                                Selecione a categoria desejada, as unidades de origem e destino, e obtenha o resultado instantaneamente.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os cálculos utilizam fatores de conversão padrão internacional.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

@@ -8,7 +8,7 @@ import { CopyButton } from "@/components/copy-button"
 import { Calculator } from "lucide-react"
 
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 
 export default function BaseConverterPage() {
     const [decimal, setDecimal] = useState("")
@@ -214,9 +214,26 @@ export default function BaseConverterPage() {
                             )}
                         </CardContent>
                     </Card>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Conversor de Bases</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Conversor de Bases permite transformar números entre os sistemas Decimal (base 10), Binário (base 2), Hexadecimal (base 16) e Octal (base 8).
+                                A conversão é feita em tempo real, facilitando o trabalho de programadores e estudantes de ciência da computação.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> A ferramenta suporta números inteiros positivos.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

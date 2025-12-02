@@ -10,7 +10,7 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { getPlanLimitMessage } from "@/lib/constants"
 
 export default function RGGeneratorPage() {
@@ -122,9 +122,25 @@ export default function RGGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Gerador de RG</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de RG cria números de Registro Geral formatados. Como o padrão de RG varia entre os estados brasileiros, esta ferramenta gera um formato comum aceito na maioria dos sistemas de validação.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os números são gerados aleatoriamente e não possuem vínculo com a base de dados oficial dos órgãos emissores.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }
+

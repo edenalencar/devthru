@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { z } from "zod"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -146,10 +146,25 @@ export default function EmailValidatorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Validador de Email</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Validador de Email verifica a formatação e a validade de endereços de email.
+                                Ele também detecta domínios de emails temporários (disposable emails) e domínios reservados, ajudando a manter sua lista de contatos limpa e confiável.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Esta ferramenta realiza validações de sintaxe e domínio, mas não envia emails de teste para verificar a existência da caixa de entrada.
+                            </p>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
-
-            <Footer />
         </div>
     )
 }
+
