@@ -10,16 +10,22 @@ import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import { stripePromise } from "@/lib/stripe/client"
+import { useUser } from "@/lib/hooks/use-user"
+import { differenceInDays } from "date-fns"
 
 export default function PricingPage() {
     const router = useRouter()
     const supabase = createClient()
+    const { user, profile, isInTrial, isPro } = useUser()
     const [loading, setLoading] = useState<string | null>(null)
+
+    const daysRemaining = profile?.trial_ends_at
+        ? Math.max(0, differenceInDays(new Date(profile.trial_ends_at), new Date()))
+        : 0
 
     const handleSubscribe = async (priceId: string) => {
         try {
             setLoading(priceId)
-            const { data: { user } } = await supabase.auth.getUser()
 
             if (!user) {
                 router.push("/login?redirect=/pricing")
@@ -60,6 +66,70 @@ export default function PricingPage() {
         }
     }
 
+    const getButtonConfig = (plan: 'free' | 'pro' | 'business') => {
+        const currentTier = profile?.subscription_tier || 'free'
+        const isCurrentPlan = currentTier === plan
+
+        // Cenário A: Usuário em Trial
+        if (isInTrial) {
+            if (plan === 'pro') {
+                return {
+                    text: "Seu Plano Atual (Teste Grátis)",
+                    disabled: true,
+                    variant: "default" as const
+                }
+            }
+            if (plan === 'business') {
+                return {
+                    text: "Fazer Upgrade",
+                    disabled: false,
+                    variant: "default" as const
+                }
+            }
+            // Free plan during trial
+            return {
+                text: "Mudar para este plano",
+                disabled: false,
+                variant: "outline" as const
+            }
+        }
+
+        // Cenário B: Usuário Pago (Assinante)
+        if (currentTier !== 'free') {
+            if (isCurrentPlan) {
+                return {
+                    text: "Plano Atual",
+                    disabled: true,
+                    variant: "outline" as const
+                }
+            }
+            return {
+                text: "Mudar para este plano",
+                disabled: false,
+                variant: "default" as const
+            }
+        }
+
+        // Cenário C: Usuário Free/Expirado
+        if (plan === 'free') {
+            return {
+                text: "Plano Atual",
+                disabled: true,
+                variant: "outline" as const
+            }
+        }
+
+        return {
+            text: `Assinar ${plan.charAt(0).toUpperCase() + plan.slice(1)}`,
+            disabled: false,
+            variant: (plan === 'pro' ? "default" : "outline") as "default" | "outline"
+        }
+    }
+
+    const freeConfig = getButtonConfig('free')
+    const proConfig = getButtonConfig('pro')
+    const businessConfig = getButtonConfig('business')
+
     return (
         <div className="flex min-h-screen flex-col">
             <Navbar />
@@ -97,17 +167,27 @@ export default function PricingPage() {
                                 </ul>
                             </CardContent>
                             <CardFooter className="mt-auto">
-                                <Button className="w-full" variant="outline" disabled>
-                                    Plano Atual
+                                <Button
+                                    className="w-full"
+                                    variant={freeConfig.variant}
+                                    disabled={freeConfig.disabled}
+                                    onClick={() => { }} // Free plan doesn't need stripe checkout
+                                >
+                                    {freeConfig.text}
                                 </Button>
                             </CardFooter>
                         </Card>
 
                         {/* Pro Plan */}
-                        <Card className="border-primary relative overflow-hidden flex flex-col">
+                        <Card className={`border-primary relative overflow-hidden flex flex-col ${isInTrial ? 'ring-2 ring-primary ring-offset-2' : ''}`}>
                             <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold">
                                 POPULAR
                             </div>
+                            {isInTrial && (
+                                <div className="absolute top-0 left-0 bg-yellow-500 text-white px-3 py-1 text-xs font-bold">
+                                    Expira em {daysRemaining} dias
+                                </div>
+                            )}
                             <CardHeader>
                                 <CardTitle className="text-2xl">Pro</CardTitle>
                                 <CardDescription>Para profissionais e freelancers</CardDescription>
@@ -124,7 +204,7 @@ export default function PricingPage() {
                                     </li>
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Geração em lote de até 100 itens
+                                        Geração em lote de até 1.000 itens
                                     </li>
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
@@ -139,13 +219,14 @@ export default function PricingPage() {
                             <CardFooter className="mt-auto">
                                 <Button
                                     className="w-full"
+                                    variant={proConfig.variant}
                                     onClick={() => handleSubscribe("price_1SYSlbJzedEYbjzZMG9r6nw9")}
-                                    disabled={!!loading}
+                                    disabled={proConfig.disabled || !!loading}
                                 >
                                     {loading === "price_1SYSlbJzedEYbjzZMG9r6nw9" && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
-                                    Assinar Pro
+                                    {proConfig.text}
                                 </Button>
                             </CardFooter>
                         </Card>
@@ -170,19 +251,31 @@ export default function PricingPage() {
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
                                         Acesso a API
                                     </li>
+                                    <li className="flex items-center">
+                                        <Check className="h-4 w-4 mr-2 text-green-500" />
+                                        Rate Limit elevado (50k/mês)
+                                    </li>
+                                    <li className="flex items-center">
+                                        <Check className="h-4 w-4 mr-2 text-green-500" />
+                                        SLA Garantido (99.9%)
+                                    </li>
+                                    <li className="flex items-center">
+                                        <Check className="h-4 w-4 mr-2 text-green-500" />
+                                        Suporte Prioritário
+                                    </li>
                                 </ul>
                             </CardContent>
                             <CardFooter className="mt-auto">
                                 <Button
                                     className="w-full"
-                                    variant="outline"
+                                    variant={businessConfig.variant}
                                     onClick={() => handleSubscribe("price_1SYSliJzedEYbjzZ5kbNVHvI")}
-                                    disabled={!!loading}
+                                    disabled={businessConfig.disabled || !!loading}
                                 >
                                     {loading === "price_1SYSliJzedEYbjzZ5kbNVHvI" && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
-                                    Assinar Business
+                                    {businessConfig.text}
                                 </Button>
                             </CardFooter>
                         </Card>
