@@ -188,6 +188,11 @@ export default function PricingPage() {
                                     Expira em {daysRemaining} dias
                                 </div>
                             )}
+                            {!isInTrial && profile?.trial_ends_at && new Date(profile.trial_ends_at) < new Date() && (profile?.subscription_tier === 'free' || !profile?.subscription_tier) && (
+                                <div className="absolute top-0 left-0 bg-red-500 text-white px-3 py-1 text-xs font-bold">
+                                    Trial Expirado
+                                </div>
+                            )}
                             <CardHeader>
                                 <CardTitle className="text-2xl">Pro</CardTitle>
                                 <CardDescription>Para profissionais e freelancers</CardDescription>
@@ -213,6 +218,10 @@ export default function PricingPage() {
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
                                         Histórico
+                                    </li>
+                                    <li className="flex items-center">
+                                        <Check className="h-4 w-4 mr-2 text-green-500" />
+                                        Exportar CSV e JSON
                                     </li>
                                 </ul>
                             </CardContent>
