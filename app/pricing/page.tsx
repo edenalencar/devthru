@@ -92,11 +92,7 @@ export default function PricingPage() {
                                     </li>
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        100 gerações por mês
-                                    </li>
-                                    <li className="flex items-center">
-                                        <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Histórico básico (50 itens)
+                                        Geração em lote de até 5 itens
                                     </li>
                                 </ul>
                             </CardContent>
@@ -124,23 +120,19 @@ export default function PricingPage() {
                                 <ul className="space-y-2">
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Gerações ilimitadas
+                                        Tudo do plano Gratuito
                                     </li>
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Acesso à API
+                                        Geração em lote de até 100 itens
                                     </li>
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Exportação em massa (CSV/Excel)
+                                        Salvar configuração
                                     </li>
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Histórico ilimitado na nuvem
-                                    </li>
-                                    <li className="flex items-center">
-                                        <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Sem anúncios
+                                        Histórico
                                     </li>
                                 </ul>
                             </CardContent>
@@ -158,10 +150,10 @@ export default function PricingPage() {
                             </CardFooter>
                         </Card>
 
-                        {/* Enterprise Plan */}
+                        {/* Business Plan */}
                         <Card className="flex flex-col">
                             <CardHeader>
-                                <CardTitle className="text-2xl">Enterprise</CardTitle>
+                                <CardTitle className="text-2xl">Business</CardTitle>
                                 <CardDescription>Para times e empresas</CardDescription>
                                 <div className="mt-4">
                                     <span className="text-4xl font-bold">R$ 99</span>
@@ -176,19 +168,7 @@ export default function PricingPage() {
                                     </li>
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Múltiplos usuários
-                                    </li>
-                                    <li className="flex items-center">
-                                        <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Suporte prioritário
-                                    </li>
-                                    <li className="flex items-center">
-                                        <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Integrações customizadas
-                                    </li>
-                                    <li className="flex items-center">
-                                        <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        SLA garantido
+                                        Acesso a API
                                     </li>
                                 </ul>
                             </CardContent>
@@ -202,7 +182,7 @@ export default function PricingPage() {
                                     {loading === "price_1SYSliJzedEYbjzZ5kbNVHvI" && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
-                                    Assinar Enterprise
+                                    Assinar Business
                                 </Button>
                             </CardFooter>
                         </Card>

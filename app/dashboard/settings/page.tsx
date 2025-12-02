@@ -15,6 +15,7 @@ import Link from 'next/link'
 
 export default function SettingsPage() {
     const [apiKey, setApiKey] = useState<string | null>(null)
+    const [plan, setPlan] = useState<string>('free')
     const [newKey, setNewKey] = useState<string | null>(null)
     const [dialogOpen, setDialogOpen] = useState(false)
     const [loading, setLoading] = useState(true)
@@ -35,12 +36,17 @@ export default function SettingsPage() {
 
             const { data: profile } = await supabase
                 .from('profiles')
-                .select('api_key')
+                .select('api_key, subscription_tier')
                 .eq('id', user.id)
                 .single()
 
-            if (profile?.api_key) {
-                setApiKey(profile.api_key)
+            if (profile) {
+                if (profile.api_key) {
+                    setApiKey(profile.api_key)
+                }
+                if (profile.subscription_tier) {
+                    setPlan(profile.subscription_tier)
+                }
             }
         } catch (error) {
             console.error('Error loading API key:', error)
@@ -115,6 +121,7 @@ export default function SettingsPage() {
                 <TabsContent value="keys" className="space-y-6">
                     <ApiKeyDisplay
                         apiKey={apiKey}
+                        plan={plan}
                         onGenerate={handleGenerate}
                         onRevoke={handleRevoke}
                     />

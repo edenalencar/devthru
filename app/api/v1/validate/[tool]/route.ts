@@ -39,6 +39,16 @@ export async function POST(
         // Validate API key
         const auth = await validateApiKey(request)
 
+        // Enforce Business plan for API access
+        if (auth.tier !== 'business') {
+            return errorResponse({
+                name: 'ForbiddenError',
+                message: 'API access is only available on the Business plan',
+                code: 'FORBIDDEN',
+                statusCode: 403,
+            })
+        }
+
         // Check rate limit
         const rateLimit = await checkRateLimit(auth.userId, auth.tier)
         if (!rateLimit.allowed) {

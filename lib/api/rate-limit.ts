@@ -12,7 +12,7 @@ interface RateLimitResult {
 const RATE_LIMITS = {
     free: 1000, // 1000 requests per month
     pro: -1, // Unlimited
-    enterprise: -1, // Unlimited
+    business: -1, // Unlimited
 } as const
 
 // Get the first day of next month
@@ -34,8 +34,8 @@ export async function checkRateLimit(
 ): Promise<RateLimitResult> {
     const supabase = createClient()
 
-    // Pro and Enterprise have unlimited access
-    if (tier === 'pro' || tier === 'enterprise') {
+    // Pro and Business have unlimited access
+    if (tier === 'pro' || tier === 'business') {
         return {
             allowed: true,
             used: 0,

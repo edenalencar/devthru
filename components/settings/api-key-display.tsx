@@ -10,12 +10,14 @@ import { toast } from 'sonner'
 
 interface ApiKeyDisplayProps {
     apiKey: string | null
+    plan: string
     onGenerate: () => void
     onRevoke: () => void
 }
 
-export function ApiKeyDisplay({ apiKey, onGenerate, onRevoke }: ApiKeyDisplayProps) {
+export function ApiKeyDisplay({ apiKey, plan, onGenerate, onRevoke }: ApiKeyDisplayProps) {
     const [showKey, setShowKey] = useState(false)
+    const isBusiness = plan === 'business'
 
     const maskedKey = apiKey ? `${apiKey.substring(0, 8)}${'*'.repeat(32)}` : null
 
@@ -34,13 +36,19 @@ export function ApiKeyDisplay({ apiKey, onGenerate, onRevoke }: ApiKeyDisplayPro
                         API Key
                     </CardTitle>
                     <CardDescription>
-                        Você ainda não possui uma API key. Gere uma para começar a usar a API.
+                        {isBusiness
+                            ? 'Você ainda não possui uma API key. Gere uma para começar a usar a API.'
+                            : 'O acesso à API é exclusivo para assinantes do plano Business.'}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Button onClick={onGenerate} className="w-full gap-2">
+                    <Button
+                        onClick={onGenerate}
+                        className="w-full gap-2"
+                        disabled={!isBusiness}
+                    >
                         <Key className="h-4 w-4" />
-                        Gerar API Key
+                        {isBusiness ? 'Gerar API Key' : 'Upgrade para Business necessário'}
                     </Button>
                 </CardContent>
             </Card>
@@ -91,7 +99,12 @@ export function ApiKeyDisplay({ apiKey, onGenerate, onRevoke }: ApiKeyDisplayPro
 
                 {/* Actions */}
                 <div className="flex gap-2">
-                    <Button onClick={onGenerate} variant="outline" className="flex-1">
+                    <Button
+                        onClick={onGenerate}
+                        variant="outline"
+                        className="flex-1"
+                        disabled={!isBusiness}
+                    >
                         Gerar Nova Key
                     </Button>
                     <Button onClick={handleRevoke} variant="destructive" className="flex-1">
