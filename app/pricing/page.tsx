@@ -260,7 +260,7 @@ export default function PricingPage() {
                                     </li>
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />
-                                        Rate Limit elevado (50k/mês)
+                                        Rate Limit elevado (1M/mês)
                                     </li>
                                     <li className="flex items-center">
                                         <Check className="h-4 w-4 mr-2 text-green-500" />

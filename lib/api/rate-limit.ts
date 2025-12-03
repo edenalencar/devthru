@@ -1,4 +1,4 @@
-import { createClient } from '../supabase/server'
+import { createAdminClient } from '../supabase/admin'
 
 interface RateLimitResult {
     allowed: boolean
@@ -12,7 +12,7 @@ interface RateLimitResult {
 const RATE_LIMITS = {
     free: 1000, // 1000 requests per month
     pro: -1, // Unlimited
-    business: -1, // Unlimited
+    business: 1000000, // 1 million requests per month
 } as const
 
 // Get the first day of next month
@@ -32,10 +32,10 @@ export async function checkRateLimit(
     userId: string,
     tier: string = 'free'
 ): Promise<RateLimitResult> {
-    const supabase = await createClient()
+    const supabase = createAdminClient()
 
-    // Pro and Business have unlimited access
-    if (tier === 'pro' || tier === 'business') {
+    // Pro has unlimited access
+    if (tier === 'pro') {
         return {
             allowed: true,
             used: 0,
@@ -90,7 +90,7 @@ export async function trackApiUsage(
     responseTimeMs: number,
     statusCode: number
 ): Promise<void> {
-    const supabase = await createClient()
+    const supabase = createAdminClient()
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { error } = await (supabase.from('api_usage') as any).insert({

@@ -57,8 +57,7 @@ export async function updateSession(request: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser()
 
     // Protected routes
-    if (request.nextUrl.pathname.startsWith('/dashboard') ||
-        request.nextUrl.pathname.startsWith('/api/v1')) {
+    if (request.nextUrl.pathname.startsWith('/dashboard')) {
         if (!user) {
             return NextResponse.redirect(new URL('/login', request.url))
         }

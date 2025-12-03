@@ -1,0 +1,331 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2025-12-03T14:30:00.000Z",
+    "__export_source": "insomnia.desktop.app:v2023.5.0",
+    "resources": [
+        {
+            "_id": "req_usage",
+            "parentId": "wrk_1",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/usage",
+            "name": "Get Usage",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1701613800000,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_generators",
+            "parentId": "wrk_1",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "name": "Generators",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1701613800000,
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_gen_cpf",
+            "parentId": "fld_generators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/generate/cpf",
+            "name": "Generate CPF",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"options\": {\n\t\t\"formatted\": true\n\t}\n}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "req_gen_cnpj",
+            "parentId": "fld_generators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/generate/cnpj",
+            "name": "Generate CNPJ",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"options\": {\n\t\t\"formatted\": true\n\t}\n}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "req_gen_rg",
+            "parentId": "fld_generators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/generate/rg",
+            "name": "Generate RG",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"options\": {\n\t\t\"formatted\": true\n\t}\n}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "req_gen_license_plate",
+            "parentId": "fld_generators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/generate/license-plate",
+            "name": "Generate License Plate",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"options\": {\n\t\t\"type\": \"mercosul\"\n\t}\n}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "req_gen_renavam",
+            "parentId": "fld_generators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/generate/renavam",
+            "name": "Generate Renavam",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "req_gen_chassis",
+            "parentId": "fld_generators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/generate/chassis",
+            "name": "Generate Chassis",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "req_gen_credit_card",
+            "parentId": "fld_generators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/generate/credit-card",
+            "name": "Generate Credit Card",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"options\": {\n\t\t\"brand\": \"visa\"\n\t}\n}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "req_gen_iban",
+            "parentId": "fld_generators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/generate/iban",
+            "name": "Generate IBAN",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"options\": {\n\t\t\"country\": \"BR\"\n\t}\n}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "fld_validators",
+            "parentId": "wrk_1",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "name": "Validators",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1701613800000,
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_val_cpf",
+            "parentId": "fld_validators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/validate/cpf",
+            "name": "Validate CPF",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"value\": \"12345678909\"\n}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "req_val_iban",
+            "parentId": "fld_validators",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "url": "{{ _.base_url }}/api/v1/validate/iban",
+            "name": "Validate IBAN",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"value\": \"BR1234567890123456789012345\"\n}"
+            },
+            "headers": [
+                {
+                    "name": "x-api-key",
+                    "value": "{{ _.api_key }}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "_type": "request"
+        },
+        {
+            "_id": "env_1",
+            "parentId": "wrk_1",
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "name": "Base Environment",
+            "data": {
+                "base_url": "http://localhost:3000",
+                "api_key": "YOUR_API_KEY_HERE"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "base_url",
+                    "api_key"
+                ]
+            },
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1701613800000,
+            "_type": "environment"
+        },
+        {
+            "_id": "wrk_1",
+            "parentId": null,
+            "modified": 1701613800000,
+            "created": 1701613800000,
+            "name": "DevHubTools API",
+            "description": "API Collection for DevHubTools",
+            "scope": "collection",
+            "_type": "workspace"
+        }
+    ]
+}

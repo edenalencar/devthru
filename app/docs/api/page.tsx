@@ -296,7 +296,7 @@ print(data)
                                 </div>
                                 <div className="border rounded-lg p-4 bg-primary/5 border-primary/20">
                                     <h3 className="font-semibold mb-2">Business Plan</h3>
-                                    <p className="text-2xl font-bold mb-1">50,000</p>
+                                    <p className="text-2xl font-bold mb-1">1,000,000</p>
                                     <p className="text-sm text-muted-foreground">requests por mês</p>
                                 </div>
                             </div>

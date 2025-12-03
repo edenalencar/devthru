@@ -56,6 +56,10 @@ export function toolNotFound(tool: string) {
     )
 }
 
+export function forbidden(message = 'Access forbidden') {
+    return new ApiErrorResponse(403, ErrorCodes.FORBIDDEN, message)
+}
+
 export function internalError(message = 'Internal server error') {
     return new ApiErrorResponse(500, ErrorCodes.INTERNAL_ERROR, message)
 }

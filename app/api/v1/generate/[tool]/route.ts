@@ -6,6 +6,7 @@ import {
     successResponse,
     toolNotFound,
     rateLimitExceeded,
+    forbidden,
 } from '@/lib/api/error-handler'
 import { generators, isValidTool } from '@/lib/api/generators'
 
@@ -30,12 +31,9 @@ export async function POST(
 
         // Enforce Business plan for API access
         if (auth.tier !== 'business') {
-            return errorResponse({
-                name: 'ForbiddenError',
-                message: 'API access is only available on the Business plan',
-                code: 'FORBIDDEN',
-                statusCode: 403,
-            })
+            return errorResponse(
+                forbidden('API access is only available on the Business plan')
+            )
         }
 
         // Check rate limit

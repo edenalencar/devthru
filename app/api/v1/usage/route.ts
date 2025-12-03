@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server'
 import { validateApiKey, getCorsHeaders } from '@/lib/api/middleware'
 import { errorResponse, successResponse } from '@/lib/api/error-handler'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 
 export async function OPTIONS() {
     return new Response(null, {
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
         // Validate API key
         const auth = await validateApiKey(request)
 
-        const supabase = await createClient()
+        const supabase = createAdminClient()
 
         // Get current month start
         const now = new Date()
@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
             .slice(0, 5)
 
         // Determine limit based on tier
-        const limit = auth.tier === 'free' ? 1000 : -1
+        const limit = auth.tier === 'business' ? 1000000 : (auth.tier === 'free' ? 1000 : -1)
         const used = count || 0
         const remaining = limit === -1 ? -1 : Math.max(0, limit - used)
 

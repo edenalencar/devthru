@@ -7,14 +7,17 @@ import {
     invalidInput,
     toolNotFound,
     rateLimitExceeded,
+    forbidden,
 } from '@/lib/api/error-handler'
 import { validateCPF } from '@/lib/utils/validators/cpf'
 import { validateCNPJ } from '@/lib/utils/validators/cnpj'
+import { validateIBAN } from '@/lib/utils/validators/iban'
 
 // Validator functions map
 const validators: Record<string, (value: string) => boolean> = {
     cpf: validateCPF,
     cnpj: validateCNPJ,
+    iban: validateIBAN,
 }
 
 function isValidatorTool(tool: string): tool is keyof typeof validators {
@@ -42,12 +45,9 @@ export async function POST(
 
         // Enforce Business plan for API access
         if (auth.tier !== 'business') {
-            return errorResponse({
-                name: 'ForbiddenError',
-                message: 'API access is only available on the Business plan',
-                code: 'FORBIDDEN',
-                statusCode: 403,
-            })
+            return errorResponse(
+                forbidden('API access is only available on the Business plan')
+            )
         }
 
         // Check rate limit

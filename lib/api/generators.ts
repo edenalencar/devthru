@@ -9,6 +9,10 @@ import { generateName } from '@/lib/utils/generators/names'
 import { generateEmail, generatePhone } from '@/lib/utils/generators/contact'
 import { generateAddress } from '@/lib/utils/generators/address'
 import { generatePerson } from '@/lib/utils/validators/person'
+import { generateLicensePlate } from '@/lib/utils/generators/license-plate'
+import { generateRenavam, generateChassis } from '@/lib/utils/generators/vehicle'
+import { generateCreditCard } from '@/lib/utils/generators/credit-card'
+import { generateIBAN } from '@/lib/utils/validators/iban'
 
 // Generator functions map
 export const generators = {
@@ -78,6 +82,21 @@ export const generators = {
             result.push(words[Math.floor(Math.random() * words.length)])
         }
         return result.join(' ')
+    },
+    'license-plate': (options: any = {}) => {
+        return generateLicensePlate(options.type || 'mercosul')
+    },
+    renavam: (options: any = {}) => {
+        return generateRenavam()
+    },
+    chassis: (options: any = {}) => {
+        return generateChassis()
+    },
+    'credit-card': (options: any = {}) => {
+        return generateCreditCard(options.brand || 'visa')
+    },
+    iban: (options: any = {}) => {
+        return generateIBAN(options.country || 'BR')
     },
 } as const
 
