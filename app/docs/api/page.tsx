@@ -73,10 +73,10 @@ print(data)
                             API REST para geração e validação de dados brasileiros. Rápida, confiável e fácil de usar.
                         </p>
                         <div className="flex gap-4 justify-center mt-6">
-                            <Link href="/settings/api-keys">
+                            <Link href="/dashboard/settings">
                                 <Button size="lg" className="gap-2">
                                     <Key className="h-4 w-4" />
-                                    Get API Key
+                                    Obter API Key
                                 </Button>
                             </Link>
                             <a href="/api/v1/docs" target="_blank">

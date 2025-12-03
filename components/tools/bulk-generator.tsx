@@ -6,10 +6,17 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Download, FileJson, AlertCircle, Loader2 } from "lucide-react"
+import { Download, FileJson, AlertCircle, Loader2, Lock } from "lucide-react"
 import { CopyButton } from "@/components/copy-button"
 import { downloadCSV, downloadJSON } from "@/lib/utils/export"
 import Link from "next/link"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
 
 interface BulkGeneratorProps {
     generatorFn: () => string
@@ -23,6 +30,7 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
     const [results, setResults] = useState<string[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
+    const [showUpgradeDialog, setShowUpgradeDialog] = useState(false)
 
     useEffect(() => {
         if (limit > 0 && quantity > limit) {
@@ -61,10 +69,18 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
     }
 
     const handleDownloadCSV = () => {
+        if (!isPro) {
+            setShowUpgradeDialog(true)
+            return
+        }
         downloadCSV(results, `bulk_${label.toLowerCase()}_${Date.now()}`)
     }
 
     const handleDownloadJSON = () => {
+        if (!isPro) {
+            setShowUpgradeDialog(true)
+            return
+        }
         downloadJSON(results, `bulk_${label.toLowerCase()}_${Date.now()}`)
     }
 
@@ -102,7 +118,7 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
             {error && (
                 <Alert variant="destructive">
                     <AlertCircle className="h-4 w-4" />
-                    <AlertTitle>Limite Excedido</AlertTitle>
+                    <AlertTitle>Atenção</AlertTitle>
                     <AlertDescription className="flex flex-col gap-2">
                         <span>{error}</span>
                         {!isPro && (
@@ -119,11 +135,11 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
                     <div className="flex flex-wrap gap-2">
                         <CopyButton text={results.join("\n")} />
                         <Button variant="outline" size="sm" onClick={handleDownloadCSV}>
-                            <Download className="mr-2 h-4 w-4" />
+                            {!isPro ? <Lock className="mr-2 h-4 w-4" /> : <Download className="mr-2 h-4 w-4" />}
                             CSV
                         </Button>
                         <Button variant="outline" size="sm" onClick={handleDownloadJSON}>
-                            <FileJson className="mr-2 h-4 w-4" />
+                            {!isPro ? <Lock className="mr-2 h-4 w-4" /> : <FileJson className="mr-2 h-4 w-4" />}
                             JSON
                         </Button>
                     </div>
@@ -140,6 +156,25 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
                     </div>
                 </div>
             )}
+
+            <Dialog open={showUpgradeDialog} onOpenChange={setShowUpgradeDialog}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Exportação Bloqueada</DialogTitle>
+                        <DialogDescription>
+                            Faça upgrade para o plano Pro para exportar seus dados.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="py-4 text-center">
+                        <p className="text-muted-foreground mb-4">
+                            A exportação para CSV e JSON está disponível apenas nos planos Pro e Business.
+                        </p>
+                        <Button className="w-full" onClick={() => window.location.href = '/pricing'}>
+                            Fazer Upgrade Agora
+                        </Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }
