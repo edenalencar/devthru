@@ -199,7 +199,7 @@ print(data)
                                     <code className="text-sm font-mono">/api/v1/generate/{'{tool}'}</code>
                                 </div>
                                 <p className="text-sm text-muted-foreground mb-3">
-                                    Gera dados para testes. Suporta: cpf, cnpj, rg, cnh, name, email, phone, address, uuid, password, lorem
+                                    Gera dados para testes. Suporta: cpf, cnpj, rg, cnh, inscricao-estadual, titulo-eleitor, pis, name, email, phone, address, person, license-plate, renavam, chassis, credit-card, iban, uuid, password, lorem
                                 </p>
                                 <details className="text-sm">
                                     <summary className="cursor-pointer font-semibold mb-2">Ver exemplo</summary>
@@ -226,7 +226,7 @@ print(data)
                                     <code className="text-sm font-mono">/api/v1/validate/{'{tool}'}</code>
                                 </div>
                                 <p className="text-sm text-muted-foreground mb-3">
-                                    Valida documentos brasileiros. Suporta: cpf, cnpj
+                                    Valida documentos brasileiros. Suporta: cpf, cnpj, pis, titulo-eleitor, cnh, iban, inscricao-estadual
                                 </p>
                                 <details className="text-sm">
                                     <summary className="cursor-pointer font-semibold mb-2">Ver exemplo</summary>

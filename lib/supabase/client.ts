@@ -156,6 +156,38 @@ export type Database = {
                     configuration?: any
                     created_at?: string
                 }
+            },
+            contact_messages: {
+                Row: {
+                    id: string
+                    user_id: string | null
+                    name: string
+                    email: string
+                    subject: string
+                    message: string
+                    status: string
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    user_id?: string | null
+                    name: string
+                    email: string
+                    subject: string
+                    message: string
+                    status?: string
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    user_id?: string | null
+                    name?: string
+                    email?: string
+                    subject?: string
+                    message?: string
+                    status?: string
+                    created_at?: string
+                }
             }
         }
     }
