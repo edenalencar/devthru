@@ -14,8 +14,9 @@ export async function submitFeedback(feedback: ToolFeedback) {
 
     const { data: { user } } = await supabase.auth.getUser()
 
-    const { error } = await supabase
-        .from('tool_feedbacks')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error } = await (supabase
+        .from('tool_feedbacks') as any)
         .insert({
             tool_slug: feedback.tool_slug,
             rating: feedback.rating,

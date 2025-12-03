@@ -17,7 +17,7 @@ export default function CNHGeneratorPage() {
     const [withPunctuation, setWithPunctuation] = useState<boolean>(false)
     const { isPro, limit } = useUser()
 
-    const generateCNH = (formatted: boolean = withPunctuation): string => {
+    const generateCNH = (): string => {
         const n = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10))
 
         let v1 = 0
@@ -108,7 +108,7 @@ export default function CNHGeneratorPage() {
                             </CardHeader>
                             <CardContent>
                                 <BulkGenerator
-                                    generatorFn={() => generateCNH(false)}
+                                    generatorFn={() => generateCNH()}
                                     label="CNHs"
                                     limit={limit}
                                     isPro={isPro}

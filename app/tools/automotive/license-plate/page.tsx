@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Car, ArrowRightLeft, RefreshCw, Copy, Check } from "lucide-react"
+import { Car, ArrowRightLeft, RefreshCw, Copy } from "lucide-react"
 import { toast } from "sonner"
 
 export default function LicensePlatePage() {

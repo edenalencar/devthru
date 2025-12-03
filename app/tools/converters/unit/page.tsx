@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -76,14 +76,16 @@ export default function UnitConverterPage() {
     // Reset units when tab changes
     useEffect(() => {
         const category = categories[activeTab as keyof typeof categories]
-        setFromUnit(category.units[0].id)
-        setToUnit(category.units[1].id)
+        setTimeout(() => {
+            setFromUnit(category.units[0].id)
+            setToUnit(category.units[1].id)
+        }, 0)
     }, [activeTab])
 
     // Calculate conversion
     useEffect(() => {
         if (!inputValue || isNaN(Number(inputValue))) {
-            setResult("")
+            setTimeout(() => setResult(""), 0)
             return
         }
 

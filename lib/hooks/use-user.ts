@@ -32,8 +32,10 @@ export function useUser() {
 
                     const perms = getPlanPermissions(profileData)
                     setPermissions(perms)
-                    setIsPro(profileData?.subscription_tier === "pro" || profileData?.subscription_tier === "business" || isUserInTrial(profileData))
-                    setIsInTrial(isUserInTrial(profileData))
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const p = profileData as any
+                    setIsPro(p?.subscription_tier === "pro" || p?.subscription_tier === "business" || isUserInTrial(p))
+                    setIsInTrial(isUserInTrial(p))
                 } else {
                     setPermissions(getPlanPermissions(null))
                     setIsPro(false)
@@ -60,8 +62,10 @@ export function useUser() {
                 setProfile(profileData)
                 const perms = getPlanPermissions(profileData)
                 setPermissions(perms)
-                setIsPro(profileData?.subscription_tier === "pro" || profileData?.subscription_tier === "business" || isUserInTrial(profileData))
-                setIsInTrial(isUserInTrial(profileData))
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const p = profileData as any
+                setIsPro(p?.subscription_tier === "pro" || p?.subscription_tier === "business" || isUserInTrial(p))
+                setIsInTrial(isUserInTrial(p))
             } else {
                 setProfile(null)
                 setPermissions(getPlanPermissions(null))

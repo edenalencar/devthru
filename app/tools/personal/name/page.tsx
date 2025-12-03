@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -59,9 +59,12 @@ export default function NameGeneratorPage() {
         setName(generateName())
     }
 
-    if (!name) {
-        handleGenerate()
-    }
+    useEffect(() => {
+        if (!name) {
+            setTimeout(() => handleGenerate(), 0)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -87,7 +90,7 @@ export default function NameGeneratorPage() {
                                     <RadioGroup
                                         defaultValue="all"
                                         value={gender}
-                                        onValueChange={(v) => setGender(v as any)}
+                                        onValueChange={(v) => setGender(v as "all" | "male" | "female")}
                                         className="flex space-x-4"
                                     >
                                         <div className="flex items-center space-x-2">

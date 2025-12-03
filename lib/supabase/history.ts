@@ -10,8 +10,9 @@ export async function saveHistoryToSupabase(item: Omit<GenerationHistory, "id" |
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return null
 
-    const { data, error } = await supabase
-        .from('generation_history')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (supabase
+        .from('generation_history') as any)
         .insert({
             user_id: user.id,
             tool_id: item.toolId,
@@ -39,8 +40,9 @@ export async function getHistoryFromSupabase(limit = 50) {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return []
 
-    const { data, error } = await supabase
-        .from('generation_history')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (supabase
+        .from('generation_history') as any)
         .select('*')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
@@ -85,8 +87,9 @@ export async function syncHistoryToSupabase(localHistory: GenerationHistory[]) {
 
     if (itemsToSync.length === 0) return
 
-    const { error } = await supabase
-        .from('generation_history')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error } = await (supabase
+        .from('generation_history') as any)
         .insert(itemsToSync)
 
     if (error) {
@@ -103,8 +106,9 @@ export async function deleteHistoryItem(id: string) {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return false
 
-    const { error } = await supabase
-        .from('generation_history')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error } = await (supabase
+        .from('generation_history') as any)
         .delete()
         .eq('id', id)
         .eq('user_id', user.id)
@@ -126,8 +130,9 @@ export async function deleteHistoryItems(ids: string[]) {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return false
 
-    const { error } = await supabase
-        .from('generation_history')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error } = await (supabase
+        .from('generation_history') as any)
         .delete()
         .in('id', ids)
         .eq('user_id', user.id)
@@ -156,8 +161,9 @@ export async function getHistoryWithFilters(filters: {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return []
 
-    let query = supabase
-        .from('generation_history')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let query = (supabase
+        .from('generation_history') as any)
         .select('*')
         .eq('user_id', user.id)
 
@@ -224,8 +230,9 @@ export async function getHistoryCount(filters?: {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return 0
 
-    let query = supabase
-        .from('generation_history')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let query = (supabase
+        .from('generation_history') as any)
         .select('*', { count: 'exact', head: true })
         .eq('user_id', user.id)
 

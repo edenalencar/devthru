@@ -42,7 +42,7 @@ export default function TimestampConverterPage() {
             if (isNaN(ts)) throw new Error("Invalid timestamp")
             const date = new Date(tsUnit === "seconds" ? ts * 1000 : ts)
             setDateResult(date.toLocaleString("pt-BR", { dateStyle: "full", timeStyle: "medium" }))
-        } catch (e) {
+        } catch {
             setDateResult("Timestamp inválido")
         }
     }, [tsInput, tsUnit])
@@ -56,7 +56,7 @@ export default function TimestampConverterPage() {
             const date = new Date(dateInput)
             if (isNaN(date.getTime())) throw new Error("Invalid date")
             setTsResult(Math.floor(date.getTime() / 1000).toString())
-        } catch (e) {
+        } catch {
             setTsResult("Data inválida")
         }
     }, [dateInput])

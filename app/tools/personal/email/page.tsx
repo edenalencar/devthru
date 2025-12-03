@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -47,9 +47,12 @@ export default function EmailGeneratorPage() {
         setEmail(generateEmail())
     }
 
-    if (!email) {
-        handleGenerate()
-    }
+    useEffect(() => {
+        if (!email) {
+            setTimeout(() => handleGenerate(), 0)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -143,7 +146,7 @@ export default function EmailGeneratorPage() {
                                 Você pode escolher entre provedores comuns ou definir um domínio personalizado.
                             </p>
                             <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Estes emails são fictícios e não possuem caixa de entrada real. Para emails temporários funcionais (que recebem mensagens), utilize serviços específicos de "temp mail".
+                                <strong>Nota:</strong> Estes emails são fictícios e não possuem caixa de entrada real. Para emails temporários funcionais (que recebem mensagens), utilize serviços específicos de &quot;temp mail&quot;.
                             </p>
                         </CardContent>
                     </Card>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
 
 import { Button } from "@/components/ui/button"
@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 import { ToolResult } from "@/components/tools/tool-result"
 import { generateIBAN, validateIBAN, formatIBAN } from "@/lib/utils/validators/iban"
 import { CreditCard, CheckCircle2, XCircle } from "lucide-react"
-import { createClient } from "@/lib/supabase/client"
+
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useUser } from "@/lib/hooks/use-user"
@@ -23,7 +23,7 @@ export default function IBANValidatorPage() {
     const [validationResult, setValidationResult] = useState<boolean | null>(null)
     const [activeTab, setActiveTab] = useState<'single' | 'bulk'>('single')
 
-    const { isPro, limit, loading: loadingProfile } = useUser()
+    const { isPro, limit } = useUser()
 
     const handleGenerate = () => {
         const iban = generateIBAN(selectedCountry)
@@ -223,7 +223,7 @@ export default function IBANValidatorPage() {
                 </div>
             </main>
 
-            
+
         </div>
     )
 }

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from "@/lib/supabase/server"
 import { NextResponse } from "next/server"
 import { randomBytes, createHash } from "crypto"
 
-export async function GET(req: Request) {
+export async function GET() {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
 
@@ -11,6 +12,7 @@ export async function GET(req: Request) {
     }
 
     const { data: keys, error } = await supabase
+
         .from("api_keys")
         .select("*")
         .eq("user_id", user.id)
@@ -47,13 +49,14 @@ export async function POST(req: Request) {
     const keyPrefix = `${prefix}${secret.substring(0, 4)}...`
 
     const { data, error } = await supabase
+
         .from("api_keys")
         .insert({
             user_id: user.id,
             name,
             key_prefix: keyPrefix,
             key_hash: keyHash,
-        })
+        } as any)
         .select()
         .single()
 
@@ -62,5 +65,5 @@ export async function POST(req: Request) {
     }
 
     // Return the full key ONLY ONCE
-    return NextResponse.json({ ...data, key })
+    return NextResponse.json({ ...(data as any), key })
 }

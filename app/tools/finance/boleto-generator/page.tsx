@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Navbar } from "@/components/layout/navbar"
 
 import { Button } from "@/components/ui/button"
@@ -20,10 +20,18 @@ export default function BoletoGeneratorPage() {
 
     const boletoRef = useRef<HTMLDivElement>(null)
 
-    const handleGenerate = () => {
-        // Mock generation logic - just updates the state with random values if needed
-        // For now, inputs drive the preview directly
-    }
+    const [barcodeLines, setBarcodeLines] = useState<{ width: string, opacity: number }[]>([])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setBarcodeLines(Array.from({ length: 50 }).map(() => ({
+                width: Math.random() > 0.5 ? '4px' : '2px',
+                opacity: Math.random() > 0.1 ? 1 : 0
+            })))
+        }, 0)
+    }, [])
+
+    // handleGenerate removed as it was unused
 
     const handleDownload = async () => {
         if (!boletoRef.current) return
@@ -210,14 +218,14 @@ export default function BoletoGeneratorPage() {
                                 <div className="mt-8 ml-4">
                                     <div className="h-16 w-full max-w-[400px] flex items-end gap-[2px]">
                                         {/* Simple CSS Barcode Mock */}
-                                        {Array.from({ length: 50 }).map((_, i) => (
+                                        {barcodeLines.map((style, i) => (
                                             <div
                                                 key={i}
                                                 className="bg-black"
                                                 style={{
                                                     height: '100%',
-                                                    width: Math.random() > 0.5 ? '4px' : '2px',
-                                                    opacity: Math.random() > 0.1 ? 1 : 0
+                                                    width: style.width,
+                                                    opacity: style.opacity
                                                 }}
                                             />
                                         ))}

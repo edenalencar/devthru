@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -12,7 +12,7 @@ import { Code2, Zap, Shield, BarChart3, Book, Key } from 'lucide-react'
 import Link from 'next/link'
 
 export default function ApiDocsPage() {
-    const [selectedEndpoint, setSelectedEndpoint] = useState('generate')
+    // const [selectedEndpoint, setSelectedEndpoint] = useState('generate')
 
     const codeExamples = {
         javascript: `// Generate CPF

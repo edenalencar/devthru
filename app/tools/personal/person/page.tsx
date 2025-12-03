@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Navbar } from '@/components/layout/navbar'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -10,22 +10,17 @@ import { RefreshCw, Copy, Check } from 'lucide-react'
 import { generatePerson, Person } from '@/lib/utils/validators/person'
 import { toast } from 'sonner'
 
-export default function PersonGeneratorPage() {
-    const [person, setPerson] = useState<Person | null>(null)
-    const [copiedField, setCopiedField] = useState<string | null>(null)
+const Field = ({ label, value }: { label: string; value: string }) => {
+    const [hasCopied, setHasCopied] = useState(false)
 
-    const handleGenerate = () => {
-        setPerson(generatePerson())
+    const handleCopy = () => {
+        navigator.clipboard.writeText(value)
+        toast.success(`${label} copiado!`)
+        setHasCopied(true)
+        setTimeout(() => setHasCopied(false), 2000)
     }
 
-    const copyToClipboard = (text: string, field: string) => {
-        navigator.clipboard.writeText(text)
-        setCopiedField(field)
-        toast.success(`${field} copiado!`)
-        setTimeout(() => setCopiedField(null), 2000)
-    }
-
-    const Field = ({ label, value, id }: { label: string; value: string; id: string }) => (
+    return (
         <div className="flex flex-col space-y-1.5">
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{label}</span>
             <div className="flex items-center justify-between rounded-md border bg-muted/50 px-3 py-2 text-sm">
@@ -34,9 +29,9 @@ export default function PersonGeneratorPage() {
                     variant="ghost"
                     size="icon"
                     className="h-6 w-6 shrink-0 hover:bg-background"
-                    onClick={() => copyToClipboard(value, label)}
+                    onClick={handleCopy}
                 >
-                    {copiedField === label ? (
+                    {hasCopied ? (
                         <Check className="h-3 w-3 text-green-500" />
                     ) : (
                         <Copy className="h-3 w-3 text-muted-foreground" />
@@ -45,6 +40,21 @@ export default function PersonGeneratorPage() {
             </div>
         </div>
     )
+}
+
+export default function PersonGeneratorPage() {
+    const [person, setPerson] = useState<Person | null>(null)
+
+    const handleGenerate = () => {
+        setPerson(generatePerson())
+    }
+
+    useEffect(() => {
+        if (!person) {
+            setTimeout(() => handleGenerate(), 0)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -104,13 +114,13 @@ export default function PersonGeneratorPage() {
                                             <CardTitle className="text-lg">Identidade</CardTitle>
                                         </CardHeader>
                                         <CardContent className="grid gap-4 sm:grid-cols-2">
-                                            <Field label="Nome Completo" value={person.name} id="name" />
-                                            <Field label="Sexo" value={person.gender} id="gender" />
-                                            <Field label="Data de Nascimento" value={person.birthDate} id="birthDate" />
-                                            <Field label="Idade" value={`${person.age} anos`} id="age" />
-                                            <Field label="Signo" value={person.sign} id="sign" />
-                                            <Field label="Nome da Mãe" value={person.mother} id="mother" />
-                                            <Field label="Nome do Pai" value={person.father} id="father" />
+                                            <Field label="Nome Completo" value={person.name} />
+                                            <Field label="Sexo" value={person.gender} />
+                                            <Field label="Data de Nascimento" value={person.birthDate} />
+                                            <Field label="Idade" value={`${person.age} anos`} />
+                                            <Field label="Signo" value={person.sign} />
+                                            <Field label="Nome da Mãe" value={person.mother} />
+                                            <Field label="Nome do Pai" value={person.father} />
                                         </CardContent>
                                     </Card>
 
@@ -120,8 +130,8 @@ export default function PersonGeneratorPage() {
                                             <CardTitle className="text-lg">Documentos</CardTitle>
                                         </CardHeader>
                                         <CardContent className="grid gap-4 sm:grid-cols-2">
-                                            <Field label="CPF" value={person.cpf} id="cpf" />
-                                            <Field label="RG" value={person.rg} id="rg" />
+                                            <Field label="CPF" value={person.cpf} />
+                                            <Field label="RG" value={person.rg} />
                                         </CardContent>
                                     </Card>
 
@@ -131,10 +141,10 @@ export default function PersonGeneratorPage() {
                                             <CardTitle className="text-lg">Contato e Acesso</CardTitle>
                                         </CardHeader>
                                         <CardContent className="grid gap-4 sm:grid-cols-2">
-                                            <Field label="Email" value={person.email} id="email" />
-                                            <Field label="Senha" value={person.password} id="password" />
-                                            <Field label="Celular" value={person.mobile} id="mobile" />
-                                            <Field label="Telefone Fixo" value={person.phone} id="phone" />
+                                            <Field label="Email" value={person.email} />
+                                            <Field label="Senha" value={person.password} />
+                                            <Field label="Celular" value={person.mobile} />
+                                            <Field label="Telefone Fixo" value={person.phone} />
                                         </CardContent>
                                     </Card>
 
@@ -144,9 +154,9 @@ export default function PersonGeneratorPage() {
                                             <CardTitle className="text-lg">Características Físicas</CardTitle>
                                         </CardHeader>
                                         <CardContent className="grid gap-4 sm:grid-cols-3">
-                                            <Field label="Altura" value={person.height} id="height" />
-                                            <Field label="Peso" value={person.weight} id="weight" />
-                                            <Field label="Tipo Sanguíneo" value={person.bloodType} id="bloodType" />
+                                            <Field label="Altura" value={person.height} />
+                                            <Field label="Peso" value={person.weight} />
+                                            <Field label="Tipo Sanguíneo" value={person.bloodType} />
                                         </CardContent>
                                     </Card>
 
@@ -157,18 +167,18 @@ export default function PersonGeneratorPage() {
                                         </CardHeader>
                                         <CardContent className="grid gap-4">
                                             <div className="grid gap-4 sm:grid-cols-[1fr_100px]">
-                                                <Field label="Logradouro" value={person.address.street} id="street" />
-                                                <Field label="Número" value={person.address.number.toString()} id="number" />
+                                                <Field label="Logradouro" value={person.address.street} />
+                                                <Field label="Número" value={person.address.number.toString()} />
                                             </div>
                                             <div className="grid gap-4 sm:grid-cols-2">
-                                                <Field label="Bairro" value={person.address.neighborhood} id="neighborhood" />
-                                                <Field label="CEP" value={person.address.zipCode} id="zipCode" />
+                                                <Field label="Bairro" value={person.address.neighborhood} />
+                                                <Field label="CEP" value={person.address.zipCode} />
                                             </div>
                                             <div className="grid gap-4 sm:grid-cols-[1fr_80px]">
-                                                <Field label="Cidade" value={person.address.city} id="city" />
-                                                <Field label="Estado" value={person.address.state} id="state" />
+                                                <Field label="Cidade" value={person.address.city} />
+                                                <Field label="Estado" value={person.address.state} />
                                             </div>
-                                            <Field label="Endereço Completo" value={`${person.address.street}, ${person.address.number} - ${person.address.neighborhood}, ${person.address.city} - ${person.address.state}, ${person.address.zipCode}`} id="fullAddress" />
+                                            <Field label="Endereço Completo" value={`${person.address.street}, ${person.address.number} - ${person.address.neighborhood}, ${person.address.city} - ${person.address.state}, ${person.address.zipCode}`} />
                                         </CardContent>
                                     </Card>
                                 </div>
@@ -180,7 +190,7 @@ export default function PersonGeneratorPage() {
                                         </div>
                                         <h3 className="text-lg font-semibold">Nenhum perfil gerado</h3>
                                         <p className="mb-4 max-w-sm text-sm">
-                                            Clique no botão "Gerar Nova Pessoa" para criar um perfil completo com dados aleatórios válidos.
+                                            Clique no botão &quot;Gerar Nova Pessoa&quot; para criar um perfil completo com dados aleatórios válidos.
                                         </p>
                                         <Button onClick={handleGenerate}>Gerar Agora</Button>
                                     </CardContent>

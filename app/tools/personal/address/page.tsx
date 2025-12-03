@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ToolResult } from "@/components/tools/tool-result"
@@ -54,9 +54,11 @@ export default function AddressGeneratorPage() {
         setAddress(generateAddress())
     }
 
-    if (!address) {
-        handleGenerate()
-    }
+    useEffect(() => {
+        if (!address) {
+            setTimeout(() => handleGenerate(), 0)
+        }
+    }, [])
 
     return (
         <div className="flex min-h-screen flex-col">

@@ -32,7 +32,7 @@ export async function checkRateLimit(
     userId: string,
     tier: string = 'free'
 ): Promise<RateLimitResult> {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Pro and Business have unlimited access
     if (tier === 'pro' || tier === 'business') {
@@ -50,8 +50,9 @@ export async function checkRateLimit(
 
     // Count API usage for current month
     const monthStart = getCurrentMonthStart()
-    const { count, error } = await supabase
-        .from('api_usage')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { count, error } = await (supabase
+        .from('api_usage') as any)
         .select('*', { count: 'exact', head: true })
         .eq('user_id', userId)
         .gte('created_at', monthStart.toISOString())
@@ -89,9 +90,10 @@ export async function trackApiUsage(
     responseTimeMs: number,
     statusCode: number
 ): Promise<void> {
-    const supabase = createClient()
+    const supabase = await createClient()
 
-    const { error } = await supabase.from('api_usage').insert({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error } = await (supabase.from('api_usage') as any).insert({
         user_id: userId,
         api_key_id: apiKeyId,
         tool_id: toolId,

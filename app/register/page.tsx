@@ -41,7 +41,7 @@ export default function RegisterPage() {
 
             toast.success("Conta criada! Verifique seu email para confirmar.")
             router.push("/login")
-        } catch (error: any) {
+        } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             toast.error(error.message || "Erro ao criar conta")
         } finally {
             setLoading(false)
@@ -58,7 +58,7 @@ export default function RegisterPage() {
             })
 
             if (error) throw error
-        } catch (error: any) {
+        } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             toast.error(error.message || `Erro ao registrar com ${provider}`)
         }
     }

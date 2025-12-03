@@ -1,4 +1,5 @@
 "use client"
+import { useEffect } from "react"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -43,9 +44,12 @@ export default function RGGeneratorPage() {
         setRg(generateRG())
     }
 
-    if (!rg) {
-        handleGenerate()
-    }
+    useEffect(() => {
+        if (!rg) {
+            handleGenerate()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="flex min-h-screen flex-col">

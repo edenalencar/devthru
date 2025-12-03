@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -39,7 +39,7 @@ export default function BaseConverterPage() {
             setBinary(num.toString(2))
             setHex(num.toString(16).toUpperCase())
             setOctal(num.toString(8))
-        } catch (e) {
+        } catch {
             setError("Número inválido")
         }
     }
@@ -66,7 +66,7 @@ export default function BaseConverterPage() {
             setDecimal(num.toString(10))
             setHex(num.toString(16).toUpperCase())
             setOctal(num.toString(8))
-        } catch (e) {
+        } catch {
             setError("Número binário inválido")
         }
     }
@@ -94,7 +94,7 @@ export default function BaseConverterPage() {
             setDecimal(num.toString(10))
             setBinary(num.toString(2))
             setOctal(num.toString(8))
-        } catch (e) {
+        } catch {
             setError("Número hexadecimal inválido")
         }
     }
@@ -121,7 +121,7 @@ export default function BaseConverterPage() {
             setDecimal(num.toString(10))
             setBinary(num.toString(2))
             setHex(num.toString(16).toUpperCase())
-        } catch (e) {
+        } catch {
             setError("Número octal inválido")
         }
     }

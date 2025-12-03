@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -24,7 +24,7 @@ export default function CnaeSearchPage() {
     const [favorites, setFavorites] = useState<Cnae[]>([])
 
     // Load favorites from ConfigurationManager
-    const handleLoadConfig = (config: any) => {
+    const handleLoadConfig = (config: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
         if (config.favorites) {
             setFavorites(config.favorites)
             toast.success("Favoritos carregados!")
@@ -40,7 +40,7 @@ export default function CnaeSearchPage() {
             const response = await fetch("https://servicodados.ibge.gov.br/api/v2/cnae/subclasses")
             if (!response.ok) throw new Error("Falha ao buscar dados")
 
-            const data: Cnae[] = await response.json()
+            const data: Cnae[] = await response.json() as any // eslint-disable-line @typescript-eslint/no-explicit-any
 
             // Client-side filtering because API doesn't support search by term easily
             const filtered = data.filter(item =>
@@ -95,7 +95,7 @@ export default function CnaeSearchPage() {
                             <Card>
                                 <CardHeader>
                                     <CardTitle>Pesquisa</CardTitle>
-                                    <CardDescription>Digite o código ou palavra-chave (ex: "Programação", "6201-5")</CardDescription>
+                                    <CardDescription>Digite o código ou palavra-chave (ex: &quot;Programação&quot;, &quot;6201-5&quot;)</CardDescription>
                                 </CardHeader>
                                 <CardContent>
                                     <div className="flex gap-2">

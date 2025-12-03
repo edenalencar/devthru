@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { createClient as createServerClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
 
-export async function DELETE(req: Request) {
+export async function DELETE() {
     try {
         // 1. Verify the user is logged in using the standard server client
         const supabase = await createServerClient();

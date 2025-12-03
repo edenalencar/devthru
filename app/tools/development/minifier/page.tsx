@@ -234,7 +234,7 @@ export default function MinifierPage() {
                         <CardContent className="prose prose-sm max-w-none dark:prose-invert">
                             <p>
                                 O Minificador de Código ajuda a reduzir o tamanho de arquivos CSS, JSON, SQL, HTML e JavaScript removendo espaços desnecessários, comentários e quebras de linha.
-                                Também oferece a função de "Beautify" para tornar códigos minificados legíveis novamente.
+                                Também oferece a função de &quot;Beautify&quot; para tornar códigos minificados legíveis novamente.
                             </p>
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> O processamento é feito inteiramente no seu navegador. Nenhum código é enviado para servidores externos.

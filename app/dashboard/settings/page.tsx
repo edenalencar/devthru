@@ -41,11 +41,13 @@ export default function SettingsPage() {
                 .single()
 
             if (profile) {
-                if (profile.api_key) {
-                    setApiKey(profile.api_key)
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const p = profile as any
+                if (p.api_key) {
+                    setApiKey(p.api_key)
                 }
-                if (profile.subscription_tier) {
-                    setPlan(profile.subscription_tier)
+                if (p.subscription_tier) {
+                    setPlan(p.subscription_tier)
                 }
             }
         } catch (error) {

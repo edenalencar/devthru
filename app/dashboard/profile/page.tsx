@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { Loader2, User, Shield, AlertTriangle } from "lucide-react"
@@ -13,14 +13,10 @@ export default function ProfilePage() {
     const router = useRouter()
     const supabase = createClient()
     const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState<any>(null)
-    const [profile, setProfile] = useState<any>(null)
+    const [user, setUser] = useState<any>(null) // eslint-disable-line @typescript-eslint/no-explicit-any
+    const [profile, setProfile] = useState<any>(null) // eslint-disable-line @typescript-eslint/no-explicit-any
 
-    useEffect(() => {
-        getProfile()
-    }, [])
-
-    const getProfile = async () => {
+    const getProfile = useCallback(async () => {
         try {
             setLoading(true)
             const { data: { user }, error: userError } = await supabase.auth.getUser()
@@ -47,7 +43,11 @@ export default function ProfilePage() {
         } finally {
             setLoading(false)
         }
-    }
+    }, [router, supabase])
+
+    useEffect(() => {
+        getProfile()
+    }, [getProfile])
 
     if (loading && !user) {
         return (

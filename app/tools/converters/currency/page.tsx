@@ -15,9 +15,7 @@ interface Currencies {
     [key: string]: string
 }
 
-interface Rates {
-    [key: string]: number
-}
+
 
 export default function CurrencyConverterPage() {
     const [amount, setAmount] = useState<string>("1")
@@ -39,7 +37,7 @@ export default function CurrencyConverterPage() {
                 const data = await response.json()
                 setCurrencies(data)
                 setLoading(false)
-            } catch (err) {
+            } catch {
                 setError("Erro ao carregar moedas. Tente novamente mais tarde.")
                 setLoading(false)
             }

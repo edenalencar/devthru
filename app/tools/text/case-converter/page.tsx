@@ -98,19 +98,21 @@ export default function CaseConverterPage() {
                                 <CaseOption type="title" label="Title Case" description="Primeira Letra Maiúscula" />
                                 <CaseOption type="sentence" label="Sentence case" description="Apenas a primeira letra da frase" />
                                 <CaseOption type="camel" label="camelCase" description="Padrão para variáveis em JS/Java" />
-                                <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                                    <p>
-                                        O Conversor de Case é uma ferramenta essencial para desenvolvedores e redatores que precisam ajustar a capitalização de textos rapidamente.
-                                        Com suporte a diversos formatos como UPPERCASE, lowercase, camelCase e snake_case, ele agiliza a formatação de variáveis, títulos e documentos.
-                                    </p>
-                                    <p className="text-sm text-muted-foreground mt-4">
-                                        <strong>Nota:</strong> O processamento é feito inteiramente no seu navegador, garantindo que seus textos permaneçam privados e seguros.
-                                    </p>
-                                </CardContent>
-                            </Card>
+                                <Card>
+                                    <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                                        <p>
+                                            O Conversor de Case é uma ferramenta essencial para desenvolvedores e redatores que precisam ajustar a capitalização de textos rapidamente.
+                                            Com suporte a diversos formatos como UPPERCASE, lowercase, camelCase e snake_case, ele agiliza a formatação de variáveis, títulos e documentos.
+                                        </p>
+                                        <p className="text-sm text-muted-foreground mt-4">
+                                            <strong>Nota:</strong> O processamento é feito inteiramente no seu navegador, garantindo que seus textos permaneçam privados e seguros.
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            </div>
+
+
                         </div>
-
-
                     </div>
                 </div>
             </main>

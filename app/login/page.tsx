@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Navbar } from "@/components/layout/navbar"
@@ -12,8 +12,9 @@ import { Label } from "@/components/ui/label"
 import { createClient } from "@/lib/supabase/client"
 import { Code2, Github } from "lucide-react"
 import { toast } from "sonner"
+export const dynamic = "force-dynamic"
 
-export default function LoginPage() {
+function LoginForm() {
     const router = useRouter()
     const searchParams = useSearchParams()
     const redirectUrl = searchParams.get("redirect") || "/dashboard"
@@ -37,7 +38,7 @@ export default function LoginPage() {
             toast.success("Login realizado com sucesso!")
             router.push(redirectUrl)
             router.refresh()
-        } catch (error: any) {
+        } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             toast.error(error.message || "Erro ao fazer login")
         } finally {
             setLoading(false)
@@ -54,7 +55,7 @@ export default function LoginPage() {
             })
 
             if (error) throw error
-        } catch (error: any) {
+        } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             toast.error(error.message || `Erro ao fazer login com ${provider}`)
         }
     }
@@ -175,5 +176,13 @@ export default function LoginPage() {
 
             <Footer />
         </div>
+    )
+}
+
+export default function LoginPage() {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <LoginForm />
+        </Suspense>
     )
 }

@@ -103,7 +103,7 @@ export default function HomePage() {
           ) : (
             <div className="text-center py-12">
               <p className="text-lg text-muted-foreground">
-                Nenhuma ferramenta encontrada para "{searchQuery}"
+                Nenhuma ferramenta encontrada para &quot;{searchQuery}&quot;
               </p>
             </div>
           )}

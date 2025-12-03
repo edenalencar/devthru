@@ -6,17 +6,15 @@ import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check, Loader2 } from "lucide-react"
-import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
-import { stripePromise } from "@/lib/stripe/client"
+// import { stripePromise } from "@/lib/stripe/client"
 import { useUser } from "@/lib/hooks/use-user"
 import { differenceInDays } from "date-fns"
 
 export default function PricingPage() {
     const router = useRouter()
-    const supabase = createClient()
-    const { user, profile, isInTrial, isPro } = useUser()
+    const { user, profile, isInTrial } = useUser()
     const [loading, setLoading] = useState<string | null>(null)
 
     const daysRemaining = profile?.trial_ends_at
@@ -43,7 +41,7 @@ export default function PricingPage() {
             let data
             try {
                 data = await response.json()
-            } catch (e) {
+            } catch {
                 if (!response.ok) {
                     throw new Error(`Erro ${response.status}: ${response.statusText}`)
                 }
@@ -59,7 +57,7 @@ export default function PricingPage() {
             } else {
                 throw new Error("URL de redirecionamento não encontrada")
             }
-        } catch (error: any) {
+        } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             toast.error(error.message || "Erro ao processar pagamento")
         } finally {
             setLoading(null)

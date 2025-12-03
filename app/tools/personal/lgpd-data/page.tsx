@@ -16,6 +16,7 @@ export default function LGPDDataPage() {
     const [activeTab, setActiveTab] = useState<'generate' | 'anonymize'>('generate')
 
     // Generator State
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [fakeData, setFakeData] = useState<any>(null)
 
     // Anonymizer State

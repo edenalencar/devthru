@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { Download, Loader2, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { HistoryCard } from '@/components/tools/history-card'
@@ -26,8 +26,8 @@ interface GenerationHistory {
     toolId: string
     toolName: string
     timestamp: number
-    input?: any
-    output: any
+    input?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+    output: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 const ITEMS_PER_PAGE = 50
@@ -46,11 +46,7 @@ export default function HistoryPage() {
 
     const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set())
 
-    useEffect(() => {
-        loadHistory()
-    }, [currentPage, searchQuery, selectedTool, dateFrom, dateTo])
-
-    const loadHistory = async () => {
+    const loadHistory = useCallback(async () => {
         setLoading(true)
 
         const filters = {
@@ -75,7 +71,13 @@ export default function HistoryPage() {
         setHistory(data)
         setTotalCount(count)
         setLoading(false)
-    }
+    }, [currentPage, searchQuery, selectedTool, dateFrom, dateTo])
+
+    useEffect(() => {
+        setTimeout(() => loadHistory(), 0)
+    }, [loadHistory])
+
+
 
     const handleDelete = async (id: string) => {
         const success = await deleteHistoryItem(id)
@@ -132,7 +134,7 @@ export default function HistoryPage() {
             }
 
             toast.success(`Exportado ${itemsToExport.length} itens como ${format.toUpperCase()}`)
-        } catch (error) {
+        } catch {
             toast.error('Erro ao exportar')
         }
     }

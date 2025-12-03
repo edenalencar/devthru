@@ -6,7 +6,7 @@ import path from 'path'
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2024-11-20.acacia', // Use latest or matching version
+    apiVersion: '2024-11-20.acacia' as any, // Use latest or matching version
 })
 
 const PRICES = {

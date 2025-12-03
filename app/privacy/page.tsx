@@ -35,7 +35,7 @@ export default function PrivacyPage() {
 
                     <h2>4. Dados Gerados</h2>
                     <p>
-                        Os dados gerados pelas nossas ferramentas (CPFs, CNPJs, etc.) são fictícios e criados algoritmicamente. Não armazenamos esses dados, a menos que você utilize a funcionalidade de "Histórico" estando logado em sua conta.
+                        Os dados gerados pelas nossas ferramentas (CPFs, CNPJs, etc.) são fictícios e criados algoritmicamente. Não armazenamos esses dados, a menos que você utilize a funcionalidade de &quot;Histórico&quot; estando logado em sua conta.
                     </p>
 
                     <h2>5. Compromisso do Usuário</h2>

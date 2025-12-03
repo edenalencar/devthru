@@ -36,7 +36,7 @@ export default function MockDataGeneratorPage() {
 
     useEffect(() => {
         if (limit && count > limit) {
-            setCount(limit)
+            setTimeout(() => setCount(limit), 0)
         }
     }, [limit, count])
 

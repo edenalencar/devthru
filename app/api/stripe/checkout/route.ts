@@ -58,7 +58,7 @@ export async function POST(req: Request) {
         })
 
         return NextResponse.json({ sessionId: session.id, url: session.url })
-    } catch (error: any) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         console.error('Stripe error:', error)
         return NextResponse.json({ error: error.message }, { status: 500 })
     }

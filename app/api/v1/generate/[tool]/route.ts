@@ -4,7 +4,6 @@ import { checkRateLimit, trackApiUsage, getRateLimitHeaders } from '@/lib/api/ra
 import {
     errorResponse,
     successResponse,
-    invalidInput,
     toolNotFound,
     rateLimitExceeded,
 } from '@/lib/api/error-handler'
@@ -19,8 +18,9 @@ export async function OPTIONS() {
 
 export async function POST(
     request: NextRequest,
-    { params }: { params: { tool: string } }
+    { params }: { params: Promise<{ tool: string }> }
 ) {
+    const { tool } = await params
     const startTime = Date.now()
     const corsHeaders = getCorsHeaders()
 
@@ -62,7 +62,6 @@ export async function POST(
         }
 
         // Validate tool
-        const tool = params.tool
         if (!isValidTool(tool)) {
             return errorResponse(toolNotFound(tool))
         }
@@ -102,15 +101,15 @@ export async function POST(
             status: response.status,
             headers,
         })
-    } catch (error: any) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         // Track failed request
         const responseTime = Date.now() - startTime
         if (error.userId) {
             await trackApiUsage(
                 error.userId,
                 null,
-                params.tool,
-                `/api/v1/generate/${params.tool}`,
+                tool,
+                `/api/v1/generate/${tool}`,
                 responseTime,
                 error.statusCode || 500
             )

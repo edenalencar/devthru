@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
         // Validate API key
         const auth = await validateApiKey(request)
 
-        const supabase = createClient()
+        const supabase = await createClient()
 
         // Get current month start
         const now = new Date()
@@ -47,14 +47,14 @@ export async function GET(request: NextRequest) {
         }
 
         // Count by tool
-        const toolCounts = toolsData.reduce((acc: Record<string, number>, item) => {
+        const toolCounts = toolsData.reduce((acc: Record<string, number>, item: { tool_id: string }) => {
             acc[item.tool_id] = (acc[item.tool_id] || 0) + 1
             return acc
         }, {})
 
         const topTools = Object.entries(toolCounts)
             .map(([tool, count]) => ({ tool, count }))
-            .sort((a, b) => b.count - a.count)
+            .sort((a, b) => (b.count as number) - (a.count as number))
             .slice(0, 5)
 
         // Determine limit based on tier
@@ -78,7 +78,7 @@ export async function GET(request: NextRequest) {
             status: response.status,
             headers,
         })
-    } catch (error: any) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         const response = errorResponse(error)
         const headers = new Headers(response.headers)
         Object.entries(corsHeaders).forEach(([key, value]) => headers.set(key, value))

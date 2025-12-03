@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { History, BarChart3, Zap, Trash2, ArrowRight, Download } from "lucide-react"
@@ -22,23 +22,13 @@ import { Badge } from "@/components/ui/badge"
 
 export default function DashboardPage() {
     const [history, setHistory] = useState<GenerationHistory[]>([])
-    const [stats, setStats] = useState<any>(null)
-    const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState<any>(null)
+    const [stats, setStats] = useState<any>(null) // eslint-disable-line @typescript-eslint/no-explicit-any
+    // const [loading, setLoading] = useState(true)
+    const [user, setUser] = useState<any>(null) // eslint-disable-line @typescript-eslint/no-explicit-any
     const supabase = createClient()
 
-    useEffect(() => {
-        checkUserAndLoadData()
-    }, [])
-
-    const checkUserAndLoadData = async () => {
-        const { data: { user } } = await supabase.auth.getUser()
-        setUser(user)
-        loadData(user)
-    }
-
-    const loadData = async (currentUser: any) => {
-        setLoading(true)
+    const loadData = useCallback(async (currentUser: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+        // setLoading(true)
         try {
             if (currentUser) {
                 // Load from Supabase
@@ -65,9 +55,19 @@ export default function DashboardPage() {
             console.error("Error loading data:", error)
             toast.error("Erro ao carregar dados")
         } finally {
-            setLoading(false)
+            // setLoading(false)
         }
-    }
+    }, [])
+
+    const checkUserAndLoadData = useCallback(async () => {
+        const { data: { user } } = await supabase.auth.getUser()
+        setUser(user)
+        loadData(user)
+    }, [supabase.auth, loadData])
+
+    useEffect(() => {
+        checkUserAndLoadData()
+    }, [checkUserAndLoadData])
 
     const handleClearHistory = () => {
         if (confirm("Tem certeza que deseja limpar todo o histórico?")) {

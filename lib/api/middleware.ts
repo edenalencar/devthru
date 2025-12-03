@@ -15,11 +15,12 @@ export async function validateApiKey(request: NextRequest): Promise<AuthResult> 
         throw invalidApiKey('API key is required. Include it in the x-api-key header.')
     }
 
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Check if using old system (api_key in profiles)
-    const { data: profileData } = await supabase
-        .from('profiles')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: profileData } = await (supabase
+        .from('profiles') as any)
         .select('id, subscription_tier')
         .eq('api_key', apiKey)
         .single()

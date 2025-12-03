@@ -14,6 +14,7 @@ export async function DELETE(
     }
 
     const { error } = await supabase
+
         .from("api_keys")
         .delete()
         .eq("id", id)

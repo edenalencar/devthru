@@ -30,8 +30,9 @@ export async function OPTIONS() {
 
 export async function POST(
     request: NextRequest,
-    { params }: { params: { tool: string } }
+    { params }: { params: Promise<{ tool: string }> }
 ) {
+    const { tool } = await params
     const startTime = Date.now()
     const corsHeaders = getCorsHeaders()
 
@@ -72,7 +73,6 @@ export async function POST(
         }
 
         // Validate tool
-        const tool = params.tool
         if (!isValidatorTool(tool)) {
             return errorResponse(toolNotFound(tool))
         }
@@ -113,14 +113,14 @@ export async function POST(
             status: response.status,
             headers,
         })
-    } catch (error: any) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         const responseTime = Date.now() - startTime
         if (error.userId) {
             await trackApiUsage(
                 error.userId,
                 null,
-                params.tool,
-                `/api/v1/validate/${params.tool}`,
+                tool,
+                `/api/v1/validate/${tool}`,
                 responseTime,
                 error.statusCode || 500
             )

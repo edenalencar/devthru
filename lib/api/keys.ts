@@ -16,6 +16,7 @@ export async function generateApiKey() {
 
     const { error } = await supabase
         .from('profiles')
+        // @ts-expect-error
         .update({ api_key: apiKey })
         .eq('id', user.id)
 
@@ -24,7 +25,7 @@ export async function generateApiKey() {
     return apiKey
 }
 
-export async function validateApiKey(apiKey: string) {
+export async function validateApiKey(apiKey: string): Promise<{ id: string; subscription_tier: string } | null> {
     const supabase = await createClient()
 
     const { data, error } = await supabase
@@ -48,6 +49,7 @@ export async function revokeApiKey() {
 
     const { error } = await supabase
         .from('profiles')
+        // @ts-expect-error
         .update({ api_key: null })
         .eq('id', user.id)
 

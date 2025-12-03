@@ -1,16 +1,16 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Badge } from "@/components/ui/badge"
+
 import { ToolResult } from "@/components/tools/tool-result"
 import { generateCPF, validateCPF, formatCPF } from "@/lib/utils/validators/cpf"
 import { FileText, CheckCircle2, XCircle } from "lucide-react"
-import { createClient } from "@/lib/supabase/client"
+
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { useUser } from "@/lib/hooks/use-user"
@@ -23,7 +23,7 @@ export default function CPFGeneratorPage() {
     const [validationResult, setValidationResult] = useState<boolean | null>(null)
     const [activeTab, setActiveTab] = useState<'single' | 'bulk'>('single')
 
-    const { isPro, limit, loading: loadingProfile } = useUser()
+    const { isPro, limit } = useUser()
 
     const handleGenerate = () => {
         const cpf = generateCPF()

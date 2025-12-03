@@ -5,7 +5,6 @@ import { Footer } from "@/components/layout/footer"
 import { Icon } from "@/components/ui/icon"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
 
 export default function AboutPage() {
     return (
