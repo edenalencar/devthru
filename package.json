@@ -1,6 +1,6 @@
 {
   "name": "devhubtools",
-  "version": "1.18.0",
+  "version": "1.18.1",
   "description": "A comprehensive developer toolkit for Brazilian document validation, data generation, and utilities.",
   "private": true,
   "scripts": {
