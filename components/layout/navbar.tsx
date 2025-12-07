@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation"
 import { CommandMenu } from "@/components/command-menu"
 
 const Logo = () => (
-    <div className="flex items-center gap-3 text-slate-900 dark:text-white">
+    <div className="flex items-center gap-3 text-foreground">
         <div className="size-8 text-primary">
             <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                 <path
