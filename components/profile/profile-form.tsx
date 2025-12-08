@@ -185,6 +185,13 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
                             </div>
                         </div>
 
+                        {profile?.current_period_end && (
+                            <p className="text-xs text-muted-foreground mt-1 text-right">
+                                {profile.cancel_at_period_end ? "Encerra em " : "Renova em "}
+                                {new Date(profile.current_period_end).toLocaleDateString()}
+                            </p>
+                        )}
+
                         {profile?.stripe_customer_id ? (
                             <Button
                                 variant="outline"
@@ -224,6 +231,6 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
                     Salvar Alterações
                 </Button>
             </CardContent>
-        </Card>
+        </Card >
     )
 }

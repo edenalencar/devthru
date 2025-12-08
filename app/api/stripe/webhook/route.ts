@@ -4,6 +4,7 @@ import { NextResponse } from "next/server"
 import { stripe } from "@/lib/stripe/server"
 import { createClient } from "@/lib/supabase/server"
 import Stripe from "stripe"
+import { STRIPE_PLANS } from "@/lib/stripe/plans"
 
 export async function POST(req: Request) {
     const body = await req.text()
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
     }
 
     const session = event.data.object as Stripe.Checkout.Session
-    const subscription = event.data.object as Stripe.Subscription
+    const subscription = event.data.object as any
 
     const supabase = await createClient()
 
@@ -36,15 +37,57 @@ export async function POST(req: Request) {
         // Retrieve subscription to get customer ID if needed, or just use session.customer
         const sub = await stripe.subscriptions.retrieve(subscriptionId) as any
 
+        const priceId = sub.items.data[0].price.id
+        let plan = 'pro'
+
+        if (priceId === STRIPE_PLANS.BUSINESS.priceId) {
+            plan = STRIPE_PLANS.BUSINESS.slug
+        } else if (priceId === STRIPE_PLANS.PRO.priceId) {
+            plan = STRIPE_PLANS.PRO.slug
+        }
+
         await (supabase
             .from("profiles") as any)
             .update({
-                subscription_tier: "pro", // Default to pro for now, logic can be enhanced for Business
+                subscription_tier: plan,
                 stripe_subscription_id: subscriptionId,
                 stripe_customer_id: sub.customer as string,
-                trial_ends_at: null // Clear trial if they subscribed
+                trial_ends_at: null, // Clear trial if they subscribed
+                current_period_end: new Date(sub.current_period_end * 1000).toISOString(),
+                cancel_at_period_end: sub.cancel_at_period_end
             } as any)
             .eq("id", session.metadata.userId)
+    }
+
+    if (event.type === "customer.subscription.updated") {
+
+
+        // Find user by subscription ID
+        const { data: profile } = await supabase
+            .from("profiles")
+            .select("id")
+            .eq("stripe_subscription_id", subscription.id)
+            .single()
+
+        if (profile) {
+            const priceId = subscription.items.data[0].price.id
+            let plan = 'pro'
+
+            if (priceId === STRIPE_PLANS.BUSINESS.priceId) {
+                plan = STRIPE_PLANS.BUSINESS.slug
+            } else if (priceId === STRIPE_PLANS.PRO.priceId) {
+                plan = STRIPE_PLANS.PRO.slug
+            }
+
+            await (supabase
+                .from("profiles") as any)
+                .update({
+                    subscription_tier: plan,
+                    current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
+                    cancel_at_period_end: subscription.cancel_at_period_end
+                } as any)
+                .eq("id", profile.id)
+        }
     }
 
     if (event.type === "customer.subscription.deleted") {

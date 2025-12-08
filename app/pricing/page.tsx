@@ -11,6 +11,7 @@ import { toast } from "sonner"
 // import { stripePromise } from "@/lib/stripe/client"
 import { useUser } from "@/lib/hooks/use-user"
 import { differenceInDays } from "date-fns"
+import { STRIPE_PLANS } from "@/lib/stripe/plans"
 
 export default function PricingPage() {
     const router = useRouter()
@@ -227,10 +228,10 @@ export default function PricingPage() {
                                 <Button
                                     className="w-full"
                                     variant={proConfig.variant}
-                                    onClick={() => handleSubscribe("price_1SYSlbJzedEYbjzZMG9r6nw9")}
+                                    onClick={() => handleSubscribe(STRIPE_PLANS.PRO.priceId)}
                                     disabled={proConfig.disabled || !!loading}
                                 >
-                                    {loading === "price_1SYSlbJzedEYbjzZMG9r6nw9" && (
+                                    {loading === STRIPE_PLANS.PRO.priceId && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
                                     {proConfig.text}
@@ -276,10 +277,10 @@ export default function PricingPage() {
                                 <Button
                                     className="w-full"
                                     variant={businessConfig.variant}
-                                    onClick={() => handleSubscribe("price_1SYSliJzedEYbjzZ5kbNVHvI")}
+                                    onClick={() => handleSubscribe(STRIPE_PLANS.BUSINESS.priceId)}
                                     disabled={businessConfig.disabled || !!loading}
                                 >
-                                    {loading === "price_1SYSliJzedEYbjzZ5kbNVHvI" && (
+                                    {loading === STRIPE_PLANS.BUSINESS.priceId && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
                                     {businessConfig.text}

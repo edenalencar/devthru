@@ -9,9 +9,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: '2024-11-20.acacia' as any, // Use latest or matching version
 })
 
+import { STRIPE_PLANS } from '../lib/stripe/plans'
+
 const PRICES = {
-    PRO: 'price_1SYSlbJzedEYbjzZMG9r6nw9',
-    BUSINESS: 'price_1SYSliJzedEYbjzZ5kbNVHvI',
+    PRO: STRIPE_PLANS.PRO.priceId,
+    BUSINESS: STRIPE_PLANS.BUSINESS.priceId,
 }
 
 async function updateProductNames() {

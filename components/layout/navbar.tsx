@@ -20,6 +20,8 @@ import { useRouter } from "next/navigation"
 
 import { CommandMenu } from "@/components/command-menu"
 import Image from "next/image"
+import { useUser } from "@/lib/hooks/use-user"
+import { Badge } from "@/components/ui/badge"
 
 const Logo = () => (
     <div className="flex items-center gap-3 text-foreground">
@@ -37,25 +39,11 @@ const Logo = () => (
 );
 
 export function Navbar() {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-    const [user, setUser] = useState<any>(null)
-    const supabase = createClient()
+    const { user, profile, isInTrial } = useUser()
     const router = useRouter()
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const supabase = createClient()
 
-    useEffect(() => {
-        const getUser = async () => {
-            const { data: { user } } = await supabase.auth.getUser()
-            setUser(user)
-        }
-        getUser()
-
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            setUser(session?.user ?? null)
-        })
-
-        return () => subscription.unsubscribe()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
     const handleSignOut = async () => {
         await supabase.auth.signOut()
@@ -94,52 +82,65 @@ export function Navbar() {
                     <ThemeToggle />
 
                     {user ? (
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" className="relative h-9 w-9 rounded-full border">
-                                    <Avatar className="h-9 w-9">
-                                        <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email} />
-                                        <AvatarFallback>{user.email?.charAt(0).toUpperCase()}</AvatarFallback>
-                                    </Avatar>
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-56 bg-[hsl(var(--popover))] text-[hsl(var(--popover-foreground))]" align="end" forceMount>
-                                <DropdownMenuLabel className="font-normal">
-                                    <div className="flex flex-col space-y-1">
-                                        <p className="text-sm font-medium leading-none">
-                                            {user.user_metadata?.full_name || "Usuário"}
-                                        </p>
-                                        <p className="text-xs leading-none text-muted-foreground">
-                                            {user.email}
-                                        </p>
-                                    </div>
-                                </DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem asChild>
-                                    <Link href="/dashboard/profile">
-                                        <User className="mr-2 h-4 w-4" />
-                                        <span>Perfil</span>
-                                    </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem asChild>
-                                    <Link href="/dashboard">
-                                        <LayoutDashboard className="mr-2 h-4 w-4" />
-                                        <span>Dashboard</span>
-                                    </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem asChild>
-                                    <Link href="/dashboard/settings">
-                                        <Settings className="mr-2 h-4 w-4" />
-                                        <span>Configurações</span>
-                                    </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem onClick={handleSignOut}>
-                                    <LogOut className="mr-2 h-4 w-4" />
-                                    <span>Sair</span>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                        <>
+                            <Badge
+                                variant={
+                                    isInTrial ? "secondary" :
+                                        profile?.subscription_tier === 'business' ? "default" :
+                                            profile?.subscription_tier === 'pro' ? "outline" : "secondary"
+                                }
+                                className="hidden lg:inline-flex"
+                            >
+                                {isInTrial ? "TRIAL" : (profile?.subscription_tier || 'FREE').toUpperCase()}
+                            </Badge>
+
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="ghost" className="relative h-9 w-9 rounded-full border">
+                                        <Avatar className="h-9 w-9">
+                                            <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email} />
+                                            <AvatarFallback>{user.email?.charAt(0).toUpperCase()}</AvatarFallback>
+                                        </Avatar>
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent className="w-56 bg-[hsl(var(--popover))] text-[hsl(var(--popover-foreground))]" align="end" forceMount>
+                                    <DropdownMenuLabel className="font-normal">
+                                        <div className="flex flex-col space-y-1">
+                                            <p className="text-sm font-medium leading-none">
+                                                {user.user_metadata?.full_name || "Usuário"}
+                                            </p>
+                                            <p className="text-xs leading-none text-muted-foreground">
+                                                {user.email}
+                                            </p>
+                                        </div>
+                                    </DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem asChild>
+                                        <Link href="/dashboard/profile">
+                                            <User className="mr-2 h-4 w-4" />
+                                            <span>Perfil</span>
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem asChild>
+                                        <Link href="/dashboard">
+                                            <LayoutDashboard className="mr-2 h-4 w-4" />
+                                            <span>Dashboard</span>
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem asChild>
+                                        <Link href="/dashboard/settings">
+                                            <Settings className="mr-2 h-4 w-4" />
+                                            <span>Configurações</span>
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem onClick={handleSignOut}>
+                                        <LogOut className="mr-2 h-4 w-4" />
+                                        <span>Sair</span>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </>
                     ) : (
                         <>
                             <Button variant="ghost" size="sm" asChild>
