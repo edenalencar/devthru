@@ -32,7 +32,7 @@ export default function HomePage() {
           <div className="mb-12 text-center">
             <h1 className="text-4xl font-bold mb-4">Todas as Ferramentas</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore nossa coleção completa de ferramentas para desenvolvedores.
+              DevThru: Dados rápidos pra viagem. Explore nossa coleção completa de ferramentas para desenvolvedores.
               Todas gratuitas, rápidas e seguras.
             </p>
           </div>

@@ -1,17 +1,17 @@
 export const openApiSpec = {
     openapi: '3.0.0',
     info: {
-        title: 'DevHub Tools API',
+        title: 'DevThru API',
         version: '1.0.0',
         description: 'API REST para geração e validação de dados brasileiros',
         contact: {
-            name: 'DevHub Tools',
-            url: 'https://devhubtools.com',
+            name: 'DevThru',
+            url: 'https://devthru.com',
         },
     },
     servers: [
         {
-            url: 'https://devhubtools.com/api/v1',
+            url: 'https://devthru.com/api/v1',
             description: 'Production server',
         },
         {

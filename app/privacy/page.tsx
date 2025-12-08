@@ -12,7 +12,7 @@ export default function PrivacyPage() {
                     <p className="lead">Última atualização: 28 de Novembro de 2025</p>
 
                     <p>
-                        A sua privacidade é importante para nós. É política do DevHub Tools respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site DevHub Tools, e outros sites que possuímos e operamos.
+                        A sua privacidade é importante para nós. É política do DevThru respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site DevThru, e outros sites que possuímos e operamos.
                     </p>
 
                     <h2>1. Informações que coletamos</h2>
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
 
                     <h2>3. Cookies</h2>
                     <p>
-                        O DevHub Tools utiliza cookies para melhorar a experiência do usuário. Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.
+                        O DevThru utiliza cookies para melhorar a experiência do usuário. Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.
                     </p>
 
                     <h2>4. Dados Gerados</h2>
@@ -40,12 +40,12 @@ export default function PrivacyPage() {
 
                     <h2>5. Compromisso do Usuário</h2>
                     <p>
-                        O usuário se compromete a fazer uso adequado dos conteúdos e da informação que o DevHub Tools oferece no site e com caráter enunciativo, mas não limitativo:
+                        O usuário se compromete a fazer uso adequado dos conteúdos e da informação que o DevThru oferece no site e com caráter enunciativo, mas não limitativo:
                     </p>
                     <ul>
                         <li>Não se envolver em atividades que sejam ilegais ou contrárias à boa fé a à ordem pública;</li>
                         <li>Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, ou azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos;</li>
-                        <li>Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) do DevHub Tools, de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou software que sejam capazes de causar danos anteriormente mencionados.</li>
+                        <li>Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) do DevThru, de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou software que sejam capazes de causar danos anteriormente mencionados.</li>
                     </ul>
 
                     <h2>6. Mais informações</h2>

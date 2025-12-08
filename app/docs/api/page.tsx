@@ -16,7 +16,7 @@ export default function ApiDocsPage() {
 
     const codeExamples = {
         javascript: `// Generate CPF
-const response = await fetch('https://devhubtools.com/api/v1/generate/cpf', {
+const response = await fetch('https://devthru.com/api/v1/generate/cpf', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ console.log(data);
 
 # Generate CPF
 response = requests.post(
-    'https://devhubtools.com/api/v1/generate/cpf',
+    'https://devthru.com/api/v1/generate/cpf',
     headers={'x-api-key': 'YOUR_API_KEY'},
     json={
         'quantity': 10,
@@ -48,7 +48,7 @@ data = response.json()
 print(data)
 # {'success': True, 'data': ['123.456.789-00', ...], 'count': 10}`,
 
-        curl: `curl -X POST https://devhubtools.com/api/v1/generate/cpf \\
+        curl: `curl -X POST https://devthru.com/api/v1/generate/cpf \\
   -H "Content-Type: application/json" \\
   -H "x-api-key: YOUR_API_KEY" \\
   -d '{

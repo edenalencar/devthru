@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     }
 
     // Generate a secure random key
-    const prefix = "dht_" // devhubtools prefix
+    const prefix = "dvt_" // devthru prefix
     const secret = randomBytes(32).toString("hex")
     const key = `${prefix}${secret}`
 

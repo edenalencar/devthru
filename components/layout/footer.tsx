@@ -1,6 +1,7 @@
 import Link from "next/link"
-import { Code2, Github, Twitter } from "lucide-react"
+import { Github, Twitter } from "lucide-react"
 import { siteConfig } from "@/config/site"
+import Image from "next/image"
 
 export function Footer() {
     return (
@@ -10,11 +11,18 @@ export function Footer() {
                     {/* Brand */}
                     <div className="space-y-4">
                         <Link href="/" className="flex items-center space-x-2">
-                            <Code2 className="h-6 w-6 text-primary" />
-                            <span className="font-bold text-xl">DevTools Hub</span>
+                            <div className="size-14 relative">
+                                <Image
+                                    src="/logo-new-sem-fundo.png"
+                                    alt="DevThru Logo"
+                                    fill
+                                    className="invert dark:invert-0 object-contain"
+                                />
+                            </div>
+                            <span className="font-bold text-xl">DevThru</span>
                         </Link>
                         <p className="text-sm text-muted-foreground">
-                            Ferramentas online para desenvolvedores e empresas. Rápido, seguro e gratuito.
+                            DevThru: Dados rápidos pra viagem. Plataforma moderna e ágil.
                         </p>
                         <div className="flex space-x-4">
                             <Link
@@ -122,7 +130,7 @@ export function Footer() {
 
                 {/* Copyright - sem linha divisória */}
                 <div className="text-center text-sm text-muted-foreground">
-                    <p>© {new Date().getFullYear()} DevTools Hub. Todos os direitos reservados.</p>
+                    <p>© {new Date().getFullYear()} DevThru. Todos os direitos reservados.</p>
                 </div>
             </div>
         </footer>

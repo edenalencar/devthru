@@ -322,8 +322,8 @@
             "parentId": null,
             "modified": 1701613800000,
             "created": 1701613800000,
-            "name": "DevHubTools API",
-            "description": "API Collection for DevHubTools",
+            "name": "DevThru API",
+            "description": "API Collection for DevThru",
             "scope": "collection",
             "_type": "workspace"
         }

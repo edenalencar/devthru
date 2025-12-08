@@ -6,8 +6,8 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 
 export const metadata = {
-    title: "Atualizações - DevTools Hub",
-    description: "Acompanhe as últimas novidades, melhorias e correções do DevTools Hub.",
+    title: "Atualizações - DevThru",
+    description: "Acompanhe as últimas novidades, melhorias e correções do DevThru.",
 }
 
 type UpdateType = "security" | "feature" | "fix" | "content"
@@ -59,7 +59,7 @@ const updates: UpdateItem[] = [
     {
         date: "27 de Novembro de 2025",
         title: "Lançamento da Página Sobre",
-        description: "Publicação da nova página 'Sobre', detalhando a missão do DevTools Hub e a equipe por trás do projeto.",
+        description: "Publicação da nova página 'Sobre', detalhando a missão do DevThru e a equipe por trás do projeto.",
         type: "content",
         version: "1.0.2"
     }
@@ -120,7 +120,7 @@ export default function UpdatesPage() {
                     <div className="mb-8 text-center sm:text-left">
                         <h1 className="text-3xl font-bold tracking-tight mb-2">Atualizações e Changelog</h1>
                         <p className="text-muted-foreground">
-                            Acompanhe a evolução do DevTools Hub. Novas ferramentas, melhorias e correções são lançadas constantemente.
+                            Acompanhe a evolução do DevThru. Novas ferramentas, melhorias e correções são lançadas constantemente.
                         </p>
                     </div>
 

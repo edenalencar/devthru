@@ -12,7 +12,7 @@ import {
 export default function FAQPage() {
     const faqs = [
         {
-            question: "O DevHub Tools é gratuito?",
+            question: "O DevThru é gratuito?",
             answer: "Sim! A maioria das ferramentas é totalmente gratuita para uso ilimitado. Oferecemos planos pagos apenas para acesso avançado à API e recursos de equipe."
         },
         {
@@ -45,7 +45,7 @@ export default function FAQPage() {
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold mb-4">Perguntas Frequentes</h1>
                     <p className="text-xl text-muted-foreground">
-                        Tire suas dúvidas sobre o DevHub Tools
+                        Tire suas dúvidas sobre o DevThru
                     </p>
                 </div>
 

@@ -1,6 +1,6 @@
-# 🛠️ DevHub Tools
+# 🍔 DevThru
 
-A comprehensive web-based developer toolkit built with Next.js, providing essential utilities for Brazilian document validation, data generation, and more.
+A modern, fast, and secure developer toolkit. DevThru: Quick data for the road. Providing essential utilities for Brazilian document validation, data generation, and more.
 
 ## ✨ Features
 

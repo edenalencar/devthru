@@ -138,7 +138,7 @@ export default function SettingsPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="bg-muted p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                                <pre>{`fetch('https://devhubtools.com/api/v1/generate/cpf', {
+                                <pre>{`fetch('https://devthru.com/api/v1/generate/cpf', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ export default function SettingsPage() {
                         <CardHeader>
                             <CardTitle>Documentação da API</CardTitle>
                             <CardDescription>
-                                Aprenda a usar a API do DevHub Tools
+                                Aprenda a usar a API do DevThru
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">

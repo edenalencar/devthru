@@ -74,8 +74,8 @@ export default function ContactPage() {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <a href="mailto:contato@devhubtools.com" className="text-primary hover:underline text-lg">
-                                    contato@devhubtools.com
+                                <a href="mailto:contato@devthru.com" className="text-primary hover:underline text-lg">
+                                    contato@devthru.com
                                 </a>
                             </CardContent>
                         </Card>
@@ -91,8 +91,8 @@ export default function ContactPage() {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                <p>Twitter: <a href="#" className="text-primary hover:underline">@devhubtools</a></p>
-                                <p>GitHub: <a href="#" className="text-primary hover:underline">github.com/devhubtools</a></p>
+                                <p>Twitter: <a href="#" className="text-primary hover:underline">@devthru</a></p>
+                                <p>GitHub: <a href="#" className="text-primary hover:underline">github.com/devthru</a></p>
                             </CardContent>
                         </Card>
                     </div>

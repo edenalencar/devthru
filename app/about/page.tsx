@@ -23,7 +23,7 @@ export default function AboutPage() {
                                 Simplificando a vida do desenvolvedor
                             </h1>
                             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                                O DevTools Hub nasceu da necessidade de ter ferramentas confiáveis, rápidas e seguras em um só lugar. Sem anúncios intrusivos, sem complicações.
+                                O DevThru nasceu da necessidade de ter ferramentas confiáveis, rápidas e seguras em um só lugar. Sem anúncios intrusivos, sem complicações.
                             </p>
                         </div>
                     </div>
@@ -34,12 +34,12 @@ export default function AboutPage() {
                     <div className="container px-4 md:px-6 mx-auto max-w-7xl">
                         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
                             <div className="space-y-4">
-                                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Por desenvolvedores, para desenvolvedores</h2>
+                                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">DevThru: Agilidade para quem desenvolve</h2>
                                 <p className="text-muted-foreground text-lg">
-                                    Cansados de procurar ferramentas espalhadas pela internet, muitas vezes repletas de anúncios ou com interfaces duvidosas, decidimos criar o DevTools Hub.
+                                    Cansados de procurar ferramentas espalhadas pela internet, muitas vezes repletas de anúncios ou com interfaces duvidosas, decidimos criar o DevThru.
                                 </p>
                                 <p className="text-muted-foreground text-lg">
-                                    Nosso objetivo é fornecer uma suíte completa de utilitários que respeitam seu tempo e sua privacidade. Estamos constantemente adicionando novas ferramentas baseadas no feedback da comunidade.
+                                    Assim como um Drive-Thru, nosso objetivo é entregar o que você precisa em segundos. Dados rápidos pra viagem, com uma suíte completa de utilitários que respeitam seu tempo.
                                 </p>
                             </div>
                             <div className="relative aspect-video overflow-hidden rounded-xl border bg-background shadow-xl">

@@ -76,7 +76,7 @@ export default function RegisterPage() {
                             </div>
                             <CardTitle className="text-2xl text-center">Criar conta</CardTitle>
                             <CardDescription className="text-center">
-                                Comece a usar o DevTools Hub gratuitamente
+                                Comece a usar o DevThru gratuitamente
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">

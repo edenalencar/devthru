@@ -17,7 +17,7 @@ export function OnboardingTour() {
     const [step, setStep] = useState(0)
 
     useEffect(() => {
-        const hasSeenTour = localStorage.getItem("devhubtools-tour-seen")
+        const hasSeenTour = localStorage.getItem("devthru-tour-seen")
         if (!hasSeenTour) {
             // Small delay to not overwhelm the user immediately
             const timer = setTimeout(() => setOpen(true), 1000)
@@ -27,7 +27,7 @@ export function OnboardingTour() {
 
     const handleClose = () => {
         setOpen(false)
-        localStorage.setItem("devhubtools-tour-seen", "true")
+        localStorage.setItem("devthru-tour-seen", "true")
     }
 
     const handleNext = () => {
@@ -40,7 +40,7 @@ export function OnboardingTour() {
 
     const steps = [
         {
-            title: "Bem-vindo ao DevTools Hub!",
+            title: "Bem-vindo ao DevThru!",
             description: "Sua coleção completa de ferramentas de desenvolvimento em um só lugar. Vamos fazer um tour rápido?",
             icon: Rocket,
         },
