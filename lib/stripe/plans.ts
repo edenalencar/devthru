@@ -1,11 +1,11 @@
 export const STRIPE_PLANS = {
     PRO: {
-        priceId: 'price_1SYSlbJzedEYbjzZMG9r6nw9',
+        priceId: process.env.STRIPE_PRICE_ID_PRO || 'price_1ScDSBJzedEYbjzZhncJIJ73', // fallback for type safety, but should be env
         name: 'Pro',
         slug: 'pro'
     },
     BUSINESS: {
-        priceId: 'price_1SYSliJzedEYbjzZ5kbNVHvI',
+        priceId: process.env.STRIPE_PRICE_ID_BUSINESS || 'price_1ScDSCJzedEYbjzZjxpq5wPx',
         name: 'Business',
         slug: 'business'
     }
