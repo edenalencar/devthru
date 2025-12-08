@@ -8,6 +8,7 @@ const contactSchema = z.object({
     email: z.string().email('Email inválido'),
     subject: z.string().min(3, 'Assunto deve ter pelo menos 3 caracteres'),
     message: z.string().min(10, 'Mensagem deve ter pelo menos 10 caracteres'),
+    captchaToken: z.string().min(1, 'Captcha é obrigatório'),
 })
 
 export async function POST(req: Request) {
@@ -23,7 +24,29 @@ export async function POST(req: Request) {
             )
         }
 
-        const { name, email, subject, message } = result.data
+        const { name, email, subject, message, captchaToken } = result.data
+
+        // Verify reCAPTCHA
+        const secretKey = process.env.RECAPTCHA_SECRET_KEY
+
+        if (!secretKey) {
+            console.error('RECAPTCHA_SECRET_KEY is not defined')
+            return NextResponse.json(
+                { error: 'Erro de configuração do servidor' },
+                { status: 500 }
+            )
+        }
+
+        const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`
+        const verificationResponse = await fetch(verificationUrl, { method: 'POST' })
+        const verificationData = await verificationResponse.json()
+
+        if (!verificationData.success) {
+            return NextResponse.json(
+                { error: 'Falha na verificação do Captcha' },
+                { status: 400 }
+            )
+        }
 
         // Use admin client to bypass RLS and ensure delivery
         const supabase = createAdminClient()

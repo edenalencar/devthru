@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from "react"
+
+import { useRef, useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
@@ -9,13 +10,24 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, MessageSquare, Send } from "lucide-react"
 import { toast } from "sonner"
+import ReCAPTCHA from "react-google-recaptcha"
 
 export default function ContactPage() {
     const [isLoading, setIsLoading] = useState(false)
+    const recaptchaRef = useRef<ReCAPTCHA>(null)
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoading(true)
+
+        const captchaToken = recaptchaRef.current?.getValue()
+
+        if (!captchaToken) {
+            toast.error("Por favor, verifique que você não é um robô.")
+            setIsLoading(false)
+            return
+        }
+
         const form = e.currentTarget
 
         const formData = new FormData(form)
@@ -24,6 +36,7 @@ export default function ContactPage() {
             email: formData.get('email'),
             subject: formData.get('subject'),
             message: formData.get('message'),
+            captchaToken,
         }
 
         try {
@@ -36,13 +49,15 @@ export default function ContactPage() {
             })
 
             if (!response.ok) {
-                throw new Error('Erro ao enviar mensagem')
+                const errorData = await response.json()
+                throw new Error(errorData.error || 'Erro ao enviar mensagem')
             }
 
             toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.")
             form.reset()
+            recaptchaRef.current?.reset()
         } catch (error) {
-            toast.error("Erro ao enviar mensagem. Tente novamente.")
+            toast.error(error instanceof Error ? error.message : "Erro ao enviar mensagem. Tente novamente.")
             console.error(error)
         } finally {
             setIsLoading(false)
@@ -122,6 +137,15 @@ export default function ContactPage() {
                                     <label htmlFor="message" className="text-sm font-medium">Mensagem</label>
                                     <Textarea id="message" name="message" placeholder="Descreva sua dúvida ou sugestão..." className="min-h-[150px]" required />
                                 </div>
+
+                                <div className="flex justify-center py-2">
+                                    <ReCAPTCHA
+                                        ref={recaptchaRef}
+                                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                                        theme="light"
+                                    />
+                                </div>
+
                                 <Button type="submit" className="w-full" disabled={isLoading}>
                                     {isLoading ? (
                                         "Enviando..."
