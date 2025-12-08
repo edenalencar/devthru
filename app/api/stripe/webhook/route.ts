@@ -67,7 +67,7 @@ export async function POST(req: Request) {
             .from("profiles")
             .select("id")
             .eq("stripe_subscription_id", subscription.id)
-            .single()
+            .single() as any
 
         if (profile) {
             const priceId = subscription.items.data[0].price.id

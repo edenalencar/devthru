@@ -59,7 +59,7 @@ export async function POST(req: Request) {
                 email,
                 subject,
                 message,
-            })
+            } as any)
 
         if (error) {
             console.error('Error saving contact message:', error)
