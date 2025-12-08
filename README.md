@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍔 DevThru
 
-## Getting Started
+A modern, fast, and secure developer toolkit. DevThru: Quick data for the road. Providing essential utilities for Brazilian document validation, data generation, and more.
 
-First, run the development server:
+## ✨ Features
 
+### 📄 Document Validators & Generators
+- **CPF** - Brazilian individual taxpayer registry validation and generation
+- **CNPJ** - Brazilian company registry validation and generation
+- **RG** - Brazilian identity card validation and generation
+- **CNH** - Brazilian driver's license validation and generation
+
+### 👤 Personal Data Generators
+- **Names** - Generate realistic Brazilian names
+- **Emails** - Create valid email addresses
+- **Phone Numbers** - Generate Brazilian phone numbers
+- **Addresses** - Generate complete Brazilian addresses
+
+### 🔧 Utility Tools
+- **UUID Generator** - Generate unique identifiers (v4)
+- **Password Generator** - Create secure passwords with customizable options
+- **Hash Generator** - Generate MD5, SHA-1, SHA-256, SHA-512 hashes
+- **Base64 Encoder/Decoder** - Encode and decode Base64 strings
+- **QR Code Generator** - Create QR codes from text
+- **Lorem Ipsum Generator** - Generate placeholder text
+- **JSON Formatter** - Format and validate JSON data
+
+### 📊 Export Options
+- Export generated data in **CSV**, **JSON**, or **Excel** formats
+- Bulk generation capabilities for all tools
+
+## 🚀 Tech Stack
+
+- **Framework:** [Next.js 16](https://nextjs.org/) with App Router
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **UI Components:** Radix UI primitives
+- **Authentication:** Supabase Auth
+- **Database:** Supabase (PostgreSQL)
+- **Payments:** Stripe integration
+- **State Management:** Zustand
+- **Form Handling:** React Hook Form + Zod validation
+
+## 📋 Prerequisites
+
+- Node.js 18+ 
+- npm, yarn, pnpm, or bun
+- Supabase account
+- Stripe account (for payment features)
+
+## 🔧 Installation
+
+1. **Clone the repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/edenalencar/devhubtools.git
+cd devhubtools
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies**
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Set up environment variables**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file in the root directory:
 
-## Learn More
+```env
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-To learn more about Next.js, take a look at the following resources:
+# Stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# App
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Run database migrations**
 
-## Deploy on Vercel
+Execute the SQL schema located in `supabase/schema.sql` in your Supabase project.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Start the development server**
+```bash
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+## 🏗️ Project Structure
+
+```
+devhubtools/
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes
+│   ├── auth/              # Authentication pages
+│   ├── settings/          # User settings
+│   └── tools/             # Tool pages
+│       ├── documents/     # Document validators
+│       ├── personal/      # Personal data generators
+│       └── utilities/     # Utility tools
+├── components/            # React components
+│   ├── tools/            # Tool-specific components
+│   └── ui/               # Reusable UI components
+├── lib/                   # Utility functions
+│   ├── supabase/         # Supabase client & helpers
+│   └── utils/            # Generators & validators
+├── config/               # App configuration
+└── public/               # Static assets
+```
+
+## 🔐 Authentication
+
+The application uses Supabase Authentication with support for:
+- Email/Password authentication
+- Session management
+- Protected routes via middleware
+
+## 💳 Subscription & Payments
+
+- Integrated with Stripe for subscription management
+- Free tier with limited features
+- Premium tier with unlimited access
+- Webhook handling for subscription events
+
+## 📝 License
+
+This project is private and proprietary.
+
+## 👨‍💻 Author
+
+**Eden Alencar**
+- GitHub: [@edenalencar](https://github.com/edenalencar)
+
+## 🤝 Contributing
+
+This is a private project. Contributions are currently not accepted.
+
+## 📞 Support
+
+For support, please contact the repository owner.
+
+---
+
+Built with ❤️ using Next.js and modern web technologies.

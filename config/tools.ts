@@ -1,0 +1,513 @@
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase } from "lucide-react"
+
+export interface Tool {
+    id: string
+    name: string
+    title: string
+    description: string
+    category: string
+    icon: any
+    href: string
+    isPro?: boolean
+}
+
+export const toolCategories = [
+    { id: "documents", name: "Documentos Pessoais", icon: FileText },
+    { id: "business", name: "Dados Empresariais", icon: Code2 },
+    { id: "personal", name: "Dados Pessoais", icon: User },
+    { id: "text", name: "Texto e Conversão", icon: AlignLeft },
+    { id: "converters", name: "Conversores", icon: ArrowRightLeft },
+    { id: "development", name: "Dev Tools", icon: Terminal },
+    { id: "image", name: "Imagens", icon: Image },
+    { id: "utilities", name: "Utilidades", icon: Hash },
+    { id: "financial", name: "Dados Financeiros", icon: CreditCard },
+    { id: "automotive", name: "Veículos", icon: Car },
+]
+
+export const tools: Tool[] = [
+    // Documentos Pessoais
+    {
+        id: "cpf",
+        name: "Gerador de CPF",
+        title: "Gerador de CPF",
+        description: "Gere e valide CPFs válidos para testes e desenvolvimento",
+        category: "documents",
+        icon: FileText,
+        href: "/tools/documents/cpf",
+    },
+    {
+        id: "cnpj",
+        name: "Gerador de CNPJ",
+        title: "Gerador de CNPJ",
+        description: "Gere e valide CNPJs válidos para testes e desenvolvimento",
+        category: "documents",
+        icon: Code2,
+        href: "/tools/documents/cnpj",
+    },
+    {
+        id: "rg",
+        name: "Gerador de RG",
+        title: "Gerador de RG",
+        description: "Gere RGs válidos por estado brasileiro",
+        category: "documents",
+        icon: Shield,
+        href: "/tools/documents/rg",
+    },
+    {
+        id: "cnh",
+        name: "Gerador de CNH",
+        title: "Gerador de CNH",
+        description: "Gere CNHs válidas com categoria selecionável",
+        category: "documents",
+        icon: Car,
+        href: "/tools/documents/cnh",
+    },
+    {
+        id: "inscricao-estadual",
+        name: "Inscrição Estadual",
+        title: "Inscrição Estadual",
+        description: "Gere e valide Inscrições Estaduais de todas as UFs",
+        category: "documents",
+        icon: FileText,
+        href: "/tools/documents/inscricao-estadual",
+    },
+    {
+        id: "titulo-eleitor",
+        name: "Título de Eleitor",
+        title: "Gerador de Título de Eleitor",
+        description: "Gere e valide números de Título de Eleitor por estado",
+        category: "documents",
+        icon: FileText,
+        href: "/tools/documents/titulo-eleitor",
+    },
+    {
+        id: "pis",
+        name: "Gerador de PIS/PASEP",
+        title: "Gerador de PIS/PASEP",
+        description: "Gere e valide números de PIS/PASEP/NIT/NIS",
+        category: "documents",
+        icon: FileText,
+        href: "/tools/documents/pis",
+    },
+
+    // Dados Pessoais
+    {
+        id: "person",
+        name: "Gerador de Pessoa",
+        title: "Gerador de Pessoa Completa",
+        description: "Gere um perfil completo com nome, documentos, endereço e mais",
+        category: "personal",
+        icon: User,
+        href: "/tools/personal/person",
+    },
+    {
+        id: "name",
+        name: "Gerador de Nomes",
+        title: "Gerador de Nomes",
+        description: "Gere nomes brasileiros completos (masculino/feminino)",
+        category: "personal",
+        icon: User,
+        href: "/tools/personal/name",
+    },
+    {
+        id: "address",
+        name: "Gerador de Endereços",
+        title: "Gerador de Endereços",
+        description: "Gere endereços brasileiros completos com CEP",
+        category: "personal",
+        icon: MapPin,
+        href: "/tools/personal/address",
+    },
+    {
+        id: "phone",
+        name: "Gerador de Telefone",
+        title: "Gerador de Telefone",
+        description: "Gere telefones brasileiros (celular e fixo)",
+        category: "personal",
+        icon: Phone,
+        href: "/tools/personal/phone",
+    },
+    {
+        id: "email",
+        name: "Gerador de Email",
+        title: "Gerador de Email",
+        description: "Gere endereços de email com domínios populares",
+        category: "personal",
+        icon: Mail,
+        href: "/tools/personal/email",
+    },
+
+    // Ferramentas de Texto
+    {
+        id: "character-counter",
+        name: "Contador de Caracteres",
+        title: "Contador de Caracteres",
+        description: "Conte caracteres, palavras, linhas e parágrafos em tempo real",
+        category: "text",
+        icon: Type,
+        href: "/tools/text/character-counter",
+    },
+    {
+        id: "case-converter",
+        name: "Conversor de Case",
+        title: "Conversor de Case",
+        description: "Converta textos para uppercase, lowercase, camelCase e mais",
+        category: "text",
+        icon: CaseSensitive,
+        href: "/tools/text/case-converter",
+    },
+    {
+        id: "slug-generator",
+        name: "Gerador de Slug",
+        title: "Gerador de Slug",
+        description: "Transforme textos em URLs amigáveis (slugs) para SEO",
+        category: "text",
+        icon: Link,
+        href: "/tools/text/slug-generator",
+    },
+    {
+        id: "diff-checker",
+        name: "Comparador de Texto",
+        title: "Diff Checker",
+        description: "Compare dois textos e visualize as diferenças",
+        category: "text",
+        icon: GitCompare,
+        href: "/tools/text/diff-checker",
+    },
+
+    // Conversores
+    {
+        id: "unit-converter",
+        name: "Conversor de Unidades",
+        title: "Conversor de Unidades",
+        description: "Converta unidades de comprimento, peso, temperatura e mais",
+        category: "converters",
+        icon: ArrowRightLeft,
+        href: "/tools/converters/unit",
+    },
+    {
+        id: "base-converter",
+        name: "Conversor de Bases",
+        title: "Conversor de Bases Numéricas",
+        description: "Converta números entre decimal, binário, hexadecimal e octal",
+        category: "converters",
+        icon: Calculator,
+        href: "/tools/converters/base",
+    },
+    {
+        id: "currency-converter",
+        name: "Conversor de Moedas",
+        title: "Conversor de Moedas",
+        description: "Converta valores entre diferentes moedas com taxas atualizadas",
+        category: "converters",
+        icon: Coins,
+        href: "/tools/converters/currency",
+    },
+
+    // Ferramentas de Desenvolvimento
+    {
+        id: "regex-generator",
+        name: "Gerador de Regex",
+        title: "Gerador e Testador de Regex",
+        description: "Crie, teste e entenda expressões regulares",
+        category: "development",
+        icon: Terminal,
+        href: "/tools/development/regex",
+    },
+    {
+        id: "minifier",
+        name: "Minificador de Código",
+        title: "Minificador e Beautifier",
+        description: "Minifique ou formate código CSS, JS, HTML e SQL",
+        category: "development",
+        icon: FileCode,
+        href: "/tools/development/minifier",
+    },
+    {
+        id: "mock-data",
+        name: "Gerador de Mock Data",
+        title: "Gerador de Dados Mock",
+        description: "Gere dados JSON aleatórios para testes e protótipos",
+        category: "development",
+        icon: Database,
+        href: "/tools/development/mock-data",
+    },
+    {
+        id: "timestamp-converter",
+        name: "Conversor de Timestamp",
+        title: "Conversor de Timestamp",
+        description: "Converta timestamps Unix para data legível e vice-versa",
+        category: "development",
+        icon: Clock,
+        href: "/tools/development/timestamp",
+    },
+
+    // Ferramentas de Imagem
+    {
+        id: "placeholder-generator",
+        name: "Gerador de Placeholder",
+        title: "Gerador de Imagens Placeholder",
+        description: "Crie imagens placeholder personalizadas para seus projetos",
+        category: "image",
+        icon: Image,
+        href: "/tools/image/placeholder",
+    },
+    {
+        id: "favicon-generator",
+        name: "Gerador de Favicon",
+        title: "Gerador de Favicon",
+        description: "Gere favicons em diversos tamanhos a partir de uma imagem",
+        category: "image",
+        icon: Image,
+        href: "/tools/image/favicon",
+    },
+
+    // Utilidades
+    {
+        id: "uuid",
+        name: "Gerador de UUID",
+        title: "Gerador de UUID",
+        description: "Gere identificadores únicos universais (UUID v4)",
+        category: "utilities",
+        icon: Hash,
+        href: "/tools/utilities/uuid",
+    },
+    {
+        id: "password",
+        name: "Gerador de Senhas",
+        title: "Gerador de Senhas",
+        description: "Crie senhas fortes e seguras personalizadas",
+        category: "utilities",
+        icon: Key,
+        href: "/tools/utilities/password",
+    },
+    {
+        id: "lorem",
+        name: "Lorem Ipsum",
+        title: "Lorem Ipsum",
+        description: "Gere texto placeholder para seus projetos",
+        category: "utilities",
+        icon: Type,
+        href: "/tools/utilities/lorem",
+    },
+    {
+        id: "hash",
+        name: "Gerador de Hash",
+        title: "Gerador de Hash",
+        description: "Gere hashes SHA-1, SHA-256 e SHA-512",
+        category: "utilities",
+        icon: Binary,
+        href: "/tools/utilities/hash",
+    },
+    {
+        id: "base64",
+        name: "Base64 Encoder/Decoder",
+        title: "Base64 Encoder/Decoder",
+        description: "Codifique e decodifique texto em Base64",
+        category: "utilities",
+        icon: Binary,
+        href: "/tools/utilities/base64",
+    },
+    {
+        id: "qrcode",
+        name: "Gerador de QR Code",
+        title: "Gerador de QR Code",
+        description: "Gere QR Codes a partir de texto ou URL",
+        category: "utilities",
+        icon: QrCode,
+        href: "/tools/utilities/qrcode",
+    },
+    {
+        id: "json",
+        name: "JSON Formatter",
+        title: "JSON Formatter",
+        description: "Formate, valide e minifique JSON",
+        category: "utilities",
+        icon: Braces,
+        href: "/tools/utilities/json",
+    },
+
+    // Finance Tools
+    {
+        id: "iban-validator",
+        name: "Validador de IBAN",
+        title: "Validador de IBAN",
+        description: "Valide e gere códigos IBAN internacionais",
+        category: "financial",
+        icon: CreditCard,
+        href: "/tools/finance/iban-validator",
+    },
+    {
+        id: "tax-calculator",
+        name: "Calculadora de Impostos",
+        title: "Calculadora Simples Nacional",
+        description: "Calcule impostos do Simples Nacional",
+        category: "financial",
+        icon: Calculator,
+        href: "/tools/finance/tax-calculator",
+    },
+    {
+        id: "boleto-generator",
+        name: "Gerador de Boleto",
+        title: "Gerador de Boleto (Mock)",
+        description: "Gere boletos visuais para testes",
+        category: "financial",
+        icon: Barcode,
+        href: "/tools/finance/boleto-generator",
+    },
+
+    // Document Tools
+    {
+        id: "contract-generator",
+        name: "Gerador de Contratos",
+        title: "Gerador de Contratos",
+        description: "Crie contratos personalizados (Serviços, NDA)",
+        category: "documents",
+        icon: FileText,
+        href: "/tools/documents/contract-generator",
+    },
+    {
+        id: "certificate-generator",
+        name: "Gerador de Certificados",
+        title: "Gerador de Certificados",
+        description: "Crie certificados para cursos e eventos",
+        category: "documents",
+        icon: Award,
+        href: "/tools/documents/certificate-generator",
+    },
+    {
+        id: "ocr",
+        name: "OCR de Imagem",
+        title: "OCR - Extrair Texto",
+        description: "Extraia texto de imagens usando IA",
+        category: "image",
+        icon: Image,
+        href: "/tools/image/ocr",
+    },
+
+    // Text/Utility Tools
+    {
+        id: "email-validator",
+        name: "Validador de Email",
+        title: "Validador de Email",
+        description: "Verifique se um email é válido e não temporário",
+        category: "text",
+        icon: Mail,
+        href: "/tools/text/email-validator",
+    },
+    {
+        id: "email-signature",
+        name: "Assinatura de Email",
+        title: "Gerador de Assinatura",
+        description: "Crie assinaturas de email profissionais",
+        category: "text",
+        icon: Mail,
+        href: "/tools/text/email-signature",
+    },
+    {
+        id: "deadline-calculator",
+        name: "Calculadora de Prazo",
+        title: "Calculadora de Prazo",
+        description: "Calcule datas finais com dias úteis e feriados",
+        category: "utilities",
+        icon: Calendar,
+        href: "/tools/utilities/deadline-calculator",
+    },
+
+    // Personal Tools
+    {
+        id: "lgpd-data",
+        name: "Gerador LGPD",
+        title: "Ferramentas LGPD",
+        description: "Gere dados fictícios ou anonimize dados reais",
+        category: "personal",
+        icon: Shield,
+        href: "/tools/personal/lgpd-data",
+    },
+
+    // Final Tools
+    {
+        id: "credit-card-generator",
+        name: "Gerador de Cartão",
+        title: "Gerador de Cartão de Crédito",
+        description: "Gere números de cartão válidos para testes",
+        category: "financial",
+        icon: CreditCard,
+        href: "/tools/finance/credit-card-generator",
+    },
+    {
+        id: "xml-validator",
+        name: "Validador de XML",
+        title: "Validador de XML",
+        description: "Verifique a sintaxe de arquivos XML",
+        category: "utilities",
+        icon: FileCode,
+        href: "/tools/utilities/xml-validator",
+    },
+    {
+        id: "image-converter",
+        name: "Conversor de Imagem",
+        title: "Conversor de Imagem",
+        description: "Converta imagens (PNG, JPEG, WEBP)",
+        category: "image",
+        icon: Image,
+        href: "/tools/image/converter",
+    },
+
+    // Ferramentas Automotivas
+    {
+        id: "license-plate",
+        name: "Gerador de Placas",
+        title: "Gerador de Placas Veiculares",
+        description: "Gere e converta placas nos padrões Mercosul e Antigo",
+        category: "automotive",
+        icon: Car,
+        href: "/tools/automotive/license-plate",
+    },
+    {
+        id: "fipe",
+        name: "Tabela FIPE",
+        title: "Consulta Tabela FIPE",
+        description: "Consulte preços médios de veículos na Tabela FIPE",
+        category: "automotive",
+        icon: Calculator,
+        href: "/tools/automotive/fipe",
+    },
+    {
+        id: "renavam-chassis",
+        name: "Gerador de RENAVAM/Chassis",
+        title: "Gerador de RENAVAM e Chassis",
+        description: "Gere e valide códigos RENAVAM e Chassis (VIN) válidos",
+        category: "automotive",
+        icon: Shield,
+        href: "/tools/automotive/renavam-chassis",
+    },
+
+    // Dados Empresariais
+    {
+        id: "nfe-generator",
+        name: "Gerador de Chave NF-e",
+        title: "Gerador de Chave de Acesso NF-e",
+        description: "Gere chaves de acesso de Nota Fiscal Eletrônica válidas para testes",
+        category: "business",
+        icon: Barcode,
+        href: "/tools/business/nfe-generator",
+    },
+    {
+        id: "cnae-search",
+        name: "Busca de CNAE",
+        title: "Busca de CNAE",
+        description: "Pesquise códigos e descrições de atividades econômicas (CNAE)",
+        category: "business",
+        icon: Briefcase,
+        href: "/tools/business/cnae-search",
+    },
+]
+
+export function getToolsByCategory(categoryId: string): Tool[] {
+    return tools.filter((tool) => tool.category === categoryId)
+}
+
+export function getToolById(id: string): Tool | undefined {
+    return tools.find((tool) => tool.id === id)
+}
