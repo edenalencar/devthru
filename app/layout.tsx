@@ -8,6 +8,8 @@ import { siteConfig } from "@/config/site";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { OnboardingTour } from "@/components/onboarding-tour";
+import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/analytics/google-tag-manager";
+import { CookieConsent } from "@/components/analytics/cookie-consent";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -79,6 +81,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
+        <GoogleTagManager />
+        <GoogleTagManagerNoscript />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -91,6 +95,7 @@ export default function RootLayout({
         </ThemeProvider>
         <SpeedInsights />
         <Analytics />
+        <CookieConsent />
       </body>
     </html>
   );
