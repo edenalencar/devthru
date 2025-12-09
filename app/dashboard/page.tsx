@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, useCallback } from "react"
+import { useUser } from "@/lib/hooks/use-user"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { History, BarChart3, Zap, Trash2, ArrowRight, Download } from "lucide-react"
@@ -23,8 +24,7 @@ import { Badge } from "@/components/ui/badge"
 export default function DashboardPage() {
     const [history, setHistory] = useState<GenerationHistory[]>([])
     const [stats, setStats] = useState<any>(null) // eslint-disable-line @typescript-eslint/no-explicit-any
-    // const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState<any>(null) // eslint-disable-line @typescript-eslint/no-explicit-any
+    const { user } = useUser()
     const supabase = createClient()
 
     const loadData = useCallback(async (currentUser: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -59,15 +59,11 @@ export default function DashboardPage() {
         }
     }, [])
 
-    const checkUserAndLoadData = useCallback(async () => {
-        const { data: { user } } = await supabase.auth.getUser()
-        setUser(user)
-        loadData(user)
-    }, [supabase.auth, loadData])
-
     useEffect(() => {
-        checkUserAndLoadData()
-    }, [checkUserAndLoadData])
+        if (user) {
+            loadData(user)
+        }
+    }, [user, loadData])
 
     const handleClearHistory = () => {
         if (confirm("Tem certeza que deseja limpar todo o histórico?")) {
