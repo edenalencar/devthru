@@ -1,17 +1,7 @@
-"use client"
-
 import Script from "next/script"
 
 export function GoogleTagManager() {
     const gtmId = process.env.NEXT_PUBLIC_GTM_ID
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-
-    if (typeof window !== 'undefined') {
-        console.log('[DevThru Debug] Env Var Check:', {
-            GTM_ID: gtmId || 'MISSING',
-            SUPABASE_URL: supabaseUrl ? 'PRESENT' : 'MISSING'
-        })
-    }
 
     if (!gtmId) return null
 
