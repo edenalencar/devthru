@@ -178,7 +178,12 @@ export default function PricingPage() {
                         </Card>
 
                         {/* Pro Plan */}
-                        <Card className="flex flex-col">
+                        <Card className={`flex flex-col relative overflow-hidden ${isInTrial ? 'ring-2 ring-primary ring-offset-2' : ''}`}>
+                            {isInTrial && (
+                                <div className="absolute top-0 right-0 bg-yellow-500 text-white px-3 py-1 text-xs font-bold rounded-bl-lg">
+                                    Expira em {daysRemaining} dias
+                                </div>
+                            )}
                             <CardHeader>
                                 <CardTitle className="text-2xl">Pro</CardTitle>
                                 <CardDescription>Para profissionais e freelancers</CardDescription>
@@ -227,15 +232,10 @@ export default function PricingPage() {
                         </Card>
 
                         {/* Business Plan */}
-                        <Card className={`border-primary border-2 relative overflow-hidden flex flex-col shadow-xl lg:scale-105 z-10 ${isInTrial ? 'ring-2 ring-primary ring-offset-2' : ''}`}>
+                        <Card className="border-primary border-2 relative overflow-hidden flex flex-col shadow-xl lg:scale-105 z-10">
                             <div className="absolute top-0 inset-x-0 bg-primary text-primary-foreground py-1.5 text-center text-sm font-bold">
                                 RECOMENDADO
                             </div>
-                            {isInTrial && (
-                                <div className="absolute top-8 left-0 bg-yellow-500 text-white px-3 py-1 text-xs font-bold">
-                                    Expira em {daysRemaining} dias
-                                </div>
-                            )}
                             {!isInTrial && profile?.trial_ends_at && new Date(profile.trial_ends_at) < new Date() && (profile?.subscription_tier === 'free' || !profile?.subscription_tier) && (
                                 <div className="absolute top-8 left-0 bg-red-500 text-white px-3 py-1 text-xs font-bold">
                                     Trial Expirado
