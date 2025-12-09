@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/toaster";
 import { siteConfig } from "@/config/site";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OnboardingTour } from "@/components/onboarding-tour";
 
 const inter = Inter({
@@ -86,6 +87,7 @@ export default function RootLayout({
           {children}
           <OnboardingTour />
           <Toaster />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
