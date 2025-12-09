@@ -23,20 +23,13 @@ export function GoogleTagManager() {
 
             try {
                 var item = localStorage.getItem('cookie_consent');
-                console.log('[GTM Debug] Raw item:', item);
                 if (item) {
                     var c = JSON.parse(item);
-                    console.log('[GTM Debug] Parsed consent:', c);
                     if (c && typeof c === 'object') {
                         gtag('consent', 'update', c);
-                        console.log('[GTM Debug] Consent updated!');
                     }
-                } else {
-                     console.log('[GTM Debug] No consent found in storage.');
                 }
-            } catch(e) {
-                console.error('[GTM Debug] Error:', e);
-            }
+            } catch(e) {}
 
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
