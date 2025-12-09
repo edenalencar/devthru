@@ -26,18 +26,7 @@ export function GoogleTagManager() {
                 if (item) {
                     var c = JSON.parse(item);
                     if (c && typeof c === 'object') {
-                        var update = {};
-                        if (c.marketing) {
-                            update['ad_storage'] = 'granted';
-                            update['ad_user_data'] = 'granted';
-                            update['ad_personalization'] = 'granted';
-                        }
-                        if (c.analytics) {
-                            update['analytics_storage'] = 'granted';
-                        }
-                        if (Object.keys(update).length > 0) {
-                            gtag('consent', 'update', update);
-                        }
+                        gtag('consent', 'update', c);
                     }
                 }
             } catch(e) {}
