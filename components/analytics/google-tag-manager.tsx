@@ -20,6 +20,28 @@ export function GoogleTagManager() {
                 'ad_personalization': 'denied',
                 'analytics_storage': 'denied'
             });
+
+            try {
+                var item = localStorage.getItem('cookie_consent');
+                if (item) {
+                    var c = JSON.parse(item);
+                    if (c && typeof c === 'object') {
+                        var update = {};
+                        if (c.marketing) {
+                            update['ad_storage'] = 'granted';
+                            update['ad_user_data'] = 'granted';
+                            update['ad_personalization'] = 'granted';
+                        }
+                        if (c.analytics) {
+                            update['analytics_storage'] = 'granted';
+                        }
+                        if (Object.keys(update).length > 0) {
+                            gtag('consent', 'update', update);
+                        }
+                    }
+                }
+            } catch(e) {}
+
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
