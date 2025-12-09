@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
-import { Icon } from "@/components/ui/icon"
+import { Shield, Zap, Palette } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -48,6 +48,7 @@ export default function AboutPage() {
                                     alt="Ambiente de desenvolvimento moderno"
                                     fill
                                     className="object-cover"
+                                    priority
                                 />
                             </div>
                         </div>
@@ -60,7 +61,7 @@ export default function AboutPage() {
                         <div className="grid gap-12 lg:grid-cols-3">
                             <div className="flex flex-col gap-4">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                                    <Icon name="security" className="h-6 w-6" />
+                                    <Shield className="h-6 w-6" />
                                 </div>
                                 <h3 className="text-xl font-bold">Privacidade Primeiro</h3>
                                 <p className="text-muted-foreground">
@@ -69,7 +70,7 @@ export default function AboutPage() {
                             </div>
                             <div className="flex flex-col gap-4">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                                    <Icon name="speed" className="h-6 w-6" />
+                                    <Zap className="h-6 w-6" />
                                 </div>
                                 <h3 className="text-xl font-bold">Performance e Rapidez</h3>
                                 <p className="text-muted-foreground">
@@ -78,7 +79,7 @@ export default function AboutPage() {
                             </div>
                             <div className="flex flex-col gap-4">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                                    <Icon name="design_services" className="h-6 w-6" />
+                                    <Palette className="h-6 w-6" />
                                 </div>
                                 <h3 className="text-xl font-bold">Experiência Premium</h3>
                                 <p className="text-muted-foreground">
