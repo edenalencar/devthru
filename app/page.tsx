@@ -32,8 +32,7 @@ export default function HomePage() {
           <div className="mb-12 text-center">
             <h1 className="text-4xl font-bold mb-4">Todas as Ferramentas</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              DevThru: Dados rápidos pra viagem. Explore nossa coleção completa de ferramentas para desenvolvedores.
-              Todas gratuitas, rápidas e seguras.
+              DevThru: Dados rápidos pra viagem. Pare de perder tempo criando massa de dados na mão. Gere milhares de registros válidos (CPF, CNPJ, Cartões) em segundos via API ou CSV.
             </p>
           </div>
 

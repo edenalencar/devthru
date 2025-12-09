@@ -13,27 +13,31 @@ export default function FAQPage() {
     const faqs = [
         {
             question: "O DevThru é gratuito?",
-            answer: "Sim! A maioria das ferramentas é totalmente gratuita para uso ilimitado. Oferecemos planos pagos apenas para acesso avançado à API e recursos de equipe."
+            answer: "Temos um plano gratuito muito generoso! Você pode usar todas as ferramentas individualmente sem custo. Para geração em massa (mais de 5 itens), exportação de arquivos e histórico ilimitado, oferecemos o plano Pro."
         },
         {
-            question: "Os dados gerados são reais?",
-            answer: "Não. Todos os dados gerados (CPFs, CNPJs, nomes, cartões de crédito) são fictícios e gerados algoritmicamente apenas para fins de teste e desenvolvimento. Eles não pertencem a pessoas reais."
+            question: "Quais as vantagens do plano Pro?",
+            answer: "O plano Pro desbloqueia o poder total da plataforma: geração de até 1.000 itens de uma vez, exportação para CSV e JSON, salvamento de configurações favoritas e acesso ao histórico completo de gerações."
         },
         {
-            question: "Posso usar a API no meu projeto?",
-            answer: "Sim, oferecemos uma API pública gratuita com limites de uso. Para volumes maiores, consulte nossos planos de preços."
+            question: "O plano Business inclui acesso à API?",
+            answer: "Sim! O acesso à nossa API RESTful é exclusivo para assinantes Business. Com ele, você pode integrar nossos geradores e validadores diretamente no seu software ou pipeline de testes automatizados, com SLA garantido e suporte prioritário."
         },
         {
-            question: "Como faço para reportar um bug?",
-            answer: "Você pode entrar em contato através da nossa página de contato ou abrir uma issue no nosso repositório do GitHub."
+            question: "Os dados gerados são válidos?",
+            answer: "Os dados (CPFs, CNPJs, Cartões) são matematicamente válidos (passam nos algoritmos de validação), mas são fictícios. Eles não pertencem a pessoas ou empresas reais e devem ser usados apenas para desenvolvimento e testes (QA)."
         },
         {
-            question: "Vocês salvam os dados que eu gero?",
-            answer: "Não salvamos os dados gerados, exceto se você explicitamente clicar em 'Salvar no Histórico' estando logado. Mesmo assim, os dados são seus e podem ser excluídos a qualquer momento."
+            question: "Como funciona o Trial de 7 dias?",
+            answer: "Ao criar sua conta, você recebe automaticamente 7 dias de acesso total ao plano Pro (sem precisar cadastrar cartão). Após esse período, sua conta volta para o plano Gratuito automaticamente, a menos que você decida assinar."
         },
         {
-            question: "Posso sugerir uma nova ferramenta?",
-            answer: "Com certeza! Adoramos receber sugestões da comunidade. Envie sua ideia através da página de contato."
+            question: "Posso cancelar a qualquer momento?",
+            answer: "Sim. Você pode cancelar sua assinatura a qualquer momento diretamente pelo seu painel de usuário. O acesso aos recursos premium continuará ativo até o fim do período já pago."
+        },
+        {
+            question: "Vocês salvam meus dados?",
+            answer: "Prezamos pela privacidade. Não salvamos os dados gerados, a menos que você explicitamente use a função de 'Histórico' (disponível no Pro). Seus dados de pagamento são processados de forma segura pelo Stripe e não passam pelos nossos servidores."
         }
     ]
 

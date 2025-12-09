@@ -8,8 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Award, Download } from "lucide-react"
-import html2canvas from "html2canvas"
-import jsPDF from "jspdf"
+import { toPng } from "html-to-image"
+import { jsPDF } from "jspdf"
 import { toast } from "sonner"
 
 export default function CertificateGeneratorPage() {
@@ -25,18 +25,31 @@ export default function CertificateGeneratorPage() {
         if (!certificateRef.current) return
 
         try {
-            const canvas = await html2canvas(certificateRef.current, { scale: 2 })
-            const imgData = canvas.toDataURL("image/png")
-            const pdf = new jsPDF("l", "mm", "a4") // Landscape
-            const pdfWidth = pdf.internal.pageSize.getWidth()
-            const pdfHeight = (canvas.height * pdfWidth) / canvas.width
+            // Wait for fonts/images to fully load if needed, though toPng usually handles it.
+            // fontEmbedCSS: "" is a workaround for "SecurityError: Failed to read the 'cssRules' property"
+            // This prevents the library from trying to parse external stylesheets for fonts, which causes CORS issues.
+            const dataUrl = await toPng(certificateRef.current, {
+                cacheBust: true,
+                pixelRatio: 2,
+                fontEmbedCSS: ""
+            })
 
-            pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight)
+            const pdf = new jsPDF({
+                orientation: "landscape",
+                unit: "mm",
+                format: "a4"
+            })
+            const pdfWidth = pdf.internal.pageSize.getWidth()
+            const pdfHeight = pdf.internal.pageSize.getHeight()
+
+            // Calculate dimensions to fit ratio
+            // But here we want to fit the A4 landscape specifically
+            pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight)
             pdf.save("certificado.pdf")
             toast.success("Certificado baixado com sucesso")
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error generating PDF:", error)
-            toast.error("Erro ao gerar PDF")
+            toast.error(`Erro ao gerar PDF: ${error.message || "Erro desconhecido"}`)
         }
     }
 
