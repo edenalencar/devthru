@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Github, Twitter } from "lucide-react"
 import { siteConfig } from "@/config/site"
 import Image from "next/image"
+import { DataGeneratedCounter } from "@/components/marketing/data-counter"
 
 export function Footer() {
     return (
@@ -24,6 +25,7 @@ export function Footer() {
                         <p className="text-sm text-muted-foreground">
                             DevThru: Dados rápidos pra viagem. Plataforma moderna e ágil.
                         </p>
+                        <DataGeneratedCounter />
                         <div className="flex space-x-4">
                             <Link
                                 href={siteConfig.links.github}

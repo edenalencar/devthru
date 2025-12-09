@@ -121,7 +121,7 @@ export default function PricingPage() {
         return {
             text: `Assinar ${plan.charAt(0).toUpperCase() + plan.slice(1)}`,
             disabled: false,
-            variant: (plan === 'pro' ? "default" : "outline") as "default" | "outline"
+            variant: (plan === 'business' ? "default" : "outline") as "default" | "outline"
         }
     }
 
@@ -178,20 +178,7 @@ export default function PricingPage() {
                         </Card>
 
                         {/* Pro Plan */}
-                        <Card className={`border-primary relative overflow-hidden flex flex-col ${isInTrial ? 'ring-2 ring-primary ring-offset-2' : ''}`}>
-                            <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold">
-                                POPULAR
-                            </div>
-                            {isInTrial && (
-                                <div className="absolute top-0 left-0 bg-yellow-500 text-white px-3 py-1 text-xs font-bold">
-                                    Expira em {daysRemaining} dias
-                                </div>
-                            )}
-                            {!isInTrial && profile?.trial_ends_at && new Date(profile.trial_ends_at) < new Date() && (profile?.subscription_tier === 'free' || !profile?.subscription_tier) && (
-                                <div className="absolute top-0 left-0 bg-red-500 text-white px-3 py-1 text-xs font-bold">
-                                    Trial Expirado
-                                </div>
-                            )}
+                        <Card className="flex flex-col">
                             <CardHeader>
                                 <CardTitle className="text-2xl">Pro</CardTitle>
                                 <CardDescription>Para profissionais e freelancers</CardDescription>
@@ -240,8 +227,21 @@ export default function PricingPage() {
                         </Card>
 
                         {/* Business Plan */}
-                        <Card className="flex flex-col">
-                            <CardHeader>
+                        <Card className={`border-primary border-2 relative overflow-hidden flex flex-col shadow-xl lg:scale-105 z-10 ${isInTrial ? 'ring-2 ring-primary ring-offset-2' : ''}`}>
+                            <div className="absolute top-0 inset-x-0 bg-primary text-primary-foreground py-1.5 text-center text-sm font-bold">
+                                RECOMENDADO
+                            </div>
+                            {isInTrial && (
+                                <div className="absolute top-8 left-0 bg-yellow-500 text-white px-3 py-1 text-xs font-bold">
+                                    Expira em {daysRemaining} dias
+                                </div>
+                            )}
+                            {!isInTrial && profile?.trial_ends_at && new Date(profile.trial_ends_at) < new Date() && (profile?.subscription_tier === 'free' || !profile?.subscription_tier) && (
+                                <div className="absolute top-8 left-0 bg-red-500 text-white px-3 py-1 text-xs font-bold">
+                                    Trial Expirado
+                                </div>
+                            )}
+                            <CardHeader className="pt-12">
                                 <CardTitle className="text-2xl">Business</CardTitle>
                                 <CardDescription>Para times e empresas</CardDescription>
                                 <div className="mt-4">

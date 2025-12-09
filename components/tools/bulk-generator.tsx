@@ -26,17 +26,12 @@ interface BulkGeneratorProps {
 }
 
 export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGeneratorProps) {
-    const [quantity, setQuantity] = useState<number>(10)
+    const [quantity, setQuantity] = useState<number>(5)
     const [results, setResults] = useState<string[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [showUpgradeDialog, setShowUpgradeDialog] = useState(false)
-
-    useEffect(() => {
-        if (limit > 0 && quantity > limit) {
-            setQuantity(limit)
-        }
-    }, [limit])
+    const [upgradeReason, setUpgradeReason] = useState<'export' | 'limit'>('limit')
 
     const handleGenerate = async () => {
         setError(null)
@@ -44,7 +39,8 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
 
         try {
             if (quantity > limit) {
-                setError(`O limite para o seu plano é de ${limit} itens. Atualize para o plano Pro para gerar até 10.000 itens.`)
+                setUpgradeReason('limit')
+                setShowUpgradeDialog(true)
                 setLoading(false)
                 return
             }
@@ -70,6 +66,7 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
 
     const handleDownloadCSV = () => {
         if (!isPro) {
+            setUpgradeReason('export')
             setShowUpgradeDialog(true)
             return
         }
@@ -78,6 +75,7 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
 
     const handleDownloadJSON = () => {
         if (!isPro) {
+            setUpgradeReason('export')
             setShowUpgradeDialog(true)
             return
         }
@@ -88,30 +86,29 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
         <div className="space-y-6">
             <div className="grid gap-4 md:grid-cols-2 items-end">
                 <div className="space-y-2">
-                    <Label htmlFor="quantity">Quantidade (Máx: {limit})</Label>
+                    <Label htmlFor="quantity">Quantidade (Máx: 10.000)</Label>
                     <Input
                         id="quantity"
                         type="number"
                         min={1}
-                        max={limit}
+                        max={10000}
                         value={quantity}
                         onChange={(e) => {
                             const val = parseInt(e.target.value) || 0
-                            // Allow typing, but maybe show warning? 
-                            // For now, let's just let them type but disable button if > limit
                             setQuantity(val)
                         }}
                     />
                 </div>
-                <Button onClick={handleGenerate} disabled={loading || quantity > limit}>
+                <Button onClick={handleGenerate} disabled={loading}>
                     {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     Gerar {label} em Massa
                 </Button>
             </div>
 
             {quantity > limit && (
-                <p className="text-sm text-destructive font-medium">
-                    A quantidade excede o limite do seu plano ({limit}).
+                <p className="text-sm text-amber-600 dark:text-amber-400 font-medium flex items-center gap-2">
+                    <Lock className="h-4 w-4" />
+                    Gerar {quantity} itens requer plano Pro. O seu limite atual é {limit}.
                 </p>
             )}
 
@@ -160,14 +157,20 @@ export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGenerato
             <Dialog open={showUpgradeDialog} onOpenChange={setShowUpgradeDialog}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Exportação Bloqueada</DialogTitle>
+                        <DialogTitle>
+                            {upgradeReason === 'limit' ? 'Limite do Plano Atingido' : 'Exportação Bloqueada'}
+                        </DialogTitle>
                         <DialogDescription>
-                            Faça upgrade para o plano Pro para exportar seus dados.
+                            {upgradeReason === 'limit'
+                                ? `Você atingiu o limite de geração do seu plano (${limit} itens).`
+                                : 'A exportação de dados é um recurso exclusivo.'}
                         </DialogDescription>
                     </DialogHeader>
                     <div className="py-4 text-center">
                         <p className="text-muted-foreground mb-4">
-                            A exportação para CSV e JSON está disponível apenas nos planos Pro e Business.
+                            {upgradeReason === 'limit'
+                                ? 'Faça upgrade para o plano Pro para gerar até 10.000 registros de uma vez e desbloquear exportações.'
+                                : 'Faça upgrade para o plano Pro para exportar seus dados em CSV e JSON e aumentar seus limites de geração.'}
                         </p>
                         <Button className="w-full" onClick={() => window.location.href = '/pricing'}>
                             Fazer Upgrade Agora
