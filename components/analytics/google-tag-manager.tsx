@@ -2,6 +2,7 @@ import Script from "next/script"
 
 export function GoogleTagManager() {
     const gtmId = process.env.NEXT_PUBLIC_GTM_ID
+    console.log('[DevThru Debug] GTM ID:', gtmId ? gtmId : 'MISSING')
 
     if (!gtmId) return null
 
