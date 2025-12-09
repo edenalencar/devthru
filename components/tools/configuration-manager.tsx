@@ -119,15 +119,17 @@ export function ConfigurationManager({ toolId, currentConfig, onLoadConfig }: Co
 
     return (
         <div className="space-y-4">
-            <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium flex items-center gap-2">
-                    <Settings className="h-5 w-5" />
-                    Minhas Configurações
-                    {isInTrial && <Badge variant="secondary" className="text-xs">Trial Ativo</Badge>}
-                </h3>
+            <div className="flex flex-col gap-3">
+                <div className="flex items-center justify-between w-full">
+                    <h3 className="text-lg font-medium flex items-center gap-2">
+                        <Settings className="h-5 w-5" />
+                        Minhas Configurações
+                    </h3>
+                    {isInTrial && <Badge variant="secondary" className="text-xs shrink-0">Trial Ativo</Badge>}
+                </div>
                 <Dialog open={isOpen} onOpenChange={setIsOpen}>
                     <DialogTrigger asChild>
-                        <Button variant="outline" size="sm" className="gap-2">
+                        <Button variant="outline" size="sm" className="w-full gap-2">
                             {canSave ? <Save className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
                             Salvar Atual
                         </Button>

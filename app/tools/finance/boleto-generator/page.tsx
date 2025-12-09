@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Barcode, Download, Printer } from "lucide-react"
-import html2canvas from "html2canvas"
+import { toPng } from "html-to-image"
 import jsPDF from "jspdf"
 
 export default function BoletoGeneratorPage() {
@@ -37,13 +37,13 @@ export default function BoletoGeneratorPage() {
         if (!boletoRef.current) return
 
         try {
-            const canvas = await html2canvas(boletoRef.current, { scale: 2 })
-            const imgData = canvas.toDataURL("image/png")
+            const dataUrl = await toPng(boletoRef.current, { pixelRatio: 2 })
             const pdf = new jsPDF("p", "mm", "a4")
             const pdfWidth = pdf.internal.pageSize.getWidth()
-            const pdfHeight = (canvas.height * pdfWidth) / canvas.width
+            const imgProps = pdf.getImageProperties(dataUrl)
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width
 
-            pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight)
+            pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight)
             pdf.save("boleto-mock.pdf")
         } catch (error) {
             console.error("Error generating PDF:", error)

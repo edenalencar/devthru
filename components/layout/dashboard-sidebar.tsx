@@ -8,7 +8,7 @@ import { LayoutDashboard, User, Settings, History, Key } from "lucide-react"
 
 const sidebarItems = [
     {
-        title: "Visão Geral",
+        title: "Dashboard",
         href: "/dashboard",
         icon: LayoutDashboard,
     },

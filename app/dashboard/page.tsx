@@ -187,7 +187,6 @@ export default function DashboardPage() {
 
                             <Button variant="destructive" size="sm" onClick={handleClearHistory}>
                                 <Trash2 className="mr-2 h-4 w-4" />
-                                <Trash2 className="mr-2 h-4 w-4" />
                                 Limpar
                             </Button>
                         </div>
@@ -259,7 +258,7 @@ export default function DashboardPage() {
                                 </Link>
                             ))}
                             <Button variant="outline" className="w-full mt-2" asChild>
-                                <Link href="/tools">
+                                <Link href="/">
                                     Ver Todas as Ferramentas
                                 </Link>
                             </Button>

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Menu, X, User, LogOut, Settings, LayoutDashboard } from "lucide-react"
+import { Menu, X, User, LogOut, Settings, LayoutDashboard, History } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -116,15 +116,21 @@ export function Navbar() {
                                     </DropdownMenuLabel>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem asChild>
-                                        <Link href="/dashboard/profile">
-                                            <User className="mr-2 h-4 w-4" />
-                                            <span>Perfil</span>
-                                        </Link>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem asChild>
                                         <Link href="/dashboard">
                                             <LayoutDashboard className="mr-2 h-4 w-4" />
                                             <span>Dashboard</span>
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem asChild>
+                                        <Link href="/dashboard/history">
+                                            <History className="mr-2 h-4 w-4" />
+                                            <span>Histórico</span>
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem asChild>
+                                        <Link href="/dashboard/profile">
+                                            <User className="mr-2 h-4 w-4" />
+                                            <span>Perfil</span>
                                         </Link>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem asChild>
