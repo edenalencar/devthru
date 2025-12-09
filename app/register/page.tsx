@@ -11,7 +11,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { createClient } from "@/lib/supabase/client"
 import { Code2, Github } from "lucide-react"
+import { validateEmail } from "@/lib/validation/email"
 import { toast } from "sonner"
+import ReCAPTCHA from "react-google-recaptcha"
+import { useRef } from "react"
 
 export default function RegisterPage() {
     const router = useRouter()
@@ -19,11 +22,28 @@ export default function RegisterPage() {
     const [password, setPassword] = useState("")
     const [fullName, setFullName] = useState("")
     const [loading, setLoading] = useState(false)
+    const recaptchaRef = useRef<ReCAPTCHA>(null)
     const supabase = createClient()
 
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
+
+        // Validate Email FIRST
+        const emailValidation = validateEmail(email)
+        if (!emailValidation.success) {
+            toast.error(emailValidation.error.issues[0].message)
+            setLoading(false)
+            return
+        }
+
+        // Validate Captcha
+        const captchaToken = recaptchaRef.current?.getValue()
+        if (!captchaToken) {
+            toast.error("Por favor, resolva o captcha para continuar.")
+            setLoading(false)
+            return
+        }
 
         try {
             const { error } = await supabase.auth.signUp({
@@ -34,6 +54,7 @@ export default function RegisterPage() {
                         full_name: fullName,
                     },
                     emailRedirectTo: `${window.location.origin}/auth/callback`,
+                    captchaToken,
                 },
             })
 
@@ -118,6 +139,14 @@ export default function RegisterPage() {
                                         required
                                         minLength={6}
                                         disabled={loading}
+                                    />
+                                </div>
+
+                                <div className="flex justify-center">
+                                    <ReCAPTCHA
+                                        ref={recaptchaRef}
+                                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                                        theme="light"
                                     />
                                 </div>
 
