@@ -10,6 +10,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { OnboardingTour } from "@/components/onboarding-tour";
 import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/analytics/google-tag-manager";
 import { CookieConsent } from "@/components/analytics/cookie-consent";
+import { createClient } from "@/lib/supabase/server";
+import { UserProvider } from "@/components/providers/user-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -64,11 +66,14 @@ export const metadata: Metadata = {
 
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
@@ -85,9 +90,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <OnboardingTour />
-          <Toaster />
+          <UserProvider initialUser={user}>
+            {children}
+            <OnboardingTour />
+            <Toaster />
+          </UserProvider>
         </ThemeProvider>
         <SpeedInsights />
         <Analytics />
