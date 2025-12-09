@@ -15,7 +15,7 @@ async function main() {
     }
 
     const stripeKey = match[1];
-    const stripe = new Stripe(stripeKey, { apiVersion: '2024-11-20.acacia' }); // Utilizing likely latest or default
+    const stripe = new Stripe(stripeKey, { apiVersion: '2025-11-17.clover' }); // Utilizing likely latest or default
 
     console.log("Creating products...");
 
