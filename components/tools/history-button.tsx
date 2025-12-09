@@ -1,10 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Bookmark, BookmarkCheck, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import { saveHistoryToSupabase } from '@/lib/supabase/history'
+import { createClient } from '@/lib/supabase/client'
 
 interface HistoryButtonProps {
     toolId: string
@@ -21,10 +23,25 @@ export function HistoryButton({
     output,
     disabled = false,
 }: HistoryButtonProps) {
+    const router = useRouter()
     const [state, setState] = useState<'idle' | 'saving' | 'saved'>('idle')
 
     const handleSave = async () => {
         if (disabled || state === 'saving') return
+
+        const supabase = createClient()
+        const { data: { user } } = await supabase.auth.getUser()
+
+        if (!user) {
+            toast.error('Faça login para salvar', {
+                description: 'Você precisa estar logado para salvar no histórico.',
+                action: {
+                    label: 'Entrar',
+                    onClick: () => router.push('/login'),
+                },
+            })
+            return
+        }
 
         setState('saving')
 

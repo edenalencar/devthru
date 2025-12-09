@@ -1,0 +1,133 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2024-05-21 12:00:00",
+    "containerVersion": {
+        "path": "accounts/0000000000/containers/00000000",
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "containerVersionId": "0",
+        "name": "DevThru Initial Setup",
+        "container": {
+            "path": "accounts/0000000000/containers/00000000",
+            "accountId": "0000000000",
+            "containerId": "00000000",
+            "name": "devthru.com",
+            "publicId": "GTM-WDR9XJZ7",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "12345678"
+        },
+        "tag": [
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "tagId": "1",
+                "name": "Google Analytics 4 Configuration",
+                "type": "gaawc",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementId",
+                        "value": "{{GA4 Measurement ID}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendPageView",
+                        "value": "true"
+                    }
+                ],
+                "fingerprint": "1",
+                "firingTriggerId": [
+                    "1"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NEEDED",
+                    "consentType": {
+                        "type": "LIST",
+                        "list": [
+                            {
+                                "type": "TEMPLATE",
+                                "value": "analytics_storage"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "triggerId": "1",
+                "name": "All Pages",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "variableId": "1",
+                "name": "GA4 Measurement ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "G-XXXXXXXXXX"
+                    }
+                ],
+                "fingerprint": "1"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "type": "REFERRER",
+                "name": "Referrer"
+            }
+        ]
+    }
+}
