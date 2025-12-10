@@ -34,10 +34,10 @@ export async function POST(req: Request) {
 
         const { priceId } = JSON.parse(bodyText)
         console.log('[Checkout] Price ID:', priceId)
-        console.log('Site URL:', process.env.NEXT_PUBLIC_SITE_URL)
+        console.log('Site URL:', process.env.NEXT_PUBLIC_APP_URL)
 
-        if (!process.env.NEXT_PUBLIC_SITE_URL) {
-            throw new Error('NEXT_PUBLIC_SITE_URL is not defined')
+        if (!process.env.NEXT_PUBLIC_APP_URL) {
+            throw new Error('NEXT_PUBLIC_APP_URL is not defined')
         }
 
         const session = await stripe.checkout.sessions.create({
@@ -50,8 +50,8 @@ export async function POST(req: Request) {
                 },
             ],
             mode: 'subscription',
-            success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard?success=true`,
-            cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/pricing?canceled=true`,
+            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true`,
+            cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/pricing?canceled=true`,
             metadata: {
                 userId: user.id,
             },
