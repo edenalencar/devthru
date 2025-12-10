@@ -8,13 +8,14 @@ import { Label } from "@/components/ui/label"
 import { createClient } from "@/lib/supabase/client"
 import { Loader2, Lock, Mail } from "lucide-react"
 import { toast } from "sonner"
+import { updatePasswordAction } from "@/app/dashboard/profile/actions"
 
 interface SecurityFormProps {
     user: any
 }
 
 export function SecurityForm({ user }: SecurityFormProps) {
-    const supabase = createClient()
+    const [supabase] = useState(() => createClient())
     const [loadingEmail, setLoadingEmail] = useState(false)
     const [loadingPass, setLoadingPass] = useState(false)
     const [email, setEmail] = useState(user?.email || "")
@@ -31,6 +32,7 @@ export function SecurityForm({ user }: SecurityFormProps) {
             if (error) throw error
             toast.success("Verifique seu novo email para confirmar a alteração.")
         } catch (error: any) {
+            console.error("Error updating email:", error)
             toast.error(error.message || "Erro ao atualizar email")
         } finally {
             setLoadingEmail(false)
@@ -49,13 +51,21 @@ export function SecurityForm({ user }: SecurityFormProps) {
         }
 
         try {
+            console.log("Starting password update process via Server Action...")
             setLoadingPass(true)
-            const { error } = await supabase.auth.updateUser({ password })
-            if (error) throw error
+
+            // Call Server Action
+            const result = await updatePasswordAction(password)
+
+            if (!result.success) {
+                throw new Error(result.error)
+            }
+
             toast.success("Senha atualizada com sucesso!")
             setPassword("")
             setConfirmPassword("")
         } catch (error: any) {
+            console.error("Error updating password:", error)
             toast.error(error.message || "Erro ao atualizar senha")
         } finally {
             setLoadingPass(false)
