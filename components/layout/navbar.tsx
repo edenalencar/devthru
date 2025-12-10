@@ -46,9 +46,24 @@ export function Navbar() {
 
 
     const handleSignOut = async () => {
-        await supabase.auth.signOut()
-        router.push("/")
-        router.refresh()
+        try {
+            // First, try to sign out normally with a timeout
+            const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 2000))
+            await Promise.race([
+                supabase.auth.signOut(),
+                timeoutPromise
+            ])
+        } catch (error) {
+            console.error("Error signing out:", error)
+        } finally {
+            // Force clear local storage items related to Supabase if any exist
+            // This is a safety measure for persistent sessions
+            if (typeof window !== 'undefined') {
+                localStorage.clear() // Clear all strictly or just specific keys if needed
+            }
+            router.push("/")
+            router.refresh()
+        }
     }
 
     return (

@@ -15,7 +15,7 @@ import { STRIPE_PLANS } from "@/lib/stripe/plans"
 
 export default function PricingPage() {
     const router = useRouter()
-    const { user, profile, isInTrial } = useUser()
+    const { user, profile, isInTrial, loading: userLoading } = useUser()
     const [loading, setLoading] = useState<string | null>(null)
 
     const daysRemaining = profile?.trial_ends_at
@@ -66,6 +66,14 @@ export default function PricingPage() {
     }
 
     const getButtonConfig = (plan: 'free' | 'pro' | 'business') => {
+        if (userLoading) {
+            return {
+                text: "Carregando...",
+                disabled: true,
+                variant: "outline" as const
+            }
+        }
+
         const currentTier = profile?.subscription_tier || 'free'
         const isCurrentPlan = currentTier === plan
 

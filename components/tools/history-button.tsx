@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import { saveHistoryToSupabase } from '@/lib/supabase/history'
 import { createClient } from '@/lib/supabase/client'
+import { useUser } from '@/lib/hooks/use-user'
 
 interface HistoryButtonProps {
     toolId: string
@@ -24,13 +25,11 @@ export function HistoryButton({
     disabled = false,
 }: HistoryButtonProps) {
     const router = useRouter()
+    const { user } = useUser()
     const [state, setState] = useState<'idle' | 'saving' | 'saved'>('idle')
 
     const handleSave = async () => {
         if (disabled || state === 'saving') return
-
-        const supabase = createClient()
-        const { data: { user } } = await supabase.auth.getUser()
 
         if (!user) {
             toast.error('Faça login para salvar', {

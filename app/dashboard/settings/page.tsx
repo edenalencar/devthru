@@ -12,51 +12,21 @@ import { createClient } from '@/lib/supabase/client'
 import { generateApiKey, revokeApiKey } from '@/lib/api/keys'
 import { toast } from 'sonner'
 import Link from 'next/link'
+import { useUser } from '@/lib/hooks/use-user'
 
 export default function SettingsPage() {
+    const { profile, loading: userLoading, refreshUser } = useUser()
     const [apiKey, setApiKey] = useState<string | null>(null)
     const [plan, setPlan] = useState<string>('free')
     const [newKey, setNewKey] = useState<string | null>(null)
     const [dialogOpen, setDialogOpen] = useState(false)
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        loadApiKey()
-    }, [])
-
-    const loadApiKey = async () => {
-        try {
-            const supabase = createClient()
-            const { data: { user } } = await supabase.auth.getUser()
-
-            if (!user) {
-                toast.error('Você precisa estar logado')
-                return
-            }
-
-            const { data: profile } = await supabase
-                .from('profiles')
-                .select('api_key, subscription_tier')
-                .eq('id', user.id)
-                .single()
-
-            if (profile) {
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const p = profile as any
-                if (p.api_key) {
-                    setApiKey(p.api_key)
-                }
-                if (p.subscription_tier) {
-                    setPlan(p.subscription_tier)
-                }
-            }
-        } catch (error) {
-            console.error('Error loading API key:', error)
-            toast.error('Erro ao carregar API key')
-        } finally {
-            setLoading(false)
+        if (profile) {
+            setApiKey(profile.api_key)
+            setPlan(profile.subscription_tier || 'free')
         }
-    }
+    }, [profile])
 
     const handleGenerate = async () => {
         try {
@@ -65,6 +35,7 @@ export default function SettingsPage() {
             setApiKey(key)
             setDialogOpen(true)
             toast.success('Nova API key gerada com sucesso!')
+            refreshUser()
         } catch (error) {
             console.error('Error generating API key:', error)
             toast.error('Erro ao gerar API key')
@@ -76,13 +47,14 @@ export default function SettingsPage() {
             await revokeApiKey()
             setApiKey(null)
             toast.success('API key revogada com sucesso')
+            refreshUser()
         } catch (error) {
             console.error('Error revoking API key:', error)
             toast.error('Erro ao revogar API key')
         }
     }
 
-    if (loading) {
+    if (userLoading) {
         return (
             <div className="flex items-center justify-center h-full">
                 <p className="text-muted-foreground">Carregando...</p>
