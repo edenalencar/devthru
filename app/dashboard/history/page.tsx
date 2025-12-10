@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
+import { useUser } from '@/lib/hooks/use-user'
 import { Download, Loader2, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { HistoryCard } from '@/components/tools/history-card'
@@ -30,9 +32,11 @@ interface GenerationHistory {
     output: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
-const ITEMS_PER_PAGE = 50
+const ITEMS_PER_PAGE = 12
 
 export default function HistoryPage() {
+    const router = useRouter()
+    const { user, loading: userLoading } = useUser()
     const [history, setHistory] = useState<GenerationHistory[]>([])
     const [loading, setLoading] = useState(true)
     const [totalCount, setTotalCount] = useState(0)
@@ -46,36 +50,52 @@ export default function HistoryPage() {
 
     const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set())
 
-    const loadHistory = useCallback(async () => {
-        setLoading(true)
-
-        const filters = {
-            toolId: selectedTool,
-            dateFrom: dateFrom ? new Date(dateFrom) : undefined,
-            dateTo: dateTo ? new Date(dateTo) : undefined,
-            search: searchQuery || undefined,
-            limit: ITEMS_PER_PAGE,
-            offset: (currentPage - 1) * ITEMS_PER_PAGE,
+    useEffect(() => {
+        if (!userLoading && !user) {
+            router.push('/login')
         }
+    }, [user, userLoading, router])
 
-        const [data, count] = await Promise.all([
-            getHistoryWithFilters(filters),
-            getHistoryCount({
-                toolId: filters.toolId,
-                dateFrom: filters.dateFrom,
-                dateTo: filters.dateTo,
-                search: filters.search,
-            }),
-        ])
+    const loadHistory = useCallback(async () => {
+        if (!user?.id) return
+        setLoading(true)
+        try {
+            const filters = {
+                toolId: selectedTool,
+                dateFrom: dateFrom ? new Date(dateFrom) : undefined,
+                dateTo: dateTo ? new Date(dateTo) : undefined,
+                search: searchQuery || undefined,
+                limit: ITEMS_PER_PAGE,
+                offset: (currentPage - 1) * ITEMS_PER_PAGE,
+                userId: user.id,
+            }
 
-        setHistory(data)
-        setTotalCount(count)
-        setLoading(false)
-    }, [currentPage, searchQuery, selectedTool, dateFrom, dateTo])
+            const [data, count] = await Promise.all([
+                getHistoryWithFilters(filters),
+                getHistoryCount({
+                    toolId: filters.toolId,
+                    dateFrom: filters.dateFrom,
+                    dateTo: filters.dateTo,
+                    search: filters.search,
+                    userId: user.id
+                }),
+            ])
+
+            setHistory(data)
+            setTotalCount(count)
+        } catch (error) {
+            console.error('Error loading history:', error)
+            toast.error('Erro ao carregar histórico')
+        } finally {
+            setLoading(false)
+        }
+    }, [currentPage, searchQuery, selectedTool, dateFrom, dateTo, user?.id])
 
     useEffect(() => {
-        setTimeout(() => loadHistory(), 0)
-    }, [loadHistory])
+        if (user?.id) {
+            loadHistory()
+        }
+    }, [loadHistory, user?.id])
 
 
 

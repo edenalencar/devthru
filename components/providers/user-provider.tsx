@@ -45,15 +45,45 @@ export function UserProvider({
     // Fetch profile if we have a user but no profile
     const refreshProfile = async (currentUser: User) => {
         try {
-            const { data } = await supabase
-                .from("profiles")
-                .select("*")
-                .eq("id", currentUser.id)
-                .single()
-            updateDerivedState(currentUser, data)
-        } catch (error) {
-            console.error("Error fetching profile:", error)
-            // Even if profile fetch fails, we have the user
+            const { data } = await Promise.race([
+                supabase
+                    .from("profiles")
+                    .select("*")
+                    .eq("id", currentUser.id)
+                    .single(),
+                new Promise<{ data: any }>((_, reject) =>
+                    setTimeout(() => reject(new Error("Profile fetch timeout")), 10000)
+                )
+            ])
+
+            // Should verify data is not null before caching
+            if (data) {
+                localStorage.setItem(`cached_profile_${currentUser.id}`, JSON.stringify(data))
+                updateDerivedState(currentUser, data)
+            } else {
+                throw new Error("Profile not found")
+            }
+        } catch (error: any) {
+            console.warn("Using cached profile due to error:", error.message)
+
+            // Attempt to load from cache
+            try {
+                const cached = localStorage.getItem(`cached_profile_${currentUser.id}`)
+                if (cached) {
+                    const parsed = JSON.parse(cached)
+                    updateDerivedState(currentUser, parsed)
+                    return // Succcessfully recovered from cache
+                }
+            } catch (e) {
+                console.error("Error parsing cached profile", e)
+            }
+
+            // Fallback if no cache
+            if (error.message === 'Profile fetch timeout') {
+                console.warn("Profile fetch timed out, falling back to basic user state.")
+            } else {
+                console.error("Error fetching profile:", error)
+            }
             updateDerivedState(currentUser, null)
         }
     }
@@ -66,14 +96,42 @@ export function UserProvider({
                 setIsLoading(false)
             } else {
                 // No initial user, verify with supabase
-                const { data: { user: currentUser } } = await supabase.auth.getUser()
-                setUser(currentUser)
-                if (currentUser) {
-                    await refreshProfile(currentUser)
-                } else {
+                try {
+                    // Create a timeout promise that rejects instead of resolving with null
+                    const timeoutPromise = new Promise<never>((_, reject) => {
+                        setTimeout(() => reject(new Error("Auth check timeout")), 10000)
+                    })
+
+                    let currentUser: User | null = null;
+
+                    try {
+                        const { data } = await Promise.race([
+                            supabase.auth.getUser(),
+                            timeoutPromise
+                        ]) as any
+                        currentUser = data.user
+                    } catch (error: any) {
+                        console.warn("Auth check timed out or failed, checking local session...")
+                        // Fallback: check for valid local session
+                        const { data: { session } } = await supabase.auth.getSession()
+                        if (session?.user) {
+                            console.log("Recovered session from local storage")
+                            currentUser = session.user
+                        }
+                    }
+
+                    setUser(currentUser)
+                    if (currentUser) {
+                        await refreshProfile(currentUser)
+                    } else {
+                        updateDerivedState(null, null)
+                    }
+                } catch (error) {
+                    console.error("Error checking auth session:", error)
                     updateDerivedState(null, null)
+                } finally {
+                    setIsLoading(false)
                 }
-                setIsLoading(false)
             }
         }
 

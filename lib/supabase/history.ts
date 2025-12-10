@@ -4,27 +4,40 @@ import { GenerationHistory } from '../storage/history'
 /**
  * Save a generation to Supabase
  */
-export async function saveHistoryToSupabase(item: Omit<GenerationHistory, "id" | "timestamp">) {
+export async function saveHistoryToSupabase(item: Omit<GenerationHistory, "id" | "timestamp"> & { userId?: string }) {
     const supabase = createClient()
+    let userId = item.userId
 
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return null
+    if (!userId) {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return null
+        userId = user.id
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data, error } = await (supabase
-        .from('generation_history') as any)
-        .insert({
-            user_id: user.id,
-            tool_id: item.toolId,
-            tool_name: item.toolName,
-            input: item.input,
-            output: item.output,
-        })
-        .select()
-        .single()
+    const { data, error } = await Promise.race([
+        (supabase
+            .from('generation_history') as any)
+            .insert({
+                user_id: userId,
+                tool_id: item.toolId,
+                tool_name: item.toolName,
+                input: item.input,
+                output: item.output,
+            })
+            .select()
+            .single(),
+        new Promise<{ data: any; error: any }>((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout')), 10000)
+        )
+    ]).catch(err => ({ data: null, error: err }))
 
     if (error) {
-        console.error('Error saving history to Supabase:', error)
+        if (error.message === 'Timeout') {
+            console.warn('History save timed out')
+        } else {
+            console.error('Error saving history to Supabase:', error)
+        }
         return null
     }
 
@@ -34,22 +47,34 @@ export async function saveHistoryToSupabase(item: Omit<GenerationHistory, "id" |
 /**
  * Fetch history from Supabase
  */
-export async function getHistoryFromSupabase(limit = 50) {
+export async function getHistoryFromSupabase(limit = 50, userId?: string) {
     const supabase = createClient()
 
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return []
+    if (!userId) {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return []
+        userId = user.id
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data, error } = await (supabase
-        .from('generation_history') as any)
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-        .limit(limit)
+    const { data, error } = await Promise.race([
+        (supabase
+            .from('generation_history') as any)
+            .select('*')
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false })
+            .range(0, limit - 1),
+        new Promise<{ data: any; error: any }>((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout')), 10000)
+        )
+    ]).catch(err => ({ data: [], error: err }))
 
     if (error) {
-        console.error('Error fetching history from Supabase:', error)
+        if (error.message === 'Timeout') {
+            console.warn('History fetch timed out')
+        } else {
+            console.error('Error fetching history from Supabase:', error)
+        }
         return []
     }
 
@@ -100,21 +125,33 @@ export async function syncHistoryToSupabase(localHistory: GenerationHistory[]) {
 /**
  * Delete a single history item
  */
-export async function deleteHistoryItem(id: string) {
+export async function deleteHistoryItem(id: string, userId?: string) {
     const supabase = createClient()
 
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return false
+    if (!userId) {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return false
+        userId = user.id
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error } = await (supabase
-        .from('generation_history') as any)
-        .delete()
-        .eq('id', id)
-        .eq('user_id', user.id)
+    const { error } = await Promise.race([
+        (supabase
+            .from('generation_history') as any)
+            .delete()
+            .eq('id', id)
+            .eq('user_id', userId),
+        new Promise<{ error: any }>((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout')), 10000)
+        )
+    ]).catch(err => ({ error: err }))
 
     if (error) {
-        console.error('Error deleting history item:', error)
+        if (error.message === 'Timeout') {
+            console.warn('Delete history timed out')
+        } else {
+            console.error('Error deleting history item:', error)
+        }
         return false
     }
 
@@ -124,21 +161,33 @@ export async function deleteHistoryItem(id: string) {
 /**
  * Delete multiple history items
  */
-export async function deleteHistoryItems(ids: string[]) {
+export async function deleteHistoryItems(ids: string[], userId?: string) {
     const supabase = createClient()
 
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return false
+    if (!userId) {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return false
+        userId = user.id
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error } = await (supabase
-        .from('generation_history') as any)
-        .delete()
-        .in('id', ids)
-        .eq('user_id', user.id)
+    const { error } = await Promise.race([
+        (supabase
+            .from('generation_history') as any)
+            .delete()
+            .in('id', ids)
+            .eq('user_id', userId),
+        new Promise<{ error: any }>((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout')), 10000)
+        )
+    ]).catch(err => ({ error: err }))
 
     if (error) {
-        console.error('Error deleting history items:', error)
+        if (error.message === 'Timeout') {
+            console.warn('Delete multiple history timed out')
+        } else {
+            console.error('Error deleting history items:', error)
+        }
         return false
     }
 
@@ -155,17 +204,22 @@ export async function getHistoryWithFilters(filters: {
     search?: string
     limit?: number
     offset?: number
+    userId?: string
 }) {
     const supabase = createClient()
+    let userId = filters.userId
 
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return []
+    if (!userId) {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return []
+        userId = user.id
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let query = (supabase
         .from('generation_history') as any)
         .select('*')
-        .eq('user_id', user.id)
+        .eq('user_id', userId)
 
     // Apply filters
     if (filters.toolId && filters.toolId !== 'all') {
@@ -184,24 +238,29 @@ export async function getHistoryWithFilters(filters: {
 
     // Search in tool_name and output
     if (filters.search) {
-        query = query.or(`tool_name.ilike.%${filters.search}%,output::text.ilike.%${filters.search}%`)
+        query = query.ilike('tool_name', `%${filters.search}%`)
     }
 
     // Order and pagination
     query = query.order('created_at', { ascending: false })
 
-    if (filters.limit) {
-        query = query.limit(filters.limit)
-    }
+    const from = filters.offset || 0
+    const to = from + (filters.limit || 50) - 1
+    query = query.range(from, to)
 
-    if (filters.offset) {
-        query = query.range(filters.offset, filters.offset + (filters.limit || 50) - 1)
-    }
-
-    const { data, error } = await query
+    const { data, error } = await Promise.race([
+        query,
+        new Promise<{ data: any; error: any }>((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout')), 10000)
+        )
+    ]).catch(err => ({ data: [], error: err }))
 
     if (error) {
-        console.error('Error fetching filtered history:', error)
+        if (error.message === 'Timeout') {
+            console.warn('Filtered history fetch timed out')
+        } else {
+            console.error('Error fetching filtered history:', error)
+        }
         return []
     }
 
@@ -224,17 +283,22 @@ export async function getHistoryCount(filters?: {
     dateFrom?: Date
     dateTo?: Date
     search?: string
+    userId?: string
 }) {
     const supabase = createClient()
+    let userId = filters?.userId
 
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return 0
+    if (!userId) {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return 0
+        userId = user.id
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let query = (supabase
         .from('generation_history') as any)
         .select('*', { count: 'exact', head: true })
-        .eq('user_id', user.id)
+        .eq('user_id', userId)
 
     // Apply same filters as getHistoryWithFilters
     if (filters?.toolId && filters.toolId !== 'all') {
@@ -252,13 +316,22 @@ export async function getHistoryCount(filters?: {
     }
 
     if (filters?.search) {
-        query = query.or(`tool_name.ilike.%${filters.search}%,output::text.ilike.%${filters.search}%`)
+        query = query.ilike('tool_name', `%${filters.search}%`)
     }
 
-    const { count, error } = await query
+    const { count, error } = await Promise.race([
+        query,
+        new Promise<{ count: number | null; error: any }>((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout')), 10000)
+        )
+    ]).catch(err => ({ count: 0, error: err }))
 
     if (error) {
-        console.error('Error counting history:', error)
+        if (error.message === 'Timeout') {
+            console.warn('History count fetch timed out')
+        } else {
+            console.error('Error counting history:', error)
+        }
         return 0
     }
 

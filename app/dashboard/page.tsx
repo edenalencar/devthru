@@ -32,7 +32,7 @@ export default function DashboardPage() {
         try {
             if (currentUser) {
                 // Load from Supabase
-                const supabaseHistory = await getHistoryFromSupabase()
+                const supabaseHistory = await getHistoryFromSupabase(50, currentUser.id)
                 setHistory(supabaseHistory)
 
                 // Calculate stats from Supabase history (simplified for now)
