@@ -1,7 +1,7 @@
 export const siteConfig = {
     name: "DevThru",
     description: "DevThru: Dados rápidos pra viagem. Plataforma moderna e ágil para desenvolvedores.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
     ogImage: "/og-image.png",
     keywords: [
         "devtools",
