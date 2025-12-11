@@ -93,23 +93,6 @@
                 "triggerId": "1",
                 "name": "All Pages",
                 "type": "PAGEVIEW",
-                "filter": [
-                    {
-                        "type": "EQUALS",
-                        "parameter": [
-                            {
-                                "type": "TEMPLATE",
-                                "key": "arg0",
-                                "value": "{{Page URL}}"
-                            },
-                            {
-                                "type": "TEMPLATE",
-                                "key": "arg1",
-                                "value": ".*"
-                            }
-                        ]
-                    }
-                ],
                 "fingerprint": "1"
             },
             {
