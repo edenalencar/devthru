@@ -57,6 +57,33 @@
                         ]
                     }
                 }
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "tagId": "3",
+                "name": "Google Ads - Cadastro",
+                "type": "awct",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionId",
+                        "value": "{{Google Ads Conversion ID}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionLabel",
+                        "value": "{{Google Ads Conversion Label}}"
+                    }
+                ],
+                "fingerprint": "3",
+                "firingTriggerId": [
+                    "2"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                }
             }
         ],
         "trigger": [
@@ -84,6 +111,31 @@
                     }
                 ],
                 "fingerprint": "1"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "triggerId": "2",
+                "name": "Event - Sign Up",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "sign_up"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "2"
             }
         ],
         "variable": [
@@ -101,6 +153,36 @@
                     }
                 ],
                 "fingerprint": "1"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "variableId": "2",
+                "name": "Google Ads Conversion ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "17797667402"
+                    }
+                ],
+                "fingerprint": "2"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "variableId": "3",
+                "name": "Google Ads Conversion Label",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "WGYjCNf6h9AbEMq0y6ZC"
+                    }
+                ],
+                "fingerprint": "3"
             }
         ],
         "builtInVariable": [
