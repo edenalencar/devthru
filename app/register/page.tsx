@@ -15,6 +15,7 @@ import { validateEmail } from "@/lib/validation/email"
 import { toast } from "sonner"
 import ReCAPTCHA from "react-google-recaptcha"
 import { useRef } from "react"
+import { sendGTMEvent } from "@/lib/gtm"
 
 export default function RegisterPage() {
     const router = useRouter()
@@ -60,6 +61,7 @@ export default function RegisterPage() {
 
             if (error) throw error
 
+            sendGTMEvent({ event: 'sign_up' })
             toast.success("Conta criada! Verifique seu email para confirmar.")
             router.push("/login")
         } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -71,6 +73,7 @@ export default function RegisterPage() {
 
     const handleOAuthRegister = async (provider: "github" | "google") => {
         try {
+            sendGTMEvent({ event: 'sign_up' })
             const { error } = await supabase.auth.signInWithOAuth({
                 provider,
                 options: {
