@@ -185,14 +185,30 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
                             </div>
                         </div>
 
-                        {profile?.current_period_end && (
+                        {profile?.current_period_end && profile?.subscription_tier !== 'free' && (
                             <p className="text-xs text-muted-foreground mt-1 text-right">
                                 {profile.cancel_at_period_end ? "Encerra em " : "Renova em "}
                                 {new Date(profile.current_period_end).toLocaleDateString()}
                             </p>
                         )}
 
-                        {profile?.stripe_customer_id ? (
+                        {(profile?.subscription_tier === 'free' || !profile?.subscription_tier) ? (
+                            <div className="flex gap-2">
+                                {profile?.stripe_customer_id && (
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={handleManageSubscription}
+                                        disabled={managingSubscription}
+                                    >
+                                        Histórico
+                                    </Button>
+                                )}
+                                <Button variant="default" size="sm" asChild>
+                                    <a href="/pricing">Fazer Upgrade</a>
+                                </Button>
+                            </div>
+                        ) : (
                             <Button
                                 variant="outline"
                                 size="sm"
@@ -201,10 +217,6 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
                             >
                                 {managingSubscription && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Gerenciar Assinatura
-                            </Button>
-                        ) : (
-                            <Button variant="default" size="sm" asChild>
-                                <a href="/pricing">Fazer Upgrade</a>
                             </Button>
                         )}
                     </div>

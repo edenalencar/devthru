@@ -79,7 +79,8 @@ export function DeleteAccount() {
                                 Tem certeza absoluta?
                             </DialogTitle>
                             <DialogDescription>
-                                Esta ação não pode ser desfeita. Isso excluirá permanentemente sua conta
+                                Esta ação não pode ser desfeita. Isso excluirá permanentemente sua conta,
+                                <span className="font-bold text-destructive"> cancelará sua assinatura ativa imediatamente </span>
                                 e removerá seus dados de nossos servidores.
                             </DialogDescription>
                         </DialogHeader>

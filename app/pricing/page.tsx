@@ -192,6 +192,11 @@ export default function PricingPage() {
                                     Expira em {daysRemaining} dias
                                 </div>
                             )}
+                            {!isInTrial && profile?.trial_ends_at && new Date(profile.trial_ends_at) < new Date() && (profile?.subscription_tier === 'free' || !profile?.subscription_tier) && (
+                                <div className="absolute top-0 right-0 bg-red-500 text-white px-3 py-1 text-xs font-bold rounded-bl-lg">
+                                    Trial Expirado
+                                </div>
+                            )}
                             <CardHeader>
                                 <CardTitle className="text-2xl">Pro</CardTitle>
                                 <CardDescription>Para profissionais e freelancers</CardDescription>
@@ -244,11 +249,7 @@ export default function PricingPage() {
                             <div className="absolute top-0 inset-x-0 bg-primary text-primary-foreground py-1.5 text-center text-sm font-bold">
                                 RECOMENDADO
                             </div>
-                            {!isInTrial && profile?.trial_ends_at && new Date(profile.trial_ends_at) < new Date() && (profile?.subscription_tier === 'free' || !profile?.subscription_tier) && (
-                                <div className="absolute top-8 left-0 bg-red-500 text-white px-3 py-1 text-xs font-bold">
-                                    Trial Expirado
-                                </div>
-                            )}
+                            {/* Trial Expirado moved to Pro Plan */}
                             <CardHeader className="pt-12">
                                 <CardTitle className="text-2xl">Business</CardTitle>
                                 <CardDescription>Para times e empresas</CardDescription>

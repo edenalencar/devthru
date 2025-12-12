@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { createClient as createServerClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
+import { stripe } from "@/lib/stripe/server";
 
 export async function DELETE() {
     try {
@@ -31,6 +32,26 @@ export async function DELETE() {
                 }
             }
         );
+
+
+        // 3a. Cancel Stripe Subscription if exists
+        // We query the profile before deleting it to get the Stripe IDs
+        const { data: profile } = await supabaseAdmin
+            .from("profiles")
+            .select("stripe_subscription_id, stripe_customer_id")
+            .eq("id", user.id)
+            .single();
+
+        if (profile?.stripe_subscription_id) {
+            try {
+                console.log(`Cancelling subscription ${profile.stripe_subscription_id} for user ${user.id} before deletion`);
+                await stripe.subscriptions.cancel(profile.stripe_subscription_id);
+            } catch (stripeError) {
+                console.error("Error cancelling subscription during account deletion:", stripeError);
+                // We log but continue, as we don't want to block account deletion if Stripe fails
+                // Ideally this should be handled by a cleanup job or manual intervention if it fails
+            }
+        }
 
         // 3. Delete from public.profiles first to ensure cleanup
         // We use the admin client to bypass any RLS that might prevent deletion
