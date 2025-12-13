@@ -65,17 +65,51 @@ export default function PricingPage() {
         }
     }
 
+    const handlePortal = async () => {
+        try {
+            setLoading('portal')
+            const response = await fetch("/api/stripe/portal", {
+                method: "POST",
+            })
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.error || "Erro ao abrir o portal")
+            }
+
+            if (data.url) {
+                window.location.href = data.url
+            }
+        } catch (error: any) {
+            toast.error("Erro ao redirecionar para o portal")
+        } finally {
+            setLoading(null)
+        }
+    }
+
     const getButtonConfig = (plan: 'free' | 'pro' | 'business') => {
         if (userLoading) {
             return {
                 text: "Carregando...",
                 disabled: true,
-                variant: "outline" as const
+                variant: "outline" as const,
+                action: () => { }
             }
         }
 
         const currentTier = profile?.subscription_tier || 'free'
         const isCurrentPlan = currentTier === plan
+
+        // Helper to determine action
+        const getAction = (targetPriceId: string) => {
+            // Se já é assinante de QUALQUER plano pago, manda pro Portal para gerenciar (Upgrade/Downgrade)
+            if (currentTier !== 'free') {
+                return handlePortal
+            }
+            // Se é Free, vai pro Checkout assinar
+            return () => handleSubscribe(targetPriceId)
+        }
 
         // Cenário A: Usuário em Trial
         if (isInTrial) {
@@ -83,21 +117,24 @@ export default function PricingPage() {
                 return {
                     text: "Seu Plano Atual (Teste Grátis)",
                     disabled: true,
-                    variant: "default" as const
+                    variant: "default" as const,
+                    action: () => { }
                 }
             }
             if (plan === 'business') {
                 return {
                     text: "Fazer Upgrade",
                     disabled: false,
-                    variant: "default" as const
+                    variant: "default" as const,
+                    action: () => handleSubscribe(STRIPE_PLANS.BUSINESS.priceId)
                 }
             }
             // Free plan during trial
             return {
                 text: "Mudar para este plano",
                 disabled: false,
-                variant: "outline" as const
+                variant: "outline" as const,
+                action: () => { } // Free button logic usually distinct
             }
         }
 
@@ -107,13 +144,15 @@ export default function PricingPage() {
                 return {
                     text: "Plano Atual",
                     disabled: true,
-                    variant: "outline" as const
+                    variant: "outline" as const,
+                    action: () => { }
                 }
             }
             return {
-                text: "Mudar para este plano",
+                text: "Gerenciar Assinatura",
                 disabled: false,
-                variant: "default" as const
+                variant: "default" as const,
+                action: handlePortal
             }
         }
 
@@ -122,14 +161,16 @@ export default function PricingPage() {
             return {
                 text: "Plano Atual",
                 disabled: true,
-                variant: "outline" as const
+                variant: "outline" as const,
+                action: () => { }
             }
         }
 
         return {
             text: `Assinar ${plan.charAt(0).toUpperCase() + plan.slice(1)}`,
             disabled: false,
-            variant: (plan === 'business' ? "default" : "outline") as "default" | "outline"
+            variant: (plan === 'business' ? "default" : "outline") as "default" | "outline",
+            action: () => handleSubscribe(plan === 'pro' ? STRIPE_PLANS.PRO.priceId : STRIPE_PLANS.BUSINESS.priceId)
         }
     }
 
@@ -233,10 +274,10 @@ export default function PricingPage() {
                                 <Button
                                     className="w-full"
                                     variant={proConfig.variant}
-                                    onClick={() => handleSubscribe(STRIPE_PLANS.PRO.priceId)}
+                                    onClick={proConfig.action}
                                     disabled={proConfig.disabled || !!loading}
                                 >
-                                    {loading === STRIPE_PLANS.PRO.priceId && (
+                                    {loading === (proConfig.action === handlePortal ? 'portal' : STRIPE_PLANS.PRO.priceId) && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
                                     {proConfig.text}
@@ -286,10 +327,10 @@ export default function PricingPage() {
                                 <Button
                                     className="w-full"
                                     variant={businessConfig.variant}
-                                    onClick={() => handleSubscribe(STRIPE_PLANS.BUSINESS.priceId)}
+                                    onClick={businessConfig.action}
                                     disabled={businessConfig.disabled || !!loading}
                                 >
-                                    {loading === STRIPE_PLANS.BUSINESS.priceId && (
+                                    {loading === (businessConfig.action === handlePortal ? 'portal' : STRIPE_PLANS.BUSINESS.priceId) && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
                                     {businessConfig.text}
