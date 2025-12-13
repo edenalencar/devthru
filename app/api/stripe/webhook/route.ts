@@ -57,6 +57,7 @@ export async function POST(req: Request) {
             }
 
             console.log(`[Webhook] Updating profile for user ${userId} to plan ${plan}`)
+            console.log(`[Webhook] Sub details - current_period: ${sub.current_period_end}, cancel_at: ${sub.cancel_at}`)
 
             const { error } = await supabase
                 .from("profiles")
@@ -65,8 +66,8 @@ export async function POST(req: Request) {
                     stripe_subscription_id: subscriptionId,
                     stripe_customer_id: sub.customer as string,
                     trial_ends_at: null, // Clear trial if they subscribed
-                    current_period_end: sub.current_period_end ? new Date(sub.current_period_end * 1000).toISOString() : new Date().toISOString(),
-                    cancel_at_period_end: sub.cancel_at_period_end ?? false
+                    current_period_end: (sub.cancel_at ? new Date(sub.cancel_at * 1000) : (sub.current_period_end ? new Date(sub.current_period_end * 1000) : new Date())).toISOString(),
+                    cancel_at_period_end: sub.cancel_at_period_end || (sub.cancel_at !== null && sub.cancel_at !== undefined)
                 } as any)
                 .eq("id", userId)
 
@@ -85,6 +86,9 @@ export async function POST(req: Request) {
         console.log(`[Webhook] customer.subscription.updated for subscription: ${subscription.id}`)
 
         try {
+            // Refetch subscription to ensure we have the latest status (especially cancel_at_period_end)
+            const latestSub = await stripe.subscriptions.retrieve(subscription.id) as any
+
             // Find user by subscription ID
             const { data: profile } = await supabase
                 .from("profiles")
@@ -93,7 +97,7 @@ export async function POST(req: Request) {
                 .maybeSingle() as any
 
             if (profile) {
-                const priceId = subscription.items.data[0].price.id
+                const priceId = latestSub.items.data[0].price.id
                 let plan = 'pro'
 
                 if (priceId === STRIPE_PLANS.BUSINESS.priceId) {
@@ -103,13 +107,17 @@ export async function POST(req: Request) {
                 }
 
                 console.log(`[Webhook] Updating subscription for user ${profile.id} to ${plan}`)
+                console.log(`[Webhook] Sub details - cancel_at_period_end: ${latestSub.cancel_at_period_end}, cancel_at: ${latestSub.cancel_at}`)
 
                 const { error } = await supabase
                     .from("profiles")
                     .update({
                         subscription_tier: plan,
-                        current_period_end: subscription.current_period_end ? new Date(subscription.current_period_end * 1000).toISOString() : new Date().toISOString(),
-                        cancel_at_period_end: subscription.cancel_at_period_end ?? false
+                        current_period_end: (latestSub.cancel_at
+                            ? new Date(latestSub.cancel_at * 1000)
+                            : (latestSub.current_period_end ? new Date(latestSub.current_period_end * 1000) : new Date())
+                        ).toISOString(),
+                        cancel_at_period_end: !!latestSub.cancel_at
                     } as any)
                     .eq("id", profile.id)
 
