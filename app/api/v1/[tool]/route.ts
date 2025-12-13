@@ -25,8 +25,8 @@ export async function POST(
         return new NextResponse("Invalid API Key", { status: 401 })
     }
 
-    if (user.subscription_tier === 'free') {
-        return new NextResponse("API access requires Pro plan", { status: 403 })
+    if (user.subscription_tier !== 'business') {
+        return new NextResponse("API access requires Business plan", { status: 403 })
     }
 
     const { tool: toolName } = await params
