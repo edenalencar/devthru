@@ -17,6 +17,7 @@ import { getPlanLimitMessage } from "@/lib/constants"
 export default function RGGeneratorPage() {
     const [rg, setRg] = useState<string>("")
     const [withPunctuation, setWithPunctuation] = useState<boolean>(true)
+    const [bulkQuantity, setBulkQuantity] = useState<number>(5)
     const { isPro, limit } = useUser()
 
     const generateRG = (formatted: boolean = withPunctuation): string => {
@@ -99,10 +100,13 @@ export default function RGGeneratorPage() {
 
                                 <ConfigurationManager
                                     toolId="rg"
-                                    currentConfig={{ withPunctuation }}
+                                    currentConfig={{ withPunctuation, quantity: bulkQuantity }}
                                     onLoadConfig={(config) => {
                                         if (config.withPunctuation !== undefined) {
                                             setWithPunctuation(config.withPunctuation)
+                                        }
+                                        if (config.quantity) {
+                                            setBulkQuantity(config.quantity)
                                         }
                                     }}
                                 />
@@ -122,6 +126,8 @@ export default function RGGeneratorPage() {
                                     label="RGs"
                                     limit={limit}
                                     isPro={isPro}
+                                    quantity={bulkQuantity}
+                                    onQuantityChange={setBulkQuantity}
                                 />
                             </CardContent>
                         </Card>

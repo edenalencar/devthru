@@ -15,6 +15,7 @@ import { getPlanLimitMessage } from "@/lib/constants"
 export default function CNHGeneratorPage() {
     const [cnh, setCnh] = useState<string>("")
     const [withPunctuation, setWithPunctuation] = useState<boolean>(false)
+    const [bulkQuantity, setBulkQuantity] = useState<number>(5)
     const { isPro, limit } = useUser()
 
     const generateCNH = (): string => {
@@ -89,10 +90,13 @@ export default function CNHGeneratorPage() {
 
                                 <ConfigurationManager
                                     toolId="cnh"
-                                    currentConfig={{ withPunctuation }}
+                                    currentConfig={{ withPunctuation, quantity: bulkQuantity }}
                                     onLoadConfig={(config) => {
                                         if (config.withPunctuation !== undefined) {
                                             setWithPunctuation(config.withPunctuation)
+                                        }
+                                        if (config.quantity) {
+                                            setBulkQuantity(config.quantity)
                                         }
                                     }}
                                 />
@@ -112,6 +116,8 @@ export default function CNHGeneratorPage() {
                                     label="CNHs"
                                     limit={limit}
                                     isPro={isPro}
+                                    quantity={bulkQuantity}
+                                    onQuantityChange={setBulkQuantity}
                                 />
                             </CardContent>
                         </Card>

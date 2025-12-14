@@ -20,6 +20,7 @@ export default function CNPJGeneratorPage() {
     const [generatedCNPJ, setGeneratedCNPJ] = useState("")
     const [formatted, setFormatted] = useState(true)
     const [alphanumeric, setAlphanumeric] = useState(false)
+    const [bulkQuantity, setBulkQuantity] = useState<number>(5)
     const [validationInput, setValidationInput] = useState("")
     const [validationResult, setValidationResult] = useState<boolean | null>(null)
 
@@ -116,6 +117,8 @@ export default function CNPJGeneratorPage() {
                                         label="CNPJs"
                                         limit={limit}
                                         isPro={isPro}
+                                        quantity={bulkQuantity}
+                                        onQuantityChange={setBulkQuantity}
                                     />
                                 </CardContent>
                             </Card>
@@ -179,10 +182,16 @@ export default function CNPJGeneratorPage() {
                             <CardContent className="pt-6">
                                 <ConfigurationManager
                                     toolId="cnpj"
-                                    currentConfig={{ formatted }}
+                                    currentConfig={{ formatted, alphanumeric, quantity: bulkQuantity }}
                                     onLoadConfig={(config) => {
                                         if (config.formatted !== undefined) {
                                             setFormatted(config.formatted)
+                                        }
+                                        if (config.alphanumeric !== undefined) {
+                                            setAlphanumeric(config.alphanumeric)
+                                        }
+                                        if (config.quantity) {
+                                            setBulkQuantity(config.quantity)
                                         }
                                     }}
                                 />
@@ -208,7 +217,7 @@ export default function CNPJGeneratorPage() {
                 </div>
             </main>
 
-            
+
         </div>
     )
 }

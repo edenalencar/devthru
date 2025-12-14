@@ -22,6 +22,7 @@ export default function CPFGeneratorPage() {
     const [validationInput, setValidationInput] = useState("")
     const [validationResult, setValidationResult] = useState<boolean | null>(null)
     const [activeTab, setActiveTab] = useState<'single' | 'bulk'>('single')
+    const [bulkQuantity, setBulkQuantity] = useState<number>(5)
 
     const { isPro, limit } = useUser()
 
@@ -122,6 +123,8 @@ export default function CPFGeneratorPage() {
                                         label="CPFs"
                                         limit={limit}
                                         isPro={isPro}
+                                        quantity={bulkQuantity}
+                                        onQuantityChange={setBulkQuantity}
                                     />
                                     <div className="flex items-center space-x-2 mt-4">
                                         <input
@@ -198,10 +201,20 @@ export default function CPFGeneratorPage() {
                             <CardContent className="pt-6">
                                 <ConfigurationManager
                                     toolId="cpf"
-                                    currentConfig={{ formatted }}
+                                    currentConfig={{
+                                        formatted,
+                                        activeTab,
+                                        quantity: bulkQuantity
+                                    }}
                                     onLoadConfig={(config) => {
                                         if (config.formatted !== undefined) {
                                             setFormatted(config.formatted)
+                                        }
+                                        if (config.activeTab) {
+                                            setActiveTab(config.activeTab)
+                                        }
+                                        if (config.quantity) {
+                                            setBulkQuantity(config.quantity)
                                         }
                                     }}
                                 />
