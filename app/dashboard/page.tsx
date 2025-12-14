@@ -175,7 +175,7 @@ export default function DashboardPage() {
                                         Exportar
                                     </Button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent>
+                                <DropdownMenuContent className="bg-[hsl(var(--popover))] text-[hsl(var(--popover-foreground))]">
                                     <DropdownMenuItem onClick={() => handleExport('csv')}>
                                         Exportar CSV
                                     </DropdownMenuItem>
