@@ -23,15 +23,20 @@ interface BulkGeneratorProps {
     label: string
     limit: number
     isPro: boolean
+    quantity?: number
+    onQuantityChange?: (quantity: number) => void
 }
 
-export function BulkGenerator({ generatorFn, label, limit, isPro }: BulkGeneratorProps) {
-    const [quantity, setQuantity] = useState<number>(5)
+export function BulkGenerator({ generatorFn, label, limit, isPro, quantity: propQuantity, onQuantityChange }: BulkGeneratorProps) {
+    const [internalQuantity, setInternalQuantity] = useState<number>(5)
     const [results, setResults] = useState<string[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [showUpgradeDialog, setShowUpgradeDialog] = useState(false)
     const [upgradeReason, setUpgradeReason] = useState<'export' | 'limit'>('limit')
+
+    const quantity = propQuantity !== undefined ? propQuantity : internalQuantity
+    const setQuantity = onQuantityChange || setInternalQuantity
 
     const handleGenerate = async () => {
         setError(null)
