@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Menu, X, User, LogOut, Settings, LayoutDashboard, History } from "lucide-react"
+import { Menu, X, User, LogOut, Settings, LayoutDashboard, History, LogIn } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -165,10 +165,10 @@ export function Navbar() {
                     ) : (
                         <>
                             <Button variant="ghost" size="sm" asChild>
-                                <Link href="/login">Entrar</Link>
-                            </Button>
-                            <Button size="sm" className="rounded-lg" asChild>
-                                <Link href="/register">Cadastrar</Link>
+                                <Link href="/login">
+                                    <LogIn className="mr-2 h-4 w-4" />
+                                    Entrar
+                                </Link>
                             </Button>
                         </>
                     )}
@@ -216,8 +216,10 @@ export function Navbar() {
                                 </>
                             ) : (
                                 <>
-                                    <Link href="/login" className="flex-1 flex items-center justify-center rounded-lg h-10 bg-secondary text-secondary-foreground text-sm font-bold">Entrar</Link>
-                                    <Link href="/register" className="flex-1 flex items-center justify-center rounded-lg h-10 bg-primary text-primary-foreground text-sm font-bold">Cadastrar</Link>
+                                    <Link href="/login" className="flex-1 flex items-center justify-center rounded-lg h-10 bg-secondary text-secondary-foreground text-sm font-bold">
+                                        <LogIn className="mr-2 h-4 w-4" />
+                                        Entrar
+                                    </Link>
                                 </>
                             )}
                         </div>

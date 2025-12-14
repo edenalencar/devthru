@@ -94,22 +94,6 @@ export default function ContactPage() {
                                 </a>
                             </CardContent>
                         </Card>
-
-                        <Card>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <MessageSquare className="h-5 w-5" />
-                                    Redes Sociais
-                                </CardTitle>
-                                <CardDescription>
-                                    Siga-nos para atualizações
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-2">
-                                <p>Twitter: <a href="#" className="text-primary hover:underline">@devthru</a></p>
-                                <p>GitHub: <a href="#" className="text-primary hover:underline">github.com/devthru</a></p>
-                            </CardContent>
-                        </Card>
                     </div>
 
                     <Card>
