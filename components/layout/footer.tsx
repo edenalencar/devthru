@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Github, Twitter } from "lucide-react"
 import { siteConfig } from "@/config/site"
 import Image from "next/image"
 import { DataGeneratedCounter } from "@/components/marketing/data-counter"
@@ -26,26 +25,6 @@ export function Footer() {
                             DevThru: Dados rápidos pra viagem. Plataforma moderna e ágil.
                         </p>
                         <DataGeneratedCounter />
-                        <div className="flex space-x-4">
-                            <Link
-                                href={siteConfig.links.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-muted-foreground hover:text-primary transition-colors"
-                            >
-                                <Github className="h-5 w-5" />
-                                <span className="sr-only">GitHub</span>
-                            </Link>
-                            <Link
-                                href={siteConfig.links.twitter}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-muted-foreground hover:text-primary transition-colors"
-                            >
-                                <Twitter className="h-5 w-5" />
-                                <span className="sr-only">Twitter</span>
-                            </Link>
-                        </div>
                     </div>
 
                     {/* Ferramentas */}
