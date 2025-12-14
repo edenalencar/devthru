@@ -68,7 +68,7 @@ export function Navbar() {
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-card/80 backdrop-blur-sm dark:bg-background/80">
-            <div className="flex h-16 items-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div className="flex h-16 items-center gap-8 px-4 sm:px-6 lg:px-8 w-full relative">
                 {/* Logo - Left */}
                 <div className="flex-shrink-0">
                     <Link href="/">
@@ -77,9 +77,9 @@ export function Navbar() {
                 </div>
 
                 {/* Desktop Navigation - Center */}
-                <nav className="hidden md:flex flex-1 justify-center">
-                    <div className="flex items-center gap-6">
-                        {navLinks.filter(link => link.href !== '/dashboard').map((link) => (
+                <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2">
+                    <div className="flex items-center gap-10">
+                        {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
@@ -92,7 +92,7 @@ export function Navbar() {
                 </nav>
 
                 {/* Actions - Right */}
-                <div className="hidden md:flex items-center gap-3">
+                <div className="hidden md:flex items-center gap-4 ml-auto">
                     <CommandMenu />
                     <ThemeToggle />
 
@@ -196,7 +196,7 @@ export function Navbar() {
             {mobileMenuOpen && (
                 <div className="border-t md:hidden bg-card dark:bg-background">
                     <div className="flex flex-col gap-4 p-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                        {navLinks.filter(link => link.href !== '/dashboard').map((link) => (
+                        {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}

@@ -24,7 +24,15 @@ export const siteConfig = {
 
 export const navLinks = [
     {
-        title: "Dashboard",
-        href: "/dashboard",
+        title: "Preços",
+        href: "/pricing",
+    },
+    {
+        title: "Contato",
+        href: "/contact",
+    },
+    {
+        title: "Atualizações",
+        href: "/updates",
     },
 ]
