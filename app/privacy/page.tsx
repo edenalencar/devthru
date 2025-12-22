@@ -40,6 +40,11 @@ export default function PrivacyPage() {
                         <li>Para mais informações sobre como o Google utiliza dados, consulte a <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Política de Privacidade e Termos do Google</a>.</li>
                     </ul>
 
+                    <h3 className="text-lg font-medium mt-6 mb-2">Microsoft Clarity</h3>
+                    <p className="mb-4">
+                        Temos parceria com o Microsoft Clarity e o Microsoft Advertising para capturar como você usa e interage com nosso site por meio de métricas comportamentais, mapas de calor e reprodução de sessões para melhorar e comercializar nossos produtos/serviços. Os dados de uso do site são capturados usando cookies primários e de terceiros e outras tecnologias de rastreamento para determinar a popularidade de produtos/serviços e atividade online. Além disso, usamos essas informações para otimização do site, fins de fraude/segurança e publicidade. Para mais informações sobre como a Microsoft coleta e usa seus dados, visite a <a href="https://privacy.microsoft.com/pt-br/privacystatement" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Declaração de Privacidade da Microsoft</a>.
+                    </p>
+
                     <h2 className="text-xl font-semibold mt-8 mb-4">3. Compartilhamento de dados</h2>
                     <p className="mb-4">
                         Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.

@@ -15,6 +15,9 @@ export default function TermsPage() {
                     <p className="mb-4">
                         Ao acessar ao site <strong>DevThru</strong>, concorda em cumprir estes termos de serviço, todas as leis e regulamentos aplicáveis ​​e concorda que é responsável pelo cumprimento de todas as leis locais aplicáveis. Se você não concordar com algum desses termos, está proibido de usar ou acessar este site. Os materiais contidos neste site são protegidos pelas leis de direitos autorais e marcas comerciais aplicáveis.
                     </p>
+                    <p className="mb-4">
+                        Ao utilizar nossos serviços, você também concorda com a coleta e uso de informações conforme estabelecido em nossa <a href="/privacy" className="text-primary hover:underline">Política de Privacidade</a>, incluindo o uso de ferramentas de análise de terceiros (como Microsoft Clarity e Google Analytics) para melhoria contínua da experiência do usuário e otimização do serviço.
+                    </p>
 
                     <h2 className="text-xl font-semibold mt-8 mb-4">2. Uso de Licença</h2>
                     <p className="mb-4">
