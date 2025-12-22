@@ -98,7 +98,7 @@ export default function RegisterPage() {
                             <div className="flex items-center justify-center mb-4">
                                 <Code2 className="h-12 w-12 text-primary" />
                             </div>
-                            <CardTitle className="text-2xl text-center">Criar conta</CardTitle>
+                            <h1 className="text-2xl font-semibold text-center tracking-tight">Criar conta</h1>
                             <CardDescription className="text-center">
                                 Comece a usar o DevThru gratuitamente
                             </CardDescription>

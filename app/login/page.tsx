@@ -71,7 +71,7 @@ function LoginForm() {
                             <div className="flex items-center justify-center mb-4">
                                 <Code2 className="h-12 w-12 text-primary" />
                             </div>
-                            <CardTitle className="text-2xl text-center">Bem-vindo de volta</CardTitle>
+                            <h1 className="text-2xl font-semibold text-center tracking-tight">Bem-vindo de volta</h1>
                             <CardDescription className="text-center">
                                 Entre com sua conta para continuar
                             </CardDescription>
