@@ -7,9 +7,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = siteConfig.url
 
     // Core static routes
+    // Core static routes
     const coreRoutes = [
         '',
         '/pricing',
+        '/contact',
+        '/about',
+        '/faq',
+        '/privacy',
+        '/terms',
+        '/updates',
+        '/login',
+        '/register',
+        '/forgot-password',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
