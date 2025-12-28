@@ -2,6 +2,7 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import Image from "next/image"
 import { DataGeneratedCounter } from "@/components/marketing/data-counter"
+import { Github } from "lucide-react"
 
 export function Footer() {
     return (
@@ -25,6 +26,17 @@ export function Footer() {
                             DevThru: Dados rápidos pra viagem. Plataforma moderna e ágil.
                         </p>
                         <DataGeneratedCounter />
+                        <div className="pt-2">
+                             <Link
+                                href="https://github.com/edenalencar/devthru"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                <Github className="size-5" />
+                                <span className="sr-only">GitHub</span>
+                            </Link>
+                        </div>
                     </div>
 
                     {/* Ferramentas */}
