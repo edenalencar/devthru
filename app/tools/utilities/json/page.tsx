@@ -3,7 +3,7 @@ import { JSONFormatterPage } from "./client"
 
 export const metadata: Metadata = {
     title: "JSON Formatter e Validator Online - Formatar e Minificar",
-    description: "Ferramenta para formatar, validar e minificar JSON online. Visualize erros de sintaxe e melhore a legibilidade.",
+    description: "Formate, valide e minifique código JSON online com nossa ferramenta gratuita. Visualize a estrutura, corrija erros de sintaxe e otimize seus dados para APIs.",
 }
 
 export default function Page() {

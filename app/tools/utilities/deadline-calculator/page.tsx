@@ -3,7 +3,7 @@ import { DeadlineCalculatorPage } from "./client"
 
 export const metadata: Metadata = {
     title: "Calculadora de Prazos Online - Dias Úteis e Corridos",
-    description: "Calcule a data final de um prazo considerando dias úteis, fins de semana e feriados nacionais brasileiros.",
+    description: "Calcule prazos com precisão considerando feriados nacionais e fins de semana. Ferramenta essencial para advogados, gerenciamento de projetos e planejamento.",
 }
 
 export default function Page() {

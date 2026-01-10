@@ -3,7 +3,7 @@ import { Base64Page } from "./client"
 
 export const metadata: Metadata = {
     title: "Codificador e Decodificador Base64 Online",
-    description: "Converta texto para Base64 e decodifique Base64 para texto. Ferramenta útil para desenvolvedores e transmissão de dados.",
+    description: "Codifique e decodifique textos e strings em Base64 instantaneamente. Ferramenta essencial para desenvolvedores que precisam transmitir dados binários em texto.",
 }
 
 export default function Page() {

@@ -3,7 +3,7 @@ import { PasswordGeneratorPage } from "./client"
 
 export const metadata: Metadata = {
     title: "Gerador de Senhas Fortes e Seguras - Segurança Online",
-    description: "Crie senhas fortes, aleatórias e seguras com letras, números e símbolos. Proteja suas contas.",
+    description: "Crie senhas fortes e invioláveis com nosso Gerador de Senhas gratuito. Personalize comprimento, símbolos e números para garantir a segurança máxima de suas contas.",
 }
 
 export default function Page() {
