@@ -3,7 +3,7 @@ import { PricingPage } from "./client"
 
 export const metadata: Metadata = {
     title: "Planos e Preços",
-    description: "Escolha o melhor plano para suas necessidades de desenvolvimento e produtividade.",
+    description: "Conheça os planos da DevHub Tools e desbloqueie ferramentas ilimitadas. Escolha a opção ideal para aumentar sua produtividade e escalar seus projetos de desenvolvimento.",
 }
 
 export default function Page() {

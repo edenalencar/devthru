@@ -3,7 +3,7 @@ import { BaseConverterPage } from "./client"
 
 export const metadata: Metadata = {
     title: "Conversor de Bases - Binário, Decimal, Hexadecimal",
-    description: "Converta números entre Decimal, Binário, Hexadecimal e Octal instantaneamente.",
+    description: "Converta números entre bases Decimal, Binária, Hexadecimal e Octal instantaneamente. Ferramenta essencial para estudantes e programadores que trabalham com bits.",
 }
 
 export default function Page() {

@@ -3,7 +3,7 @@ import { CNPJGeneratorPage } from "./client"
 
 export const metadata: Metadata = {
     title: "Gerador de CNPJ",
-    description: "Gere e valide CNPJs (Cadastro Nacional da Pessoa Jurídica) para testes. Suporte a CNPJ alfanumérico.",
+    description: "Gere números de CNPJ válidos com suporte a formato alfanumérico. Ferramenta essencial para testes de sistemas, validação de softwares e automação de QA.",
 }
 
 export default function Page() {

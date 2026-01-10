@@ -3,7 +3,7 @@ import { CertificateGeneratorPage } from "./client"
 
 export const metadata: Metadata = {
     title: "Gerador de Certificados Online - Cursos e Eventos",
-    description: "Crie certificados profissionais para cursos, workshops e eventos. Personalize e baixe em PDF gratuitamente.",
+    description: "Crie certificados personalizados para cursos e eventos em minutos. Gere arquivos PDF prontos para impressão com nosso gerador online gratuito e profissional.",
 }
 
 export default function Page() {

@@ -3,7 +3,7 @@ import { LoginPage } from "./client"
 
 export const metadata: Metadata = {
     title: "Login",
-    description: "Acesse sua conta no DevThru para usar todas as ferramentas de desenvolvimento.",
+    description: "Faça login no DevHub Tools para acessar seu painel e utilizar todas as nossas ferramentas de desenvolvimento. Gerencie seus projetos com eficiência e rapidez.",
 }
 
 export default function Page() {

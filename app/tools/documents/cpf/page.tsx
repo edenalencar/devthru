@@ -3,7 +3,7 @@ import { CPFGeneratorPage } from "./client"
 
 export const metadata: Metadata = {
     title: "Gerador de CPF",
-    description: "Gere e valide CPFs (Cadastro de Pessoas Físicas) para testes de software. Ferramenta online rápida e gratuita.",
+    description: "Gere números de CPF válidos para testes de software com nosso Gerador de CPF online. Ferramenta rápida, gratuita e essencial para desenvolvedores e testes de QA.",
 }
 
 export default function Page() {
