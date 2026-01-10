@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { RegexGeneratorPage } from "./client"
 
 export const metadata: Metadata = {
-    title: "Gerador e Testador de Regex Online - Expressões Regulares",
+    title: "Gerador e Testador de Regex - Validar Expressões Regulares",
     description: "Crie, teste e valide expressões regulares (Regex) em tempo real com nossa ferramenta online. Suporte completo a flags e exemplos práticos para desenvolvedores.",
 }
 
