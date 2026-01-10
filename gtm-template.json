@@ -145,6 +145,21 @@
                 "monitoringMetadata": {
                     "type": "MAP"
                 }
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "tagId": "6",
+                "name": "Conversion Linker",
+                "type": "cl",
+                "fingerprint": "6",
+                "firingTriggerId": [
+                    "1"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                }
             }
         ],
         "trigger": [
@@ -193,7 +208,7 @@
                     {
                         "type": "TEMPLATE",
                         "key": "value",
-                        "value": "G-XXXXXXXXXX"
+                        "value": "G-DT3FCS9F1Q"
                     }
                 ],
                 "fingerprint": "1"
