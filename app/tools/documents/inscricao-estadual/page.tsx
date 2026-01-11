@@ -1,16 +1,11 @@
-'use client'
+import { Metadata } from 'next'
+import { InscricaoEstadualPage } from './client'
 
-import { Navbar } from '@/components/layout/navbar'
-import { StateRegistrationGenerator } from '@/components/tools/state-registration-generator'
-
-export default function InscricaoEstadualPage() {
-    return (
-        <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">
-                <StateRegistrationGenerator />
-            </main>
-        </div>
-    )
+export const metadata: Metadata = {
+    title: 'Gerador de Inscrição Estadual (IE) - Validador Online Grátis',
+    description: 'Gere e valide Inscrição Estadual (IE) de todos os estados do Brasil (SP, RJ, MG, RS, etc). Ferramenta essencial para testes fiscais e tributários.',
 }
 
+export default function Page() {
+    return <InscricaoEstadualPage />
+}
