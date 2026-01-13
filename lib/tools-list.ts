@@ -11,6 +11,9 @@ export const tools: Tool[] = [
 
     // Business
     { slug: 'cnae-search', category: 'business' },
+    { slug: 'cte-generator', category: 'business' },
+    { slug: 'mdfe-generator', category: 'business' },
+    { slug: 'nfce-generator', category: 'business' },
     { slug: 'nfe-generator', category: 'business' },
 
     // Converters
