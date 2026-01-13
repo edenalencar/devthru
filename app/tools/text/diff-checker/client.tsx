@@ -7,6 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { diffChars, diffWords, diffLines, Change } from 'diff'
+import { ShareButtons } from "@/components/share-buttons"
+import { Label } from "@/components/ui/label"
 
 export function DiffCheckerPage() {
     const [original, setOriginal] = useState('')
@@ -161,6 +163,13 @@ export function DiffCheckerPage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> Ideal para desenvolvedores e revisores. Nenhuma informação é enviada para servidores externos.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Comparador de Texto"
+                                    description="Compare dois textos e visualize as diferenças."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

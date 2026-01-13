@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CopyButton } from "@/components/copy-button"
+import { ShareButtons } from "@/components/share-buttons"
 import { RefreshCw, FileText } from "lucide-react"
 import { toast } from "sonner"
 
@@ -259,14 +260,23 @@ export function NfeGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de Chave NF-e</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Chave NF-e cria chaves de acesso válidas para Nota Fiscal Eletrônica (modelo 55) e Nota Fiscal de Consumidor Eletrônica (modelo 65).
-                                A ferramenta calcula automaticamente o dígito verificador com base nos dados informados, seguindo o padrão oficial da SEFAZ.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> As chaves geradas são para fins de teste e desenvolvimento. Não possuem validade fiscal.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de Chave NF-e cria chaves de acesso válidas para Nota Fiscal Eletrônica (modelo 55) e Nota Fiscal de Consumidor Eletrônica (modelo 65).
+                                    A ferramenta calcula automaticamente o dígito verificador com base nos dados informados, seguindo o padrão oficial da SEFAZ.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> As chaves geradas são para fins de teste e desenvolvimento. Não possuem validade fiscal.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Chave NF-e"
+                                    description="Gere chaves de acesso de NF-e válidas para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

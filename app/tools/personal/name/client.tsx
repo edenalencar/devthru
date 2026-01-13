@@ -11,6 +11,7 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Navbar } from "@/components/layout/navbar"
+import { ShareButtons } from "@/components/share-buttons"
 
 const firstNamesMale = [
     "Miguel", "Arthur", "Gael", "Théo", "Heitor", "Ravi", "Davi", "Bernardo", "Noah", "Gabriel",
@@ -146,14 +147,23 @@ export function NameGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de Nomes</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Nomes cria nomes completos brasileiros aleatórios, combinando nomes e sobrenomes comuns.
-                                Você pode filtrar por gênero (masculino, feminino ou todos) para obter resultados mais específicos.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os nomes são gerados a partir de listas de nomes populares no Brasil e não representam pessoas reais.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de Nomes cria nomes completos brasileiros aleatórios, combinando nomes e sobrenomes comuns.
+                                    Você pode filtrar por gênero (masculino, feminino ou todos) para obter resultados mais específicos.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Os nomes são gerados a partir de listas de nomes populares no Brasil e não representam pessoas reais.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Nomes"
+                                    description="Gere nomes e sobrenomes brasileiros aleatórios para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

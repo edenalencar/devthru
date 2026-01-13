@@ -8,6 +8,7 @@ import { CopyButton } from "@/components/copy-button"
 import { Calculator } from "lucide-react"
 
 import { Navbar } from "@/components/layout/navbar"
+import { ShareButtons } from "@/components/share-buttons"
 
 
 export function BaseConverterPage() {
@@ -220,14 +221,23 @@ export function BaseConverterPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Conversor de Bases</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Conversor de Bases permite transformar números entre os sistemas Decimal (base 10), Binário (base 2), Hexadecimal (base 16) e Octal (base 8).
-                                A conversão é feita em tempo real, facilitando o trabalho de programadores e estudantes de ciência da computação.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> A ferramenta suporta números inteiros positivos.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Conversor de Bases permite transformar números entre os sistemas Decimal (base 10), Binário (base 2), Hexadecimal (base 16) e Octal (base 8).
+                                    A conversão é feita em tempo real, facilitando o trabalho de programadores e estudantes de ciência da computação.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> A ferramenta suporta números inteiros positivos.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Conversor de Bases"
+                                    description="Converta números entre Decimal, Binário, Hexadecimal e Octal."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

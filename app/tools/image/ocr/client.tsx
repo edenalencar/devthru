@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { Image as ImageIcon, Upload, FileText, Copy, Loader2 } from "lucide-react"
+import { ShareButtons } from "@/components/share-buttons"
+import { Label } from "@/components/ui/label"
 import Tesseract from "tesseract.js"
 import { toast } from "sonner"
 
@@ -170,6 +172,13 @@ export function OCRPage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> A precisão do reconhecimento depende da qualidade da imagem e da clareza do texto. O suporte atual inclui os idiomas Inglês e Português.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="OCR Online"
+                                    description="Extraia texto de imagens de forma simples e gratuita."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

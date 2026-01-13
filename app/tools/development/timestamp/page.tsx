@@ -1,9 +1,16 @@
 import { Metadata } from "next"
 import { TimestampConverterPage } from "./client"
 
+const title = "Conversor de Timestamp Online - Unix para Data e Vice-Versa"
+const description = "Converta timestamps Unix (segundos/milissegundos) para datas legíveis e vice-versa. Ferramenta essencial para desenvolvedores."
+
 export const metadata: Metadata = {
-    title: "Conversor de Timestamp Online - Unix para Data e Vice-Versa",
-    description: "Converta timestamps Unix (segundos/milissegundos) para datas legíveis e vice-versa. Ferramenta essencial para desenvolvedores.",
+    title,
+    description,
+    openGraph: {
+        title,
+        description,
+    },
 }
 
 export default function Page() {

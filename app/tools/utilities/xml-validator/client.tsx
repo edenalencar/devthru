@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { FileCode, CheckCircle2, XCircle } from "lucide-react"
+import { ShareButtons } from "@/components/share-buttons"
+import { Label } from "@/components/ui/label"
 
 export function XMLValidatorPage() {
     const [xml, setXml] = useState("")
@@ -135,6 +137,13 @@ export function XMLValidatorPage() {
                                 <strong>Nota:</strong> Esta ferramenta valida apenas a sintaxe (well-formedness) e não a conformidade com um Schema XSD ou DTD específico.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Validador de XML"
+                                description="Verifique a sintaxe e formatação de arquivos XML."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main >

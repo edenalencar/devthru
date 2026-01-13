@@ -11,6 +11,7 @@ import { CopyButton } from "@/components/copy-button"
 import { generateUUID, generateMultipleUUIDs } from "@/lib/utils/generators/uuid"
 import { Hash } from "lucide-react"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function UUIDGeneratorPage() {
     const [generatedUUIDs, setGeneratedUUIDs] = useState<string[]>([])
@@ -132,6 +133,13 @@ export function UUIDGeneratorPage() {
                                 UUIDs v4 têm uma probabilidade extremamente baixa de colisão, tornando-os ideais para
                                 identificadores únicos em bancos de dados, APIs e sistemas distribuídos.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de UUID"
+                                    description="Gere UUIDs v4 (Universally Unique Identifiers) online."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

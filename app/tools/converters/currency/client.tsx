@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button"
 import { Coins, ArrowRightLeft, AlertCircle } from "lucide-react"
 import { CopyButton } from "@/components/copy-button"
+import { ShareButtons } from "@/components/share-buttons"
 
 interface Currencies {
     [key: string]: string
@@ -211,14 +212,23 @@ export function CurrencyConverterPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Conversor de Moedas</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Conversor de Moedas utiliza taxas de câmbio atualizadas diariamente pelo Banco Central Europeu para realizar conversões precisas entre diversas moedas mundiais.
-                                Ideal para viajantes, compras internacionais e planejamento financeiro.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> As taxas são atualizadas uma vez por dia (dias úteis) e podem apresentar pequenas variações em relação ao câmbio comercial em tempo real.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Conversor de Moedas utiliza taxas de câmbio atualizadas diariamente pelo Banco Central Europeu para realizar conversões precisas entre diversas moedas mundiais.
+                                    Ideal para viajantes, compras internacionais e planejamento financeiro.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> As taxas são atualizadas uma vez por dia (dias úteis) e podem apresentar pequenas variações em relação ao câmbio comercial em tempo real.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Conversor de Moedas"
+                                    description="Converta valores entre diferentes moedas com taxas atualizadas."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

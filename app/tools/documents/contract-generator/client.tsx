@@ -13,6 +13,7 @@ import { FileText, Download, Copy, Check } from "lucide-react"
 import { CONTRACT_TEMPLATES } from "@/lib/templates/contracts"
 import jsPDF from "jspdf"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function ContractGeneratorPage() {
     const [selectedTemplateId, setSelectedTemplateId] = useState(CONTRACT_TEMPLATES[0].id)
@@ -147,14 +148,23 @@ export function ContractGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de Contratos</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Contratos oferece modelos pré-definidos para situações comuns, como prestação de serviços e locação.
-                                Preencha os campos variáveis e gere um documento PDF ou copie o texto para seu editor preferido.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Estes modelos servem como base e não substituem a consultoria jurídica de um advogado. Revise sempre o conteúdo antes de assinar.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de Contratos oferece modelos pré-definidos para situações comuns, como prestação de serviços e locação.
+                                    Preencha os campos variáveis e gere um documento PDF ou copie o texto para seu editor preferido.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Estes modelos servem como base e não substituem a consultoria jurídica de um advogado. Revise sempre o conteúdo antes de assinar.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Contratos"
+                                    description="Crie contratos personalizados a partir de modelos pré-definidos."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

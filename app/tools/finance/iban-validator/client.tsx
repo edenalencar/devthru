@@ -15,6 +15,7 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function IBANValidatorPage() {
     const [generatedIBAN, setGeneratedIBAN] = useState("")
@@ -209,15 +210,24 @@ export function IBANValidatorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o IBAN</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O IBAN (International Bank Account Number) é um padrão internacional para identificar contas bancárias.
-                                Ele consiste em um código de país, dígitos verificadores e o número da conta bancária nacional.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Esta ferramenta valida apenas a estrutura e o dígito verificador (checksum) do IBAN.
-                                Ela não verifica se a conta realmente existe no banco.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O IBAN (International Bank Account Number) é um padrão internacional para identificar contas bancárias.
+                                    Ele consiste em um código de país, dígitos verificadores e o número da conta bancária nacional.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Esta ferramenta valida apenas a estrutura e o dígito verificador (checksum) do IBAN.
+                                    Ela não verifica se a conta realmente existe no banco.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Validador de IBAN"
+                                    description="Gere e valide códigos IBAN (International Bank Account Number)."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

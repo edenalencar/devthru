@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Shield, RefreshCw, Copy, EyeOff } from "lucide-react"
 import { generateCPF, formatCPF } from "@/lib/utils/validators/cpf"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function LGPDDataPage() {
     const [activeTab, setActiveTab] = useState<'generate' | 'anonymize'>('generate')
@@ -196,6 +197,13 @@ export function LGPDDataPage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> A anonimização realizada é baseada em substituição de padrões (máscara) e não é irreversível em todos os contextos. Para dados críticos de produção, utilize técnicas avançadas de criptografia ou tokenização.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Ferramentas LGPD"
+                                    description="Gere dados fictícios ou anonimize dados sensíveis para LGPD."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

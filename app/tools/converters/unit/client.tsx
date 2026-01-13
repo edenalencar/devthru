@@ -64,6 +64,7 @@ const categories = {
 }
 
 import { Navbar } from "@/components/layout/navbar"
+import { ShareButtons } from "@/components/share-buttons"
 
 
 export function UnitConverterPage() {
@@ -230,14 +231,23 @@ export function UnitConverterPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Conversor de Unidades</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Conversor de Unidades é uma ferramenta versátil para transformar medidas de Comprimento, Peso, Temperatura, Área e Volume.
-                                Selecione a categoria desejada, as unidades de origem e destino, e obtenha o resultado instantaneamente.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os cálculos utilizam fatores de conversão padrão internacional.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Conversor de Unidades é uma ferramenta versátil para transformar medidas de Comprimento, Peso, Temperatura, Área e Volume.
+                                    Selecione a categoria desejada, as unidades de origem e destino, e obtenha o resultado instantaneamente.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Os cálculos utilizam fatores de conversão padrão internacional.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Conversor de Unidades"
+                                    description="Converta medidas de Comprimento, Peso, Temperatura, Área e Volume."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

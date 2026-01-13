@@ -10,6 +10,7 @@ import { CopyButton } from "@/components/copy-button"
 import { encodeBase64, decodeBase64 } from "@/lib/utils/generators/base64"
 import { Binary } from "lucide-react"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function Base64Page() {
     const [encodeInput, setEncodeInput] = useState("")
@@ -165,6 +166,13 @@ export function Base64Page() {
                                 facilmente revertida. Não use para proteger informações sensíveis.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Base64 Encoder/Decoder"
+                                description="Codifique e decodifique Base64 para texto e vice-versa."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

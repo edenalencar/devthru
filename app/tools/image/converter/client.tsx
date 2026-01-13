@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label"
 import { Image as ImageIcon, Upload, Download, RefreshCw, Loader2 } from "lucide-react"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 type ImageFormat = "png" | "jpeg" | "webp"
 
@@ -202,6 +203,13 @@ export function ImageConverterPage() {
                                 <strong>Nota:</strong> A qualidade da conversão pode variar dependendo do formato de origem e destino. O formato WEBP geralmente oferece melhor compressão mantendo a qualidade.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Conversor de Imagem"
+                                description="Converta imagens entre PNG, JPEG e WEBP."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

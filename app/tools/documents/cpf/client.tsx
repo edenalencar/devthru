@@ -11,6 +11,7 @@ import { ToolResult } from "@/components/tools/tool-result"
 import { generateCPF, validateCPF, formatCPF } from "@/lib/utils/validators/cpf"
 import { FileText, CheckCircle2, XCircle } from "lucide-react"
 
+import { ShareButtons } from "@/components/share-buttons"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { useUser } from "@/lib/hooks/use-user"
@@ -227,15 +228,24 @@ export function CPFGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de CPF</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O CPF (Cadastro de Pessoas Físicas) é um documento brasileiro usado para identificação fiscal.
-                                Esta ferramenta gera CPFs válidos usando o algoritmo oficial de validação.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os CPFs gerados são válidos apenas do ponto de vista algorítmico.
-                                Eles não estão registrados na Receita Federal e devem ser usados apenas para testes e desenvolvimento.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O CPF (Cadastro de Pessoas Físicas) é um documento brasileiro usado para identificação fiscal.
+                                    Esta ferramenta gera CPFs válidos usando o algoritmo oficial de validação.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Os CPFs gerados são válidos apenas do ponto de vista algorítmico.
+                                    Eles não estão registrados na Receita Federal e devem ser usados apenas para testes e desenvolvimento.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de CPF"
+                                    description="Gere e valide números de CPF para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

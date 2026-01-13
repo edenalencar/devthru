@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Car, ArrowRightLeft, RefreshCw, Copy } from "lucide-react"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function LicensePlatePage() {
     const [generatedPlate, setGeneratedPlate] = useState("")
@@ -222,14 +223,23 @@ export function LicensePlatePage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de Placas</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Placas permite criar visualizações de placas de veículos nos padrões Mercosul (atual) e Cinza (antigo).
-                                Além disso, a ferramenta oferece um conversor que mostra como uma placa do modelo antigo ficaria no novo padrão Mercosul.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> As placas geradas são apenas ilustrativas e não possuem validade legal.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de Placas permite criar visualizações de placas de veículos nos padrões Mercosul (atual) e Cinza (antigo).
+                                    Além disso, a ferramenta oferece um conversor que mostra como uma placa do modelo antigo ficaria no novo padrão Mercosul.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> As placas geradas são apenas ilustrativas e não possuem validade legal.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Placas"
+                                    description="Gere e converta placas de veículos (Mercosul e Antiga)."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

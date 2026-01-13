@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { convertCase } from '@/lib/utils/text'
 import { Copy, Check, RefreshCw } from 'lucide-react'
+import { ShareButtons } from "@/components/share-buttons"
+import { Label } from "@/components/ui/label"
 import { toast } from 'sonner'
 
 export function CaseConverterPage() {
@@ -107,6 +109,13 @@ export function CaseConverterPage() {
                                         <p className="text-sm text-muted-foreground mt-4">
                                             <strong>Nota:</strong> O processamento é feito inteiramente no seu navegador, garantindo que seus textos permaneçam privados e seguros.
                                         </p>
+                                        <div className="pt-4 border-t mt-4">
+                                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                            <ShareButtons
+                                                title="Conversor de Case"
+                                                description="Transforme textos para UPPERCASE, lowercase, CamelCase e mais."
+                                            />
+                                        </div>
                                     </CardContent>
                                 </Card>
                             </div>

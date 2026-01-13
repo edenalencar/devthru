@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { useUser } from "@/lib/hooks/use-user"
+import { ShareButtons } from "@/components/share-buttons"
 
 type FieldType = "string" | "number" | "boolean" | "email" | "date" | "name" | "uuid"
 
@@ -240,6 +241,14 @@ export function MockDataGeneratorPage() {
                                 <strong>Nota:</strong> Os dados gerados são aleatórios e não correspondem a informações reais de pessoas ou entidades.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Gerador de Dados Mock"
+                                description="Gere dados JSON aleatórios para testes e protótipos."
+                            />
+                        </div>
+
                     </Card>
                 </div>
             </main>

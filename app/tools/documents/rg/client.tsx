@@ -9,6 +9,7 @@ import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
+import { ShareButtons } from "@/components/share-buttons"
 import { Navbar } from "@/components/layout/navbar"
 import { getPlanLimitMessage } from "@/lib/constants"
 
@@ -136,13 +137,22 @@ export function RGGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de RG</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de RG cria números de Registro Geral formatados. Como o padrão de RG varia entre os estados brasileiros, esta ferramenta gera um formato comum aceito na maioria dos sistemas de validação.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os números são gerados aleatoriamente e não possuem vínculo com a base de dados oficial dos órgãos emissores.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de RG cria números de Registro Geral formatados. Como o padrão de RG varia entre os estados brasileiros, esta ferramenta gera um formato comum aceito na maioria dos sistemas de validação.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Os números são gerados aleatoriamente e não possuem vínculo com a base de dados oficial dos órgãos emissores.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de RG"
+                                    description="Gere números de RG válidos para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>
