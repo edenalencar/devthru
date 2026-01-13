@@ -22,6 +22,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "13 de Janeiro de 2026",
+        title: "Novos Geradores de Documentos Fiscais",
+        description: "Lançamento de ferramentas para geração de chaves de acesso válidas de CT-e (Modelo 57), MDF-e (Modelo 58) e NFC-e (Modelo 65) para testes de integração.",
+        type: "feature",
+        version: "1.3.0"
+    },
+    {
         date: "07 de Dezembro de 2025",
         title: "Melhoria de Segurança Crítica",
         description: "Implementação de proteção contra vulnerabilidade 'React2Shell' (CVE-2025-55182) no Next.js, garantindo maior integridade e segurança para a aplicação.",
