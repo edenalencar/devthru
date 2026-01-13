@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-<<<<<<< HEAD
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -37,7 +36,4 @@ export default function Page() {
             <NfceGeneratorPage />
         </>
     )
-=======
-    return <NfceGeneratorPage />
->>>>>>> origin/master
 }
