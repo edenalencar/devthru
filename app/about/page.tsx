@@ -5,6 +5,12 @@ import { Footer } from "@/components/layout/footer"
 import { Shield, Zap, Palette } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Sobre o DevThru - Nossa Missão, Equipe e Ferramentas Gratuitas",
+    description: "Conheça o DevThru, uma plataforma de ferramentas para desenvolvedores criada para ser rápida, segura e sem anúncios. Saiba mais sobre nossa missão.",
+}
 
 export default function AboutPage() {
     return (
