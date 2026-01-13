@@ -9,6 +9,8 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Navbar } from "@/components/layout/navbar"
+import { ShareButtons } from "@/components/share-buttons"
+import { Label } from "@/components/ui/label"
 
 const streetTypes = ["Rua", "Avenida", "Travessa", "Alameda", "Praça", "Rodovia"]
 const streetNames = [
@@ -125,6 +127,13 @@ export function AddressGeneratorPage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> Os endereços gerados são aleatórios e não correspondem necessariamente a locais reais. O CEP é gerado com um formato válido, mas pode não existir nos Correios.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Endereços"
+                                    description="Gere endereços brasileiros fictícios completos."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

@@ -11,6 +11,7 @@ import { Award, Download } from "lucide-react"
 import { toPng } from "html-to-image"
 import { jsPDF } from "jspdf"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function CertificateGeneratorPage() {
     const [recipientName, setRecipientName] = useState("Nome do Aluno")
@@ -168,14 +169,23 @@ export function CertificateGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de Certificados</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Certificados permite criar documentos profissionais para cursos, workshops e eventos.
-                                Você pode personalizar o nome do aluno, curso, instrutor e organização, gerando um arquivo PDF pronto para impressão.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> O certificado gerado é um modelo visual e não possui validação acadêmica oficial, a menos que emitido por uma instituição credenciada.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de Certificados permite criar documentos profissionais para cursos, workshops e eventos.
+                                    Você pode personalizar o nome do aluno, curso, instrutor e organização, gerando um arquivo PDF pronto para impressão.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> O certificado gerado é um modelo visual e não possui validação acadêmica oficial, a menos que emitido por uma instituição credenciada.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Certificados"
+                                    description="Crie certificados profissionais personalizados em PDF."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

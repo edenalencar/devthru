@@ -11,6 +11,7 @@ import { CopyButton } from "@/components/copy-button"
 import { generatePassword, calculatePasswordStrength, type PasswordOptions } from "@/lib/utils/generators/password"
 import { Key, Shield } from "lucide-react"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function PasswordGeneratorPage() {
     const [password, setPassword] = useState("")
@@ -210,6 +211,13 @@ export function PasswordGeneratorPage() {
                                 <li>Ative autenticação de dois fatores quando disponível</li>
                             </ul>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Gerador de Senhas"
+                                description="Crie senhas fortes e seguras personalizadas."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

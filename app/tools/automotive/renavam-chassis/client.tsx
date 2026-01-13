@@ -5,9 +5,11 @@ import { Navbar } from "@/components/layout/navbar"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Shield, RefreshCw, Copy } from "lucide-react"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function RenavamChassisPage() {
     const [renavam, setRenavam] = useState("")
@@ -221,14 +223,23 @@ export function RenavamChassisPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de RENAVAM e Chassis</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                Esta ferramenta gera números válidos de RENAVAM (Registro Nacional de Veículos Automotores) e Chassis (VIN - Vehicle Identification Number) para fins de teste de software.
-                                Os algoritmos utilizados seguem as regras oficiais de validação de dígitos verificadores.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os dados gerados são matematicamente válidos mas fictícios, não correspondendo a veículos reais.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    Esta ferramenta gera números válidos de RENAVAM (Registro Nacional de Veículos Automotores) e Chassis (VIN - Vehicle Identification Number) para fins de teste de software.
+                                    Os algoritmos utilizados seguem as regras oficiais de validação de dígitos verificadores.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Os dados gerados são matematicamente válidos mas fictícios, não correspondendo a veículos reais.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de RENAVAM e Chassis"
+                                    description="Gere códigos de RENAVAM e Chassis (VIN) para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

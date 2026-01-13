@@ -12,6 +12,7 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Navbar } from "@/components/layout/navbar"
+import { ShareButtons } from "@/components/share-buttons"
 
 const domains = [
     "gmail.com", "outlook.com", "yahoo.com", "hotmail.com", "uol.com.br", "bol.com.br", "terra.com.br", "icloud.com"
@@ -146,6 +147,13 @@ export function EmailGeneratorPage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> Estes emails são fictícios e não possuem caixa de entrada real. Para emails temporários funcionais (que recebem mensagens), utilize serviços específicos de &quot;temp mail&quot;.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Email"
+                                    description="Gere endereços de email temporários ou fictícios."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

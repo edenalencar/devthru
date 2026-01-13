@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CopyButton } from "@/components/copy-button"
+import { ShareButtons } from "@/components/share-buttons"
 import { RefreshCw, FileText } from "lucide-react"
 import { toast } from "sonner"
 
@@ -240,14 +241,23 @@ export function MdfeGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de Chave MDF-e</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Chave MDF-e cria chaves de acesso válidas para Manifesto Eletrônico de Documentos Fiscais (modelo 58).
-                                A ferramenta utiliza o algoritmo padrão de módulo 11 para calcular o dígito verificador.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> As chaves geradas são para fins de teste e desenvolvimento. Não possuem validade fiscal na SEFAZ.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de Chave MDF-e cria chaves de acesso válidas para Manifesto Eletrônico de Documentos Fiscais (modelo 58).
+                                    A ferramenta utiliza o algoritmo padrão de módulo 11 para calcular o dígito verificador.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> As chaves geradas são para fins de teste e desenvolvimento. Não possuem validade fiscal na SEFAZ.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Chave MDF-e"
+                                    description="Gere chaves de acesso de MDF-e válidas para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

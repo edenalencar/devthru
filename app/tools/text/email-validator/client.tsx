@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Mail, CheckCircle2, XCircle, AlertTriangle } from "lucide-react"
+import { ShareButtons } from "@/components/share-buttons"
 
 // Common disposable email domains
 const DISPOSABLE_DOMAINS = [
@@ -161,6 +162,13 @@ export function EmailValidatorPage() {
                                 <strong>Nota:</strong> Esta ferramenta realiza validações de sintaxe e domínio, mas não envia emails de teste para verificar a existência da caixa de entrada.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Validador de Email"
+                                description="Verifique se um email é válido e não é temporário."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

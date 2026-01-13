@@ -27,6 +27,9 @@ const urls = [
 
     // Tools - Business
     "https://devthru.com/tools/business/cnae-search",
+    "https://devthru.com/tools/business/cte-generator",
+    "https://devthru.com/tools/business/mdfe-generator",
+    "https://devthru.com/tools/business/nfce-generator",
     "https://devthru.com/tools/business/nfe-generator",
 
     // Tools - Converters
@@ -84,7 +87,8 @@ const options = {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'Content-Length': data.length
+        'Content-Length': Buffer.byteLength(data),
+        'User-Agent': 'Node.js/HTTP-Client'
     }
 };
 

@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { CreditCard, RefreshCw, Copy } from "lucide-react"
 import { generateCreditCard, generateExpiryDate, generateCVV, CARD_BRANDS, CardBrand } from "@/lib/utils/generators/credit-card"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function CreditCardGeneratorPage() {
     const [brand, setBrand] = useState<CardBrand>('visa')
@@ -157,14 +158,23 @@ export function CreditCardGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de Cartão de Crédito</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Cartão de Crédito cria números de cartão válidos matematicamente (respeitando o algoritmo de Luhn) para diversas bandeiras como Visa, Mastercard e Amex.
-                                É essencial para testar fluxos de checkout e validação de formulários.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os números gerados são válidos apenas para testes de validação de formato. Eles não funcionam para compras reais.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de Cartão de Crédito cria números de cartão válidos matematicamente (respeitando o algoritmo de Luhn) para diversas bandeiras como Visa, Mastercard e Amex.
+                                    É essencial para testar fluxos de checkout e validação de formulários.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Os números gerados são válidos apenas para testes de validação de formato. Eles não funcionam para compras reais.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Cartão de Crédito"
+                                    description="Gere cartões de crédito fictícios válidos para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

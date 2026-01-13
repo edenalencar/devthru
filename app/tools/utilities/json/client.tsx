@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { validateJSON, formatJSON, minifyJSON, getJSONStats } from "@/lib/utils/generators/json"
 import { Braces, CheckCircle2, XCircle } from "lucide-react"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function JSONFormatterPage() {
     const [input, setInput] = useState("")
@@ -199,6 +200,13 @@ export function JSONFormatterPage() {
                                 <strong>Minificação</strong> remove espaços em branco para reduzir o tamanho.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="JSON Formatter"
+                                description="Formate, valide e minifique JSON facilmente."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

@@ -12,6 +12,7 @@ import { RefreshCw, CheckCircle2, XCircle } from 'lucide-react'
 import { generateIE, validateIE, formatIE, IE_STATES } from '@/lib/utils/validators/inscricao-estadual'
 import { useUser } from '@/lib/hooks/use-user'
 import { getPlanLimitMessage } from "@/lib/constants"
+import { ShareButtons } from "@/components/share-buttons"
 
 interface StateRegistrationGeneratorProps {
     defaultState?: string
@@ -232,6 +233,13 @@ export function StateRegistrationGenerator({ defaultState }: StateRegistrationGe
                         <strong>Atenção:</strong> As IEs geradas são válidas apenas para testes e desenvolvimento.
                         Não utilize em produção ou para fins fraudulentos.
                     </p>
+                    <div className="pt-4 border-t">
+                        <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                        <ShareButtons
+                            title="Gerador de Inscrição Estadual"
+                            description="Gere e valide números de Inscrição Estadual (IE) de todos os estados."
+                        />
+                    </div>
                 </CardContent>
             </Card>
         </div>

@@ -11,6 +11,7 @@ import { Search, Loader2, Briefcase, Star } from "lucide-react"
 import { toast } from "sonner"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { Badge } from "@/components/ui/badge"
+import { ShareButtons } from "@/components/share-buttons"
 
 interface Cnae {
     id: string
@@ -188,14 +189,23 @@ export function CnaeSearchPage() {
                         <CardHeader>
                             <CardTitle>Sobre a Busca de CNAE</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                A Busca de CNAE permite encontrar códigos da Classificação Nacional de Atividades Econômicas (CNAE) utilizados para identificar as atividades exercidas por empresas.
-                                A ferramenta consulta a base de dados oficial do IBGE para fornecer informações atualizadas.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> A escolha correta do CNAE é fundamental para a tributação e enquadramento legal da sua empresa.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    A Busca de CNAE permite encontrar códigos da Classificação Nacional de Atividades Econômicas (CNAE) utilizados para identificar as atividades exercidas por empresas.
+                                    A ferramenta consulta a base de dados oficial do IBGE para fornecer informações atualizadas.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> A escolha correta do CNAE é fundamental para a tributação e enquadramento legal da sua empresa.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Busca de CNAE"
+                                    description="Pesquise códigos CNAE atualizados para sua empresa."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

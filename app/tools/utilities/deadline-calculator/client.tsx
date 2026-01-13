@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Calendar, ArrowRight, CalendarDays } from "lucide-react"
 import { addDays, addBusinessDays, format, isWeekend, isSameDay } from "date-fns"
+import { ShareButtons } from "@/components/share-buttons"
 import { ptBR } from "date-fns/locale"
 
 // Common Brazilian Holidays (Fixed dates for simplicity, moving holidays require more logic)
@@ -176,6 +177,13 @@ export function DeadlineCalculatorPage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> Os feriados considerados são os nacionais fixos. Feriados móveis (como Carnaval e Páscoa) ou regionais não são incluídos automaticamente.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Calculadora de Prazo"
+                                    description="Calcule datas finais considerando dias úteis e feriados."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

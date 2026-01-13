@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Clock, Pause, Play } from "lucide-react"
 import { CopyButton } from "@/components/copy-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function TimestampConverterPage() {
     const [currentTimestamp, setCurrentTimestamp] = useState<number>(Math.floor(Date.now() / 1000))
@@ -180,6 +181,13 @@ export function TimestampConverterPage() {
                                 <strong>Nota:</strong> A conversão utiliza o fuso horário local do seu navegador.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Conversor de Timestamp"
+                                description="Converta timestamps Unix para data legível e vice-versa."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

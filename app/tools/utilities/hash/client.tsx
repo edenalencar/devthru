@@ -11,6 +11,7 @@ import { CopyButton } from "@/components/copy-button"
 import { generateAllHashes, type HashAlgorithm } from "@/lib/utils/generators/hash"
 import { Binary } from "lucide-react"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function HashGeneratorPage() {
     const [input, setInput] = useState("")
@@ -134,6 +135,13 @@ export function HashGeneratorPage() {
                                 <strong>SHA-256</strong> e <strong>SHA-512</strong> são considerados seguros para uso em produção.
                                 <strong>SHA-1</strong> está obsoleto e não deve ser usado para segurança.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Hash"
+                                    description="Gere hashes SHA-1, SHA-256 e SHA-512 online."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Terminal, XCircle } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { ShareButtons } from "@/components/share-buttons"
+import { Label } from "@/components/ui/label"
 
 const COMMON_PATTERNS = [
     { name: "Email", pattern: "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$" },
@@ -204,6 +206,13 @@ export function RegexGeneratorPage() {
                                 <strong>Nota:</strong> As expressões regulares são processadas pelo motor JavaScript do seu navegador.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Gerador de Regex"
+                                description="Construa, teste e valide expressões regulares em tempo real."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

@@ -13,5 +13,31 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
+<<<<<<< HEAD
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Gerador de Chave MDF-e",
+        "description": "Gere chaves de acesso de Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+        }
+    }
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <MdfeGeneratorPage />
+        </>
+    )
+=======
     return <MdfeGeneratorPage />
+>>>>>>> origin/master
 }

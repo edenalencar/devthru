@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Image as ImageIcon, Download, RefreshCw } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function PlaceholderGeneratorPage() {
     const [width, setWidth] = useState<number>(600)
@@ -216,6 +217,13 @@ export function PlaceholderGeneratorPage() {
                                 <strong>Nota:</strong> Você pode baixar a imagem gerada em formatos PNG, JPG ou SVG. O formato SVG é ideal para escalabilidade sem perda de qualidade.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Gerador de Placeholder"
+                                description="Crie imagens placeholder personalizadas para seus projetos."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

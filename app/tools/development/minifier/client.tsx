@@ -11,6 +11,7 @@ import { CopyButton } from "@/components/copy-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ShareButtons } from "@/components/share-buttons"
 
 type Language = "css" | "json" | "sql" | "html" | "javascript"
 
@@ -217,6 +218,13 @@ export function MinifierPage() {
                                     />
                                 </div>
                             </CardContent>
+                            <div className="pt-4 border-t px-6 pb-6">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Minificador de Código"
+                                    description="Minifique e formate código CSS, JSON, SQL, HTML e JS."
+                                />
+                            </div>
                         </Card>
 
                         {error && (

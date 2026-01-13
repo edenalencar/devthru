@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { generateQRCode, type QRCodeSize } from "@/lib/utils/generators/qrcode"
 import { QrCode, Download } from "lucide-react"
 import { toast } from "sonner"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function QRCodePage() {
     const [input, setInput] = useState("")
@@ -175,6 +176,13 @@ export function QRCodePage() {
                                 <li>Pagamentos (PIX, Bitcoin)</li>
                                 <li>Autenticação de dois fatores</li>
                             </ul>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de QR Code"
+                                    description="Gere QR Codes personalizados para links, textos e mais."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

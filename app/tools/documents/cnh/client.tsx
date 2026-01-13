@@ -3,11 +3,13 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
 import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
+import { ShareButtons } from "@/components/share-buttons"
 import { Navbar } from "@/components/layout/navbar"
 import { getPlanLimitMessage } from "@/lib/constants"
 
@@ -127,14 +129,23 @@ export function CNHGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de CNH</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de CNH cria números de Carteira Nacional de Habilitação válidos matematicamente para fins de teste de software.
-                                Ele utiliza o algoritmo oficial para calcular os dígitos verificadores.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os números gerados são fictícios e não correspondem a documentos reais. O uso é estritamente para desenvolvimento e testes.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de CNH cria números de Carteira Nacional de Habilitação válidos matematicamente para fins de teste de software.
+                                    Ele utiliza o algoritmo oficial para calcular os dígitos verificadores.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Os números gerados são fictícios e não correspondem a documentos reais. O uso é estritamente para desenvolvimento e testes.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de CNH"
+                                    description="Gere números de CNH válidos para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

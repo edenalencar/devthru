@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button"
 import { Calculator, Car, Calendar, Fuel, Hash, Search, Loader2 } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { ShareButtons } from "@/components/share-buttons"
 
 // Interfaces for Parallelum API
 interface Brand {
@@ -348,14 +349,23 @@ export function FipePage() {
                         <CardHeader>
                             <CardTitle>Sobre a Tabela FIPE</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                A Tabela FIPE expressa preços médios de veículos no mercado nacional, servindo apenas como um parâmetro para negociações ou avaliações.
-                                Os preços efetivamente praticados variam em função da região, conservação, cor, acessórios ou qualquer outro fator que possa influenciar as condições de oferta e procura por um veículo específico.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os dados são fornecidos pela Fundação Instituto de Pesquisas Econômicas (FIPE).
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    A Tabela FIPE expressa preços médios de veículos no mercado nacional, servindo apenas como um parâmetro para negociações ou avaliações.
+                                    Os preços efetivamente praticados variam em função da região, conservação, cor, acessórios ou qualquer outro fator que possa influenciar as condições de oferta e procura por um veículo específico.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Os dados são fornecidos pela Fundação Instituto de Pesquisas Econômicas (FIPE).
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Tabela FIPE"
+                                    description="Consulte a Tabela FIPE atualizada para veículos."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

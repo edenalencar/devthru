@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Image as ImageIcon, Upload, Download, RefreshCw } from "lucide-react"
 import JSZip from "jszip"
 import { CopyButton } from "@/components/copy-button"
+import { ShareButtons } from "@/components/share-buttons"
 
 const FAVICON_SIZES = [16, 32, 180, 192, 512]
 
@@ -216,6 +217,13 @@ export function FaviconGeneratorPage() {
                                 <strong>Nota:</strong> Para melhores resultados, utilize uma imagem quadrada de alta resolução (pelo menos 512x512 pixels). O gerador suporta formatos PNG, JPG e WEBP.
                             </p>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Gerador de Favicon"
+                                description="Gere ícones e favicons para seu site em todos os tamanhos."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

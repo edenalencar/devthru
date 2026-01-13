@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Barcode, Download, Printer } from "lucide-react"
 import { toPng } from "html-to-image"
 import jsPDF from "jspdf"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function BoletoGeneratorPage() {
     const [beneficiary, setBeneficiary] = useState("Empresa Exemplo LTDA")
@@ -241,14 +242,23 @@ export function BoletoGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de Boleto</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Boleto cria uma representação visual de um boleto bancário brasileiro para fins de teste de interface e impressão.
-                                Ele gera um código de barras fictício e formata o documento conforme os padrões bancários.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Este boleto é puramente ilustrativo (mock) e não possui valor financeiro nem registro bancário. Não tente pagá-lo.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de Boleto cria uma representação visual de um boleto bancário brasileiro para fins de teste de interface e impressão.
+                                    Ele gera um código de barras fictício e formata o documento conforme os padrões bancários.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Este boleto é puramente ilustrativo (mock) e não possui valor financeiro nem registro bancário. Não tente pagá-lo.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Boleto (Mock)"
+                                    description="Gere boletos fictícios para testes de interface e impressão."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Mail, Copy, Code } from "lucide-react"
+import { ShareButtons } from "@/components/share-buttons"
 import { toast } from "sonner"
 
 export function EmailSignaturePage() {
@@ -195,6 +196,13 @@ export function EmailSignaturePage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> As imagens devem estar hospedadas publicamente para aparecerem corretamente nos emails dos destinatários.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Assinatura"
+                                    description="Crie assinaturas de email profissionais e gratuitas."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

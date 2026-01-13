@@ -9,6 +9,8 @@ import { ToolResult } from '@/components/tools/tool-result'
 import { RefreshCw, Copy, Check } from 'lucide-react'
 import { generatePerson, Person } from '@/lib/utils/validators/person'
 import { toast } from 'sonner'
+import { ShareButtons } from "@/components/share-buttons"
+import { Label } from "@/components/ui/label"
 
 const Field = ({ label, value }: { label: string; value: string }) => {
     const [hasCopied, setHasCopied] = useState(false)
@@ -212,6 +214,13 @@ export function PersonGeneratorPage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> Todos os documentos gerados (CPF, RG) são válidos algoritmicamente, mas não pertencem a pessoas reais. O uso é estritamente para fins de teste e desenvolvimento.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Pessoa"
+                                    description="Gere dados pessoais completos para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

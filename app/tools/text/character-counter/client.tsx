@@ -6,6 +6,8 @@ import { Navbar } from '@/components/layout/navbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { countText } from '@/lib/utils/text'
+import { ShareButtons } from "@/components/share-buttons"
+import { Label } from "@/components/ui/label"
 
 export function CharacterCounterPage() {
     const [text, setText] = useState('')
@@ -82,6 +84,13 @@ export function CharacterCounterPage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> A contagem é realizada localmente no seu navegador para garantir privacidade e velocidade.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Contador de Caracteres"
+                                    description="Conte caracteres, palavras, linhas e parágrafos do seu texto."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

@@ -12,6 +12,7 @@ import { ToolResult } from "@/components/tools/tool-result"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { RefreshCw, CheckCircle2, XCircle } from "lucide-react"
 import { generateTituloEleitor, validateTituloEleitor, formatTituloEleitor } from "@/lib/utils/validators/titulo-eleitor"
+import { ShareButtons } from "@/components/share-buttons"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 
@@ -234,21 +235,30 @@ export function TituloEleitorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Título de Eleitor</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-3 text-sm text-muted-foreground">
-                            <p>
-                                O Título de Eleitor é o documento que comprova que o cidadão está inscrito na Justiça Eleitoral do Brasil
-                                e está apto a exercer o direito de voto.
-                            </p>
-                            <p>
-                                O número é composto por 12 dígitos, sendo:
-                                <br />- 8 dígitos sequenciais
-                                <br />- 2 dígitos para o código do estado (UF)
-                                <br />- 2 dígitos verificadores
-                            </p>
-                            <p className="text-amber-600 dark:text-amber-400">
-                                <strong>Atenção:</strong> Os números gerados são válidos apenas para testes e desenvolvimento.
-                                Não correspondem a documentos reais de cidadãos.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="space-y-3 text-sm text-muted-foreground">
+                                <p>
+                                    O Título de Eleitor é o documento que comprova que o cidadão está inscrito na Justiça Eleitoral do Brasil
+                                    e está apto a exercer o direito de voto.
+                                </p>
+                                <p>
+                                    O número é composto por 12 dígitos, sendo:
+                                    <br />- 8 dígitos sequenciais
+                                    <br />- 2 dígitos para o código do estado (UF)
+                                    <br />- 2 dígitos verificadores
+                                </p>
+                                <p className="text-amber-600 dark:text-amber-400">
+                                    <strong>Atenção:</strong> Os números gerados são válidos apenas para testes e desenvolvimento.
+                                    Não correspondem a documentos reais de cidadãos.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Título de Eleitor"
+                                    description="Gere e valide números de Título de Eleitor para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

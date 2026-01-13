@@ -12,6 +12,7 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Navbar } from "@/components/layout/navbar"
+import { ShareButtons } from "@/components/share-buttons"
 
 const ddds = [
     11, 12, 13, 14, 15, 16, 17, 18, 19, // SP
@@ -173,6 +174,13 @@ export function PhoneGeneratorPage() {
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> Os números são gerados aleatoriamente seguindo o padrão brasileiro, mas não há garantia de que sejam linhas ativas ou inexistentes.
                             </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de Telefone"
+                                    description="Gere números de celular e telefone fixo brasileiros."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

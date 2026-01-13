@@ -11,6 +11,7 @@ import { CopyButton } from "@/components/copy-button"
 import { generateLoremIpsum } from "@/lib/utils/generators/lorem"
 import { Type } from "lucide-react"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
+import { ShareButtons } from "@/components/share-buttons"
 
 export function LoremIpsumPage() {
     const [text, setText] = useState("")
@@ -168,6 +169,13 @@ export function LoremIpsumPage() {
                                 <li>Demonstrações de produtos</li>
                             </ul>
                         </CardContent>
+                        <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Gerador Lorem Ipsum"
+                                description="Gere texto placeholder para seus projetos e mockups."
+                            />
+                        </div>
                     </Card>
                 </div>
             </main>

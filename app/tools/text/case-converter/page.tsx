@@ -1,9 +1,16 @@
 import { Metadata } from "next"
 import { CaseConverterPage } from "./client"
 
+const title = "Conversor de Case - Maiúsculas e Minúsculas"
+const description = "Transforme textos para UPPERCASE, lowercase, camelCase, Title Case e mais instantaneamente."
+
 export const metadata: Metadata = {
-    title: "Conversor de Case - Maiúsculas e Minúsculas",
-    description: "Transforme textos para UPPERCASE, lowercase, camelCase, Title Case e mais instantaneamente.",
+    title,
+    description,
+    openGraph: {
+        title,
+        description,
+    },
 }
 
 export default function Page() {

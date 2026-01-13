@@ -11,6 +11,7 @@ import { ToolResult } from '@/components/tools/tool-result'
 import { BulkGenerator } from '@/components/tools/bulk-generator'
 import { RefreshCw, CheckCircle2, XCircle } from 'lucide-react'
 import { generatePIS, validatePIS, formatPIS } from '@/lib/utils/validators/pis'
+import { ShareButtons } from "@/components/share-buttons"
 import { useUser } from '@/lib/hooks/use-user'
 import { getPlanLimitMessage } from "@/lib/constants"
 
@@ -168,19 +169,28 @@ export function PISPage() {
                         <CardHeader>
                             <CardTitle>Sobre o PIS/PASEP</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-3 text-sm text-muted-foreground">
-                            <p>
-                                O PIS (Programa de Integração Social) e o PASEP (Programa de Formação do Patrimônio do Servidor Público)
-                                são programas de contribuição social. O número de inscrição é o mesmo para ambos e também é utilizado
-                                como NIS (Número de Identificação Social) e NIT (Número de Inscrição do Trabalhador).
-                            </p>
-                            <p>
-                                O número é composto por 11 dígitos, sendo os primeiros 10 a base e o último o dígito verificador.
-                            </p>
-                            <p className="text-amber-600 dark:text-amber-400">
-                                <strong>Atenção:</strong> Os números gerados são válidos apenas para testes e desenvolvimento.
-                                Não correspondem a documentos reais.
-                            </p>
+                        <CardContent className="space-y-4">
+                            <div className="space-y-3 text-sm text-muted-foreground">
+                                <p>
+                                    O PIS (Programa de Integração Social) e o PASEP (Programa de Formação do Patrimônio do Servidor Público)
+                                    são programas de contribuição social. O número de inscrição é o mesmo para ambos e também é utilizado
+                                    como NIS (Número de Identificação Social) e NIT (Número de Inscrição do Trabalhador).
+                                </p>
+                                <p>
+                                    O número é composto por 11 dígitos, sendo os primeiros 10 a base e o último o dígito verificador.
+                                </p>
+                                <p className="text-amber-600 dark:text-amber-400">
+                                    <strong>Atenção:</strong> Os números gerados são válidos apenas para testes e desenvolvimento.
+                                    Não correspondem a documentos reais.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Gerador de PIS/PASEP"
+                                    description="Gere e valide números de PIS/PASEP para testes."
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>
