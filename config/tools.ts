@@ -474,13 +474,22 @@ export const tools: Tool[] = [
         href: "/tools/automotive/fipe",
     },
     {
-        id: "renavam-chassis",
-        name: "Gerador de RENAVAM/Chassis",
-        title: "Gerador de RENAVAM e Chassis",
-        description: "Gere e valide códigos RENAVAM e Chassis (VIN) válidos",
+        id: "chassi",
+        name: "Gerador de Chassi",
+        title: "Gerador de Chassi Online",
+        description: "Gere códigos de chassi (VIN) válidos para testes de software",
+        category: "automotive",
+        icon: Car,
+        href: "/tools/automotive/chassi",
+    },
+    {
+        id: "renavam",
+        name: "Gerador de RENAVAM",
+        title: "Gerador de RENAVAM Online",
+        description: "Gere números de RENAVAM válidos (11 dígitos) para testes",
         category: "automotive",
         icon: Shield,
-        href: "/tools/automotive/renavam-chassis",
+        href: "/tools/automotive/renavam",
     },
 
     // Dados Empresariais
