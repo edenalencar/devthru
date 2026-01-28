@@ -7,7 +7,8 @@ export const tools: Tool[] = [
     // Automotive
     { slug: 'fipe', category: 'automotive' },
     { slug: 'license-plate', category: 'automotive' },
-    { slug: 'renavam-chassis', category: 'automotive' },
+    { slug: 'chassi', category: 'automotive' },
+    { slug: 'renavam', category: 'automotive' },
 
     // Business
     { slug: 'cnae-search', category: 'business' },
