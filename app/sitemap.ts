@@ -2,11 +2,11 @@ import { MetadataRoute } from 'next'
 
 import { siteConfig } from '@/config/site'
 import { tools } from '@/lib/tools-list'
+import { IE_STATES } from '@/lib/utils/validators/inscricao-estadual'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = siteConfig.url
 
-    // Core static routes
     // Core static routes
     const coreRoutes = [
         '',
@@ -35,5 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }))
 
-    return [...coreRoutes, ...toolRoutes]
+    // Inscrição Estadual state-specific routes
+    const ieStateRoutes = IE_STATES.map((state) => ({
+        url: `${baseUrl}/ferramentas/inscricao-estadual/${state.uf.toLowerCase()}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }))
+
+    return [...coreRoutes, ...toolRoutes, ...ieStateRoutes]
 }
