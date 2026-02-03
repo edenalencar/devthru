@@ -23,7 +23,8 @@ const urls = [
     // Tools - Automotive
     "https://devthru.com/tools/automotive/fipe",
     "https://devthru.com/tools/automotive/license-plate",
-    "https://devthru.com/tools/automotive/renavam-chassis",
+    "https://devthru.com/tools/automotive/chassi",
+    "https://devthru.com/tools/automotive/renavam",
 
     // Tools - Business
     "https://devthru.com/tools/business/cnae-search",
