@@ -20,14 +20,6 @@ export function RelatedTools({ currentToolSlug, category }: RelatedToolsProps) {
 
     if (relatedTools.length === 0) return null
 
-    // Helper to format title (e.g., "boleto-generator" -> "Boleto Generator")
-    const formatTitle = (slug: string) => {
-        return slug
-            .split("-")
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ")
-    }
-
     return (
         <section className="mt-12">
             <div className="flex items-center justify-between mb-6">
@@ -45,12 +37,15 @@ export function RelatedTools({ currentToolSlug, category }: RelatedToolsProps) {
                 {relatedTools.map((tool) => (
                     <Link key={tool.slug} href={`/tools/${tool.category}/${tool.slug}`} className="block h-full">
                         <Card className="h-full hover:shadow-md transition-shadow cursor-pointer border-muted/50 hover:border-border">
-                            <CardHeader className="pb-3">
-                                <CardTitle className="text-lg">{formatTitle(tool.slug)}</CardTitle>
+                            <CardHeader className="pb-3 flex-row items-center gap-3 space-y-0">
+                                <div className="p-2 bg-primary/10 rounded-lg">
+                                    <tool.icon className="h-5 w-5 text-primary" />
+                                </div>
+                                <CardTitle className="text-lg">{tool.title}</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <CardDescription>
-                                    Acesse a ferramenta de {formatTitle(tool.slug)} online.
+                                    Acesse a ferramenta de {tool.title} online.
                                 </CardDescription>
                             </CardContent>
                         </Card>

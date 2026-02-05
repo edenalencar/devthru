@@ -12,6 +12,7 @@ import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
 import { RefreshCw, Truck } from "lucide-react"
 import { toast } from "sonner"
+import { RelatedTools } from "@/components/tools/related-tools"
 
 // UF Codes (IBGE)
 const ufCodes: Record<string, string> = {
@@ -263,6 +264,7 @@ export function CteGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="cte-generator" category="business" />
                 </div>
             </main>
         </div>
