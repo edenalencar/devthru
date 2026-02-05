@@ -208,7 +208,7 @@ export function CNPJGeneratorPage() {
                             <div className="prose prose-sm max-w-none dark:prose-invert">
                                 <p>
                                     O CNPJ (Cadastro Nacional da Pessoa Jurídica) é um documento brasileiro usado para identificação fiscal de empresas.
-                                    Esta ferramenta gera CNPJs válidos usando o algoritmo oficial de validação.
+                                    Esta ferramenta funciona como um Gerador e Validador de CNPJ, utilizando o algoritmo oficial para garantir precisão nos testes.
                                 </p>
                                 <p className="text-sm text-muted-foreground mt-4">
                                     <strong>Nota:</strong> Os CNPJs gerados são válidos apenas do ponto de vista algorítmico.
