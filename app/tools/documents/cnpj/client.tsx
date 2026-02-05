@@ -16,6 +16,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
+import { RelatedTools } from "@/components/tools/related-tools"
 
 export function CNPJGeneratorPage() {
     const [generatedCNPJ, setGeneratedCNPJ] = useState("")
@@ -224,6 +225,7 @@ export function CNPJGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="cnpj" category="documents" />
                 </div>
             </main>
 

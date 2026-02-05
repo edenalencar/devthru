@@ -13,6 +13,7 @@ import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Navbar } from "@/components/layout/navbar"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 
 const domains = [
     "gmail.com", "outlook.com", "yahoo.com", "hotmail.com", "uol.com.br", "bol.com.br", "terra.com.br", "icloud.com"
@@ -156,6 +157,7 @@ export function EmailGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="email" category="personal" />
                 </div>
             </main>
 
