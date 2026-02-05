@@ -16,6 +16,7 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
+import { RelatedTools } from "@/components/tools/related-tools"
 
 export function CPFGeneratorPage() {
     const [generatedCPF, setGeneratedCPF] = useState("")
@@ -248,6 +249,7 @@ export function CPFGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="cpf" category="documents" />
                 </div>
             </main>
 
