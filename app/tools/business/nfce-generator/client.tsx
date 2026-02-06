@@ -130,6 +130,9 @@ export function NfceGeneratorPage() {
                         <p className="text-muted-foreground">
                             Gere chaves de acesso de Nota Fiscal de Consumidor Eletrônica (NFC-e) válidas para testes.
                         </p>
+                        <a href="/ferramentas-fiscais" className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-2">
+                            ← Suíte de Ferramentas Fiscais
+                        </a>
                     </div>
 
                     <div className="grid gap-6">

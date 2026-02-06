@@ -130,6 +130,9 @@ export function MdfeGeneratorPage() {
                         <p className="text-muted-foreground">
                             Gere chaves de acesso de Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes.
                         </p>
+                        <a href="/ferramentas-fiscais" className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-2">
+                            ← Suíte de Ferramentas Fiscais
+                        </a>
                     </div>
 
                     <div className="grid gap-6">

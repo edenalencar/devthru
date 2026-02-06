@@ -54,6 +54,9 @@ export function StateRegistrationGenerator({ defaultState }: StateRegistrationGe
                 <p className="text-lg text-muted-foreground">
                     Gere e valide Inscrições Estaduais de todas as UFs brasileiras
                 </p>
+                <a href="/ferramentas-fiscais" className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-2">
+                    ← Suíte de Ferramentas Fiscais
+                </a>
             </div>
 
             {/* State Selector */}

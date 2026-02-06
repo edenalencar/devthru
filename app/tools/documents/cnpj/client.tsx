@@ -51,6 +51,9 @@ export function CNPJGeneratorPage() {
                         <p className="text-lg text-muted-foreground">
                             Gere CNPJs válidos para testes e desenvolvimento. Valide CNPJs existentes.
                         </p>
+                        <a href="/ferramentas-fiscais" className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-2">
+                            ← Suíte de Ferramentas Fiscais
+                        </a>
                     </div>
 
                     <div className="grid gap-8 lg:grid-cols-2">
