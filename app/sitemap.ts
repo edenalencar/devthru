@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Core static routes
     const coreRoutes = [
         '',
+        '/ferramentas-fiscais',
         '/pricing',
         '/contact',
         '/about',
@@ -24,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
-        priority: route === '' ? 1 : 0.8,
+        priority: route === '' ? 1 : route === '/ferramentas-fiscais' ? 0.9 : 0.8,
     }))
 
     // Tool routes
