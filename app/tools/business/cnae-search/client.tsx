@@ -12,6 +12,7 @@ import { toast } from "sonner"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { Badge } from "@/components/ui/badge"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 
 interface Cnae {
     id: string
@@ -208,6 +209,7 @@ export function CnaeSearchPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="cnae-search" category="business" />
                 </div>
             </main>
 

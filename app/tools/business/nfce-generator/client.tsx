@@ -12,6 +12,7 @@ import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
 import { RefreshCw, ShoppingCart } from "lucide-react"
 import { toast } from "sonner"
+import { RelatedTools } from "@/components/tools/related-tools"
 
 // UF Codes (IBGE)
 const ufCodes: Record<string, string> = {
@@ -260,6 +261,7 @@ export function NfceGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="nfce-generator" category="business" />
                 </div>
             </main>
         </div>
