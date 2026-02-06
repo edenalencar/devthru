@@ -10,6 +10,7 @@ const urls = [
     "https://devthru.com/privacy",
     "https://devthru.com/terms",
     "https://devthru.com/updates",
+    "https://devthru.com/ferramentas-fiscais",
 
     // Auth & Dashboard
     "https://devthru.com/login",

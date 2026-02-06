@@ -24,6 +24,10 @@ export const siteConfig = {
 
 export const navLinks = [
     {
+        title: "Ferramentas Fiscais",
+        href: "/ferramentas-fiscais",
+    },
+    {
         title: "Preços",
         href: "/pricing",
     },

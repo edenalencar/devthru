@@ -22,6 +22,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "06 de Fevereiro de 2026",
+        title: "Nova Suíte de Ferramentas Fiscais",
+        description: "Lançamento do hub centralizado com todas as ferramentas fiscais e empresariais. Acesse NF-e, CT-e, MDF-e, NFC-e, CNPJ, CNAE e Inscrição Estadual em um único lugar: /ferramentas-fiscais",
+        type: "feature",
+        version: "1.34.0"
+    },
+    {
         date: "13 de Janeiro de 2026",
         title: "Novos Geradores de Documentos Fiscais",
         description: "Lançamento de ferramentas para geração de chaves de acesso válidas de CT-e (Modelo 57), MDF-e (Modelo 58) e NFC-e (Modelo 65) para testes de integração.",
