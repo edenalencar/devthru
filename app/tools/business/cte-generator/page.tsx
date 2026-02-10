@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { JsonLd } from "@/components/seo/json-ld"
+import { Graph } from "schema-dts"
 import { CteGeneratorPage } from "./client"
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    const jsonLd = {
+    const jsonLd: Graph = {
         "@context": "https://schema.org",
         "@graph": [
             {
