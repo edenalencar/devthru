@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { OCRPage } from "./client"
 
@@ -7,5 +8,58 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <OCRPage />
+    return (
+        <>
+            
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "SoftwareApplication",
+                            "name": "OCR Online Gratuito - Extrair Texto de Imagem e PDF",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "ImagemApplication",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "BRL"
+                            },
+                            "description": "OCR Online Gratuito: Extraia texto de imagens (JPG, PNG) e documentos instantaneamente. Converta fotos em texto editável para copiar e colar sem instalar programas."
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://devhubtools.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "Ferramentas",
+                                    "item": "https://devhubtools.com/ferramentas"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": "Imagem",
+                                    "item": "https://devhubtools.com/tools/image"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 4,
+                                    "name": "OCR",
+                                    "item": "https://devhubtools.com/tools/image/ocr"
+                                }
+                            ]
+                        }
+                    ]
+                }}
+            />
+            <OCRPage />
+        </>
+    )
 }

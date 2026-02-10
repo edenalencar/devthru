@@ -11,6 +11,7 @@ import { Clock, Pause, Play } from "lucide-react"
 import { CopyButton } from "@/components/copy-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function TimestampConverterPage() {
     const [currentTimestamp, setCurrentTimestamp] = useState<number>(Math.floor(Date.now() / 1000))
@@ -72,6 +73,7 @@ export function TimestampConverterPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-8 max-w-4xl">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Desenvolvimento"},{"label":"Timestamp"}]} className="mb-6" />
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
                             <Clock className="h-8 w-8" />

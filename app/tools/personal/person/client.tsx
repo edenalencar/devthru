@@ -11,6 +11,7 @@ import { generatePerson, Person } from '@/lib/utils/validators/person'
 import { toast } from 'sonner'
 import { ShareButtons } from "@/components/share-buttons"
 import { Label } from "@/components/ui/label"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 const Field = ({ label, value }: { label: string; value: string }) => {
     const [hasCopied, setHasCopied] = useState(false)
@@ -65,6 +66,7 @@ export function PersonGeneratorPage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
                     {/* Header */}
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Pessoal"},{"label":"Pessoa Completa"}]} className="mb-6" />
                     <div className="mb-8">
                         <h1 className="text-4xl font-bold mb-4">Gerador de Pessoa Completa</h1>
                         <p className="text-lg text-muted-foreground">

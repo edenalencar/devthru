@@ -13,6 +13,7 @@ import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { Badge } from "@/components/ui/badge"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 interface Cnae {
     id: string
@@ -82,6 +83,7 @@ export function CnaeSearchPage() {
 
             <main className="flex-1">
                 <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 max-w-6xl">
+                    <Breadcrumbs items={[{"label":"Ferramentas","href":"/ferramentas-fiscais"},{"label":"Negócios","href":"/ferramentas-fiscais"},{"label":"Busca de CNAE"}]} className="mb-6" />
                     <div className="mb-8">
                         <h1 className="text-3xl font-bold flex items-center gap-2 mb-2">
                             <Briefcase className="h-8 w-8 text-primary" />

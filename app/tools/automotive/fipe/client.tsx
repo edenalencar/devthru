@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Calculator, Car, Calendar, Fuel, Hash, Search, Loader2 } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 // Interfaces for Parallelum API
 interface Brand {
@@ -178,6 +179,7 @@ export function FipePage() {
 
             <main className="flex-1">
                 <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 max-w-7xl">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Automotivo"},{"label":"Tabela FIPE"}]} className="mb-6" />
                     <div className="mb-8">
                         <h1 className="text-3xl font-bold flex items-center gap-2 mb-2">
                             <Calculator className="h-8 w-8 text-primary" />

@@ -12,6 +12,7 @@ import { generateLoremIpsum } from "@/lib/utils/generators/lorem"
 import { Type } from "lucide-react"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function LoremIpsumPage() {
     const [text, setText] = useState("")
@@ -29,6 +30,7 @@ export function LoremIpsumPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Utilidades"},{"label":"Lorem Ipsum"}]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Type className="h-8 w-8 text-primary" />

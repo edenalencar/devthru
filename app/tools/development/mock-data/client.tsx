@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { useUser } from "@/lib/hooks/use-user"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 type FieldType = "string" | "number" | "boolean" | "email" | "date" | "name" | "uuid"
 
@@ -114,6 +115,7 @@ export function MockDataGeneratorPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-8 max-w-5xl">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Desenvolvimento"},{"label":"Dados de Teste"}]} className="mb-6" />
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
                             <Database className="h-8 w-8" />

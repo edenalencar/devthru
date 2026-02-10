@@ -13,6 +13,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RefreshCw, FileText } from "lucide-react"
 import { toast } from "sonner"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 // UF Codes (IBGE)
 const ufCodes: Record<string, string> = {
@@ -123,6 +124,16 @@ export function NfeGeneratorPage() {
 
             <main className="flex-1">
                 <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 max-w-4xl">
+                    <div className="mb-6">
+                        <Breadcrumbs
+                            items={[
+                                { label: "Ferramentas", href: "/ferramentas-fiscais" },
+                                { label: "Negócios", href: "/ferramentas-fiscais" },
+                                { label: "Gerador NF-e" }
+                            ]}
+                        />
+                    </div>
+
                     <div className="mb-8">
                         <h1 className="text-3xl font-bold flex items-center gap-2 mb-2">
                             <FileText className="h-8 w-8 text-primary" />

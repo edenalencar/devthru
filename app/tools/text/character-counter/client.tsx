@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { countText } from '@/lib/utils/text'
 import { ShareButtons } from "@/components/share-buttons"
 import { Label } from "@/components/ui/label"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function CharacterCounterPage() {
     const [text, setText] = useState('')
@@ -42,6 +43,7 @@ export function CharacterCounterPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Texto"},{"label":"Contador de Caracteres"}]} className="mb-6" />
                     <div className="mb-8">
                         <h1 className="text-3xl font-bold mb-2">Contador de Caracteres</h1>
                         <p className="text-muted-foreground">

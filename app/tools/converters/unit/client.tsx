@@ -65,6 +65,7 @@ const categories = {
 
 import { Navbar } from "@/components/layout/navbar"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 
 export function UnitConverterPage() {
@@ -129,6 +130,7 @@ export function UnitConverterPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-8 max-w-4xl">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Conversores"},{"label":"Conversor de Unidades"}]} className="mb-6" />
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
                             <ArrowRightLeft className="h-8 w-8" />

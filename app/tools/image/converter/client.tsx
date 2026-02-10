@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Image as ImageIcon, Upload, Download, RefreshCw, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 type ImageFormat = "png" | "jpeg" | "webp"
 
@@ -84,6 +85,7 @@ export function ImageConverterPage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* Header */}
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Imagem"},{"label":"Conversor de Imagem"}]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <ImageIcon className="h-8 w-8 text-primary" />

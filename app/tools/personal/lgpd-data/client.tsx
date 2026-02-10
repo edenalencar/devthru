@@ -12,6 +12,7 @@ import { Shield, RefreshCw, Copy, EyeOff } from "lucide-react"
 import { generateCPF, formatCPF } from "@/lib/utils/validators/cpf"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function LGPDDataPage() {
     const [activeTab, setActiveTab] = useState<'generate' | 'anonymize'>('generate')
@@ -71,6 +72,7 @@ export function LGPDDataPage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* Header */}
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Pessoal"},{"label":"Dados LGPD"}]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Shield className="h-8 w-8 text-primary" />

@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calculator, DollarSign, Info } from "lucide-react"
 import { calculateSimplesNacional } from "@/lib/utils/calculators/tax"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function TaxCalculatorPage() {
     const [revenue12Months, setRevenue12Months] = useState("")
@@ -51,6 +52,7 @@ export function TaxCalculatorPage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* Header */}
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Finanças"},{"label":"Calculadora de Impostos"}]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Calculator className="h-8 w-8 text-primary" />

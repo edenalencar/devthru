@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { generateSlug } from '@/lib/utils/text'
 import { ToolResult } from '@/components/tools/tool-result'
 import { ShareButtons } from '@/components/share-buttons'
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function SlugGeneratorPage() {
     const [input, setInput] = useState('')
@@ -24,6 +25,7 @@ export function SlugGeneratorPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Texto"},{"label":"Gerador de Slug"}]} className="mb-6" />
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-bold mb-2">Gerador de Slug</h1>
                         <p className="text-muted-foreground">

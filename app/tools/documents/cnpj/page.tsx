@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { CNPJGeneratorPage } from "./client"
 
@@ -15,5 +16,58 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <CNPJGeneratorPage />
+    return (
+        <>
+            
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "SoftwareApplication",
+                            "name": "Gerador e Validador de CNPJ Válido Online | DevThru",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "DocumentosApplication",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "BRL"
+                            },
+                            "description": "Gere e valide números de CNPJ para testes de software. Sistema completo para desenvolvedores e QA com suporte a CNPJ alfanumérico."
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://devhubtools.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "Ferramentas",
+                                    "item": "https://devhubtools.com/ferramentas"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": "Documentos",
+                                    "item": "https://devhubtools.com/tools/documents"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 4,
+                                    "name": "CNPJ",
+                                    "item": "https://devhubtools.com/tools/documents/cnpj"
+                                }
+                            ]
+                        }
+                    ]
+                }}
+            />
+            <CNPJGeneratorPage />
+        </>
+    )
 }

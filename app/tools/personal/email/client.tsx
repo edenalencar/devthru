@@ -14,6 +14,7 @@ import { getPlanLimitMessage } from "@/lib/constants"
 import { Navbar } from "@/components/layout/navbar"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 const domains = [
     "gmail.com", "outlook.com", "yahoo.com", "hotmail.com", "uol.com.br", "bol.com.br", "terra.com.br", "icloud.com"
@@ -59,6 +60,12 @@ export function EmailGeneratorPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-10 space-y-8">
+                    <Breadcrumbs items={[
+                        { label: "Home", href: "/" },
+                        { label: "Ferramentas", href: "/ferramentas" },
+                        { label: "Pessoal", href: "/ferramentas-pessoais" },
+                        { label: "Gerador de Email" }
+                    ]} className="mb-6" />
                     <div className="space-y-2">
                         <h1 className="text-3xl font-bold">Gerador de Email</h1>
                         <p className="text-muted-foreground">

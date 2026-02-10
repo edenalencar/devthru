@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { CharacterCounterPage } from "./client"
 
@@ -14,5 +15,58 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <CharacterCounterPage />
+    return (
+        <>
+            
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "SoftwareApplication",
+                            "name": "Contador de Caracteres, Palavras e Linhas Online Grátis",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "TextoApplication",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "BRL"
+                            },
+                            "description": "Conte caracteres, palavras, linhas e parágrafos do seu texto em tempo real. Ferramenta online gratuita ideal para redatores, estudantes e profissionais de SEO."
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://devhubtools.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "Ferramentas",
+                                    "item": "https://devhubtools.com/ferramentas"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": "Texto",
+                                    "item": "https://devhubtools.com/tools/text"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 4,
+                                    "name": "Contador de Caracteres",
+                                    "item": "https://devhubtools.com/tools/text/character-counter"
+                                }
+                            ]
+                        }
+                    ]
+                }}
+            />
+            <CharacterCounterPage />
+        </>
+    )
 }

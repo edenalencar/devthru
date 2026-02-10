@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { EmailGeneratorPage } from "./client"
 
@@ -15,5 +16,58 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <EmailGeneratorPage />
+    return (
+        <>
+            
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "SoftwareApplication",
+                            "name": "Gerador de Email Temporário e Fictício | DevThru",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "PessoalApplication",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "BRL"
+                            },
+                            "description": "Crie emails fictícios com domínios personalizados ou comuns para testes de software. Ferramenta rápida para QA e desenvolvimento."
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://devhubtools.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "Ferramentas",
+                                    "item": "https://devhubtools.com/ferramentas"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": "Pessoal",
+                                    "item": "https://devhubtools.com/tools/personal"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 4,
+                                    "name": "Gerador de Email",
+                                    "item": "https://devhubtools.com/tools/personal/email"
+                                }
+                            ]
+                        }
+                    ]
+                }}
+            />
+            <EmailGeneratorPage />
+        </>
+    )
 }

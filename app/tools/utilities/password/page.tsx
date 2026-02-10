@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { PasswordGeneratorPage } from "./client"
 
@@ -14,5 +15,58 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <PasswordGeneratorPage />
+    return (
+        <>
+            
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "SoftwareApplication",
+                            "name": "Gerador de Senhas Fortes e Seguras - Segurança Online",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "UtilidadesApplication",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "BRL"
+                            },
+                            "description": "Crie senhas fortes e invioláveis com nosso Gerador de Senhas gratuito. Personalize comprimento, símbolos e números para garantir a segurança máxima de suas contas."
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://devhubtools.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "Ferramentas",
+                                    "item": "https://devhubtools.com/ferramentas"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": "Utilidades",
+                                    "item": "https://devhubtools.com/tools/utilities"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 4,
+                                    "name": "Gerador de Senha",
+                                    "item": "https://devhubtools.com/tools/utilities/password"
+                                }
+                            ]
+                        }
+                    ]
+                }}
+            />
+            <PasswordGeneratorPage />
+        </>
+    )
 }

@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Mail, Copy, Code } from "lucide-react"
 import { ShareButtons } from "@/components/share-buttons"
 import { toast } from "sonner"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function EmailSignaturePage() {
     const [name, setName] = useState("Seu Nome")
@@ -50,6 +51,7 @@ export function EmailSignaturePage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* Header */}
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Texto"},{"label":"Assinatura de Email"}]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Mail className="h-8 w-8 text-primary" />

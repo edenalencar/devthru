@@ -12,6 +12,7 @@ import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
 import { Navbar } from "@/components/layout/navbar"
 import { getPlanLimitMessage } from "@/lib/constants"
+import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs"
 
 export function RGGeneratorPage() {
     const [rg, setRg] = useState<string>("")
@@ -56,6 +57,12 @@ export function RGGeneratorPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-10 space-y-8">
+                    <Breadcrumbs items={[
+                        { label: "Home", href: "/" },
+                        { label: "Ferramentas", href: "/ferramentas" },
+                        { label: "Documentos", href: "/ferramentas-documentos" },
+                        { label: "Gerador de RG" }
+                    ]} className="mb-6" />
                     <div className="space-y-2">
                         <h1 className="text-3xl font-bold">Gerador de RG</h1>
                         <p className="text-muted-foreground">
