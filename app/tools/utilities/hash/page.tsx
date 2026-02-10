@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { HashGeneratorPage } from "./client"
 
@@ -14,5 +15,58 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <HashGeneratorPage />
+    return (
+        <>
+            
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "SoftwareApplication",
+                            "name": "Gerador de Hash Online - SHA-256, SHA-512 e SHA-1",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "UtilidadesApplication",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "BRL"
+                            },
+                            "description": "Gere hashes seguros (SHA-256, MD5, SHA-512) para proteger senhas e verificar integridade de arquivos. Ferramenta de criptografia online rápida e privada."
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://devhubtools.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "Ferramentas",
+                                    "item": "https://devhubtools.com/ferramentas"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": "Utilidades",
+                                    "item": "https://devhubtools.com/tools/utilities"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 4,
+                                    "name": "Gerador de Hash",
+                                    "item": "https://devhubtools.com/tools/utilities/hash"
+                                }
+                            ]
+                        }
+                    ]
+                }}
+            />
+            <HashGeneratorPage />
+        </>
+    )
 }

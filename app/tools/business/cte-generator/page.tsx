@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { JsonLd } from "@/components/seo/json-ld"
 import { CteGeneratorPage } from "./client"
 
 export const metadata: Metadata = {
@@ -15,24 +16,54 @@ export const metadata: Metadata = {
 export default function Page() {
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Gerador de Chave CT-e",
-        "description": "Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes de integração.",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Any",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "BRL"
-        }
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "name": "Gerador de Chave CT-e",
+                "description": "Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes de integração.",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "Web",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "BRL"
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://devhubtools.com"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Ferramentas",
+                        "item": "https://devhubtools.com/ferramentas"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Negócios",
+                        "item": "https://devhubtools.com/ferramentas-fiscais"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 4,
+                        "name": "Gerador de CT-e",
+                        "item": "https://devhubtools.com/tools/business/cte-generator"
+                    }
+                ]
+            }
+        ]
     }
 
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+            <JsonLd data={jsonLd} />
             <CteGeneratorPage />
         </>
     )

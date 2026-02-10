@@ -12,6 +12,7 @@ import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
 import { Navbar } from "@/components/layout/navbar"
 import { getPlanLimitMessage } from "@/lib/constants"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function CNHGeneratorPage() {
     const [cnh, setCnh] = useState<string>("")
@@ -35,8 +36,6 @@ export function CNHGeneratorPage() {
             v2 += n[i] * (1 + j)
             j++
         }
-        // Simplified logic for demonstration as full CNH algo is complex
-        // This ensures basic structure is correct
 
         let d2 = (v2 + d1 * 9) % 11
         d2 = d2 >= 10 ? 0 : d2
@@ -60,6 +59,13 @@ export function CNHGeneratorPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-10 space-y-8">
+                    <Breadcrumbs items={[
+                        { label: "Home", href: "/" },
+                        { label: "Ferramentas", href: "/ferramentas" },
+                        { label: "Documentos", href: "/ferramentas-documentos" },
+                        { label: "Gerador de CNH" }
+                    ]} className="mb-6" />
+
                     <div className="space-y-2">
                         <h1 className="text-3xl font-bold">Gerador de CNH</h1>
                         <p className="text-muted-foreground">

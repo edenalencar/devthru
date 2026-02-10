@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 type Language = "css" | "json" | "sql" | "html" | "javascript"
 
@@ -140,6 +141,7 @@ export function MinifierPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-8 max-w-5xl">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Desenvolvimento"},{"label":"Minificador"}]} className="mb-6" />
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
                             <FileCode className="h-8 w-8" />

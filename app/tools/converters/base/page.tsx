@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { BaseConverterPage } from "./client"
 
@@ -7,5 +8,58 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <BaseConverterPage />
+    return (
+        <>
+            
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "SoftwareApplication",
+                            "name": "Conversor de Bases Numéricas - Binário, Decimal, Hexadecimal",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "ConversoresApplication",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "BRL"
+                            },
+                            "description": "Converta números entre bases Decimal, Binária, Hexadecimal e Octal instantaneamente. Ferramenta essencial para estudantes e programadores que trabalham com bits."
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://devhubtools.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "Ferramentas",
+                                    "item": "https://devhubtools.com/ferramentas"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": "Conversores",
+                                    "item": "https://devhubtools.com/tools/converters"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 4,
+                                    "name": "Conversor de Base",
+                                    "item": "https://devhubtools.com/tools/converters/base"
+                                }
+                            ]
+                        }
+                    ]
+                }}
+            />
+            <BaseConverterPage />
+        </>
+    )
 }

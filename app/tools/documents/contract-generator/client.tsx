@@ -14,6 +14,7 @@ import { CONTRACT_TEMPLATES } from "@/lib/templates/contracts"
 import jsPDF from "jspdf"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function ContractGeneratorPage() {
     const [selectedTemplateId, setSelectedTemplateId] = useState(CONTRACT_TEMPLATES[0].id)
@@ -63,6 +64,7 @@ export function ContractGeneratorPage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* Header */}
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Documentos"},{"label":"Contratos"}]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <FileText className="h-8 w-8 text-primary" />

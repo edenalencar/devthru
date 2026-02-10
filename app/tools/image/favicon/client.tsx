@@ -11,6 +11,7 @@ import { Image as ImageIcon, Upload, Download, RefreshCw } from "lucide-react"
 import JSZip from "jszip"
 import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 const FAVICON_SIZES = [16, 32, 180, 192, 512]
 
@@ -93,6 +94,7 @@ export function FaviconGeneratorPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-8 max-w-4xl">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Imagem"},{"label":"Gerador de Favicon"}]} className="mb-6" />
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
                             <ImageIcon className="h-8 w-8" />

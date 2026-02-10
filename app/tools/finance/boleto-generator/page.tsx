@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { BoletoGeneratorPage } from "./client"
 
@@ -14,5 +15,58 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <BoletoGeneratorPage />
+    return (
+        <>
+            
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "SoftwareApplication",
+                            "name": "Gerador de Boleto Bancário Mock - Visualização para Testes",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "FinançasApplication",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "BRL"
+                            },
+                            "description": "Gerador de Boleto Bancário Mock para testes de software. Crie boletos fictícios com código de barras validável e PDF para homologar seu sistema de pagamentos de forma segura."
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://devhubtools.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "Ferramentas",
+                                    "item": "https://devhubtools.com/ferramentas"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": "Finanças",
+                                    "item": "https://devhubtools.com/tools/finance"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 4,
+                                    "name": "Gerador de Boleto",
+                                    "item": "https://devhubtools.com/tools/finance/boleto-generator"
+                                }
+                            ]
+                        }
+                    ]
+                }}
+            />
+            <BoletoGeneratorPage />
+        </>
+    )
 }

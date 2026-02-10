@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
 import { PISPage } from './client'
 
@@ -14,5 +15,58 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <PISPage />
+    return (
+        <>
+            
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "SoftwareApplication",
+                            "name": "PIS/PASEP",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "DocumentosApplication",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "BRL"
+                            },
+                            "description": "Ferramenta PIS/PASEP"
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://devhubtools.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "Ferramentas",
+                                    "item": "https://devhubtools.com/ferramentas"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": "Documentos",
+                                    "item": "https://devhubtools.com/tools/documents"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 4,
+                                    "name": "PIS/PASEP",
+                                    "item": "https://devhubtools.com/tools/documents/pis"
+                                }
+                            ]
+                        }
+                    ]
+                }}
+            />
+            <PISPage />
+        </>
+    )
 }

@@ -12,6 +12,7 @@ import { generateUUID, generateMultipleUUIDs } from "@/lib/utils/generators/uuid
 import { Hash } from "lucide-react"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function UUIDGeneratorPage() {
     const [generatedUUIDs, setGeneratedUUIDs] = useState<string[]>([])
@@ -31,6 +32,7 @@ export function UUIDGeneratorPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Utilidades"},{"label":"Gerador de UUID"}]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Hash className="h-8 w-8 text-primary" />
