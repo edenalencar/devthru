@@ -1,23 +1,22 @@
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { QRCodePage } from "./client"
+import { generateToolMetadata } from "@/lib/seo-config"
 
 const title = "Gerador de QR Code Online - Grátis e Personalizável"
 const description = "Crie QR Codes gratuitos para links, textos, wifi e contatos. Baixe em alta resolução."
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateToolMetadata({
     title,
     description,
-    openGraph: {
-        title,
-        description,
-    },
-}
+    path: "/tools/utilities/qrcode",
+    keywords: ["qr code generator", "criar qr code", "qr code online", "gerador codigo qr"]
+})
 
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
