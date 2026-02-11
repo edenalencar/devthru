@@ -1,23 +1,22 @@
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { PhoneGeneratorPage } from "./client"
+import { generateToolMetadata } from "@/lib/seo-config"
 
 const title = "Gerador de Telefone e Celular - Números Válidos com DDD"
 const description = "Gere números de telefone fixo e celular brasileiros válidos com DDD para testes de software. Ferramenta flexível com opções de formatação para desenvolvedores."
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateToolMetadata({
     title,
     description,
-    openGraph: {
-        title,
-        description,
-    },
-}
+    path: "/tools/personal/phone",
+    keywords: ["gerador telefone", "gerador celular", "teste telefone", "tdd", "dev tools"]
+})
 
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

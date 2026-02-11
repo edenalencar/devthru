@@ -1,5 +1,15 @@
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
+import { Metadata } from "next"
+import { siteConfig } from "@/config/site"
+
+export const metadata: Metadata = {
+    title: "Política de Privacidade | DevThru",
+    description: "Política de Privacidade do DevThru. Saiba como coletamos, usamos e protegemos seus dados.",
+    alternates: {
+        canonical: `${siteConfig.url}/privacy`,
+    },
+}
 
 export default function PrivacyPage() {
     return (

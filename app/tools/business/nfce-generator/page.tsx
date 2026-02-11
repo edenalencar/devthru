@@ -2,17 +2,14 @@ import { Metadata } from "next"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Graph } from "schema-dts"
 import { NfceGeneratorPage } from "./client"
+import { generateToolMetadata } from "@/lib/seo-config"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Chave NFC-e - Nota Fiscal de Consumidor",
     description: "Gere chaves de acesso de Nota Fiscal de Consumidor Eletrônica (NFC-e) válidas para testes.",
-    keywords: ["gerador nfc-e", "chave nfc-e", "nfce teste", "consumidor eletronica", "dev tools"],
-    openGraph: {
-        title: "Gerador de Chave NFC-e | DevHub Tools",
-        description: "Gere chaves de acesso de Nota Fiscal de Consumidor Eletrônica (NFC-e) válidas para testes.",
-        type: "website",
-    }
-}
+    path: "/tools/business/nfce-generator",
+    keywords: ["gerador nfc-e", "chave nfc-e", "nfce teste", "consumidor eletronica", "dev tools"]
+})
 
 export default function Page() {
     const jsonLd: Graph = {

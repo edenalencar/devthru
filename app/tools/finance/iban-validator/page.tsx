@@ -1,23 +1,22 @@
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { IBANValidatorPage } from "./client"
+import { generateToolMetadata } from "@/lib/seo-config"
 
 const title = "Gerador e Validador de IBAN Online - Brasil e Internacional"
 const description = "Gere e valide códigos IBAN para transações internacionais com precisão. Suporte a diversos países, essencial para testar integrações bancárias globais."
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateToolMetadata({
     title,
     description,
-    openGraph: {
-        title,
-        description,
-    },
-}
+    path: "/tools/finance/iban-validator",
+    keywords: ["iban generator", "iban validator", "codigo iban", "transalia internacional", "swift code"]
+})
 
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

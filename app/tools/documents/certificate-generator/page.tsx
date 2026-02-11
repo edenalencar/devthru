@@ -1,23 +1,22 @@
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { CertificateGeneratorPage } from "./client"
+import { generateToolMetadata } from "@/lib/seo-config"
 
 const title = "Gerador de Certificados Online Grátis - Cursos e Eventos"
 const description = "Crie certificados personalizados para cursos e eventos em minutos. Gere arquivos PDF prontos para impressão com nosso gerador online gratuito e profissional."
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateToolMetadata({
     title,
     description,
-    openGraph: {
-        title,
-        description,
-    },
-}
+    path: "/tools/documents/certificate-generator",
+    keywords: ["gerador certificado", "criar certificado", "certificado online", "certificado curso", "pdf generator"]
+})
 
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

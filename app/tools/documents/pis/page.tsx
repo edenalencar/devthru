@@ -1,23 +1,22 @@
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
 import { PISPage } from './client'
+import { generateToolMetadata } from "@/lib/seo-config"
 
 const title = 'Gerador de PIS/PASEP Online - Gerar e Validar PIS Grátis'
 const description = 'Ferramenta online gratuita para gerar e validar números de PIS/PASEP válidos para testes. Ideal para desenvolvedores e analistas de QA.'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateToolMetadata({
     title,
     description,
-    openGraph: {
-        title,
-        description,
-    },
-}
+    path: "/tools/documents/pis",
+    keywords: ["gerador pis", "validador pis", "pis pasep", "numero pis", "dev tools"]
+})
 
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
