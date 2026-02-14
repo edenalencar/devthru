@@ -75,23 +75,7 @@ export function ContactPage() {
                     </p>
                 </div>
 
-                <div className="grid gap-8 md:grid-cols-2">
-                    <div className="space-y-8">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Mail className="h-5 w-5" />
-                                    Email
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <a href="mailto:contato@devthru.com" className="text-primary hover:underline text-lg">
-                                    contato@devthru.com
-                                </a>
-                            </CardContent>
-                        </Card>
-                    </div>
-
+                <div className="max-w-3xl mx-auto">
                     <Card>
                         <CardHeader>
                             <CardTitle>Envie uma mensagem</CardTitle>
