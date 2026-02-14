@@ -10,6 +10,7 @@ import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Navbar } from "@/components/layout/navbar"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
@@ -143,6 +144,7 @@ export function AddressGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="address" category="personal" />
                 </div>
             </main>
 

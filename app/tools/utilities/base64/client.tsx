@@ -13,6 +13,7 @@ import { encodeBase64, decodeBase64 } from "@/lib/utils/generators/base64"
 import { Binary } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function Base64Page() {
@@ -196,6 +197,7 @@ export function Base64Page() {
                             />
                         </div>
                     </Card>
+                    <RelatedTools currentToolSlug="base64" category="utilities" />
                 </div>
             </main>
 

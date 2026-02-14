@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Mail, Copy, Code } from "lucide-react"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { toast } from "sonner"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
@@ -207,6 +208,7 @@ export function EmailSignaturePage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="email-signature" category="text" />
                 </div>
             </main>
         </div>

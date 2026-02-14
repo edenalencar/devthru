@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Terminal, XCircle } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
@@ -216,6 +217,7 @@ export function RegexGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <RelatedTools currentToolSlug="regex" category="development" />
                 </div>
             </main>
 

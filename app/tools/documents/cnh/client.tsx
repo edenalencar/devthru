@@ -10,6 +10,7 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { useUser } from "@/lib/hooks/use-user"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Navbar } from "@/components/layout/navbar"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
@@ -154,6 +155,9 @@ export function CNHGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                </div>
+                <div className="container mx-auto pb-10">
+                    <RelatedTools currentToolSlug="cnh" category="documents" />
                 </div>
             </main>
 

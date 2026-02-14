@@ -14,6 +14,7 @@ import { generateUUID, generateMultipleUUIDs } from "@/lib/utils/generators/uuid
 import { Hash } from "lucide-react"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function UUIDGeneratorPage() {
@@ -165,6 +166,7 @@ export function UUIDGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="uuid" category="utilities" />
                 </div>
             </main>
         </div>

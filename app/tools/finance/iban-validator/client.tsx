@@ -16,6 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function IBANValidatorPage() {
@@ -232,6 +233,7 @@ export function IBANValidatorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="iban-validator" category="finance" />
                 </div>
             </main>
 

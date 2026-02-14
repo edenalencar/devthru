@@ -12,6 +12,7 @@ import { Shield, RefreshCw, Copy, EyeOff } from "lucide-react"
 import { generateCPF, formatCPF } from "@/lib/utils/validators/cpf"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function LGPDDataPage() {
@@ -208,6 +209,7 @@ export function LGPDDataPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="lgpd-data" category="personal" />
                 </div>
             </main>
 

@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Mail, CheckCircle2, XCircle, AlertTriangle } from "lucide-react"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 // Common disposable email domains
@@ -192,6 +193,7 @@ export function EmailValidatorPage() {
                             />
                         </div>
                     </Card>
+                    <RelatedTools currentToolSlug="email-validator" category="text" />
                 </div>
             </main>
         </div>

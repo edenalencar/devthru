@@ -11,6 +11,7 @@ import { Barcode, Download, Printer } from "lucide-react"
 import { toPng } from "html-to-image"
 import jsPDF from "jspdf"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function BoletoGeneratorPage() {
@@ -263,6 +264,7 @@ export function BoletoGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="boleto-generator" category="finance" />
                 </div>
             </main>
 

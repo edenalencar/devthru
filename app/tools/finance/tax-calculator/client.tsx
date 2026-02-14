@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calculator, DollarSign, Info } from "lucide-react"
 import { calculateSimplesNacional } from "@/lib/utils/calculators/tax"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function TaxCalculatorPage() {
@@ -196,6 +197,7 @@ export function TaxCalculatorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="tax-calculator" category="finance" />
                 </div>
             </main>
 

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import { PROGRAMMATIC_CONTENT } from "@/lib/content/programmatic"
+import { JsonLd } from "@/components/seo/json-ld"
 import { CodeBlock } from "@/components/ui/code-block"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -56,6 +57,30 @@ export default async function GuidePage({ params }: PageProps) {
 
     return (
         <div className="container mx-auto py-10 px-4 max-w-4xl">
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "TechArticle",
+                    "headline": content.title,
+                    "description": content.description,
+                    "articleBody": content.content.intro, // Simplified body
+                    "about": {
+                        "@type": "SoftwareApplication",
+                        "name": tool
+                    },
+                    "author": {
+                        "@type": "Organization",
+                        "name": "DevThru",
+                        "url": "https://devthru.com"
+                    },
+                    "datePublished": new Date().toISOString(), // In a real app this should be content.date
+                    "dateModified": new Date().toISOString(),
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": `https://devthru.com/guides/${category}/${tool}/${language}`
+                    }
+                }}
+            />
             <div className="mb-8">
                 <Breadcrumbs
                     items={[

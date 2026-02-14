@@ -18,7 +18,7 @@ export default function Page() {
                             "@type": "SoftwareApplication",
                             "name": "Gerador de Chave NF-e",
                             "operatingSystem": "Web",
-                            "applicationCategory": "DeveloperApplication",
+                            "applicationCategory": "BusinessApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",

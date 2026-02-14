@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Car, ArrowRightLeft, RefreshCw, Copy } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function LicensePlatePage() {
@@ -244,6 +245,7 @@ export function LicensePlatePage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="license-plate" category="automotive" />
                 </div>
             </main>
 

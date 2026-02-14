@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Image as ImageIcon, Upload, Download, RefreshCw, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 type ImageFormat = "png" | "jpeg" | "webp"
@@ -213,6 +214,7 @@ export function ImageConverterPage() {
                             />
                         </div>
                     </Card>
+                    <RelatedTools currentToolSlug="converter" category="image" />
                 </div>
             </main>
 

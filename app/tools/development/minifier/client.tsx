@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 type Language = "css" | "json" | "sql" | "html" | "javascript"
@@ -251,6 +252,7 @@ export function MinifierPage() {
                             </p>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="minifier" category="development" />
                 </div>
             </main>
 

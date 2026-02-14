@@ -12,6 +12,7 @@ import { generatePassword, calculatePasswordStrength, type PasswordOptions } fro
 import { Key, Shield } from "lucide-react"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function PasswordGeneratorPage() {
@@ -41,7 +42,7 @@ export function PasswordGeneratorPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Utilidades"},{"label":"Gerador de Senha"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Utilidades" }, { "label": "Gerador de Senha" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Key className="h-8 w-8 text-primary" />
@@ -221,6 +222,7 @@ export function PasswordGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <RelatedTools currentToolSlug="password" category="utilities" />
                 </div>
             </main>
 

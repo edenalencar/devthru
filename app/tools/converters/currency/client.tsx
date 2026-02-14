@@ -11,6 +11,8 @@ import { Button } from "@/components/ui/button"
 import { Coins, ArrowRightLeft, AlertCircle } from "lucide-react"
 import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
+
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 interface Currencies {
@@ -98,7 +100,7 @@ export function CurrencyConverterPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-8 max-w-4xl">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Conversores"},{"label":"Conversor de Moeda"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Conversores" }, { "label": "Conversor de Moeda" }]} className="mb-6" />
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
                             <Coins className="h-8 w-8" />
@@ -233,6 +235,7 @@ export function CurrencyConverterPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="currency" category="converters" />
                 </div>
             </main>
 

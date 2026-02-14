@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { useUser } from "@/lib/hooks/use-user"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 type FieldType = "string" | "number" | "boolean" | "email" | "date" | "name" | "uuid"
@@ -252,6 +253,7 @@ export function MockDataGeneratorPage() {
                         </div>
 
                     </Card>
+                    <RelatedTools currentToolSlug="mock-data" category="development" />
                 </div>
             </main>
 

@@ -12,6 +12,7 @@ import { validateJSON, formatJSON, minifyJSON, getJSONStats } from "@/lib/utils/
 import { Braces, CheckCircle2, XCircle } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function JSONFormatterPage() {
@@ -221,6 +222,7 @@ export function JSONFormatterPage() {
                             />
                         </div>
                     </Card>
+                    <RelatedTools currentToolSlug="json" category="utilities" />
                 </div>
             </main>
         </div>

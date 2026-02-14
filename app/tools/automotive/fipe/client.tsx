@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Calculator, Car, Calendar, Fuel, Hash, Search, Loader2 } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 // Interfaces for Parallelum API
@@ -370,6 +371,7 @@ export function FipePage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="fipe" category="automotive" />
                 </div>
             </main>
 

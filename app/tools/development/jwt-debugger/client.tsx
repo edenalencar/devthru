@@ -11,6 +11,7 @@ import { toast } from "sonner"
 import { jwtDecode } from "jwt-decode"
 
 import { Navbar } from "@/components/layout/navbar"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function JwtDebuggerPage() {
@@ -179,6 +180,7 @@ export function JwtDebuggerPage() {
                             </Card>
                         </div>
                     </div>
+                    <RelatedTools currentToolSlug="jwt-debugger" category="development" />
                 </div>
             </main>
         </div>

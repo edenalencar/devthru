@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { convertCase } from '@/lib/utils/text'
 import { Copy, Check, RefreshCw } from 'lucide-react'
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Label } from "@/components/ui/label"
 import { toast } from 'sonner'
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
@@ -125,6 +126,7 @@ export function CaseConverterPage() {
 
                         </div>
                     </div>
+                    <RelatedTools currentToolSlug="case-converter" category="text" />
                 </div>
             </main>
         </div>
