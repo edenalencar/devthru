@@ -44,7 +44,7 @@ export function CNPJGeneratorPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Documentos"},{"label":"CNPJ"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Documentos Pessoais" }, { "label": "CNPJ" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Code2 className="h-8 w-8 text-primary" />
@@ -53,9 +53,6 @@ export function CNPJGeneratorPage() {
                         <p className="text-lg text-muted-foreground">
                             Gere CNPJs válidos para testes e desenvolvimento. Valide CNPJs existentes.
                         </p>
-                        <a href="/ferramentas-fiscais" className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-2">
-                            ← Suíte de Ferramentas Fiscais
-                        </a>
                     </div>
 
                     <div className="grid gap-8 lg:grid-cols-2">

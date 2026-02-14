@@ -128,7 +128,7 @@ export function NfeGeneratorPage() {
                         <Breadcrumbs
                             items={[
                                 { label: "Ferramentas", href: "/ferramentas-fiscais" },
-                                { label: "Negócios", href: "/ferramentas-fiscais" },
+                                { label: "Dados Empresariais", href: "/ferramentas-fiscais" },
                                 { label: "Gerador NF-e" }
                             ]}
                         />

@@ -62,7 +62,7 @@ export function CNHGeneratorPage() {
                     <Breadcrumbs items={[
                         { label: "Home", href: "/" },
                         { label: "Ferramentas", href: "/ferramentas" },
-                        { label: "Documentos", href: "/ferramentas-documentos" },
+                        { label: "Documentos Pessoais", href: "/ferramentas-documentos" },
                         { label: "Gerador de CNH" }
                     ]} className="mb-6" />
 

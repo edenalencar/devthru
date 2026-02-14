@@ -66,7 +66,7 @@ export function EmailValidatorPage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* Header */}
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Texto"},{"label":"Validador de Email"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Texto e Conversão" }, { "label": "Validador de Email" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Mail className="h-8 w-8 text-primary" />

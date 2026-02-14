@@ -60,7 +60,7 @@ export function RGGeneratorPage() {
                     <Breadcrumbs items={[
                         { label: "Home", href: "/" },
                         { label: "Ferramentas", href: "/ferramentas" },
-                        { label: "Documentos", href: "/ferramentas-documentos" },
+                        { label: "Documentos Pessoais", href: "/ferramentas-documentos" },
                         { label: "Gerador de RG" }
                     ]} className="mb-6" />
                     <div className="space-y-2">

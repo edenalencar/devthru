@@ -3,7 +3,8 @@ import {
     Coins, ArrowRightLeft, FileCode, Database, Terminal, Clock,
     Award, CreditCard, Code2, Barcode, Image as ImageIcon,
     MapPin, Mail, User, Phone, Type, Lock, Binary,
-    Calendar, Braces, Key, QrCode, Hash, Link, FileDiff, Briefcase
+    Calendar, Braces, Key, QrCode, Hash, Link, FileDiff, Briefcase,
+    Globe, Ruler
 } from "lucide-react"
 import { LucideIcon } from "lucide-react"
 
@@ -88,4 +89,10 @@ export const tools: Tool[] = [
     { slug: 'qrcode', category: 'utilities', title: 'QR Code', icon: QrCode },
     { slug: 'uuid', category: 'utilities', title: 'Gerador de UUID', icon: Hash },
     { slug: 'xml-validator', category: 'utilities', title: 'Validador XML', icon: FileCode },
+    { slug: 'url-encoder', category: 'utilities', title: 'URL Encoder/Decoder', icon: Globe },
+
+    // Growth Tools (New)
+    { slug: 'pixel-to-rem', category: 'converters', title: 'Pixel para REM', icon: Ruler },
+    { slug: 'sql-formatter', category: 'development', title: 'SQL Formatter', icon: Database },
+    { slug: 'jwt-debugger', category: 'development', title: 'JWT Debugger', icon: Shield },
 ]

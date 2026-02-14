@@ -62,7 +62,7 @@ export function CertificateGeneratorPage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* Header */}
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Documentos"},{"label":"Certificados"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Documentos Pessoais" }, { "label": "Certificados" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Award className="h-8 w-8 text-primary" />

@@ -70,7 +70,7 @@ export function PlaceholderGeneratorPage() {
             <Navbar />
             <main className="flex-1">
                 <div className="container mx-auto py-8 max-w-5xl">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Imagem"},{"label":"Placeholder"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Imagens" }, { "label": "Placeholder" }]} className="mb-6" />
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
                             <ImageIcon className="h-8 w-8" />

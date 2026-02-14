@@ -52,7 +52,7 @@ export function TaxCalculatorPage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* Header */}
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Finanças"},{"label":"Calculadora de Impostos"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Dados Financeiros" }, { "label": "Calculadora de Impostos" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Calculator className="h-8 w-8 text-primary" />

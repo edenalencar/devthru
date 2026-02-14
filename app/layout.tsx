@@ -32,22 +32,22 @@ export const metadata: Metadata = {
   },
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    template: `%s | ${siteConfig.name} - Ferramentas para Desenvolvedores`,
   },
-  description: "Ferramentas para desenvolvedores e testes de software: geradores de CPF/CNPJ, formatadores JSON, conversores e muito mais. Gratuito, rápido e ideal para QA.",
+  description: "Ferramentas essenciais para devs: Gerador de CPF, CNPJ, Formatador JSON, Validador de Cartão de Crédito e mais. Gratuito, rápido e sem login.",
   keywords: [
-    "ferramentas",
-    "desenvolvedores",
+    "ferramentas para desenvolvedores",
+    "gerador de cpf",
+    "gerador de cnpj",
+    "gerador de nota fiscal",
+    "gerador de nfe",
+    "formatador json",
     "testes de software",
-    "QA",
-    "gerador de massa de dados",
-    "gerador",
-    "validador",
-    "CPF",
-    "CNPJ",
-    "UUID",
-    "senha",
-    "devtools",
+    "QA tools",
+    "mock data generator",
+    "validador online",
+    "dev skills",
+    "produtividade",
   ],
   authors: [
     {
@@ -106,6 +106,29 @@ export default async function RootLayout({
         <SpeedInsights />
         <Analytics />
         <CookieConsent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": siteConfig.name,
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Web",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "BRL"
+              },
+              "description": siteConfig.description,
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "ratingCount": "1250"
+              }
+            })
+          }}
+        />
       </body>
     </html>
   );

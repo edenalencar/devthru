@@ -13,7 +13,7 @@ export function InscricaoEstadualPage() {
                     <Breadcrumbs items={[
                         { label: "Home", href: "/" },
                         { label: "Ferramentas", href: "/ferramentas" },
-                        { label: "Documentos", href: "/ferramentas-documentos" },
+                        { label: "Documentos Pessoais", href: "/ferramentas-documentos" },
                         { label: "Inscrição Estadual" }
                     ]} />
                 </div>

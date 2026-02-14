@@ -63,7 +63,7 @@ export function CaseConverterPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Texto"},{"label":"Maiúsculas/Minúsculas"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Texto e Conversão" }, { "label": "Maiúsculas/Minúsculas" }]} className="mb-6" />
                     <div className="mb-8">
                         <h1 className="text-3xl font-bold mb-2">Conversor de Case</h1>
                         <p className="text-muted-foreground">
