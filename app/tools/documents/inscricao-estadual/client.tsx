@@ -9,7 +9,7 @@ export function InscricaoEstadualPage() {
         <div className="flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">
-                <div className="container mx-auto pt-6">
+                <div className="pt-6 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
                     <Breadcrumbs items={[
                         { label: "Home", href: "/" },
                         { label: "Ferramentas", href: "/ferramentas" },

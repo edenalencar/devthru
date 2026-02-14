@@ -10,7 +10,8 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
-import { RefreshCw, FileText } from "lucide-react"
+import { RefreshCw, FileText, ArrowRight } from "lucide-react"
+import Link from "next/link"
 import { toast } from "sonner"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
@@ -142,9 +143,6 @@ export function NfeGeneratorPage() {
                         <p className="text-muted-foreground">
                             Gere chaves de acesso de Nota Fiscal Eletrônica (NF-e) válidas para testes.
                         </p>
-                        <a href="/ferramentas-fiscais" className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-2">
-                            ← Suíte de Ferramentas Fiscais
-                        </a>
                     </div>
 
                     <div className="grid gap-6">
@@ -270,6 +268,8 @@ export function NfeGeneratorPage() {
                         )}
                     </div>
 
+
+
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
@@ -286,6 +286,21 @@ export function NfeGeneratorPage() {
                                 </p>
                             </div>
                             <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Link href="/guides/validation/nfe-generator/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                        Como validar NF-e em Python
+                                    </Link>
+                                    <Link href="/guides/validation/nfe-generator/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                        Como validar NF-e em JavaScript
+                                    </Link>
+                                    <Link href="/guides/validation/nfe-generator/java" className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
+                                        Como validar NF-e em Java
+                                    </Link>
+                                    <Link href="/guides/validation/nfe-generator/csharp" className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors">
+                                        Como validar NF-e em C#
+                                    </Link>
+                                </div>
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de Chave NF-e"

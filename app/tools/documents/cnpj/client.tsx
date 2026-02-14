@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
 
@@ -219,6 +221,15 @@ export function CNPJGeneratorPage() {
                                 </p>
                             </div>
                             <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Link href="/guides/validation/cnpj/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                        Como validar CNPJ em Python
+                                    </Link>
+                                    <Link href="/guides/validation/cnpj/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                        Como validar CNPJ em JavaScript
+                                    </Link>
+                                </div>
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de CNPJ"

@@ -28,6 +28,10 @@ export const navLinks = [
         href: "/ferramentas-fiscais",
     },
     {
+        title: "Blog",
+        href: "/blog",
+    },
+    {
         title: "Preços",
         href: "/pricing",
     },

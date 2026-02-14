@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -136,6 +138,24 @@ export function UrlEncoderPage() {
                             <li>Ao construir URLs dinamicamente em suas aplicações.</li>
                             <li>Para garantir que dados sensíveis à formatação (como JSON) cheguem intactos ao servidor.</li>
                         </ul>
+
+                        <div className="mt-6 not-prose">
+                            <h3 className="text-lg font-medium mb-3">Guias Relacionados</h3>
+                            <div className="flex flex-wrap gap-2">
+                                <Link href="/guides/generation/url-encoder/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                    URL Encode em Python
+                                </Link>
+                                <Link href="/guides/generation/url-encoder/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                    encodeURIComponent em JavaScript
+                                </Link>
+                                <Link href="/guides/generation/url-encoder/java" className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
+                                    URLEncoder em Java
+                                </Link>
+                                <Link href="/guides/generation/url-encoder/csharp" className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors">
+                                    URL Encoding em C#
+                                </Link>
+                            </div>
+                        </div>
                     </article>
                 </div>
             </main>

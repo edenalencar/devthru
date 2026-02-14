@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @layer base {
   :root {
@@ -74,4 +75,22 @@
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Fix prose text colors in light mode (dark mode uses prose-invert and works fine) */
+:root .prose {
+  --tw-prose-body: hsl(var(--foreground)) !important;
+  --tw-prose-headings: hsl(var(--foreground)) !important;
+  --tw-prose-lead: hsl(var(--muted-foreground)) !important;
+  --tw-prose-bold: hsl(var(--foreground)) !important;
+  --tw-prose-counters: hsl(var(--muted-foreground)) !important;
+  --tw-prose-bullets: hsl(var(--muted-foreground)) !important;
+  --tw-prose-hr: hsl(var(--border)) !important;
+  --tw-prose-quotes: hsl(var(--foreground)) !important;
+  --tw-prose-quote-borders: hsl(var(--border)) !important;
+  --tw-prose-captions: hsl(var(--muted-foreground)) !important;
+  --tw-prose-code: hsl(var(--foreground)) !important;
+  --tw-prose-th-borders: hsl(var(--border)) !important;
+  --tw-prose-td-borders: hsl(var(--border)) !important;
+  color: hsl(var(--foreground)) !important;
 }

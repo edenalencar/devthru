@@ -92,9 +92,6 @@ export function CnaeSearchPage() {
                         <p className="text-muted-foreground">
                             Pesquise códigos e descrições da Classificação Nacional de Atividades Econômicas.
                         </p>
-                        <a href="/ferramentas-fiscais" className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-2">
-                            ← Suíte de Ferramentas Fiscais
-                        </a>
                     </div>
 
                     <div className="grid gap-6 lg:grid-cols-3">
