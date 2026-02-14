@@ -4,6 +4,10 @@ import { siteConfig } from '@/config/site'
 import { tools } from '@/lib/tools-list'
 import { IE_STATES } from '@/lib/utils/validators/inscricao-estadual'
 
+// ... imports
+import { getAllPosts } from '@/lib/content/blog'
+import { PROGRAMMATIC_CONTENT } from '@/lib/content/programmatic'
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = siteConfig.url
 
@@ -21,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/login',
         '/register',
         '/forgot-password',
+        '/blog',
+        '/guides',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
@@ -44,5 +50,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }))
 
-    return [...coreRoutes, ...toolRoutes, ...ieStateRoutes]
+    // Blog routes
+    const blogRoutes = getAllPosts().map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: new Date(post.date),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+    }))
+
+    // Guide routes
+    const guideRoutes = PROGRAMMATIC_CONTENT.map((guide) => ({
+        url: `${baseUrl}/guides/${guide.category}/${guide.toolId}/${guide.languageId}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }))
+
+    return [...coreRoutes, ...toolRoutes, ...ieStateRoutes, ...blogRoutes, ...guideRoutes]
 }

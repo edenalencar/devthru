@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { generateSlug } from '@/lib/utils/text'
 import { ToolResult } from '@/components/tools/tool-result'
 import { ShareButtons } from '@/components/share-buttons'
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function SlugGeneratorPage() {
@@ -100,6 +101,7 @@ export function SlugGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <RelatedTools currentToolSlug="slug-generator" category="text" />
                 </div>
             </main>
         </div>

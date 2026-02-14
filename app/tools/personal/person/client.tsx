@@ -10,6 +10,7 @@ import { RefreshCw, Copy, Check } from 'lucide-react'
 import { generatePerson, Person } from '@/lib/utils/validators/person'
 import { toast } from 'sonner'
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
@@ -225,6 +226,7 @@ export function PersonGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="person" category="personal" />
                 </div>
             </main>
 

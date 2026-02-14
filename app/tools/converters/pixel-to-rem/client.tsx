@@ -8,6 +8,7 @@ import { ArrowRightLeft } from "lucide-react"
 import { useState, useEffect } from "react"
 
 import { Navbar } from "@/components/layout/navbar"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function PixelToRemPage() {
@@ -129,6 +130,7 @@ export function PixelToRemPage() {
                         <h3>Fórmula de Conversão</h3>
                         <pre><code>REM = Pixels / Base Size (16px)</code></pre>
                     </article>
+                    <RelatedTools currentToolSlug="pixel-to-rem" category="converters" />
                 </div>
             </main>
         </div>

@@ -13,6 +13,7 @@ import { CreditCard, RefreshCw, Copy } from "lucide-react"
 import { generateCreditCard, generateExpiryDate, generateCVV, CARD_BRANDS, CardBrand } from "@/lib/utils/generators/credit-card"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function CreditCardGeneratorPage() {
@@ -199,6 +200,7 @@ export function CreditCardGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="credit-card-generator" category="finance" />
                 </div>
             </main>
 

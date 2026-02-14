@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
@@ -19,7 +19,7 @@ export default function Page() {
                             "@type": "SoftwareApplication",
                             "name": "Busca de CNAE - Classificação Nacional de Atividades",
                             "operatingSystem": "Web",
-                            "applicationCategory": "NegóciosApplication",
+                            "applicationCategory": "BusinessApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",

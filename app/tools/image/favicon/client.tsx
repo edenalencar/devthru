@@ -11,6 +11,7 @@ import { Image as ImageIcon, Upload, Download, RefreshCw } from "lucide-react"
 import JSZip from "jszip"
 import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 const FAVICON_SIZES = [16, 32, 180, 192, 512]
@@ -227,6 +228,7 @@ export function FaviconGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <RelatedTools currentToolSlug="favicon" category="image" />
                 </div>
             </main>
 

@@ -22,6 +22,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "14 de Fevereiro de 2026",
+        title: "Navegação entre Ferramentas Relacionadas",
+        description: "Implementação de uma nova seção 'Ferramentas Relacionadas' em todas as páginas de utilitários e documentos, facilitando a descoberta de ferramentas complementares.",
+        type: "feature",
+        version: "1.35.0"
+    },
+    {
         date: "06 de Fevereiro de 2026",
         title: "Nova Suíte de Ferramentas Fiscais",
         description: "Lançamento do hub centralizado com todas as ferramentas fiscais e empresariais. Acesse NF-e, CT-e, MDF-e, NFC-e, CNPJ, CNAE e Inscrição Estadual em um único lugar: /ferramentas-fiscais",

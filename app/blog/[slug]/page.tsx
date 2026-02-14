@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Link from "next/link"
 import { getAllPosts, getPostBySlug, getRelatedPosts, blogCategories, type BlogCategory } from "@/lib/content/blog"
+import { JsonLd } from "@/components/seo/json-ld"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Button } from "@/components/ui/button"
 import { Calendar, Clock, ArrowRight, ArrowLeft, Tag } from "lucide-react"
@@ -52,6 +53,25 @@ export default async function BlogPostPage({ params }: PageProps) {
 
     return (
         <div className="min-h-screen">
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": post.title,
+                    "description": post.description,
+                    "author": {
+                        "@type": "Person",
+                        "name": post.author
+                    },
+                    "datePublished": post.date,
+                    "dateModified": post.date,
+                    "image": `https://devthru.com/api/og/blog?title=${encodeURIComponent(post.title)}`, // dynamic OG image
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": `https://devthru.com/blog/${slug}`
+                    }
+                }}
+            />
             {/* Article Header */}
             <section className="border-b">
                 <div className="container mx-auto max-w-3xl px-4 pt-8 pb-12">

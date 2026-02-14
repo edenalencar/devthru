@@ -13,6 +13,7 @@ import { BulkGenerator } from "@/components/tools/bulk-generator"
 import { RefreshCw, CheckCircle2, XCircle } from "lucide-react"
 import { generateTituloEleitor, validateTituloEleitor, formatTituloEleitor } from "@/lib/utils/validators/titulo-eleitor"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
@@ -263,6 +264,7 @@ export function TituloEleitorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="titulo-eleitor" category="documents" />
                 </div>
             </main>
 

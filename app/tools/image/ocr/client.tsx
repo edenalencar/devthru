@@ -12,6 +12,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { Label } from "@/components/ui/label"
 import Tesseract from "tesseract.js"
 import { toast } from "sonner"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function OCRPage() {
@@ -183,6 +184,7 @@ export function OCRPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="ocr" category="image" />
                 </div>
             </main >
 

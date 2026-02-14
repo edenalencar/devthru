@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Image as ImageIcon, Download, RefreshCw } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function PlaceholderGeneratorPage() {
@@ -227,6 +228,7 @@ export function PlaceholderGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <RelatedTools currentToolSlug="placeholder" category="image" />
                 </div>
             </main>
 

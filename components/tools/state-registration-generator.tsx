@@ -135,6 +135,7 @@ export function StateRegistrationGenerator({ defaultState }: StateRegistrationGe
                                 toolName="Inscrição Estadual"
                                 input={{ uf: selectedUF }}
                                 successMessage={`IE de ${stateInfo?.name} gerada com sucesso`}
+                                isPro={isPro}
                             />
                         )}
 

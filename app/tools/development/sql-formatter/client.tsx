@@ -9,6 +9,7 @@ import { Copy, Trash2, Code2 } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 import { format } from "sql-formatter"
+import { RelatedTools } from "@/components/tools/related-tools"
 
 import { Navbar } from "@/components/layout/navbar"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
@@ -153,6 +154,7 @@ export function SqlFormatterPage() {
                             <li><strong>Quebras de Linha:</strong>Cada cláusula principal começa em uma nova linha.</li>
                         </ul>
                     </article>
+                    <RelatedTools currentToolSlug="sql-formatter" category="development" />
                 </div>
             </main>
         </div>

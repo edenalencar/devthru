@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { tools, toolCategories } from "@/config/tools"
@@ -83,30 +83,31 @@ export function HomePageClient() {
                                 const Icon = tool.icon
                                 return (
                                     <Link key={tool.id} href={tool.href}>
-                                        <Card className="group h-full transition-all hover:shadow-lg hover:border-primary cursor-pointer">
-                                            <CardHeader>
-                                                <div className="flex items-start justify-between mb-2">
-                                                    <Icon className="h-8 w-8 text-primary" />
-                                                    <div className="flex items-center gap-1.5">
-                                                        {!tool.isPro && (
-                                                            <Badge variant="outline" className="text-xs border-green-500/50 text-green-600 dark:text-green-400">
-                                                                Grátis
-                                                            </Badge>
-                                                        )}
-                                                        {tool.isPro && (
-                                                            <Badge variant="secondary" className="text-xs">
-                                                                PRO
-                                                            </Badge>
-                                                        )}
+                                        <Card className="group h-full flex flex-col transition-all hover:shadow-lg hover:border-primary cursor-pointer border-muted/50 hover:border-primary/50 relative overflow-hidden">
+                                            <CardHeader className="flex-1 pb-2">
+                                                <div className="flex items-start gap-4 mb-2">
+                                                    <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors shrink-0">
+                                                        <Icon className="h-6 w-6 text-primary" />
+                                                    </div>
+                                                    <div className="flex-1">
+                                                        <div className="flex items-center justify-between gap-2">
+                                                            <CardTitle className="text-lg group-hover:text-primary transition-colors">{tool.name}</CardTitle>
+                                                            {tool.isPro && (
+                                                                <Badge variant="secondary" className="text-xs font-medium shrink-0">
+                                                                    PRO
+                                                                </Badge>
+                                                            )}
+                                                        </div>
+                                                        <CardDescription className="text-sm leading-relaxed mt-2 line-clamp-2">{tool.description}</CardDescription>
                                                     </div>
                                                 </div>
-                                                <CardTitle>{tool.name}</CardTitle>
-                                                <CardDescription>{tool.description}</CardDescription>
-                                                <span className="text-sm font-medium text-primary flex items-center gap-1 pt-2 group-hover:gap-2 transition-all">
-                                                    Usar ferramenta
-                                                    <ArrowRight className="h-3.5 w-3.5" />
-                                                </span>
                                             </CardHeader>
+                                            <CardContent className="pt-0 mt-auto pb-6">
+                                                <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                                                    Usar ferramenta
+                                                    <ArrowRight className="h-4 w-4" />
+                                                </span>
+                                            </CardContent>
                                         </Card>
                                     </Link>
                                 )

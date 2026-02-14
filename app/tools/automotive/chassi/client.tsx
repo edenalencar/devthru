@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Car, RefreshCw, Copy } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function ChassiGeneratorPage() {
@@ -168,6 +169,7 @@ export function ChassiGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="chassi" category="automotive" />
                 </div>
             </main>
 

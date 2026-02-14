@@ -14,6 +14,7 @@ import { CONTRACT_TEMPLATES } from "@/lib/templates/contracts"
 import jsPDF from "jspdf"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function ContractGeneratorPage() {
@@ -169,6 +170,9 @@ export function ContractGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                </div>
+                <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+                    <RelatedTools currentToolSlug="contract-generator" category="documents" />
                 </div>
             </main>
 

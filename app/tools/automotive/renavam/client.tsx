@@ -2,13 +2,14 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Shield, RefreshCw, Copy } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 export function RenavamGeneratorPage() {
@@ -129,10 +130,11 @@ export function RenavamGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <RelatedTools currentToolSlug="renavam" category="automotive" />
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     )
 }
