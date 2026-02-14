@@ -10,7 +10,8 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
-import { RefreshCw, Truck } from "lucide-react"
+import { RefreshCw, Truck, ArrowRight } from "lucide-react"
+import Link from "next/link"
 import { toast } from "sonner"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
@@ -123,7 +124,7 @@ export function CteGeneratorPage() {
 
             <main className="flex-1">
                 <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 max-w-4xl">
-                    <Breadcrumbs items={[{"label":"Ferramentas","href":"/ferramentas-fiscais"},{"label":"Negócios","href":"/ferramentas-fiscais"},{"label":"Gerador de CT-e"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas", "href": "/ferramentas-fiscais" }, { "label": "Dados Empresariais", "href": "/ferramentas-fiscais" }, { "label": "Gerador de CT-e" }]} className="mb-6" />
                     <div className="mb-8">
                         <h1 className="text-3xl font-bold flex items-center gap-2 mb-2">
                             <Truck className="h-8 w-8 text-primary" />
@@ -132,9 +133,6 @@ export function CteGeneratorPage() {
                         <p className="text-muted-foreground">
                             Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes.
                         </p>
-                        <a href="/ferramentas-fiscais" className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-2">
-                            ← Suíte de Ferramentas Fiscais
-                        </a>
                     </div>
 
                     <div className="grid gap-6">
@@ -245,6 +243,8 @@ export function CteGeneratorPage() {
                         )}
                     </div>
 
+
+
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
@@ -261,6 +261,21 @@ export function CteGeneratorPage() {
                                 </p>
                             </div>
                             <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Link href="/guides/validation/cte-generator/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                        Como validar CT-e em Python
+                                    </Link>
+                                    <Link href="/guides/validation/cte-generator/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                        Como validar CT-e em JavaScript
+                                    </Link>
+                                    <Link href="/guides/validation/cte-generator/java" className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
+                                        Como validar CT-e em Java
+                                    </Link>
+                                    <Link href="/guides/validation/cte-generator/csharp" className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors">
+                                        Como validar CT-e em C#
+                                    </Link>
+                                </div>
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de Chave CT-e"

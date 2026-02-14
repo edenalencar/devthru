@@ -75,7 +75,7 @@ export function NameGeneratorPage() {
                     <Breadcrumbs items={[
                         { label: "Home", href: "/" },
                         { label: "Ferramentas", href: "/ferramentas" },
-                        { label: "Pessoal", href: "/ferramentas-pessoais" },
+                        { label: "Dados Pessoais", href: "/ferramentas-pessoais" },
                         { label: "Gerador de Nomes" }
                     ]} className="mb-6" />
                     <div className="space-y-2">

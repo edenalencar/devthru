@@ -1,8 +1,9 @@
 'use client'
 
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Sparkles } from 'lucide-react'
 import { CopyButton } from '@/components/copy-button'
 import { HistoryButton } from '@/components/tools/history-button'
+import Link from 'next/link'
 
 interface ToolResultProps {
     result: string | string[]
@@ -11,6 +12,7 @@ interface ToolResultProps {
     input?: any
     successMessage?: string
     className?: string
+    isPro?: boolean
 }
 
 export function ToolResult({
@@ -20,6 +22,7 @@ export function ToolResult({
     input = {},
     successMessage,
     className = '',
+    isPro = true,
 }: ToolResultProps) {
     if (!result || (Array.isArray(result) && result.length === 0)) {
         return null
@@ -50,6 +53,17 @@ export function ToolResult({
                     output={outputForHistory}
                 />
             </div>
+            {!isPro && (
+                <Link
+                    href="/pricing"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors rounded-lg border border-dashed p-3"
+                >
+                    <Sparkles className="h-4 w-4 text-amber-500 flex-shrink-0" />
+                    <span>
+                        Precisa de mais? <span className="font-medium text-foreground">Gere em massa com o plano PRO.</span>
+                    </span>
+                </Link>
+            )}
         </div>
     )
 }

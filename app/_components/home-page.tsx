@@ -8,7 +8,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { tools, toolCategories } from "@/config/tools"
-import { Search } from "lucide-react"
+import { Search, ArrowRight } from "lucide-react"
 
 export function HomePageClient() {
     const [searchQuery, setSearchQuery] = useState("")
@@ -28,11 +28,13 @@ export function HomePageClient() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                    {/* Header */}
+                    {/* Hero */}
                     <div className="mb-12 text-center">
-                        <h1 className="text-4xl font-bold mb-4">Todas as Ferramentas</h1>
+                        <h1 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">
+                            Gere Dados de Teste em Segundos
+                        </h1>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                            DevThru: Dados rápidos pra viagem. Pare de perder tempo criando massa de dados na mão. Gere milhares de registros válidos (CPF, CNPJ, Cartões) em segundos via API ou CSV.
+                            CPF, CNPJ, cartões, NF-e e mais — válidos e prontos para uso. Sem cadastro. Sem complicação.
                         </p>
                     </div>
 
@@ -76,23 +78,34 @@ export function HomePageClient() {
 
                     {/* Tools Grid */}
                     {filteredTools.length > 0 ? (
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        <div id="tools-grid" className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {filteredTools.map((tool) => {
                                 const Icon = tool.icon
                                 return (
                                     <Link key={tool.id} href={tool.href}>
-                                        <Card className="h-full transition-all hover:shadow-lg hover:border-primary cursor-pointer">
+                                        <Card className="group h-full transition-all hover:shadow-lg hover:border-primary cursor-pointer">
                                             <CardHeader>
                                                 <div className="flex items-start justify-between mb-2">
                                                     <Icon className="h-8 w-8 text-primary" />
-                                                    {tool.isPro && (
-                                                        <Badge variant="secondary" className="text-xs">
-                                                            PRO
-                                                        </Badge>
-                                                    )}
+                                                    <div className="flex items-center gap-1.5">
+                                                        {!tool.isPro && (
+                                                            <Badge variant="outline" className="text-xs border-green-500/50 text-green-600 dark:text-green-400">
+                                                                Grátis
+                                                            </Badge>
+                                                        )}
+                                                        {tool.isPro && (
+                                                            <Badge variant="secondary" className="text-xs">
+                                                                PRO
+                                                            </Badge>
+                                                        )}
+                                                    </div>
                                                 </div>
                                                 <CardTitle>{tool.name}</CardTitle>
                                                 <CardDescription>{tool.description}</CardDescription>
+                                                <span className="text-sm font-medium text-primary flex items-center gap-1 pt-2 group-hover:gap-2 transition-all">
+                                                    Usar ferramenta
+                                                    <ArrowRight className="h-3.5 w-3.5" />
+                                                </span>
                                             </CardHeader>
                                         </Card>
                                     </Link>

@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
 
@@ -32,7 +34,7 @@ export function UUIDGeneratorPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Utilidades"},{"label":"Gerador de UUID"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Utilidades" }, { "label": "Gerador de UUID" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Hash className="h-8 w-8 text-primary" />
@@ -135,6 +137,25 @@ export function UUIDGeneratorPage() {
                                 UUIDs v4 têm uma probabilidade extremamente baixa de colisão, tornando-os ideais para
                                 identificadores únicos em bancos de dados, APIs e sistemas distribuídos.
                             </p>
+
+                            <div className="mt-6">
+                                <h3 className="text-lg font-medium mb-3">Guias Relacionados</h3>
+                                <div className="flex flex-wrap gap-2">
+                                    <Link href="/guides/generation/uuid-generator/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                        Como gerar UUID v4 em Python
+                                    </Link>
+                                    <Link href="/guides/generation/uuid-generator/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                        Como gerar UUID v4 em JavaScript
+                                    </Link>
+                                    <Link href="/guides/generation/uuid-generator/java" className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
+                                        Como gerar UUID em Java
+                                    </Link>
+                                    <Link href="/guides/generation/uuid-generator/csharp" className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors">
+                                        Como gerar GUID/UUID em C#
+                                    </Link>
+                                </div>
+                            </div>
+
                             <div className="pt-4 border-t mt-4">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -146,8 +167,6 @@ export function UUIDGeneratorPage() {
                     </Card>
                 </div>
             </main>
-
-
         </div>
     )
 }

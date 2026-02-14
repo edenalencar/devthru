@@ -18,6 +18,7 @@ import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import Link from "next/link"
 
 export function CPFGeneratorPage() {
     const [generatedCPF, setGeneratedCPF] = useState("")
@@ -45,7 +46,7 @@ export function CPFGeneratorPage() {
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     {/* Header */}
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Documentos"},{"label":"CPF"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Documentos Pessoais" }, { "label": "CPF" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <FileText className="h-8 w-8 text-primary" />
@@ -105,6 +106,7 @@ export function CPFGeneratorPage() {
                                             toolName="CPF"
                                             input={{ formatted }}
                                             successMessage="CPF válido gerado com sucesso"
+                                            isPro={isPro}
                                         />
                                     )}
                                 </CardContent>
@@ -243,6 +245,15 @@ export function CPFGeneratorPage() {
                                 </p>
                             </div>
                             <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Link href="/guides/validation/cpf/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                        Como validar CPF em Python
+                                    </Link>
+                                    <Link href="/guides/validation/cpf/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                        Como validar CPF em JavaScript
+                                    </Link>
+                                </div>
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de CPF"

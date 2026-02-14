@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
 
@@ -55,7 +57,7 @@ export function Base64Page() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Utilidades"},{"label":"Base64"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Utilidades" }, { "label": "Base64" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Binary className="h-8 w-8 text-primary" />
@@ -167,6 +169,24 @@ export function Base64Page() {
                                 <strong>Nota:</strong> Base64 NÃO é criptografia. É apenas uma codificação e pode ser
                                 facilmente revertida. Não use para proteger informações sensíveis.
                             </p>
+
+                            <div className="mt-6">
+                                <h3 className="text-lg font-medium mb-3">Guias Relacionados</h3>
+                                <div className="flex flex-wrap gap-2">
+                                    <Link href="/guides/generation/base64-encoder/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                        Como usar Base64 em Python
+                                    </Link>
+                                    <Link href="/guides/generation/base64-encoder/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                        Base64 em JavaScript (btoa/atob)
+                                    </Link>
+                                    <Link href="/guides/generation/base64-encoder/java" className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
+                                        Guia de Base64 em Java
+                                    </Link>
+                                    <Link href="/guides/generation/base64-encoder/csharp" className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors">
+                                        Base64 em C# .NET
+                                    </Link>
+                                </div>
+                            </div>
                         </CardContent>
                         <div className="pt-4 border-t px-6 pb-6">
                             <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>

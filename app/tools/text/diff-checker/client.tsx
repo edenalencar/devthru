@@ -45,7 +45,7 @@ export function DiffCheckerPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Texto"},{"label":"Comparador de Texto"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Texto e Conversão" }, { "label": "Comparador de Texto" }]} className="mb-6" />
                     <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div>
                             <h1 className="text-3xl font-bold mb-2">Comparador de Texto (Diff)</h1>

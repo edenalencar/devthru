@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
 
@@ -77,7 +79,7 @@ export function JSONFormatterPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Utilidades"},{"label":"Formatador JSON"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Utilidades" }, { "label": "Formatador JSON" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Braces className="h-8 w-8 text-primary" />
@@ -203,6 +205,15 @@ export function JSONFormatterPage() {
                             </p>
                         </CardContent>
                         <div className="pt-4 border-t px-6 pb-6">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
+                            <div className="flex flex-wrap gap-2 mb-4">
+                                <Link href="/guides/formatting/json/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                    Como formatar JSON em Python
+                                </Link>
+                                <Link href="/guides/formatting/json/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                    Como formatar JSON em JavaScript
+                                </Link>
+                            </div>
                             <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                             <ShareButtons
                                 title="JSON Formatter"
@@ -212,8 +223,6 @@ export function JSONFormatterPage() {
                     </Card>
                 </div>
             </main>
-
-
         </div>
     )
 }

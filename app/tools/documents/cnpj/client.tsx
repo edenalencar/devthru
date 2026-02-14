@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
 
@@ -44,7 +46,7 @@ export function CNPJGeneratorPage() {
 
             <main className="flex-1">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Documentos"},{"label":"CNPJ"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Documentos Pessoais" }, { "label": "CNPJ" }]} className="mb-6" />
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Code2 className="h-8 w-8 text-primary" />
@@ -53,9 +55,6 @@ export function CNPJGeneratorPage() {
                         <p className="text-lg text-muted-foreground">
                             Gere CNPJs válidos para testes e desenvolvimento. Valide CNPJs existentes.
                         </p>
-                        <a href="/ferramentas-fiscais" className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-2">
-                            ← Suíte de Ferramentas Fiscais
-                        </a>
                     </div>
 
                     <div className="grid gap-8 lg:grid-cols-2">
@@ -222,6 +221,15 @@ export function CNPJGeneratorPage() {
                                 </p>
                             </div>
                             <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Link href="/guides/validation/cnpj/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                        Como validar CNPJ em Python
+                                    </Link>
+                                    <Link href="/guides/validation/cnpj/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                        Como validar CNPJ em JavaScript
+                                    </Link>
+                                </div>
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de CNPJ"

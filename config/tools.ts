@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase, Globe, Ruler } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -204,6 +204,16 @@ export const tools: Tool[] = [
         href: "/tools/converters/currency",
     },
 
+    {
+        id: "pixel-to-rem",
+        name: "Pixel para REM",
+        title: "Conversor de Pixel para REM",
+        description: "Converta pixels para REM e vice-versa. Calculadora essencial para desenvolvimento front-end responsivo.",
+        category: "converters",
+        icon: Ruler,
+        href: "/tools/converters/pixel-to-rem",
+    },
+
     // Ferramentas de Desenvolvimento
     {
         id: "regex-generator",
@@ -240,6 +250,25 @@ export const tools: Tool[] = [
         category: "development",
         icon: Clock,
         href: "/tools/development/timestamp",
+    },
+
+    {
+        id: "sql-formatter",
+        name: "SQL Formatter",
+        title: "Formatador de SQL",
+        description: "Formate, indente e embeleze suas queries SQL. Suporte para PostgreSQL, MySQL, SQL Server e outros dialetos.",
+        category: "development",
+        icon: Database,
+        href: "/tools/development/sql-formatter",
+    },
+    {
+        id: "jwt-debugger",
+        name: "JWT Debugger",
+        title: "Debugger de JWT",
+        description: "Decodifique, verifique e debugue JSON Web Tokens (JWT) diretamente no navegador com segurança.",
+        category: "development",
+        icon: Shield,
+        href: "/tools/development/jwt-debugger",
     },
 
     // Ferramentas de Imagem
@@ -325,6 +354,16 @@ export const tools: Tool[] = [
         category: "utilities",
         icon: Braces,
         href: "/tools/utilities/json",
+    },
+
+    {
+        id: "url-encoder",
+        name: "URL Encoder/Decoder",
+        title: "Codificador/Decodificador de URL",
+        description: "Codifique e decodifique URLs para uso seguro em parâmetros de query string e requisições HTTP.",
+        category: "utilities",
+        icon: Globe,
+        href: "/tools/utilities/url-encoder",
     },
 
     // Finance Tools

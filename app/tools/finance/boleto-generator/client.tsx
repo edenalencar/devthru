@@ -61,7 +61,7 @@ export function BoletoGeneratorPage() {
             <main className="flex-1 print:p-0">
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full print:p-0 print:max-w-none">
                     {/* Header - Hidden on print */}
-                    <Breadcrumbs items={[{"label":"Ferramentas"},{"label":"Finanças"},{"label":"Gerador de Boleto"}]} className="mb-6" />
+                    <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Dados Financeiros" }, { "label": "Gerador de Boleto" }]} className="mb-6" />
                     <div className="mb-8 print:hidden">
                         <div className="flex items-center gap-3 mb-4">
                             <Barcode className="h-8 w-8 text-primary" />
