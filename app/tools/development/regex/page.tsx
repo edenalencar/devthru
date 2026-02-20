@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { RegexGeneratorPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Crie, teste e valide expressões regulares (Regex) em tempo
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/development/regex`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Desenvolvimento",
-                                    "item": "https://devhubtools.com/tools/development"
+                                    "item": "https://www.devthru.com/tools/development"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Regex",
-                                    "item": "https://devhubtools.com/tools/development/regex"
+                                    "item": "https://www.devthru.com/tools/development/regex"
                                 }
                             ]
                         }

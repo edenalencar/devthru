@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { EmailSignaturePage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Crie assinaturas de email profissionais e personalizadas co
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/text/email-signature`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Texto",
-                                    "item": "https://devhubtools.com/tools/text"
+                                    "item": "https://www.devthru.com/tools/text"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Assinatura de Email",
-                                    "item": "https://devhubtools.com/tools/text/email-signature"
+                                    "item": "https://www.devthru.com/tools/text/email-signature"
                                 }
                             ]
                         }

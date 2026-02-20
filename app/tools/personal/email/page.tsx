@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { EmailGeneratorPage } from "./client"
 
@@ -9,6 +10,9 @@ export const metadata: Metadata = {
     title,
     description,
     keywords: ["gerador de email", "email temporario", "email ficticio", "testes de software", "massa de dados"],
+    alternates: {
+        canonical: `${siteConfig.url}/tools/personal/email`,
+    },
     openGraph: {
         title,
         description,
@@ -42,25 +46,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Pessoal",
-                                    "item": "https://devhubtools.com/tools/personal"
+                                    "item": "https://www.devthru.com/tools/personal"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Gerador de Email",
-                                    "item": "https://devhubtools.com/tools/personal/email"
+                                    "item": "https://www.devthru.com/tools/personal/email"
                                 }
                             ]
                         }

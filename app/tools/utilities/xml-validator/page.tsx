@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { XMLValidatorPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Valide a sintaxe de seus arquivos XML instantaneamente com 
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/utilities/xml-validator`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Utilidades",
-                                    "item": "https://devhubtools.com/tools/utilities"
+                                    "item": "https://www.devthru.com/tools/utilities"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Validador XML",
-                                    "item": "https://devhubtools.com/tools/utilities/xml-validator"
+                                    "item": "https://www.devthru.com/tools/utilities/xml-validator"
                                 }
                             ]
                         }

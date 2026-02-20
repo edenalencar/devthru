@@ -1,4 +1,4 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { PhoneGeneratorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -40,25 +40,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Pessoal",
-                                    "item": "https://devhubtools.com/tools/personal"
+                                    "item": "https://www.devthru.com/tools/personal"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Telefone/Celular",
-                                    "item": "https://devhubtools.com/tools/personal/phone"
+                                    "item": "https://www.devthru.com/tools/personal/phone"
                                 }
                             ]
                         }

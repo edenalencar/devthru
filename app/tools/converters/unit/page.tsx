@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { UnitConverterPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Converta unidades de medida instantaneamente com nosso Conv
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/converters/unit`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Conversores",
-                                    "item": "https://devhubtools.com/tools/converters"
+                                    "item": "https://www.devthru.com/tools/converters"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Conversor de Unidades",
-                                    "item": "https://devhubtools.com/tools/converters/unit"
+                                    "item": "https://www.devthru.com/tools/converters/unit"
                                 }
                             ]
                         }

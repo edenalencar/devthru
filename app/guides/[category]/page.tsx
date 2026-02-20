@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `Guias de ${categoryName} | DevThru`,
         description: `Aprenda a implementar algoritmos de ${categoryName.toLowerCase()} em diversas linguagens.`,
         alternates: {
-            canonical: `https://devthru.com/guides/${category}`,
+            canonical: `https://www.devthru.com/guides/${category}`,
         },
     }
 }

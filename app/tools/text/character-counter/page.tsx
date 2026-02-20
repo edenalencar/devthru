@@ -1,4 +1,4 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { CharacterCounterPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -40,25 +40,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Texto",
-                                    "item": "https://devhubtools.com/tools/text"
+                                    "item": "https://www.devthru.com/tools/text"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Contador de Caracteres",
-                                    "item": "https://devhubtools.com/tools/text/character-counter"
+                                    "item": "https://www.devthru.com/tools/text/character-counter"
                                 }
                             ]
                         }

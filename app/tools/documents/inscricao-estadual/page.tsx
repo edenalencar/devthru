@@ -1,4 +1,4 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
 import { InscricaoEstadualPage } from './client'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -40,25 +40,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Documentos",
-                                    "item": "https://devhubtools.com/tools/documents"
+                                    "item": "https://www.devthru.com/tools/documents"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Inscrição Estadual",
-                                    "item": "https://devhubtools.com/tools/documents/inscricao-estadual"
+                                    "item": "https://www.devthru.com/tools/documents/inscricao-estadual"
                                 }
                             ]
                         }

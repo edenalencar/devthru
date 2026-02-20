@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { RGGeneratorPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Crie números de RG (Registro Geral) aleatórios e válidos
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/documents/rg`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Documentos",
-                                    "item": "https://devhubtools.com/tools/documents"
+                                    "item": "https://www.devthru.com/tools/documents"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "RG",
-                                    "item": "https://devhubtools.com/tools/documents/rg"
+                                    "item": "https://www.devthru.com/tools/documents/rg"
                                 }
                             ]
                         }

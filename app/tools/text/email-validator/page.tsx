@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { EmailValidatorPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Verifique se um endereço de email é válido, se o formato
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/text/email-validator`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Texto",
-                                    "item": "https://devhubtools.com/tools/text"
+                                    "item": "https://www.devthru.com/tools/text"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Validador de Email",
-                                    "item": "https://devhubtools.com/tools/text/email-validator"
+                                    "item": "https://www.devthru.com/tools/text/email-validator"
                                 }
                             ]
                         }

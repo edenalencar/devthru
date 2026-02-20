@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { LicensePlatePage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Gere placas de veículos nos padrões Mercosul e Antigo (Ci
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/automotive/license-plate`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Automotivo",
-                                    "item": "https://devhubtools.com/tools/automotive"
+                                    "item": "https://www.devthru.com/tools/automotive"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Placa",
-                                    "item": "https://devhubtools.com/tools/automotive/license-plate"
+                                    "item": "https://www.devthru.com/tools/automotive/license-plate"
                                 }
                             ]
                         }

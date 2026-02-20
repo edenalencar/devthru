@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { ChassiGeneratorPage } from "./client"
 
@@ -17,6 +18,9 @@ export const metadata: Metadata = {
         "número de chassi",
         "chassi veicular",
     ],
+    alternates: {
+        canonical: `${siteConfig.url}/tools/automotive/chassi`,
+    },
     openGraph: {
         title,
         description,
@@ -50,25 +54,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Automotivo",
-                                    "item": "https://devhubtools.com/tools/automotive"
+                                    "item": "https://www.devthru.com/tools/automotive"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Chassi",
-                                    "item": "https://devhubtools.com/tools/automotive/chassi"
+                                    "item": "https://www.devthru.com/tools/automotive/chassi"
                                 }
                             ]
                         }

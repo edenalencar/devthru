@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: content.title,
         description: content.description,
         alternates: {
-            canonical: `https://devthru.com/guides/${category}/${tool}/${language}`,
+            canonical: `https://www.devthru.com/guides/${category}/${tool}/${language}`,
         },
     }
 }
@@ -71,13 +71,13 @@ export default async function GuidePage({ params }: PageProps) {
                     "author": {
                         "@type": "Organization",
                         "name": "DevThru",
-                        "url": "https://devthru.com"
+                        "url": "https://www.devthru.com"
                     },
                     "datePublished": new Date().toISOString(), // In a real app this should be content.date
                     "dateModified": new Date().toISOString(),
                     "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": `https://devthru.com/guides/${category}/${tool}/${language}`
+                        "@id": `https://www.devthru.com/guides/${category}/${tool}/${language}`
                     }
                 }}
             />

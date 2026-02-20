@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { BaseConverterPage } from "./client"
 
@@ -34,25 +35,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Conversores",
-                                    "item": "https://devhubtools.com/tools/converters"
+                                    "item": "https://www.devthru.com/tools/converters"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Conversor de Base",
-                                    "item": "https://devhubtools.com/tools/converters/base"
+                                    "item": "https://www.devthru.com/tools/converters/base"
                                 }
                             ]
                         }
