@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { TimestampConverterPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Converta timestamps Unix (segundos/milissegundos) para data
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/development/timestamp`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Desenvolvimento",
-                                    "item": "https://devhubtools.com/tools/development"
+                                    "item": "https://www.devthru.com/tools/development"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Timestamp",
-                                    "item": "https://devhubtools.com/tools/development/timestamp"
+                                    "item": "https://www.devthru.com/tools/development/timestamp"
                                 }
                             ]
                         }

@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { PasswordGeneratorPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Crie senhas fortes e invioláveis com nosso Gerador de Senh
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/utilities/password`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Utilidades",
-                                    "item": "https://devhubtools.com/tools/utilities"
+                                    "item": "https://www.devthru.com/tools/utilities"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Gerador de Senha",
-                                    "item": "https://devhubtools.com/tools/utilities/password"
+                                    "item": "https://www.devthru.com/tools/utilities/password"
                                 }
                             ]
                         }

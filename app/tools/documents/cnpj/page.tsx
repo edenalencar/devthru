@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { CNPJGeneratorPage } from "./client"
 
@@ -9,6 +10,9 @@ export const metadata: Metadata = {
     title,
     description,
     keywords: ["gerador de cnpj", "validador de cnpj", "testes de software", "gerador cnpj", "qa", "massa de dados"],
+    alternates: {
+        canonical: `${siteConfig.url}/tools/documents/cnpj`,
+    },
     openGraph: {
         title,
         description,
@@ -42,25 +46,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Documentos",
-                                    "item": "https://devhubtools.com/tools/documents"
+                                    "item": "https://www.devthru.com/tools/documents"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "CNPJ",
-                                    "item": "https://devhubtools.com/tools/documents/cnpj"
+                                    "item": "https://www.devthru.com/tools/documents/cnpj"
                                 }
                             ]
                         }

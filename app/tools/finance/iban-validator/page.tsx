@@ -1,4 +1,4 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { IBANValidatorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -40,25 +40,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Finanças",
-                                    "item": "https://devhubtools.com/tools/finance"
+                                    "item": "https://www.devthru.com/tools/finance"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Validador IBAN",
-                                    "item": "https://devhubtools.com/tools/finance/iban-validator"
+                                    "item": "https://www.devthru.com/tools/finance/iban-validator"
                                 }
                             ]
                         }

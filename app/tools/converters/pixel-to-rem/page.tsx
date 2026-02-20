@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { PixelToRemPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Converta pixels (px) para rem e rem para pixels (px) facilm
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/converters/pixel-to-rem`,
+    },
     openGraph: {
         title,
         description,
@@ -41,19 +45,19 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/tools"
+                                    "item": "https://www.devthru.com/tools"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Pixel to REM",
-                                    "item": "https://devhubtools.com/tools/converters/pixel-to-rem"
+                                    "item": "https://www.devthru.com/tools/converters/pixel-to-rem"
                                 }
                             ]
                         }

@@ -2,12 +2,13 @@ import { Metadata } from "next"
 import Link from "next/link"
 import { getAllPosts, blogCategories, type BlogCategory } from "@/lib/content/blog"
 import { Calendar, Clock, ArrowRight, BookOpen } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
     title: "Blog",
     description: "Tutoriais, guias e artigos sobre desenvolvimento, validação de documentos brasileiros, testes de software e ferramentas para desenvolvedores.",
     alternates: {
-        canonical: "/blog",
+        canonical: `${siteConfig.url}/blog`,
     },
 }
 

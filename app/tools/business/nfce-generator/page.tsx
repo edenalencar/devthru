@@ -1,4 +1,4 @@
-import { Metadata } from "next"
+﻿import { Metadata } from "next"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Graph } from "schema-dts"
 import { NfceGeneratorPage } from "./client"
@@ -34,25 +34,25 @@ export default function Page() {
                         "@type": "ListItem",
                         "position": 1,
                         "name": "Home",
-                        "item": "https://devhubtools.com"
+                        "item": "https://www.devthru.com"
                     },
                     {
                         "@type": "ListItem",
                         "position": 2,
                         "name": "Ferramentas",
-                        "item": "https://devhubtools.com/ferramentas"
+                        "item": "https://www.devthru.com/ferramentas"
                     },
                     {
                         "@type": "ListItem",
                         "position": 3,
                         "name": "Negócios",
-                        "item": "https://devhubtools.com/ferramentas-fiscais"
+                        "item": "https://www.devthru.com/ferramentas-fiscais"
                     },
                     {
                         "@type": "ListItem",
                         "position": 4,
                         "name": "Gerador de NFC-e",
-                        "item": "https://devhubtools.com/tools/business/nfce-generator"
+                        "item": "https://www.devthru.com/tools/business/nfce-generator"
                     }
                 ]
             }

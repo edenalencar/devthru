@@ -1,3 +1,4 @@
+﻿import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Graph } from "schema-dts"
@@ -7,6 +8,9 @@ export const metadata: Metadata = {
     title: "Gerador de Chave CT-e - Conhecimento de Transporte",
     description: "Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes de integração.",
     keywords: ["gerador ct-e", "chave de acesso ct-e", "cte teste", "dev tools", "documentos fiscais"],
+    alternates: {
+        canonical: `${siteConfig.url}/tools/business/cte-generator`,
+    },
     openGraph: {
         title: "Gerador de Chave CT-e | DevHub Tools",
         description: "Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes.",
@@ -37,25 +41,25 @@ export default function Page() {
                         "@type": "ListItem",
                         "position": 1,
                         "name": "Home",
-                        "item": "https://devhubtools.com"
+                        "item": "https://www.devthru.com"
                     },
                     {
                         "@type": "ListItem",
                         "position": 2,
                         "name": "Ferramentas",
-                        "item": "https://devhubtools.com/ferramentas"
+                        "item": "https://www.devthru.com/ferramentas"
                     },
                     {
                         "@type": "ListItem",
                         "position": 3,
                         "name": "Negócios",
-                        "item": "https://devhubtools.com/ferramentas-fiscais"
+                        "item": "https://www.devthru.com/ferramentas-fiscais"
                     },
                     {
                         "@type": "ListItem",
                         "position": 4,
                         "name": "Gerador de CT-e",
-                        "item": "https://devhubtools.com/tools/business/cte-generator"
+                        "item": "https://www.devthru.com/tools/business/cte-generator"
                     }
                 ]
             }

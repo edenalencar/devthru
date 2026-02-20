@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Link from "next/link"
 import { getAllPosts, getPostBySlug, getRelatedPosts, blogCategories, type BlogCategory } from "@/lib/content/blog"
+import { siteConfig } from "@/config/site"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Button } from "@/components/ui/button"
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: post.title,
         description: post.description,
         alternates: {
-            canonical: `/blog/${slug}`,
+            canonical: `${siteConfig.url}/blog/${slug}`,
         },
         openGraph: {
             type: "article",

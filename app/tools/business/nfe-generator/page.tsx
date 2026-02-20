@@ -1,3 +1,4 @@
+﻿import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { NfeGeneratorPage } from "./client"
 import { JsonLd } from "@/components/seo/json-ld"
@@ -33,19 +34,19 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devthru.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas Fiscais",
-                                    "item": "https://devthru.com/ferramentas-fiscais"
+                                    "item": "https://www.devthru.com/ferramentas-fiscais"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Gerador NF-e",
-                                    "item": "https://devthru.com/tools/business/nfe-generator"
+                                    "item": "https://www.devthru.com/tools/business/nfe-generator"
                                 }
                             ]
                         }

@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { RenavamGeneratorPage } from "./client"
 
@@ -16,6 +17,9 @@ export const metadata: Metadata = {
         "renavam online",
         "gerador renavam grátis",
     ],
+    alternates: {
+        canonical: `${siteConfig.url}/tools/automotive/renavam`,
+    },
     openGraph: {
         title,
         description,
@@ -49,25 +53,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Automotivo",
-                                    "item": "https://devhubtools.com/tools/automotive"
+                                    "item": "https://www.devthru.com/tools/automotive"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Renavam",
-                                    "item": "https://devhubtools.com/tools/automotive/renavam"
+                                    "item": "https://www.devthru.com/tools/automotive/renavam"
                                 }
                             ]
                         }

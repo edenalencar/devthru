@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { MinifierPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Minifique e formate (beautify) seus códigos CSS, JSON, SQL
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/development/minifier`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Desenvolvimento",
-                                    "item": "https://devhubtools.com/tools/development"
+                                    "item": "https://www.devthru.com/tools/development"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Minificador",
-                                    "item": "https://devhubtools.com/tools/development/minifier"
+                                    "item": "https://www.devthru.com/tools/development/minifier"
                                 }
                             ]
                         }

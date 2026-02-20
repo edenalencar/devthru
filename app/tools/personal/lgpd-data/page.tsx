@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { LGPDDataPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Ferramentas para gerar dados pessoais fictícios e anonimiz
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/personal/lgpd-data`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Pessoal",
-                                    "item": "https://devhubtools.com/tools/personal"
+                                    "item": "https://www.devthru.com/tools/personal"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Dados LGPD",
-                                    "item": "https://devhubtools.com/tools/personal/lgpd-data"
+                                    "item": "https://www.devthru.com/tools/personal/lgpd-data"
                                 }
                             ]
                         }

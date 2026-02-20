@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { UrlEncoderPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Codifique e decodifique URLs online. Converta caracteres es
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/utilities/url-encoder`,
+    },
     openGraph: {
         title,
         description,
@@ -41,19 +45,19 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/tools"
+                                    "item": "https://www.devthru.com/tools"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "URL Encoder",
-                                    "item": "https://devhubtools.com/tools/utilities/url-encoder"
+                                    "item": "https://www.devthru.com/tools/utilities/url-encoder"
                                 }
                             ]
                         }

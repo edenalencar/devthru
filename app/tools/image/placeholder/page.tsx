@@ -1,4 +1,5 @@
-import { JsonLd } from "@/components/seo/json-ld"
+﻿import { JsonLd } from "@/components/seo/json-ld"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { PlaceholderGeneratorPage } from "./client"
 
@@ -8,6 +9,9 @@ const description = "Crie imagens placeholder (dummy image) com tamanho, cores e
 export const metadata: Metadata = {
     title,
     description,
+    alternates: {
+        canonical: `${siteConfig.url}/tools/image/placeholder`,
+    },
     openGraph: {
         title,
         description,
@@ -41,25 +45,25 @@ export default function Page() {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://devhubtools.com"
+                                    "item": "https://www.devthru.com"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 2,
                                     "name": "Ferramentas",
-                                    "item": "https://devhubtools.com/ferramentas"
+                                    "item": "https://www.devthru.com/ferramentas"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
                                     "name": "Imagem",
-                                    "item": "https://devhubtools.com/tools/image"
+                                    "item": "https://www.devthru.com/tools/image"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
                                     "name": "Placeholder",
-                                    "item": "https://devhubtools.com/tools/image/placeholder"
+                                    "item": "https://www.devthru.com/tools/image/placeholder"
                                 }
                             ]
                         }
