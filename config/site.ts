@@ -13,8 +13,8 @@ export const siteConfig = {
         "brasil",
     ],
     links: {
-        twitter: "https://twitter.com/devtoolshub",
-        github: "https://github.com/devtoolshub",
+        twitter: "https://twitter.com/devthru",
+        github: "https://github.com/devthru",
     },
     creator: {
         name: "DevThru Team",
