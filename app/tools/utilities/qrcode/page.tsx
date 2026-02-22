@@ -4,7 +4,7 @@ import { QRCodePage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
 const title = "Gerador de QR Code Online - Grátis e Personalizável"
-const description = "Crie QR Codes gratuitos para links, textos, wifi e contatos. Baixe em alta resolução."
+const description = "Crie QR Codes personalizados gratuitamente para links, textos, redes wifi e contatos. Baixe em alta resolução nos formatos PNG e SVG. Sem cadastro necessário."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

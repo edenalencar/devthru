@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { FipePage } from "./client"
 
-const title = "Tabela FIPE - Consulta Grátis"
-const description = "Consulte a Tabela FIPE atualizada. Veja preços médios de carros, motos e caminhões no mercado brasileiro."
+const title = "Tabela FIPE Atualizada - Consulta de Preço de Veículos Grátis"
+const description = "Consulte a Tabela FIPE atualizada com preços médios de carros, motos e caminhões no mercado brasileiro. Pesquise por marca, modelo e ano de fabricação gratuitamente."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
@@ -36,7 +36,7 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Consulte a Tabela FIPE atualizada. Veja preços médios de carros, motos e caminhões no mercado brasileiro."
+                            "description": "Consulte a Tabela FIPE atualizada com preços médios de carros, motos e caminhões no mercado brasileiro. Pesquise por marca, modelo e ano de fabricação gratuitamente.",
                         },
                         {
                             "@type": "BreadcrumbList",

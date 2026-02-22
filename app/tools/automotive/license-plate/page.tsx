@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { LicensePlatePage } from "./client"
 
-const title = "Gerador de Placas - Mercosul e Antiga"
-const description = "Gere placas de veículos nos padrões Mercosul e Antigo (Cinza) ou converta entre os modelos."
+const title = "Gerador de Placas de Veículos - Padrão Mercosul e Antiga Online"
+const description = "Gere placas de veículos nos padrões Mercosul e Antigo (Cinza) ou converta entre os modelos. Ferramenta online gratuita para testes de sistemas automotivos e de transporte."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

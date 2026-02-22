@@ -4,7 +4,7 @@ import { Metadata } from "next"
 import { EmailValidatorPage } from "./client"
 
 const title = "Validador de Email - Verificador de Email Completo"
-const description = "Verifique se um endereço de email é válido, se o formato está correto e se é um email temporário."
+const description = "Verifique se um endereço de email é válido, se o formato está correto e se é um email temporário ou descartável. Validação gratuita com verificação de sintaxe e domínio."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

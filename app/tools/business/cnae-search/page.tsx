@@ -5,7 +5,7 @@ import { CnaeSearchPage } from "./client"
 
 export const metadata: Metadata = {
     title: "Busca de CNAE - Classificação Nacional de Atividades",
-    description: "Pesquise códigos e descrições da Classificação Nacional de Atividades Econômicas (CNAE) atualizados via IBGE.",
+    description: "Pesquise códigos e descrições da Classificação Nacional de Atividades Econômicas (CNAE) atualizados via IBGE. Consulta gratuita com filtros por seção, divisão e classe.",
 }
 
 export default function Page() {
@@ -26,7 +26,7 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Pesquise códigos e descrições da Classificação Nacional de Atividades Econômicas (CNAE) atualizados via IBGE."
+                            "description": "Pesquise códigos e descrições da Classificação Nacional de Atividades Econômicas (CNAE) atualizados via IBGE. Consulta gratuita com filtros por seção, divisão e classe.",
                         },
                         {
                             "@type": "BreadcrumbList",

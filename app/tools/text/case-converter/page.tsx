@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { CaseConverterPage } from "./client"
 
-const title = "Conversor de Case - Maiúsculas e Minúsculas"
-const description = "Transforme textos para UPPERCASE, lowercase, camelCase, Title Case e mais instantaneamente."
+const title = "Conversor de Case Online - Maiúsculas, Minúsculas e camelCase"
+const description = "Transforme textos para UPPERCASE, lowercase, camelCase, PascalCase, Title Case e snake_case instantaneamente. Conversor de texto online, gratuito e sem necessidade de cadastro."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

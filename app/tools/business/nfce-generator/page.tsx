@@ -6,7 +6,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Chave NFC-e - Nota Fiscal de Consumidor",
-    description: "Gere chaves de acesso de Nota Fiscal de Consumidor Eletrônica (NFC-e) válidas para testes.",
+    description: "Gere chaves de acesso de Nota Fiscal de Consumidor Eletrônica (NFC-e) válidas para testes de integração e homologação. Ferramenta online gratuita e sem necessidade de cadastro.",
     path: "/tools/business/nfce-generator",
     keywords: ["gerador nfc-e", "chave nfc-e", "nfce teste", "consumidor eletronica", "dev tools"]
 })
@@ -18,7 +18,7 @@ export default function Page() {
             {
                 "@type": "SoftwareApplication",
                 "name": "Gerador de Chave NFC-e",
-                "description": "Gere chaves de acesso de Nota Fiscal de Consumidor Eletrônica (NFC-e) válidas para testes.",
+                "description": "Gere chaves de acesso de Nota Fiscal de Consumidor Eletrônica (NFC-e) válidas para testes de integração e homologação. Ferramenta online gratuita e sem necessidade de cadastro.",
                 "applicationCategory": "BusinessApplication",
                 "operatingSystem": "Web",
                 "offers": {

@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { CNHGeneratorPage } from "./client"
 
-const title = "Gerador de CNH - Carteira de Motorista Válida"
-const description = "Gere números de CNH (Carteira Nacional de Habilitação) válidos para testes. Suporte a geração em massa."
+const title = "Gerador de CNH Online - Carteira Nacional de Habilitação para Testes"
+const description = "Gere números de CNH (Carteira Nacional de Habilitação) válidos para testes de software. Ferramenta com suporte à geração em massa, ideal para desenvolvedores e QA."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
@@ -36,7 +36,7 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Gere números de CNH (Carteira Nacional de Habilitação) válidos para testes. Suporte a geração em massa."
+                            "description": "Gere números de CNH (Carteira Nacional de Habilitação) válidos para testes de software. Ferramenta com suporte à geração em massa, ideal para desenvolvedores e QA."
                         },
                         {
                             "@type": "BreadcrumbList",

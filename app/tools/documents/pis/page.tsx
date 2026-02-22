@@ -4,7 +4,7 @@ import { PISPage } from './client'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 const title = 'Gerador de PIS/PASEP Online - Gerar e Validar PIS Grátis'
-const description = 'Ferramenta online gratuita para gerar e validar números de PIS/PASEP válidos para testes. Ideal para desenvolvedores e analistas de QA.'
+const description = 'Ferramenta online gratuita para gerar e validar números de PIS/PASEP válidos para testes de sistemas. Ideal para desenvolvedores, analistas de QA e homologação.'
 
 export const metadata: Metadata = generateToolMetadata({
     title,
