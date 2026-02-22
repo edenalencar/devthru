@@ -3,15 +3,15 @@ import { Metadata } from "next"
 import { MdfeGeneratorPage } from "./client"
 
 export const metadata: Metadata = {
-    title: "Gerador de Chave MDF-e - Manifesto Eletrônico",
-    description: "Gere chaves de acesso de Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes.",
+    title: "Gerador de Chave MDF-e Online - Manifesto Eletrônico de Documentos",
+    description: "Gere chaves de acesso do Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes de integração e homologação. Ferramenta gratuita e sem cadastro.",
     keywords: ["gerador mdf-e", "chave mdf-e", "mdfe teste", "manifesto eletronico", "dev tools"],
     alternates: {
         canonical: `${siteConfig.url}/tools/business/mdfe-generator`,
     },
     openGraph: {
-        title: "Gerador de Chave MDF-e | DevHub Tools",
-        description: "Gere chaves de acesso de Manifesto Eletrônico (MDF-e) válidas para testes.",
+        title: "Gerador de Chave MDF-e Online - Manifesto Eletrônico de Documentos",
+        description: "Gere chaves de acesso do Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes de integração e homologação. Ferramenta gratuita e sem cadastro.",
         type: "website",
     }
 }
@@ -21,7 +21,7 @@ export default function Page() {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Gerador de Chave MDF-e",
-        "description": "Gere chaves de acesso de Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes.",
+        "description": "Gere chaves de acesso do Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes de integração e homologação. Ferramenta gratuita e sem cadastro.",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Any",
         "offers": {

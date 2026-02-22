@@ -4,7 +4,7 @@ import { Metadata } from "next"
 import { LGPDDataPage } from "./client"
 
 const title = "Gerador de Dados Fictícios e Anonimizador para LGPD"
-const description = "Ferramentas para gerar dados pessoais fictícios e anonimizar textos com dados sensíveis para conformidade LGPD."
+const description = "Gere dados pessoais fictícios e anonimize textos com informações sensíveis para conformidade com a LGPD. Ferramenta essencial para testes seguros e proteção de dados."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { Base64Page } from "./client"
 
-const title = "Codificador e Decodificador Base64 Online"
+const title = "Codificador e Decodificador Base64 Online - Ferramenta para Devs"
 const description = "Codifique e decodifique textos e strings em Base64 instantaneamente. Ferramenta essencial para desenvolvedores que precisam transmitir dados binários em texto."
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

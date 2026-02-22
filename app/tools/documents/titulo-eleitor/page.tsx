@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { TituloEleitorPage } from "./client"
 
-const title = "Gerador de Título de Eleitor Válido - Completo"
-const description = "Gere e valide números de Título de Eleitor válidos por estado. Ferramenta para desenvolvedores e testes de software."
+const title = "Gerador de Título de Eleitor Válido Online - Completo por Estado"
+const description = "Gere e valide números de Título de Eleitor válidos por estado brasileiro. Ferramenta online gratuita para desenvolvedores, testes de software e homologação de sistemas."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
@@ -36,7 +36,7 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Gere e valide números de Título de Eleitor válidos por estado. Ferramenta para desenvolvedores e testes de software."
+                            "description": "Gere e valide números de Título de Eleitor válidos por estado brasileiro. Ferramenta online gratuita para desenvolvedores, testes de software e homologação de sistemas."
                         },
                         {
                             "@type": "BreadcrumbList",

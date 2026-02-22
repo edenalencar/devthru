@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/json-ld"
 
 export const metadata: Metadata = {
     title: "Gerador de Chave NF-e - Nota Fiscal Eletrônica",
-    description: "Gere chaves de acesso de Nota Fiscal Eletrônica (NF-e) e NFC-e válidas para testes de integração.",
+    description: "Gere chaves de acesso de Nota Fiscal Eletrônica (NF-e) e NFC-e válidas para testes de integração e homologação. Ferramenta online gratuita e sem cadastro.",
 }
 
 export default function Page() {

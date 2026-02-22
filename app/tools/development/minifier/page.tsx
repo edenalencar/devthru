@@ -4,7 +4,7 @@ import { Metadata } from "next"
 import { MinifierPage } from "./client"
 
 const title = "Minificador de Código - CSS, JSON, SQL, HTML e JS"
-const description = "Minifique e formate (beautify) seus códigos CSS, JSON, SQL e HTML online para melhorar a performance."
+const description = "Minifique e formate (beautify) códigos CSS, JSON, SQL, HTML e JavaScript online. Reduza o tamanho dos arquivos e melhore a performance do seu site gratuitamente."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

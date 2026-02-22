@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { MockDataGeneratorPage } from "./client"
 
-const title = "Gerador de Dados Mock (Fictícios) - JSON"
-const description = "Gere dados fictícios (Mock Data) em JSON para testes e protótipos. Crie usuários, produtos e mais."
+const title = "Gerador de Dados Mock (Fictícios) Online - Exportação em JSON"
+const description = "Gere dados fictícios (Mock Data) em JSON para testes e protótipos de software. Crie usuários, produtos, endereços e mais com esquemas personalizáveis gratuitamente."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

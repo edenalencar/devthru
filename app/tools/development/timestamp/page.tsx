@@ -4,7 +4,7 @@ import { Metadata } from "next"
 import { TimestampConverterPage } from "./client"
 
 const title = "Conversor de Timestamp Online - Unix para Data e Vice-Versa"
-const description = "Converta timestamps Unix (segundos/milissegundos) para datas legíveis e vice-versa. Ferramenta essencial para desenvolvedores."
+const description = "Converta timestamps Unix (segundos/milissegundos) para datas legíveis e vice-versa. Ferramenta online essencial para desenvolvedores, com suporte a múltiplos formatos."
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <>
-            
+
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
