@@ -63,8 +63,20 @@ export function CookieConsent() {
             })
         } else {
             // Restore consent
-            const consent = JSON.parse(savedConsent)
-            gtag("consent", "update", consent)
+            try {
+                const consent = JSON.parse(savedConsent)
+                gtag("consent", "update", consent)
+            } catch (error) {
+                // Handle legacy format or invalid JSON by setting and saving default granted state
+                const allGranted: ConsentState = {
+                    ad_storage: "granted",
+                    analytics_storage: "granted",
+                    ad_user_data: "granted",
+                    ad_personalization: "granted",
+                }
+                localStorage.setItem("cookie_consent", JSON.stringify(allGranted))
+                gtag("consent", "update", allGranted)
+            }
         }
     }, [])
 

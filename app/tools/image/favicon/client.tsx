@@ -113,17 +113,17 @@ export function FaviconGeneratorPage() {
                             </CardHeader>
                             <CardContent className="flex flex-col items-center justify-center gap-6 py-8">
                                 <div className="flex flex-col items-center gap-4">
-                                    {image ? (
-                                        <div className="relative w-32 h-32 rounded-lg overflow-hidden border">
-                                            <Image src={image} alt="Preview" fill className="object-cover" unoptimized />
-                                        </div>
-                                    ) : (
-                                        <div className="w-32 h-32 rounded-lg border-2 border-dashed flex items-center justify-center bg-muted/50">
-                                            <Upload className="h-8 w-8 text-muted-foreground" />
-                                        </div>
-                                    )}
-                                    <div className="flex items-center gap-2">
-                                        <Label htmlFor="image-upload" className="cursor-pointer">
+                                    <Label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center gap-4 w-full">
+                                        {image ? (
+                                            <div className="relative w-32 h-32 rounded-lg overflow-hidden border hover:opacity-90 transition-opacity">
+                                                <Image src={image} alt="Preview" fill className="object-cover" unoptimized />
+                                            </div>
+                                        ) : (
+                                            <div className="w-32 h-32 rounded-lg border-2 border-dashed flex items-center justify-center bg-muted/50 hover:bg-muted/80 transition-colors">
+                                                <Upload className="h-8 w-8 text-muted-foreground" />
+                                            </div>
+                                        )}
+                                        <div className="flex items-center gap-2">
                                             <div className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium transition-colors">
                                                 <Upload className="h-4 w-4" />
                                                 Escolher Imagem
@@ -135,7 +135,9 @@ export function FaviconGeneratorPage() {
                                                 className="hidden"
                                                 onChange={handleImageUpload}
                                             />
-                                        </Label>
+                                        </div>
+                                    </Label>
+                                    <div className="flex items-center gap-2 justify-center">
                                         {image && (
                                             <Button onClick={generateFavicons} disabled={isGenerating}>
                                                 {isGenerating ? (
@@ -186,18 +188,18 @@ export function FaviconGeneratorPage() {
                                         <CardTitle>Código HTML</CardTitle>
                                     </CardHeader>
                                     <CardContent className="space-y-4">
-                                        <div className="space-y-2">
-                                            <Label>Adicione ao &lt;head&gt;</Label>
+                                        <div className="space-y-4">
+                                            <div className="flex items-center justify-between">
+                                                <Label>Adicione ao &lt;head&gt;</Label>
+                                                <CopyButton text={`<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">\n<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">\n<link rel="manifest" href="/site.webmanifest">`} />
+                                            </div>
                                             <div className="relative">
-                                                <pre className="bg-muted p-4 rounded-md text-xs overflow-x-auto">
+                                                <pre className="bg-muted p-4 rounded-md text-xs overflow-x-auto whitespace-pre-wrap word-break-all">
                                                     {`<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">`}
                                                 </pre>
-                                                <div className="absolute top-2 right-2">
-                                                    <CopyButton text={`<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">\n<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">\n<link rel="manifest" href="/site.webmanifest">`} />
-                                                </div>
                                             </div>
                                         </div>
                                     </CardContent>
