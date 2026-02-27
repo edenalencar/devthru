@@ -1,7 +1,16 @@
+const getBaseUrl = () => {
+    if (process.env.NODE_ENV === "development") {
+        return process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    }
+    // Sempre forçar o domínio final de produção (www) para evitar loops de 
+    // redirecionamento nas tags canônicas (ex: naked domain 307 -> www)
+    return "https://www.devthru.com";
+}
+
 export const siteConfig = {
     name: "DevThru",
     description: "DevThru: Dados rápidos pra viagem. Plataforma moderna e ágil para desenvolvedores.",
-    url: process.env.NEXT_PUBLIC_APP_URL || "https://www.devthru.com",
+    url: getBaseUrl(),
     ogImage: "/og-image.png",
     keywords: [
         "devtools",
