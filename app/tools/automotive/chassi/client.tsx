@@ -143,7 +143,7 @@ export function ChassiGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Chassi</CardTitle>
+                            <h2 className="text-xl font-semibold leading-none tracking-tight">O que é o Chassi do Veículo (Código VIN)?</h2>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="prose prose-sm max-w-none dark:prose-invert">
@@ -156,6 +156,10 @@ export function ChassiGeneratorPage() {
                                     <li><strong>VDS (4-9):</strong> Descrição do veículo (modelo, motor, etc.)</li>
                                     <li><strong>VIS (10-17):</strong> Identificador do veículo (ano, planta, sequência)</li>
                                 </ul>
+                                <h3 className="font-semibold text-lg mt-6">Por que usar um gerador de chassi online?</h3>
+                                <p>
+                                    Para desenvolvedores e QAs, testar formulários de cadastro de frotas e sistemas automotivos exige dados em formato realista. Nosso gerador cria códigos estruturalmente válidos para agilizar essas validações sem depender de bases de dados externas.
+                                </p>
                                 <p className="text-sm text-muted-foreground mt-4">
                                     <strong>Nota:</strong> Os códigos gerados são matematicamente válidos mas fictícios, não correspondendo a veículos reais. Use apenas para testes de software.
                                 </p>
@@ -169,7 +173,7 @@ export function ChassiGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <RelatedTools currentToolSlug="chassi" category="automotive" />
+                    <RelatedTools currentToolSlug="chassi" category="automotive" customSlugs={['placa', 'renavam', 'fipe']} />
                 </div>
             </main>
 
