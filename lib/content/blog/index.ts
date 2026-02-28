@@ -24,11 +24,23 @@ export const blogCategories: Record<BlogCategory, { label: string; color: string
 import { postValidacaoCpf } from './posts/validacao-cpf'
 import { postDadosTesteLgpd } from './posts/dados-teste-lgpd'
 import { postRegexGuiaPratico } from './posts/regex-guia-pratico'
+import { postValidacaoCnpj } from './posts/validacao-cnpj'
+import { postChassiVinSignificado } from './posts/chassi-vin-significado'
+import { postDadosFicticiosTestesApi } from './posts/dados-ficticios-testes-api'
+import { postUuidGuiaCompleto } from './posts/uuid-guia-completo'
+import { postJwtComoFunciona } from './posts/jwt-como-funciona'
+import { postInscricaoEstadualGuia } from './posts/inscricao-estadual-guia'
 
 export const blogPosts: BlogPost[] = [
     postValidacaoCpf,
     postDadosTesteLgpd,
     postRegexGuiaPratico,
+    postValidacaoCnpj,
+    postChassiVinSignificado,
+    postDadosFicticiosTestesApi,
+    postUuidGuiaCompleto,
+    postJwtComoFunciona,
+    postInscricaoEstadualGuia,
 ]
 
 export function getAllPosts(): BlogPost[] {
