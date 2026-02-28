@@ -8,15 +8,23 @@ import { ArrowRight } from "lucide-react"
 interface RelatedToolsProps {
     currentToolSlug: string
     category: string
+    customSlugs?: string[]
 }
 
-export function RelatedTools({ currentToolSlug, category }: RelatedToolsProps) {
-    // 1. Filter tools by category
+export function RelatedTools({ currentToolSlug, category, customSlugs }: RelatedToolsProps) {
+    // 1. Filter tools by category or custom slugs
     // 2. Exclude current tool
     // 3. Take first 4 results (or randomize if desired, but stability is better for SEO)
-    const relatedTools = tools
-        .filter(t => t.category === category && t.slug !== currentToolSlug)
-        .slice(0, 4)
+    let relatedTools = []
+
+    if (customSlugs && customSlugs.length > 0) {
+        // Find tools that match the precise slugs, keeping the requested order as much as possible
+        relatedTools = tools.filter(t => customSlugs.includes(t.slug) && t.slug !== currentToolSlug)
+    } else {
+        relatedTools = tools
+            .filter(t => t.category === category && t.slug !== currentToolSlug)
+            .slice(0, 4)
+    }
 
     if (relatedTools.length === 0) return null
 
