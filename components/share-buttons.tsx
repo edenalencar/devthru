@@ -16,9 +16,10 @@ interface ShareButtonsProps {
     description?: string
     url?: string
     className?: string
+    iconOnly?: boolean
 }
 
-export function ShareButtons({ title, description = "", url, className = "" }: ShareButtonsProps) {
+export function ShareButtons({ title, description = "", url, className = "", iconOnly = false }: ShareButtonsProps) {
     const [currentUrl, setCurrentUrl] = useState("")
 
     useEffect(() => {
@@ -51,6 +52,41 @@ export function ShareButtons({ title, description = "", url, className = "" }: S
     }
 
     if (!currentUrl) return null
+
+    if (iconOnly) {
+        return (
+            <div className={`flex items-center gap-1 ${className}`}>
+                <button
+                    onClick={() => handleShare('whatsapp', shareLinks.whatsapp)}
+                    className="p-1.5 rounded-full text-muted-foreground hover:text-green-600 hover:bg-green-50 dark:hover:bg-green-950/30 transition-colors"
+                    title="WhatsApp"
+                >
+                    <MessageCircle className="h-4 w-4" />
+                </button>
+                <button
+                    onClick={() => handleShare('twitter', shareLinks.twitter)}
+                    className="p-1.5 rounded-full text-muted-foreground hover:text-sky-500 hover:bg-sky-50 dark:hover:bg-sky-950/30 transition-colors"
+                    title="Twitter/X"
+                >
+                    <Twitter className="h-4 w-4" />
+                </button>
+                <button
+                    onClick={() => handleShare('linkedin', shareLinks.linkedin)}
+                    className="p-1.5 rounded-full text-muted-foreground hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-colors"
+                    title="LinkedIn"
+                >
+                    <Linkedin className="h-4 w-4" />
+                </button>
+                <button
+                    onClick={handleCopyLink}
+                    className="p-1.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                    title="Copiar Link"
+                >
+                    <LinkIcon className="h-4 w-4" />
+                </button>
+            </div>
+        )
+    }
 
     return (
         <div className={`flex flex-wrap gap-2 ${className}`}>
