@@ -1,0 +1,1 @@
+Eu, Antigravity, NUNCA devo realizar deploy, criar tags do Git ou empurrar código para a branch de produção ('master'/'main') sem a permissão explícita prévia do desenvolvedor (USER).
