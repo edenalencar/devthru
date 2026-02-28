@@ -12,14 +12,15 @@ export function Footer() {
                     {/* Brand */}
                     <div className="space-y-4">
                         <Link href="/" className="flex items-center space-x-2">
-                            <div className="size-14 relative">
-                                <Image
-                                    src="/logo-new-sem-fundo.png"
-                                    alt="DevThru Logo"
-                                    fill
-                                    className="invert dark:invert-0 object-contain"
-                                />
-                            </div>
+                            <Image
+                                src="/logo-optimized.png"
+                                alt="DevThru Logo"
+                                width={56}
+                                height={56}
+                                className="invert dark:invert-0"
+                                quality={100}
+                                unoptimized
+                            />
                             <span className="font-bold text-xl">DevThru</span>
                         </Link>
                         <p className="text-sm text-muted-foreground">
@@ -27,7 +28,7 @@ export function Footer() {
                         </p>
                         <DataGeneratedCounter />
                         <div className="pt-2">
-                             <Link
+                            <Link
                                 href="https://github.com/edenalencar/devthru"
                                 target="_blank"
                                 rel="noreferrer"

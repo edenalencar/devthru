@@ -25,15 +25,16 @@ import { Badge } from "@/components/ui/badge"
 
 const Logo = () => (
     <div className="flex items-center gap-3 text-foreground">
-        <div className="size-14 relative">
-            <Image
-                src="/logo-new-sem-fundo.png"
-                alt="DevThru Logo"
-                fill
-                className="invert dark:invert-0 object-contain"
-                priority
-            />
-        </div>
+        <Image
+            src="/logo-optimized.png"
+            alt="DevThru Logo"
+            width={56}
+            height={56}
+            className="invert dark:invert-0"
+            priority
+            quality={100}
+            unoptimized
+        />
         <h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">DevThru</h2>
     </div>
 );
