@@ -61,7 +61,7 @@ export default async function StatePage({ params }: PageProps) {
                     <StateRegistrationLinks />
                 </div>
                 <div className="pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-                    <RelatedTools currentToolSlug="inscricao-estadual" category="documents" customSlugs={['cpf', 'cnpj', 'nfe', 'cte']} />
+                    <RelatedTools currentToolSlug="inscricao-estadual" category="documents" customSlugs={['cpf', 'cnpj', 'nfe-generator', 'cte-generator']} />
                 </div>
             </main>
         </div>

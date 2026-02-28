@@ -173,7 +173,7 @@ export function ChassiGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <RelatedTools currentToolSlug="chassi" category="automotive" customSlugs={['placa', 'renavam', 'fipe']} />
+                    <RelatedTools currentToolSlug="chassi" category="automotive" customSlugs={['license-plate', 'renavam', 'fipe', 'cnh']} />
                 </div>
             </main>
 
