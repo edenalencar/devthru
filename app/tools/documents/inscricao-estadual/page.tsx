@@ -1,16 +1,16 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
 import { InscricaoEstadualPage } from './client'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 const title = 'Validador e Gerador de Inscrição Estadual (IE) Online Grátis'
-const description = 'Gere e valide Inscrição Estadual (IE) em segundos. Ferramenta online grátis essencial para desenvolvedores efetuarem testes fiscais e tributários.'
+const description = 'Gere e valide Inscrição Estadual (IE) em segundos. Ferramenta online grátis para testes fiscais. Veja também como validar em Python com validate_docbr.'
 
 export const metadata: Metadata = generateToolMetadata({
     title,
     description,
     path: "/tools/documents/inscricao-estadual",
-    keywords: ["inscricao estadual", "consultar ie", "validador ie", "sintegra", "cadastro contribuinte", "validate_docbr", "desenvolvedores"]
+    keywords: ["inscricao estadual", "consultar ie", "validador ie", "sintegra", "cadastro contribuinte", "validate_docbr", "python", "desenvolvedores"]
 })
 
 export default function Page() {

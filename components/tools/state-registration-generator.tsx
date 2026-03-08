@@ -13,6 +13,7 @@ import { generateIE, validateIE, formatIE, IE_STATES } from '@/lib/utils/validat
 import { useUser } from '@/lib/hooks/use-user'
 import { getPlanLimitMessage } from "@/lib/constants"
 import { ShareButtons } from "@/components/share-buttons"
+import Link from 'next/link'
 
 interface StateRegistrationGeneratorProps {
     defaultState?: string
@@ -235,6 +236,12 @@ export function StateRegistrationGenerator({ defaultState }: StateRegistrationGe
                         Não utilize em produção ou para fins fraudulentos.
                     </p>
                     <div className="pt-4 border-t">
+                        <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            <Link href="/blog/inscricao-estadual-o-que-e-como-validar" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
+                                Como validar Inscrição Estadual em Python
+                            </Link>
+                        </div>
                         <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                         <ShareButtons
                             title="Gerador de Inscrição Estadual"

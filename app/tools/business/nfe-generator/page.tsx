@@ -1,11 +1,11 @@
-﻿import { siteConfig } from "@/config/site"
+import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { NfeGeneratorPage } from "./client"
 import { JsonLd } from "@/components/seo/json-ld"
 
 export const metadata: Metadata = {
-    title: "Gerador de Chave NF-e - Nota Fiscal Eletrônica",
-    description: "Gere chaves de acesso de Nota Fiscal Eletrônica (NF-e) e NFC-e válidas para testes de integração e homologação. Ferramenta online gratuita e sem cadastro.",
+    title: "Gerador de Chave NF-e e NFC-e - Notas Fiscais",
+    description: "Gere chaves de acesso de Nota Fiscal Eletrônica (NF-e) e NFC-e válidas para testes de integração de ERP e homologação. Ferramenta corporativa gratuita.",
 }
 
 export default function Page() {

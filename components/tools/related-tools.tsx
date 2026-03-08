@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { tools } from "@/lib/tools-list"
 import { ArrowRight } from "lucide-react"
+import { JsonLd } from "@/components/seo/json-ld"
 
 interface RelatedToolsProps {
     currentToolSlug: string
@@ -30,6 +31,18 @@ export function RelatedTools({ currentToolSlug, category, customSlugs }: Related
 
     return (
         <section className="mt-12">
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "ItemList",
+                    "itemListElement": relatedTools.map((tool, index) => ({
+                        "@type": "ListItem",
+                        "position": index + 1,
+                        "url": `https://www.devthru.com/tools/${tool.category}/${tool.slug}`,
+                        "name": tool.title
+                    }))
+                }}
+            />
             <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold tracking-tight">Ferramentas Relacionadas</h2>
                 <Link
@@ -41,25 +54,27 @@ export function RelatedTools({ currentToolSlug, category, customSlugs }: Related
                 </Link>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <ol className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 m-0 p-0 list-none">
                 {relatedTools.map((tool) => (
-                    <Link key={tool.slug} href={`/tools/${tool.category}/${tool.slug}`} className="block h-full">
-                        <Card className="h-full hover:shadow-md transition-shadow cursor-pointer border-muted/50 hover:border-border">
-                            <CardHeader className="pb-3 flex-row items-center gap-3 space-y-0">
-                                <div className="p-2 bg-primary/10 rounded-lg">
-                                    <tool.icon className="h-5 w-5 text-primary" />
-                                </div>
-                                <CardTitle className="text-lg">{tool.title}</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <CardDescription>
-                                    Acesse a ferramenta de {tool.title} online.
-                                </CardDescription>
-                            </CardContent>
-                        </Card>
-                    </Link>
+                    <li key={tool.slug}>
+                        <Link href={`/tools/${tool.category}/${tool.slug}`} className="block h-full">
+                            <Card className="h-full hover:shadow-md transition-shadow cursor-pointer border-muted/50 hover:border-border">
+                                <CardHeader className="pb-3 flex-row items-center gap-3 space-y-0">
+                                    <div className="p-2 bg-primary/10 rounded-lg">
+                                        <tool.icon className="h-5 w-5 text-primary" />
+                                    </div>
+                                    <CardTitle className="text-lg">{tool.title}</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <CardDescription>
+                                        Acesse a ferramenta de {tool.title} online.
+                                    </CardDescription>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    </li>
                 ))}
-            </div>
+            </ol>
         </section>
     )
 }

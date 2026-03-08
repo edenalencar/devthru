@@ -1,16 +1,16 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
 import { PISPage } from './client'
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = 'Gerador de PIS/PASEP Online - Gerar e Validar PIS Grátis'
-const description = 'Ferramenta online gratuita para gerar e validar números de PIS/PASEP válidos para testes de sistemas. Ideal para desenvolvedores, analistas de QA e homologação.'
+const title = 'Gerador de PIS Válido [Grátis]'
+const description = 'Gere números de PIS válidos em 1 clique para testes de sistemas de RH. Ferramenta online gratuita para desenvolvedores com algoritmo oficial.'
 
 export const metadata: Metadata = generateToolMetadata({
     title,
     description,
     path: "/tools/documents/pis",
-    keywords: ["gerador pis", "validador pis", "pis pasep", "numero pis", "dev tools"]
+    keywords: ["gerador pis válido", "gerador de pis", "pis pasep", "numero pis online", "gerar pis falso", "pis para testes", "dev tools"]
 })
 
 export default function Page() {

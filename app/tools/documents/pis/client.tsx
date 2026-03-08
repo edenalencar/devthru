@@ -12,6 +12,7 @@ import { BulkGenerator } from '@/components/tools/bulk-generator'
 import { RefreshCw, CheckCircle2, XCircle } from 'lucide-react'
 import { generatePIS, validatePIS, formatPIS } from '@/lib/utils/validators/pis'
 import { ShareButtons } from "@/components/share-buttons"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { useUser } from '@/lib/hooks/use-user'
 import { getPlanLimitMessage } from "@/lib/constants"
@@ -44,7 +45,7 @@ export function PISPage() {
                     {/* Header */}
                     <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Documentos Pessoais" }, { "label": "PIS/PASEP" }]} className="mb-6" />
                     <div className="mb-8">
-                        <h1 className="text-4xl font-bold mb-4">Gerador de PIS/PASEP</h1>
+                        <h1 className="text-4xl font-bold mb-4">Gerador de PIS Válido</h1>
                         <p className="text-lg text-muted-foreground">
                             Gere e valide números de PIS/PASEP válidos para testes
                         </p>
@@ -167,31 +168,49 @@ export function PISPage() {
                         </Card>
                     )}
 
-                    {/* Info Card */}
+                    {/* Info Card & FAQ */}
                     <Card className="mt-6">
                         <CardHeader>
-                            <CardTitle>Sobre o PIS/PASEP</CardTitle>
+                            <CardTitle>Sobre o Gerador de PIS e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
+                        <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
                                     O PIS (Programa de Integração Social) e o PASEP (Programa de Formação do Patrimônio do Servidor Público)
-                                    são programas de contribuição social. O número de inscrição é o mesmo para ambos e também é utilizado
-                                    como NIS (Número de Identificação Social) e NIT (Número de Inscrição do Trabalhador).
-                                </p>
-                                <p>
-                                    O número é composto por 11 dígitos, sendo os primeiros 10 a base e o último o dígito verificador.
+                                    são programas de contribuição social essenciais. O número de inscrição gerado possui o formato exato oficial, send utilizado
+                                    como NIS e NIT.
                                 </p>
                                 <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Atenção:</strong> Os números gerados são válidos apenas para testes e desenvolvimento.
-                                    Não correspondem a documentos reais.
+                                    <strong>Atenção:</strong> Os números gerados por esta ferramenta são <strong>aleatórios e válidos matematicamente apenas para testes</strong> e desenvolvimento de software (Mocks, Automação QA). Não devem ser utilizados para fraudes ou documentos reais.
                                 </p>
                             </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>Para que serve um gerador de PIS?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Nossa ferramenta fornece números válidos do PIS/PASEP instantaneamente para que desenvolvedores, testadores (QA) e estudantes possam preencher campos obrigatórios durante a homologação de sistemas de RH, contabilidade ou e-commerces, sem a necessidade de usar dados sensíveis de pessoas reais.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Qual a diferença entre PIS, PASEP, NIS e NIT?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Na prática computacional e sistêmica, nenhuma. PIS (iniciativa privada), PASEP (servidor público), NIS (projetos sociais) e NIT (autônomos) compartilham a mesma estrutura de 11 dígitos numéricos e a mesma regra de cálculo para o dígito verificador. O gerador atende a todos esses casos.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Como é calculado o dígito verificador do PIS?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        O 11º dígito de um PIS é um "módulo matemático". Ele é calculado multiplicando os 10 primeiros dígitos da esquerda para a direita por pesos específicos (3, 2, 9, 8, 7, 6, 5, 4, 3, 2). A soma dos resultados é dividida por 11, e o resto da divisão define o dígito final. Nosso gerador de PIS implementa 100% dessa regra oficial.
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
-                                    title="Gerador de PIS/PASEP"
-                                    description="Gere e valide números de PIS/PASEP para testes."
+                                    title="Gerador de PIS Válido"
+                                    description="Gere e valide números de PIS/PASEP para testes de sistema."
                                 />
                             </div>
                         </CardContent>

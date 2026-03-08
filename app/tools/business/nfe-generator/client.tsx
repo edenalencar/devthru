@@ -12,6 +12,7 @@ import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
 import { RefreshCw, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { toast } from "sonner"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
@@ -270,41 +271,77 @@ export function NfeGeneratorPage() {
 
 
 
-                    {/* Info Section */}
+                    {/* FAQ & Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Chave NF-e</CardTitle>
+                            <CardTitle className="text-2xl">Sobre o Gerador de Chave de Acesso NF-e / NFC-e</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                        <CardContent className="space-y-6">
+                            <div className="prose prose-sm max-w-none dark:prose-invert mb-6">
                                 <p>
-                                    O Gerador de Chave NF-e cria chaves de acesso válidas para Nota Fiscal Eletrônica (modelo 55) e Nota Fiscal de Consumidor Eletrônica (modelo 65).
-                                    A ferramenta calcula automaticamente o dígito verificador com base nos dados informados, seguindo o padrão oficial da SEFAZ.
-                                </p>
-                                <p className="text-sm text-muted-foreground mt-4">
-                                    <strong>Nota:</strong> As chaves geradas são para fins de teste e desenvolvimento. Não possuem validade fiscal.
+                                    O Gerador de Chave NF-e e NFC-e é uma ferramenta voltada para desenvolvedores, testadores de software (QA) e implantadores de ERP que necessitam de chaves de acesso matematicamente válidas para realizar testes de software, integração tributária e homologação de sistemas.
                                 </p>
                             </div>
-                            <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    <Link href="/guides/validation/nfe-generator/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
-                                        Como validar NF-e em Python
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>Como testar a chave de acesso em ambiente de homologação?</AccordionTrigger>
+                                    <AccordionContent>
+                                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                                            <p>
+                                                Ao preencher formulários do seu sistema emissor de nota ou portal do ERP em ambiente de <strong>homologação</strong>, insira a chave com 44 dígitos numéricos gerada nesta ferramenta.
+                                            </p>
+                                            <p>
+                                                Nós garantimos que o cálculo do último algarismo (o dígito verificador - DV) esteja 100% correto de acordo com a base de regras e documentação técnica da Secretaria de Estado da Fazenda (SEFAZ), garantindo aprovação em rotinas de verificação local do seu software.
+                                            </p>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Qual a diferença do Modelo 55 (NF-e) e 65 (NFC-e)?</AccordionTrigger>
+                                    <AccordionContent>
+                                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                                            <p>A estrutura de uma chave de 44 posições suporta a identificação do modelo da nota inserida (do pŕoximo ao centro da chave):</p>
+                                            <ul className="list-disc pl-4 space-y-1">
+                                                <li><strong>Modelo 55 (NF-e):</strong> É a Nota Fiscal Eletrônica tradicional, comummente utilizada em vendas B2B e envio por transportadoras.</li>
+                                                <li><strong>Modelo 65 (NFC-e):</strong> É a Nota Fiscal de Consumidor Eletrônica, focada no varejo presencial B2C e transações diárias (o antigo cupom fiscal).</li>
+                                            </ul>
+                                            <p>Nossa ferramenta permite gerar livremente qualquer um dos dois modelos, ajustando a estrutura de 44 dígitos instantaneamente.</p>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>A chave de acesso gerada é verdadeira?</AccordionTrigger>
+                                    <AccordionContent>
+                                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                                            <p>
+                                                <strong>Não.</strong> A chave é válida formatando-se do ponto de vista matemático, contendo um dígito verificador calculado. Contudo, ela é composta de numeração fictícia e aleatória e <strong>não possui validade tributária ou legal</strong> na base de dados receptora da SEFAZ na produção. Ela serve estritamente para simulação em rotinas de teste.
+                                            </p>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+
+                            <div className="pt-6 border-t mt-6">
+                                <Label className="text-sm font-semibold mb-3 block text-primary">Guias Técnicos Recomendados:</Label>
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    <Link href="/guides/validation/nfe-generator/python" className="text-xs px-3 py-1.5 bg-blue-100/50 hover:bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 rounded-md transition-colors border border-blue-200 dark:border-blue-800">
+                                        Validação de NF-e em Python
                                     </Link>
-                                    <Link href="/guides/validation/nfe-generator/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
-                                        Como validar NF-e em JavaScript
+                                    <Link href="/guides/validation/nfe-generator/javascript" className="text-xs px-3 py-1.5 bg-yellow-100/50 hover:bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400 rounded-md transition-colors border border-yellow-200 dark:border-yellow-800">
+                                        Validação de NF-e em JavaScript
                                     </Link>
-                                    <Link href="/guides/validation/nfe-generator/java" className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
-                                        Como validar NF-e em Java
+                                    <Link href="/guides/validation/nfe-generator/java" className="text-xs px-3 py-1.5 bg-red-100/50 hover:bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400 rounded-md transition-colors border border-red-200 dark:border-red-800">
+                                        Validação de NF-e em Java
                                     </Link>
-                                    <Link href="/guides/validation/nfe-generator/csharp" className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors">
-                                        Como validar NF-e em C#
+                                    <Link href="/guides/validation/nfe-generator/csharp" className="text-xs px-3 py-1.5 bg-purple-100/50 hover:bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400 rounded-md transition-colors border border-purple-200 dark:border-purple-800">
+                                        Validação de NF-e em C#
                                     </Link>
                                 </div>
-                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe nosso gerador:</Label>
                                 <ShareButtons
-                                    title="Gerador de Chave NF-e"
-                                    description="Gere chaves de acesso de NF-e válidas para testes."
+                                    title="Gerador de Chave NF-e e NFC-e"
+                                    description="Gere chaves de acesso de NF-e/NFC-e válidas para testes de integração e homologação de software."
                                 />
                             </div>
                         </CardContent>

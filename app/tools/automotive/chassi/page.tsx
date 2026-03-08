@@ -1,10 +1,10 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { ChassiGeneratorPage } from "./client"
 
-const title = "Gerador de Chassi Online Grátis - VIN Válido para Testes"
-const description = "Gerador de chassi online grátis! Crie códigos VIN (Vehicle Identification Number) válidos em 1 clique para testes de software. Rápido, seguro e sem cadastro."
+const title = "Gerador de Chassi (VIN) de Veículo Válido [Grátis]"
+const description = "Gerador de chassi online grátis! Crie códigos VIN (Vehicle Identification Number) e chassi fictício válido em 1 clique para testes de software. Rápido e sem cadastro."
 
 export const metadata: Metadata = {
     title,
@@ -13,6 +13,8 @@ export const metadata: Metadata = {
         "gerador de chassi",
         "gerar chassi",
         "gerador de chassi online",
+        "chassi ficticio",
+        "gerador de chassi de veiculos",
         "chassi válido",
         "VIN generator",
         "número de chassi",

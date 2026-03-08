@@ -11,6 +11,7 @@ import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export function ChassiGeneratorPage() {
     const [chassis, setChassis] = useState("")
@@ -89,10 +90,10 @@ export function ChassiGeneratorPage() {
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Car className="h-8 w-8 text-primary" />
-                            <h1 className="text-4xl font-bold">Gerador de Chassi</h1>
+                            <h1 className="text-4xl font-bold">Gerador de Chassi de Veículos (VIN)</h1>
                         </div>
                         <p className="text-lg text-muted-foreground">
-                            Gere códigos de chassi (VIN) válidos para testes de sistemas automotivos.
+                            Gere códigos de chassi fictício e válido (VIN) para testes de sistemas automotivos.
                         </p>
                     </div>
 
@@ -140,35 +141,68 @@ export function ChassiGeneratorPage() {
                         </Card>
                     </div>
 
-                    {/* Info Section */}
+                    {/* FAQ & Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <h2 className="text-xl font-semibold leading-none tracking-tight">O que é o Chassi do Veículo (Código VIN)?</h2>
+                            <h2 className="text-2xl font-semibold leading-none tracking-tight">Perguntas Frequentes sobre Chassi de Veículos</h2>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
-                                <p>
-                                    O número de chassi, também conhecido como VIN (Vehicle Identification Number), é um código único de 17 caracteres que identifica cada veículo fabricado no mundo. Este gerador cria códigos VIN válidos seguindo o padrão internacional ISO 3779.
-                                </p>
-                                <h4 className="font-semibold mt-4">Estrutura do VIN:</h4>
-                                <ul className="list-disc pl-4 space-y-1">
-                                    <li><strong>WMI (1-3):</strong> Identificador do fabricante mundial</li>
-                                    <li><strong>VDS (4-9):</strong> Descrição do veículo (modelo, motor, etc.)</li>
-                                    <li><strong>VIS (10-17):</strong> Identificador do veículo (ano, planta, sequência)</li>
-                                </ul>
-                                <h3 className="font-semibold text-lg mt-6">Por que usar um gerador de chassi online?</h3>
-                                <p>
-                                    Para desenvolvedores e QAs, testar formulários de cadastro de frotas e sistemas automotivos exige dados em formato realista. Nosso gerador cria códigos estruturalmente válidos para agilizar essas validações sem depender de bases de dados externas.
-                                </p>
-                                <p className="text-sm text-muted-foreground mt-4">
-                                    <strong>Nota:</strong> Os códigos gerados são matematicamente válidos mas fictícios, não correspondendo a veículos reais. Use apenas para testes de software.
+                        <CardContent className="space-y-6">
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>O que é o Chassi do Veículo (Código VIN)?</AccordionTrigger>
+                                    <AccordionContent>
+                                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                                            <p>
+                                                O número de chassi, também conhecido como VIN (Vehicle Identification Number), é um código único de 17 caracteres que identifica cada veículo fabricado no mundo. É como se fosse o "CPF" ou RG do veículo.
+                                            </p>
+                                            <h4 className="font-semibold mt-2">Estrutura do VIN:</h4>
+                                            <ul className="list-disc pl-4 space-y-1">
+                                                <li><strong>WMI (1-3):</strong> Identificador do fabricante mundial.</li>
+                                                <li><strong>VDS (4-9):</strong> Descrição do veículo (modelo, motor, etc.).</li>
+                                                <li><strong>VIS (10-17):</strong> Identificador de fabricação do veículo (ano, planta, sequência serial).</li>
+                                            </ul>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>É possível gerar um chassi fictício válido?</AccordionTrigger>
+                                    <AccordionContent>
+                                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                                            <p>
+                                                <strong>Sim.</strong> O nosso <strong>gerador de chassi de veículos</strong> utiliza a regra matemática e o padrão internacional ISO 3779 para criar um código com 17 dígitos onde o nono dígito (dígito verificador) é precisamente calculado.
+                                            </p>
+                                            <p>
+                                                Dessa forma, você obtém um chassi fictício, porém estruturalmente idêntico e válido para passar pelas validações de formulários de software.
+                                            </p>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Como usar este gerador de chassi para testes de software?</AccordionTrigger>
+                                    <AccordionContent>
+                                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                                            <p>
+                                                Para desenvolvedores, QAs (Analistas de Qualidade) e equipes de TI, testar formulários de cadastro de frotas de ERPs, seguradoras e sistemas automotivos exige dados em formato realista.
+                                            </p>
+                                            <p>
+                                                Ao invés de usar o modelo de chassi do seu próprio carro, basta clicar no botão <strong>"Gerar Chassi"</strong> e copiar o código de 17 caracteres oferecido. Nós aplicamos cálculos para garantir que softwares de validação de concessionárias e detrans o validem corretamente nos testes (Homologação).
+                                            </p>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+
+                            <div className="prose prose-sm max-w-none dark:prose-invert pt-4">
+                                <p className="text-sm text-muted-foreground border-l-4 border-muted pl-4">
+                                    <strong>Nota de isenção de responsabilidade:</strong> Os códigos gerados por esta ferramenta são matematicamente válidos mas totalmente <strong>fictícios</strong>, criados aleatoriamente. Não correspondem e não identificam veículos reais em circulação. Utilize a ferramenta exclusivamentepara fins acadêmicos, desenvolvimento e testes de software.
                                 </p>
                             </div>
-                            <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+
+                            <div className="pt-6 border-t mt-6">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta utilitária:</Label>
                                 <ShareButtons
-                                    title="Gerador de Chassi Online"
-                                    description="Gere códigos de chassi (VIN) válidos para testes."
+                                    title="Gerador de Chassi de Veículos Online"
+                                    description="Gere um chassi fictício e código VIN válido rapidamente para testes de software."
                                 />
                             </div>
                         </CardContent>
