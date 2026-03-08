@@ -51,9 +51,9 @@ export function StateRegistrationGenerator({ defaultState }: StateRegistrationGe
         <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
             {/* Header */}
             <div className="mb-8">
-                <h1 className="text-4xl font-bold mb-4">Inscrição Estadual</h1>
+                <h1 className="text-4xl font-bold mb-4 tracking-tight">Gerador e Validador de Inscrição Estadual</h1>
                 <p className="text-lg text-muted-foreground">
-                    Gere e valide Inscrições Estaduais de todas as UFs brasileiras
+                    Gere Inscrições Estaduais autênticas ou verifique a conformidade de dígitos verificadores para todos os 27 estados da Federação (ICMS/Sefaz).
                 </p>
             </div>
 

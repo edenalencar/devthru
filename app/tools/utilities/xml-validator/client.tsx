@@ -11,6 +11,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { Label } from "@/components/ui/label"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export function XMLValidatorPage() {
     const [xml, setXml] = useState("")
@@ -148,7 +149,42 @@ export function XMLValidatorPage() {
                             />
                         </div>
                     </Card>
-                    <RelatedTools currentToolSlug="xml-validator" category="utilities" />
+                    {/* FAQ SEO Section */}
+                    <div className="py-12 w-full">
+                        <section className="space-y-6">
+                            <div className="text-center space-y-2 mb-8">
+                                <h2 className="text-3xl font-bold tracking-tight">Perguntas Frequentes sobre XML</h2>
+                                <p className="text-muted-foreground">Tire suas dúvidas sobre validação, segurança e formato de arquivos XML de Nota Fiscal (NF-e/CT-e).</p>
+                            </div>
+                            
+                            <Accordion type="single" collapsible className="w-full bg-card border rounded-lg p-4 shadow-sm">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger className="text-left font-medium text-lg">Meu XML de Nota Fiscal (NF-e) é enviado para a nuvem?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                        <strong>Não, em hipótese alguma.</strong> Seu código XML de Nota Fiscal, CT-e ou código privado nunca sai da sua máquina. Esta ferramenta foi construída utilizando arquitetura estrita em <i>Client-Side</i> (através do DOMParser nativo do seu navegador). Toda a validação acontece de forma local e offline na exata hora em que você clica em "Validar", protegendo dados críticos de integração.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger className="text-left font-medium text-lg">Como é feita a validação das Tags?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                        A ferramenta opera uma verificação de <i>well-formedness</i> (boa formação de raiz). Isso significa que nosso parser inteligente busca erros clássicos de sintaxe, como: tags que foram abertas mas não fechadas, atributos corrompidos sem aspas, nós sobrepostos e quebras nulas que anulam a compilação do arquivo pelo receptor da fazenda.
+                                    </AccordionContent>
+                                </AccordionItem>
+
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger className="text-left font-medium text-lg">É confiável colar código privado de sistemas bancários?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                        Sim. Nossa infraestrutura do site preza pela máxima confidencialidade em ferramentas para desenvolvedores ("Dev Tools"). Diferente das dezenas de sites pesados na rede, nós não rodamos bancos de dados SQL/NoSQL em background capturando dados submetidos anonimamente, tampouco guardamos histórico (logs) do payload (conteúdo cru) colado aqui. Sinta-se a vontade para debugar envios XML/SOAP sigilosos antes da homologação final em produção!
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+                        </section>
+                    </div>
+
+                    <div className="border-t pt-8">
+                        <RelatedTools currentToolSlug="xml-validator" category="utilities" />
+                    </div>
                 </div>
             </main >
 

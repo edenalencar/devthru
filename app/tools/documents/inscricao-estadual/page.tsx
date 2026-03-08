@@ -3,14 +3,14 @@ import { Metadata } from 'next'
 import { InscricaoEstadualPage } from './client'
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = 'Validador e Gerador de Inscrição Estadual (IE) Online Grátis'
-const description = 'Gere e valide Inscrição Estadual (IE) em segundos. Ferramenta online grátis para testes fiscais. Veja também como validar em Python com validate_docbr.'
+const title = 'Gerador e Validador de Inscrição Estadual Válida [Grátis]'
+const description = 'Gere ou valide inscrições estaduais autênticas para testes em software. Suporte completo para os algoritmos de todos os 27 estados do Brasil. Ferramenta online gratuita para Devs.'
 
 export const metadata: Metadata = generateToolMetadata({
     title,
     description,
     path: "/tools/documents/inscricao-estadual",
-    keywords: ["inscricao estadual", "consultar ie", "validador ie", "sintegra", "cadastro contribuinte", "validate_docbr", "python", "desenvolvedores"]
+    keywords: ["inscricao estadual", "validador ie", "gerador ie", "consultar ie", "sintegra", "cadastro contribuinte", "testes de software", "validate_docbr", "desenvolvedores"]
 })
 
 export default function Page() {

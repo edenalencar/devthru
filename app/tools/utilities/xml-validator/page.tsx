@@ -1,14 +1,15 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import { XMLValidatorPage } from "./client"
 
-const title = "Validador de XML Online - Verificar Sintaxe e Formatação"
-const description = "Valide a sintaxe de seus arquivos XML instantaneamente com nosso Validador de XML online. Identifique erros de formatação e tags inválidas gratuitamente."
+const title = "Formatador e Validador de XML Online [Instantâneo]"
+const description = "Verifique a sintaxe e formate qualquer arquivo XML em segundos. Ferramenta poderosa que não envia seus dados ou notas fiscais para o servidor. 100% Client-Side Seguro."
 
 export const metadata: Metadata = {
     title,
     description,
+    keywords: ["validador xml", "formatador xml", "verificar sintaxe xml", "nfe xml", "validar nota fiscal xml", "xml parser", "desenvolvedores"],
     alternates: {
         canonical: `${siteConfig.url}/tools/utilities/xml-validator`,
     },

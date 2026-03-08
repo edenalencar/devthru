@@ -17,6 +17,7 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const STATES = [
     { uf: "AC", name: "Acre" },
@@ -264,7 +265,43 @@ export function TituloEleitorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <RelatedTools currentToolSlug="titulo-eleitor" category="documents" />
+
+                    {/* FAQ SEO Section */}
+                    <div className="py-12 w-full">
+                        <section className="space-y-6">
+                            <div className="text-center space-y-2 mb-8">
+                                <h2 className="text-3xl font-bold tracking-tight">Perguntas Frequentes</h2>
+                                <p className="text-muted-foreground">Entenda como o gerador calcula formato, zonas eleitorais e os algarismos do documento.</p>
+                            </div>
+                            
+                            <Accordion type="single" collapsible className="w-full bg-card border rounded-lg p-4 shadow-sm">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger className="text-left font-medium text-lg">O documento gerado tem valor civil na Justiça?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                        <strong>De forma alguma.</strong> Nossos geradores de dados fabricam dígitos a partir de matrizes matemáticas locais que servem exclusivamente para saltar barreiras de validação (<i>Front-End</i> e <i>Back-End</i>) e Regras de Negócio na hora em que o programador está testando os próprios formulários. Nenhum dos Títulos de Eleitor gerados pertence ao cadastro real do TSE. 
+                                    </AccordionContent>
+                                </AccordionItem>
+                                
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger className="text-left font-medium text-lg">O que significam os dois últimos dígitos do Título de Eleitor?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                        Os últimos dois algarismos formam o <strong>dígito verificador</strong> ("Checksum"). A estrutura completa retém 12 números: os primeiros oito (8) representam o código sequencial único do eleitor, os dois sub-consequentes (nono e décimo) declaram o código do estado de origem (UF, selecionado no nosso painel acima), e os dois terminais blindam o código como uma chave inquebrável por chute, utilizando cálculo de mod 11.
+                                    </AccordionContent>
+                                </AccordionItem>
+
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger className="text-left font-medium text-lg">Para que usar um gerador de Título?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                        Ao construir ERPs de companhias de RH, agências bancárias ou softwares de admissão é recorrente a requisição do Título de Eleitor em cadastros "E2E". Para não expor repetidamente os dados verídicos e sensíveis dos Devs nos bancos de dados temporários de Homologação, é padrão da indústria automatizar e submeter massivamente <i>dados mockados limpos</i>. 
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+                        </section>
+                    </div>
+
+                    <div className="border-t pt-8">
+                        <RelatedTools currentToolSlug="titulo-eleitor" category="documents" />
+                    </div>
                 </div>
             </main>
 
