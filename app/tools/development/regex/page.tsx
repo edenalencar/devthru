@@ -1,22 +1,18 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { RegexGeneratorPage } from "./client"
 
 const title = "Gerador e Testador de Regex - Validar Expressões Regulares"
 const description = "Crie, teste e valide expressões regulares (Regex) em tempo real com nossa ferramenta online. Suporte completo a flags e exemplos práticos para desenvolvedores."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/development/regex`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador e Testador de Regex - Validar Expressões Regulares",
+    description: "Crie, teste e valide expressões regulares (Regex) em tempo real com nossa ferramenta online. Suporte completo a flags e exemplos práticos para desenvolvedores.",
+    path: "/tools/development/regex",
+})
 
 export default function Page() {
     return (

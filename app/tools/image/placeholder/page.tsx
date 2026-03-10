@@ -1,22 +1,18 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { PlaceholderGeneratorPage } from "./client"
 
 const title = "Gerador de Imagem Placeholder - Tamanho Personalizado"
 const description = "Crie imagens placeholder (dummy image) com tamanho, cores e texto personalizados para protótipos e layouts."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/image/placeholder`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador de Imagem Placeholder - Tamanho Personalizado",
+    description: "Crie imagens placeholder (dummy image) com tamanho, cores e texto personalizados para protótipos e layouts.",
+    path: "/tools/image/placeholder",
+})
 
 export default function Page() {
     return (

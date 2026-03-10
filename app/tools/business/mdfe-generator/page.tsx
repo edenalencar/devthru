@@ -1,20 +1,15 @@
 ﻿import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { MdfeGeneratorPage } from "./client"
 
-export const metadata: Metadata = {
-    title: "Gerador de Chave MDF-e Online - Manifesto Eletrônico de Documentos",
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador de Chave MDF-e Online - Manifesto Eletrônico",
     description: "Gere chaves de acesso do Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes de integração e homologação. Ferramenta gratuita e sem cadastro.",
-    keywords: ["gerador mdf-e", "chave mdf-e", "mdfe teste", "manifesto eletronico", "dev tools"],
-    alternates: {
-        canonical: `${siteConfig.url}/tools/business/mdfe-generator`,
-    },
-    openGraph: {
-        title: "Gerador de Chave MDF-e Online - Manifesto Eletrônico de Documentos",
-        description: "Gere chaves de acesso do Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes de integração e homologação. Ferramenta gratuita e sem cadastro.",
-        type: "website",
-    }
-}
+    path: "/tools/business/mdfe-generator",
+    keywords: ["gerador mdf-e", "chave mdf-e", "mdfe teste", "manifesto eletronico", "dev tools"]
+})
 
 export default function Page() {
     const jsonLd = {

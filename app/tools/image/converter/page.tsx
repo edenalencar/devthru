@@ -1,22 +1,18 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { ImageConverterPage } from "./client"
 
 const title = "Conversor de Imagem Online Grátis - PNG, JPG e WEBP"
 const description = "Converta imagens entre formatos PNG, JPG e WEBP rapidamente e sem perda de qualidade. Processamento seguro no navegador, sem upload para servidor. 100% gratuito."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/image/converter`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Conversor de Imagem Online Grátis - PNG, JPG e WEBP",
+    description: "Converta imagens entre PNG, JPG e WEBP rapidamente e sem perda de qualidade. Processamento 100% seguro no navegador, sem uploads para a nuvem.",
+    path: "/tools/image/converter",
+})
 
 export default function Page() {
     return (

@@ -1,12 +1,15 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { CnaeSearchPage } from "./client"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateToolMetadata({
     title: "Busca de CNAE - Classificação Nacional de Atividades",
-    description: "Pesquise códigos e descrições da Classificação Nacional de Atividades Econômicas (CNAE) atualizados via IBGE. Consulta gratuita com filtros por seção, divisão e classe.",
-}
+    description: "Pesquise códigos e descrições da Classificação Nacional de Atividades Econômicas (CNAE/IBGE). Consulta gratuita com filtros por seção, divisão e classe.",
+    path: "/tools/business/cnae-search",
+})
 
 export default function Page() {
     return (

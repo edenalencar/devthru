@@ -1,22 +1,18 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { CaseConverterPage } from "./client"
 
 const title = "Conversor de Case Online - Maiúsculas, Minúsculas e camelCase"
 const description = "Transforme textos para UPPERCASE, lowercase, camelCase, PascalCase, Title Case e snake_case instantaneamente. Conversor de texto online, gratuito e sem necessidade de cadastro."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/text/case-converter`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Conversor de Case: Maiúsculas, Minúsculas e camelCase",
+    description: "Transforme textos para UPPERCASE, lowercase, camelCase, PascalCase e snake_case instantaneamente. Conversor de texto online gratuito e sem cadastro.",
+    path: "/tools/text/case-converter",
+})
 
 export default function Page() {
     return (

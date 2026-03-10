@@ -1,30 +1,24 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { RenavamGeneratorPage } from "./client"
 
 const title = "Gerador de RENAVAM Online Grátis - Código Válido para Testes"
 const description = "Gerador de RENAVAM online e gratuito! Gere números de RENAVAM válidos (11 dígitos) para testes de sistemas automotivos. Rápido, seguro e sem cadastro."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    keywords: [
-        "gerador de renavam",
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador de RENAVAM Online Grátis - Código Válido para Testes",
+    description: "Gerador de RENAVAM online e gratuito! Gere números de RENAVAM válidos (11 dígitos) para testes de sistemas automotivos. Rápido, seguro e sem cadastro.",
+    path: "/tools/automotive/renavam",
+    keywords: ["gerador de renavam",
         "gerar renavam",
         "renavam válido",
         "número renavam",
         "renavam online",
-        "gerador renavam grátis",
-    ],
-    alternates: {
-        canonical: `${siteConfig.url}/tools/automotive/renavam`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+        "gerador renavam grátis",]
+})
 
 export default function Page() {
     return (

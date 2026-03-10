@@ -1,23 +1,19 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { CNPJGeneratorPage } from "./client"
 
 const title = "Gerador e Validador de CNPJ Válido Online | DevThru"
 const description = "Gere e valide números de CNPJ para testes de software. Sistema completo para desenvolvedores e QA com suporte a CNPJ alfanumérico."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    keywords: ["gerador de cnpj", "validador de cnpj", "testes de software", "gerador cnpj", "qa", "massa de dados"],
-    alternates: {
-        canonical: `${siteConfig.url}/tools/documents/cnpj`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador e Validador de CNPJ Válido Online | DevThru",
+    description: "Gere e valide números de CNPJ para testes de software. Sistema completo para desenvolvedores e QA com suporte a CNPJ alfanumérico.",
+    path: "/tools/documents/cnpj",
+    keywords: ["gerador de cnpj", "validador de cnpj", "testes de software", "gerador cnpj", "qa", "massa de dados"]
+})
 
 export default function Page() {
     return (

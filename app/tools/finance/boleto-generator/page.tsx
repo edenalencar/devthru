@@ -1,22 +1,18 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { BoletoGeneratorPage } from "./client"
 
 const title = "Gerador de Boleto Bancário Mock - Visualização para Testes"
 const description = "Gerador de Boleto Bancário Mock para testes de software. Crie boletos fictícios com código de barras validável e PDF para homologar seu sistema de pagamentos de forma segura."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/finance/boleto-generator`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador de Boleto Bancário Mock - Visualização para Testes",
+    description: "Gerador de Boleto Bancário Mock. Crie boletos fictícios com código de barras validável e PDF para homologar seu sistema de pagamentos de forma segura.",
+    path: "/tools/finance/boleto-generator",
+})
 
 export default function Page() {
     return (

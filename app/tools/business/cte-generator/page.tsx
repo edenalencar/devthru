@@ -1,22 +1,17 @@
 ﻿import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { JsonLd } from "@/components/seo/json-ld"
 import { Graph } from "schema-dts"
 import { CteGeneratorPage } from "./client"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Chave CT-e - Conhecimento de Transporte",
     description: "Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes de integração.",
-    keywords: ["gerador ct-e", "chave de acesso ct-e", "cte teste", "dev tools", "documentos fiscais"],
-    alternates: {
-        canonical: `${siteConfig.url}/tools/business/cte-generator`,
-    },
-    openGraph: {
-        title: "Gerador de Chave CT-e | DevHub Tools",
-        description: "Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes.",
-        type: "website",
-    }
-}
+    path: "/tools/business/cte-generator",
+    keywords: ["gerador ct-e", "chave de acesso ct-e", "cte teste", "dev tools", "documentos fiscais"]
+})
 
 export default function Page() {
     const jsonLd: Graph = {

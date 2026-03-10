@@ -1,23 +1,19 @@
 import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { XMLValidatorPage } from "./client"
 
 const title = "Formatador e Validador de XML Online [Instantâneo]"
 const description = "Verifique a sintaxe e formate qualquer arquivo XML em segundos. Ferramenta poderosa que não envia seus dados ou notas fiscais para o servidor. 100% Client-Side Seguro."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    keywords: ["validador xml", "formatador xml", "verificar sintaxe xml", "nfe xml", "validar nota fiscal xml", "xml parser", "desenvolvedores"],
-    alternates: {
-        canonical: `${siteConfig.url}/tools/utilities/xml-validator`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Formatador e Validador de XML Online [Instantâneo]",
+    description: "Verifique a sintaxe e formate qualquer arquivo XML em segundos. Ferramenta poderosa, segura (100% Client-Side) que não envia seus dados para nuvem.",
+    path: "/tools/utilities/xml-validator",
+    keywords: ["validador xml", "formatador xml", "verificar sintaxe xml", "nfe xml", "validar nota fiscal xml", "xml parser", "desenvolvedores"]
+})
 
 export default function Page() {
     return (

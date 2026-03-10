@@ -1,12 +1,15 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { BaseConverterPage } from "./client"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateToolMetadata({
     title: "Conversor de Bases Numéricas - Binário, Decimal, Hexadecimal",
-    description: "Converta números entre bases Decimal, Binária, Hexadecimal e Octal instantaneamente. Ferramenta essencial para estudantes e programadores que trabalham com bits.",
-}
+    description: "Converta números entre Decimal, Binário, Hexadecimal e Octal. Ferramenta gratuita e essencial para estudantes e programadores (bases numéricas).",
+    path: "/tools/converters/base",
+})
 
 export default function Page() {
     return (

@@ -1,22 +1,18 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { RGGeneratorPage } from "./client"
 
 const title = "Gerador de RG - Registro Geral Válido para Testes"
 const description = "Crie números de RG (Registro Geral) aleatórios e válidos para testes de validação de formulários e sistemas."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/documents/rg`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador de RG - Registro Geral Válido para Testes",
+    description: "Crie números de RG (Registro Geral) aleatórios e válidos para testes de validação de formulários e sistemas.",
+    path: "/tools/documents/rg",
+})
 
 export default function Page() {
     return (

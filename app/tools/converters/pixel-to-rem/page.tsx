@@ -1,23 +1,19 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { PixelToRemPage } from "./client"
 
 const title = "Conversor de Pixel para REM (e Vice-Versa) | Grátis"
 const description = "Converta pixels (px) para rem e rem para pixels (px) facilmente. Calculadora essencial para desenvolvedores front-end e web designers."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/converters/pixel-to-rem`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-    keywords: ["px to rem", "rem to px", "converter pixel rem", "calculadora css", "unidades css", "web design"],
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Conversor de Pixel para REM (e Vice-Versa) | Grátis",
+    description: "Converta pixels (px) para rem e rem para pixels (px) facilmente. Calculadora essencial para desenvolvedores front-end e web designers.",
+    path: "/tools/converters/pixel-to-rem",
+    keywords: ["px to rem", "rem to px", "converter pixel rem", "calculadora css", "unidades css", "web design"]
+})
 
 export default function Page() {
     return (

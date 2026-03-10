@@ -1,23 +1,19 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { UrlEncoderPage } from "./client"
 
 const title = "URL Encode e Decode Online | Ferramenta Grátis"
 const description = "Codifique e decodifique URLs online. Converta caracteres especiais para o formato URL-safe e vice-versa. Ferramenta essencial para desenvolvedores web."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/utilities/url-encoder`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-    keywords: ["url encode", "url decode", "codificar url", "decodificar url", "percent encoding", "ferramentas dev"],
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "URL Encode e Decode Online | Ferramenta Grátis",
+    description: "Codifique e decodifique URLs online. Converta caracteres especiais para o formato URL-safe e vice-versa. Ferramenta essencial para desenvolvedores web.",
+    path: "/tools/utilities/url-encoder",
+    keywords: ["url encode", "url decode", "codificar url", "decodificar url", "percent encoding", "ferramentas dev"]
+})
 
 export default function Page() {
     return (

@@ -1,22 +1,18 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { UUIDGeneratorPage } from "./client"
 
 const title = "Gerador de UUID v4 Online - Identificador Único Universal"
 const description = "Gere UUIDs (v4) únicos e seguros aleatoriamente para seus projetos e bancos de dados. Identificadores universais prontos para uso em desenvolvimento de software."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/utilities/uuid`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador de UUID v4 Online - Identificador Único Universal",
+    description: "Gere UUIDs (v4) únicos e seguros de forma aleatória para projetos e bancos de dados. Identificadores universais prontos para uso em software.",
+    path: "/tools/utilities/uuid",
+})
 
 export default function Page() {
     return (

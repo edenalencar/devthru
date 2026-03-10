@@ -1,22 +1,18 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { AddressGeneratorPage } from "./client"
 
 const title = "Gerador de Endereços Brasileiros Válidos - CEP e Rua"
 const description = "Gere endereços brasileiros completos com CEP, rua, bairro e cidade para testes de sistemas e formulários."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/personal/address`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador de Endereços Brasileiros Válidos - CEP e Rua",
+    description: "Gere endereços brasileiros completos com CEP, rua, bairro e cidade para testes de sistemas e formulários.",
+    path: "/tools/personal/address",
+})
 
 export default function Page() {
     return (

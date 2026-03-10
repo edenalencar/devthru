@@ -1,23 +1,19 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { CPFGeneratorPage } from "./client"
 
 const title = "Gerador de CPF Válido Online | DevThru"
 const description = "Gere números de CPF válidos para testes de software com nosso Gerador de CPF. Ferramenta rápida, gratuita e essencial para desenvolvedores e testes de QA."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    keywords: ["gerador de cpf", "cpf valido", "testar cpf", "gerador cpf", "cpf generator", "massa de dados"],
-    alternates: {
-        canonical: `${siteConfig.url}/tools/documents/cpf`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Gerador de CPF Válido Online | DevThru",
+    description: "Gere números de CPF válidos para testes de software com nosso Gerador de CPF. Ferramenta rápida, gratuita e essencial para desenvolvedores e testes de QA.",
+    path: "/tools/documents/cpf",
+    keywords: ["gerador de cpf", "cpf valido", "testar cpf", "gerador cpf", "cpf generator", "massa de dados"]
+})
 
 export default function Page() {
     return (

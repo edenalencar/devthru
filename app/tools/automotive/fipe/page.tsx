@@ -1,22 +1,18 @@
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
-import { Metadata } from "next"
+import { Metadata } from 'next'
+import { generateToolMetadata } from "@/lib/seo-config"
+
 import { FipePage } from "./client"
 
 const title = "Tabela FIPE Atualizada - Consulta de Preço de Veículos Grátis"
 const description = "Consulte a Tabela FIPE atualizada com preços médios de carros, motos e caminhões no mercado brasileiro. Pesquise por marca, modelo e ano de fabricação gratuitamente."
 
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: {
-        canonical: `${siteConfig.url}/tools/automotive/fipe`,
-    },
-    openGraph: {
-        title,
-        description,
-    },
-}
+export const metadata: Metadata = generateToolMetadata({
+    title: "Tabela FIPE Atualizada - Consulte o Preço de Veículos",
+    description: "Consulte a Tabela FIPE com preços médios de carros, motos e caminhões no mercado brasileiro. Pesquise por marca, modelo e ano de fabricação grátis.",
+    path: "/tools/automotive/fipe",
+})
 
 export default function Page() {
     return (
