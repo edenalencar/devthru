@@ -23,6 +23,28 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
+      // Redirecionamentos para páginas reportadas como 404 no GSC
+      {
+        source: "/tools/image",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/tools/personal",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/tools/documents",
+        destination: "/",
+        permanent: true,
+      },
+      // Corrigindo URL antiga (mudou de renavam-chassis para rotas separadas)
+      {
+        source: "/tools/automotive/renavam-chassis",
+        destination: "/tools/automotive/renavam",
+        permanent: true,
+      },
     ];
   },
 };
