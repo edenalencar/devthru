@@ -412,6 +412,29 @@ GET  /api/v1/usage (estatísticas de uso)
 
 ---
 
+## 💰 Estratégia de Crescimento e Monetização (Audience-First)
+
+A estratégia core do DevThru é focar em **UX/UI impecável e velocidade** para superar incumbentes do mercado (como 4Devs), priorizando a construção de tráfego orgânico antes de focar em agressividade comercial.
+
+### Fase 1: Audiência e SEO (Foco Atual)
+- **Objetivo:** Dominar as buscas de cauda longa e utilitários via Organic Search.
+- **Tática:** Manter as ferramentas estritamente gratuitas, sem anúncios invasivos, criando um diferencial de "ferramenta limpa e confiável".
+- **Marketing:** *Engineering as Marketing*. A UX da ferramenta é o próprio motor de crescimento.
+
+### Fase 2: Monetização "Freemium" via Power Users
+- **Objetivo:** Converter a pequena parcela de usuários corporativos/intensivos.
+- **Tática:** Cobrar pelo Modo Batch (volume alto) e pelo uso da API B2B. O usuário comum continua sem pagar nada, ancorando o valor da marca.
+
+### Fase 3: Ad Networks Premium para Devs (Médio Prazo)
+- **Objetivo:** Monetizar o tráfego do usuário gratuito sem destruir a UX.
+- **Tática:** Ao atingir ~50k acessos/mês, integrar redes de anúncios elegantes focadas em tech (ex: **Carbon Ads**), garantindo receita em dólar e mantendo o design limpo.
+
+### Fase 4: B2B Sponsorships e Mídia Direta (Longo Prazo)
+- **Objetivo:** Receita de alto valor.
+- **Tática:** Ao atingir ~100k+ acessos/mês, criar um Mídia Kit e vender patrocínios mensais do "Destaque" da página inicial diretamente para grandes players (Vercel, AWS, Alura, Rocketseat).
+
+---
+
 ## 🚀 Próximos Passos Imediatos
 
 1. **Priorizar** recursos com base em feedback de usuários
