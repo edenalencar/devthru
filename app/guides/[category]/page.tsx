@@ -4,6 +4,7 @@ import { PROGRAMMATIC_CONTENT } from "@/lib/content/programmatic"
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import Link from "next/link"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { GUIDE_CATEGORY_META_DESCRIPTIONS } from "@/lib/seo/meta-descriptions"
 
 interface PageProps {
     params: Promise<{
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     return {
         title: `Guias de ${categoryName} | DevThru`,
-        description: `Aprenda a implementar algoritmos de ${categoryName.toLowerCase()} em diversas linguagens.`,
+        description: GUIDE_CATEGORY_META_DESCRIPTIONS[category] ?? `Aprenda a implementar algoritmos de ${categoryName.toLowerCase()} em diversas linguagens.`,
         alternates: {
             canonical: `https://www.devthru.com/guides/${category}`,
         },

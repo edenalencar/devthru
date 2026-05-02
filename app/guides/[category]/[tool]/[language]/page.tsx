@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { generateGuideMetaDescription } from "@/lib/seo/meta-descriptions"
 
 interface PageProps {
     params: Promise<{
@@ -36,9 +37,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         }
     }
 
+    const metaDescription = generateGuideMetaDescription(content.toolId, content.languageId)
+
     return {
         title: content.title,
-        description: content.description,
+        description: metaDescription,
         alternates: {
             canonical: `https://www.devthru.com/guides/${category}/${tool}/${language}`,
         },
@@ -55,6 +58,8 @@ export default async function GuidePage({ params }: PageProps) {
         notFound()
     }
 
+    const metaDescription = generateGuideMetaDescription(content.toolId, content.languageId)
+
     return (
         <div className="container mx-auto py-10 px-4 max-w-4xl">
             <JsonLd
@@ -62,7 +67,7 @@ export default async function GuidePage({ params }: PageProps) {
                     "@context": "https://schema.org",
                     "@type": "TechArticle",
                     "headline": content.title,
-                    "description": content.description,
+                    "description": metaDescription,
                     "articleBody": content.content.intro, // Simplified body
                     "about": {
                         "@type": "SoftwareApplication",

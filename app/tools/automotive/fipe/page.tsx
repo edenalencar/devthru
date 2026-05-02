@@ -2,15 +2,16 @@
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
+import { TOOL_META_DESCRIPTIONS } from "@/lib/seo/meta-descriptions"
 
 import { FipePage } from "./client"
 
 const title = "Tabela FIPE Atualizada - Consulta de Preço de Veículos Grátis"
-const description = "Consulte a Tabela FIPE atualizada com preços médios de carros, motos e caminhões no mercado brasileiro. Pesquise por marca, modelo e ano de fabricação gratuitamente."
+const description = TOOL_META_DESCRIPTIONS.fipe
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Tabela FIPE Atualizada - Consulte o Preço de Veículos",
-    description: "Consulte a Tabela FIPE com preços médios de carros, motos e caminhões no mercado brasileiro. Pesquise por marca, modelo e ano de fabricação grátis.",
+    description,
     path: "/tools/automotive/fipe",
 })
 
@@ -32,7 +33,7 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Consulte a Tabela FIPE atualizada com preços médios de carros, motos e caminhões no mercado brasileiro. Pesquise por marca, modelo e ano de fabricação gratuitamente.",
+                            "description": description,
                         },
                         {
                             "@type": "BreadcrumbList",

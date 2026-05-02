@@ -2,15 +2,16 @@
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
+import { TOOL_META_DESCRIPTIONS } from "@/lib/seo/meta-descriptions"
 
 import { CaseConverterPage } from "./client"
 
 const title = "Conversor de Case Online - Maiúsculas, Minúsculas e camelCase"
-const description = "Transforme textos para UPPERCASE, lowercase, camelCase, PascalCase, Title Case e snake_case instantaneamente. Conversor de texto online, gratuito e sem necessidade de cadastro."
+const description = TOOL_META_DESCRIPTIONS.caseConverter
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Conversor de Case: Maiúsculas, Minúsculas e camelCase",
-    description: "Transforme textos para UPPERCASE, lowercase, camelCase, PascalCase e snake_case instantaneamente. Conversor de texto online gratuito e sem cadastro.",
+    description,
     path: "/tools/text/case-converter",
 })
 
@@ -32,7 +33,7 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Transforme textos para UPPERCASE, lowercase, camelCase, Title Case e mais instantaneamente."
+                            "description": description
                         },
                         {
                             "@type": "BreadcrumbList",
