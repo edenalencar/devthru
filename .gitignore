@@ -44,3 +44,5 @@ next-env.d.ts
 
 # private devthru folders
 _private/
+ROADMAP.md
+skills/
