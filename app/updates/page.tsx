@@ -22,6 +22,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "21 de Maio de 2026",
+        title: "Gerador de Crontab Online",
+        description: "Lançamento do gerador e tradutor de expressões cron. Configure agendamentos de forma visual, valide sintaxes e converta a recorrência em linguagem natural em português do Brasil.",
+        type: "feature",
+        version: "1.43.0"
+    },
+    {
         date: "14 de Fevereiro de 2026",
         title: "Navegação entre Ferramentas Relacionadas",
         description: "Implementação de uma nova seção 'Ferramentas Relacionadas' em todas as páginas de utilitários e documentos, facilitando a descoberta de ferramentas complementares.",
