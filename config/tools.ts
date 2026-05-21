@@ -270,6 +270,15 @@ export const tools: Tool[] = [
         icon: Shield,
         href: "/tools/development/jwt-debugger",
     },
+    {
+        id: "crontab-generator",
+        name: "Gerador de Crontab",
+        title: "Gerador de Crontab Online",
+        description: "Crie, valide e decodifique expressões cron de forma visual e simples. Gere linhas de comando completas com descrição em português.",
+        category: "development",
+        icon: Clock,
+        href: "/tools/development/crontab-generator",
+    },
 
     // Ferramentas de Imagem
     {

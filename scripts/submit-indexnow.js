@@ -44,6 +44,7 @@ const urls = [
     "https://devthru.com/tools/development/mock-data",
     "https://devthru.com/tools/development/regex",
     "https://devthru.com/tools/development/timestamp",
+    "https://devthru.com/tools/development/crontab-generator",
 
     // Tools - Documents
     "https://devthru.com/tools/documents/certificate-generator",
