@@ -1,17 +1,18 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CreditCardGeneratorPage } from "./client"
 
-const title = "Gerador de Cartão de Crédito Válido para Testes"
-const description = "Gere números de cartão de crédito válidos (algoritmo de Luhn) para testes de sistemas de pagamento. Visa, Mastercard, Amex e mais."
+const title = "Gerador de Cartão de Crédito Válido para Testes [Grátis]"
+const description = "Gere e valide números de cartão de crédito válidos com o algoritmo de Luhn para testes de sistemas de pagamento. Suporte a Visa, Mastercard, Amex, Elo e mais."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Cartão de Crédito Válido para Testes",
-    description: "Gere números de cartão de crédito válidos (algoritmo de Luhn) para testes de sistemas de pagamento. Visa, Mastercard, Amex e mais.",
+    title,
+    description,
     path: "/tools/finance/credit-card-generator",
+    keywords: ["gerador de cartao de credito", "gerar cartao de credito", "cartao de credito valido", "algoritmo de luhn", "gerador cartao de credito", "dev tools", "testes de pagamento"]
 })
 
 export default function Page() {
@@ -24,15 +25,15 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Gerador de Cartão de Crédito Válido para Testes",
+                            "name": "Gerador de Cartão de Crédito Válido para Testes - DevThru",
                             "operatingSystem": "Web",
-                            "applicationCategory": "FinançasApplication",
+                            "applicationCategory": "DeveloperApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Gere números de cartão de crédito válidos (algoritmo de Luhn) para testes de sistemas de pagamento. Visa, Mastercard, Amex e mais."
+                            "description": "Gere e valide números de cartão de crédito válidos com o algoritmo de Luhn para testes de sistemas de pagamento."
                         },
                         {
                             "@type": "BreadcrumbList",

@@ -18,6 +18,192 @@ import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const TITULO_JS_CODE = `function validateTituloEleitor(titulo) {
+  if (!titulo) return false;
+  
+  // Limpeza de caracteres não numéricos
+  const cleaned = String(titulo).replace(/\\D/g, "");
+  
+  // O Título de Eleitor deve ter exatamente 12 dígitos
+  if (cleaned.length !== 12) {
+    return false;
+  }
+  
+  const baseNumber = cleaned.substring(0, 8);
+  const stateCode = cleaned.substring(8, 10);
+  const checkDigits = cleaned.substring(10, 12);
+  
+  // Valida o código do estado (01 a 28)
+  const stateCodeNum = parseInt(stateCode);
+  if (stateCodeNum < 1 || stateCodeNum > 28) {
+    return false;
+  }
+  
+  // Cálculo do primeiro dígito verificador (D1)
+  let sum1 = 0;
+  for (let i = 0; i < 8; i++) {
+    sum1 += parseInt(baseNumber[i]) * (i + 2);
+  }
+  const rest1 = sum1 % 11;
+  const d1 = rest1 === 10 ? 0 : rest1;
+  
+  // Cálculo do segundo dígito verificador (D2)
+  const v1 = parseInt(stateCode[0]);
+  const v2 = parseInt(stateCode[1]);
+  const v3 = d1;
+  
+  const sum2 = v1 * 7 + v2 * 8 + v3 * 9;
+  const rest2 = sum2 % 11;
+  const d2 = rest2 === 10 ? 0 : rest2;
+  
+  return checkDigits === \`\${d1}\${d2}\`;
+}`;
+
+const TITULO_PYTHON_CODE = `import re
+
+def validate_titulo_eleitor(titulo: str) -> bool:
+    if not titulo:
+        return False
+        
+    # Limpeza de caracteres não numéricos
+    cleaned = re.sub(r'\\D', '', str(titulo))
+    
+    # O Título de Eleitor deve ter exatamente 12 dígitos
+    if len(cleaned) != 12:
+        return False
+        
+    base_number = cleaned[0:8]
+    state_code = cleaned[8:10]
+    check_digits = cleaned[10:12]
+    
+    # Valida o código do estado (01 a 28)
+    try:
+        state_code_num = int(state_code)
+    except ValueError:
+        return False
+        
+    if state_code_num < 1 or state_code_num > 28:
+        return False
+        
+    # Cálculo do primeiro dígito verificador (D1)
+    sum1 = 0
+    for i in range(8):
+        sum1 += int(base_number[i]) * (i + 2)
+    rest1 = sum1 % 11
+    d1 = 0 if rest1 == 10 else rest1
+    
+    # Cálculo do segundo dígito verificador (D2)
+    v1 = int(state_code[0])
+    v2 = int(state_code[1])
+    v3 = d1
+    
+    sum2 = v1 * 7 + v2 * 8 + v3 * 9
+    rest2 = sum2 % 11
+    d2 = 0 if rest2 == 10 else rest2
+    
+    return check_digits == f"{d1}{d2}"`;
+
+const TITULO_CSHARP_CODE = `using System;
+using System.Text.RegularExpressions;
+
+public static class TituloEleitorValidator
+{
+    public static bool Validate(string titulo)
+    {
+        if (string.IsNullOrWhiteSpace(titulo))
+            return false;
+
+        // Limpeza de caracteres não numéricos
+        string cleaned = Regex.Replace(titulo, @"[^\\d]", "");
+
+        // O Título de Eleitor deve ter exatamente 12 dígitos
+        if (cleaned.Length != 12)
+            return false;
+
+        string baseNumber = cleaned.Substring(0, 8);
+        string stateCode = cleaned.Substring(8, 10);
+        string checkDigits = cleaned.Substring(10, 12);
+
+        // Valida o código do estado (01 a 28)
+        if (!int.TryParse(stateCode, out int stateCodeNum) || stateCodeNum < 1 || stateCodeNum > 28)
+        {
+            return false;
+        }
+
+        // Cálculo do primeiro dígito verificador (D1)
+        int sum1 = 0;
+        for (int i = 0; i < 8; i++)
+        {
+            sum1 += (baseNumber[i] - '0') * (i + 2);
+        }
+        int rest1 = sum1 % 11;
+        int d1 = rest1 == 10 ? 0 : rest1;
+
+        // Cálculo do segundo dígito verificador (D2)
+        int v1 = stateCode[0] - '0';
+        int v2 = stateCode[1] - '0';
+        int v3 = d1;
+
+        int sum2 = v1 * 7 + v2 * 8 + v3 * 9;
+        int rest2 = sum2 % 11;
+        int d2 = rest2 == 10 ? 0 : rest2;
+
+        return checkDigits == $"{d1}{d2}";
+    }
+}`;
+
+const TITULO_JAVA_CODE = `public class TituloEleitorValidator {
+    public static boolean validate(String titulo) {
+        if (titulo == null) {
+            return false;
+        }
+
+        // Limpeza de caracteres não numéricos
+        String cleaned = titulo.replaceAll("[^\\\\d]", "");
+
+        // O Título de Eleitor deve ter exatamente 12 dígitos
+        if (cleaned.length() != 12) {
+            return false;
+        }
+
+        String baseNumber = cleaned.substring(0, 8);
+        String stateCode = cleaned.substring(8, 10);
+        String checkDigits = cleaned.substring(10, 12);
+
+        // Valida o código do estado (01 a 28)
+        int stateCodeNum;
+        try {
+            stateCodeNum = Integer.parseInt(stateCode);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        if (stateCodeNum < 1 || stateCodeNum > 28) {
+            return false;
+        }
+
+        // Cálculo do primeiro dígito verificador (D1)
+        int sum1 = 0;
+        for (int i = 0; i < 8; i++) {
+            sum1 += Character.getNumericValue(baseNumber.charAt(i)) * (i + 2);
+        }
+        int rest1 = sum1 % 11;
+        int d1 = rest1 == 10 ? 0 : rest1;
+
+        // Cálculo do segundo dígito verificador (D2)
+        int v1 = Character.getNumericValue(stateCode.charAt(0));
+        int v2 = Character.getNumericValue(stateCode.charAt(1));
+        int v3 = d1;
+
+        int sum2 = v1 * 7 + v2 * 8 + v3 * 9;
+        int rest2 = sum2 % 11;
+        int d2 = rest2 == 10 ? 0 : rest2;
+
+        return checkDigits.equals("" + d1 + d2);
+    }
+}`;
 
 const STATES = [
     { uf: "AC", name: "Acre" },
@@ -295,6 +481,15 @@ export function TituloEleitorPage() {
                                         Ao construir ERPs de companhias de RH, agências bancárias ou softwares de admissão é recorrente a requisição do Título de Eleitor em cadastros "E2E". Para não expor repetidamente os dados verídicos e sensíveis dos Devs nos bancos de dados temporários de Homologação, é padrão da indústria automatizar e submeter massivamente <i>dados mockados limpos</i>. 
                                     </AccordionContent>
                                 </AccordionItem>
+
+                                <CodeExamplesAccordion
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: TITULO_JS_CODE },
+                                        { language: "python", label: "Python", code: TITULO_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: TITULO_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: TITULO_JAVA_CODE }
+                                    ]}
+                                />
                             </Accordion>
                         </section>
                     </div>

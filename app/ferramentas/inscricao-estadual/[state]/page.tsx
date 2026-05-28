@@ -4,6 +4,7 @@ import { Navbar } from '@/components/layout/navbar'
 import { StateRegistrationGenerator } from '@/components/tools/state-registration-generator'
 import { IE_STATES } from '@/lib/utils/validators/inscricao-estadual'
 import { generateToolMetadata } from '@/lib/seo-config'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 interface PageProps {
     params: Promise<{ state: string }>
@@ -57,6 +58,40 @@ export default async function StatePage({ params }: PageProps) {
                     ]} />
                 </div>
                 <StateRegistrationGenerator defaultState={stateInfo.uf} />
+                
+                {/* FAQ SEO Section */}
+                <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-t">
+                    <section className="space-y-6">
+                        <div className="space-y-2">
+                            <h2 className="text-2xl font-bold tracking-tight">Perguntas Frequentes sobre a Inscrição Estadual de {stateInfo.name} ({stateInfo.uf})</h2>
+                            <p className="text-muted-foreground">Tire suas dúvidas sobre consultas no Sintegra, validação junto à SEFAZ {stateInfo.uf} e regras de emissão.</p>
+                        </div>
+                        
+                        <Accordion type="single" collapsible className="w-full bg-card border rounded-lg p-4 shadow-sm">
+                            <AccordionItem value="faq-1">
+                                <AccordionTrigger className="text-left font-medium text-lg">O que é a Inscrição Estadual de {stateInfo.name} ({stateInfo.uf}) e para que serve?</AccordionTrigger>
+                                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                    A Inscrição Estadual (IE) em {stateInfo.name} é o registro obrigatório que as empresas com atividades de comércio, indústria e prestação de serviços de transporte intermunicipal ou interestadual devem manter junto à <strong>SEFAZ {stateInfo.uf}</strong> (Secretaria de Estado da Fazenda de {stateInfo.name}). Esse registro identifica a empresa como contribuinte do ICMS, permitindo a emissão legal de documentos fiscais como a NF-e e a NFC-e.
+                                </AccordionContent>
+                            </AccordionItem>
+                            
+                            <AccordionItem value="faq-2">
+                                <AccordionTrigger className="text-left font-medium text-lg">Como posso consultar uma Inscrição Estadual na SEFAZ {stateInfo.uf}?</AccordionTrigger>
+                                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                    Para consultar e verificar o status cadastral de um contribuinte em {stateInfo.name}, você pode acessar o site oficial da <strong>SEFAZ {stateInfo.uf}</strong> através do módulo de consulta de cadastro, ou realizar a busca no portal do <strong>Sintegra {stateInfo.uf}</strong>. Também é possível efetuar essa consulta no Cadastro Centralizado de Contribuintes (CCC), bastando informar o CNPJ da empresa para obter os dados completos e confirmar se a inscrição está ativa, baixada ou suspensa.
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            <AccordionItem value="faq-3">
+                                <AccordionTrigger className="text-left font-medium text-lg">Como funciona o cálculo de validação da IE de {stateInfo.name}?</AccordionTrigger>
+                                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                    Diferente do CPF e CNPJ, que possuem regras nacionais únicas, o cálculo e o formato de dígitos da Inscrição Estadual variam em cada estado brasileiro. O algoritmo para {stateInfo.name} segue uma regra matemática própria regida pela <strong>SEFAZ {stateInfo.uf}</strong>, empregando o sistema de Módulo 11 (ou Módulo 9, dependendo do estado) com pesos ponderados específicos para gerar um ou dois dígitos verificadores ao final da sequência. Isso evita erros de digitação e validações em lote inconsistentes em softwares emissores de Notas Fiscais Eletrônicas.
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                    </section>
+                </div>
+
                 <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
                     <StateRegistrationLinks />
                 </div>
@@ -67,3 +102,4 @@ export default async function StatePage({ params }: PageProps) {
         </div>
     )
 }
+

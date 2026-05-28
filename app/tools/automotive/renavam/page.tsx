@@ -1,4 +1,4 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -32,7 +32,7 @@ export default function Page() {
                             "@type": "SoftwareApplication",
                             "name": "Gerador de RENAVAM Online Grátis - Código Válido para Testes",
                             "operatingSystem": "Web",
-                            "applicationCategory": "AutomotivoApplication",
+                            "applicationCategory": "DeveloperApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
