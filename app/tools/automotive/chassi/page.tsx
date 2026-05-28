@@ -35,7 +35,7 @@ export default function Page() {
                             "@type": "SoftwareApplication",
                             "name": "Gerador de Chassi Online Grátis - VIN Válido para Testes",
                             "operatingSystem": "Web",
-                            "applicationCategory": "AutomotivoApplication",
+                            "applicationCategory": "DeveloperApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
