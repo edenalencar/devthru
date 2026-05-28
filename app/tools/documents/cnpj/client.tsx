@@ -20,6 +20,120 @@ import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const CNPJ_JS_CODE = `function validateCNPJ(cnpj) {
+  const cleaned = cnpj.toUpperCase().replace(/[^A-Z0-9]/g, "");
+  if (cleaned.length !== 14 || /^([A-Z0-9])\\1+$/.test(cleaned)) return false;
+
+  const getCharValue = (char) => {
+    const code = char.charCodeAt(0);
+    return code - 48;
+  };
+
+  const calculateDigit = (slice, weights) => {
+    let sum = 0;
+    for (let i = 0; i < slice.length; i++) {
+      sum += getCharValue(slice[i]) * weights[i];
+    }
+    const remainder = sum % 11;
+    return remainder < 2 ? 0 : 11 - remainder;
+  };
+
+  const weights1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+  const weights2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+  const digit1 = calculateDigit(cleaned.substring(0, 12), weights1);
+  const digit2 = calculateDigit(cleaned.substring(0, 12) + digit1, weights2);
+
+  return digit1 === getCharValue(cleaned[12]) && digit2 === getCharValue(cleaned[13]);
+}`;
+
+const CNPJ_PYTHON_CODE = `import re
+
+def validate_cnpj(cnpj: str) -> bool:
+    cleaned = re.sub(r'[^A-Z0-9]', '', cnpj.upper())
+    if len(cleaned) != 14 or len(set(cleaned)) == 1:
+        return False
+
+    def get_char_value(char: str) -> int:
+        return ord(char) - 48
+
+    def calculate_digit(slice_chars: str, weights: list) -> int:
+        total_sum = sum(get_char_value(char) * weights[idx] for idx, char in enumerate(slice_chars))
+        remainder = total_sum % 11
+        return 0 if remainder < 2 else 11 - remainder
+
+    weights1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+    weights2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+
+    digit1 = calculate_digit(cleaned[:12], weights1)
+    digit2 = calculate_digit(cleaned[:12] + str(digit1), weights2)
+
+    return digit1 == get_char_value(cleaned[12]) and digit2 == get_char_value(cleaned[13])`;
+
+const CNPJ_CSHARP_CODE = `using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public static class CNPJValidator
+{
+    public static bool Validate(string cnpj)
+    {
+        if (string.IsNullOrEmpty(cnpj)) return false;
+        string cleaned = Regex.Replace(cnpj.ToUpper(), @"[^A-Z0-9]", "");
+        
+        if (cleaned.Length != 14 || cleaned.All(c => c == cleaned[0]))
+            return false;
+
+        int GetCharValue(char c) => c - 48;
+
+        int CalculateDigit(string slice, int[] weights)
+        {
+            int sum = 0;
+            for (int i = 0; i < slice.Length; i++)
+            {
+                sum += GetCharValue(slice[i]) * weights[i];
+            }
+            int remainder = sum % 11;
+            return remainder < 2 ? 0 : 11 - remainder;
+        }
+
+        int[] weights1 = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+        int[] weights2 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+        int digit1 = CalculateDigit(cleaned.Substring(0, 12), weights1);
+        int digit2 = CalculateDigit(cleaned.Substring(0, 12) + digit1.ToString(), weights2);
+
+        return digit1 == GetCharValue(cleaned[12]) && digit2 == GetCharValue(cleaned[13]);
+    }
+}`;
+
+const CNPJ_JAVA_CODE = `public class CNPJValidator {
+    public static boolean validate(String cnpj) {
+        if (cnpj == null) return false;
+        String cleaned = cnpj.toUpperCase().replaceAll("[^A-Z0-9]", "");
+        if (cleaned.length() != 14 || cleaned.matches("^([A-Z0-9])\\\\1+$")) return false;
+
+        int[] weights1 = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+        int[] weights2 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+        int digit1 = calculateDigit(cleaned.substring(0, 12), weights1);
+        int digit2 = calculateDigit(cleaned.substring(0, 12) + digit1, weights2);
+
+        return digit1 == (cleaned.charAt(12) - 48) && digit2 == (cleaned.charAt(13) - 48);
+    }
+
+    private static int calculateDigit(String slice, int[] weights) {
+        int sum = 0;
+        for (int i = 0; i < slice.length(); i++) {
+            sum += (slice.charAt(i) - 48) * weights[i];
+        }
+        int remainder = sum % 11;
+        return remainder < 2 ? 0 : 11 - remainder;
+    }
+}`;
 
 export function CNPJGeneratorPage() {
     const [generatedCNPJ, setGeneratedCNPJ] = useState("")
@@ -207,19 +321,48 @@ export function CNPJGeneratorPage() {
 
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de CNPJ</CardTitle>
+                            <CardTitle>Sobre o Gerador de CNPJ e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                        <CardContent className="space-y-6">
+                            <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
-                                    O CNPJ (Cadastro Nacional da Pessoa Jurídica) é um documento brasileiro usado para identificação fiscal de empresas.
-                                    Esta ferramenta funciona como um Gerador e Validador de CNPJ, utilizando o algoritmo oficial para garantir precisão nos testes.
+                                    O CNPJ (Cadastro Nacional da Pessoa Jurídica) é o identificador único das empresas brasileiras perante a Receita Federal.
+                                    Nosso gerador cria CNPJs válidos matematicamente (tanto numéricos tradicionais quanto no novo formato alfanumérico).
                                 </p>
-                                <p className="text-sm text-muted-foreground mt-4">
-                                    <strong>Nota:</strong> Os CNPJs gerados são válidos apenas do ponto de vista algorítmico.
-                                    Eles não estão registrados na Receita Federal e devem ser usados apenas para testes e desenvolvimento.
+                                <p className="text-amber-600 dark:text-amber-400">
+                                    <strong>Atenção:</strong> Os números gerados por esta ferramenta são <strong>aleatórios e válidos apenas para testes de software</strong> e desenvolvimento (mocks, automação QA, homologação). Não possuem vínculo cadastral real na Receita Federal.
                                 </p>
                             </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>Para que serve um gerador de CNPJ?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Ele é utilizado por programadores, testadores e analistas de qualidade (QA) para preencher campos obrigatórios de CNPJ de forma ágil em ambientes de testes e homologação local, sem expor dados reais de empresas.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>O que é o CNPJ Alfanumérico?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Devido ao esgotamento das combinações puramente numéricas, a Receita Federal do Brasil implementou uma nova regra que permite a inserção de letras de A a Z nas primeiras 8 posições do CNPJ (mantendo apenas números nas posições de ordem e dígitos verificadores). Nossa ferramenta já suporta o novo formato alfanumérico.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Como é feito o cálculo do dígito verificador do CNPJ?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        O CNPJ possui 14 dígitos, onde os dígitos 13 e 14 são os verificadores. O cálculo utiliza um módulo matemático com pesos específicos aplicados aos 12 primeiros caracteres. Na versão alfanumérica, as letras são convertidas para seus valores numéricos correspondentes (ASCII - 48).
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: CNPJ_JS_CODE },
+                                        { language: "python", label: "Python", code: CNPJ_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: CNPJ_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: CNPJ_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
                                 <div className="flex flex-wrap gap-2 mb-4">

@@ -11,6 +11,172 @@ import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const RENAVAM_JS_CODE = `function validateRenavam(renavam) {
+  if (!renavam) return false;
+  
+  // Limpeza de caracteres não numéricos
+  const cleaned = String(renavam).replace(/\\D/g, "");
+  
+  // O RENAVAM deve ter exatamente 11 dígitos
+  if (cleaned.length !== 11) {
+    return false;
+  }
+  
+  // Evita números com todos os dígitos iguais
+  if (/^(\\d)\\1+$/.test(cleaned)) {
+    return false;
+  }
+  
+  const renavamWithoutDigit = cleaned.substring(0, 10);
+  const digit = parseInt(cleaned.charAt(10));
+  
+  const renavamArr = renavamWithoutDigit.split("").reverse();
+  let sum = 0;
+  
+  for (let i = 0; i < 8; i++) {
+    sum += parseInt(renavamArr[i]) * (i + 2);
+  }
+  sum += parseInt(renavamArr[8]) * 2;
+  sum += parseInt(renavamArr[9]) * 3;
+  
+  const mod = sum % 11;
+  let calculatedDigit = 11 - mod;
+  if (calculatedDigit >= 10) {
+    calculatedDigit = 0;
+  }
+  
+  return calculatedDigit === digit;
+}`;
+
+const RENAVAM_PYTHON_CODE = `import re
+
+def validate_renavam(renavam: str) -> bool:
+    if not renavam:
+        return False
+        
+    # Limpeza de caracteres não numéricos
+    cleaned = re.sub(r'\\D', '', str(renavam))
+    
+    # O RENAVAM deve ter exatamente 11 dígitos
+    if len(cleaned) != 11:
+        return False
+        
+    # Evita números com todos os dígitos iguais
+    if cleaned == cleaned[0] * 11:
+        return False
+        
+    renavam_without_digit = cleaned[:10]
+    digit = int(cleaned[10])
+    
+    # Inverte os primeiros 10 dígitos
+    renavam_arr = list(map(int, reversed(renavam_without_digit)))
+    
+    total_sum = 0
+    for i in range(8):
+        total_sum += renavam_arr[i] * (i + 2)
+        
+    total_sum += renavam_arr[8] * 2
+    total_sum += renavam_arr[9] * 3
+    
+    mod = total_sum % 11
+    calculated_digit = 11 - mod
+    if calculated_digit >= 10:
+        calculated_digit = 0
+        
+    return calculated_digit == digit`;
+
+const RENAVAM_CSHARP_CODE = `using System;
+using System.Text.RegularExpressions;
+using System.Linq;
+
+public static class RenavamValidator
+{
+    public static bool Validate(string renavam)
+    {
+        if (string.IsNullOrWhiteSpace(renavam))
+            return false;
+
+        // Limpeza de caracteres não numéricos
+        string cleaned = Regex.Replace(renavam, @"[^\\d]", "");
+
+        // O RENAVAM deve ter exatamente 11 dígitos
+        if (cleaned.Length != 11)
+            return false;
+
+        // Evita números com todos os dígitos iguais
+        if (cleaned.All(c => c == cleaned[0]))
+            return false;
+
+        string renavamWithoutDigit = cleaned.Substring(0, 10);
+        int digit = cleaned[10] - '0';
+
+        // Inverte a string
+        char[] reversedChars = renavamWithoutDigit.ToCharArray();
+        Array.Reverse(reversedChars);
+        
+        int sum = 0;
+        for (int i = 0; i < 8; i++)
+        {
+            sum += (reversedChars[i] - '0') * (i + 2);
+        }
+        sum += (reversedChars[8] - '0') * 2;
+        sum += (reversedChars[9] - '0') * 3;
+
+        int mod = sum % 11;
+        int calculatedDigit = 11 - mod;
+        if (calculatedDigit >= 10)
+        {
+            calculatedDigit = 0;
+        }
+
+        return calculatedDigit == digit;
+    }
+}`;
+
+const RENAVAM_JAVA_CODE = `public class RenavamValidator {
+    public static boolean validate(String renavam) {
+        if (renavam == null) {
+            return false;
+        }
+
+        // Limpeza de caracteres não numéricos
+        String cleaned = renavam.replaceAll("[^\\\\d]", "");
+
+        // O RENAVAM deve ter exatamente 11 dígitos
+        if (cleaned.length() != 11) {
+            return false;
+        }
+
+        // Evita números com todos os dígitos iguais
+        if (cleaned.matches("^(\\\\d)\\\\1{10}$")) {
+            return false;
+        }
+
+        String renavamWithoutDigit = cleaned.substring(0, 10);
+        int digit = Character.getNumericValue(cleaned.charAt(10));
+
+        // Inverte a string de 10 caracteres
+        String reversed = new StringBuilder(renavamWithoutDigit).reverse().toString();
+
+        int sum = 0;
+        for (int i = 0; i < 8; i++) {
+            sum += Character.getNumericValue(reversed.charAt(i)) * (i + 2);
+        }
+        sum += Character.getNumericValue(reversed.charAt(8)) * 2;
+        sum += Character.getNumericValue(reversed.charAt(9)) * 3;
+
+        int mod = sum % 11;
+        int calculatedDigit = 11 - mod;
+        if (calculatedDigit >= 10) {
+            calculatedDigit = 0;
+        }
+
+        return calculatedDigit == digit;
+    }
+}`;
 
 export function RenavamGeneratorPage() {
     const [renavam, setRenavam] = useState("")
@@ -104,23 +270,41 @@ export function RenavamGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de RENAVAM</CardTitle>
+                            <CardTitle>Sobre o Gerador de RENAVAM e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                        <CardContent className="space-y-6">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
                                 <p>
                                     O RENAVAM (Registro Nacional de Veículos Automotores) é um código único de 11 dígitos atribuído a cada veículo registrado no Brasil. Este número é essencial para identificação do veículo em transações, multas e documentação.
                                 </p>
-                                <h4 className="font-semibold mt-4">Características do RENAVAM:</h4>
-                                <ul className="list-disc pl-4 space-y-1">
-                                    <li><strong>11 dígitos:</strong> Formato numérico padronizado</li>
-                                    <li><strong>Dígito verificador:</strong> Último dígito calculado por algoritmo oficial</li>
-                                    <li><strong>Único por veículo:</strong> Cada veículo possui um número exclusivo</li>
-                                </ul>
-                                <p className="text-sm text-muted-foreground mt-4">
+                                <p className="text-amber-600 dark:text-amber-400">
                                     <strong>Nota:</strong> Os números gerados são matematicamente válidos mas fictícios, não correspondendo a veículos reais. Use apenas para testes de software.
                                 </p>
                             </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="faq-1">
+                                    <AccordionTrigger>Como funciona o cálculo do dígito verificador do RENAVAM?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        O RENAVAM possui 11 dígitos. Os primeiros 10 dígitos representam o número identificador e o 11º dígito é o Dígito Verificador (DV). O DV é calculado utilizando uma variante do algoritmo de módulo 11, multiplicando os dígitos de trás para frente pelos pesos de 2 a 9 e reiniciando a sequência em 2. A soma dessas multiplicações é multiplicada por 10 e depois dividida por 11. O resto é o dígito verificador. Se o resto for maior ou igual a 10, assume-se o dígito verificador como 0.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="faq-2">
+                                    <AccordionTrigger>Para que serve o RENAVAM de teste?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Ele é amplamente utilizado por desenvolvedores de software, analistas de qualidade (QA) e engenheiros de sistemas para validar campos cadastrais em ERPs, sistemas de transportes, multas e faturamento automotivo, evitando o uso de dados de veículos reais.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: RENAVAM_JS_CODE },
+                                        { language: "python", label: "Python", code: RENAVAM_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: RENAVAM_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: RENAVAM_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -134,7 +318,7 @@ export function RenavamGeneratorPage() {
                 </div>
             </main>
 
-
         </div>
     )
 }
+

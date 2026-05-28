@@ -14,6 +14,159 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { Navbar } from "@/components/layout/navbar"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const RG_JS_CODE = `function validateRG(rg) {
+  if (!rg) return false;
+  
+  // Limpeza de caracteres especiais, mantendo números e a letra X
+  const cleaned = String(rg).toUpperCase().replace(/[^0-9X]/g, "");
+  
+  // O RG (padrão SP) deve ter exatamente 9 caracteres
+  if (cleaned.length !== 9) {
+    return false;
+  }
+  
+  const base = cleaned.substring(0, 8);
+  const digit = cleaned.charAt(8);
+  
+  let sum = 0;
+  for (let i = 0; i < 8; i++) {
+    sum += parseInt(base[i]) * (i + 2);
+  }
+  
+  const mod = sum % 11;
+  let calculatedDigit = 11 - mod;
+  
+  let expectedDigit = "";
+  if (calculatedDigit === 11) {
+    expectedDigit = "0";
+  } else if (calculatedDigit === 10) {
+    expectedDigit = "X";
+  } else {
+    expectedDigit = calculatedDigit.toString();
+  }
+  
+  return digit === expectedDigit;
+}`;
+
+const RG_PYTHON_CODE = `import re
+
+def validate_rg(rg: str) -> bool:
+    if not rg:
+        return False
+        
+    # Limpeza de caracteres especiais, mantendo números e a letra X
+    cleaned = re.sub(r'[^0-9X]', '', str(rg).upper())
+    
+    # O RG (padrão SP) deve ter exatamente 9 caracteres
+    if len(cleaned) != 9:
+        return False
+        
+    base = cleaned[0:8]
+    digit = cleaned[8]
+    
+    total_sum = 0
+    for i in range(8):
+        total_sum += int(base[i]) * (i + 2)
+        
+    mod = total_sum % 11
+    calculated_digit = 11 - mod
+    
+    if calculated_digit == 11:
+        expected_digit = "0"
+    elif calculated_digit == 10:
+        expected_digit = "X"
+    else:
+        expected_digit = str(calculated_digit)
+        
+    return digit == expected_digit`;
+
+const RG_CSHARP_CODE = `using System;
+using System.Text.RegularExpressions;
+
+public static class RGValidator
+{
+    public static bool Validate(string rg)
+    {
+        if (string.IsNullOrWhiteSpace(rg))
+            return false;
+
+        // Limpeza de caracteres especiais, mantendo números e a letra X
+        string cleaned = Regex.Replace(rg.ToUpper(), @"[^0-9X]", "");
+
+        // O RG (padrão SP) deve ter exatamente 9 caracteres
+        if (cleaned.Length != 9)
+            return false;
+
+        string baseNum = cleaned.Substring(0, 8);
+        char digit = cleaned[8];
+
+        int sum = 0;
+        for (int i = 0; i < 8; i++)
+        {
+            sum += (baseNum[i] - '0') * (i + 2);
+        }
+
+        int mod = sum % 11;
+        int calculatedDigit = 11 - mod;
+
+        string expectedDigit;
+        if (calculatedDigit == 11)
+        {
+            expectedDigit = "0";
+        }
+        else if (calculatedDigit == 10)
+        {
+            expectedDigit = "X";
+        }
+        else
+        {
+            expectedDigit = calculatedDigit.toString();
+        }
+
+        return digit.ToString() == expectedDigit;
+    }
+}`;
+
+const RG_JAVA_CODE = `public class RGValidator {
+    public static boolean validate(String rg) {
+        if (rg == null) {
+            return false;
+        }
+
+        // Limpeza de caracteres especiais, mantendo números e a letra X
+        String cleaned = rg.toUpperCase().replaceAll("[^0-9X]", "");
+
+        // O RG (padrão SP) deve ter exatamente 9 caracteres
+        if (cleaned.length() != 9) {
+            return false;
+        }
+
+        String baseNum = cleaned.substring(0, 8);
+        char digit = cleaned.charAt(8);
+
+        int sum = 0;
+        for (int i = 0; i < 8; i++) {
+            sum += Character.getNumericValue(baseNum.charAt(i)) * (i + 2);
+        }
+
+        int mod = sum % 11;
+        int calculatedDigit = 11 - mod;
+
+        String expectedDigit;
+        if (calculatedDigit == 11) {
+            expectedDigit = "0";
+        } else if (calculatedDigit == 10) {
+            expectedDigit = "X";
+        } else {
+            expectedDigit = String.valueOf(calculatedDigit);
+        }
+
+        return String.valueOf(digit).equals(expectedDigit);
+    }
+}`;
 
 export function RGGeneratorPage() {
     const [rg, setRg] = useState<string>("")
@@ -143,17 +296,41 @@ export function RGGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de RG</CardTitle>
+                            <CardTitle>Sobre o Gerador de RG e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                        <CardContent className="space-y-6">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
                                 <p>
                                     O Gerador de RG cria números de Registro Geral formatados. Como o padrão de RG varia entre os estados brasileiros, esta ferramenta gera um formato comum aceito na maioria dos sistemas de validação.
                                 </p>
-                                <p className="text-sm text-muted-foreground mt-4">
+                                <p className="text-amber-600 dark:text-amber-400">
                                     <strong>Nota:</strong> Os números são gerados aleatoriamente e não possuem vínculo com a base de dados oficial dos órgãos emissores.
                                 </p>
                             </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="faq-1">
+                                    <AccordionTrigger>Como é calculada a validação do RG?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Como a emissão do RG é de responsabilidade de cada Estado, não há uma regra única nacional. No entanto, o padrão mais comum em validadores baseia-se nas diretrizes do Estado de São Paulo. Ele usa uma fórmula de soma ponderada com pesos de 2 a 9 aplicada aos primeiros 8 dígitos, calculando o resto da divisão por 11. O dígito verificador final pode ser de 0 a 9 ou a letra &quot;X&quot; quando o resto é 10.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="faq-2">
+                                    <AccordionTrigger>Para que usar dados de RG fictícios em testes?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Para assegurar a conformidade com a LGPD (Lei Geral de Proteção de Dados) no desenvolvimento de software, QAs e desenvolvedores usam chaves de RG sintéticas em bancos de dados de teste, garantindo que o fluxo cadastral do sistema funcione sem expor dados pessoais reais.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: RG_JS_CODE },
+                                        { language: "python", label: "Python", code: RG_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: RG_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: RG_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -170,3 +347,4 @@ export function RGGeneratorPage() {
         </div>
     )
 }
+

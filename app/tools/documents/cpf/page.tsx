@@ -1,18 +1,18 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CPFGeneratorPage } from "./client"
 
-const title = "Gerador de CPF Válido Online | DevThru"
-const description = "Gere números de CPF válidos para testes de software com nosso Gerador de CPF. Ferramenta rápida, gratuita e essencial para desenvolvedores e testes de QA."
+const title = "Gerador e Validador de CPF Válido Online [Grátis]"
+const description = "Gere e valide CPFs válidos em 1 clique para testes de software. Ferramenta online gratuita para desenvolvedores e analistas de QA com algoritmo oficial."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de CPF Válido Online | DevThru",
-    description: "Gere números de CPF válidos para testes de software com nosso Gerador de CPF. Ferramenta rápida, gratuita e essencial para desenvolvedores e testes de QA.",
+    title,
+    description,
     path: "/tools/documents/cpf",
-    keywords: ["gerador de cpf", "cpf valido", "testar cpf", "gerador cpf", "cpf generator", "massa de dados"]
+    keywords: ["gerador de cpf", "validador de cpf", "gerar cpf valido", "testar cpf", "gerador cpf", "cpf generator", "massa de dados", "dev tools"]
 })
 
 export default function Page() {
@@ -25,15 +25,15 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Gerador de CPF Válido Online | DevThru",
+                            "name": "Gerador e Validador de CPF Válido Online - DevThru",
                             "operatingSystem": "Web",
-                            "applicationCategory": "DocumentosApplication",
+                            "applicationCategory": "DeveloperApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Gere números de CPF válidos para testes de software com nosso Gerador de CPF. Ferramenta rápida, gratuita e essencial para desenvolvedores e testes de QA."
+                            "description": "Gere e valide CPFs válidos em 1 clique para testes de software. Ferramenta online gratuita para desenvolvedores e analistas de QA com algoritmo oficial."
                         },
                         {
                             "@type": "BreadcrumbList",

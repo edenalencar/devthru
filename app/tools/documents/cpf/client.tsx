@@ -19,6 +19,103 @@ import { getPlanLimitMessage } from "@/lib/constants"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import Link from "next/link"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const CPF_JS_CODE = `function validateCPF(cpf) {
+  const cleaned = cpf.replace(/\\D/g, "");
+  if (cleaned.length !== 11 || /^(\\d)\\1+$/.test(cleaned)) return false;
+
+  const digits = cleaned.split("").map(Number);
+  const calculateDigit = (slice, factor) => {
+    const sum = slice.reduce((acc, digit, index) => acc + digit * (factor - index), 0);
+    const remainder = sum % 11;
+    return remainder < 2 ? 0 : 11 - remainder;
+  };
+
+  const digit1 = calculateDigit(digits.slice(0, 9), 10);
+  const digit2 = calculateDigit(digits.slice(0, 10), 11);
+
+  return digit1 === digits[9] && digit2 === digits[10];
+}`;
+
+const CPF_PYTHON_CODE = `import re
+
+def validate_cpf(cpf: str) -> bool:
+    cleaned = re.sub(r'\\D', '', cpf)
+    if len(cleaned) != 11 or len(set(cleaned)) == 1:
+        return False
+
+    digits = [int(d) for d in cleaned]
+    
+    def calculate_digit(slice_digits, factor):
+        total_sum = sum(digit * (factor - idx) for idx, digit in enumerate(slice_digits))
+        remainder = total_sum % 11
+        return 0 if remainder < 2 else 11 - remainder
+
+    digit1 = calculate_digit(digits[:9], 10)
+    digit2 = calculate_digit(digits[:10], 11)
+
+    return digit1 == digits[9] and digit2 == digits[10]`;
+
+const CPF_CSHARP_CODE = `using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public static class CPFValidator
+{
+    public static bool Validate(string cpf)
+    {
+        string cleaned = Regex.Replace(cpf ?? "", @"[^\\d]", "");
+        if (cleaned.Length != 11 || cleaned.All(c => c == cleaned[0]))
+            return false;
+
+        int[] digits = cleaned.Select(c => c - '0').ToArray();
+
+        int CalculateDigit(int[] slice, int factor)
+        {
+            int sum = 0;
+            for (int i = 0; i < slice.Length; i++)
+            {
+                sum += slice[i] * (factor - i);
+            }
+            int remainder = sum % 11;
+            return remainder < 2 ? 0 : 11 - remainder;
+        }
+
+        int digit1 = CalculateDigit(digits.Take(9).ToArray(), 10);
+        int digit2 = CalculateDigit(digits.Take(10).ToArray(), 11);
+
+        return digit1 == digits[9] && digit2 == digits[10];
+    }
+}`;
+
+const CPF_JAVA_CODE = `public class CPFValidator {
+    public static boolean validate(String cpf) {
+        if (cpf == null) return false;
+        String cleaned = cpf.replaceAll("[^\\\\d]", "");
+        if (cleaned.length() != 11 || cleaned.matches("^(\\\\d)\\\\1+$")) return false;
+
+        int[] digits = new int[11];
+        for (int i = 0; i < 11; i++) {
+            digits[i] = Character.getNumericValue(cleaned.charAt(i));
+        }
+
+        int digit1 = calculateDigit(digits, 9, 10);
+        int digit2 = calculateDigit(digits, 10, 11);
+
+        return digit1 == digits[9] && digit2 == digits[10];
+    }
+
+    private static int calculateDigit(int[] digits, int length, int factor) {
+        int sum = 0;
+        for (int i = 0; i < length; i++) {
+            sum += digits[i] * (factor - i);
+        }
+        int remainder = sum % 11;
+        return remainder < 2 ? 0 : 11 - remainder;
+    }
+}`;
 
 export function CPFGeneratorPage() {
     const [generatedCPF, setGeneratedCPF] = useState("")
@@ -231,19 +328,42 @@ export function CPFGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de CPF</CardTitle>
+                            <CardTitle>Sobre o Gerador de CPF e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                        <CardContent className="space-y-6">
+                            <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
-                                    O CPF (Cadastro de Pessoas Físicas) é um documento brasileiro usado para identificação fiscal.
-                                    Esta ferramenta gera CPFs válidos usando o algoritmo oficial de validação.
+                                    O CPF (Cadastro de Pessoas Físicas) é o documento de identificação fiscal do cidadão brasileiro. 
+                                    Nossa ferramenta gera CPFs válidos matematicamente seguindo o algoritmo oficial da Receita Federal.
                                 </p>
-                                <p className="text-sm text-muted-foreground mt-4">
-                                    <strong>Nota:</strong> Os CPFs gerados são válidos apenas do ponto de vista algorítmico.
-                                    Eles não estão registrados na Receita Federal e devem ser usados apenas para testes e desenvolvimento.
+                                <p className="text-amber-600 dark:text-amber-400">
+                                    <strong>Atenção:</strong> Os números gerados por esta ferramenta são <strong>aleatórios e válidos apenas para testes de software</strong> e desenvolvimento de sistemas (mocks, homologação, automação QA). Eles não possuem validade legal na Receita Federal.
                                 </p>
                             </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>Para que serve um gerador de CPF?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Nossa ferramenta fornece CPFs válidos instantaneamente para preenchimento de formulários de cadastro em sistemas em fase de testes (QA) ou desenvolvimento local. Isso impede a utilização de dados reais de pessoas físicas durante o ciclo de homologação do software.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Como funciona o cálculo do dígito verificador do CPF?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        O CPF possui 11 dígitos, sendo os dois últimos os dígitos verificadores (DV1 e DV2). Eles são calculados por meio de uma operação matemática ("módulo 11") com pesos decrescentes baseados nos 9 dígitos iniciais. Nosdo gerador calcula esses dígitos automaticamente segundo as regras oficiais da Receita Federal.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: CPF_JS_CODE },
+                                        { language: "python", label: "Python", code: CPF_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: CPF_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: CPF_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
                                 <div className="flex flex-wrap gap-2 mb-4">

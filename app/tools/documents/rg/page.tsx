@@ -1,17 +1,18 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { RGGeneratorPage } from "./client"
 
-const title = "Gerador de RG - Registro Geral Válido para Testes"
-const description = "Crie números de RG (Registro Geral) aleatórios e válidos para testes de validação de formulários e sistemas."
+const title = "Gerador e Validador de RG Online [Grátis]"
+const description = "Gere e valide números de RG (Registro Geral) válidos com dígito verificador em 1 clique. Ferramenta online gratuita para testes e homologação de sistemas."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de RG - Registro Geral Válido para Testes",
-    description: "Crie números de RG (Registro Geral) aleatórios e válidos para testes de validação de formulários e sistemas.",
+    title,
+    description,
     path: "/tools/documents/rg",
+    keywords: ["gerador de rg", "validador de rg", "registro geral", "gerador rg", "rg valido", "dev tools", "testes de software"]
 })
 
 export default function Page() {
@@ -24,15 +25,15 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Gerador de RG - Registro Geral Válido para Testes",
+                            "name": "Gerador e Validador de RG Online - DevThru",
                             "operatingSystem": "Web",
-                            "applicationCategory": "DocumentosApplication",
+                            "applicationCategory": "DeveloperApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Crie números de RG (Registro Geral) aleatórios e válidos para testes de validação de formulários e sistemas."
+                            "description": "Gere e valide números de RG (Registro Geral) válidos de forma gratuita para testes e homologação de sistemas."
                         },
                         {
                             "@type": "BreadcrumbList",

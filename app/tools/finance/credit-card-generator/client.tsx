@@ -15,6 +15,100 @@ import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const LUHN_JS_CODE = `function validateLuhn(cardNumber) {
+  const cleaned = cardNumber.replace(/\\D/g, "");
+  let sum = 0;
+  let shouldDouble = false;
+
+  for (let i = cleaned.length - 1; i >= 0; i--) {
+    let digit = parseInt(cleaned[i]);
+
+    if (shouldDouble) {
+      digit *= 2;
+      if (digit > 9) digit -= 9;
+    }
+
+    sum += digit;
+    shouldDouble = !shouldDouble;
+  }
+
+  return sum % 10 === 0;
+}`;
+
+const LUHN_PYTHON_CODE = `import re
+
+def validate_luhn(card_number: str) -> bool:
+    cleaned = re.sub(r'\\D', '', card_number)
+    total_sum = 0
+    should_double = False
+
+    for digit_char in reversed(cleaned):
+        digit = int(digit_char)
+        if should_double:
+            digit *= 2
+            if digit > 9:
+                digit -= 9
+        total_sum += digit
+        should_double = not should_double
+
+    return total_sum % 10 == 0`;
+
+const LUHN_CSHARP_CODE = `using System;
+using System.Text.RegularExpressions;
+
+public static class LuhnValidator
+{
+    public static bool Validate(string cardNumber)
+    {
+        string cleaned = Regex.Replace(cardNumber ?? "", @"[^\\d]", "");
+        int sum = 0;
+        bool shouldDouble = false;
+
+        for (int i = cleaned.Length - 1; i >= 0; i--)
+        {
+            int digit = cleaned[i] - '0';
+
+            if (shouldDouble)
+            {
+                digit *= 2;
+                if (digit > 9) digit -= 9;
+            }
+
+            sum += digit;
+            shouldDouble = !shouldDouble;
+        }
+
+        return sum % 10 == 0;
+    }
+}`;
+
+const LUHN_JAVA_CODE = `public class LuhnValidator {
+    public static boolean validate(String cardNumber) {
+        if (cardNumber == null) return false;
+        String cleaned = cardNumber.replaceAll("[^\\\\d]", "");
+        int sum = 0;
+        boolean shouldDouble = false;
+
+        for (int i = cleaned.length() - 1; i >= 0; i--) {
+            int digit = Character.getNumericValue(cleaned.charAt(i));
+
+            if (shouldDouble) {
+                digit *= 2;
+                if (digit > 9) {
+                    digit -= 9;
+                }
+            }
+
+            sum += digit;
+            shouldDouble = !shouldDouble;
+        }
+
+        return sum % 10 == 0;
+    }
+}`;
 
 export function CreditCardGeneratorPage() {
     const [brand, setBrand] = useState<CardBrand>('visa')
@@ -157,41 +251,60 @@ export function CreditCardGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
-
-                    {/* Info Section */}
+                                {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Cartão de Crédito</CardTitle>
+                            <CardTitle>Sobre o Gerador de Cartão de Crédito e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                        <CardContent className="space-y-6">
+                            <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
-                                    O Gerador de Cartão de Crédito cria números de cartão válidos matematicamente (respeitando o algoritmo de Luhn) para diversas bandeiras como Visa, Mastercard e Amex.
-                                    É essencial para testar fluxos de checkout e validação de formulários.
+                                    O Gerador de Cartão de Crédito é uma ferramenta essencial para testar gateways de pagamento, fluxos de checkout e formulários de e-commerce.
                                 </p>
-                                <p className="text-sm text-muted-foreground mt-4">
-                                    <strong>Nota:</strong> Os números gerados são válidos apenas para testes de validação de formato. Eles não funcionam para compras reais.
+                                <p className="text-amber-600 dark:text-amber-400">
+                                    <strong>Atenção:</strong> Os dados gerados aqui são <strong>meramente fictícios e válidos apenas para fins de teste</strong> de software. Não possuem saldo e não podem ser utilizados para compras reais em nenhum estabelecimento.
                                 </p>
-
-                                <div className="mt-6">
-                                    <h3 className="text-lg font-medium mb-3">Guias Relacionados</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        <Link href="/guides/validation/credit-card-generator/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
-                                            Algoritmo de Luhn em Python
-                                        </Link>
-                                        <Link href="/guides/validation/credit-card-generator/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
-                                            Algoritmo de Luhn em JavaScript
-                                        </Link>
-                                        <Link href="/guides/validation/credit-card-generator/java" className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
-                                            Algoritmo de Luhn em Java
-                                        </Link>
-                                        <Link href="/guides/validation/credit-card-generator/csharp" className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors">
-                                            Algoritmo de Luhn em C#
-                                        </Link>
-                                    </div>
-                                </div>
                             </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>Para que serve um gerador de cartão de crédito?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Esta ferramenta é voltada para analistas de qualidade (QA) e desenvolvedores. Ela permite a inserção de dados sintéticos válidos para testar a validação de formato em telas de pagamento e integrações com adquirentes (como Stripe, Adyen, PagSeguro), impedindo a utilização de dados reais de clientes em ambientes locais ou de sandbox.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>O que é o Algoritmo de Luhn?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        O algoritmo de Luhn (também conhecido como fórmula "módulo 10") é uma fórmula de soma de verificação simples usada para validar uma variedade de números de identificação, como números de cartões de crédito. A maioria das bandeiras de cartões (Visa, Mastercard, Discover, Amex) adota esse algoritmo para evitar erros acidentais de digitação.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: LUHN_JS_CODE },
+                                        { language: "python", label: "Python", code: LUHN_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: LUHN_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: LUHN_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
                             <div className="pt-4 border-t">
+                                <h3 className="text-sm font-medium text-muted-foreground mb-3">Guias Relacionados</h3>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Link href="/guides/validation/credit-card-generator/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                        Algoritmo de Luhn em Python
+                                    </Link>
+                                    <Link href="/guides/validation/credit-card-generator/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                        Algoritmo de Luhn em JavaScript
+                                    </Link>
+                                    <Link href="/guides/validation/credit-card-generator/java" className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
+                                        Algoritmo de Luhn em Java
+                                    </Link>
+                                    <Link href="/guides/validation/credit-card-generator/csharp" className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors">
+                                        Algoritmo de Luhn em C#
+                                    </Link>
+                                </div>
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de Cartão de Crédito"
