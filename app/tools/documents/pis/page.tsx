@@ -3,14 +3,14 @@ import { Metadata } from 'next'
 import { PISPage } from './client'
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = 'Gerador de PIS Válido [Grátis]'
-const description = 'Gere números de PIS válidos em 1 clique para testes de sistemas de RH. Ferramenta online gratuita para desenvolvedores com algoritmo oficial.'
+const title = 'Gerador de PIS Válido: PIS/PASEP, NIS e NIT [Grátis]'
+const description = 'Gere e valide números de PIS, PASEP, NIS e NIT válidos e formatados em 1 clique. Ferramenta online gratuita com algoritmo oficial para testes de sistemas de RH e QA.'
 
 export const metadata: Metadata = generateToolMetadata({
     title,
     description,
     path: "/tools/documents/pis",
-    keywords: ["gerador pis válido", "gerador de pis", "pis pasep", "numero pis online", "gerar pis falso", "pis para testes", "dev tools"]
+    keywords: ["gerador de pis", "gerador pis válido", "pis pasep", "gerador de nis", "gerador de nit", "gerar pis aleatorio", "numero pis online", "gerar pis falso", "pis para testes", "validar pis", "dev tools"]
 })
 
 export default function Page() {
@@ -23,15 +23,15 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "PIS/PASEP",
+                            "name": "Gerador de PIS/PASEP e NIS/NIT Online Grátis - DevThru",
                             "operatingSystem": "Web",
-                            "applicationCategory": "DocumentosApplication",
+                            "applicationCategory": "DeveloperApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Ferramenta PIS/PASEP"
+                            "description": "Gere e valide números de PIS, PASEP, NIS e NIT válidos matematicamente em 1 clique para testes de software, QA e automação de sistemas."
                         },
                         {
                             "@type": "BreadcrumbList",

@@ -17,6 +17,98 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { useUser } from '@/lib/hooks/use-user'
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { CodeExamplesAccordion } from '@/components/tools/code-examples-accordion'
+
+const PIS_JS_CODE = `function validatePIS(pis) {
+  const cleaned = pis.replace(/\\D/g, '');
+  if (cleaned.length !== 11 || /^(\\d)\\1+$/.test(cleaned)) return false;
+
+  const base = cleaned.substring(0, 10);
+  const checkDigit = cleaned.substring(10, 11);
+  const weights = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+  let sum = 0;
+  for (let i = 0; i < 10; i++) {
+    sum += parseInt(base[i]) * weights[i];
+  }
+
+  const rest = sum % 11;
+  const digit = 11 - rest;
+  const calculatedDigit = (digit === 10 || digit === 11) ? '0' : digit.toString();
+
+  return calculatedDigit === checkDigit;
+}`;
+
+const PIS_PYTHON_CODE = `import re
+
+def validate_pis(pis: str) -> bool:
+    cleaned = re.sub(r'\\D', '', pis)
+    if len(cleaned) != 11 or len(set(cleaned)) == 1:
+        return False
+
+    base = cleaned[:10]
+    check_digit = cleaned[10]
+    weights = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+
+    total_sum = sum(int(base[i]) * weights[i] for i in range(10))
+    rest = total_sum % 11
+    digit = 11 - rest
+    calculated_digit = '0' if digit in (10, 11) else str(digit)
+
+    return calculated_digit == check_digit`;
+
+const PIS_CSHARP_CODE = `using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public static class PISValidator
+{
+    public static bool Validate(string pis)
+    {
+        string cleaned = Regex.Replace(pis ?? "", @"[^\\d]", "");
+        if (cleaned.Length != 11 || cleaned.All(c => c == cleaned[0]))
+            return false;
+
+        string baseNum = cleaned.Substring(0, 10);
+        string checkDigit = cleaned.Substring(10, 1);
+        int[] weights = { 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+        int sum = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            sum += (baseNum[i] - '0') * weights[i];
+        }
+
+        int rest = sum % 11;
+        int digit = 11 - rest;
+        string calculatedDigit = (digit == 10 || digit == 11) ? "0" : digit.ToString();
+
+        return calculatedDigit == checkDigit;
+    }
+}`;
+
+const PIS_JAVA_CODE = `public class PISValidator {
+    public static boolean validate(String pis) {
+        if (pis == null) return false;
+        String cleaned = pis.replaceAll("[^\\\\d]", "");
+        if (cleaned.length() != 11 || cleaned.matches("^(\\\\d)\\\\1+$")) return false;
+
+        String base = cleaned.substring(0, 10);
+        String checkDigit = cleaned.substring(10, 11);
+        int[] weights = { 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+        int sum = 0;
+        for (int i = 0; i < 10; i++) {
+            sum += Character.getNumericValue(base.charAt(i)) * weights[i];
+        }
+
+        int rest = sum % 11;
+        int digit = 11 - rest;
+        String calculatedDigit = (digit == 10 || digit == 11) ? "0" : String.valueOf(digit);
+
+        return calculatedDigit.equals(checkDigit);
+    }
+}`;
 
 export function PISPage() {
     const [generatedPIS, setGeneratedPIS] = useState('')
@@ -204,6 +296,14 @@ export function PISPage() {
                                         O 11º dígito de um PIS é um "módulo matemático". Ele é calculado multiplicando os 10 primeiros dígitos da esquerda para a direita por pesos específicos (3, 2, 9, 8, 7, 6, 5, 4, 3, 2). A soma dos resultados é dividida por 11, e o resto da divisão define o dígito final. Nosso gerador de PIS implementa 100% dessa regra oficial.
                                     </AccordionContent>
                                 </AccordionItem>
+                                <CodeExamplesAccordion
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: PIS_JS_CODE },
+                                        { language: "python", label: "Python", code: PIS_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: PIS_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: PIS_JAVA_CODE }
+                                    ]}
+                                />
                             </Accordion>
 
                             <div className="pt-4 border-t">
@@ -215,7 +315,7 @@ export function PISPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <RelatedTools currentToolSlug="pis" category="documents" />
+                    <RelatedTools currentToolSlug="pis" category="documents" customSlugs={['cpf', 'rg', 'cnh', 'titulo-eleitor']} />
                 </div>
             </main>
 
