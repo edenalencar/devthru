@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Button } from "@/components/ui/button"
 import { ShareButtons } from "@/components/share-buttons"
 import { Calendar, Clock, ArrowRight, Tag } from "lucide-react"
+import { tools } from "@/lib/tools-list"
 
 interface PageProps {
     params: Promise<{
@@ -160,22 +161,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                                 <div className="flex flex-wrap justify-center gap-3">
                                     {post.relatedTools.map((toolHref) => {
                                         const toolSlug = toolHref.split('/').pop() || ''
-                                        const toolNameMap: Record<string, string> = {
-                                            'cpf': 'Gerador de CPF',
-                                            'cnpj': 'Gerador de CNPJ',
-                                            'lgpd-data': 'Gerador LGPD',
-                                            'person': 'Gerador de Pessoa',
-                                            'mock-data': 'Mock Data',
-                                            'regex': 'Testador de Regex',
-                                            'chassi': 'Gerador de Chassi',
-                                            'fipe': 'Tabela FIPE',
-                                            'uuid': 'Gerador de UUID',
-                                            'timestamp': 'Conversor Timestamp',
-                                            'jwt-debugger': 'JWT Debugger',
-                                            'base64': 'Codificador Base64',
-                                            'inscricao-estadual': 'Gerador de IE',
-                                        }
-                                        const toolLabel = toolNameMap[toolSlug] || 'Usar Ferramenta'
+                                        const projectTool = tools.find(t => t.slug === toolSlug)
+                                        const toolLabel = projectTool ? projectTool.title : 'Usar Ferramenta'
                                         return (
                                             <Button key={toolHref} asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
                                                 <Link href={toolHref} className="flex items-center gap-2">

@@ -21,6 +21,9 @@ export const blogCategories: Record<BlogCategory, { label: string; color: string
 }
 
 // Import posts
+import { postPorQueUuidV7SubstituindoV4 } from './posts/por-que-uuid-v7-esta-substituindo-uuid-v4'
+import { postOtimizacaoQueriesSql } from './posts/otimizacao-queries-sql-indentacao-performance'
+import { postComoTestarFluxosNfeCteMdfe } from './posts/como-testar-fluxos-nfe-cte-mdfe-homologacao'
 import { postValidacaoCpf } from './posts/validacao-cpf'
 import { postDadosTesteLgpd } from './posts/dados-teste-lgpd'
 import { postRegexGuiaPratico } from './posts/regex-guia-pratico'
@@ -35,6 +38,9 @@ import { postMcpServerTypescript } from './posts/como-criar-mcp-server-typescrip
 import { postAITerminalToolsGeminiCLI } from './posts/ai-terminal-tools-gemini-cli'
 
 export const blogPosts: BlogPost[] = [
+    postPorQueUuidV7SubstituindoV4,
+    postOtimizacaoQueriesSql,
+    postComoTestarFluxosNfeCteMdfe,
     postAITerminalToolsGeminiCLI,
     postMcpServerTypescript,
     postModelContextProtocol,
