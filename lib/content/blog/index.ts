@@ -38,8 +38,10 @@ import { postMcpServerTypescript } from './posts/como-criar-mcp-server-typescrip
 import { postAITerminalToolsGeminiCLI } from './posts/ai-terminal-tools-gemini-cli'
 import { postWebMcpModelContextProtocolViaSse } from './posts/o-que-e-webmcp-model-context-protocol-via-sse'
 import { postSddSpecDrivenDevelopmentFocadoEmIa } from './posts/o-que-e-sdd-spec-driven-development-focado-em-ia'
+import { postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto } from './posts/skills-de-ia-e-progressive-disclosure-economia-de-contexto'
 
 export const blogPosts: BlogPost[] = [
+    postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto,
     postSddSpecDrivenDevelopmentFocadoEmIa,
     postWebMcpModelContextProtocolViaSse,
     postPorQueUuidV7SubstituindoV4,
