@@ -1,16 +1,16 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { LicensePlatePage } from "./client"
 
-const title = "Gerador de Placas de Veículos - Padrão Mercosul e Antiga Online"
-const description = "Gere placas de veículos nos padrões Mercosul e Antigo (Cinza) ou converta entre os modelos. Ferramenta online gratuita para testes de sistemas automotivos e de transporte."
+const title = "Gerador de Placa de Carro Online - Mercosul e Antiga [Grátis]"
+const description = "Gere placas de carro e veículos nos padrões Mercosul e Antigo (Cinza) para testes de sistemas. Ferramenta online gratuita de geração e conversão de placas."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Placas Veiculares - Padrão Mercosul e Antigas",
-    description: "Gere placas de veículos nos padrões Mercosul e Antigo (Cinza) ou converta entre os modelos. Ferramenta grátis para testes de sistemas automotivos.",
+    title: "Gerador de Placa de Carro Online - Mercosul e Antiga [Grátis]",
+    description: "Gere placas de carro e veículos nos padrões Mercosul e Antigo (Cinza) para testes de sistemas. Ferramenta online gratuita de geração e conversão de placas.",
     path: "/tools/automotive/license-plate",
 })
 
