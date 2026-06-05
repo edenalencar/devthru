@@ -151,7 +151,7 @@ T   → Planta de São Bernardo do Campo
 <li><strong>E-commerce automotivo:</strong> garantia de compatibilidade de peças</li>
 </ul>
 
-<p>Para testar esses sistemas sem depender de dados reais, use nosso <a href="/tools/automotive/chassi">Gerador de Chassi (VIN)</a> para criar códigos estruturalmente válidos.</p>
+<p>Para testar esses sistemas sem depender de dados reais, use nosso <a href="/tools/automotive/chassi">gerador de chassi online</a> para criar códigos estruturalmente válidos.</p>
 
 <h2>Perguntas Frequentes</h2>
 
@@ -162,6 +162,6 @@ T   → Planta de São Bernardo do Campo
 <p>Veículos fabricados antes de 1981 podem ter VINs com menos de 17 caracteres, pois a padronização ISO 3779 só foi adotada mundialmente naquele ano.</p>
 
 <h3>É possível descobrir se um VIN é real?</h3>
-<p>Sim. Órgãos como o DENATRAN e seguradoras mantêm bancos de dados. Para testes de software, sempre use VINs gerados por ferramentas como o nosso <a href="/tools/automotive/chassi">Gerador de Chassi</a>.</p>
+<p>Sim. Órgãos como o DENATRAN e seguradoras mantêm bancos de dados. Para testes de software, sempre use VINs gerados por ferramentas como o nosso <a href="/tools/automotive/chassi">gerador de chassi</a>.</p>
 `
 }
