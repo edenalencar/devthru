@@ -36,8 +36,10 @@ import { postInscricaoEstadualGuia } from './posts/inscricao-estadual-guia'
 import { postModelContextProtocol } from './posts/o-que-e-mcp-model-context-protocol'
 import { postMcpServerTypescript } from './posts/como-criar-mcp-server-typescript'
 import { postAITerminalToolsGeminiCLI } from './posts/ai-terminal-tools-gemini-cli'
+import { postWebMcpModelContextProtocolViaSse } from './posts/o-que-e-webmcp-model-context-protocol-via-sse'
 
 export const blogPosts: BlogPost[] = [
+    postWebMcpModelContextProtocolViaSse,
     postPorQueUuidV7SubstituindoV4,
     postOtimizacaoQueriesSql,
     postComoTestarFluxosNfeCteMdfe,
