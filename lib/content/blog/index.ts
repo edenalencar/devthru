@@ -37,8 +37,10 @@ import { postModelContextProtocol } from './posts/o-que-e-mcp-model-context-prot
 import { postMcpServerTypescript } from './posts/como-criar-mcp-server-typescript'
 import { postAITerminalToolsGeminiCLI } from './posts/ai-terminal-tools-gemini-cli'
 import { postWebMcpModelContextProtocolViaSse } from './posts/o-que-e-webmcp-model-context-protocol-via-sse'
+import { postSddSpecDrivenDevelopmentFocadoEmIa } from './posts/o-que-e-sdd-spec-driven-development-focado-em-ia'
 
 export const blogPosts: BlogPost[] = [
+    postSddSpecDrivenDevelopmentFocadoEmIa,
     postWebMcpModelContextProtocolViaSse,
     postPorQueUuidV7SubstituindoV4,
     postOtimizacaoQueriesSql,
