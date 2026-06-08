@@ -9,8 +9,8 @@ const title = "Gerador de UUID v4 Online - Identificador Único Universal"
 const description = "Gere UUIDs (v4) únicos e seguros aleatoriamente para seus projetos e bancos de dados. Identificadores universais prontos para uso em desenvolvimento de software."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de UUID v4 Online - Gere e Copie Vários em 1 Clique",
-    description: "Gere UUIDs versão 4 (v4) únicos e seguros de forma individual ou em massa. Copie em um clique para bancos de dados e projetos de desenvolvimento de software.",
+    title: "Gerador de UUID v4 e v7 Online - Rápido e em Lote (100% Privado)",
+    description: "Gere UUIDs versão 4 (aleatório) e versão 7 (ordenável no tempo) individuais ou em massa. Copie em um clique para seus projetos. Rápido, seguro e livre de anúncios.",
     path: "/tools/utilities/uuid",
 })
 

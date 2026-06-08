@@ -1,18 +1,18 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { NameGeneratorPage } from "./client"
 
-const title = "Gerador de Nomes e Pessoas Brasileiras Aleatórios | DevThru"
-const description = "Crie nomes e sobrenomes brasileiros aleatórios para testes e personagens. Ideal para gerar massa de dados para testes de software. Filtragem por gênero disponível."
+const title = "Gerador de Nomes e Sobrenomes Brasileiros Aleatórios (em Massa)"
+const description = "Gere nomes e sobrenomes brasileiros realistas de forma aleatória e em lote para simulações, preenchimento de cadastros e testes de bancos de dados."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Nomes e Pessoas Brasileiras Aleatórios | DevThru",
-    description: "Crie nomes e sobrenomes brasileiros aleatórios para testes. Ideal para gerar massa de dados fictícios para testes de software, filtrado por gênero.",
+    title,
+    description,
     path: "/tools/personal/name",
-    keywords: ["gerador de nomes", "gerador de nome", "gerador de pessoas", "nomes aleatorios", "massa de dados"]
+    keywords: ["gerador de nomes", "nomes aleatorios", "nomes brasileiros", "gerador de pessoas brasileiras", "gerador nomes masculinos femininos"]
 })
 
 export default function Page() {

@@ -1,18 +1,18 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { EmailGeneratorPage } from "./client"
 
-const title = "Gerador de Email Temporário e Fictício | DevThru"
-const description = "Crie emails fictícios com domínios personalizados ou comuns para testes de software. Ferramenta rápida para QA e desenvolvimento."
+const title = "Gerador de E-mail Temporário e Fictício Online (em Lote)"
+const description = "Crie e copie endereços de e-mail fictícios e temporários instantaneamente de forma individual ou em massa. Suporte a domínios comuns ou personalizados para testes."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Email Temporário e Fictício | DevThru",
-    description: "Crie emails fictícios com domínios personalizados ou comuns para testes de software. Ferramenta rápida para QA e desenvolvimento.",
+    title,
+    description,
     path: "/tools/personal/email",
-    keywords: ["gerador de email", "email temporario", "email ficticio", "testes de software", "massa de dados"]
+    keywords: ["gerador de email", "email temporario", "email fake", "gerar email de teste", "criar email temporario"]
 })
 
 export default function Page() {

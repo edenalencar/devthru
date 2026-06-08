@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ToolResult } from "@/components/tools/tool-result"
 import { RefreshCw } from "lucide-react"
@@ -15,6 +14,114 @@ import { Navbar } from "@/components/layout/navbar"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const PHONE_JS_CODE = `function generateBrPhone(type = "mobile", formatted = true) {
+  const ddds = [11, 21, 31, 41, 51, 61, 71, 81, 91];
+  const ddd = ddds[Math.floor(Math.random() * ddds.length)];
+  
+  let number = "";
+  if (type === "mobile") {
+    const part1 = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
+    const part2 = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
+    number = \`9\${part1}\${part2}\`;
+  } else {
+    const firstDigit = Math.floor(Math.random() * 4) + 2; // 2 a 5
+    const part1 = Math.floor(Math.random() * 1000).toString().padStart(3, "0");
+    const part2 = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
+    number = \`\${firstDigit}\${part1}\${part2}\`;
+  }
+  
+  if (formatted) {
+    return type === "mobile" 
+      ? \`(\${ddd}) \${number.substring(0, 5)}-\${number.substring(5)}\`
+      : \`(\${ddd}) \${number.substring(0, 4)}-\${number.substring(4)}\`;
+  }
+  return \`\${ddd}\${number}\`;
+}`;
+
+const PHONE_PYTHON_CODE = `import random
+
+def generate_br_phone(phone_type="mobile", formatted=True):
+    ddds = [11, 21, 31, 41, 51, 61, 71, 81, 91]
+    ddd = random.choice(ddds)
+    
+    if phone_type == "mobile":
+        part1 = f"{random.randint(0, 9999):04d}"
+        part2 = f"{random.randint(0, 9999):04d}"
+        number = f"9{part1}{part2}"
+    else:
+        first = random.randint(2, 5)
+        part1 = f"{random.randint(0, 999):03d}"
+        part2 = f"{random.randint(0, 9999):04d}"
+        number = f"{first}{part1}{part2}"
+        
+    if formatted:
+        if phone_type == "mobile":
+            return f"({ddd}) {number[:5]}-{number[5:]}"
+        else:
+            return f"({ddd}) {number[:4]}-{number[4:]}"
+            
+    return f"{ddd}{number}"`;
+
+const PHONE_CSHARP_CODE = `using System;
+
+public static class PhoneGenerator
+{
+    private static readonly int[] Ddds = { 11, 21, 31, 41, 51, 61, 71, 81, 91 };
+    private static readonly Random Rand = new Random();
+
+    public static string Generate(string type = "mobile", bool formatted = true)
+    {
+        int ddd = Ddds[Rand.Next(Ddds.Length)];
+        string number = "";
+
+        if (type == "mobile")
+        {
+            number = "9" + Rand.Next(10000).ToString("D4") + Rand.Next(10000).ToString("D4");
+        }
+        else
+        {
+            int first = Rand.Next(4) + 2; // 2 a 5
+            number = first.ToString() + Rand.Next(1000).ToString("D3") + Rand.Next(10000).ToString("D4");
+        }
+
+        if (formatted)
+        {
+            return type == "mobile"
+                ? $"({ddd}) {number.Substring(0, 5)}-{number.Substring(5)}"
+                : $"({ddd}) {number.Substring(0, 4)}-{number.Substring(4)}";
+        }
+        return $"{ddd}{number}";
+    }
+}`;
+
+const PHONE_JAVA_CODE = `import java.util.Random;
+
+public class PhoneGenerator {
+    private static final int[] DDDS = { 11, 21, 31, 41, 51, 61, 71, 81, 91 };
+    private static final Random RAND = new Random();
+
+    public static String generate(String type, boolean formatted) {
+        int ddd = DDDS[RAND.nextInt(DDDS.length)];
+        String number;
+
+        if ("mobile".equals(type)) {
+            number = "9" + String.format("%04d", RAND.nextInt(10000)) + String.format("%04d", RAND.nextInt(10000));
+        } else {
+            int first = RAND.nextInt(4) + 2; // 2 a 5
+            number = String.valueOf(first) + String.format("%03d", RAND.nextInt(1000)) + String.format("%04d", RAND.nextInt(10000));
+        }
+
+        if (formatted) {
+            return "mobile".equals(type)
+                ? String.format("(%d) %s-%s", ddd, number.substring(0, 5), number.substring(5))
+                : String.format("(%d) %s-%s", ddd, number.substring(0, 4), number.substring(4));
+        }
+        return String.valueOf(ddd) + number;
+    }
+}`;
 
 const ddds = [
     11, 12, 13, 14, 15, 16, 17, 18, 19, // SP
@@ -169,20 +276,57 @@ export function PhoneGeneratorPage() {
                         </Card>
                     </div>
 
-                    {/* Info Section */}
+                    {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Telefone</CardTitle>
+                            <CardTitle>Sobre o Gerador de Telefone e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Telefone cria números de celular e telefone fixo brasileiros, com DDDs de todos os estados.
-                                Você pode optar por gerar o número com ou sem a formatação padrão.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os números são gerados aleatoriamente seguindo o padrão brasileiro, mas não há garantia de que sejam linhas ativas ou inexistentes.
-                            </p>
-                            <div className="pt-4 border-t mt-4">
+                        <CardContent className="space-y-6">
+                            <div className="space-y-3 text-sm text-muted-foreground">
+                                <p>
+                                    O Gerador de Telefone cria números de celular e telefone fixo brasileiros com DDDs de todos os estados do Brasil, formatados ou apenas números limpos.
+                                </p>
+                                <p className="text-amber-600 dark:text-amber-400">
+                                    <strong>Atenção:</strong> Os números são gerados dinamicamente seguindo os padrões e regras de prefixos brasileiros apenas para <strong>fins de teste e desenvolvimento de software</strong>. Eles não correspondem a linhas ativas reais.
+                                </p>
+                            </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>Como funciona o gerador de telefone?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Nossa ferramenta escolhe aleatoriamente um DDD válido da lista de estados brasileiros e gera uma sequência numérica de acordo com o tipo escolhido: celulares sempre iniciam com o dígito 9 e possuem 9 dígitos após o DDD, enquanto telefones fixos são gerados com 8 dígitos iniciados de 2 a 5.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Qual o formato dos números de celular e fixo no Brasil?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Os números formatados de celular seguem o padrão <code>(DD) 9XXXX-XXXX</code> (total de 11 dígitos numéricos). Os números de telefone fixo utilizam o padrão <code>(DD) XXXX-XXXX</code> (total de 10 dígitos numéricos).
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Posso usar estes números para cadastro real?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Não. Esses números são puramente fictícios e fictícios matematicamente. Se você tentar usá-los para criar contas reais, não receberá códigos de ativação por SMS ou chamadas de verificação, pois não há linhas de rede associadas a eles. Use apenas para simulação e QA.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-4">
+                                    <AccordionTrigger>Como gerar telefones em lote?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Utilize o card de **Geração em Massa** ao lado. Insira a quantidade desejada de telefones que deseja obter, e a ferramenta gerará uma lista completa contendo os números solicitados com ou sem formatação, pronta para ser copiada para planilhas ou arquivos de banco de dados.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: PHONE_JS_CODE },
+                                        { language: "python", label: "Python", code: PHONE_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: PHONE_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: PHONE_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
+                            <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de Telefone"
@@ -194,7 +338,6 @@ export function PhoneGeneratorPage() {
                     <RelatedTools currentToolSlug="phone" category="personal" />
                 </div>
             </main>
-
         </div>
     )
 }
