@@ -279,6 +279,12 @@ export function CreditCardGeneratorPage() {
                                         O algoritmo de Luhn (também conhecido como fórmula "módulo 10") é uma fórmula de soma de verificação simples usada para validar uma variedade de números de identificação, como números de cartões de crédito. A maioria das bandeiras de cartões (Visa, Mastercard, Discover, Amex) adota esse algoritmo para evitar erros acidentais de digitação.
                                     </AccordionContent>
                                 </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>O gerador fornece dados completos de cobrança?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Sim. Além de gerar o número do cartão estruturalmente correto, nossa ferramenta fornece um nome de portador fictício (John Doe), data de expiração futura válida e código de segurança (CVV) compatível com a bandeira selecionada. Isso é ideal para testar formulários que exigem o fluxo completo de pagamento e validações de endereço de faturamento (Billing Address).
+                                    </AccordionContent>
+                                </AccordionItem>
                                 <CodeExamplesAccordion
                                     examples={[
                                         { language: "javascript", label: "JavaScript / TS", code: LUHN_JS_CODE },

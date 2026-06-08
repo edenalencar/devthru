@@ -1,4 +1,4 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -9,8 +9,8 @@ const title = "Gerador de UUID v4 Online - Identificador Único Universal"
 const description = "Gere UUIDs (v4) únicos e seguros aleatoriamente para seus projetos e bancos de dados. Identificadores universais prontos para uso em desenvolvimento de software."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de UUID v4 Online - Identificador Único Universal",
-    description: "Gere UUIDs (v4) únicos e seguros de forma aleatória para projetos e bancos de dados. Identificadores universais prontos para uso em software.",
+    title: "Gerador de UUID v4 Online - Gere e Copie Vários em 1 Clique",
+    description: "Gere UUIDs versão 4 (v4) únicos e seguros de forma individual ou em massa. Copie em um clique para bancos de dados e projetos de desenvolvimento de software.",
     path: "/tools/utilities/uuid",
 })
 

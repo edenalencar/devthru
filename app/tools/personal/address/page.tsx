@@ -1,4 +1,4 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -9,8 +9,8 @@ const title = "Gerador de Endereços Brasileiros Válidos - CEP e Rua"
 const description = "Gere endereços brasileiros completos com CEP, rua, bairro e cidade para testes de sistemas e formulários."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Endereços Brasileiros Válidos - CEP e Rua",
-    description: "Gere endereços brasileiros completos com CEP, rua, bairro e cidade para testes de sistemas e formulários.",
+    title: "Gerador de Endereço Aleatório - CEP e Rua Válidos [Grátis]",
+    description: "Gere endereços brasileiros fictícios e válidos com CEP, rua, número, bairro, cidade e estado em 1 clique. Geração individual ou em lote para testes.",
     path: "/tools/personal/address",
 })
 

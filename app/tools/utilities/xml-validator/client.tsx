@@ -178,6 +178,13 @@ export function XMLValidatorPage() {
                                         Sim. Nossa infraestrutura do site preza pela máxima confidencialidade em ferramentas para desenvolvedores ("Dev Tools"). Diferente das dezenas de sites pesados na rede, nós não rodamos bancos de dados SQL/NoSQL em background capturando dados submetidos anonimamente, tampouco guardamos histórico (logs) do payload (conteúdo cru) colado aqui. Sinta-se a vontade para debugar envios XML/SOAP sigilosos antes da homologação final em produção!
                                     </AccordionContent>
                                 </AccordionItem>
+
+                                <AccordionItem value="item-4">
+                                    <AccordionTrigger className="text-left font-medium text-lg">Como encontrar e corrigir erros de estrutura no validador?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                        Ao colar o código e clicar em "Validar", caso o XML possua erros, o validador indicará a linha exata e a mensagem de erro fornecida pelo parser (ex: "Mismatch tag" ou "Attribute value expected"). A causa mais comum é a falta de fechamento de alguma tag ou caracteres especiais inválidos como o <code>&</code> que deve ser escrito como <code>&amp;</code> no padrão XML.
+                                    </AccordionContent>
+                                </AccordionItem>
                             </Accordion>
                         </section>
                     </div>
