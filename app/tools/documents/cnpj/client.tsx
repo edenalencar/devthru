@@ -353,6 +353,17 @@ export function CNPJGeneratorPage() {
                                         O CNPJ possui 14 dígitos, onde os dígitos 13 e 14 são os verificadores. O cálculo utiliza um módulo matemático com pesos específicos aplicados aos 12 primeiros caracteres. Na versão alfanumérica, as letras são convertidas para seus valores numéricos correspondentes (ASCII - 48).
                                     </AccordionContent>
                                 </AccordionItem>
+                                <AccordionItem value="item-4">
+                                    <AccordionTrigger>Como validar o CNPJ Alfanumérico em Java, Python ou JavaScript?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground prose prose-sm max-w-none dark:prose-invert">
+                                        <p>
+                                            De acordo com a norma da Receita Federal, a validação do CNPJ alfanumérico mantém os mesmos pesos do cálculo tradicional. A única diferença é a conversão das letras nas 12 primeiras posições para números, utilizando a fórmula <code>Valor = Código ASCII do caractere - 48</code>.
+                                        </p>
+                                        <p>
+                                            Nossos exemplos de código abaixo (em Java, Python, JavaScript e C#) já contemplam essa regra de forma otimizada. Por exemplo, em Java/C#, a conversão é feita nativamente subtraindo o char de '0' (ou ASCII 48), garantindo que tanto números ('0' a '9') quanto letras ('A' a 'Z') tenham os valores corretos.
+                                        </p>
+                                    </AccordionContent>
+                                </AccordionItem>
                                 <CodeExamplesAccordion
                                     examples={[
                                         { language: "javascript", label: "JavaScript / TS", code: CNPJ_JS_CODE },

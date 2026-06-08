@@ -5,12 +5,12 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { ChassiGeneratorPage } from "./client"
 
-const title = "Gerador de Chassi (VIN) Válido Online e Grátis"
-const description = "Gere códigos de Chassi (VIN) válidos e fictícios em 1 clique. Ferramenta online gratuita para testes de software, QA e homologação automotiva. Sem cadastro!"
+const title = "Gerador de Chassi (VIN) Válido - Geração em Lote [Grátis]"
+const description = "Gere números de Chassi (VIN) válidos de forma aleatória em lote ou individualmente para testes de software, QA e homologação. Rápido e sem cadastro."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Chassi (VIN) Válido Online e Grátis",
-    description: "Gere códigos de Chassi (VIN) válidos e fictícios em 1 clique. Ferramenta online gratuita para testes de software, QA e homologação automotiva. Sem cadastro!",
+    title: "Gerador de Chassi (VIN) Válido - Geração em Lote [Grátis]",
+    description: "Gere números de Chassi (VIN) válidos de forma aleatória em lote ou individualmente para testes de software, QA e homologação. Rápido e sem cadastro.",
     path: "/tools/automotive/chassi",
     keywords: ["gerador de chassi",
         "gerar chassi",

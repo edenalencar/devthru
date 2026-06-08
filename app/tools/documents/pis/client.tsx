@@ -296,6 +296,12 @@ export function PISPage() {
                                         O 11º dígito de um PIS é um "módulo matemático". Ele é calculado multiplicando os 10 primeiros dígitos da esquerda para a direita por pesos específicos (3, 2, 9, 8, 7, 6, 5, 4, 3, 2). A soma dos resultados é dividida por 11, e o resto da divisão define o dígito final. Nosso gerador de PIS implementa 100% dessa regra oficial.
                                     </AccordionContent>
                                 </AccordionItem>
+                                <AccordionItem value="item-4">
+                                    <AccordionTrigger>Como gerar PIS em lote para testes em massa?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Nossa ferramenta possui uma aba dedicada de <strong>"Geração em Lote"</strong>. Com ela, você pode escolher a quantidade desejada de números de PIS/PASEP e NIS válidos e gerá-los todos de uma vez, copiando ou salvando com facilidade para utilizar em cargas de homologação e testes de banco de dados.
+                                    </AccordionContent>
+                                </AccordionItem>
                                 <CodeExamplesAccordion
                                     examples={[
                                         { language: "javascript", label: "JavaScript / TS", code: PIS_JS_CODE },

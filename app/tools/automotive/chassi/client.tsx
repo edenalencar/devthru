@@ -324,6 +324,19 @@ export function ChassiGeneratorPage() {
                                         </div>
                                     </AccordionContent>
                                 </AccordionItem>
+                                <AccordionItem value="item-4">
+                                    <AccordionTrigger>Por que as letras I, O e Q não são permitidas no número de chassi (VIN)?</AccordionTrigger>
+                                    <AccordionContent>
+                                        <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
+                                            <p>
+                                                De acordo com a norma internacional ISO 3779, as letras <strong>I (i)</strong>, <strong>O (o)</strong> e <strong>Q (q)</strong> são estritamente proibidas em qualquer número de chassi. 
+                                            </p>
+                                            <p>
+                                                Essa restrição existe para evitar fraudes e erros de leitura humana ou de escaneamento ótico (OCR), pois a letra <strong>I</strong> pode ser facilmente confundida com o número <strong>1</strong>, e as letras <strong>O</strong> e <strong>Q</strong> com o número <strong>0</strong>. Nosso gerador de chassi segue rigorosamente essa especificação internacional.
+                                            </p>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
                                 <CodeExamplesAccordion
                                     examples={[
                                         { language: "javascript", label: "JavaScript / TS", code: CHASSI_JS_CODE },

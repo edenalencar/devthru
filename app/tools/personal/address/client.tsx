@@ -13,6 +13,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const streetTypes = ["Rua", "Avenida", "Travessa", "Alameda", "Praça", "Rodovia"]
 const streetNames = [
@@ -125,17 +126,31 @@ export function AddressGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Endereços</CardTitle>
+                            <CardTitle>Sobre o Gerador de Endereços e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Endereços cria endereços brasileiros fictícios completos, incluindo rua, número, bairro, cidade, estado e CEP.
-                                É útil para testar formulários de cadastro, sistemas de entrega e validação de dados geográficos.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Os endereços gerados são aleatórios e não correspondem necessariamente a locais reais. O CEP é gerado com um formato válido, mas pode não existir nos Correios.
-                            </p>
-                            <div className="pt-4 border-t mt-4">
+                        <CardContent className="space-y-6">
+                            <div className="space-y-3 text-sm text-muted-foreground">
+                                <p>
+                                    O Gerador de Endereços cria endereços brasileiros fictícios completos, incluindo rua, número, bairro, cidade, estado e CEP, seguindo o padrão oficial dos Correios.
+                                </p>
+                            </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>Como usar este gerador de endereços para testes de sistema?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Durante a homologação de sistemas de entrega, e-commerce ou cadastros em geral, desenvolvedores e analistas de QA necessitam preencher endereços estruturados de forma ágil. Em vez de preencher manualmente campo por campo, você pode gerar um endereço completo aleatório (ou em lote na aba ao lado) e simplesmente copiá-lo.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Os CEPs e endereços gerados são reais?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Os endereços gerados são totalmente <strong>fictícios</strong> e gerados combinando logradouros, bairros, cidades e estados reais de forma aleatória. Os CEPs são gerados com a máscara correta e no intervalo correspondente às regiões (como SP, RJ, MG), mas podem não estar ativamente cadastrados na base de dados oficial dos Correios. Use apenas para fins de simulação.
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+
+                            <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de Endereços"

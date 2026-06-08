@@ -1,4 +1,4 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -9,8 +9,8 @@ const title = "Gerador e Testador de Regex - Validar Expressões Regulares"
 const description = "Crie, teste e valide expressões regulares (Regex) em tempo real com nossa ferramenta online. Suporte completo a flags e exemplos práticos para desenvolvedores."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador e Testador de Regex - Validar Expressões Regulares",
-    description: "Crie, teste e valide expressões regulares (Regex) em tempo real com nossa ferramenta online. Suporte completo a flags e exemplos práticos para desenvolvedores.",
+    title: "Testador e Gerador de Regex Online - Exemplos Práticos",
+    description: "Construa, teste e valide expressões regulares em tempo real. Consulte a cheatsheet de sintaxe, flags comuns e tire dúvidas clássicas sobre Regex.",
     path: "/tools/development/regex",
 })
 
