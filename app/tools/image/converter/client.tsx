@@ -21,17 +21,45 @@ export function ImageConverterPage() {
     const [format, setFormat] = useState<ImageFormat>("png")
     const [convertedImage, setConvertedImage] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
+    const [isDragging, setIsDragging] = useState(false)
     const fileInputRef = useRef<HTMLInputElement>(null)
+
+    const processFile = (file: File) => {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+            setImage(e.target?.result as string)
+            setConvertedImage(null)
+        }
+        reader.readAsDataURL(file)
+    }
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) {
-            const reader = new FileReader()
-            reader.onload = (e) => {
-                setImage(e.target?.result as string)
-                setConvertedImage(null)
+            processFile(file)
+        }
+    }
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragging(true)
+    }
+
+    const handleDragLeave = (e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragging(false)
+    }
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragging(false)
+        const file = e.dataTransfer.files?.[0]
+        if (file) {
+            if (file.type.startsWith("image/")) {
+                processFile(file)
+            } else {
+                toast.error("Por favor, selecione apenas arquivos de imagem.")
             }
-            reader.readAsDataURL(file)
         }
     }
 
@@ -108,15 +136,24 @@ export function ImageConverterPage() {
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 <div
-                                    className="border-2 border-dashed rounded-lg p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-muted/50 transition-colors min-h-[200px]"
+                                    className={`border-2 border-dashed rounded-lg p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all min-h-[200px] ${
+                                        isDragging 
+                                            ? "border-primary bg-primary/10 scale-[0.99]" 
+                                            : "border-muted-foreground/30 hover:bg-muted/50"
+                                    }`}
                                     onClick={() => fileInputRef.current?.click()}
+                                    onDragOver={handleDragOver}
+                                    onDragLeave={handleDragLeave}
+                                    onDrop={handleDrop}
                                 >
                                     {image ? (
                                         <img src={image} alt="Preview" className="max-h-[200px] max-w-full object-contain" />
                                     ) : (
                                         <>
-                                            <Upload className="h-12 w-12 text-muted-foreground mb-4" />
-                                            <p className="text-muted-foreground">Clique para selecionar uma imagem</p>
+                                            <Upload className={`h-12 w-12 text-muted-foreground mb-4 transition-transform ${isDragging ? "scale-110 text-primary" : ""}`} />
+                                            <p className="text-muted-foreground text-sm">
+                                                {isDragging ? "Solte a imagem aqui..." : "Arraste uma imagem ou clique para selecionar"}
+                                            </p>
                                         </>
                                     )}
                                     <input

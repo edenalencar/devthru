@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Image as ImageIcon, Upload, Download, RefreshCw } from "lucide-react"
 import JSZip from "jszip"
+import { toast } from "sonner"
 import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
@@ -19,15 +20,43 @@ const FAVICON_SIZES = [16, 32, 180, 192, 512]
 export function FaviconGeneratorPage() {
     const [image, setImage] = useState<string | null>(null)
     const [isGenerating, setIsGenerating] = useState(false)
+    const [isDragging, setIsDragging] = useState(false)
+
+    const processFile = (file: File) => {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+            setImage(e.target?.result as string)
+        }
+        reader.readAsDataURL(file)
+    }
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) {
-            const reader = new FileReader()
-            reader.onload = (e) => {
-                setImage(e.target?.result as string)
+            processFile(file)
+        }
+    }
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragging(true)
+    }
+
+    const handleDragLeave = (e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragging(false)
+    }
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragging(false)
+        const file = e.dataTransfer.files?.[0]
+        if (file) {
+            if (file.type.startsWith("image/")) {
+                processFile(file)
+            } else {
+                toast.error("Por favor, selecione apenas arquivos de imagem.")
             }
-            reader.readAsDataURL(file)
         }
     }
 
@@ -112,47 +141,57 @@ export function FaviconGeneratorPage() {
                                 <CardTitle>Upload de Imagem</CardTitle>
                             </CardHeader>
                             <CardContent className="flex flex-col items-center justify-center gap-6 py-8">
-                                <div className="flex flex-col items-center gap-4">
-                                    <Label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center gap-4 w-full">
-                                        {image ? (
-                                            <div className="relative w-32 h-32 rounded-lg overflow-hidden border hover:opacity-90 transition-opacity">
-                                                <Image src={image} alt="Preview" fill className="object-cover" unoptimized />
-                                            </div>
-                                        ) : (
-                                            <div className="w-32 h-32 rounded-lg border-2 border-dashed flex items-center justify-center bg-muted/50 hover:bg-muted/80 transition-colors">
-                                                <Upload className="h-8 w-8 text-muted-foreground" />
-                                            </div>
-                                        )}
-                                        <div className="flex items-center gap-2">
-                                            <div className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                                                <Upload className="h-4 w-4" />
-                                                Escolher Imagem
-                                            </div>
-                                            <input
-                                                id="image-upload"
-                                                type="file"
-                                                accept="image/*"
-                                                className="hidden"
-                                                onChange={handleImageUpload}
-                                            />
+                                <div
+                                    className={`border-2 border-dashed rounded-lg p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all min-h-[220px] w-full max-w-md ${
+                                        isDragging 
+                                            ? "border-primary bg-primary/10 scale-[0.99]" 
+                                            : "border-muted-foreground/30 hover:bg-muted/50"
+                                    }`}
+                                    onClick={() => document.getElementById("image-upload")?.click()}
+                                    onDragOver={handleDragOver}
+                                    onDragLeave={handleDragLeave}
+                                    onDrop={handleDrop}
+                                >
+                                    {image ? (
+                                        <div className="relative w-32 h-32 rounded-lg overflow-hidden border mb-4 mx-auto">
+                                            <Image src={image} alt="Preview" fill className="object-cover" unoptimized />
                                         </div>
-                                    </Label>
-                                    <div className="flex items-center gap-2 justify-center">
-                                        {image && (
-                                            <Button onClick={generateFavicons} disabled={isGenerating}>
-                                                {isGenerating ? (
-                                                    <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
-                                                ) : (
-                                                    <Download className="h-4 w-4 mr-2" />
-                                                )}
-                                                Gerar & Baixar ZIP
-                                            </Button>
-                                        )}
+                                    ) : (
+                                        <Upload className={`h-12 w-12 text-muted-foreground mb-4 mx-auto transition-transform ${isDragging ? "scale-110 text-primary" : ""}`} />
+                                    )}
+                                    <div className="flex flex-col items-center gap-2">
+                                        <div className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                                            <Upload className="h-4 w-4" />
+                                            {image ? "Trocar Imagem" : "Escolher Imagem"}
+                                        </div>
+                                        <input
+                                            id="image-upload"
+                                            type="file"
+                                            accept="image/*"
+                                            className="hidden"
+                                            onChange={handleImageUpload}
+                                        />
+                                        <p className="text-muted-foreground text-sm mt-2">
+                                            {isDragging ? "Solte a imagem aqui..." : "Arraste uma imagem ou clique para selecionar"}
+                                        </p>
                                     </div>
-                                    <p className="text-xs text-muted-foreground">
-                                        Recomendado: Imagem quadrada, min. 512x512px (PNG, JPG)
-                                    </p>
                                 </div>
+
+                                {image && (
+                                    <div className="flex items-center gap-2 justify-center w-full">
+                                        <Button onClick={generateFavicons} disabled={isGenerating} className="w-full max-w-xs">
+                                            {isGenerating ? (
+                                                <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                                            ) : (
+                                                <Download className="h-4 w-4 mr-2" />
+                                            )}
+                                            Gerar & Baixar ZIP
+                                        </Button>
+                                    </div>
+                                )}
+                                <p className="text-xs text-muted-foreground">
+                                    Recomendado: Imagem quadrada, min. 512x512px (PNG, JPG)
+                                </p>
                             </CardContent>
                         </Card>
 
