@@ -1,18 +1,18 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { JwtDebuggerPage } from "./client"
 
-const title = "JWT Debugger Online | Decodificar Tokens Grátis"
-const description = "Decodifique, verifique e debugue seus JSON Web Tokens (JWT) instantaneamente. Visualize o Header, Payload e Signature de forma segura no navegador."
+const title = "JWT Debugger Online - Decodifique JSON Web Tokens (100% Seguro)"
+const description = "Debugue e decodifique seus tokens JWT instantaneamente no navegador. Inspecione o Header, Payload e Signature de forma privada e livre de servidores."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "JWT Debugger Online | Decodificar Tokens Grátis",
-    description: "Decodifique, verifique e debugue seus JSON Web Tokens (JWT) instantaneamente. Visualize o Header, Payload e Signature de forma segura no navegador.",
+    title,
+    description,
     path: "/tools/development/jwt-debugger",
-    keywords: ["jwt debugger", "jwt decoder", "decodificar jwt", "json web token", "jwt.io alternative", "ferramentas de segurança"]
+    keywords: ["jwt debugger", "jwt decoder", "decodificar jwt", "json web token", "jwt.io alternative", "ferramentas de segurança", "jwt online"]
 })
 
 export default function Page() {

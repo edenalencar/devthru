@@ -13,6 +13,90 @@ import { jwtDecode } from "jwt-decode"
 import { Navbar } from "@/components/layout/navbar"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const JWT_JS_CODE = `function decodeJwtPayload(token) {
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    const base64Url = parts[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      window.atob(base64)
+        .split('')
+        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch (e) {
+    return null;
+  }
+}
+// Exemplo: decodeJwtPayload("eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiRGV2VGhydSJ9.sig") -> { name: "DevThru" }`;
+
+const JWT_PYTHON_CODE = `import base64
+import json
+
+def decode_jwt_payload(token):
+    try:
+        parts = token.split('.')
+        if len(parts) != 3:
+            return None
+        payload = parts[1]
+        payload += '=' * (4 - len(payload) % 4)
+        decoded_bytes = base64.urlsafe_b64decode(payload)
+        return json.loads(decoded_bytes.decode('utf-8'))
+    except Exception:
+        return None
+# Exemplo: decode_jwt_payload("...") -> {"name": "DevThru"}`;
+
+const JWT_CSHARP_CODE = `using System;
+using System.Text;
+
+public static class JwtDecoder
+{
+    public static string DecodePayload(string token)
+    {
+        try
+        {
+            var parts = token.Split('.');
+            if (parts.Length != 3) return null;
+            
+            var payload = parts[1];
+            payload = payload.Replace('-', '+').Replace('_', '/');
+            switch (payload.Length % 4)
+            {
+                case 2: payload += "=="; break;
+                case 3: payload += "="; break;
+            }
+            var bytes = Convert.FromBase64String(payload);
+            return Encoding.UTF8.GetString(bytes);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+}`;
+
+const JWT_JAVA_CODE = `import java.util.Base64;
+import java.nio.charset.StandardCharsets;
+
+public class JwtDecoder {
+    public static String decodePayload(String token) {
+        try {
+            String[] parts = token.split("\\\\.");
+            if (parts.length != 3) return null;
+            
+            String payload = parts[1];
+            byte[] decodedBytes = Base64.getUrlDecoder().decode(payload);
+            return new String(decodedBytes, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+}`;
 
 export function JwtDebuggerPage() {
     const [token, setToken] = useState("")
@@ -180,6 +264,51 @@ export function JwtDebuggerPage() {
                             </Card>
                         </div>
                     </div>
+
+                    {/* Info Section & FAQ */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o JWT Debugger e Perguntas Frequentes (FAQ)</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
+                                <p>
+                                    O JWT Debugger é uma ferramenta indispensável para analisar JSON Web Tokens de forma instantânea. Com ele, você pode inspecionar rapidamente as partes que compõem o token, ajudando na identificação de erros de integração, expiração de sessões e permissões incorretas.
+                                </p>
+                            </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>O que é um JSON Web Token (JWT) e sua estrutura?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Um JWT é um padrão aberto (RFC 7519) usado para transmitir de forma segura informações estruturadas como um objeto JSON. Ele é composto por três partes separadas por pontos (.): Header (indica o algoritmo de criptografia e tipo de token), Payload (dados do usuário e metadados de sessão, conhecidos como claims) e Signature (garante que o token não foi adulterado).
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Como funciona a decodificação local e qual a garantia de privacidade?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Nesta ferramenta, toda a decodificação é feita diretamente no navegador utilizando JavaScript local (`atob` e `jwt-decode`). Seu token nunca é enviado ou transmitido para servidores de terceiros, o que garante 100% de privacidade para inspecionar payloads de teste e tokens de APIs em desenvolvimento.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Por que a assinatura (Signature) não é validada aqui?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Para verificar a assinatura de um token criptografado simetricamente (como HS256), seria necessário que você inserisse a sua chave secreta (secret key) no navegador. Inserir chaves privadas em ferramentas web terceiras é uma prática de alto risco de segurança. Por esse motivo, limitamos a depuração à visualização do Header e Payload, mantendo o processo seguro.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    title="Como decodificar um JWT em código? (Exemplos de Código)"
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: JWT_JS_CODE },
+                                        { language: "python", label: "Python", code: JWT_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: JWT_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: JWT_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+                        </CardContent>
+                    </Card>
+
                     <RelatedTools currentToolSlug="jwt-debugger" category="development" />
                 </div>
             </main>

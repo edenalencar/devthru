@@ -1,17 +1,18 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { LGPDDataPage } from "./client"
 
-const title = "Gerador de Dados Fictícios e Anonimizador para LGPD"
-const description = "Gere dados pessoais fictícios e anonimize textos com informações sensíveis para conformidade com a LGPD. Ferramenta essencial para testes seguros e proteção de dados."
+const title = "Ferramentas LGPD Online - Gerador de Dados Fictícios e Anonimizador"
+const description = "Gere perfis de dados simulados ou anonimize textos reais ocultando informações sensíveis (como CPF, e-mail e telefone) para conformidade com a LGPD."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Dados Fictícios e Anonimizador para LGPD",
-    description: "Gere dados pessoais fictícios e anonimize textos sensíveis para conformidade com a LGPD. Ferramenta gratuita para testes seguros e proteção de dados.",
+    title,
+    description,
     path: "/tools/personal/lgpd-data",
+    keywords: ["ferramentas lgpd", "anonimizador de dados", "mascarar dados sensiveis", "gerar dados fake", "gerador lgpd"]
 })
 
 export default function Page() {

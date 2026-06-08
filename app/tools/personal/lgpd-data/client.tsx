@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/layout/navbar"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -14,15 +13,97 @@ import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const LGPD_JS_CODE = `function anonymizeText(text) {
+  let result = text;
+  // CPF
+  result = result.replace(/\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}/g, "***.***.***-**");
+  // Email
+  result = result.replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9._-]+)/gi, (match) => {
+    const [user, domain] = match.split("@");
+    return \`\${user.substring(0, 2)}***@\${domain}\`;
+  });
+  // Telefone
+  result = result.replace(/\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}/g, "(**) *****-****");
+  return result;
+}`;
+
+const LGPD_PYTHON_CODE = `import re
+
+def anonymize_text(text: str) -> str:
+    # CPF
+    text = re.sub(r"\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", "***.***.***-**", text)
+    # Telefone
+    text = re.sub(r"\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}", "(**) *****-****", text)
+    # Email
+    def mask_email(match):
+        email = match.group(0)
+        user, domain = email.split("@")
+        return f"{user[:2]}***@{domain}"
+    text = re.sub(r"[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9._-]+", mask_email, text)
+    return text`;
+
+const LGPD_CSHARP_CODE = `using System.Text.RegularExpressions;
+
+public static class LgpdAnonymizer
+{
+    public static string Anonymize(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return "";
+
+        // CPF
+        string result = Regex.Replace(text, @"\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", "***.***.***-**");
+        // Telefone
+        result = Regex.Replace(result, @"\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}", "(**) *****-****");
+        // Email
+        result = Regex.Replace(result, @"[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9._-]+", m =>
+        {
+            string[] parts = m.Value.Split('@');
+            string user = parts[0];
+            string domain = parts[1];
+            return user.Length > 2 ? \`\${user.Substring(0, 2)}***@\${domain}\` : \`***@\${domain}\`;
+        });
+
+        return result;
+    }
+}`;
+
+const LGPD_JAVA_CODE = `import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class LgpdAnonymizer {
+    public static String anonymize(String text) {
+        if (text == null) return "";
+
+        // CPF
+        String result = text.replaceAll("\\\\d{3}\\\\.\\\\d{3}\\\\.\\\\d{3}-\\\\d{2}", "***.***.***-**");
+        // Telefone
+        result = result.replaceAll("\\\\(\\\\d{2}\\\\)\\\\s\\\\d{4,5}-\\\\d{4}", "(**) *****-****");
+        
+        // Email
+        Pattern emailPattern = Pattern.compile("[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\\\.[a-zA-Z0-9._-]+");
+        Matcher matcher = emailPattern.matcher(result);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            String email = matcher.group();
+            String[] parts = email.split("@");
+            String user = parts[0];
+            String domain = parts[1];
+            String masked = (user.length() > 2) ? user.substring(0, 2) + "***@" + domain : "***@" + domain;
+            matcher.appendReplacement(sb, Matcher.quoteReplacement(masked));
+        }
+        matcher.appendTail(sb);
+        
+        return sb.toString();
+    }
+}`;
 
 export function LGPDDataPage() {
     const [activeTab, setActiveTab] = useState<'generate' | 'anonymize'>('generate')
-
-    // Generator State
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [fakeData, setFakeData] = useState<any>(null)
-
-    // Anonymizer State
     const [inputText, setInputText] = useState("")
     const [anonymizedText, setAnonymizedText] = useState("")
 
@@ -187,20 +268,49 @@ export function LGPDDataPage() {
                         </div>
                     )}
 
-                    {/* Info Section */}
+                    {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre as Ferramentas LGPD</CardTitle>
+                            <CardTitle>Sobre as Ferramentas LGPD e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                As Ferramentas LGPD auxiliam desenvolvedores e DPOs na conformidade com a Lei Geral de Proteção de Dados.
-                                O Gerador cria dados fictícios para testes seguros, enquanto o Anonimizador mascara dados sensíveis em textos existentes.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> A anonimização realizada é baseada em substituição de padrões (máscara) e não é irreversível em todos os contextos. Para dados críticos de produção, utilize técnicas avançadas de criptografia ou tokenização.
-                            </p>
-                            <div className="pt-4 border-t mt-4">
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
+                                <p>
+                                    As Ferramentas LGPD auxiliam desenvolvedores, administradores de sistemas e analistas de segurança a simular dados cadastrais ou sanitizar textos brutos mascarando dados pessoais sensíveis (PII).
+                                </p>
+                            </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>O que é anonimização de dados sob a LGPD?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Segundo a Lei Geral de Proteção de Dados (LGPD), a anonimização é o processo pelo qual um dado perde a possibilidade de associação, direta ou indireta, a um indivíduo. Uma vez anonimizado, o dado deixa de ser considerado dado pessoal para fins da lei.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Como funciona o Anonimizador de Texto (mascaramento)?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Nossa ferramenta analisa o texto de entrada em busca de padrões sintáticos definidos (regex) para CPFs (com e sem pontos), e-mails e telefones formatados. Quando um desses padrões é encontrado, ele é substituído por uma máscara de asteriscos, preservando a estrutura de layout do texto original sem expor a informação sensível.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Esta ferramenta envia os dados colados para algum servidor?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Não. Toda a operação de geração e anonimização de texto é feita **100% no lado do cliente (client-side)** utilizando Javascript no seu próprio navegador. As informações nunca são enviadas a servidores externos ou gravadas em bancos de dados, oferecendo total privacidade e segurança.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    title="Como criar uma função de anonimização (mascaramento) em código?"
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: LGPD_JS_CODE },
+                                        { language: "python", label: "Python", code: LGPD_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: LGPD_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: LGPD_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
+                            <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Ferramentas LGPD"
@@ -212,8 +322,6 @@ export function LGPDDataPage() {
                     <RelatedTools currentToolSlug="lgpd-data" category="personal" />
                 </div>
             </main>
-
-
         </div>
     )
 }
