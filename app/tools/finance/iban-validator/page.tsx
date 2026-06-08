@@ -1,16 +1,16 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { IBANValidatorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Gerador e Validador de IBAN Online - Brasil e Internacional"
-const description = "Gere e valide códigos IBAN para transações internacionais com precisão. Suporte a diversos países, essencial para testar integrações bancárias globais."
+const title = "Validador e Gerador de IBAN Online - Verifique Contas Globais"
+const description = "Gere e valide códigos IBAN (International Bank Account Number) com cálculo matemático do dígito verificador (Mod 97) para o Brasil e outros países."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
     description,
     path: "/tools/finance/iban-validator",
-    keywords: ["iban generator", "iban validator", "codigo iban", "transalia internacional", "swift code"]
+    keywords: ["validador de iban", "gerador de iban", "validar iban brasil", "iban validator", "digito verificador iban"]
 })
 
 export default function Page() {
