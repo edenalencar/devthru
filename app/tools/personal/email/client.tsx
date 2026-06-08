@@ -15,6 +15,88 @@ import { Navbar } from "@/components/layout/navbar"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const EMAIL_JS_CODE = `function generateRandomEmail(domainType = "random", customDomain = "") {
+  const domains = ["gmail.com", "outlook.com", "yahoo.com", "hotmail.com"];
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  const length = Math.floor(Math.random() * 10) + 6;
+  
+  let username = "";
+  for (let i = 0; i < length; i++) {
+    username += chars[Math.floor(Math.random() * chars.length)];
+  }
+  
+  const domain = (domainType === "custom" && customDomain)
+    ? customDomain
+    : domains[Math.floor(Math.random() * domains.length)];
+    
+  return \`\smash{\${username}}@\${domain}\`;
+}`;
+
+const EMAIL_PYTHON_CODE = `import random
+import string
+
+def generate_random_email(domain_type="random", custom_domain=""):
+    domains = ["gmail.com", "outlook.com", "yahoo.com", "hotmail.com"]
+    chars = string.ascii_lowercase + string.digits
+    length = random.randint(6, 15)
+    
+    username = "".join(random.choice(chars) for _ in range(length))
+    
+    domain = custom_domain if domain_type == "custom" and custom_domain else random.choice(domains)
+    return f"{username}@{domain}"`;
+
+const EMAIL_CSHARP_CODE = `using System;
+using System.Text;
+
+public static class EmailGenerator
+{
+    private static readonly string[] Domains = { "gmail.com", "outlook.com", "yahoo.com", "hotmail.com" };
+    private static readonly Random Rand = new Random();
+
+    public static string Generate(string domainType = "random", string customDomain = "")
+    {
+        const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+        int length = Rand.Next(10) + 6;
+        StringBuilder username = new StringBuilder();
+
+        for (int i = 0; i < length; i++)
+        {
+            username.Append(chars[Rand.Next(chars.Length)]);
+        }
+
+        string domain = (domainType == "custom" && !string.IsNullOrEmpty(customDomain))
+            ? customDomain
+            : Domains[Rand.Next(Domains.Length)];
+
+        return $"{username}@{domain}";
+    }
+}`;
+
+const EMAIL_JAVA_CODE = `import java.util.Random;
+
+public class EmailGenerator {
+    private static final String[] DOMAINS = { "gmail.com", "outlook.com", "yahoo.com", "hotmail.com" };
+    private static final Random RAND = new Random();
+
+    public static String generate(String domainType, String customDomain) {
+        String chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+        int length = RAND.nextInt(10) + 6;
+        StringBuilder username = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            username.append(chars.charAt(RAND.nextInt(chars.length())));
+        }
+
+        String domain = ("custom".equals(domainType) && customDomain != null && !customDomain.isEmpty())
+            ? customDomain
+            : DOMAINS[RAND.nextInt(DOMAINS.length)];
+
+        return username.toString() + "@" + domain;
+    }
+}`;
 
 const domains = [
     "gmail.com", "outlook.com", "yahoo.com", "hotmail.com", "uol.com.br", "bol.com.br", "terra.com.br", "icloud.com"
@@ -142,20 +224,49 @@ export function EmailGeneratorPage() {
                         </Card>
                     </div>
 
-                    {/* Info Section */}
+                    {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Email</CardTitle>
+                            <CardTitle>Sobre o Gerador de E-mails e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                            <p>
-                                O Gerador de Email cria endereços de email temporários ou fictícios para uso em testes de software e cadastros.
-                                Você pode escolher entre provedores comuns ou definir um domínio personalizado.
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                <strong>Nota:</strong> Estes emails são fictícios e não possuem caixa de entrada real. Para emails temporários funcionais (que recebem mensagens), utilize serviços específicos de &quot;temp mail&quot;.
-                            </p>
-                            <div className="pt-4 border-t mt-4">
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
+                                <p>
+                                    O Gerador de Email cria endereços de correio eletrônico fictícios e temporários para preenchimento rápido de cadastros em ambientes de desenvolvimento e controle de qualidade (QA).
+                                </p>
+                            </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>O que é um e-mail fictício/fake?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        É um endereço de e-mail estruturalmente válido, contendo um nome de usuário gerado aleatoriamente e um provedor comum ou personalizado. O objetivo principal é satisfazer a validação sintática de formulários de cadastro durante fases de testes de software.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Estes e-mails gerados possuem caixa de entrada ativa?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Não. Nossos e-mails são **fictícios (mocks)** e não possuem servidores de correio eletrônico ou caixas de entrada associadas para receber mensagens. Se o seu fluxo de teste exige a verificação ou o recebimento de mensagens (como validação de Token/OTP, redefinição de senha ou links de confirmação), você deve utilizar serviços especializados em caixas temporárias ("temp mail").
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Posso gerar e-mails com domínios corporativos personalizados?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Sim. Ao alterar a opção "Domínio" para **Personalizado**, você pode digitar qualquer extensão de domínio (ex: <code>empresa.com.br</code>) e a ferramenta gerará e-mails aleatórios utilizando esse domínio específico. Isso é muito útil para testar regras internas de negócio em fluxos corporativos (B2B).
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    title="Como gerar e-mails aleatórios? (Exemplos de Código)"
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: EMAIL_JS_CODE },
+                                        { language: "python", label: "Python", code: EMAIL_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: EMAIL_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: EMAIL_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
+                            <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de Email"
@@ -167,7 +278,6 @@ export function EmailGeneratorPage() {
                     <RelatedTools currentToolSlug="email" category="personal" />
                 </div>
             </main>
-
         </div>
     )
 }

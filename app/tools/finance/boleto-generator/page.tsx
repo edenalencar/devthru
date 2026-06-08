@@ -1,17 +1,18 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { BoletoGeneratorPage } from "./client"
 
-const title = "Gerador de Boleto Bancário Mock - Visualização para Testes"
-const description = "Gerador de Boleto Bancário Mock para testes de software. Crie boletos fictícios com código de barras validável e PDF para homologar seu sistema de pagamentos de forma segura."
+const title = "Gerador de Boleto Bancário Online - Linha Digitável e PDF para Teste"
+const description = "Gere boletos bancários fictícios em PDF com linha digitável e código de barras para testes de integração de sistemas e homologação financeira de forma segura."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Boleto Bancário Mock - Visualização para Testes",
-    description: "Gerador de Boleto Bancário Mock. Crie boletos fictícios com código de barras validável e PDF para homologar seu sistema de pagamentos de forma segura.",
+    title,
+    description,
     path: "/tools/finance/boleto-generator",
+    keywords: ["gerador de boleto", "gerador de boleto falso", "boleto ficticio para teste", "simular boleto bancario", "gerar boleto pdf teste"]
 })
 
 export default function Page() {

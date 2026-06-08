@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Navbar } from "@/components/layout/navbar"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -13,6 +12,101 @@ import jsPDF from "jspdf"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+const BOLETO_JS_CODE = `function validateBoletoLd(linhaDigitavel) {
+  const cleaned = linhaDigitavel.replace(/[^0-9]/g, "");
+  if (cleaned.length !== 47 && cleaned.length !== 48) return false;
+  
+  const block = cleaned.substring(0, 9);
+  let sum = 0;
+  let multiplier = 2;
+  for (let i = block.length - 1; i >= 0; i--) {
+    let result = parseInt(block[i], 10) * multiplier;
+    if (result > 9) result = Math.floor(result / 10) + (result % 10);
+    sum += result;
+    multiplier = multiplier === 2 ? 1 : 2;
+  }
+  const rest = sum % 10;
+  const calculatedDv = rest === 0 ? 0 : 10 - rest;
+  const originalDv = parseInt(cleaned[9], 10);
+  
+  return calculatedDv === originalDv;
+}`;
+
+const BOLETO_PYTHON_CODE = `def validate_boleto_ld(linha_digitavel: str) -> bool:
+    cleaned = "".join(filter(str.isdigit, linha_digitavel))
+    if len(cleaned) not in (47, 48):
+        return False
+        
+    block = cleaned[0:9]
+    total_sum = 0
+    multiplier = 2
+    for char in reversed(block):
+        result = int(char) * multiplier
+        if result > 9:
+            result = (result // 10) + (result % 10)
+        total_sum += result
+        multiplier = 1 if multiplier == 2 else 2
+        
+    rest = total_sum % 10
+    calculated_dv = 0 if rest == 0 else 10 - rest
+    original_dv = int(cleaned[9])
+    
+    return calculated_dv == original_dv`;
+
+const BOLETO_CSHARP_CODE = `using System;
+using System.Text.RegularExpressions;
+
+public static class BoletoValidator
+{
+    public static bool ValidateLd(string linhaDigitavel)
+    {
+        string cleaned = Regex.Replace(linhaDigitavel ?? "", @"[^0-9]", "");
+        if (cleaned.Length != 47 && cleaned.Length != 48) return false;
+
+        string block = cleaned.Substring(0, 9);
+        int sum = 0;
+        int multiplier = 2;
+        for (int i = block.Length - 1; i >= 0; i--)
+        {
+            int result = (block[i] - '0') * multiplier;
+            if (result > 9) result = (result / 10) + (result % 10);
+            sum += result;
+            multiplier = multiplier == 2 ? 1 : 2;
+        }
+
+        int rest = sum % 10;
+        int calculatedDv = rest == 0 ? 0 : 10 - rest;
+        int originalDv = cleaned[9] - '0';
+
+        return calculatedDv == originalDv;
+    }
+}`;
+
+const BOLETO_JAVA_CODE = `public class BoletoValidator {
+    public static boolean validateLd(String linhaDigitavel) {
+        if (linhaDigitavel == null) return false;
+        String cleaned = linhaDigitavel.replaceAll("[^0-9]", "");
+        if (cleaned.length() != 47 && cleaned.length() != 48) return false;
+
+        String block = cleaned.substring(0, 9);
+        int sum = 0;
+        int multiplier = 2;
+        for (int i = block.length() - 1; i >= 0; i--) {
+            int result = Character.getNumericValue(block.charAt(i)) * multiplier;
+            if (result > 9) result = (result / 10) + (result % 10);
+            sum += result;
+            multiplier = multiplier == 2 ? 1 : 2;
+        }
+
+        int rest = sum % 10;
+        int calculatedDv = rest == 0 ? 0 : Character.getNumericValue(cleaned.charAt(9));
+
+        return calculatedDv == Character.getNumericValue(cleaned.charAt(9));
+    }
+}`;
 
 export function BoletoGeneratorPage() {
     const [beneficiary, setBeneficiary] = useState("Empresa Exemplo LTDA")
@@ -240,21 +334,51 @@ export function BoletoGeneratorPage() {
                         </div>
                     </div>
 
-                    {/* Info Section */}
-                    <Card className="mt-8">
+                    {/* Info Section & FAQ */}
+                    <Card className="mt-8 print:hidden">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Boleto</CardTitle>
+                            <CardTitle>Sobre o Gerador de Boleto e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
+                        <CardContent className="space-y-6">
                             <div className="prose prose-sm max-w-none dark:prose-invert">
                                 <p>
-                                    O Gerador de Boleto cria uma representação visual de um boleto bancário brasileiro para fins de teste de interface e impressão.
-                                    Ele gera um código de barras fictício e formata o documento conforme os padrões bancários.
+                                    O Gerador de Boleto cria uma representação visual de um boleto bancário brasileiro para fins de teste de interface, homologação de layouts e impressão.
                                 </p>
-                                <p className="text-sm text-muted-foreground mt-4">
-                                    <strong>Nota:</strong> Este boleto é puramente ilustrativo (mock) e não possui valor financeiro nem registro bancário. Não tente pagá-lo.
+                                <p className="text-amber-600 dark:text-amber-400">
+                                    <strong>Atenção:</strong> Este documento é puramente ilustrativo (mock) e não possui registro na Febraban. Ele **NÃO** deve ser pago. Use exclusivamente para testes de software.
                                 </p>
                             </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>Como é calculada a linha digitável e o código de barras de um boleto?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        O código de barras oficial contém 44 dígitos numéricos estruturados com dados do banco, moeda, data de vencimento, valor e conta. A linha digitável de 47 dígitos é uma representação do código de barras dividida em 3 blocos de 9 dígitos (cada um com seu próprio dígito verificador módulo 10), mais o dígito verificador geral no meio e o fator de vencimento no fim.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Para que serve um gerador de boleto mock?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Desenvolvedores utilizam essa ferramenta para simular a emissão de boletos, testar o alinhamento de impressão, exportação para PDF, e validar se o leitor de código de barras ou a câmera de aplicativos bancários em ambiente de homologação leem a linha digitável simulada sem problemas de layout.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Qual a diferença do boleto mock para um boleto registrado?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Boletos registrados são cadastrados na rede bancária via APIs da instituição ou arquivos de remessa CNAB. Boletos mock são gerados apenas na interface (HTML/CSS) com números estáticos ou aleatórios. Eles não existem para a rede bancária e qualquer tentativa de pagamento resultará em erro de "Boleto não encontrado".
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    title="Como validar linha digitável de boleto? (Exemplos de Código)"
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: BOLETO_JS_CODE },
+                                        { language: "python", label: "Python", code: BOLETO_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: BOLETO_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: BOLETO_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -267,7 +391,6 @@ export function BoletoGeneratorPage() {
                     <RelatedTools currentToolSlug="boleto-generator" category="finance" />
                 </div>
             </main>
-
         </div>
     )
 }
