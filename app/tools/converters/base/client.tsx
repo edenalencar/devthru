@@ -12,7 +12,65 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
+const BASE_JS_CODE = `function convertDecimal(decimalStr, toBase) {
+  const num = parseInt(decimalStr, 10);
+  if (isNaN(num)) return "";
+  return num.toString(toBase).toUpperCase();
+}
+// Exemplo: convertDecimal("255", 2) -> "11111111"
+// Exemplo: convertDecimal("255", 16) -> "FF"`;
+
+const BASE_PYTHON_CODE = `def convert_decimal(decimal_str, to_base):
+    try:
+        num = int(decimal_str)
+        if to_base == 2:
+            return bin(num)[2:]
+        elif to_base == 8:
+            return oct(num)[2:]
+        elif to_base == 16:
+            return hex(num)[2:].upper()
+        return str(num)
+    except ValueError:
+        return ""
+# Exemplo: convert_decimal("255", 2) -> "11111111"
+# Exemplo: convert_decimal("255", 16) -> "FF"`;
+
+const BASE_CSHARP_CODE = `using System;
+
+public static class BaseConverter
+{
+    public static string ConvertDecimal(string decimalStr, int toBase)
+    {
+        if (int.TryParse(decimalStr, out int num))
+        {
+            return Convert.ToString(num, toBase).ToUpper();
+        }
+        return string.Empty;
+    }
+}
+// Exemplo: BaseConverter.ConvertDecimal("255", 2) -> "11111111"
+// Exemplo: BaseConverter.ConvertDecimal("255", 16) -> "FF"`;
+
+const BASE_JAVA_CODE = `public class BaseConverter {
+    public static String convertDecimal(String decimalStr, int toBase) {
+        try {
+            int num = Integer.parseInt(decimalStr);
+            if (toBase == 2) {
+                return Integer.toBinaryString(num);
+            } else if (toBase == 8) {
+                return Integer.toOctalString(num);
+            } else if (toBase == 16) {
+                return Integer.toHexString(num).toUpperCase();
+            }
+            return String.valueOf(num);
+        } catch (NumberFormatException e) {
+            return "";
+        }
+    }
+}`;
 
 export function BaseConverterPage() {
     const [decimal, setDecimal] = useState("")
@@ -220,13 +278,13 @@ export function BaseConverterPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Info Section */}
+                    {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Conversor de Bases</CardTitle>
+                            <CardTitle>Sobre o Conversor de Bases e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
                                 <p>
                                     O Conversor de Bases permite transformar números entre os sistemas Decimal (base 10), Binário (base 2), Hexadecimal (base 16) e Octal (base 8).
                                     A conversão é feita em tempo real, facilitando o trabalho de programadores e estudantes de ciência da computação.
@@ -235,6 +293,37 @@ export function BaseConverterPage() {
                                     <strong>Nota:</strong> A ferramenta suporta números inteiros positivos.
                                 </p>
                             </div>
+
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger>O que são bases numéricas (Base 2, 8, 10, 16)?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Bases numéricas (ou sistemas de numeração) representam a quantidade de símbolos distintos utilizados para expressar valores numéricos. Na computação, as principais bases são a Binária (base 2 - usa apenas 0 e 1), Octal (base 8 - dígitos de 0 a 7), Decimal (base 10 - sistema tradicional do dia a dia de 0 a 9) e Hexadecimal (base 16 - inclui letras de A a F para representar valores de 10 a 15).
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger>Como funciona a conversão manual de decimal para binário ou hexadecimal?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Para converter manualmente um número Decimal para outra base, realizamos divisões sucessivas pelo número da base desejada (2 para binário, 16 para hexadecimal) até obter quociente zero. O resultado é composto pelos restos dessas divisões lidos de trás para frente. Para o hexadecimal, os valores de 10 a 15 são mapeados para as letras A a F, respectivamente.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Esta ferramenta suporta números muito grandes ou negativos?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Esta ferramenta online é projetada especificamente para conversões rápidas de números inteiros positivos e não-negativos. Para números que excedem os limites padrão de precisão de inteiros do JavaScript, recomendamos o uso de tipos de dados dedicados no seu código backend (como BigInt em JS/Python, ou BigInteger em Java/C#).
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <CodeExamplesAccordion
+                                    title="Como converter bases no código? (Exemplos de Código)"
+                                    examples={[
+                                        { language: "javascript", label: "JavaScript / TS", code: BASE_JS_CODE },
+                                        { language: "python", label: "Python", code: BASE_PYTHON_CODE },
+                                        { language: "csharp", label: "C#", code: BASE_CSHARP_CODE },
+                                        { language: "java", label: "Java", code: BASE_JAVA_CODE }
+                                    ]}
+                                />
+                            </Accordion>
+
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons

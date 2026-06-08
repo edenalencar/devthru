@@ -1,17 +1,18 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PersonGeneratorPage } from "./client"
 
-const title = "Gerador de Pessoa Completa - Dados Aleatórios para Teste"
-const description = "Gere perfis de teste realistas com o Gerador de Pessoa Completa. Crie nomes, CPFs, RGs, endereços e e-mails fictícios para acelerar o desenvolvimento de software."
+const title = "Gerador de Pessoa Completa - Perfis de Teste com Endereço e CPF"
+const description = "Gere dados pessoais fictícios completos (nome, CPF, RG, email, telefone, endereço completo e dados físicos) em um clique para testes rápidos de software."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Pessoa Completa - Dados Aleatórios para Teste",
-    description: "Gere perfis de teste com o Gerador de Pessoa Completa. Crie nomes, CPFs, RGs, endereços e e-mails fictícios para acelerar o desenvolvimento de software.",
+    title,
+    description,
     path: "/tools/personal/person",
+    keywords: ["gerador de pessoa", "gerador de pessoas", "gerador de pessoa completa", "dados de teste", "gerador cpf rg endereco"]
 })
 
 export default function Page() {

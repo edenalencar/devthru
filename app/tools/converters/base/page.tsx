@@ -1,4 +1,4 @@
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 import { BaseConverterPage } from "./client"
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Conversor de Bases Numéricas - Binário, Decimal, Hexadecimal",
-    description: "Converta números entre Decimal, Binário, Hexadecimal e Octal. Ferramenta gratuita e essencial para estudantes e programadores (bases numéricas).",
+    title: "Conversor de Bases Numéricas Online - Binário, Hexa, Octal e Decimal",
+    description: "Converta números inteiros instantaneamente entre Decimal (Base 10), Binário (Base 2), Hexadecimal (Base 16) e Octal (Base 8). Ideal para desenvolvedores e estudantes.",
     path: "/tools/converters/base",
 })
 
@@ -21,7 +21,7 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Conversor de Bases Numéricas - Binário, Decimal, Hexadecimal",
+                            "name": "Conversor de Bases Numéricas Online - Binário, Hexa, Octal e Decimal",
                             "operatingSystem": "Web",
                             "applicationCategory": "ConversoresApplication",
                             "offers": {
@@ -29,7 +29,7 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Converta números entre bases Decimal, Binária, Hexadecimal e Octal instantaneamente. Ferramenta essencial para estudantes e programadores que trabalham com bits."
+                            "description": "Converta números inteiros instantaneamente entre Decimal (Base 10), Binário (Base 2), Hexadecimal (Base 16) e Octal (Base 8). Ideal para desenvolvedores e estudantes."
                         },
                         {
                             "@type": "BreadcrumbList",
