@@ -9,7 +9,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest"
+    "test": "vitest",
+    "verify-specs": "node scripts/verify-specs.js --only-changed",
+    "verify-specs:all": "node scripts/verify-specs.js",
+    "verify-specs:strict": "node scripts/verify-specs.js --strict"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
