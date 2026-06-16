@@ -21,6 +21,12 @@ export const blogCategories: Record<BlogCategory, { label: string; color: string
 }
 
 // Import posts
+import { postAlgoritmoLuhn } from './posts/algoritmo-luhn-validacao-cartao-credito'
+import { postPlacasMercosulVsAntigo } from './posts/placas-mercosul-vs-padrao-antigo-validacao'
+import { postMassaDadosCypressSelenium } from './posts/gerar-massa-dados-teste-cypress-selenium'
+import { postRenavamChassiValidacao } from './posts/renavam-chassi-como-validar-antes-de-integrar'
+import { postJwtDebuggerMockDataAgentesIa } from './posts/jwt-debugger-mock-data-pipelines-teste-agentes-ia'
+import { postConstruindoServidorMcpDadosBr } from './posts/construindo-servidor-mcp-dados-teste-brasileiros'
 import { postPorQueUuidV7SubstituindoV4 } from './posts/por-que-uuid-v7-esta-substituindo-uuid-v4'
 import { postOtimizacaoQueriesSql } from './posts/otimizacao-queries-sql-indentacao-performance'
 import { postComoTestarFluxosNfeCteMdfe } from './posts/como-testar-fluxos-nfe-cte-mdfe-homologacao'
@@ -41,6 +47,12 @@ import { postSddSpecDrivenDevelopmentFocadoEmIa } from './posts/o-que-e-sdd-spec
 import { postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto } from './posts/skills-de-ia-e-progressive-disclosure-economia-de-contexto'
 
 export const blogPosts: BlogPost[] = [
+    postAlgoritmoLuhn,
+    postPlacasMercosulVsAntigo,
+    postMassaDadosCypressSelenium,
+    postRenavamChassiValidacao,
+    postJwtDebuggerMockDataAgentesIa,
+    postConstruindoServidorMcpDadosBr,
     postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto,
     postSddSpecDrivenDevelopmentFocadoEmIa,
     postWebMcpModelContextProtocolViaSse,
