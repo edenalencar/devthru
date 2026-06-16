@@ -88,6 +88,21 @@ const urls = [
     "https://www.devthru.com/blog/dados-ficticios-testes-lgpd",
     "https://www.devthru.com/blog/gerar-dados-ficticios-testes-api",
     "https://www.devthru.com/blog/numero-chassi-vin-significado",
+    "https://www.devthru.com/blog/o-que-e-sdd-spec-driven-development-focado-em-ia",
+    "https://www.devthru.com/blog/skills-de-ia-e-progressive-disclosure-economia-de-contexto",
+    "https://www.devthru.com/blog/renavam-chassi-como-validar-antes-de-integrar",
+    "https://www.devthru.com/blog/por-que-uuid-v7-esta-substituindo-uuid-v4",
+    "https://www.devthru.com/blog/placas-mercosul-vs-padrao-antigo-validacao",
+    "https://www.devthru.com/blog/otimizacao-queries-sql-indentacao-performance",
+    "https://www.devthru.com/blog/o-que-e-webmcp-model-context-protocol-via-sse",
+    "https://www.devthru.com/blog/o-que-e-mcp-model-context-protocol",
+    "https://www.devthru.com/blog/jwt-debugger-mock-data-pipelines-teste-agentes-ia",
+    "https://www.devthru.com/blog/gerar-massa-dados-teste-cypress-selenium-cpf-cnpj-endereco",
+    "https://www.devthru.com/blog/construindo-servidor-mcp-dados-teste-brasileiros",
+    "https://www.devthru.com/blog/como-testar-fluxos-nfe-cte-mdfe-homologacao",
+    "https://www.devthru.com/blog/tutorial-como-criar-mcp-server-typescript",
+    "https://www.devthru.com/blog/algoritmo-luhn-validacao-cartao-credito",
+    "https://www.devthru.com/blog/ai-terminal-tools-gemini-cli-cursor-agentes",
 ];
 
 console.log(`Total de URLs a enviar: ${urls.length}`);
