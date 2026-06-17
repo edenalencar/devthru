@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '.env.local' });
 const https = require('https');
 
 // URLs que ainda não foram enviadas ao IndexNow
@@ -111,10 +112,16 @@ console.log('URLs:');
 urls.forEach((url, i) => console.log(`  ${i + 1}. ${url}`));
 console.log('');
 
+const key = process.env.INDEXNOW_KEY;
+if (!key) {
+    console.error("Erro: INDEXNOW_KEY não encontrada no .env.local");
+    process.exit(1);
+}
+
 const data = JSON.stringify({
     "host": "www.devthru.com",
-    "key": "eb6684959a304730afe36988e0ea3db7",
-    "keyLocation": "https://www.devthru.com/eb6684959a304730afe36988e0ea3db7.txt",
+    "key": key,
+    "keyLocation": `https://www.devthru.com/${key}.txt`,
     "urlList": urls
 });
 
