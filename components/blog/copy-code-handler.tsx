@@ -17,8 +17,8 @@ export function CopyCodeHandler() {
 
                 // Cria o elemento botão
                 const button = document.createElement("button")
-                // Estilo Tailwind CSS elegante, harmonizando com o design do DevThru (glassmorphism/dark)
-                button.className = "copy-code-btn absolute top-3 right-3 p-1.5 rounded-lg bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-100 border border-zinc-800/80 transition-all duration-200 backdrop-blur-sm cursor-pointer z-10 opacity-0 group-hover:opacity-100 focus:opacity-100"
+                // Estilo Tailwind CSS elegante, visível por padrão com opacidade 60% para suporte a dispositivos de toque (mobile) e acessibilidade
+                button.className = "copy-code-btn absolute top-3 right-3 p-1.5 rounded-lg bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-100 border border-zinc-800/80 transition-all duration-200 backdrop-blur-sm cursor-pointer z-10 opacity-60 hover:opacity-100 focus:opacity-100"
                 button.setAttribute("aria-label", "Copiar código")
                 
                 // SVG do ícone Lucide Copy
