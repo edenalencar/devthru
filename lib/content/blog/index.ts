@@ -22,6 +22,8 @@ export const blogCategories: Record<BlogCategory, { label: string; color: string
 }
 
 // Import posts
+import { postComoDecodificarBoleto } from './posts/como-decodificar-boleto-bancario'
+import { postComoDecodificarPix } from './posts/como-decodificar-pix-copia-e-cola'
 import { postComoFuncionaAlgoritmoValidacaoPis } from './posts/como-funciona-algoritmo-validacao-pis'
 import { postAlgoritmoLuhn } from './posts/algoritmo-luhn-validacao-cartao-credito'
 import { postPlacasMercosulVsAntigo } from './posts/placas-mercosul-vs-padrao-antigo-validacao'
@@ -49,6 +51,8 @@ import { postSddSpecDrivenDevelopmentFocadoEmIa } from './posts/o-que-e-sdd-spec
 import { postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto } from './posts/skills-de-ia-e-progressive-disclosure-economia-de-contexto'
 
 export const blogPosts: BlogPost[] = [
+    postComoDecodificarBoleto,
+    postComoDecodificarPix,
     postComoFuncionaAlgoritmoValidacaoPis,
     postAlgoritmoLuhn,
     postPlacasMercosulVsAntigo,
