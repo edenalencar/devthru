@@ -17,13 +17,13 @@ export function CopyCodeHandler() {
 
                 // Cria o elemento botão
                 const button = document.createElement("button")
-                // Estilo Tailwind CSS elegante, visível por padrão com opacidade 60% para suporte a dispositivos de toque (mobile) e acessibilidade
-                button.className = "copy-code-btn absolute top-3 right-3 p-1.5 rounded-lg bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-100 border border-zinc-800/80 transition-all duration-200 backdrop-blur-sm cursor-pointer z-10 opacity-60 hover:opacity-100 focus:opacity-100"
+                // Estilo Tailwind CSS elegante, visível por padrão com opacidade 60%, fixando largura/altura e centralizando com flex para evitar heranças
+                button.className = "copy-code-btn absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-lg bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-100 border border-zinc-800/80 transition-all duration-200 backdrop-blur-sm cursor-pointer z-10 opacity-60 hover:opacity-100 focus:opacity-100"
                 button.setAttribute("aria-label", "Copiar código")
                 
-                // SVG do ícone Lucide Copy
+                // SVG do ícone Lucide Copy - com tamanho fixo via Tailwind
                 button.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon w-3.5 h-3.5 flex-shrink-0"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                 `
 
                 // Adiciona classe de grupo no pre para mostrar o botão de copiar no hover (efeito premium de UX!)
@@ -37,16 +37,16 @@ export function CopyCodeHandler() {
                     try {
                         await navigator.clipboard.writeText(codeText)
                         
-                        // Transiciona para o ícone de Check (Lucide Check) em verde
+                        // Transiciona para o ícone de Check (Lucide Check) em verde - com tamanho fixo
                         button.innerHTML = `
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="check-icon text-emerald-500"><path d="M20 6 9 17l-5-5"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="check-icon text-emerald-500 w-3.5 h-3.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
                         `
                         button.classList.add("border-emerald-500/30", "bg-emerald-950/20")
 
                         // Retorna ao estado original após 2 segundos
                         setTimeout(() => {
                             button.innerHTML = `
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon w-3.5 h-3.5 flex-shrink-0"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                             `
                             button.classList.remove("border-emerald-500/30", "bg-emerald-950/20")
                         }, 2000)
