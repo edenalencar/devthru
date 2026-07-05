@@ -161,6 +161,7 @@ interface ValidationResult {
     vencimento?: string
     valor?: string
     codigoBarras?: string
+    notaCiclo?: string
 }
 
 const title = "Validador de Boleto Bancário Online - Linha Digitável e Emissor"
@@ -266,17 +267,22 @@ export function BoletoValidatorPage() {
         // Fator de vencimento
         const fator = parseInt(fatorVenc)
         let vencimento = "Sem data de vencimento"
+        let notaCiclo = ""
         if (fator >= 1000) {
             const baseDate = new Date(1997, 9, 7) // 7 de Outubro de 1997
-            let diasAdicionais = fator
-            // Ajuste FEBRABAN para estouro do fator 9999 em 22/02/2025
-            let dataCalculada = new Date(baseDate.getTime() + diasAdicionais * 24 * 60 * 60 * 1000)
-            const corteEstouro = new Date(2025, 1, 22)
-            if (dataCalculada < corteEstouro) {
-                // Adiciona o ciclo de 9000 dias
-                dataCalculada = new Date(dataCalculada.getTime() + 9000 * 24 * 60 * 60 * 1000)
+            
+            // Ciclo 1 original (sem estouro)
+            const dataCiclo1 = new Date(baseDate.getTime() + fator * 24 * 60 * 60 * 1000)
+            const corteEstouro = new Date(2025, 1, 22) // Fim oficial do ciclo 1 (22/02/2025)
+            
+            if (dataCiclo1 <= corteEstouro) {
+                // Fator antigo. Pode ser histórico ou correspondente do Ciclo 2 (pós-estouro de 2025)
+                const dataCiclo2 = new Date(dataCiclo1.getTime() + 9000 * 24 * 60 * 60 * 1000)
+                vencimento = `${dataCiclo1.toLocaleDateString("pt-BR")} (ou ${dataCiclo2.toLocaleDateString("pt-BR")})`
+                notaCiclo = "O fator de vencimento FEBRABAN estourou em 22/02/2025. Este boleto pode ser histórico (2012) ou do novo ciclo (2037)."
+            } else {
+                vencimento = dataCiclo1.toLocaleDateString("pt-BR")
             }
-            vencimento = dataCalculada.toLocaleDateString("pt-BR")
         }
 
         // Valor
@@ -292,7 +298,8 @@ export function BoletoValidatorPage() {
             emissor: emissorName,
             vencimento,
             valor: valorFormatado,
-            codigoBarras
+            codigoBarras,
+            notaCiclo
         })
     }
 
@@ -495,13 +502,18 @@ export function BoletoValidatorPage() {
                                                                 <span className="text-sm font-semibold">{result.emissor}</span>
                                                             </div>
                                                         </div>
-                                                        <div className="flex items-start gap-2">
-                                                            <Calendar className="h-4 w-4 text-muted-foreground mt-0.5" />
-                                                            <div>
-                                                                <span className="text-xs text-muted-foreground block">Data de Vencimento</span>
-                                                                <span className="text-sm font-semibold">{result.vencimento}</span>
-                                                            </div>
-                                                        </div>
+                                                         <div className="flex items-start gap-2">
+                                                             <Calendar className="h-4 w-4 text-muted-foreground mt-0.5" />
+                                                             <div>
+                                                                 <span className="text-xs text-muted-foreground block">Data de Vencimento</span>
+                                                                 <span className="text-sm font-semibold block">{result.vencimento}</span>
+                                                                 {result.notaCiclo && (
+                                                                     <span className="text-[10px] text-muted-foreground leading-tight block mt-1 max-w-[280px]">
+                                                                         💡 {result.notaCiclo}
+                                                                     </span>
+                                                                 )}
+                                                             </div>
+                                                         </div>
                                                     </CardContent>
                                                 </Card>
 
