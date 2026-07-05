@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Navbar } from "@/components/layout/navbar"
 
 import { Button } from "@/components/ui/button"
@@ -236,12 +237,22 @@ export function LicensePlatePage() {
                                     <strong>Nota:</strong> As placas geradas são apenas ilustrativas e não possuem validade legal.
                                 </p>
                             </div>
-                            <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
-                                <ShareButtons
-                                    title="Gerador de Placas"
-                                    description="Gere e converta placas de veículos (Mercosul e Antiga)."
-                                />
+                            <div className="pt-4 border-t space-y-4">
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Artigos Relacionados:</Label>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link href="/blog/placas-mercosul-vs-padrao-antigo-validacao" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
+                                            📖 Artigo: Placa Mercosul vs Padrão Antigo (Tudo Sobre a Transição)
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                    <ShareButtons
+                                        title="Gerador de Placas"
+                                        description="Gere e converta placas de veículos (Mercosul e Antiga)."
+                                    />
+                                </div>
                             </div>
                         </CardContent>
                     </Card>

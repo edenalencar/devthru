@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.name} - Ferramentas para Desenvolvedores`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: "Ferramentas essenciais para devs: Gerador de CPF, CNPJ, Formatador JSON, Validador de Cartão de Crédito e mais. Gratuito, rápido e sem login.",
   keywords: [

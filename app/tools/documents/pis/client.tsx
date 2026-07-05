@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Navbar } from '@/components/layout/navbar'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -312,12 +313,22 @@ export function PISPage() {
                                 />
                             </Accordion>
 
-                            <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
-                                <ShareButtons
-                                    title="Gerador de PIS Válido"
-                                    description="Gere e valide números de PIS/PASEP para testes de sistema."
-                                />
+                            <div className="pt-4 border-t space-y-4">
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Artigos Relacionados:</Label>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link href="/blog/como-funciona-algoritmo-validacao-pis" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
+                                            📖 Artigo: Como Validar PIS/PASEP (Algoritmo Completo)
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                    <ShareButtons
+                                        title="Gerador de PIS Válido"
+                                        description="Gere e valide números de PIS/PASEP para testes de sistema."
+                                    />
+                                </div>
                             </div>
                         </CardContent>
                     </Card>

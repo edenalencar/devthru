@@ -75,6 +75,22 @@ export default async function BlogPostPage({ params }: PageProps) {
                     }
                 }}
             />
+            {post.faqs && post.faqs.length > 0 && (
+                <JsonLd
+                    data={{
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": post.faqs.map((faq) => ({
+                            "@type": "Question",
+                            "name": faq.question,
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": faq.answer
+                            }
+                        }))
+                    }}
+                />
+            )}
             {/* Article Header */}
             <section className="border-b">
                 <div className="container mx-auto max-w-6xl px-4 pt-8 pb-12">

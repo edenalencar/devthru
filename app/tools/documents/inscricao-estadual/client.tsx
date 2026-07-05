@@ -1,6 +1,7 @@
 'use client'
 
 import { Navbar } from '@/components/layout/navbar'
+import Link from 'next/link'
 import { StateRegistrationGenerator } from '@/components/tools/state-registration-generator'
 import { RelatedTools } from "@/components/tools/related-tools"
 import { StateRegistrationLinks } from '@/components/tools/state-registration-links'
@@ -55,7 +56,16 @@ export function InscricaoEstadualPage() {
                     </section>
                 </div>
 
-                <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-t">
+                <div className="py-6 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-t">
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Artigos Relacionados</h3>
+                    <div className="flex flex-wrap gap-2">
+                        <Link href="/blog/inscricao-estadual-guia" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
+                            📖 Artigo: Guia Completo da Inscrição Estadual (IE) por Estado
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="py-6 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-t">
                     <StateRegistrationLinks />
                 </div>
                 <div className="pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
