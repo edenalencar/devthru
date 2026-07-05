@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { ShareButtons } from "@/components/share-buttons"
 import { Calendar, Clock, ArrowRight, Tag } from "lucide-react"
 import { tools } from "@/lib/tools-list"
+import { CopyCodeHandler } from "@/components/blog/copy-code-handler"
 
 interface PageProps {
     params: Promise<{
@@ -166,6 +167,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                 [&_.info-box]:bg-blue-50 [&_.info-box]:dark:bg-blue-950/30 [&_.info-box]:border [&_.info-box]:border-blue-200 [&_.info-box]:dark:border-blue-800 [&_.info-box]:rounded-lg [&_.info-box]:p-4 [&_.info-box]:my-6 [&_.info-box]:text-sm"
                             dangerouslySetInnerHTML={{ __html: post.content }}
                         />
+                        <CopyCodeHandler />
 
                         {/* CTA - inline no artigo */}
                         {post.relatedTools.length > 0 && (
