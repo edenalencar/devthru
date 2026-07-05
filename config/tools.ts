@@ -403,6 +403,24 @@ export const tools: Tool[] = [
         icon: Barcode,
         href: "/tools/finance/boleto-generator",
     },
+    {
+        id: "pix-parser",
+        name: "Decodificador Pix",
+        title: "Decodificador de Pix Copia e Cola",
+        description: "Faça o parse de strings Pix Copia e Cola, extraia chaves e nomes, recalcule o CRC16 e gere o QR Code correspondente.",
+        category: "financial",
+        icon: QrCode,
+        href: "/tools/finance/pix-parser",
+    },
+    {
+        id: "boleto-validator",
+        name: "Validador de Boleto",
+        title: "Validador de Boleto Bancário",
+        description: "Valide a linha digitável ou código de barras de boletos de cobrança e concessionárias com cálculo de data de vencimento e valor.",
+        category: "financial",
+        icon: Barcode,
+        href: "/tools/finance/boleto-validator",
+    },
 
     // Document Tools
     {
