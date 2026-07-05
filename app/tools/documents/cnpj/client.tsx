@@ -375,12 +375,15 @@ export function CNPJGeneratorPage() {
                             </Accordion>
 
                             <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Guias Relacionados:</Label>
+                                <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
                                 <div className="flex flex-wrap gap-2 mb-4">
-                                    <Link href="/guides/validation/cnpj/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                    <Link href="/blog/validacao-cnpj-algoritmo-completo" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
+                                        📖 Artigo: Como Validar CNPJ (Algoritmo Completo)
+                                    </Link>
+                                    <Link href="/guides/validation/cnpj/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors">
                                         Como validar CNPJ em Python
                                     </Link>
-                                    <Link href="/guides/validation/cnpj/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                    <Link href="/guides/validation/cnpj/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-950/40 dark:text-yellow-300 rounded hover:bg-yellow-200 dark:hover:bg-yellow-200/60 transition-colors">
                                         Como validar CNPJ em JavaScript
                                     </Link>
                                 </div>

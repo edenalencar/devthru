@@ -22,6 +22,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "05 de Julho de 2026",
+        title: "Novas Ferramentas Financeiras: Pix e Boleto",
+        description: "Lançamento do Decodificador Pix (com parser EMV, alteração de valor e renderização de QR Code na tela) e do Validador de Boletos (com extração de data, valor, banco emissor e suporte à regra de estouro de fator da FEBRABAN).",
+        type: "feature",
+        version: "1.44.0"
+    },
+    {
         date: "21 de Maio de 2026",
         title: "Gerador de Crontab Online",
         description: "Lançamento do gerador e tradutor de expressões cron. Configure agendamentos de forma visual, valide sintaxes e converta a recorrência em linguagem natural em português do Brasil.",

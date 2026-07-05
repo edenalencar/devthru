@@ -53,8 +53,10 @@ export const tools: Tool[] = [
 
     // Finance
     { slug: 'boleto-generator', category: 'finance', title: 'Gerador de Boleto', icon: Barcode },
+    { slug: 'boleto-validator', category: 'finance', title: 'Validador de Boleto', icon: Barcode },
     { slug: 'credit-card-generator', category: 'finance', title: 'Cartão de Crédito', icon: CreditCard },
     { slug: 'iban-validator', category: 'finance', title: 'Validador IBAN', icon: CreditCard },
+    { slug: 'pix-parser', category: 'finance', title: 'Decodificador Pix', icon: QrCode },
     { slug: 'tax-calculator', category: 'finance', title: 'Calculadora de Impostos', icon: Calculator },
 
     // Image

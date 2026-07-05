@@ -1,7 +1,7 @@
-import { WithContext, SoftwareApplication, BreadcrumbList, Graph, BlogPosting, TechArticle, ItemList } from "schema-dts";
+import { WithContext, SoftwareApplication, BreadcrumbList, Graph, BlogPosting, TechArticle, ItemList, FAQPage } from "schema-dts";
 
 type JsonLdProps = {
-    data: WithContext<SoftwareApplication> | WithContext<BreadcrumbList> | Graph | WithContext<BlogPosting> | WithContext<TechArticle> | WithContext<ItemList>;
+    data: WithContext<SoftwareApplication> | WithContext<BreadcrumbList> | Graph | WithContext<BlogPosting> | WithContext<TechArticle> | WithContext<ItemList> | WithContext<FAQPage>;
 };
 
 export function JsonLd({ data }: JsonLdProps) {

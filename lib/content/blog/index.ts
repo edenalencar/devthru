@@ -9,6 +9,7 @@ export interface BlogPost {
     tags: string[]
     relatedTools: string[]
     content: string
+    faqs?: { question: string; answer: string }[]
 }
 
 export type BlogCategory = 'documentos' | 'dev-tools' | 'testes-qa' | 'automotivo'
@@ -21,6 +22,9 @@ export const blogCategories: Record<BlogCategory, { label: string; color: string
 }
 
 // Import posts
+import { postComoDecodificarBoleto } from './posts/como-decodificar-boleto-bancario'
+import { postComoDecodificarPix } from './posts/como-decodificar-pix-copia-e-cola'
+import { postComoFuncionaAlgoritmoValidacaoPis } from './posts/como-funciona-algoritmo-validacao-pis'
 import { postAlgoritmoLuhn } from './posts/algoritmo-luhn-validacao-cartao-credito'
 import { postPlacasMercosulVsAntigo } from './posts/placas-mercosul-vs-padrao-antigo-validacao'
 import { postMassaDadosCypressSelenium } from './posts/gerar-massa-dados-teste-cypress-selenium'
@@ -47,6 +51,9 @@ import { postSddSpecDrivenDevelopmentFocadoEmIa } from './posts/o-que-e-sdd-spec
 import { postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto } from './posts/skills-de-ia-e-progressive-disclosure-economia-de-contexto'
 
 export const blogPosts: BlogPost[] = [
+    postComoDecodificarBoleto,
+    postComoDecodificarPix,
+    postComoFuncionaAlgoritmoValidacaoPis,
     postAlgoritmoLuhn,
     postPlacasMercosulVsAntigo,
     postMassaDadosCypressSelenium,
