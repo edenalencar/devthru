@@ -222,9 +222,9 @@ export function BoletoValidatorPage() {
 
         const bloco1 = ldFinal.substring(0, 9)
         const dv1 = parseInt(ldFinal[9])
-        const bloco2 = ldFinal.substring(10, 19)
+        const bloco2 = ldFinal.substring(10, 20)
         const dv2 = parseInt(ldFinal[20])
-        const bloco3 = ldFinal.substring(21, 30)
+        const bloco3 = ldFinal.substring(21, 31)
         const dv3 = parseInt(ldFinal[31])
         const dvGeral = parseInt(ldFinal[32])
         const fatorVenc = ldFinal.substring(33, 37)
