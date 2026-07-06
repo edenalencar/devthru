@@ -239,11 +239,11 @@ export function PhoneGeneratorPage() {
                     </div>
 
                     {/* SMS Warning Alert */}
-                    <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-900/50 dark:bg-amber-950/20 text-amber-800 dark:text-amber-300 flex items-start gap-3">
-                        <AlertTriangle className="h-5 w-5 mt-0.5 shrink-0" />
+                    <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-900/30 dark:bg-amber-950/10 flex items-start gap-3">
+                        <AlertTriangle className="h-5 w-5 mt-0.5 shrink-0 text-amber-600 dark:text-amber-500" />
                         <div>
-                            <p className="font-semibold text-sm">Aviso Importante sobre SMS</p>
-                            <p className="text-xs mt-1 text-amber-700/90 dark:text-amber-400/90 leading-relaxed">
+                            <p className="font-semibold text-sm text-amber-900 dark:text-amber-200">Aviso Importante sobre SMS</p>
+                            <p className="text-xs mt-1 text-amber-800 dark:text-amber-300 leading-relaxed">
                                 Esta ferramenta gera números de telefone <strong>fictícios para testes de desenvolvimento e design (mocks)</strong>. Ela <strong>NÃO</strong> recebe chamadas ou mensagens SMS reais. Se você precisa de um número temporário para receber códigos de ativação do WhatsApp, Telegram ou outras plataformas, este gerador de números estáticos não servirá.
                             </p>
                         </div>
