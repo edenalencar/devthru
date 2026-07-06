@@ -413,6 +413,15 @@ export const tools: Tool[] = [
         href: "/tools/finance/pix-parser",
     },
     {
+        id: "placa-pix",
+        name: "Placa Pix de Balcão",
+        title: "Gerador de Placa Pix para Impressão",
+        description: "Crie placas Pix personalizadas para o seu balcão com QR Code, logotipo e redes sociais prontas para imprimir em PDF ou baixar como imagem.",
+        category: "financial",
+        icon: QrCode,
+        href: "/tools/finance/placa-pix",
+    },
+    {
         id: "boleto-validator",
         name: "Validador de Boleto",
         title: "Validador de Boleto Bancário",
