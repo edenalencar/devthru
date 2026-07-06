@@ -140,7 +140,7 @@ export function PISPage() {
                     <div className="mb-8">
                         <h1 className="text-4xl font-bold mb-4">Gerador de PIS Válido</h1>
                         <p className="text-lg text-muted-foreground">
-                            Gere e valide números de PIS/PASEP válidos para testes
+                            Gere e valide números de PIS/PASEP e NIS válidos em lote para testes de software e homologação de APIs
                         </p>
                     </div>
 
@@ -170,9 +170,9 @@ export function PISPage() {
                     {activeTab === 'generate' && (
                         <Card>
                             <CardHeader>
-                                <CardTitle>Gerar PIS/PASEP</CardTitle>
+                                <CardTitle>Gerar PIS/PASEP e NIS</CardTitle>
                                 <CardDescription>
-                                    Gere um número válido de PIS/PASEP
+                                    Gere números válidos de PIS/PASEP e NIS aleatórios para testes e homologação
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
@@ -197,9 +197,9 @@ export function PISPage() {
                     {activeTab === 'validate' && (
                         <Card>
                             <CardHeader>
-                                <CardTitle>Validar PIS/PASEP</CardTitle>
+                                <CardTitle>Validar PIS/PASEP / NIS</CardTitle>
                                 <CardDescription>
-                                    Verifique se um número de PIS/PASEP é válido
+                                    Verifique a consistência matemática do dígito verificador (Módulo 11) de um PIS/PASEP
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
@@ -264,17 +264,18 @@ export function PISPage() {
                     {/* Info Card & FAQ */}
                     <Card className="mt-6">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de PIS e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Gerador de PIS/PASEP para Desenvolvedores e QA (Perguntas Frequentes)</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
-                                    O PIS (Programa de Integração Social) e o PASEP (Programa de Formação do Patrimônio do Servidor Público)
-                                    são programas de contribuição social essenciais. O número de inscrição gerado possui o formato exato oficial, send utilizado
-                                    como NIS e NIT.
+                                    Esta ferramenta online e gratuita foi criada para auxiliar desenvolvedores de software, analistas de QA e testadores a gerarem massa de dados de teste (mocks) de PIS/PASEP, NIS e NIT de forma rápida, segura e sem anúncios.
+                                </p>
+                                <p>
+                                    O PIS (Programa de Integração Social) e o PASEP (Programa de Formação do Patrimônio do Servidor Público) compartilham a mesma validação estrutural do NIS e NIT. Portanto, qualquer número válido de PIS gerado aqui também funcionará como NIS ou PASEP nos testes do seu sistema.
                                 </p>
                                 <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Atenção:</strong> Os números gerados por esta ferramenta são <strong>aleatórios e válidos matematicamente apenas para testes</strong> e desenvolvimento de software (Mocks, Automação QA). Não devem ser utilizados para fraudes ou documentos reais.
+                                    <strong>Aviso de Uso:</strong> Os números de documentos fornecidos por esta ferramenta são <strong>fictícios e gerados por meio de algoritmos matemáticos (Módulo 11) apenas para fins de testes e homologação</strong> de software. Não possuem vínculo com a Caixa Econômica Federal, Banco do Brasil ou outros órgãos do governo federal.
                                 </p>
                             </div>
 
@@ -294,13 +295,13 @@ export function PISPage() {
                                 <AccordionItem value="item-3">
                                     <AccordionTrigger>Como é calculado o dígito verificador do PIS?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        O 11º dígito de um PIS é um "módulo matemático". Ele é calculado multiplicando os 10 primeiros dígitos da esquerda para a direita por pesos específicos (3, 2, 9, 8, 7, 6, 5, 4, 3, 2). A soma dos resultados é dividida por 11, e o resto da divisão define o dígito final. Nosso gerador de PIS implementa 100% dessa regra oficial.
+                                        O 11º dígito de um PIS é um &quot;módulo matemático&quot;. Ele é calculado multiplicando os 10 primeiros dígitos da esquerda para a direita por pesos específicos (3, 2, 9, 8, 7, 6, 5, 4, 3, 2). A soma dos resultados é dividida por 11, e o resto da divisão define o dígito final. Nosso gerador de PIS implementa 100% dessa regra oficial.
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-4">
                                     <AccordionTrigger>Como gerar PIS em lote para testes em massa?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        Nossa ferramenta possui uma aba dedicada de <strong>"Geração em Lote"</strong>. Com ela, você pode escolher a quantidade desejada de números de PIS/PASEP e NIS válidos e gerá-los todos de uma vez, copiando ou salvando com facilidade para utilizar em cargas de homologação e testes de banco de dados.
+                                        Nossa ferramenta possui uma aba dedicada de <strong>&quot;Geração em Lote&quot;</strong>. Com ela, você pode escolher a quantidade desejada de números de PIS/PASEP e NIS válidos e gerá-los todos de uma vez, copiando ou salvando com facilidade para utilizar em cargas de homologação e testes de banco de dados.
                                     </AccordionContent>
                                 </AccordionItem>
                                 <CodeExamplesAccordion

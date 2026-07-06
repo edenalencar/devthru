@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { ShieldCheck, Zap, Wrench, FileText, UserCircle } from "lucide-react"
+import { ShieldCheck, Zap, Wrench, FileText } from "lucide-react"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 
@@ -21,6 +21,13 @@ interface UpdateItem {
 }
 
 const updates: UpdateItem[] = [
+    {
+        date: "05 de Julho de 2026",
+        title: "Gerador de Placa Pix de Balcão",
+        description: "Lançamento do Gerador de Placa Pix de Balcão. Personalize displays de Pix para impressão física (A4) ou download (PNG/PDF) com seu logotipo, temas de cores, redes sociais e notas de rodapé.",
+        type: "feature",
+        version: "1.44.1"
+    },
     {
         date: "05 de Julho de 2026",
         title: "Novas Ferramentas Financeiras: Pix e Boleto",

@@ -60,8 +60,10 @@ const urls = [
 
     // Tools - Finance
     "https://devthru.com/tools/finance/boleto-generator",
+    "https://devthru.com/tools/finance/boleto-validator",
     "https://devthru.com/tools/finance/credit-card-generator",
     "https://devthru.com/tools/finance/iban-validator",
+    "https://devthru.com/tools/finance/pix-parser",
     "https://devthru.com/tools/finance/tax-calculator",
 
     // Tools - Image
@@ -74,7 +76,11 @@ const urls = [
     "https://devthru.com/tools/personal/address",
     "https://devthru.com/tools/personal/email",
     "https://devthru.com/tools/personal/lgpd-data",
-    "https://devthru.com/tools/personal/name"
+    "https://devthru.com/tools/personal/name",
+
+    // Blog
+    "https://devthru.com/blog/como-decodificar-boleto-bancario",
+    "https://devthru.com/blog/como-decodificar-pix-copia-e-cola"
 ];
 
 const key = process.env.INDEXNOW_KEY;

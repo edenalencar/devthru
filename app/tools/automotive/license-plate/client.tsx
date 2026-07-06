@@ -94,10 +94,10 @@ export function LicensePlatePage() {
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Car className="h-8 w-8 text-primary" />
-                            <h1 className="text-4xl font-bold">Gerador de Placas</h1>
+                            <h1 className="text-4xl font-bold">Gerador de Placa Mercosul e Antiga</h1>
                         </div>
                         <p className="text-lg text-muted-foreground">
-                            Gere placas de veículos nos padrões Mercosul e Antigo (Cinza), ou converta entre eles.
+                            Gere placas de veículos (carros, motos, caminhões) nos padrões Mercosul e Cinza para testes de sistemas, simulação de dados e homologação de APIs.
                         </p>
                     </div>
 
@@ -112,9 +112,9 @@ export function LicensePlatePage() {
                             <div className="grid gap-8 lg:grid-cols-2">
                                 <Card>
                                     <CardHeader>
-                                        <CardTitle>Configuração</CardTitle>
+                                        <CardTitle>Configuração da Placa</CardTitle>
                                         <CardDescription>
-                                            Escolha o padrão da placa
+                                            Selecione o padrão desejado para ambiente de homologação
                                         </CardDescription>
                                     </CardHeader>
                                     <CardContent className="space-y-4">
@@ -225,19 +225,32 @@ export function LicensePlatePage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Placas</CardTitle>
+                            <CardTitle>Gerador de Placa de Veículo para Desenvolvimento e QA</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
                                 <p>
-                                    O Gerador de Placas permite criar visualizações de placas de veículos nos padrões Mercosul (atual) e Cinza (antigo).
-                                    Além disso, a ferramenta oferece um conversor que mostra como uma placa do modelo antigo ficaria no novo padrão Mercosul.
+                                    Nossa ferramenta online foi criada para auxiliar analistas de testes, desenvolvedores e engenheiros de QA a simularem massa de dados de emplacamento veicular no padrão nacional. O gerador suporta o padrão atualizado <strong>Mercosul</strong> (carros e motos) e o padrão <strong>Cinza/Antigo</strong> de forma matemática para preenchimento de formulários de homologação e testes de banco de dados.
                                 </p>
-                                <p className="text-sm text-muted-foreground mt-4">
-                                    <strong>Nota:</strong> As placas geradas são apenas ilustrativas e não possuem validade legal.
+                                <p>
+                                    <strong>Importante:</strong> Esta ferramenta gera dados puramente lógicos e matemáticos para fins acadêmicos e de desenvolvimento de software. Não vendemos placas físicas, suportes, displays comerciais, placas de Pix ou placas de energia solar.
+                                </p>
+                                <p className="text-amber-600 dark:text-amber-400 text-sm">
+                                    <strong>Aviso de Uso:</strong> As sequências alfa-numéricas geradas são fictícias e aleatórias. Elas servem estritamente para simulação em ambientes locais de TI, sem qualquer vínculo com órgãos governamentais de trânsito.
                                 </p>
                             </div>
                             <div className="pt-4 border-t space-y-4">
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link href="/tools/automotive/chassi" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                            🚗 Gerador de Chassi (VIN)
+                                        </Link>
+                                        <Link href="/tools/automotive/renavam" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                            📋 Gerador de Renavam
+                                        </Link>
+                                    </div>
+                                </div>
                                 <div>
                                     <Label className="text-sm text-muted-foreground mb-2 block">Artigos Relacionados:</Label>
                                     <div className="flex flex-wrap gap-2">

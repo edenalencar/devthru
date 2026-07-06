@@ -104,6 +104,10 @@ const urls = [
     "https://www.devthru.com/blog/tutorial-como-criar-mcp-server-typescript",
     "https://www.devthru.com/blog/algoritmo-luhn-validacao-cartao-credito",
     "https://www.devthru.com/blog/ai-terminal-tools-gemini-cli-cursor-agentes",
+    "https://www.devthru.com/blog/como-decodificar-boleto-bancario",
+    "https://www.devthru.com/blog/como-decodificar-pix-copia-e-cola",
+    "https://www.devthru.com/tools/finance/boleto-validator",
+    "https://www.devthru.com/tools/finance/pix-parser"
 ];
 
 console.log(`Total de URLs a enviar: ${urls.length}`);

@@ -1,37 +1,36 @@
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
-import { PISPage } from './client'
+import { PixPlatePage } from './client'
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = 'Gerador de PIS Válido Online - Em Lote e Sem Anúncios'
-const description = 'Gere números de PIS/PASEP e NIS válidos em lote para ambiente de testes de software. Interface rápida, exemplos de código em várias linguagens e sem anúncios.'
+const title = 'Gerador de Placa Pix de Balcão para Imprimir Grátis'
+const description = 'Crie e imprima sua Placa Pix de balcão grátis. Personalize com QR Code, logotipo, nome, redes sociais e baixe em PDF de alta qualidade ou PNG.'
 
 export const metadata: Metadata = generateToolMetadata({
     title,
     description,
-    path: "/tools/documents/pis",
-    keywords: ["gerador de pis", "gerador pis válido", "pis pasep", "gerador de nis", "gerador de nit", "gerar pis aleatorio", "numero pis online", "gerar pis falso", "pis para testes", "validar pis", "dev tools"]
+    path: "/tools/finance/placa-pix",
+    keywords: ["gerador de placa pix", "placa pix para imprimir", "gerar placa pix gratis", "placa pix de balcao", "placa pix pdf", "qr code pix", "design placa pix", "receber por pix", "dev tools"]
 })
 
 export default function Page() {
     return (
         <>
-
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Gerador de PIS/PASEP e NIS/NIT Online Grátis - DevThru",
+                            "name": "Gerador de Placa Pix Online Grátis - DevThru",
                             "operatingSystem": "Web",
-                            "applicationCategory": "DeveloperApplication",
+                            "applicationCategory": "FinancialApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
-                            "description": "Gere e valide números de PIS, PASEP, NIS e NIT válidos matematicamente em 1 clique para testes de software, QA e automação de sistemas."
+                            "description": "Gere placas personalizadas do Pix prontas para impressão física ou download em alta qualidade (PDF e PNG) para o seu comércio."
                         },
                         {
                             "@type": "BreadcrumbList",
@@ -51,21 +50,21 @@ export default function Page() {
                                 {
                                     "@type": "ListItem",
                                     "position": 3,
-                                    "name": "Documentos",
-                                    "item": "https://www.devthru.com/tools/documents"
+                                    "name": "Financeiro",
+                                    "item": "https://www.devthru.com/tools/finance"
                                 },
                                 {
                                     "@type": "ListItem",
                                     "position": 4,
-                                    "name": "PIS/PASEP",
-                                    "item": "https://www.devthru.com/tools/documents/pis"
+                                    "name": "Placa Pix",
+                                    "item": "https://www.devthru.com/tools/finance/placa-pix"
                                 }
                             ]
                         }
                     ]
                 }}
             />
-            <PISPage />
+            <PixPlatePage />
         </>
     )
 }
