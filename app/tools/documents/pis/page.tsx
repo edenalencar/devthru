@@ -10,7 +10,23 @@ export const metadata: Metadata = generateToolMetadata({
     title,
     description,
     path: "/tools/documents/pis",
-    keywords: ["gerador de pis", "gerador pis válido", "pis pasep", "gerador de nis", "gerador de nit", "gerar pis aleatorio", "numero pis online", "gerar pis falso", "pis para testes", "validar pis", "dev tools"]
+    keywords: [
+        "gerador de pis", 
+        "gerador de pis online", 
+        "gerador de pis válido", 
+        "gerador de pis pasep", 
+        "gerador de numero pis", 
+        "gerador de pis ficticio", 
+        "gerador de pis para teste", 
+        "gerador de nis", 
+        "gerador de nit", 
+        "gerar pis aleatorio", 
+        "numero pis online", 
+        "gerar pis falso", 
+        "pis para testes", 
+        "validar pis", 
+        "dev tools"
+    ]
 })
 
 export default function Page() {
