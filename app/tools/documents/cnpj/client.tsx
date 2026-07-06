@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ToolResult } from "@/components/tools/tool-result"
 import { generateCNPJ, validateCNPJ, formatCNPJ } from "@/lib/utils/validators/cnpj"
 import { Code2, CheckCircle2, XCircle } from "lucide-react"
@@ -139,6 +140,8 @@ export function CNPJGeneratorPage() {
     const [generatedCNPJ, setGeneratedCNPJ] = useState("")
     const [formatted, setFormatted] = useState(true)
     const [alphanumeric, setAlphanumeric] = useState(false)
+    const [establishmentType, setEstablishmentType] = useState<"matriz" | "filial" | "random">("random")
+    const [valid, setValid] = useState<boolean>(true)
     const [bulkQuantity, setBulkQuantity] = useState<number>(5)
     const [validationInput, setValidationInput] = useState("")
     const [validationResult, setValidationResult] = useState<boolean | null>(null)
@@ -146,7 +149,7 @@ export function CNPJGeneratorPage() {
     const { isPro, limit } = useUser()
 
     const handleGenerate = () => {
-        const cnpj = generateCNPJ(alphanumeric)
+        const cnpj = generateCNPJ({ alphanumeric, establishmentType, valid })
         setGeneratedCNPJ(formatted ? formatCNPJ(cnpj) : cnpj)
     }
 
@@ -176,7 +179,7 @@ export function CNPJGeneratorPage() {
                             <CardHeader>
                                 <CardTitle>Gerar CNPJ</CardTitle>
                                 <CardDescription>
-                                    Gere um CNPJ válido aleatório
+                                    Gere um CNPJ aleatório (Tradicional ou Alfanumérico)
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
@@ -202,6 +205,35 @@ export function CNPJGeneratorPage() {
                                         />
                                         <Label htmlFor="alphanumeric">Gerar CNPJ Alfanumérico</Label>
                                     </div>
+
+                                    <div className="grid grid-cols-2 gap-4 pt-2">
+                                        <div className="space-y-2">
+                                            <Label>Estabelecimento</Label>
+                                            <Select value={establishmentType} onValueChange={(val: "matriz" | "filial" | "random") => setEstablishmentType(val)}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Selecione o tipo" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="random">Aleatório</SelectItem>
+                                                    <SelectItem value="matriz">Matriz (/0001)</SelectItem>
+                                                    <SelectItem value="filial">Filial (Outros)</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label>Situação</Label>
+                                            <Select value={valid ? "valido" : "invalido"} onValueChange={(val) => setValid(val === "valido")}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Selecione a situação" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="valido">Válido</SelectItem>
+                                                    <SelectItem value="invalido">Inválido</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <Button onClick={handleGenerate} className="w-full" size="lg">
@@ -213,8 +245,8 @@ export function CNPJGeneratorPage() {
                                         result={generatedCNPJ}
                                         toolId="cnpj"
                                         toolName="CNPJ"
-                                        input={{ formatted, alphanumeric }}
-                                        successMessage="CNPJ válido gerado com sucesso"
+                                        input={{ formatted, alphanumeric, establishmentType, valid }}
+                                        successMessage={valid ? "CNPJ válido gerado com sucesso" : "CNPJ inválido gerado com sucesso para testes de falha"}
                                     />
                                 )}
                             </CardContent>
@@ -231,7 +263,7 @@ export function CNPJGeneratorPage() {
                                 <CardContent>
                                     <BulkGenerator
                                         generatorFn={() => {
-                                            const cnpj = generateCNPJ(alphanumeric)
+                                            const cnpj = generateCNPJ({ alphanumeric, establishmentType, valid })
                                             return formatted ? formatCNPJ(cnpj) : cnpj
                                         }}
                                         label="CNPJs"
@@ -302,13 +334,19 @@ export function CNPJGeneratorPage() {
                             <CardContent className="pt-6">
                                 <ConfigurationManager
                                     toolId="cnpj"
-                                    currentConfig={{ formatted, alphanumeric, quantity: bulkQuantity }}
+                                    currentConfig={{ formatted, alphanumeric, establishmentType, valid, quantity: bulkQuantity }}
                                     onLoadConfig={(config) => {
                                         if (config.formatted !== undefined) {
                                             setFormatted(config.formatted)
                                         }
                                         if (config.alphanumeric !== undefined) {
                                             setAlphanumeric(config.alphanumeric)
+                                        }
+                                        if (config.establishmentType !== undefined) {
+                                            setEstablishmentType(config.establishmentType)
+                                        }
+                                        if (config.valid !== undefined) {
+                                            setValid(config.valid)
                                         }
                                         if (config.quantity) {
                                             setBulkQuantity(config.quantity)
@@ -348,19 +386,31 @@ export function CNPJGeneratorPage() {
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-3">
+                                    <AccordionTrigger>Qual a diferença entre CNPJ Matriz e Filial?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        O CNPJ possui 14 dígitos. Os dígitos da 9ª à 12ª posição (logo após a barra) identificam a ordem do estabelecimento. A matriz de uma empresa sempre possui o código de ordem `0001` (ex: `/0001-xx`). As filiais da mesma empresa possuem ordens subsequentes como `0002`, `0003` e assim por diante. Nosso gerador permite selecionar explicitamente se você deseja obter um CNPJ de matriz ou filial para seus cenários de teste de faturamento.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-4">
+                                    <AccordionTrigger>Por que gerar um CNPJ inválido?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Ao construir formulários e integrações de APIs, é fundamental validar se o sistema rejeita corretamente dados corrompidos. Com a nossa ferramenta, você pode gerar um CNPJ inválido estruturalmente (com dígitos verificadores incorretos) para testar os caminhos de erro das suas validações e garantir a blindagem do seu código.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-5">
                                     <AccordionTrigger>Como é feito o cálculo do dígito verificador do CNPJ?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
                                         O CNPJ possui 14 dígitos, onde os dígitos 13 e 14 são os verificadores. O cálculo utiliza um módulo matemático com pesos específicos aplicados aos 12 primeiros caracteres. Na versão alfanumérica, as letras são convertidas para seus valores numéricos correspondentes (ASCII - 48).
                                     </AccordionContent>
                                 </AccordionItem>
-                                <AccordionItem value="item-4">
+                                <AccordionItem value="item-6">
                                     <AccordionTrigger>Como validar o CNPJ Alfanumérico em Java, Python ou JavaScript?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground prose prose-sm max-w-none dark:prose-invert">
                                         <p>
                                             De acordo com a norma da Receita Federal, a validação do CNPJ alfanumérico mantém os mesmos pesos do cálculo tradicional. A única diferença é a conversão das letras nas 12 primeiras posições para números, utilizando a fórmula <code>Valor = Código ASCII do caractere - 48</code>.
                                         </p>
                                         <p>
-                                            Nossos exemplos de código abaixo (em Java, Python, JavaScript e C#) já contemplam essa regra de forma otimizada. Por exemplo, em Java/C#, a conversão é feita nativamente subtraindo o char de '0' (ou ASCII 48), garantindo que tanto números ('0' a '9') quanto letras ('A' a 'Z') tenham os valores corretos.
+                                            Nossos exemplos de código abaixo (em Java, Python, JavaScript e C#) já contemplam essa regra de forma otimizada. Por exemplo, em Java/C#, a conversão é feita nativamente subtraindo o char de &apos;0&apos; (ou ASCII 48), garantindo que tanto números (&apos;0&apos; a &apos;9&apos;) quanto letras (&apos;A&apos; a &apos;Z&apos;) tenham os valores corretos.
                                         </p>
                                     </AccordionContent>
                                 </AccordionItem>
@@ -375,15 +425,25 @@ export function CNPJGeneratorPage() {
                             </Accordion>
 
                             <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Link href="/tools/documents/cpf" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                        📋 Gerador de CPF
+                                    </Link>
+                                    <Link href="/tools/documents/inscricao-estadual" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                        🏢 Gerador de Inscrição Estadual (IE)
+                                    </Link>
+                                </div>
+
                                 <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     <Link href="/blog/validacao-cnpj-algoritmo-completo" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
                                         📖 Artigo: Como Validar CNPJ (Algoritmo Completo)
                                     </Link>
-                                    <Link href="/guides/validation/cnpj/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors">
+                                    <Link href="/guides/validation/cnpj/python" className="text-xs px-2 py-1 bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors">
                                         Como validar CNPJ em Python
                                     </Link>
-                                    <Link href="/guides/validation/cnpj/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-950/40 dark:text-yellow-300 rounded hover:bg-yellow-200 dark:hover:bg-yellow-200/60 transition-colors">
+                                    <Link href="/guides/validation/cnpj/javascript" className="text-xs px-2 py-1 bg-yellow-50 text-yellow-700 dark:bg-yellow-950/40 dark:text-yellow-300 rounded hover:bg-yellow-100 dark:hover:bg-yellow-900/60 transition-colors">
                                         Como validar CNPJ em JavaScript
                                     </Link>
                                 </div>
