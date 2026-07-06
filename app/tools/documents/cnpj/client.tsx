@@ -246,7 +246,7 @@ export function CNPJGeneratorPage() {
                                         toolId="cnpj"
                                         toolName="CNPJ"
                                         input={{ formatted, alphanumeric, establishmentType, valid }}
-                                        successMessage={valid ? "CNPJ válido gerado com sucesso" : "CNPJ inválido gerado com sucesso para testes de falha"}
+                                        successMessage={validateCNPJ(generatedCNPJ) ? "CNPJ válido gerado com sucesso" : "CNPJ inválido gerado com sucesso para testes de falha"}
                                     />
                                 )}
                             </CardContent>

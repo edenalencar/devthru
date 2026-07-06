@@ -242,7 +242,7 @@ export function CPFGeneratorPage() {
                                             toolId="cpf"
                                             toolName="CPF"
                                             input={{ formatted, stateRegion, valid }}
-                                            successMessage={valid ? "CPF válido gerado com sucesso" : "CPF inválido gerado com sucesso para testes de falha"}
+                                            successMessage={validateCPF(generatedCPF) ? "CPF válido gerado com sucesso" : "CPF inválido gerado com sucesso para testes de falha"}
                                             isPro={isPro}
                                         />
                                     )}
