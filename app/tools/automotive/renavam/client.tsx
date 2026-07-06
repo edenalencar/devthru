@@ -6,13 +6,20 @@ import { Navbar } from "@/components/layout/navbar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { Shield, RefreshCw, Copy } from "lucide-react"
-import { toast } from "sonner"
+import { Shield, RefreshCw } from "lucide-react"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+
+import { ToolResult } from "@/components/tools/tool-result"
+import { BulkGenerator } from "@/components/tools/bulk-generator"
+import { ConfigurationManager } from "@/components/tools/configuration-manager"
+import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
+import { generateRenavam, formatRenavam } from "@/lib/utils/validators/renavam"
+import Link from "next/link"
 
 const RENAVAM_JS_CODE = `function validateRenavam(renavam) {
   if (!renavam) return false;
@@ -179,30 +186,16 @@ const RENAVAM_JAVA_CODE = `public class RenavamValidator {
 }`;
 
 export function RenavamGeneratorPage() {
-    const [renavam, setRenavam] = useState("")
+    const [renavam, setRenavam] = useState<string>(() => formatRenavam(generateRenavam()))
+    const [formatted, setFormatted] = useState(true)
+    const [activeTab, setActiveTab] = useState<'single' | 'bulk'>('single')
+    const [bulkQuantity, setBulkQuantity] = useState<number>(5)
 
-    const generateRenavam = () => {
-        const random = Math.floor(Math.random() * 9999999999).toString().padStart(10, '0')
-        const renavamWithoutDigit = random.substring(0, 10)
+    const { isPro, limit } = useUser()
 
-        const renavamArr = renavamWithoutDigit.split("").reverse()
-        let sum = 0
-        for (let i = 0; i < 8; i++) {
-            sum += parseInt(renavamArr[i]) * (i + 2)
-        }
-        sum += parseInt(renavamArr[8]) * 2
-        sum += parseInt(renavamArr[9]) * 3
-
-        const mod = sum % 11
-        const digit = 11 - mod
-        const finalDigit = digit >= 10 ? 0 : digit
-
-        setRenavam(renavamWithoutDigit + finalDigit)
-    }
-
-    const copyToClipboard = (text: string) => {
-        navigator.clipboard.writeText(text)
-        toast.success("Copiado para a área de transferência")
+    const handleGenerate = (currentFormatted = formatted) => {
+        const code = generateRenavam()
+        setRenavam(currentFormatted ? formatRenavam(code) : code)
     }
 
     return (
@@ -223,46 +216,118 @@ export function RenavamGeneratorPage() {
                         </p>
                     </div>
 
-                    <div className="grid gap-8 lg:grid-cols-2">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Gerar RENAVAM</CardTitle>
-                                <CardDescription>
-                                    Gera um número de RENAVAM válido com 11 dígitos
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <Button onClick={generateRenavam} className="w-full" size="lg">
-                                    <RefreshCw className="mr-2 h-4 w-4" />
-                                    Gerar RENAVAM
-                                </Button>
-                            </CardContent>
-                        </Card>
+                    {/* Tabs */}
+                    <div className="flex space-x-2 mb-6">
+                        <Button
+                            variant={activeTab === 'single' ? 'default' : 'outline'}
+                            onClick={() => setActiveTab('single')}
+                        >
+                            Gerar Único
+                        </Button>
+                        <Button
+                            variant={activeTab === 'bulk' ? 'default' : 'outline'}
+                            onClick={() => setActiveTab('bulk')}
+                        >
+                            Gerar em Massa
+                        </Button>
+                    </div>
 
+                    <div className="grid gap-8 lg:grid-cols-2">
+                        {activeTab === 'single' ? (
+                            /* Single Generator Card */
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Gerar RENAVAM</CardTitle>
+                                    <CardDescription>
+                                        Gera um número de RENAVAM válido com 11 dígitos
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent className="space-y-4">
+                                    <div className="flex items-center space-x-2">
+                                        <input
+                                            type="checkbox"
+                                            id="formatted"
+                                            checked={formatted}
+                                            onChange={(e) => {
+                                                setFormatted(e.target.checked)
+                                                handleGenerate(e.target.checked)
+                                            }}
+                                            className="h-4 w-4 rounded border-gray-300"
+                                        />
+                                        <Label htmlFor="formatted">Formatar RENAVAM (XXXXXXXXXX-X)</Label>
+                                    </div>
+
+                                    {renavam && (
+                                        <ToolResult
+                                            result={renavam}
+                                            toolId="renavam"
+                                            toolName="RENAVAM"
+                                            input={{ formatted }}
+                                            successMessage="RENAVAM válido gerado com sucesso"
+                                        />
+                                    )}
+
+                                    <Button onClick={() => handleGenerate()} className="w-full" size="lg">
+                                        <RefreshCw className="mr-2 h-4 w-4" />
+                                        Gerar RENAVAM
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        ) : (
+                            /* Bulk Generator Card */
+                            <Card className="lg:col-span-2">
+                                <CardHeader>
+                                    <CardTitle>Geração em Massa</CardTitle>
+                                    <CardDescription>
+                                        {getPlanLimitMessage(limit)}
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <BulkGenerator
+                                        generatorFn={() => {
+                                            const code = generateRenavam()
+                                            return formatted ? formatRenavam(code) : code
+                                        }}
+                                        label="RENAVAMs"
+                                        limit={limit}
+                                        isPro={isPro}
+                                        quantity={bulkQuantity}
+                                        onQuantityChange={setBulkQuantity}
+                                    />
+                                    <div className="flex items-center space-x-2 mt-4">
+                                        <input
+                                            type="checkbox"
+                                            id="formatted-bulk"
+                                            checked={formatted}
+                                            onChange={(e) => setFormatted(e.target.checked)}
+                                            className="h-4 w-4 rounded border-gray-300"
+                                        />
+                                        <Label htmlFor="formatted-bulk">Formatar RENAVAMs</Label>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        )}
+                    </div>
+
+                    {/* Configuration Manager */}
+                    <div className="mt-8">
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Resultado</CardTitle>
-                                <CardDescription>
-                                    RENAVAM gerado
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                {renavam ? (
-                                    <div className="flex flex-col items-center justify-center p-8 border rounded-lg bg-muted/50">
-                                        <div className="text-4xl font-mono font-bold tracking-wider mb-6">
-                                            {renavam}
-                                        </div>
-                                        <Button variant="outline" onClick={() => copyToClipboard(renavam)}>
-                                            <Copy className="mr-2 h-4 w-4" />
-                                            Copiar
-                                        </Button>
-                                    </div>
-                                ) : (
-                                    <div className="flex flex-col items-center justify-center h-48 text-muted-foreground border rounded-lg border-dashed">
-                                        <Shield className="h-12 w-12 mb-2 opacity-20" />
-                                        <p>Clique em gerar para começar</p>
-                                    </div>
-                                )}
+                            <CardContent className="pt-6">
+                                <ConfigurationManager
+                                    toolId="renavam"
+                                    currentConfig={{ formatted, activeTab, quantity: bulkQuantity }}
+                                    onLoadConfig={(config) => {
+                                        if (config.formatted !== undefined) {
+                                            setFormatted(config.formatted)
+                                        }
+                                        if (config.activeTab) {
+                                            setActiveTab(config.activeTab)
+                                        }
+                                        if (config.quantity) {
+                                            setBulkQuantity(config.quantity)
+                                        }
+                                    }}
+                                />
                             </CardContent>
                         </Card>
                     </div>
@@ -275,10 +340,10 @@ export function RenavamGeneratorPage() {
                         <CardContent className="space-y-6">
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
                                 <p>
-                                    O RENAVAM (Registro Nacional de Veículos Automotores) é um código único de 11 dígitos atribuído a cada veículo registrado no Brasil. Este número é essencial para identificação do veículo em transações, multas e documentação.
+                                    O RENAVAM (Registro Nacional de Veículos Automotores) é um código único de 11 dígitos atribuído a cada veículo registrado no Brasil. Este número é essencial para identificação do veículo em transações, multas, licenciamento e documentação do DETRAN.
                                 </p>
                                 <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Nota:</strong> Os números gerados são matematicamente válidos mas fictícios, não correspondendo a veículos reais. Use apenas para testes de software.
+                                    <strong>Nota:</strong> Os números gerados por esta ferramenta são matematicamente válidos mas fictícios, não correspondendo a veículos reais no cadastro da SENATRAN. Use apenas para homologação e testes de software.
                                 </p>
                             </div>
 
@@ -306,6 +371,16 @@ export function RenavamGeneratorPage() {
                             </Accordion>
 
                             <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Link href="/tools/automotive/license-plate" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                        🚗 Gerador de Placa Mercosul
+                                    </Link>
+                                    <Link href="/tools/automotive/chassi" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                        🔍 Gerador de Chassi (VIN)
+                                    </Link>
+                                </div>
+
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
                                     title="Gerador de RENAVAM Online"
@@ -317,8 +392,6 @@ export function RenavamGeneratorPage() {
                     <RelatedTools currentToolSlug="renavam" category="automotive" />
                 </div>
             </main>
-
         </div>
     )
 }
-
