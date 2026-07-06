@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 import { ToolResult } from "@/components/tools/tool-result"
 import { generateCPF, validateCPF, formatCPF } from "@/lib/utils/validators/cpf"
@@ -120,6 +121,8 @@ const CPF_JAVA_CODE = `public class CPFValidator {
 export function CPFGeneratorPage() {
     const [generatedCPF, setGeneratedCPF] = useState("")
     const [formatted, setFormatted] = useState(true)
+    const [stateRegion, setStateRegion] = useState<string>("random")
+    const [valid, setValid] = useState<boolean>(true)
     const [validationInput, setValidationInput] = useState("")
     const [validationResult, setValidationResult] = useState<boolean | null>(null)
     const [activeTab, setActiveTab] = useState<'single' | 'bulk'>('single')
@@ -128,7 +131,7 @@ export function CPFGeneratorPage() {
     const { isPro, limit } = useUser()
 
     const handleGenerate = () => {
-        const cpf = generateCPF()
+        const cpf = generateCPF({ stateRegion, valid })
         setGeneratedCPF(formatted ? formatCPF(cpf) : cpf)
     }
 
@@ -177,7 +180,7 @@ export function CPFGeneratorPage() {
                                 <CardHeader>
                                     <CardTitle>Gerar CPF</CardTitle>
                                     <CardDescription>
-                                        Gere um CPF válido aleatório
+                                        Gere um CPF válido ou inválido por região/estado
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
@@ -192,6 +195,43 @@ export function CPFGeneratorPage() {
                                         <Label htmlFor="formatted">Formatar CPF (xxx.xxx.xxx-xx)</Label>
                                     </div>
 
+                                    <div className="grid grid-cols-2 gap-4 pt-2">
+                                        <div className="space-y-2">
+                                            <Label>Estado / Região Fiscal</Label>
+                                            <Select value={stateRegion} onValueChange={setStateRegion}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Selecione o estado" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="random">Aleatório (Qualquer)</SelectItem>
+                                                    <SelectItem value="8">SP (Região 8)</SelectItem>
+                                                    <SelectItem value="7">RJ, ES (Região 7)</SelectItem>
+                                                    <SelectItem value="6">MG (Região 6)</SelectItem>
+                                                    <SelectItem value="9">PR, SC (Região 9)</SelectItem>
+                                                    <SelectItem value="0">RS (Região 0)</SelectItem>
+                                                    <SelectItem value="5">BA, SE (Região 5)</SelectItem>
+                                                    <SelectItem value="4">AL, PB, PE, RN (Região 4)</SelectItem>
+                                                    <SelectItem value="3">CE, MA, PI (Região 3)</SelectItem>
+                                                    <SelectItem value="2">AC, AM, AP, PA, RO, RR (Região 2)</SelectItem>
+                                                    <SelectItem value="1">DF, GO, MS, MT, TO (Região 1)</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label>Situação do CPF</Label>
+                                            <Select value={valid ? "valido" : "invalido"} onValueChange={(val) => setValid(val === "valido")}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Selecione a situação" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="valido">Válido</SelectItem>
+                                                    <SelectItem value="invalido">Inválido</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                    </div>
+
                                     <Button onClick={handleGenerate} className="w-full" size="lg">
                                         Gerar CPF
                                     </Button>
@@ -201,8 +241,8 @@ export function CPFGeneratorPage() {
                                             result={generatedCPF}
                                             toolId="cpf"
                                             toolName="CPF"
-                                            input={{ formatted }}
-                                            successMessage="CPF válido gerado com sucesso"
+                                            input={{ formatted, stateRegion, valid }}
+                                            successMessage={valid ? "CPF válido gerado com sucesso" : "CPF inválido gerado com sucesso para testes de falha"}
                                             isPro={isPro}
                                         />
                                     )}
@@ -218,9 +258,46 @@ export function CPFGeneratorPage() {
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                        <div className="space-y-2">
+                                            <Label>Estado / Região Fiscal do Lote</Label>
+                                            <Select value={stateRegion} onValueChange={setStateRegion}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Selecione o estado" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="random">Aleatório (Qualquer)</SelectItem>
+                                                    <SelectItem value="8">SP (Região 8)</SelectItem>
+                                                    <SelectItem value="7">RJ, ES (Região 7)</SelectItem>
+                                                    <SelectItem value="6">MG (Região 6)</SelectItem>
+                                                    <SelectItem value="9">PR, SC (Região 9)</SelectItem>
+                                                    <SelectItem value="0">RS (Região 0)</SelectItem>
+                                                    <SelectItem value="5">BA, SE (Região 5)</SelectItem>
+                                                    <SelectItem value="4">AL, PB, PE, RN (Região 4)</SelectItem>
+                                                    <SelectItem value="3">CE, MA, PI (Região 3)</SelectItem>
+                                                    <SelectItem value="2">AC, AM, AP, PA, RO, RR (Região 2)</SelectItem>
+                                                    <SelectItem value="1">DF, GO, MS, MT, TO (Região 1)</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label>Situação do Lote</Label>
+                                            <Select value={valid ? "valido" : "invalido"} onValueChange={(val) => setValid(val === "valido")}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Selecione a situação" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="valido">Válido</SelectItem>
+                                                    <SelectItem value="invalido">Inválido</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                    </div>
+
                                     <BulkGenerator
                                         generatorFn={() => {
-                                            const cpf = generateCPF()
+                                            const cpf = generateCPF({ stateRegion, valid })
                                             return formatted ? formatCPF(cpf) : cpf
                                         }}
                                         label="CPFs"
@@ -307,6 +384,8 @@ export function CPFGeneratorPage() {
                                     currentConfig={{
                                         formatted,
                                         activeTab,
+                                        stateRegion,
+                                        valid,
                                         quantity: bulkQuantity
                                     }}
                                     onLoadConfig={(config) => {
@@ -315,6 +394,12 @@ export function CPFGeneratorPage() {
                                         }
                                         if (config.activeTab) {
                                             setActiveTab(config.activeTab)
+                                        }
+                                        if (config.stateRegion) {
+                                            setStateRegion(config.stateRegion)
+                                        }
+                                        if (config.valid !== undefined) {
+                                            setValid(config.valid)
                                         }
                                         if (config.quantity) {
                                             setBulkQuantity(config.quantity)
@@ -349,9 +434,21 @@ export function CPFGeneratorPage() {
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-2">
+                                    <AccordionTrigger>É possível gerar CPF de um estado/região específico?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        <strong>Sim!</strong> No Brasil, o nono dígito do CPF (o número que antecede o traço e os dois dígitos verificadores) indica a Região Fiscal onde o CPF foi emitido. Por exemplo, CPFs emitidos em São Paulo (SP) possuem o nono dígito igual a <strong>8</strong>, enquanto no Rio de Janeiro (RJ) e Espírito Santo (ES) possuem o nono dígito igual a <strong>7</strong>. Selecionando o estado no nosso gerador, você obtém códigos realistas dessa região.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger>Por que gerar um CPF inválido?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Durante o desenvolvimento de validações de formulários e APIs, é essencial verificar se o seu sistema rejeita de forma correta dados errados ou corrompidos. Com a nossa ferramenta, você pode gerar um CPF inválido matematicamente (com dígitos verificadores incorretos) para rodar testes negativos no fluxo da sua aplicação.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-4">
                                     <AccordionTrigger>Como funciona o cálculo do dígito verificador do CPF?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        O CPF possui 11 dígitos, sendo os dois últimos os dígitos verificadores (DV1 e DV2). Eles são calculados por meio de uma operação matemática ("módulo 11") com pesos decrescentes baseados nos 9 dígitos iniciais. Nosdo gerador calcula esses dígitos automaticamente segundo as regras oficiais da Receita Federal.
+                                        O CPF possui 11 dígitos, sendo os dois últimos os dígitos verificadores (DV1 e DV2). Eles são calculados por meio de uma operação matemática (&quot;módulo 11&quot;) com pesos decrescentes baseados nos 9 dígitos iniciais. Nosso gerador calcula esses dígitos automaticamente segundo as regras oficiais da Receita Federal.
                                     </AccordionContent>
                                 </AccordionItem>
                                 <CodeExamplesAccordion
@@ -365,15 +462,27 @@ export function CPFGeneratorPage() {
                             </Accordion>
 
                             <div className="pt-4 border-t">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Link href="/tools/documents/rg" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                        🪪 Gerador de RG (Registro Geral)
+                                    </Link>
+                                    <Link href="/tools/documents/cnpj" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                        🏢 Gerador de CNPJ
+                                    </Link>
+                                    <Link href="/tools/personal/person" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                        👤 Gerador de Pessoas (Dados Completos)
+                                    </Link>
+                                </div>
                                 <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     <Link href="/blog/validacao-cpf-algoritmo-completo" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
                                         📖 Artigo: Como Validar CPF (Algoritmo Completo)
                                     </Link>
-                                    <Link href="/guides/validation/cpf/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors">
+                                    <Link href="/guides/validation/cpf/python" className="text-xs px-2 py-1 bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors">
                                         Como validar CPF em Python
                                     </Link>
-                                    <Link href="/guides/validation/cpf/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-950/40 dark:text-yellow-300 rounded hover:bg-yellow-200 dark:hover:bg-yellow-200/60 transition-colors">
+                                    <Link href="/guides/validation/cpf/javascript" className="text-xs px-2 py-1 bg-yellow-50 text-yellow-700 dark:bg-yellow-950/40 dark:text-yellow-300 rounded hover:bg-yellow-100 dark:hover:bg-yellow-900/60 transition-colors">
                                         Como validar CPF em JavaScript
                                     </Link>
                                 </div>
