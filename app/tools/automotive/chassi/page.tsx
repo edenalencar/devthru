@@ -1,16 +1,15 @@
 import { JsonLd } from "@/components/seo/json-ld"
-import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 
 import { ChassiGeneratorPage } from "./client"
 
-const title = "Gerador de Chassi (VIN) Válido - Geração em Lote [Grátis]"
-const description = "Gere números de Chassi (VIN) válidos de forma aleatória em lote ou individualmente para testes de software, QA e homologação. Rápido e sem cadastro."
+const title = "Gerador de Chassi (VIN) Online Válido - Em Lote (Grátis)"
+const description = "Gere números de Chassi (VIN) válidos de forma aleatória em lote ou individualmente para testes de software, QA e homologação de APIs. Rápido e sem cadastro."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Chassi (VIN) Válido - Geração em Lote [Grátis]",
-    description: "Gere números de Chassi (VIN) válidos de forma aleatória em lote ou individualmente para testes de software, QA e homologação. Rápido e sem cadastro.",
+    title,
+    description,
     path: "/tools/automotive/chassi",
     keywords: ["gerador de chassi",
         "gerar chassi",
@@ -20,7 +19,11 @@ export const metadata: Metadata = generateToolMetadata({
         "chassi válido",
         "VIN generator",
         "número de chassi",
-        "chassi veicular",]
+        "chassi veicular",
+        "gerador de placa e chassi",
+        "gerador de chassi moto",
+        "gerar chassi online",
+    ]
 })
 
 export default function Page() {

@@ -316,6 +316,17 @@ export function PISPage() {
 
                             <div className="pt-4 border-t space-y-4">
                                 <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link href="/tools/documents/cpf" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                            📋 Gerador de CPF
+                                        </Link>
+                                        <Link href="/tools/documents/cnpj" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                            🏢 Gerador de CNPJ
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div>
                                     <Label className="text-sm text-muted-foreground mb-2 block">Artigos Relacionados:</Label>
                                     <div className="flex flex-wrap gap-2">
                                         <Link href="/blog/como-funciona-algoritmo-validacao-pis" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">

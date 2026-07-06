@@ -1,5 +1,4 @@
 import { JsonLd } from "@/components/seo/json-ld"
-import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
 

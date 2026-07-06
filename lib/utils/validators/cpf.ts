@@ -1,9 +1,23 @@
+export interface GenerateCPFOptions {
+    stateRegion?: string
+    valid?: boolean
+}
+
 /**
- * Gera um CPF válido
+ * Gera um CPF válido ou inválido (opcionalmente filtrado por região fiscal)
  */
-export function generateCPF(): string {
+export function generateCPF(options: GenerateCPFOptions = {}): string {
+    const { stateRegion = "random", valid = true } = options
+    
     const randomDigits = (): number[] => {
-        return Array.from({ length: 9 }, () => Math.floor(Math.random() * 10))
+        const base = Array.from({ length: 8 }, () => Math.floor(Math.random() * 10))
+        let regionDigit = Math.floor(Math.random() * 10)
+        
+        if (stateRegion !== "random" && !isNaN(parseInt(stateRegion))) {
+            regionDigit = parseInt(stateRegion)
+        }
+        
+        return [...base, regionDigit]
     }
 
     const calculateDigit = (digits: number[], factor: number): number => {
@@ -16,7 +30,12 @@ export function generateCPF(): string {
 
     const digits = randomDigits()
     const digit1 = calculateDigit(digits, 10)
-    const digit2 = calculateDigit([...digits, digit1], 11)
+    let digit2 = calculateDigit([...digits, digit1], 11)
+
+    if (!valid) {
+        // Corrupt digit2 to make it invalid
+        digit2 = (digit2 + 1) % 10
+    }
 
     return [...digits, digit1, digit2].join("")
 }
@@ -67,3 +86,4 @@ export function generateMultipleCPFs(count: number, formatted: boolean = false):
         return formatted ? formatCPF(cpf) : cpf
     })
 }
+
