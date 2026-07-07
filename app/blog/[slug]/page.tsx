@@ -10,6 +10,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { Calendar, Clock, ArrowRight, Tag } from "lucide-react"
 import { tools } from "@/lib/tools-list"
 import { CopyCodeHandler } from "@/components/blog/copy-code-handler"
+import { BlogFeedback } from "@/components/blog/blog-feedback"
 
 interface PageProps {
     params: Promise<{
@@ -208,6 +209,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                                 ))}
                             </div>
                         )}
+
+                        <BlogFeedback postSlug={post.slug} />
 
                     </article>
 
