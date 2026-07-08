@@ -1,0 +1,43 @@
+# DevThru
+
+> Dados rápidos pra viagem. Plataforma moderna e gratuita de ferramentas úteis para desenvolvedores.
+
+O DevThru foi criado para fornecer utilitários rápidos e sem atrito, incluindo validação e geração de dados cadastrais fictícios brasileiros, formatação de arquivos e codificação.
+
+## URLs Principais
+- Home: https://www.devthru.com (Catálogo e listagem central de ferramentas)
+- Ferramentas Fiscais: https://www.devthru.com/ferramentas-fiscais (NF-e, CT-e, MDF-e, CNPJ, CNAE, Inscrição Estadual)
+- Documentação da API: https://www.devthru.com/docs/api (API REST para automação de testes de dados)
+- Guias de Integração: https://www.devthru.com/guides (Tutoriais passo a passo com algoritmos em várias linguagens)
+- Blog: https://www.devthru.com/blog (Guias práticos e artigos sobre engenharia de software e testes de QA)
+
+## Principais Ferramentas Gratuitas (Sem Login)
+
+### Documentos
+- Gerador e Validador de CPF: /tools/documents/cpf
+- Gerador e Validador de CNPJ: /tools/documents/cnpj
+- Gerador e Validador de RG: /tools/documents/rg
+- Gerador de CNH: /tools/documents/cnh
+- Gerador de PIS/PASEP: /tools/documents/pis
+- Gerador de Título de Eleitor: /tools/documents/titulo-eleitor
+
+### Utilitários
+- Codificador e Decodificador Base64: /tools/utilities/base64
+- JSON Formatter e Validator: /tools/utilities/json
+- Gerador de QR Code: /tools/utilities/qrcode
+- Gerador de Senhas Seguras: /tools/utilities/password
+- Gerador de UUID (v4/v7): /tools/utilities/uuid
+- Validador de XML: /tools/utilities/xml-validator
+
+### Finanças
+- Gerador de Cartão de Crédito (Algoritmo de Luhn): /tools/finance/credit-card-generator
+- Decodificador de Boleto Bancário: /tools/finance/boleto-validator
+- Calculadora de DAS (Simples Nacional): /tools/finance/tax-calculator
+
+### Dados Pessoais
+- Gerador de Pessoa Completa: /tools/personal/person
+- Gerador de Endereços Brasileiros: /tools/personal/address
+- Gerador de Nomes Brasileiros: /tools/personal/name
+- Gerador de Telefone e Celular: /tools/personal/phone
+- Gerador de E-mail Temporário: /tools/personal/email
+- Ferramentas de Conformidade LGPD: /tools/personal/lgpd-data
