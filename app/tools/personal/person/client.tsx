@@ -207,7 +207,7 @@ export function PersonGeneratorPage() {
                     <div className="mb-8">
                         <h1 className="text-4xl font-bold mb-4">Gerador de Pessoa Completa</h1>
                         <p className="text-lg text-muted-foreground">
-                            Gere dados pessoais completos para testes, incluindo documentos, endereço e contatos.
+                            Gere identidades e perfis de teste com dados aleatórios de endereço, contatos e documentos.
                         </p>
                     </div>
 
@@ -348,18 +348,18 @@ export function PersonGeneratorPage() {
                         <CardContent className="space-y-4">
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
                                 <p>
-                                    O Gerador de Pessoa Completa cria perfis cadastrais fictícios e realistas contendo dados pessoais (nome, data de nascimento, nome dos pais), documentos (CPF, RG), contatos (email, telefones), endereço estruturado e características físicas.
+                                    Esta ferramenta de simulação de identidades cria perfis fictícios contendo dados de nascimento, contatos e endereços estruturados. Ela é ideal para quem precisa <strong>gerar cpf</strong> e outros documentos válidos matematicamente para preenchimento de cadastros de teste.
                                 </p>
                                 <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Atenção:</strong> Todas as informações fornecidas por esta ferramenta são <strong>dados gerados de forma aleatória e fictícia</strong>. CPFs e RGs são válidos sintaticamente para testes de validação de formulários, mas não possuem registro em órgãos públicos.
+                                    <strong>Termos de Uso:</strong> Toda identidade fornecida é composta por dados gerados sinteticamente. O gerador calcula um <strong>cpf válido</strong> de forma isolada segundo o algoritmo do Ministério da Fazenda para aceitação em fluxos de validação locais, sem qualquer relação com indivíduos reais.
                                 </p>
                             </div>
 
                             <Accordion type="single" collapsible className="w-full">
                                 <AccordionItem value="item-1">
-                                    <AccordionTrigger>Para que serve o gerador de pessoa completa?</AccordionTrigger>
+                                    <AccordionTrigger>Para que serve esta ferramenta de simulação de perfil?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        É uma utilidade para desenvolvedores de software, engenheiros de QA e administradores de banco de dados que precisam popular tabelas de testes com perfis de usuários variados, simulando fluxos completos de checkout, faturamento, cadastro e entrega em e-commerces ou CRMs.
+                                        Ela serve para apoiar desenvolvedores de software, analistas de qualidade (QA) e administradores de banco de dados na criação de dados sintéticos realistas. Popula tabelas locais para simular fluxos completos de checkout, faturamento e entrega em e-commerces ou CRMs de forma simplificada.
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-2">

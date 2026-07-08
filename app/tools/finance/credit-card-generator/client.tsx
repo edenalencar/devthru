@@ -256,27 +256,32 @@ export function CreditCardGeneratorPage() {
                         <CardHeader>
                             <CardTitle>Sobre o Gerador de Cartão de Crédito e Perguntas Frequentes (FAQ)</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-6">
+                        <CardContent>
                             <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
-                                    O Gerador de Cartão de Crédito é uma ferramenta essencial para testar gateways de pagamento, fluxos de checkout e formulários de e-commerce.
+                                    Entender como o <strong>número de cartão de crédito é uma ferramenta</strong> fundamental nos testes de checkout ajuda a prevenir falhas em produção. Nossa <strong>ferramenta gera</strong> dados fictícios completos para homologação, simulando bandeiras populares de mercado para testar seus sistemas em <strong>diferentes cenários</strong>.
                                 </p>
                                 <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Atenção:</strong> Os dados gerados aqui são <strong>meramente fictícios e válidos apenas para fins de teste</strong> de software. Não possuem saldo e não podem ser utilizados para compras reais em nenhum estabelecimento.
+                                    <strong>Importante:</strong> Nenhum dos <strong>números são gerados</strong> para realizar <strong>transações reais</strong>. A proposta de <strong>usar um gerador</strong> é apenas facilitar a simulação de pagamentos simulados no seu gateway de teste local ou sandbox (como Stripe, Adyen, Mercado Pago).
                                 </p>
                             </div>
 
                             <Accordion type="single" collapsible className="w-full">
                                 <AccordionItem value="item-1">
-                                    <AccordionTrigger>Para que serve um gerador de cartão de crédito?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Esta ferramenta é voltada para analistas de qualidade (QA) e desenvolvedores. Ela permite a inserção de dados sintéticos válidos para testar a validação de formato em telas de pagamento e integrações com adquirentes (como Stripe, Adyen, PagSeguro), impedindo a utilização de dados reais de clientes em ambientes locais ou de sandbox.
+                                    <AccordionTrigger>Para que serve esta ferramenta de geração de cartões?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground space-y-2">
+                                        <p>
+                                            Ela permite <strong>gerar cartões</strong> com dados fictícios para fins de testes. O desenvolvedor <strong>pode gerar</strong> dados simulando bandeiras como <strong>visa mastercard</strong> ou <strong>american express</strong> para validar se as integrações respondem corretamente aos formatos exigidos.
+                                        </p>
+                                        <p>
+                                            Os dados gerados vêm <strong>formatados corretamente</strong> segundo a estrutura lógica e comprimento de <strong>cada bandeira</strong>, assegurando que os campos de validação de formulários (como número do cartão, CVV e data de expiração) passem em testes sintáticos locais.
+                                        </p>
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-2">
                                     <AccordionTrigger>O que é o Algoritmo de Luhn?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        O algoritmo de Luhn (também conhecido como fórmula "módulo 10") é uma fórmula de soma de verificação simples usada para validar uma variedade de números de identificação, como números de cartões de crédito. A maioria das bandeiras de cartões (Visa, Mastercard, Discover, Amex) adota esse algoritmo para evitar erros acidentais de digitação.
+                                        O algoritmo de Luhn (também conhecido como fórmula &quot;módulo 10&quot;) é uma fórmula de soma de verificação simples usada para validar uma variedade de números de identificação, como números de cartões de crédito. A maioria das bandeiras de cartões (Visa, Mastercard, Discover, Amex) adota esse algoritmo para evitar erros acidentais de digitação.
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-3">

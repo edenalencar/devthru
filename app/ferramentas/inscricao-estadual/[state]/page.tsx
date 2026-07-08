@@ -71,21 +71,26 @@ export default async function StatePage({ params }: PageProps) {
                             <AccordionItem value="faq-1">
                                 <AccordionTrigger className="text-left font-medium text-lg">O que é a Inscrição Estadual de {stateInfo.name} ({stateInfo.uf}) e para que serve?</AccordionTrigger>
                                 <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                                    A Inscrição Estadual (IE) em {stateInfo.name} é o registro obrigatório que as empresas com atividades de comércio, indústria e prestação de serviços de transporte intermunicipal ou interestadual devem manter junto à <strong>SEFAZ {stateInfo.uf}</strong> (Secretaria de Estado da Fazenda de {stateInfo.name}). Esse registro identifica a empresa como contribuinte do ICMS, permitindo a emissão legal de documentos fiscais como a NF-e e a NFC-e.
+                                    A <strong>inscrição estadual ie</strong> em {stateInfo.name} é o registro obrigatório que as empresas com atividades de comércio, indústria e prestação de serviços de transporte intermunicipal ou interestadual devem manter junto à <strong>SEFAZ {stateInfo.uf}</strong> (Secretaria de Estado da Fazenda de {stateInfo.name}). Esse registro identifica a empresa como contribuinte do ICMS, permitindo a emissão legal de documentos fiscais.
                                 </AccordionContent>
                             </AccordionItem>
                             
                             <AccordionItem value="faq-2">
                                 <AccordionTrigger className="text-left font-medium text-lg">Como posso consultar uma Inscrição Estadual na SEFAZ {stateInfo.uf}?</AccordionTrigger>
                                 <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                                    Para consultar e verificar o status cadastral de um contribuinte em {stateInfo.name}, você pode acessar o site oficial da <strong>SEFAZ {stateInfo.uf}</strong> através do módulo de consulta de cadastro, ou realizar a busca no portal do <strong>Sintegra {stateInfo.uf}</strong>. Também é possível efetuar essa consulta no Cadastro Centralizado de Contribuintes (CCC), bastando informar o CNPJ da empresa para obter os dados completos e confirmar se a inscrição está ativa, baixada ou suspensa.
+                                    Para consultar e verificar o status cadastral de um contribuinte em {stateInfo.name}, você pode acessar o site oficial da <strong>SEFAZ {stateInfo.uf}</strong> através do módulo de consulta de cadastro, ou realizar a busca no portal do <strong>Sintegra {stateInfo.uf}</strong>. Também é possível efetuar essa consulta no Cadastro Centralizado de Contribuintes (CCC), bastando informar o CNPJ para obter os dados completos e confirmar o status no âmbito de <strong>sistemas fiscais</strong>.
                                 </AccordionContent>
                             </AccordionItem>
 
                             <AccordionItem value="faq-3">
                                 <AccordionTrigger className="text-left font-medium text-lg">Como funciona o cálculo de validação da IE de {stateInfo.name}?</AccordionTrigger>
-                                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                                    Diferente do CPF e CNPJ, que possuem regras nacionais únicas, o cálculo e o formato de dígitos da Inscrição Estadual variam em cada estado brasileiro. O algoritmo para {stateInfo.name} segue uma regra matemática própria regida pela <strong>SEFAZ {stateInfo.uf}</strong>, empregando o sistema de Módulo 11 (ou Módulo 9, dependendo do estado) com pesos ponderados específicos para gerar um ou dois dígitos verificadores ao final da sequência. Isso evita erros de digitação e validações em lote inconsistentes em softwares emissores de Notas Fiscais Eletrônicas.
+                                <AccordionContent className="text-muted-foreground text-base leading-relaxed space-y-2">
+                                    <p>
+                                        Diferente do CPF e CNPJ, que possuem regras nacionais únicas, o cálculo e o formato de dígitos da Inscrição Estadual variam em cada estado brasileiro. Este <strong>gerador de inscrição</strong> foi desenvolvido para calcular números estruturalmente simulados segundo as regras de {stateInfo.name}.
+                                    </p>
+                                    <p>
+                                        Nenhum dos códigos <strong>gerados é</strong> associado a <strong>empresas reais</strong>. A regra matemática varia por região fiscal, seja no Paraná (PR), no Rio de Janeiro (RJ) ou em São Paulo (conhecida pela regulação da SEFAZ <strong>paulo sp</strong>). Selecionando o estado, você consegue emitir <strong>inscrições estaduais válidas</strong> sintaticamente para rodar automações de testes.
+                                    </p>
                                 </AccordionContent>
                             </AccordionItem>
                         </Accordion>

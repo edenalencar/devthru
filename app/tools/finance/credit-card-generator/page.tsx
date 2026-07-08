@@ -6,7 +6,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 import { CreditCardGeneratorPage } from "./client"
 
 const title = "Gerador de Cartão de Crédito - Dados Completos e Lote"
-const description = "Gere números de cartão de crédito válidos com nome, data, CVV e endereço completo. Suporte a geração em lote, testes de pagamento e algoritmo de Luhn."
+const description = "Gerador de cartão de crédito online gratuito. Gere números de cartão de crédito válidos com nome, validade, CVV e endereço para testes de sistemas de pagamento."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
