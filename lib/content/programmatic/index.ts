@@ -55,7 +55,7 @@ export const PROGRAMMATIC_CONTENT: ProgrammaticContent[] = [
     {
         toolId: "cpf",
         languageId: "javascript",
-        title: "Como Validar CPF em JavaScript (Frontend e Backend)",
+        title: "Como Validar CPF em JavaScript",
         description: "Snippet JavaScript otimizado para validação de CPF. Funciona no navegador e no Node.js.",
         category: "validation",
         toolCategory: "documents",
@@ -132,7 +132,7 @@ def validate_cnpj(cnpj: str) -> bool:
     {
         toolId: "cnpj",
         languageId: "javascript",
-        title: "Como Validar CNPJ em JavaScript (Validar Formulário)",
+        title: "Como Validar CNPJ em JavaScript",
         description: "Valide CNPJ no frontend ou no Node.js com este snippet de código JavaScript otimizado.",
         category: "validation",
         toolCategory: "documents",
@@ -1141,7 +1141,7 @@ public class EmailValidator
     {
         toolId: "credit-card-generator",
         languageId: "python",
-        title: "Algoritmo de Luhn em Python (Validar Cartão de Crédito)",
+        title: "Validar Cartão de Crédito em Python",
         description: "Implemente o algoritmo de Luhn em Python para validar e gerar números de cartão de crédito para testes.",
         category: "validation",
         toolCategory: "finance",
@@ -1184,7 +1184,7 @@ print(generate_card("51"))   # Mastercard`,
     {
         toolId: "credit-card-generator",
         languageId: "javascript",
-        title: "Algoritmo de Luhn em JavaScript (Cartão de Crédito)",
+        title: "Validar Cartão de Crédito em JS",
         description: "Validação e geração de números de cartão de crédito em JavaScript usando o algoritmo de Luhn.",
         category: "validation",
         toolCategory: "finance",

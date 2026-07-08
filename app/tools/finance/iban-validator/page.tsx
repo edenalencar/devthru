@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { IBANValidatorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Validador e Gerador de IBAN Online - Verifique Contas Globais"
+const title = "Validador e Gerador de IBAN"
 const description = "Gere e valide códigos IBAN (International Bank Account Number) com cálculo matemático do dígito verificador (Mod 97) para o Brasil e outros países."
 
 export const metadata: Metadata = generateToolMetadata({

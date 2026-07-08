@@ -4,7 +4,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { BoletoValidatorPage } from "./client"
 
-const title = "Validador de Boleto Bancário Online - Linha Digitável e Emissor"
+const title = "Validador de Boleto Bancário"
 const description = "Valide e decodifique linhas digitáveis ou códigos de barras de boletos de cobrança e concessionárias online. Descubra o banco emissor, valor, data de vencimento e se o boleto é matematicamente autêntico."
 
 export const metadata: Metadata = generateToolMetadata({

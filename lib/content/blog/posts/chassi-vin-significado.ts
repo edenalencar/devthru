@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postChassiVinSignificado: BlogPost = {
     slug: 'numero-chassi-vin-significado',
-    title: 'Número de Chassi (VIN): O Que Cada Dígito Significa',
+    title: 'Número de Chassi (VIN): Significado',
     description: 'Entenda a estrutura completa do código VIN de 17 caracteres. Descubra como identificar fabricante, modelo, ano e país de origem direto pelo chassi do veículo.',
     date: '2026-02-27',
     author: 'DevThru',

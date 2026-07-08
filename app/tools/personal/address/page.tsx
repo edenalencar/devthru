@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { AddressGeneratorPage } from "./client"
 
-const title = "Gerador de Endereços Brasileiros Válidos - CEP e Rua"
+const title = "Gerador de Endereço Aleatório"
 const description = "Gere endereços brasileiros completos com CEP, rua, bairro e cidade para testes de sistemas e formulários."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -24,7 +24,7 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Gerador de Endereços Brasileiros Válidos - CEP e Rua",
+                            "name": "Gerador de Endereço Aleatório",
                             "operatingSystem": "Web",
                             "applicationCategory": "PessoalApplication",
                             "offers": {

@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { PhoneGeneratorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Gerador de Telefone e Celular Online - Brasil e EUA (Grátis)"
+const title = "Gerador de Telefone Online"
 const description = "Gere números de telefone celular e fixo válidos do Brasil (com DDD) e dos Estados Unidos (EUA) para testes de software. Obtenha números limpos ou formatados."
 
 export const metadata: Metadata = generateToolMetadata({

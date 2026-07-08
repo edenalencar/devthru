@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postComoDecodificarBoleto: BlogPost = {
     slug: 'como-decodificar-boleto-bancario',
-    title: 'Como Decodificar Boleto Bancário Programaticamente (Regra FEBRABAN)',
+    title: 'Como Decodificar Boleto Bancário',
     description: 'Aprenda como funciona a estrutura de boletos bancários comerciais e de concessionárias. Entenda o cálculo do fator de vencimento, validação de dígitos verificadores e código de barras.',
     date: '2026-07-05',
     author: 'DevThru',

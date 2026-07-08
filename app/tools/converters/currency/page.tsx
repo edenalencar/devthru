@@ -5,11 +5,11 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CurrencyConverterPage } from "./client"
 
-const title = "Conversor de Moedas Online Grátis - Cotação Atualizada Hoje"
+const title = "Conversor de Moedas Online"
 const description = "Converta moedas como Dólar, Euro, Libra e Real com cotação atualizada diariamente. Conversor de câmbio online, gratuito, rápido e sem necessidade de cadastro."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Conversor de Moedas Online Grátis - Cotação Atualizada Hoje",
+    title: "Conversor de Moedas Online",
     description: "Converta moedas como Dólar, Euro, Libra e Real com cotação atualizada diariamente. Conversor de câmbio online, gratuito, rápido e sem necessidade de cadastro.",
     path: "/tools/converters/currency",
 })

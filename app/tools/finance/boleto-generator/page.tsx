@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { BoletoGeneratorPage } from "./client"
 
-const title = "Gerador de Boleto Bancário Online - Linha Digitável e PDF para Teste"
+const title = "Gerador de Boleto Bancário"
 const description = "Gere boletos bancários fictícios em PDF com linha digitável e código de barras para testes de integração de sistemas e homologação financeira de forma segura."
 
 export const metadata: Metadata = generateToolMetadata({

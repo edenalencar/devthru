@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postAITerminalToolsGeminiCLI: BlogPost = {
     slug: 'ai-terminal-tools-gemini-cli-cursor-agentes',
-    title: 'Por que Ferramentas de Linha de Comando de IA Vão Dominar 2026? (Gemini-CLI & Antigravity)',
+    title: 'Ferramentas de CLI de IA em 2026',
     description: 'Entenda como e por que o uso de IAs através da linha de comando com agentes autônomos substituiu o modelo tradicional de janelas de Chat do ChatGPT e do Claude, impulsionadas pelo MCP Protocol.',
     date: '2026-03-08',
     author: 'DevThru',

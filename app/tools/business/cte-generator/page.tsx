@@ -7,7 +7,7 @@ import { Graph } from "schema-dts"
 import { CteGeneratorPage } from "./client"
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Chave CT-e - Conhecimento de Transporte",
+    title: "Gerador de Chave CT-e",
     description: "Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes de integração.",
     path: "/tools/business/cte-generator",
     keywords: ["gerador ct-e", "chave de acesso ct-e", "cte teste", "dev tools", "documentos fiscais"]

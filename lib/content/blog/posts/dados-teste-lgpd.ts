@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postDadosTesteLgpd: BlogPost = {
     slug: 'dados-ficticios-testes-lgpd',
-    title: 'Como Gerar Dados Fictícios para Testes sem Violar a LGPD',
+    title: 'Gerar Dados sem Violar a LGPD',
     description: 'Aprenda a criar dados de teste realistas sem usar informações pessoais reais. Guia prático sobre LGPD, anonimização e ferramentas para QA e desenvolvedores.',
     date: '2026-02-13',
     author: 'DevThru',

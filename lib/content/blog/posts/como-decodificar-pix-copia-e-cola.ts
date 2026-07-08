@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postComoDecodificarPix: BlogPost = {
     slug: 'como-decodificar-pix-copia-e-cola',
-    title: 'Como Decodificar String Pix Copia e Cola Programaticamente (Padrão EMV)',
+    title: 'Como Decodificar Pix Copia e Cola',
     description: 'Entenda como funciona a string do Pix Copia e Cola. Aprenda a decodificar chaves, nomes e valores no formato EMV TLV e recalcular o checksum CRC16 de segurança.',
     date: '2026-07-05',
     author: 'DevThru',

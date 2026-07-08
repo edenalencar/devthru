@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { Base64Page } from "./client"
 
-const title = "Codificador e Decodificador Base64 Online - Ferramenta para Devs"
+const title = "Codificador e Decodificador Base64"
 const description = "Codifique e decodifique textos e strings em Base64 instantaneamente. Ferramenta essencial para desenvolvedores que precisam transmitir dados binários em texto."
 
 export const metadata: Metadata = generateToolMetadata({

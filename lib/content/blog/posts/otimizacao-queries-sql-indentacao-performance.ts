@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postOtimizacaoQueriesSql: BlogPost = {
     slug: 'otimizacao-queries-sql-indentacao-performance',
-    title: 'Otimização de Queries SQL: Técnicas de Indentação e Performance',
+    title: 'Otimização de Queries SQL',
     description: 'Aprenda como queries mal formatadas escondem graves gargalos no PostgreSQL e MySQL. Guia prático de legibilidade, análise de EXPLAIN e uso de índices.',
     date: '2026-06-04',
     author: 'DevThru',

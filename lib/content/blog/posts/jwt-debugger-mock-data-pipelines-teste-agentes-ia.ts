@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postJwtDebuggerMockDataAgentesIa: BlogPost = {
     slug: 'jwt-debugger-mock-data-pipelines-teste-agentes-ia',
-    title: 'JWT Debugger e Mock Data em Pipelines com Agentes de IA',
+    title: 'JWT Debugger e Mock Data em Pipelines',
     description: 'Saiba como integrar ferramentas de depuração de JWT e geradores de dados de teste (Mock Data) em pipelines de CI/CD operados por agentes de Inteligência Artificial.',
     date: '2026-06-12',
     author: 'DevThru',

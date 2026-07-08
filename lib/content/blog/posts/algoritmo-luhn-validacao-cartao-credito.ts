@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postAlgoritmoLuhn: BlogPost = {
     slug: 'algoritmo-luhn-validacao-cartao-credito',
-    title: 'Algoritmo de Luhn: Como Funciona a Validação de Cartão de Crédito',
+    title: 'Algoritmo de Luhn: Validação de Cartão',
     description: 'Entenda o funcionamento do algoritmo de Luhn (módulo 10), utilizado mundialmente para validar números de cartões de crédito, e veja como implementá-lo.',
     date: '2026-06-16',
     author: 'DevThru',

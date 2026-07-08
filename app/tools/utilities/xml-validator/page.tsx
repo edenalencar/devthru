@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { XMLValidatorPage } from "./client"
 
-const title = "Formatador e Validador de XML Online [Instantâneo]"
+const title = "Validador de XML Online"
 const description = "Verifique a sintaxe e formate qualquer arquivo XML em segundos. Ferramenta poderosa que não envia seus dados ou notas fiscais para o servidor. 100% Client-Side Seguro."
 
 export const metadata: Metadata = generateToolMetadata({

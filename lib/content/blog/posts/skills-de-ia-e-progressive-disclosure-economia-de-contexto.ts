@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto: BlogPost = {
     slug: 'skills-de-ia-e-progressive-disclosure-economia-de-contexto',
-    title: 'Skills de IA e Progressive Disclosure: Economia de Contexto',
+    title: 'Skills de IA e Progressive Disclosure',
     description: 'Saiba como aplicar o padrão Progressive Disclosure em Skills de IA para organizar instruções complexas, evitar alucinações e economizar contexto.',
     date: '2026-06-05',
     author: 'DevThru',

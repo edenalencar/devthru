@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postDadosFicticiosTestesApi: BlogPost = {
     slug: 'gerar-dados-ficticios-testes-api',
-    title: 'Como Gerar Dados Fictícios para Testes de API (Mock Data)',
+    title: 'Gerar Dados Fictícios para Testes de API',
     description: 'Aprenda a criar dados realistas para popular seu banco de dados em testes automatizados. Com exemplos usando Faker.js, Factory Bot e ferramentas online gratuitas.',
     date: '2026-02-26',
     author: 'DevThru',

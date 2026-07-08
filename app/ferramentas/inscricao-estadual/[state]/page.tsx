@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return generateToolMetadata({
-        title: `Gerador de Inscrição Estadual ${stateInfo.uf} (${stateInfo.name}) | Válido e Formatado`,
+        title: `Inscrição Estadual ${stateInfo.uf} (${stateInfo.name})`,
         description: `Gere números de Inscrição Estadual válidos para ${stateInfo.name} (${stateInfo.uf}). Ferramenta gratuita para testes de software com validação de algoritmo oficial.`,
         path: `/ferramentas/inscricao-estadual/${stateInfo.uf.toLowerCase()}`,
         keywords: ['inscrição estadual', stateInfo.name, stateInfo.uf, 'gerador', 'validador', 'dev tools']

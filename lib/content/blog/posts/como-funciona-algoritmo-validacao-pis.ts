@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postComoFuncionaAlgoritmoValidacaoPis: BlogPost = {
     slug: 'como-funciona-algoritmo-validacao-pis',
-    title: 'Como Validar PIS/PASEP: Algoritmo e Exemplos de Código',
+    title: 'Como Validar PIS/PASEP',
     description: 'Entenda a regra de validação do PIS/PASEP passo a passo. Aprenda o cálculo do Módulo 11 e veja exemplos de código prontos em JavaScript, Python e C#.',
     date: '2026-07-05',
     author: 'DevThru',

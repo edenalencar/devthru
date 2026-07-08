@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postModelContextProtocol: BlogPost = {
     slug: 'o-que-e-mcp-model-context-protocol',
-    title: 'O que é MCP (Model Context Protocol)? O Guia Definitivo',
+    title: 'O que é MCP? O Guia Definitivo',
     description: 'Entenda o que é o Model Context Protocol (MCP) criado pela Anthropic, a diferença entre stdio e SSE, e por que ele é o futuro da IA autônoma.',
     date: '2026-03-08',
     author: 'DevThru',

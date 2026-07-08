@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { CertificateGeneratorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Gerador de Certificados Online Grátis - Cursos e Eventos"
+const title = "Gerador de Certificados"
 const description = "Crie certificados personalizados para cursos e eventos em minutos. Gere arquivos PDF prontos para impressão com nosso gerador online gratuito e profissional."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -23,7 +23,7 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Gerador de Certificados Online Grátis - Cursos e Eventos",
+                            "name": "Gerador de Certificados",
                             "operatingSystem": "Web",
                             "applicationCategory": "DocumentosApplication",
                             "offers": {
