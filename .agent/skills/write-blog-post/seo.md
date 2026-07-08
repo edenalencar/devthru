@@ -7,7 +7,7 @@ Esta seção descreve como otimizar o post do blog para mecanismos de busca (SEO
 ## 🔍 SEO Técnico e On-Page
 
 1. **Title e Description**:
-   * O `title` do `BlogPost` deve ter no máximo 65 caracteres e conter a palavra-chave foco.
+   * O `title` do `BlogPost` deve ter no máximo 50 caracteres (para garantir que o título completo final, após a adição automática do sufixo ` | DevThru` de 11 caracteres no layout global, não exceda o limite ideal de 60 caracteres de SEO de buscadores e do SEMrush) e conter a palavra-chave foco.
    * A `description` (meta descrição) deve ter entre 120 e 160 caracteres, sendo chamativa e resumindo o valor prático do post.
 2. **Heading Hierarchy (Hierarquia de Títulos)**:
    * O título da página já renderiza uma tag `<h1>` automaticamente.
