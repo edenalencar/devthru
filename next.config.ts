@@ -15,6 +15,27 @@ const nextConfig: NextConfig = {
         destination: "https://www.devthru.com/:path*",
         permanent: true,
       },
+      // Redirecionamentos para páginas reportadas como 404 no SEMrush/GSC
+      {
+        source: "/ferramentas",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/ferramentas-documentos",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/ferramentas-pessoais",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/ferramentas/inscricao-estadual",
+        destination: "/tools/documents/inscricao-estadual",
+        permanent: true,
+      },
       // Corrigir 404 GSC - Rota de diretório sem página
       {
         source: "/tools/business",
