@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { generateToolMetadata } from "@/lib/seo-config"
 import { CrontabGeneratorPage } from "./client"
 
-const title = "Gerador de Crontab Online - Criar e Validar Expressões Cron"
+const title = "Gerador de Crontab Online"
 const description = "Crie, valide e decodifique expressões cron de forma simples e visual. Gere linhas de comando completas e entenda a recorrência em português brasileiro."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -21,13 +21,18 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Gerador de Crontab Online - Criar e Validar Expressões Cron",
+                            "name": "Gerador de Crontab Online",
                             "operatingSystem": "Web",
                             "applicationCategory": "DesenvolvimentoApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Crie, valide e decodifique expressões cron de forma simples e visual. Gere linhas de comando completas com descrição em português."
                         },

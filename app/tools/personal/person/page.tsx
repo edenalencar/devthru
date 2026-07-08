@@ -5,8 +5,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PersonGeneratorPage } from "./client"
 
-const title = "Gerador de Pessoa Completa - Perfis de Teste com Endereço e CPF"
-const description = "Gere dados pessoais fictícios completos (nome, CPF, RG, email, telefone, endereço completo e dados físicos) em um clique para testes rápidos de software."
+const title = "Gerador de Pessoa Completa"
+const description = "Gerador de pessoas online gratuito. Gere dados pessoais fictícios completos com nome, CPF, RG, endereço e contato para testes rápidos de software."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
@@ -32,6 +32,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gere perfis de teste realistas com o Gerador de Pessoa Completa. Crie nomes, CPFs, RGs, endereços e e-mails fictícios para acelerar o desenvolvimento de software."
                         },

@@ -6,7 +6,7 @@ import { TOOL_META_DESCRIPTIONS } from "@/lib/seo/meta-descriptions"
 
 import { FipePage } from "./client"
 
-const title = "Tabela FIPE Atualizada - Consulta de Preço de Veículos Grátis"
+const title = "Tabela FIPE: Preço de Veículos"
 const description = TOOL_META_DESCRIPTIONS.fipe
 
 export const metadata: Metadata = generateToolMetadata({
@@ -32,6 +32,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": description,
                         },

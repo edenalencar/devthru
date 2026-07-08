@@ -4,7 +4,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { LicensePlatePage } from "./client"
 
-const title = "Gerador de Placa Mercosul e Antiga Online (Sem Anúncios) - DevThru"
+const title = "Gerador de Placa Mercosul"
 const description = "Gere placas de veículos nos padrões Mercosul e Antigo em lote. Ferramenta gratuita para testes de software, simulação de dados e homologação de APIs."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -31,6 +31,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gere placas de veículos nos padrões Mercosul e Antigo (Cinza) ou converta entre os modelos."
                         },

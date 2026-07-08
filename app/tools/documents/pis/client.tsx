@@ -269,13 +269,13 @@ export function PISPage() {
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
-                                    Esta ferramenta online e gratuita foi criada para auxiliar desenvolvedores de software, analistas de QA e testadores a gerarem massa de dados de teste (mocks) de PIS/PASEP, NIS e NIT de forma rápida, segura e sem anúncios.
+                                    Entender as regras <strong>sobre o gerador de pis pasep</strong> é muito útil para desenvolvedores que lidam com sistemas de recursos humanos e ERP. O <strong>PIS PASEP é</strong> um número identificador essencial para cadastros trabalhistas.
                                 </p>
                                 <p>
-                                    O PIS (Programa de Integração Social) e o PASEP (Programa de Formação do Patrimônio do Servidor Público) compartilham a mesma validação estrutural do NIS e NIT. Portanto, qualquer número válido de PIS gerado aqui também funcionará como NIS ou PASEP nos testes do seu sistema.
+                                    Nossa ferramenta fornece <strong>números gerados</strong> de forma aleatória que são <strong>matematicamente válidos</strong> segundo o <strong>algoritmo oficial</strong> (Módulo 11) do Ministério do Trabalho e Previdência.
                                 </p>
                                 <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Aviso de Uso:</strong> Os números de documentos fornecidos por esta ferramenta são <strong>fictícios e gerados por meio de algoritmos matemáticos (Módulo 11) apenas para fins de testes e homologação</strong> de software. Não possuem vínculo com a Caixa Econômica Federal, Banco do Brasil ou outros órgãos do governo federal.
+                                    <strong>Aviso de Uso:</strong> Os dados gerados aqui são fictícios e devem ser usados apenas para simular cadastros e homologações. Eles não possuem vínculo ativo com a Caixa Econômica Federal ou outros órgãos públicos.
                                 </p>
                             </div>
 
@@ -283,7 +283,7 @@ export function PISPage() {
                                 <AccordionItem value="item-1">
                                     <AccordionTrigger>Para que serve um gerador de PIS?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        Nossa ferramenta fornece números válidos do PIS/PASEP instantaneamente para que desenvolvedores, testadores (QA) e estudantes possam preencher campos obrigatórios durante a homologação de sistemas de RH, contabilidade ou e-commerces, sem a necessidade de usar dados sensíveis de pessoas reais.
+                                        Ele é ideal para testar telas de cadastro e fluxos de <strong>folha de pagamento</strong> de empresas. Fornecendo um <strong>pis pasep válido</strong>, você pode validar o comportamento das suas APIs locais e processos de eSocial sem expor dados reais de colaboradores durante o desenvolvimento de software.
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-2">

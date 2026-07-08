@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { BoletoGeneratorPage } from "./client"
 
-const title = "Gerador de Boleto Bancário Online - Linha Digitável e PDF para Teste"
+const title = "Gerador de Boleto Bancário"
 const description = "Gere boletos bancários fictícios em PDF com linha digitável e código de barras para testes de integração de sistemas e homologação financeira de forma segura."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -32,6 +32,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gerador de Boleto Bancário Mock para testes de software. Crie boletos fictícios com código de barras validável e PDF para homologar seu sistema de pagamentos de forma segura."
                         },

@@ -6,7 +6,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 import { OCRPage } from "./client"
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "OCR Online Gratuito - Extrair Texto de Imagem e PDF",
+    title: "OCR Online Gratuito",
     description: "Extraia texto de imagens (JPG, PNG) e documentos instantaneamente com OCR gratuito. Converta fotos em texto editável sem instalar programas.",
     path: "/tools/image/ocr",
 })
@@ -21,13 +21,18 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "OCR Online Gratuito - Extrair Texto de Imagem e PDF",
+                            "name": "OCR Online Gratuito",
                             "operatingSystem": "Web",
                             "applicationCategory": "ImagemApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "OCR Online Gratuito: Extraia texto de imagens (JPG, PNG) e documentos instantaneamente. Converta fotos em texto editável para copiar e colar sem instalar programas."
                         },

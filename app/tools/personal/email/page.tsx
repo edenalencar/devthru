@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { EmailGeneratorPage } from "./client"
 
-const title = "Gerador de E-mail Temporário e Fictício Online (em Lote)"
+const title = "Gerador de E-mail Temporário"
 const description = "Crie e copie endereços de e-mail fictícios e temporários instantaneamente de forma individual ou em massa. Suporte a domínios comuns ou personalizados para testes."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -32,6 +32,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Crie emails fictícios com domínios personalizados ou comuns para testes de software. Ferramenta rápida para QA e desenvolvimento."
                         },

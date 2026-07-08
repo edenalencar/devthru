@@ -58,6 +58,10 @@ export default async function GuidePage({ params }: PageProps) {
         notFound()
     }
 
+    const otherLanguages = PROGRAMMATIC_CONTENT.filter(
+        (c) => c.toolId === tool && c.category === category && c.languageId !== language
+    )
+
     const metaDescription = generateGuideMetaDescription(content.toolId, content.languageId)
 
     return (
@@ -149,6 +153,23 @@ export default async function GuidePage({ params }: PageProps) {
                         </Link>
                     </Button>
                 </div>
+
+                {otherLanguages.length > 0 && (
+                    <section className="border-t pt-8 mt-4">
+                        <h3 className="text-xl font-bold mb-4">
+                            Ver este guia em outras linguagens:
+                        </h3>
+                        <div className="flex flex-wrap gap-3">
+                            {otherLanguages.map((other) => (
+                                <Button key={other.languageId} asChild variant="outline" className="capitalize">
+                                    <Link href={`/guides/${category}/${tool}/${other.languageId}`}>
+                                        {other.languageId === 'javascript' ? 'JavaScript / TS' : other.languageId === 'csharp' ? 'C#' : other.languageId}
+                                    </Link>
+                                </Button>
+                            ))}
+                        </div>
+                    </section>
+                )}
             </div>
         </div>
     )

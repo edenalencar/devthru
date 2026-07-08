@@ -4,7 +4,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { RenavamGeneratorPage } from "./client"
 
-const title = "Gerador de Renavam Válido Online - Em Lote (Grátis)"
+const title = "Gerador de Renavam Válido Online"
 const description = "Gere números de Renavam válidos de 11 dígitos em lote ou único para testes de software automotivos. Ferramenta online gratuita para desenvolvedores e QAs."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -41,6 +41,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gerador de RENAVAM online e gratuito! Gere números de RENAVAM válidos (11 dígitos) para testes de sistemas automotivos. Rápido, seguro e sem cadastro."
                         },

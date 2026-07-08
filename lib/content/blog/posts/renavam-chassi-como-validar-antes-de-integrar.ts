@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postRenavamChassiValidacao: BlogPost = {
     slug: 'renavam-chassi-como-validar-antes-de-integrar',
-    title: 'RENAVAM e Chassi: Para que Servem e Como Validar Dados Veiculares',
+    title: 'Como Validar RENAVAM e Chassi',
     description: 'Entenda a finalidade do RENAVAM e do Chassi (VIN) na gestão veicular e aprenda a validá-los corretamente antes de integrá-los no seu sistema.',
     date: '2026-06-13',
     author: 'DevThru',

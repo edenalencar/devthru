@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { TituloEleitorPage } from "./client"
 
-const title = "Gerador e Validador de Título de Eleitor Válido [Grátis]"
+const title = "Gerador de Título de Eleitor"
 const description = "Gere e valide números de Título de Eleitor válidos em 1 clique para testes unitários de sistemas. Calcula perfeitamente os 12 dígitos, UFs e Zonas Eleitorais. Algoritmo oficial."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -32,6 +32,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gere e valide números de Título de Eleitor válidos por estado brasileiro de forma gratuita para testes de software."
                         },

@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postPlacasMercosulVsAntigo: BlogPost = {
     slug: 'placas-mercosul-vs-padrao-antigo-validacao',
-    title: 'Placas Mercosul vs. Padrão Antigo: O que Muda na Validação?',
+    title: 'Placas Mercosul vs. Padrão Antigo',
     description: 'Entenda as diferenças de formato entre o antigo padrão de placas de veículos e o novo padrão Mercosul, e saiba como validá-los e convertê-los usando Regex.',
     date: '2026-06-15',
     author: 'DevThru',

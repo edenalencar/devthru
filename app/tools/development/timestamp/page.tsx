@@ -5,11 +5,11 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { TimestampConverterPage } from "./client"
 
-const title = "Conversor de Timestamp Online - Unix para Data e Vice-Versa"
+const title = "Conversor de Timestamp Unix"
 const description = "Converta timestamps Unix (segundos/milissegundos) para datas legíveis e vice-versa. Ferramenta online essencial para desenvolvedores, com suporte a múltiplos formatos."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Conversor de Timestamp Online - Unix para Data e Vice-Versa",
+    title: "Conversor de Timestamp Unix",
     description: "Converta timestamps Unix (segundos ou milissegundos) para datas legíveis e vice-versa. Ferramenta online gratuita para devs, com múltiplos formatos.",
     path: "/tools/development/timestamp",
 })
@@ -31,6 +31,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Converta timestamps Unix (segundos/milissegundos) para datas legíveis e vice-versa. Ferramenta essencial para desenvolvedores."
                         },

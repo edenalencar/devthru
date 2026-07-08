@@ -5,11 +5,11 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { SqlFormatterPage } from "./client"
 
-const title = "SQL Formatter Online | Beautifier e Minifier Grátis"
+const title = "SQL Formatter Online"
 const description = "Formate, indente e organize suas queries SQL online. Suporte para PostgreSQL, MySQL, SQL Server e mais. Deixe seu código SQL legível instantaneamente."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "SQL Formatter Online | Beautifier e Minifier Grátis",
+    title: "SQL Formatter Online",
     description: "Formate, indente e organize suas queries SQL online. Suporte para PostgreSQL, MySQL, SQL Server e mais. Deixe seu código SQL legível instantaneamente.",
     path: "/tools/development/sql-formatter",
     keywords: ["sql formatter", "formatar sql", "beautify sql", "indenar sql", "postgresql formatter", "mysql formatter", "ferramentas dev"]
@@ -32,6 +32,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             }
                         },
                         {

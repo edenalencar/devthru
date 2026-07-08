@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postConstruindoServidorMcpDadosBr: BlogPost = {
     slug: 'construindo-servidor-mcp-dados-teste-brasileiros',
-    title: 'Construindo um Servidor MCP de Dados de Teste Brasileiros',
+    title: 'Criar Servidor MCP de Dados de Teste',
     description: 'Aprenda a criar um servidor MCP (Model Context Protocol) em TypeScript para fornecer geradores de CPF, CNPJ e endereços para agentes de IA de forma nativa.',
     date: '2026-06-11',
     author: 'DevThru',

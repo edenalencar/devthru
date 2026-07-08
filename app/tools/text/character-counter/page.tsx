@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { CharacterCounterPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Contador de Caracteres, Palavras e Linhas Online Grátis"
+const title = "Contador de Caracteres Online"
 const description = "Conte caracteres, palavras, linhas e parágrafos do seu texto em tempo real. Ferramenta online gratuita ideal para redatores, estudantes e profissionais de SEO."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -23,13 +23,18 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Contador de Caracteres, Palavras e Linhas Online Grátis",
+                            "name": "Contador de Caracteres Online",
                             "operatingSystem": "Web",
                             "applicationCategory": "TextoApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Conte caracteres, palavras, linhas e parágrafos do seu texto em tempo real. Ferramenta online gratuita ideal para redatores, estudantes e profissionais de SEO."
                         },

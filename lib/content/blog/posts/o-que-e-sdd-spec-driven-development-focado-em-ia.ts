@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postSddSpecDrivenDevelopmentFocadoEmIa: BlogPost = {
     slug: 'o-que-e-sdd-spec-driven-development-focado-em-ia',
-    title: 'O que é SDD (Spec Driven Development) focado em IA?',
+    title: 'O que é SDD focado em IA?',
     description: 'Descubra o que é SDD (Desenvolvimento Orientado a Especificação), como ele ajuda agentes de IA a codificar sem erros e veja um template prático.',
     date: '2026-06-05',
     author: 'DevThru',

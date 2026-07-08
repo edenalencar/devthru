@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postComoTestarFluxosNfeCteMdfe: BlogPost = {
     slug: 'como-testar-fluxos-nfe-cte-mdfe-homologacao',
-    title: 'Como Testar NF-e, CT-e e MDF-e em Homologação sem Estresse',
+    title: 'Como Testar NF-e, CT-e e MDF-e',
     description: 'Guia prático para validar chaves de acesso de 44 dígitos, simular rejeições da SEFAZ e usar geradores de dados para acelerar seus testes integrados de ERP ou TMS.',
     date: '2026-06-03',
     author: 'DevThru',

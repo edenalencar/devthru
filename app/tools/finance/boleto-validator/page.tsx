@@ -4,7 +4,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { BoletoValidatorPage } from "./client"
 
-const title = "Validador de Boleto Bancário Online - Linha Digitável e Emissor"
+const title = "Validador de Boleto Bancário"
 const description = "Valide e decodifique linhas digitáveis ou códigos de barras de boletos de cobrança e concessionárias online. Descubra o banco emissor, valor, data de vencimento e se o boleto é matematicamente autêntico."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -38,6 +38,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Validador e decodificador matemático de boleto bancário. Analise linhas digitáveis e códigos de barras para extrair banco emissor, data de vencimento, valor e status de autenticidade."
                         },

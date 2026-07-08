@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Sobre o DevThru - Nossa Missão, Equipe e Ferramentas Gratuitas",
+    title: "Sobre o DevThru",
     description: "Conheça o DevThru, uma plataforma de ferramentas para desenvolvedores criada para ser rápida, segura e sem anúncios. Saiba mais sobre nossa missão.",
 }
 

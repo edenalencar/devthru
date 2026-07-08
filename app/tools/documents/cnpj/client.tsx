@@ -364,11 +364,10 @@ export function CNPJGeneratorPage() {
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
-                                    O CNPJ (Cadastro Nacional da Pessoa Jurídica) é o identificador único das empresas brasileiras perante a Receita Federal.
-                                    Nosso gerador cria CNPJs válidos matematicamente (tanto numéricos tradicionais quanto no novo formato alfanumérico).
+                                    O CNPJ (Cadastro Nacional da Pessoa Jurídica) <strong>é composto por quatorze</strong> caracteres. Na estrutura tradicional, o <strong>cnpj é composto</strong> apenas por números, onde os <strong>doze primeiros</strong> identificam a inscrição da empresa e da filial, e os <strong>dois últimos</strong> são os dígitos de verificação. Nosso sistema foi criado para <strong>auxiliar programadores</strong> e <strong>programadores analistas</strong> que precisam <strong>gerar cnpj válidos</strong> de forma rápida e segura.
                                 </p>
                                 <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Atenção:</strong> Os números gerados por esta ferramenta são <strong>aleatórios e válidos apenas para testes de software</strong> e desenvolvimento (mocks, automação QA, homologação). Não possuem vínculo cadastral real na Receita Federal.
+                                    <strong>Atenção e Termos de Uso:</strong> Os dados gerados servem unicamente para testes de software e desenvolvimento. A <strong>má utilização</strong> desse recurso ou o uso indevido de dados em ambientes reais <strong>é de total responsabilidade do usuário</strong>.
                                 </p>
                             </div>
 
@@ -382,7 +381,7 @@ export function CNPJGeneratorPage() {
                                 <AccordionItem value="item-2">
                                     <AccordionTrigger>O que é o CNPJ Alfanumérico?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        Devido ao esgotamento das combinações puramente numéricas, a Receita Federal do Brasil implementou uma nova regra que permite a inserção de letras de A a Z nas primeiras 8 posições do CNPJ (mantendo apenas números nas posições de ordem e dígitos verificadores). Nossa ferramenta já suporta o novo formato alfanumérico.
+                                        Devido ao esgotamento das combinações puramente numéricas, a Receita Federal do Brasil implementou uma nova regra que permite a inserção de letras de A a Z nas primeiras 8 posições do CNPJ (mantendo apenas números nas posições de ordem e dígitos verificadores). Se você está testando integrações modernas, nosso gerador permite gerar este <strong>novo cnpj</strong> alfanumérico, garantindo a validação de um <strong>cnpj válido</strong> em sistemas atualizados.
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-3">

@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postJwtComoFunciona: BlogPost = {
     slug: 'jwt-como-funciona-guia-pratico',
-    title: 'JWT: Como Funciona, Como Decodificar e Erros Comuns',
+    title: 'JWT: Como Funciona e Como Decodificar',
     description: 'Entenda a estrutura do JSON Web Token, como funciona a autenticação com JWT, aprenda a decodificar tokens e evitar vulnerabilidades de segurança.',
     date: '2026-02-27',
     author: 'DevThru',

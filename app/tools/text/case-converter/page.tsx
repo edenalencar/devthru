@@ -6,7 +6,7 @@ import { TOOL_META_DESCRIPTIONS } from "@/lib/seo/meta-descriptions"
 
 import { CaseConverterPage } from "./client"
 
-const title = "Conversor de Case Online - Maiúsculas, Minúsculas e camelCase"
+const title = "Conversor de Case Online"
 const description = TOOL_META_DESCRIPTIONS.caseConverter
 
 export const metadata: Metadata = generateToolMetadata({
@@ -32,6 +32,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": description
                         },

@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postPorQueUuidV7SubstituindoV4: BlogPost = {
     slug: 'por-que-uuid-v7-esta-substituindo-uuid-v4',
-    title: 'Por que o UUID v7 está substituindo o UUID v4 nos Bancos de Dados',
+    title: 'Por que o UUID v7 está substituindo o v4',
     description: 'Descubra as limitações de indexação B-Tree causadas pela aleatoriedade do UUID v4 e como a ordenação temporal nativa do UUID v7 revoluciona a escrita no banco.',
     date: '2026-06-04',
     author: 'DevThru',

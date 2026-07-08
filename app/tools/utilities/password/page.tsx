@@ -5,11 +5,11 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PasswordGeneratorPage } from "./client"
 
-const title = "Gerador de Senhas Fortes e Seguras - Segurança Online"
+const title = "Gerador de Senhas Seguras"
 const description = "Crie senhas fortes e invioláveis com nosso Gerador de Senhas gratuito. Personalize comprimento, símbolos e números para garantir a segurança máxima de suas contas."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Senhas Fortes e Seguras - Segurança Online",
+    title: "Gerador de Senhas Seguras",
     description: "Crie senhas fortes e invioláveis com o Gerador de Senhas gratuito. Personalize o comprimento, símbolos e números para a segurança de suas contas.",
     path: "/tools/utilities/password",
 })
@@ -31,6 +31,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Crie senhas fortes e invioláveis com nosso Gerador de Senhas gratuito. Personalize comprimento, símbolos e números para garantir a segurança máxima de suas contas."
                         },

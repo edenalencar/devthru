@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postRegexGuiaPratico: BlogPost = {
     slug: 'regex-guia-pratico-desenvolvedores',
-    title: 'Regex para Desenvolvedores: Guia Prático com Exemplos',
+    title: 'Regex para Devs: Guia Prático',
     description: 'Domine expressões regulares com exemplos práticos do dia a dia. Aprenda a validar emails, CPFs, URLs e mais com regex em JavaScript e Python.',
     date: '2026-02-12',
     author: 'DevThru',

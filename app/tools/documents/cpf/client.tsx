@@ -435,8 +435,65 @@ export function CPFGeneratorPage() {
                                 </AccordionItem>
                                 <AccordionItem value="item-2">
                                     <AccordionTrigger>É possível gerar CPF de um estado/região específico?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        <strong>Sim!</strong> No Brasil, o nono dígito do CPF (o número que antecede o traço e os dois dígitos verificadores) indica a Região Fiscal onde o CPF foi emitido. Por exemplo, CPFs emitidos em São Paulo (SP) possuem o nono dígito igual a <strong>8</strong>, enquanto no Rio de Janeiro (RJ) e Espírito Santo (ES) possuem o nono dígito igual a <strong>7</strong>. Selecionando o estado no nosso gerador, você obtém códigos realistas dessa região.
+                                    <AccordionContent className="text-muted-foreground space-y-4">
+                                        <p>
+                                            <strong>Sim!</strong> No Brasil, o nono dígito do CPF (o número que antecede o traço e os dois dígitos verificadores) indica a Região Fiscal onde o CPF foi emitido. Por exemplo, CPFs emitidos em São Paulo (SP) possuem o nono dígito igual a <strong>8</strong>, enquanto no <strong>rio de janeiro</strong> (RJ) e Espírito Santo (ES) possuem o nono dígito igual a <strong>7</strong>.
+                                        </p>
+                                        <p>
+                                            Selecionando o estado no nosso gerador, você obtém códigos válidos simulando a emissão daquela região fiscal específica. Veja a tabela de correspondência completa das Regiões Fiscais do CPF:
+                                        </p>
+                                        <div className="overflow-x-auto border rounded-lg my-2">
+                                            <table className="w-full text-sm text-left border-collapse">
+                                                <thead>
+                                                    <tr className="border-b bg-muted/40">
+                                                        <th className="p-2 font-medium">Nono Dígito</th>
+                                                        <th className="p-2 font-medium">Estados / Região Fiscal</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="divide-y">
+                                                    <tr>
+                                                        <td className="p-2 font-mono">1</td>
+                                                        <td className="p-2">Distrito <strong>federal goiás mato grosso</strong>, <strong>distrito federal goiás mato</strong>, <strong>mato grosso do sul</strong>, <strong>sul e tocantins</strong> (DF, GO, MS, MT, TO)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 font-mono">2</td>
+                                                        <td className="p-2"><strong>amazonas acre amapá rondônia</strong>, <strong>amapá rondônia e roraima</strong>, Pará e Acre (AC, AM, AP, PA, RO, RR)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 font-mono">3</td>
+                                                        <td className="p-2">Ceará, Maranhão e Piauí (CE, MA, PI)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 font-mono">4</td>
+                                                        <td className="p-2">Alagoas, Paraíba, Pernambuco e <strong>grande do norte paraíba</strong>, <strong>norte paraíba e alagoas</strong>, <strong>pernambuco rio grande</strong> do norte (AL, PB, PE, RN)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 font-mono">5</td>
+                                                        <td className="p-2">Bahia e Sergipe (BA, SE)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 font-mono">6</td>
+                                                        <td className="p-2">Minas Gerais (MG)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 font-mono">7</td>
+                                                        <td className="p-2">Espírito Santo e <strong>rio de janeiro</strong> (ES, RJ)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 font-mono">8</td>
+                                                        <td className="p-2">São Paulo (SP)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 font-mono">9</td>
+                                                        <td className="p-2">Paraná e Santa Catarina (PR, SC)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 font-mono">0</td>
+                                                        <td className="p-2"><strong>rio grande do sul</strong>, ou seja, <strong>0 rio grande do sul</strong> (RS)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-3">

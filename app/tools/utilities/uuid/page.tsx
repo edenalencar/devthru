@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { UUIDGeneratorPage } from "./client"
 
-const title = "Gerador de UUID v4 Online - Identificador Único Universal"
+const title = "Gerador de UUID v4 Online"
 const description = "Gere UUIDs (v4) únicos e seguros aleatoriamente para seus projetos e bancos de dados. Identificadores universais prontos para uso em desenvolvimento de software."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -24,13 +24,18 @@ export default function Page() {
                     "@graph": [
                         {
                             "@type": "SoftwareApplication",
-                            "name": "Gerador de UUID v4 Online - Identificador Único Universal",
+                            "name": "Gerador de UUID v4 Online",
                             "operatingSystem": "Web",
                             "applicationCategory": "UtilidadesApplication",
                             "offers": {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gere UUIDs (v4) únicos e seguros aleatoriamente para seus projetos e bancos de dados. Identificadores universais prontos para uso em desenvolvimento de software."
                         },

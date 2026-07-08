@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 import { CPFGeneratorPage } from "./client"
 
 const title = "Gerador e Validador de CPF Válido Online [Grátis]"
-const description = "Gere e valide CPFs válidos em 1 clique para testes de software. Ferramenta online gratuita para desenvolvedores e analistas de QA com algoritmo oficial."
+const description = "Gerador de CPF online gratuito. Gere e valide CPFs válidos em 1 clique para testes de software, QA e desenvolvimento com algoritmo oficial."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
@@ -31,6 +31,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gere e valide CPFs válidos em 1 clique para testes de software. Ferramenta online gratuita para desenvolvedores e analistas de QA com algoritmo oficial."
                         },

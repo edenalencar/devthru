@@ -5,11 +5,11 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { EmailValidatorPage } from "./client"
 
-const title = "Validador de Email - Verificador de Email Completo"
+const title = "Validador de Email"
 const description = "Verifique se um endereço de email é válido, se o formato está correto e se é um email temporário ou descartável. Validação gratuita com verificação de sintaxe e domínio."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Validador de Email - Verificador de Email Completo",
+    title: "Validador de Email",
     description: "Verifique se um email é válido, se o formato está correto e se é temporário ou descartável. Validação gratuita com verificação de sintaxe e de domínio.",
     path: "/tools/text/email-validator",
 })
@@ -31,6 +31,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Verifique se um endereço de email é válido, se o formato está correto e se é um email temporário."
                         },

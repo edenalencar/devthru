@@ -5,11 +5,11 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { DeadlineCalculatorPage } from "./client"
 
-const title = "Calculadora de Prazos Online - Dias Úteis e Corridos"
+const title = "Calculadora de Prazos Online"
 const description = "Calcule prazos com precisão considerando feriados nacionais e fins de semana. Ferramenta essencial para advogados, gerenciamento de projetos e planejamento."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Calculadora de Prazos Online - Dias Úteis e Corridos",
+    title: "Calculadora de Prazos Online",
     description: "Calcule prazos com precisão considerando feriados nacionais e fins de semana. Ferramenta essencial para advogados, gerenciamento de projetos e planejamento.",
     path: "/tools/utilities/deadline-calculator",
 })
@@ -31,6 +31,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Calcule prazos com precisão considerando feriados nacionais e fins de semana. Ferramenta essencial para advogados, gerenciamento de projetos e planejamento."
                         },

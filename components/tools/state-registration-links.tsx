@@ -12,7 +12,7 @@ import {
 export function StateRegistrationLinks() {
     return (
         <section className="mb-8">
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion type="single" collapsible defaultValue="states-list" className="w-full">
                 <AccordionItem value="states-list" className="border rounded-lg px-4 bg-muted/20">
                     <AccordionTrigger className="hover:no-underline py-4">
                         <div className="flex items-center gap-2">

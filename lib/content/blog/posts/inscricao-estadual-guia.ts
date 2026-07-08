@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postInscricaoEstadualGuia: BlogPost = {
     slug: 'inscricao-estadual-o-que-e-como-validar',
-    title: 'Inscrição Estadual: O Que É, Para Que Serve e Como Validar por Estado',
+    title: 'O que é e Como Validar Inscrição Estadual',
     description: 'Entenda a Inscrição Estadual (IE), as regras de validação por estado, e descubra como validar e gerar IE em Python usando validate_docbr.',
     date: '2026-02-26',
     author: 'DevThru',

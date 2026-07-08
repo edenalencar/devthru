@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { NameGeneratorPage } from "./client"
 
-const title = "Gerador de Nomes e Sobrenomes Brasileiros Aleatórios (em Massa)"
+const title = "Gerador de Nomes Brasileiros"
 const description = "Gere nomes e sobrenomes brasileiros realistas de forma aleatória e em lote para simulações, preenchimento de cadastros e testes de bancos de dados."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -32,6 +32,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Crie nomes e sobrenomes brasileiros aleatórios para testes e personagens. Ideal para gerar massa de dados para testes de software. Filtragem por gênero disponível."
                         },

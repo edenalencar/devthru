@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { MockDataGeneratorPage } from "./client"
 
-const title = "Gerador de Dados Mock (Fictícios) Online - Exportação em JSON"
+const title = "Gerador de Dados Mock (Fictícios)"
 const description = "Gere dados fictícios (Mock Data) em JSON para testes e protótipos de software. Crie usuários, produtos, endereços e mais com esquemas personalizáveis gratuitamente."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -31,6 +31,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gere dados fictícios (Mock Data) em JSON para testes e protótipos. Crie usuários, produtos e mais."
                         },

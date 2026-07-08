@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postMcpServerTypescript: BlogPost = {
     slug: 'tutorial-como-criar-mcp-server-typescript',
-    title: 'Tutorial: Como Criar um MCP Server em TypeScript (Passo a Passo)',
+    title: 'Como Criar MCP Server em TypeScript',
     description: 'Aprenda a construir do zero o seu próprio servidor Model Context Protocol (MCP) utilizando TypeScript e o SDK oficial da Anthropic.',
     date: '2026-03-08',
     author: 'DevThru',

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CopyButton } from "@/components/copy-button"
 import { ArrowRightLeft } from "lucide-react"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const categories = {
     length: {
@@ -122,7 +123,7 @@ export function UnitConverterPage() {
         }
 
         // Format result to avoid floating point errors but keep precision
-        setResult(Number(converted.toPrecision(10)).toString())
+        setTimeout(() => setResult(Number(converted.toPrecision(10)).toString()), 0)
     }, [inputValue, fromUnit, toUnit, activeTab])
 
     const currentCategory = categories[activeTab as keyof typeof categories]
@@ -136,7 +137,7 @@ export function UnitConverterPage() {
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
                             <ArrowRightLeft className="h-8 w-8" />
-                            Conversor de Unidades
+                            Conversor de Medidas e Unidades
                         </h1>
                         <p className="text-muted-foreground">
                             Converta facilmente entre diferentes unidades de medida
@@ -233,26 +234,44 @@ export function UnitConverterPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Conversor de Unidades</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
-                                <p>
-                                    O Conversor de Unidades é uma ferramenta versátil para transformar medidas de Comprimento, Peso, Temperatura, Área e Volume.
-                                    Selecione a categoria desejada, as unidades de origem e destino, e obtenha o resultado instantaneamente.
-                                </p>
-                                <p className="text-sm text-muted-foreground mt-4">
-                                    <strong>Nota:</strong> Os cálculos utilizam fatores de conversão padrão internacional.
-                                </p>
-                            </div>
-                            <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
-                                <ShareButtons
-                                    title="Conversor de Unidades"
-                                    description="Converta medidas de Comprimento, Peso, Temperatura, Área e Volume."
-                                />
-                            </div>
-                        </CardContent>
+                            <CardTitle>Sobre o Conversor de Medidas e FAQ</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                Este <strong>conversor de medidas</strong> é uma ferramenta versátil para quem precisa de agilidade na <strong>conversão de unidades</strong> de Comprimento, Peso, Temperatura, Área e Volume. A proposta é simplificar a matemática de conversão de forma rápida e intuitiva.
+                            </p>
+                        </div>
+
+                        <Accordion type="single" collapsible className="w-full">
+                            <AccordionItem value="item-1">
+                                <AccordionTrigger>Como converter unidades usando esta ferramenta?</AccordionTrigger>
+                                <AccordionContent className="text-muted-foreground">
+                                    Basta selecionar a aba correspondente à categoria da grandeza (como Peso ou Temperatura), definir a unidade de origem no campo &quot;De&quot; e a de destino no campo &quot;Para&quot;. O cálculo é exibido instantaneamente à medida que você insere os valores.
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-2">
+                                <AccordionTrigger>Quais unidades de comprimento posso converter?</AccordionTrigger>
+                                <AccordionContent className="text-muted-foreground">
+                                    Nosso sistema suporta a conversão de diversas <strong>unidades de comprimento</strong>, abrangendo desde o sistema métrico (metros, quilômetros, centímetros e milímetros) até o sistema imperial (milhas, jardas, pés e polegadas), facilitando o trabalho em projetos de engenharia ou desenvolvimento global.
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-3">
+                                <AccordionTrigger>Como é garantida a precisão da conversão de unidades?</AccordionTrigger>
+                                <AccordionContent className="text-muted-foreground">
+                                    Todas as operações para <strong>converter unidades</strong> utilizam fatores de conversão baseados nos padrões internacionais de pesos e medidas do SI (Sistema Internacional de Unidades), garantindo cálculos precisos para o seu dia a dia profissional.
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+
+                        <div className="pt-4 border-t">
+                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                            <ShareButtons
+                                title="Conversor de Medidas e Unidades"
+                                description="Conversor de medidas completo. Converta unidades de Comprimento, Peso, Temperatura, Área e Volume."
+                            />
+                        </div>
+                    </CardContent>
                     </Card>
                     <RelatedTools currentToolSlug="unit" category="converters" />
                 </div>

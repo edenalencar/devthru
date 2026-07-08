@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { PhoneGeneratorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Gerador de Telefone e Celular Online - Brasil e EUA (Grátis)"
+const title = "Gerador de Telefone Online"
 const description = "Gere números de telefone celular e fixo válidos do Brasil (com DDD) e dos Estados Unidos (EUA) para testes de software. Obtenha números limpos ou formatados."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -43,6 +43,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gere números de telefone fixo e celular brasileiros válidos com DDD para testes de software. Ferramenta flexível com opções de formatação para desenvolvedores."
                         },

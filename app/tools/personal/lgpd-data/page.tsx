@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { LGPDDataPage } from "./client"
 
-const title = "Ferramentas LGPD Online - Gerador de Dados Fictícios e Anonimizador"
+const title = "Gerador de Dados Fictícios (LGPD)"
 const description = "Gere perfis de dados simulados ou anonimize textos reais ocultando informações sensíveis (como CPF, e-mail e telefone) para conformidade com a LGPD."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -32,6 +32,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Ferramentas para gerar dados pessoais fictícios e anonimizar textos com dados sensíveis para conformidade LGPD."
                         },

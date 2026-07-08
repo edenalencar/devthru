@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postUuidGuiaCompleto: BlogPost = {
     slug: 'uuid-o-que-e-como-gerar',
-    title: 'UUID: O Que É, Para Que Serve e Como Gerar em Qualquer Linguagem',
+    title: 'O que é UUID e Como Gerar',
     description: 'Entenda o que são UUIDs, as diferenças entre v1, v4 e v7, quando usá-los como chave primária e como gerar em JavaScript, Python, Java e no terminal.',
     date: '2026-02-28',
     author: 'DevThru',

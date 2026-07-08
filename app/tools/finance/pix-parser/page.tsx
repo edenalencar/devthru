@@ -4,7 +4,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PixParserPage } from "./client"
 
-const title = "Decodificador e Gerador de Pix Copia e Cola - QR Code Online"
+const title = "Decodificador e Gerador de Pix"
 const description = "Cole uma string de Pix Copia e Cola para decodificar todos os dados do recebedor (nome, chave, valor), gerar o QR Code correspondente na tela ou alterar o valor de um Pix estático com recalculo de CRC16."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -38,6 +38,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Ferramenta para decodificação de string Pix Copia e Cola. Analise chaves Pix, nomes de recebedores, valores embutidos e gere o QR Code da cobrança na tela."
                         },

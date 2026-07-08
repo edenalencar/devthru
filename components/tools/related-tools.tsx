@@ -22,9 +22,22 @@ export function RelatedTools({ currentToolSlug, category, customSlugs }: Related
         // Find tools that match the precise slugs, keeping the requested order as much as possible
         relatedTools = tools.filter(t => customSlugs.includes(t.slug) && t.slug !== currentToolSlug)
     } else {
-        relatedTools = tools
-            .filter(t => t.category === category && t.slug !== currentToolSlug)
-            .slice(0, 4)
+        const categoryTools = tools.filter(t => t.category === category)
+        const currentIndex = categoryTools.findIndex(t => t.slug === currentToolSlug)
+
+        if (currentIndex !== -1) {
+            relatedTools = []
+            for (let i = 1; i <= 4; i++) {
+                const nextIndex = (currentIndex + i) % categoryTools.length
+                const candidate = categoryTools[nextIndex]
+                if (candidate && candidate.slug !== currentToolSlug) {
+                    relatedTools.push(candidate)
+                }
+            }
+            relatedTools = relatedTools.slice(0, 4)
+        } else {
+            relatedTools = categoryTools.filter(t => t.slug !== currentToolSlug).slice(0, 4)
+        }
     }
 
     if (relatedTools.length === 0) return null

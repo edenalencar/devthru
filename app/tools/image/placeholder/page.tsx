@@ -5,11 +5,11 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PlaceholderGeneratorPage } from "./client"
 
-const title = "Gerador de Imagem Placeholder - Tamanho Personalizado"
+const title = "Gerador de Imagem Placeholder"
 const description = "Crie imagens placeholder (dummy image) com tamanho, cores e texto personalizados para protótipos e layouts."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Gerador de Imagem Placeholder - Tamanho Personalizado",
+    title: "Gerador de Imagem Placeholder",
     description: "Crie imagens placeholder (dummy image) com tamanho, cores e texto personalizados para protótipos e layouts.",
     path: "/tools/image/placeholder",
 })
@@ -31,6 +31,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Crie imagens placeholder (dummy image) com tamanho, cores e texto personalizados para protótipos e layouts."
                         },

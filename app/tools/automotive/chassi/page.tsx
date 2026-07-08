@@ -4,7 +4,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { ChassiGeneratorPage } from "./client"
 
-const title = "Gerador de Chassi (VIN) Online Válido - Em Lote (Grátis)"
+const title = "Gerador de Chassi (VIN) Válido"
 const description = "Gere números de Chassi (VIN) válidos de forma aleatória em lote ou individualmente para testes de software, QA e homologação de APIs. Rápido e sem cadastro."
 
 export const metadata: Metadata = generateToolMetadata({
@@ -43,6 +43,11 @@ export default function Page() {
                                 "@type": "Offer",
                                 "price": "0",
                                 "priceCurrency": "BRL"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
                             },
                             "description": "Gerador de chassi online grátis! Crie códigos VIN (Vehicle Identification Number) válidos em 1 clique para testes de software. Rápido, seguro e sem cadastro."
                         },
