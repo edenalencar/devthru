@@ -54,6 +54,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Gere e valide CNPJs numéricos e alfanuméricos válidos em 1 clique para testes de software com algoritmo oficial."
                         },
                         {

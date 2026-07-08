@@ -32,6 +32,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Compare dois textos e visualize as diferenças instantaneamente com nosso Diff Checker online. Identifique adições e remoções por caractere, palavra ou linha."
                         },
                         {

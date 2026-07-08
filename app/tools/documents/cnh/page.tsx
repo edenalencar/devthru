@@ -32,6 +32,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Gere números de CNH (Carteira Nacional de Habilitação) válidos para testes de software. Ferramenta com suporte à geração em massa, ideal para desenvolvedores e QA."
                         },
                         {

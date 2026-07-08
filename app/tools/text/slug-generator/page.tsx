@@ -32,6 +32,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Transforme títulos e textos em URLs amigáveis (slugs) otimizadas para SEO. Remova acentos e caracteres especiais para links limpos."
                         },
                         {

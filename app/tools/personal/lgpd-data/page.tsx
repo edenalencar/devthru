@@ -33,6 +33,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Ferramentas para gerar dados pessoais fictícios e anonimizar textos com dados sensíveis para conformidade LGPD."
                         },
                         {

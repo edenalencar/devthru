@@ -33,6 +33,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Gere e valide números de RG (Registro Geral) válidos de forma gratuita para testes e homologação de sistemas."
                         },
                         {

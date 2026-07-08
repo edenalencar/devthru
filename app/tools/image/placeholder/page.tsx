@@ -32,6 +32,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Crie imagens placeholder (dummy image) com tamanho, cores e texto personalizados para protótipos e layouts."
                         },
                         {

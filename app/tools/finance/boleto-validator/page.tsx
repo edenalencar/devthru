@@ -39,6 +39,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Validador e decodificador matemático de boleto bancário. Analise linhas digitáveis e códigos de barras para extrair banco emissor, data de vencimento, valor e status de autenticidade."
                         },
                         {

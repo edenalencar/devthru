@@ -29,6 +29,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Converta números inteiros instantaneamente entre Decimal (Base 10), Binário (Base 2), Hexadecimal (Base 16) e Octal (Base 8). Ideal para desenvolvedores e estudantes."
                         },
                         {

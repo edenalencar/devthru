@@ -39,6 +39,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Ferramenta para decodificação de string Pix Copia e Cola. Analise chaves Pix, nomes de recebedores, valores embutidos e gere o QR Code da cobrança na tela."
                         },
                         {

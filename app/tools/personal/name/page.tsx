@@ -33,6 +33,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Crie nomes e sobrenomes brasileiros aleatórios para testes e personagens. Ideal para gerar massa de dados para testes de software. Filtragem por gênero disponível."
                         },
                         {

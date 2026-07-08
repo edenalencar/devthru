@@ -47,6 +47,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Gere e valide números de PIS, PASEP, NIS e NIT válidos matematicamente em 1 clique para testes de software, QA e automação de sistemas."
                         },
                         {

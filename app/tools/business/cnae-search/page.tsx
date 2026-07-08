@@ -29,6 +29,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Pesquise códigos e descrições da Classificação Nacional de Atividades Econômicas (CNAE) atualizados via IBGE. Consulta gratuita com filtros por seção, divisão e classe.",
                         },
                         {

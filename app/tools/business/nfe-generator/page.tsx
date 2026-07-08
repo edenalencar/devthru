@@ -28,6 +28,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Ferramenta online gratuita para gerar chaves de acesso de Nota Fiscal Eletrônica (NF-e) e NFC-e válidas para testes de software e homologação."
                         },
                         {

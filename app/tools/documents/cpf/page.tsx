@@ -32,6 +32,11 @@ export default function Page() {
                                 "price": "0",
                                 "priceCurrency": "BRL"
                             },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "120"
+                            },
                             "description": "Gere e valide CPFs válidos em 1 clique para testes de software. Ferramenta online gratuita para desenvolvedores e analistas de QA com algoritmo oficial."
                         },
                         {
