@@ -22,6 +22,9 @@ export const blogCategories: Record<BlogCategory, { label: string; color: string
 }
 
 // Import posts
+import { postGuiaDeExpressoesCronNoLinux } from './posts/guia-de-expressoes-cron-no-linux'
+import { postJwtNaPraticaEstruturaSegurancaEDecodificacao } from './posts/jwt-na-pratica-estrutura-seguranca-e-decodificacao'
+import { postPxVsRemComoEPorQueAdotarUnidadesRelativasNoCss } from './posts/px-vs-rem-como-e-por-que-adotar-unidades-relativas-no-css'
 import { postComoDecodificarBoleto } from './posts/como-decodificar-boleto-bancario'
 import { postComoDecodificarPix } from './posts/como-decodificar-pix-copia-e-cola'
 import { postComoFuncionaAlgoritmoValidacaoPis } from './posts/como-funciona-algoritmo-validacao-pis'
@@ -51,6 +54,9 @@ import { postSddSpecDrivenDevelopmentFocadoEmIa } from './posts/o-que-e-sdd-spec
 import { postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto } from './posts/skills-de-ia-e-progressive-disclosure-economia-de-contexto'
 
 export const blogPosts: BlogPost[] = [
+    postGuiaDeExpressoesCronNoLinux,
+    postJwtNaPraticaEstruturaSegurancaEDecodificacao,
+    postPxVsRemComoEPorQueAdotarUnidadesRelativasNoCss,
     postComoDecodificarBoleto,
     postComoDecodificarPix,
     postComoFuncionaAlgoritmoValidacaoPis,
