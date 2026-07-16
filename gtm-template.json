@@ -341,7 +341,7 @@
                         "value": "radio_action"
                     },
                     {
-                        "type": "TEMPLATE",
+                        "type": "INTEGER",
                         "key": "dataLayerVersion",
                         "value": "2"
                     }
@@ -361,7 +361,7 @@
                         "value": "radio_channel"
                     },
                     {
-                        "type": "TEMPLATE",
+                        "type": "INTEGER",
                         "key": "dataLayerVersion",
                         "value": "2"
                     }
