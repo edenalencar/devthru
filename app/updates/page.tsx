@@ -22,6 +22,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "16 de Julho de 2026",
+        title: "DevThru Radio: Lofi & Synthwave Integrado",
+        description: "Lançamento da DevThru Radio, um player de áudio flutuante e persistente para te acompanhar durante o código. Ouça streams de Lofi Focus Beats e Retro Synthwave sem interrupções ao navegar pelas páginas. Inclui controle de volume, atalhos rápidos (Alt+P para tocar/pausar, Alt+M para mutar) e um equalizador visual animado.",
+        type: "feature",
+        version: "1.45.0"
+    },
+    {
         date: "05 de Julho de 2026",
         title: "Gerador de Placa Pix de Balcão",
         description: "Lançamento do Gerador de Placa Pix de Balcão. Personalize displays de Pix para impressão física (A4) ou download (PNG/PDF) com seu logotipo, temas de cores, redes sociais e notas de rodapé.",
