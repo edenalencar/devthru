@@ -160,6 +160,66 @@
                 "monitoringMetadata": {
                     "type": "MAP"
                 }
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "tagId": "7",
+                "name": "GA4 Event - Radio Interaction",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "radio_interaction"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementId",
+                        "value": "{{GA4 Measurement ID}}"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "eventParameters",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "name",
+                                        "value": "radio_action"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "{{dlv - radio_action}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "name",
+                                        "value": "radio_channel"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "{{dlv - radio_channel}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "7",
+                "firingTriggerId": [
+                    "3"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
             }
         ],
         "trigger": [
@@ -195,6 +255,31 @@
                     }
                 ],
                 "fingerprint": "2"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "triggerId": "3",
+                "name": "Event - Radio Interaction",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "radio_interaction"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "3"
             }
         ],
         "variable": [
@@ -242,6 +327,46 @@
                     }
                 ],
                 "fingerprint": "3"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "variableId": "4",
+                "name": "dlv - radio_action",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "radio_action"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    }
+                ],
+                "fingerprint": "4"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "variableId": "5",
+                "name": "dlv - radio_channel",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "radio_channel"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    }
+                ],
+                "fingerprint": "5"
             }
         ],
         "builtInVariable": [
