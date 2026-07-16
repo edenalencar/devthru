@@ -720,14 +720,17 @@ export function RadioPlayer() {
                     const vol = ambientVolumes[key];
                     return (
                       <div key={key} className="flex items-center justify-between space-x-2 bg-muted/20 px-2.5 py-1.5 rounded-lg border border-border/10">
+                        {/* Ícone e Nome do Som */}
                         <div className={cn(
-                          "flex items-center space-x-2 text-xs transition-colors shrink-0", 
+                          "flex items-center space-x-1.5 text-xs transition-colors shrink-0", 
                           vol > 0 && !isMuted ? "text-foreground font-semibold" : "text-muted-foreground/60"
                         )}>
                           {sound.icon}
-                          <span className="w-14 truncate">{sound.name}</span>
+                          <span>{sound.name}</span>
                         </div>
-                        <div className="flex items-center space-x-1.5 flex-1 justify-end">
+                        
+                        {/* Controle de Volume e Slider (com espaço de separação limpo) */}
+                        <div className="flex items-center space-x-1.5 flex-1 justify-end pl-6">
                           {vol === 0 || isMuted ? (
                             <VolumeX className="w-3.5 h-3.5 text-destructive shrink-0" />
                           ) : (
@@ -743,7 +746,7 @@ export function RadioPlayer() {
                               const val = parseFloat(e.target.value);
                               setAmbientVolumes((prev) => ({ ...prev, [key]: val }));
                             }}
-                            className="w-24 h-1 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                            className="w-full h-1 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
                             aria-label={`Volume de ${sound.name}`}
                           />
                         </div>
