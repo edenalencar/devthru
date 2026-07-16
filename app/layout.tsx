@@ -12,6 +12,7 @@ import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/analyti
 import { CookieConsent } from "@/components/analytics/cookie-consent";
 import { createClient } from "@/lib/supabase/server";
 import { UserProvider } from "@/components/providers/user-provider";
+import { RadioPlayer } from "@/components/radio-player";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -96,6 +97,7 @@ export default async function RootLayout({
             {children}
             <OnboardingTour />
             <Toaster />
+            <RadioPlayer />
           </UserProvider>
         </ThemeProvider>
         <SpeedInsights />
