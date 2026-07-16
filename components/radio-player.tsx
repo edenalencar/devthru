@@ -722,15 +722,15 @@ export function RadioPlayer() {
                       <div key={key} className="flex items-center justify-between space-x-2 bg-muted/20 px-2.5 py-1.5 rounded-lg border border-border/10">
                         {/* Ícone e Nome do Som */}
                         <div className={cn(
-                          "flex items-center space-x-1.5 text-xs transition-colors shrink-0", 
+                          "flex items-center space-x-1.5 text-xs transition-colors shrink-0 w-28", 
                           vol > 0 && !isMuted ? "text-foreground font-semibold" : "text-muted-foreground/60"
                         )}>
                           {sound.icon}
-                          <span>{sound.name}</span>
+                          <span className="truncate">{sound.name}</span>
                         </div>
                         
-                        {/* Controle de Volume e Slider (com espaço de separação limpo) */}
-                        <div className="flex items-center space-x-1.5 flex-1 justify-end pl-6">
+                        {/* Controle de Volume e Slider (com alinhamento perfeito) */}
+                        <div className="flex items-center space-x-1.5 flex-1 justify-end">
                           {vol === 0 || isMuted ? (
                             <VolumeX className="w-3.5 h-3.5 text-destructive shrink-0" />
                           ) : (
