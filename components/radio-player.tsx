@@ -262,6 +262,12 @@ export function RadioPlayer() {
 
   useEffect(() => {
     if (isMounted) {
+      localStorage.setItem("devthru-ambient-volumes", JSON.stringify(ambientVolumes));
+    }
+  }, [ambientVolumes, isMounted]);
+
+  useEffect(() => {
+    if (isMounted) {
       localStorage.setItem("devthru_scratchpad", notes);
     }
   }, [notes, isMounted]);
@@ -713,31 +719,34 @@ export function RadioPlayer() {
                     const sound = AMBIENT_SOUNDS[key];
                     const vol = ambientVolumes[key];
                     return (
-                      <div key={key} className="flex items-center justify-between space-x-2">
+                      <div key={key} className="flex items-center justify-between space-x-2 bg-muted/20 px-2.5 py-1.5 rounded-lg border border-border/10">
                         <div className={cn(
                           "flex items-center space-x-2 text-xs transition-colors shrink-0", 
-                          vol > 0 && !isMuted ? "text-foreground font-medium" : "text-muted-foreground/60"
+                          vol > 0 && !isMuted ? "text-foreground font-semibold" : "text-muted-foreground/60"
                         )}>
                           {sound.icon}
                           <span className="w-14 truncate">{sound.name}</span>
                         </div>
-                        <input
-                          type="range"
-                          min="0"
-                          max="1"
-                          step="0.05"
-                          value={vol}
-                          onChange={(e) => {
-                            const val = parseFloat(e.target.value);
-                            setAmbientVolumes((prev) => {
-                              const next = { ...prev, [key]: val };
-                              localStorage.setItem("devthru-ambient-volumes", JSON.stringify(next));
-                              return next;
-                            });
-                          }}
-                          className="w-44 h-1 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
-                          aria-label={`Volume de ${sound.name}`}
-                        />
+                        <div className="flex items-center space-x-1.5 flex-1 justify-end">
+                          {vol === 0 || isMuted ? (
+                            <VolumeX className="w-3.5 h-3.5 text-destructive shrink-0" />
+                          ) : (
+                            <Volume2 className="w-3.5 h-3.5 text-muted-foreground/80 shrink-0" />
+                          )}
+                          <input
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.05"
+                            value={vol}
+                            onChange={(e) => {
+                              const val = parseFloat(e.target.value);
+                              setAmbientVolumes((prev) => ({ ...prev, [key]: val }));
+                            }}
+                            className="w-24 h-1 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                            aria-label={`Volume de ${sound.name}`}
+                          />
+                        </div>
                       </div>
                     );
                   })}
