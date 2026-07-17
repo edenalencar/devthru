@@ -14,6 +14,8 @@ import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { sendGTMEvent } from "@/lib/gtm"
+import { CopyButton } from "@/components/copy-button"
 
 export function JSONFormatterPage() {
     const [input, setInput] = useState("")
@@ -31,10 +33,25 @@ export function JSONFormatterPage() {
             setOutput(formatted)
             setValidation({ isValid: true })
             toast.success("JSON formatado com sucesso!")
-        } catch (error) {
+            
+            sendGTMEvent({
+                event: 'tool_interaction',
+                tool_name: 'json-formatter',
+                tool_action: 'format',
+                tool_category: 'utilities'
+            })
+        } catch (error: any) {
             toast.error("JSON inválido. Não é possível formatar.")
             const result = validateJSON(input)
             setValidation(result)
+
+            sendGTMEvent({
+                event: 'tool_interaction',
+                tool_name: 'json-formatter',
+                tool_action: 'format_error',
+                tool_category: 'utilities',
+                error_message: error?.message || 'Invalid JSON'
+            })
         }
     }
 
@@ -49,10 +66,25 @@ export function JSONFormatterPage() {
             setOutput(minified)
             setValidation({ isValid: true })
             toast.success("JSON minificado com sucesso!")
-        } catch (error) {
+
+            sendGTMEvent({
+                event: 'tool_interaction',
+                tool_name: 'json-formatter',
+                tool_action: 'minify',
+                tool_category: 'utilities'
+            })
+        } catch (error: any) {
             toast.error("JSON inválido. Não é possível minificar.")
             const result = validateJSON(input)
             setValidation(result)
+
+            sendGTMEvent({
+                event: 'tool_interaction',
+                tool_name: 'json-formatter',
+                tool_action: 'minify_error',
+                tool_category: 'utilities',
+                error_message: error?.message || 'Invalid JSON'
+            })
         }
     }
 
@@ -67,8 +99,21 @@ export function JSONFormatterPage() {
 
         if (result.isValid) {
             toast.success("JSON válido!")
+            sendGTMEvent({
+                event: 'tool_interaction',
+                tool_name: 'json-formatter',
+                tool_action: 'validate_success',
+                tool_category: 'utilities'
+            })
         } else {
             toast.error("JSON inválido")
+            sendGTMEvent({
+                event: 'tool_interaction',
+                tool_name: 'json-formatter',
+                tool_action: 'validate_error',
+                tool_category: 'utilities',
+                error_message: result.error || 'Invalid JSON'
+            })
         }
     }
 
@@ -176,6 +221,19 @@ export function JSONFormatterPage() {
                             <CardContent>
                                 {output ? (
                                     <div className="space-y-2">
+                                        <div className="flex justify-end">
+                                            <CopyButton
+                                                text={output}
+                                                onCopy={() => {
+                                                    sendGTMEvent({
+                                                        event: 'tool_interaction',
+                                                        tool_name: 'json-formatter',
+                                                        tool_action: 'copy_result',
+                                                        tool_category: 'utilities'
+                                                    })
+                                                }}
+                                            />
+                                        </div>
                                         <textarea
                                             value={output}
                                             readOnly

@@ -7,15 +7,17 @@ import { Button } from "@/components/ui/button"
 interface CopyButtonProps {
     text: string
     className?: string
+    onCopy?: () => void
 }
 
-export function CopyButton({ text, className }: CopyButtonProps) {
+export function CopyButton({ text, className, onCopy }: CopyButtonProps) {
     const [copied, setCopied] = useState(false)
 
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(text)
             setCopied(true)
+            if (onCopy) onCopy()
             setTimeout(() => setCopied(false), 2000)
         } catch (err) {
             console.error("Failed to copy:", err)

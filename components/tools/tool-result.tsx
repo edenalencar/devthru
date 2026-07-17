@@ -1,9 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
 import { CheckCircle2, Sparkles } from 'lucide-react'
 import { CopyButton } from '@/components/copy-button'
 import { HistoryButton } from '@/components/tools/history-button'
 import Link from 'next/link'
+import { sendGTMEvent } from '@/lib/gtm'
 
 interface ToolResultProps {
     result: string | string[]
@@ -24,6 +26,17 @@ export function ToolResult({
     className = '',
     isPro = true,
 }: ToolResultProps) {
+    useEffect(() => {
+        if (result && (Array.isArray(result) ? result.length > 0 : result !== '')) {
+            sendGTMEvent({
+                event: 'tool_interaction',
+                tool_name: toolId,
+                tool_action: 'generate_result',
+                tool_category: 'result'
+            })
+        }
+    }, [result, toolId])
+
     if (!result || (Array.isArray(result) && result.length === 0)) {
         return null
     }
@@ -38,7 +51,17 @@ export function ToolResult({
                     <code className="text-2xl font-mono font-bold break-all">
                         {displayResult}
                     </code>
-                    <CopyButton text={displayResult} />
+                    <CopyButton 
+                        text={displayResult} 
+                        onCopy={() => {
+                            sendGTMEvent({
+                                event: 'tool_interaction',
+                                tool_name: toolId,
+                                tool_action: 'copy_result',
+                                tool_category: 'result'
+                            })
+                        }}
+                    />
                 </div>
             </div>
             <div className="flex items-center justify-between">
