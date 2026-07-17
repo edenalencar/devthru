@@ -1,0 +1,121 @@
+import { createAdminClient } from '@/lib/supabase/admin';
+import { NextRequest, NextResponse } from 'next/server';
+
+// Helper para extrair apenas o texto novo da resposta, removendo histórico acoplado de e-mail
+function extractReplyText(text: string): string {
+    if (!text) return '';
+    const splitters = [
+        /\r?\nOn\s.*wrote:/i,
+        /\r?\nEm\s.*escreveu:/i,
+        /\r?\nDe:\s/i,
+        /\r?\nFrom:\s/i,
+        /\r?\n---\s*Original Message\s*---/i,
+        /\r?\n_+\r?\n/ // Linha horizontal do Outlook/Gmail
+    ];
+    
+    let cleanText = text;
+    for (const splitter of splitters) {
+        const parts = cleanText.split(splitter);
+        if (parts.length > 0) {
+            cleanText = parts[0];
+        }
+    }
+    return cleanText.trim();
+}
+
+export async function POST(req: NextRequest) {
+    try {
+        // 1. Validar Token de Segurança (Webhook Secret) via query string
+        const { searchParams } = new URL(req.url);
+        const secret = searchParams.get('secret');
+        const expectedSecret = process.env.RESEND_WEBHOOK_SECRET;
+
+        if (!expectedSecret || secret !== expectedSecret) {
+            console.warn('Tentativa de acesso ao Webhook Inbound sem token válido');
+            return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
+        }
+
+        const body = await req.json();
+
+        // Garantir que é um evento de recebimento de e-mail
+        if (body.type !== 'email.received') {
+            return NextResponse.json({ success: true, message: 'Evento ignorado' });
+        }
+
+        const emailData = body.data;
+        const fromEmail = emailData.from?.email?.toLowerCase().trim();
+        const fromName = emailData.from?.name || 'Usuário';
+        const subject = emailData.subject || '';
+        const rawText = emailData.text || '';
+        
+        if (!fromEmail || !rawText) {
+            return NextResponse.json({ error: 'Campos obrigatórios ausentes' }, { status: 400 });
+        }
+
+        const newReply = extractReplyText(rawText);
+
+        const supabase = createAdminClient();
+
+        // 2. Buscar a última mensagem de contato desse remetente
+        const { data: latestMessage, error: fetchError } = await (supabase
+            .from('contact_messages') as any)
+            .select('*')
+            .eq('email', fromEmail)
+            .order('created_at', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+
+        if (fetchError) {
+            console.error('Erro ao buscar mensagem original no banco:', fetchError);
+            return NextResponse.json({ error: 'Erro de banco de dados' }, { status: 500 });
+        }
+
+        const dateFormatted = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+
+        if (latestMessage) {
+            // 3. Se encontrou, concatenamos no corpo da mensagem original e voltamos o status para 'pending'
+            const originalText = latestMessage.message || '';
+            const updatedHistory = `${originalText}\n\n--- Resposta de ${fromName} em ${dateFormatted} ---\n${newReply}`;
+
+            const { error: updateError } = await (supabase
+                .from('contact_messages') as any)
+                .update({
+                    message: updatedHistory,
+                    status: 'pending', // Volta a ficar pendente para chamar a atenção do Admin
+                    replied_at: null, // Limpa o horário de resposta antiga para não confundir
+                    reply_message: null // Limpa para permitir uma nova resposta
+                })
+                .eq('id', latestMessage.id);
+
+            if (updateError) {
+                console.error('Erro ao atualizar histórico de mensagens no banco:', updateError);
+                return NextResponse.json({ error: 'Erro ao salvar histórico' }, { status: 500 });
+            }
+
+            console.log(`Mensagem de contato ID ${latestMessage.id} atualizada com nova resposta de ${fromEmail}`);
+        } else {
+            // 4. Se NÃO encontrou nenhuma mensagem anterior desse e-mail, registramos como um novo contato
+            const { error: insertError } = await (supabase
+                .from('contact_messages') as any)
+                .insert({
+                    name: fromName,
+                    email: fromEmail,
+                    subject: subject || 'Resposta recebida via e-mail',
+                    message: newReply,
+                    status: 'pending'
+                });
+
+            if (insertError) {
+                console.error('Erro ao criar novo contato vindo de e-mail:', insertError);
+                return NextResponse.json({ error: 'Erro ao salvar novo contato' }, { status: 500 });
+            }
+
+            console.log(`Nova mensagem de contato criada vinda de e-mail de ${fromEmail}`);
+        }
+
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error('Erro inesperado no Webhook Inbound:', error);
+        return NextResponse.json({ error: 'Erro interno do servidor' }, { status: 500 });
+    }
+}
