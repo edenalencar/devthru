@@ -15,6 +15,13 @@ export async function GET(req: NextRequest) {
         const isProd = process.env.NODE_ENV === 'production';
         const expectedToken = `Bearer ${process.env.CRON_SECRET}`;
 
+        console.log('CRON AUTH DEBUG:', {
+            hasAuthHeader: !!authHeader,
+            authHeaderLength: authHeader?.length,
+            hasCronSecret: !!process.env.CRON_SECRET,
+            cronSecretLength: process.env.CRON_SECRET?.length
+        });
+
         if (isProd && authHeader !== expectedToken) {
             console.warn('Tentativa de execução de Cron Job não autorizada');
             return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
