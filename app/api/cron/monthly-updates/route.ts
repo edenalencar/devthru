@@ -73,7 +73,8 @@ export async function GET(req: NextRequest) {
 
         // 4. Preparar o envio em lotes usando a API de lote (Batch) do Resend
         const resend = new Resend(process.env.RESEND_API_KEY);
-        const fromEmail = process.env.MAIL_FROM || 'DevThru <contato@devthru.com>';
+        const fromEmail = process.env.MAIL_FROM_NEWSLETTER || 'DevThru <newsletter@devthru.com>';
+        const replyToEmail = process.env.MAIL_FROM || 'DevThru <contato@devthru.com>';
         
         // Formatar os e-mails para envio em blocos de até 100 destinatários por vez
         const emailList = users.map((u: any) => u.email).filter(Boolean);
@@ -94,6 +95,7 @@ export async function GET(req: NextRequest) {
                 return {
                     from: fromEmail,
                     to: email,
+                    replyTo: replyToEmail, // Direciona as respostas para o e-mail de contato de suporte
                     subject: `Novidades do DevThru • ${currentMonthYear} 🚀`,
                     react: emailElement,
                 };
