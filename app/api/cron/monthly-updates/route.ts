@@ -65,9 +65,9 @@ export async function GET(req: NextRequest) {
                 url: "https://www.devthru.com/tools/utilities/qrcode"
             },
             {
-                title: "Painel de Controle Administrativo",
-                description: "Gerenciamento completo de mensagens e usuários em uma interface integrada.",
-                url: "https://www.devthru.com/admin"
+                title: "Decodificador de Pix",
+                description: "Analise dados de chaves Pix e links copia e cola para verificar valores e destinatários.",
+                url: "https://www.devthru.com/tools/finance/pix-parser"
             }
         ];
 
