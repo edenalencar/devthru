@@ -1,6 +1,9 @@
 import { createAdminClient } from '@/lib/supabase/admin'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
+import { sendEmail } from '@/lib/email'
+import { ConfirmEmailTemplate } from '@/components/emails/ConfirmEmailTemplate'
+import React from 'react'
 
 // Schema for validation
 const contactSchema = z.object({
@@ -67,6 +70,29 @@ export async function POST(req: Request) {
                 { error: 'Erro ao salvar mensagem' },
                 { status: 500 }
             )
+        }
+
+        // Send automatic confirmation email to the sender asynchronously
+        try {
+            const emailElement = React.createElement(ConfirmEmailTemplate, {
+                userName: name,
+                originalSubject: subject,
+                originalMessage: message,
+            })
+
+            sendEmail({
+                to: email,
+                subject: `Recebemos sua mensagem: ${subject}`,
+                react: emailElement,
+            }).then(({ error: emailError }) => {
+                if (emailError) {
+                    console.error('Falha ao enviar e-mail de confirmação automática:', emailError)
+                } else {
+                    console.log('E-mail de confirmação automática enviado com sucesso para:', email)
+                }
+            })
+        } catch (emailException) {
+            console.error('Erro inesperado ao disparar confirmação de e-mail:', emailException)
         }
 
         return NextResponse.json({ success: true })
