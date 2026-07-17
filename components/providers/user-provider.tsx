@@ -33,6 +33,16 @@ export function UserProvider({
     const [isLoading, setIsLoading] = useState(!initialUser)
     const supabase = createClient()
 
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            window.dataLayer = window.dataLayer || []
+            window.dataLayer.push({
+                event: 'user_id_update',
+                user_id: user?.id || null
+            })
+        }
+    }, [user?.id])
+
     // Function to calculate derived state from user and profile
     const updateDerivedState = (currentUser: User | null, currentProfile: any) => {
         setProfile(currentProfile)

@@ -85,7 +85,7 @@ export default async function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
-        <GoogleTagManager />
+        <GoogleTagManager userId={user?.id} />
         <GoogleTagManagerNoscript />
         <ThemeProvider
           attribute="class"
