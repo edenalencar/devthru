@@ -6,7 +6,7 @@
         "accountId": "0000000000",
         "containerId": "00000000",
         "containerVersionId": "1",
-        "name": "DevThru - Analytics Tracking Extension",
+        "name": "DevThru - Analytics & User ID Extension",
         "container": {
             "path": "accounts/0000000000/containers/00000000",
             "accountId": "0000000000",
@@ -18,6 +18,50 @@
             ]
         },
         "tag": [
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "tagId": "1",
+                "name": "Google Analytics 4 Configuration",
+                "type": "gaawc",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementId",
+                        "value": "{{GA4 Measurement ID}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendPageView",
+                        "value": "true"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "fieldsToSet",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "fieldName",
+                                        "value": "user_id"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "{{dlv - user_id}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "firingTriggerId": [
+                    "1"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
             {
                 "accountId": "0000000000",
                 "containerId": "00000000",
@@ -112,6 +156,13 @@
             {
                 "accountId": "0000000000",
                 "containerId": "00000000",
+                "triggerId": "1",
+                "name": "All Pages",
+                "type": "PAGEVIEW"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
                 "triggerId": "101",
                 "name": "Event - Tool Interaction",
                 "type": "CUSTOM_EVENT",
@@ -203,6 +254,25 @@
                         "type": "TEMPLATE",
                         "key": "name",
                         "value": "error_message"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    }
+                ]
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "variableId": "105",
+                "name": "dlv - user_id",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "user_id"
                     },
                     {
                         "type": "INTEGER",

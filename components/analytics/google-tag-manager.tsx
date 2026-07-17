@@ -1,6 +1,6 @@
 import Script from "next/script"
 
-export function GoogleTagManager() {
+export function GoogleTagManager({ userId }: { userId?: string }) {
     const gtmId = process.env.NEXT_PUBLIC_GTM_ID
 
     if (!gtmId) return null
@@ -12,6 +12,7 @@ export function GoogleTagManager() {
             dangerouslySetInnerHTML={{
                 __html: `
             window.dataLayer = window.dataLayer || [];
+            ${userId ? `window.dataLayer.push({ 'user_id': '${userId}' });` : ''}
             function gtag(){dataLayer.push(arguments);}
             gtag('consent', 'default', {
                 'ad_storage': 'denied',
