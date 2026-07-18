@@ -62,7 +62,17 @@ export async function POST(req: NextRequest) {
         }
 
         const subject = emailData.subject || '';
-        const rawText = emailData.text || '';
+        let rawText = emailData.text || '';
+
+        // Se o cliente de e-mail enviou apenas em HTML (sem texto plano), extraímos o texto do HTML
+        if (!rawText && emailData.html) {
+            rawText = emailData.html
+                .replace(/<br\s*\/?>/gi, '\n')
+                .replace(/<\/p>/gi, '\n')
+                .replace(/<[^>]*>/g, '')
+                .replace(/&nbsp;/gi, ' ')
+                .trim();
+        }
         
         if (!fromEmail || !rawText) {
             return NextResponse.json({ error: 'Campos obrigatórios ausentes' }, { status: 400 });
