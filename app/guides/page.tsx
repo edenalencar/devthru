@@ -2,10 +2,15 @@
 import Link from 'next/link'
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { PROGRAMMATIC_CONTENT } from "@/lib/content/programmatic"
+import { Metadata } from 'next'
+import { siteConfig } from "@/config/site"
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Guias de Implementação | DevThru",
     description: "Aprenda a implementar algoritmos de validação e geração de documentos em diversas linguagens de programação.",
+    alternates: {
+        canonical: `${siteConfig.url}/guides`,
+    },
 }
 
 export default function GuidesIndex() {

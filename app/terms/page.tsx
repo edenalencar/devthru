@@ -1,5 +1,15 @@
+import { Metadata } from "next"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
+import { siteConfig } from "@/config/site"
+
+export const metadata: Metadata = {
+    title: "Termos de Uso | DevThru",
+    description: "Termos de serviço e condições de uso da plataforma DevThru.",
+    alternates: {
+        canonical: `${siteConfig.url}/terms`,
+    },
+}
 
 export default function TermsPage() {
     return (
