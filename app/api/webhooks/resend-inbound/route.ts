@@ -1,5 +1,6 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 // Helper para extrair apenas o texto novo da resposta, removendo histórico acoplado de e-mail
 function extractReplyText(text: string): string {
@@ -44,10 +45,27 @@ export async function POST(req: NextRequest) {
         }
 
         const emailData = body.data;
+        const emailId = emailData.email_id;
+
+        if (!emailId) {
+            console.warn('Webhook Inbound: email_id ausente no payload do webhook');
+            return NextResponse.json({ success: true, message: 'Ignorado por falta de ID de e-mail' });
+        }
+
+        // 2. Buscar dados completos do e-mail no Resend (incluindo o corpo de texto/HTML)
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const { data: emailContent, error: fetchEmailError } = await resend.emails.get(emailId);
+
+        if (fetchEmailError || !emailContent) {
+            console.error('Erro ao obter detalhes do e-mail do Resend:', fetchEmailError);
+            return NextResponse.json({ error: 'Erro ao buscar e-mail no Resend' }, { status: 500 });
+        }
+
+        // 3. Fazer o parsing do remetente (from)
         let fromEmail = '';
         let fromName = 'Usuário';
 
-        const rawFrom = emailData.from;
+        const rawFrom = emailContent.from;
         if (typeof rawFrom === 'string') {
             const emailMatch = rawFrom.match(/<([^>]+)>/);
             if (emailMatch) {
@@ -58,45 +76,43 @@ export async function POST(req: NextRequest) {
                 fromName = rawFrom.split('@')[0].trim() || 'Usuário';
             }
         } else if (rawFrom && typeof rawFrom === 'object') {
-            fromEmail = (rawFrom.email || '').toLowerCase().trim();
-            fromName = rawFrom.name || 'Usuário';
+            // Compatibilidade com possíveis objetos de dados
+            const rawFromObj = rawFrom as any;
+            fromEmail = (rawFromObj.email || '').toLowerCase().trim();
+            fromName = rawFromObj.name || 'Usuário';
         }
 
-        const subject = emailData.subject || '';
-        let rawText = emailData.text || '';
+        const subject = emailContent.subject || '';
+        let rawText = emailContent.text || '';
 
         // Se o cliente de e-mail enviou apenas em HTML (sem texto plano), extraímos o texto do HTML
-        if (!rawText && emailData.html) {
-            rawText = emailData.html
+        if (!rawText && emailContent.html) {
+            rawText = emailContent.html
                 .replace(/<br\s*\/?>/gi, '\n')
                 .replace(/<\/p>/gi, '\n')
                 .replace(/<[^>]*>/g, '')
                 .replace(/&nbsp;/gi, ' ')
                 .trim();
         }
-        
-        console.log('WEBHOOK INBOUND DEBUG:', {
-            hasFrom: !!emailData.from,
-            rawFromType: typeof emailData.from,
-            rawFromValue: emailData.from,
-            fromEmail: fromEmail,
-            hasText: !!emailData.text,
-            textLength: emailData.text?.length,
-            hasHtml: !!emailData.html,
-            htmlLength: emailData.html?.length,
-            rawTextLength: rawText?.length
-        });
 
+        console.log('WEBHOOK INBOUND PARSED DETAILS:', {
+            fromEmail,
+            fromName,
+            subject,
+            hasText: !!emailContent.text,
+            hasHtml: !!emailContent.html,
+            parsedTextLength: rawText.length
+        });
+        
         if (!fromEmail || !rawText) {
-            console.warn('Webhook Inbound: Remetente ou conteúdo ausentes. Retornando 200 OK para evitar loops do Resend.', { fromEmail, hasText: !!rawText });
+            console.warn('Webhook Inbound: Remetente ou conteúdo vazios após busca no Resend. Retornando 200 OK para evitar loops.', { fromEmail, hasText: !!rawText });
             return NextResponse.json({ success: true, message: 'Ignorado por falta de conteúdo' });
         }
 
         const newReply = extractReplyText(rawText);
-
         const supabase = createAdminClient();
 
-        // 2. Buscar a última mensagem de contato desse remetente
+        // 4. Buscar a última mensagem de contato desse remetente
         const { data: latestMessage, error: fetchError } = await (supabase
             .from('contact_messages') as any)
             .select('*')
@@ -113,7 +129,7 @@ export async function POST(req: NextRequest) {
         const dateFormatted = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 
         if (latestMessage) {
-            // 3. Se encontrou, concatenamos no corpo da mensagem original e voltamos o status para 'pending'
+            // 5. Se encontrou, concatenamos no corpo da mensagem original e voltamos o status para 'pending'
             const originalText = latestMessage.message || '';
             const updatedHistory = `${originalText}\n\n--- Resposta de ${fromName} em ${dateFormatted} ---\n${newReply}`;
 
@@ -134,7 +150,7 @@ export async function POST(req: NextRequest) {
 
             console.log(`Mensagem de contato ID ${latestMessage.id} atualizada com nova resposta de ${fromEmail}`);
         } else {
-            // 4. Se NÃO encontrou nenhuma mensagem anterior desse e-mail, registramos como um novo contato
+            // 6. Se NÃO encontrou nenhuma mensagem anterior desse e-mail, registramos como um novo contato
             const { error: insertError } = await (supabase
                 .from('contact_messages') as any)
                 .insert({
