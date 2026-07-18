@@ -74,6 +74,18 @@ export async function POST(req: NextRequest) {
                 .trim();
         }
         
+        console.log('WEBHOOK INBOUND DEBUG:', {
+            hasFrom: !!emailData.from,
+            rawFromType: typeof emailData.from,
+            rawFromValue: emailData.from,
+            fromEmail: fromEmail,
+            hasText: !!emailData.text,
+            textLength: emailData.text?.length,
+            hasHtml: !!emailData.html,
+            htmlLength: emailData.html?.length,
+            rawTextLength: rawText?.length
+        });
+
         if (!fromEmail || !rawText) {
             return NextResponse.json({ error: 'Campos obrigatórios ausentes' }, { status: 400 });
         }
