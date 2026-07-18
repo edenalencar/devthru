@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
 
         // 2. Buscar dados completos do e-mail no Resend (incluindo o corpo de texto/HTML)
         const resend = new Resend(process.env.RESEND_API_KEY);
-        const { data: emailContent, error: fetchEmailError } = await resend.emails.get(emailId);
+        const { data: emailContent, error: fetchEmailError } = await resend.emails.receiving.get(emailId);
 
         if (fetchEmailError || !emailContent) {
             console.error('Erro ao obter detalhes do e-mail do Resend:', fetchEmailError);
