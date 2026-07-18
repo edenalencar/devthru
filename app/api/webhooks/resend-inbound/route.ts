@@ -37,7 +37,6 @@ export async function POST(req: NextRequest) {
         }
 
         const body = await req.json();
-        console.log('WEBHOOK BODY BRUTO:', JSON.stringify(body));
 
         // Garantir que é um evento de recebimento de e-mail
         if (body.type !== 'email.received') {
@@ -95,15 +94,6 @@ export async function POST(req: NextRequest) {
                 .trim();
         }
 
-        console.log('WEBHOOK INBOUND PARSED DETAILS:', {
-            fromEmail,
-            fromName,
-            subject,
-            hasText: !!emailContent.text,
-            hasHtml: !!emailContent.html,
-            parsedTextLength: rawText.length
-        });
-        
         if (!fromEmail || !rawText) {
             console.warn('Webhook Inbound: Remetente ou conteúdo vazios após busca no Resend. Retornando 200 OK para evitar loops.', { fromEmail, hasText: !!rawText });
             return NextResponse.json({ success: true, message: 'Ignorado por falta de conteúdo' });
