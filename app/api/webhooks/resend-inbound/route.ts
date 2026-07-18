@@ -43,8 +43,24 @@ export async function POST(req: NextRequest) {
         }
 
         const emailData = body.data;
-        const fromEmail = emailData.from?.email?.toLowerCase().trim();
-        const fromName = emailData.from?.name || 'Usuário';
+        let fromEmail = '';
+        let fromName = 'Usuário';
+
+        const rawFrom = emailData.from;
+        if (typeof rawFrom === 'string') {
+            const emailMatch = rawFrom.match(/<([^>]+)>/);
+            if (emailMatch) {
+                fromEmail = emailMatch[1].toLowerCase().trim();
+                fromName = rawFrom.split('<')[0].trim() || 'Usuário';
+            } else {
+                fromEmail = rawFrom.toLowerCase().trim();
+                fromName = rawFrom.split('@')[0].trim() || 'Usuário';
+            }
+        } else if (rawFrom && typeof rawFrom === 'object') {
+            fromEmail = (rawFrom.email || '').toLowerCase().trim();
+            fromName = rawFrom.name || 'Usuário';
+        }
+
         const subject = emailData.subject || '';
         const rawText = emailData.text || '';
         
