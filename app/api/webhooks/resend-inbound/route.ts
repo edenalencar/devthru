@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
         }
 
         const body = await req.json();
+        console.log('WEBHOOK BODY BRUTO:', JSON.stringify(body));
 
         // Garantir que é um evento de recebimento de e-mail
         if (body.type !== 'email.received') {
@@ -87,7 +88,8 @@ export async function POST(req: NextRequest) {
         });
 
         if (!fromEmail || !rawText) {
-            return NextResponse.json({ error: 'Campos obrigatórios ausentes' }, { status: 400 });
+            console.warn('Webhook Inbound: Remetente ou conteúdo ausentes. Retornando 200 OK para evitar loops do Resend.', { fromEmail, hasText: !!rawText });
+            return NextResponse.json({ success: true, message: 'Ignorado por falta de conteúdo' });
         }
 
         const newReply = extractReplyText(rawText);
