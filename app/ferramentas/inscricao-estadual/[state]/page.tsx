@@ -51,9 +51,8 @@ export default async function StatePage({ params }: PageProps) {
                 <div className="pt-6 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
                     <Breadcrumbs items={[
                         { label: "Home", href: "/" },
-                        { label: "Ferramentas", href: "/ferramentas" },
-                        { label: "Documentos Pessoais", href: "/ferramentas-documentos" },
-                        { label: "Inscrição Estadual", href: "/ferramentas/inscricao-estadual" },
+                        { label: "Ferramentas", href: "/" },
+                        { label: "Inscrição Estadual", href: "/tools/documents/inscricao-estadual" },
                         { label: stateInfo.uf }
                     ]} />
                 </div>

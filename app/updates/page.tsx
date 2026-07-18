@@ -4,10 +4,15 @@ import { Separator } from "@/components/ui/separator"
 import { ShieldCheck, Zap, Wrench, FileText } from "lucide-react"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
+import { Metadata } from "next"
+import { siteConfig } from "@/config/site"
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Atualizações - DevThru",
     description: "Acompanhe as últimas novidades, melhorias e correções do DevThru.",
+    alternates: {
+        canonical: `${siteConfig.url}/updates`,
+    },
 }
 
 type UpdateType = "security" | "feature" | "fix" | "content"

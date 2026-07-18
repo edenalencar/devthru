@@ -6,10 +6,14 @@ import { Shield, Zap, Palette } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Metadata } from "next"
+import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
     title: "Sobre o DevThru",
     description: "Conheça o DevThru, uma plataforma de ferramentas para desenvolvedores criada para ser rápida, segura e sem anúncios. Saiba mais sobre nossa missão.",
+    alternates: {
+        canonical: `${siteConfig.url}/about`,
+    },
 }
 
 export default function AboutPage() {

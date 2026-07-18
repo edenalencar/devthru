@@ -43,7 +43,12 @@ export function Navbar() {
     const { user, profile, isInTrial } = useUser()
     const router = useRouter()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [mounted, setMounted] = useState(false)
     const supabase = createClient()
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
 
     const handleSignOut = async () => {
@@ -97,7 +102,7 @@ export function Navbar() {
                     <CommandMenu />
                     <ThemeToggle />
 
-                    {user ? (
+                    {mounted && user ? (
                         <>
                             <Badge
                                 variant={
@@ -163,7 +168,7 @@ export function Navbar() {
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </>
-                    ) : (
+                    ) : mounted ? (
                         <>
                             <Button variant="ghost" size="sm" asChild>
                                 <Link href="/login">
@@ -172,6 +177,8 @@ export function Navbar() {
                                 </Link>
                             </Button>
                         </>
+                    ) : (
+                        <div className="h-9 w-[75px]" />
                     )}
                 </div>
 
@@ -208,20 +215,22 @@ export function Navbar() {
                             </Link>
                         ))}
                         <div className="flex gap-2 mt-2">
-                            {user ? (
+                            {mounted && user ? (
                                 <>
                                     <Link href="/dashboard" className="flex-1 flex items-center justify-center rounded-lg h-10 bg-secondary text-secondary-foreground text-sm font-bold">Dashboard</Link>
                                     <Button variant="ghost" onClick={handleSignOut} className="flex-1 text-destructive">
                                         Sair
                                     </Button>
                                 </>
-                            ) : (
+                            ) : mounted ? (
                                 <>
                                     <Link href="/login" className="flex-1 flex items-center justify-center rounded-lg h-10 bg-secondary text-secondary-foreground text-sm font-bold">
                                         <LogIn className="mr-2 h-4 w-4" />
                                         Entrar
                                     </Link>
                                 </>
+                            ) : (
+                                <div className="flex-1 h-10 rounded-lg bg-secondary/10 animate-pulse" />
                             )}
                         </div>
                     </div>
