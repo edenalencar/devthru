@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -19,57 +20,13 @@ export default function Page() {
         <>
 
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Codificador e Decodificador Base64 Online",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "UtilidadesApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Codifique e decodifique textos e strings em Base64 instantaneamente. Ferramenta essencial para desenvolvedores que precisam transmitir dados binários em texto."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Utilidades",
-                                    "item": "https://www.devthru.com/tools/utilities"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Base64",
-                                    "item": "https://www.devthru.com/tools/utilities/base64"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Codificador e Decodificador Base64",
+                    description: "Codifique e decodifique textos e strings em Base64 instantaneamente. Ferramenta essencial para desenvolvedores que precisam transmitir dados binários em texto.",
+                    categoryLabel: "Utilidades",
+                    path: "/tools/utilities/base64",
+                    toolSlug: "base64"
+                })}
             />
             <Base64Page />
         </>

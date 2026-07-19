@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -20,57 +21,13 @@ export default function Page() {
         <>
             
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Gerador de Email Temporário e Fictício | DevThru",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "PessoalApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Crie emails fictícios com domínios personalizados ou comuns para testes de software. Ferramenta rápida para QA e desenvolvimento."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Pessoal",
-                                    "item": "https://www.devthru.com/tools/personal"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Gerador de Email",
-                                    "item": "https://www.devthru.com/tools/personal/email"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Gerador de E-mail Temporário",
+                    description: "Crie e copie endereços de e-mail fictícios e temporários instantaneamente de forma individual ou em massa. Suporte a domínios comuns ou personalizados para testes.",
+                    categoryLabel: "Pessoal",
+                    path: "/tools/personal/email",
+                    toolSlug: "email"
+                })}
             />
             <EmailGeneratorPage />
         </>

@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -19,51 +20,13 @@ export default function Page() {
     return (
         <>
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": title,
-                            "operatingSystem": "Web",
-                            "applicationCategory": "DeveloperApplication",
-                            "description": description,
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            }
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/tools"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "SQL Formatter",
-                                    "item": "https://www.devthru.com/tools/development/sql-formatter"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "SQL Formatter Online",
+                    description: "Formate, indente e organize suas queries SQL online. Suporte para PostgreSQL, MySQL, SQL Server e mais. Deixe seu código SQL legível instantaneamente.",
+                    categoryLabel: "Desenvolvimento",
+                    path: "/tools/development/sql-formatter",
+                    toolSlug: "sql-formatter"
+                })}
             />
             <SqlFormatterPage />
         </>

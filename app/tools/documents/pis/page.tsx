@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
 import { PISPage } from './client'
@@ -34,57 +35,13 @@ export default function Page() {
         <>
 
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Gerador de PIS/PASEP e NIS/NIT Online Grátis - DevThru",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "DeveloperApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Gere e valide números de PIS, PASEP, NIS e NIT válidos matematicamente em 1 clique para testes de software, QA e automação de sistemas."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Documentos",
-                                    "item": "https://www.devthru.com/tools/documents"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "PIS/PASEP",
-                                    "item": "https://www.devthru.com/tools/documents/pis"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Pis",
+                    description: "Gerador de PIS online gratuito. Gere números de PIS/PASEP e NIS válidos em lote ou individualmente para testes de software com nosso algoritmo oficial.",
+                    categoryLabel: "Documentos",
+                    path: "/tools/documents/pis",
+                    toolSlug: "pis"
+                })}
             />
             <PISPage />
         </>

@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -19,57 +20,13 @@ export default function Page() {
         <>
 
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Conversor de Moedas Online - Cotação Atualizada",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "ConversoresApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Converta moedas como Dólar, Euro, Libra e Real com cotação atualizada diariamente. Conversor de câmbio online, gratuito, rápido e sem necessidade de cadastro.",
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Conversores",
-                                    "item": "https://www.devthru.com/tools/converters"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Conversor de Moeda",
-                                    "item": "https://www.devthru.com/tools/converters/currency"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Conversor de Moedas Online",
+                    description: "Converta moedas como Dólar, Euro, Libra e Real com cotação atualizada diariamente. Conversor de câmbio online, gratuito, rápido e sem necessidade de cadastro.",
+                    categoryLabel: "Conversores",
+                    path: "/tools/converters/currency",
+                    toolSlug: "currency"
+                })}
             />
             <CurrencyConverterPage />
         </>

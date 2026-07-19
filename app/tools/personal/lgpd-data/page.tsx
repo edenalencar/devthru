@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -20,57 +21,13 @@ export default function Page() {
         <>
 
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Gerador de Dados Fictícios e Anonimizador para LGPD",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "PessoalApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Ferramentas para gerar dados pessoais fictícios e anonimizar textos com dados sensíveis para conformidade LGPD."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Pessoal",
-                                    "item": "https://www.devthru.com/tools/personal"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Dados LGPD",
-                                    "item": "https://www.devthru.com/tools/personal/lgpd-data"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Gerador de Dados Fictícios (LGPD)",
+                    description: "Gere perfis de dados simulados ou anonimize textos reais ocultando informações sensíveis (como CPF, e-mail e telefone) para conformidade com a LGPD.",
+                    categoryLabel: "Pessoal",
+                    path: "/tools/personal/lgpd-data",
+                    toolSlug: "lgpd-data"
+                })}
             />
             <LGPDDataPage />
         </>

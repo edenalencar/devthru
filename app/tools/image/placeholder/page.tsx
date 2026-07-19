@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -19,57 +20,13 @@ export default function Page() {
         <>
             
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Gerador de Imagem Placeholder - Tamanho Personalizado",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "ImagemApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Crie imagens placeholder (dummy image) com tamanho, cores e texto personalizados para protótipos e layouts."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Imagem",
-                                    "item": "https://www.devthru.com/tools/image"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Placeholder",
-                                    "item": "https://www.devthru.com/tools/image/placeholder"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Gerador de Imagem Placeholder",
+                    description: "Crie imagens placeholder (dummy image) com tamanho, cores e texto personalizados para protótipos e layouts.",
+                    categoryLabel: "Imagem",
+                    path: "/tools/image/placeholder",
+                    toolSlug: "placeholder"
+                })}
             />
             <PlaceholderGeneratorPage />
         </>

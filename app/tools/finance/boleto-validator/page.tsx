@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -26,57 +27,13 @@ export default function Page() {
     return (
         <>
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Validador e Decodificador de Boleto Bancário Online - DevThru",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "FinanceApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Validador e decodificador matemático de boleto bancário. Analise linhas digitáveis e códigos de barras para extrair banco emissor, data de vencimento, valor e status de autenticidade."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Finanças",
-                                    "item": "https://www.devthru.com/tools/finance"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Validador de Boleto",
-                                    "item": "https://www.devthru.com/tools/finance/boleto-validator"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Validador de Boleto Bancário",
+                    description: "Valide e decodifique linhas digitáveis ou códigos de barras de boletos de cobrança e concessionárias online. Descubra o banco emissor, valor, data de vencimento e se o boleto é matematicamente autêntico.",
+                    categoryLabel: "Finanças",
+                    path: "/tools/finance/boleto-validator",
+                    toolSlug: "boleto-validator"
+                })}
             />
             <BoletoValidatorPage />
         </>

@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -20,57 +21,13 @@ export default function Page() {
         <>
 
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Tabela FIPE - Consulta Grátis",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "AutomotivoApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": description,
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Automotivo",
-                                    "item": "https://www.devthru.com/tools/automotive"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Tabela FIPE",
-                                    "item": "https://www.devthru.com/tools/automotive/fipe"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Tabela FIPE: Preço de Veículos",
+                    description: "Ferramenta online gratuita para Tabela FIPE: Preço de Veículos.",
+                    categoryLabel: "Automotivo",
+                    path: "/tools/automotive/fipe",
+                    toolSlug: "fipe"
+                })}
             />
             <FipePage />
         </>

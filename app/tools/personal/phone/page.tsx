@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { PhoneGeneratorPage } from "./client"
@@ -31,57 +32,13 @@ export default function Page() {
         <>
 
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Gerador de Telefone e Celular - Números Válidos com DDD",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "PessoalApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Gere números de telefone fixo e celular brasileiros válidos com DDD para testes de software. Ferramenta flexível com opções de formatação para desenvolvedores."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Pessoal",
-                                    "item": "https://www.devthru.com/tools/personal"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Telefone/Celular",
-                                    "item": "https://www.devthru.com/tools/personal/phone"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Gerador de Telefone Online",
+                    description: "Gere números de telefone celular e fixo válidos do Brasil (com DDD) e dos Estados Unidos (EUA) para testes de software. Obtenha números limpos ou formatados.",
+                    categoryLabel: "Pessoal",
+                    path: "/tools/personal/phone",
+                    toolSlug: "phone"
+                })}
             />
             <PhoneGeneratorPage />
         </>
