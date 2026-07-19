@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -19,51 +20,13 @@ export default function Page() {
     return (
         <>
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": title,
-                            "operatingSystem": "Web",
-                            "applicationCategory": "DeveloperApplication",
-                            "description": description,
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            }
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/tools"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "JWT Debugger",
-                                    "item": "https://www.devthru.com/tools/development/jwt-debugger"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "JWT Debugger Online",
+                    description: "Debugue e decodifique seus tokens JWT instantaneamente no navegador. Inspecione o Header, Payload e Signature de forma privada e livre de servidores.",
+                    categoryLabel: "Desenvolvimento",
+                    path: "/tools/development/jwt-debugger",
+                    toolSlug: "jwt-debugger"
+                })}
             />
             <JwtDebuggerPage />
         </>

@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 ﻿import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -68,7 +69,15 @@ export default function Page() {
 
     return (
         <>
-            <JsonLd data={jsonLd} />
+            <JsonLd
+                data={getToolSchemaGraph({
+                    name: "Gerador de Chave CT-e",
+                    description: "Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes de integração.",
+                    categoryLabel: "Negócios",
+                    path: "/tools/business/cte-generator",
+                    toolSlug: "cte-generator"
+                })}
+            />
             <CteGeneratorPage />
         </>
     )

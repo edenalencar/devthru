@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -41,57 +42,13 @@ export default function Page() {
         <>
             
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Gerador e Validador de CNPJ Válido Online - DevThru",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "DeveloperApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Gere e valide CNPJs numéricos e alfanuméricos válidos em 1 clique para testes de software com algoritmo oficial."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Documentos",
-                                    "item": "https://www.devthru.com/tools/documents"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "CNPJ",
-                                    "item": "https://www.devthru.com/tools/documents/cnpj"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Gerador de CNPJ Válido Online",
+                    description: "Gerador de CNPJ online gratuito. Gere e valide CNPJs tradicionais e alfanuméricos válidos em lote ou individualmente para testes de sistemas e APIs.",
+                    categoryLabel: "Documentos",
+                    path: "/tools/documents/cnpj",
+                    toolSlug: "cnpj"
+                })}
             />
             <CNPJGeneratorPage />
         </>

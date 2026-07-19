@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 ﻿import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -19,51 +20,13 @@ export default function Page() {
     return (
         <>
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": title,
-                            "operatingSystem": "Web",
-                            "applicationCategory": "UtilitiesApplication",
-                            "description": description,
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            }
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/tools"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "URL Encoder",
-                                    "item": "https://www.devthru.com/tools/utilities/url-encoder"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "URL Encode e Decode Online | Ferramenta Grátis",
+                    description: "Codifique e decodifique URLs online. Converta caracteres especiais para o formato URL-safe e vice-versa. Ferramenta essencial para desenvolvedores web.",
+                    categoryLabel: "Utilidades",
+                    path: "/tools/utilities/url-encoder",
+                    toolSlug: "url-encoder"
+                })}
             />
             <UrlEncoderPage />
         </>

@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -15,51 +16,13 @@ export default function Page() {
     return (
         <>
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Gerador de Chave NF-e",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "BusinessApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Ferramenta online gratuita para gerar chaves de acesso de Nota Fiscal Eletrônica (NF-e) e NFC-e válidas para testes de software e homologação."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas Fiscais",
-                                    "item": "https://www.devthru.com/ferramentas-fiscais"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Gerador NF-e",
-                                    "item": "https://www.devthru.com/tools/business/nfe-generator"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Gerador de Chave NF-e e NFC-e - Notas Fiscais",
+                    description: "Gere chaves de acesso de Nota Fiscal Eletrônica (NF-e) e NFC-e válidas para testes de integração de ERP e homologação. Ferramenta corporativa gratuita.",
+                    categoryLabel: "Negócios",
+                    path: "/tools/business/nfe-generator",
+                    toolSlug: "nfe-generator"
+                })}
             />
             <NfeGeneratorPage />
         </>

@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -26,57 +27,13 @@ export default function Page() {
     return (
         <>
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Decodificador e Gerador de Pix Copia e Cola - DevThru",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "FinanceApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Ferramenta para decodificação de string Pix Copia e Cola. Analise chaves Pix, nomes de recebedores, valores embutidos e gere o QR Code da cobrança na tela."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Finanças",
-                                    "item": "https://www.devthru.com/tools/finance"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Decodificador Pix",
-                                    "item": "https://www.devthru.com/tools/finance/pix-parser"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Decodificador e Gerador de Pix",
+                    description: "Cole uma string de Pix Copia e Cola para decodificar todos os dados do recebedor (nome, chave, valor), gerar o QR Code correspondente na tela ou alterar o valor de um Pix estático com recalculo de CRC16.",
+                    categoryLabel: "Finanças",
+                    path: "/tools/finance/pix-parser",
+                    toolSlug: "pix-parser"
+                })}
             />
             <PixParserPage />
         </>

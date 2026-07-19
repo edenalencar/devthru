@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 ﻿import { Metadata } from "next"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Graph } from "schema-dts"
@@ -66,7 +67,15 @@ export default function Page() {
 
     return (
         <>
-            <JsonLd data={jsonLd} />
+            <JsonLd
+                data={getToolSchemaGraph({
+                    name: "Gerador de Chave NFC-e",
+                    description: "Gere chaves de acesso válidas de Nota Fiscal de Consumidor Eletrônica (NFC-e) para testes de integração e homologação. Ferramenta gratuita para devs.",
+                    categoryLabel: "Negócios",
+                    path: "/tools/business/nfce-generator",
+                    toolSlug: "nfce-generator"
+                })}
+            />
             <NfceGeneratorPage />
         </>
     )

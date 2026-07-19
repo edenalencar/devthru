@@ -256,7 +256,15 @@ export default async function BlogPostPage({ params }: PageProps) {
                         "headline": post.title,
                         "description": post.description,
                         "datePublished": post.date,
-                        "author": {
+                        "author": post.author === "DevThru" ? {
+                            "@type": "Person",
+                            "name": "Eden Alencar",
+                            "jobTitle": "Lead Developer & Founder",
+                            "url": "https://github.com/edenalencar",
+                            "sameAs": [
+                                "https://github.com/edenalencar"
+                            ]
+                        } : {
                             "@type": "Organization",
                             "name": post.author,
                         },

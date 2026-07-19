@@ -78,9 +78,13 @@ export default async function GuidePage({ params }: PageProps) {
                         "name": tool
                     },
                     "author": {
-                        "@type": "Organization",
-                        "name": "DevThru",
-                        "url": "https://www.devthru.com"
+                        "@type": "Person",
+                        "name": "Eden Alencar",
+                        "jobTitle": "Lead Developer & Founder",
+                        "url": "https://github.com/edenalencar",
+                        "sameAs": [
+                            "https://github.com/edenalencar"
+                        ]
                     },
                     "datePublished": new Date().toISOString(), // In a real app this should be content.date
                     "dateModified": new Date().toISOString(),

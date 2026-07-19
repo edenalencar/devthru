@@ -1,3 +1,4 @@
+import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
 import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
@@ -20,57 +21,13 @@ export default function Page() {
         <>
 
             <JsonLd
-                data={{
-                    "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "SoftwareApplication",
-                            "name": "Gerador e Validador de Título de Eleitor Válido - DevThru",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "DeveloperApplication",
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "BRL"
-                            },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            },
-                            "description": "Gere e valide números de Título de Eleitor válidos por estado brasileiro de forma gratuita para testes de software."
-                        },
-                        {
-                            "@type": "BreadcrumbList",
-                            "itemListElement": [
-                                {
-                                    "@type": "ListItem",
-                                    "position": 1,
-                                    "name": "Home",
-                                    "item": "https://www.devthru.com"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 2,
-                                    "name": "Ferramentas",
-                                    "item": "https://www.devthru.com/ferramentas"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 3,
-                                    "name": "Documentos",
-                                    "item": "https://www.devthru.com/tools/documents"
-                                },
-                                {
-                                    "@type": "ListItem",
-                                    "position": 4,
-                                    "name": "Título de Eleitor",
-                                    "item": "https://www.devthru.com/tools/documents/titulo-eleitor"
-                                }
-                            ]
-                        }
-                    ]
-                }}
+                data={getToolSchemaGraph({
+                    name: "Gerador de Título de Eleitor",
+                    description: "Gere e valide números de Título de Eleitor válidos em 1 clique para testes unitários de sistemas. Calcula perfeitamente os 12 dígitos, UFs e Zonas Eleitorais. Algoritmo oficial.",
+                    categoryLabel: "Documentos",
+                    path: "/tools/documents/titulo-eleitor",
+                    toolSlug: "titulo-eleitor"
+                })}
             />
             <TituloEleitorPage />
         </>

@@ -2,6 +2,8 @@
 
 > [DevThru](https://www.devthru.com) - Dados rápidos pra viagem. Plataforma moderna e gratuita de ferramentas úteis para desenvolvedores.
 
+Para obter o catálogo completo contendo todas as URLs de ferramentas, guias dinâmicos e artigos do blog formatados para LLMs, acesse o [llms-full.txt](https://www.devthru.com/llms-full.txt).
+
 O DevThru foi criado para fornecer utilitários rápidos e sem atrito, incluindo validação e geração de dados cadastrais fictícios brasileiros, formatação de arquivos e codificação.
 
 ## URLs Principais
