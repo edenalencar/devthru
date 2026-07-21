@@ -170,7 +170,7 @@ export function SplitPaymentCalculatorPage() {
           Simulador & Calculadora de Split Payment
         </h1>
         <p className="text-muted-foreground text-sm md:text-base max-w-3xl">
-          Calcule em tempo real a retenção automática de **IBS** (Estadual/Municipal) e **CBS** (Federal) no ato da liquidação financeira (Pix, Cartão, Boleto) e saiba o repasse líquido no caixa da sua empresa.
+          Calcule em tempo real a retenção automática de <strong className="font-semibold text-foreground">IBS</strong> (Estadual/Municipal) e <strong className="font-semibold text-foreground">CBS</strong> (Federal) no ato da liquidação financeira (Pix, Cartão, Boleto) e saiba o repasse líquido no caixa da sua empresa.
         </p>
       </div>
 
