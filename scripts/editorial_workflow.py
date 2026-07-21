@@ -242,9 +242,40 @@ def get_published_slugs(project_root):
                 
     return published
 
-def fetch_trending_topics():
-    print("Buscando tópicos em alta na Web (Dev.to)...")
-    url = "https://dev.to/api/articles?state=rising&per_page=15"
+def fetch_tabnews_topics():
+    print("Buscando discussões e tendências BR no TabNews...")
+    url = "https://www.tabnews.com.br/api/v1/contents?page=1&per_page=12&strategy=relevant"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+    }
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=10) as response:
+            if response.status == 200:
+                data = json.loads(response.read().decode('utf-8'))
+                if isinstance(data, list) and len(data) > 0:
+                    results = []
+                    for item in data[:10]:
+                        username = item.get('owner_username', 'autor')
+                        slug = item.get('slug', '')
+                        results.append({
+                            "title": item.get('title', ''),
+                            "url": f"https://www.tabnews.com.br/{username}/{slug}",
+                            "tabcoins": item.get('tabcoins', 0),
+                            "comments": item.get('children_deep_count', 0)
+                        })
+                    return results
+    except Exception as e:
+        print(f"Erro ao buscar tendências do TabNews: {e}")
+    
+    return [
+        {"title": "Boas práticas de arquitetura de software no Brasil", "url": "https://www.tabnews.com.br", "tabcoins": 15, "comments": 8},
+        {"title": "Como lidamos com LGPD e dados sensíveis em aplicações web", "url": "https://www.tabnews.com.br", "tabcoins": 12, "comments": 5}
+    ]
+
+def fetch_devto_topics():
+    print("Buscando tópicos em alta na Web Global (Dev.to)...")
+    url = "https://dev.to/api/articles?state=rising&per_page=12"
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
     }
@@ -261,18 +292,26 @@ def fetch_trending_topics():
     return [
         {"title": "Optimizing React Performance in 2026", "tag_list": ["react", "webdev"], "url": "https://dev.to"},
         {"title": "Mastering CSS Grid and Flexbox layouts", "tag_list": ["css", "frontend"], "url": "https://dev.to"},
-        {"title": "Understanding JWT and Authentication Best Practices", "tag_list": ["security", "node"], "url": "https://dev.to"},
-        {"title": "How to design robust REST APIs", "tag_list": ["api", "backend"], "url": "https://dev.to"}
+        {"title": "Understanding JWT and Authentication Best Practices", "tag_list": ["security", "node"], "url": "https://dev.to"}
     ]
 
-def select_dynamic_pautas(trending_articles, published_slugs):
-    trending_tags = set()
-    for art in trending_articles:
+def select_dynamic_pautas(tabnews_articles, devto_articles, published_slugs):
+    trending_keywords = set()
+    
+    # Extrai palavras-chave do TabNews (BR)
+    for art in tabnews_articles:
+        words = art['title'].lower().replace(":", " ").replace("-", " ").split()
+        for w in words:
+            if len(w) > 3:
+                trending_keywords.add(w)
+                
+    # Extrai palavras-chave/tags do Dev.to (Global)
+    for art in devto_articles:
         tags = art.get('tag_list', art.get('tags', []))
         for t in tags:
-            trending_tags.add(t.lower())
+            trending_keywords.add(t.lower())
             
-    # Filtra APENAS as pautas que AINDA NÃO FORAM PUBLICADAS NO BLOG
+    # Filtra APENAS pautas ainda NÃO PUBLICADAS
     available_pautas = []
     for pauta in DEVTHRU_PAUTAS_POOL:
         p_slug = pauta["slug"].lower()
@@ -285,7 +324,7 @@ def select_dynamic_pautas(trending_articles, published_slugs):
     for pauta in available_pautas:
         score = 0
         for kw in pauta["keywords"]:
-            if kw.lower() in trending_tags:
+            if kw.lower() in trending_keywords:
                 score += 2
         scored_pautas.append((score, pauta))
         
@@ -298,18 +337,32 @@ def select_dynamic_pautas(trending_articles, published_slugs):
     selected = [p[1] for p in scored_pautas[:8]]
     return selected
 
-def generate_editorial_calendar(trending_articles, selected_pautas):
+def generate_editorial_calendar(tabnews_articles, devto_articles, selected_pautas):
     today_str = datetime.now().strftime("%d/%m/%Y")
     
     markdown_content = f"""# Calendário Editorial Sugerido - {today_str}
 
 Este arquivo foi gerado automaticamente pelo fluxo editorial diário do DevThru.
 
-## 📈 Tendências Identificadas na Web (Dev.to)
-Abaixo estão os tópicos em alta identificados nas últimas 24 horas:
+## 🇧🇷 Tendências na Comunidade BR (TabNews)
+Abaixo estão os assuntos mais debatidos pela comunidade brasileira nas últimas 24 horas:
 
 """
-    for art in trending_articles[:10]:
+    for art in tabnews_articles[:8]:
+        title = art.get('title', '')
+        url = art.get('url', '#')
+        tabcoins = art.get('tabcoins', 0)
+        comments = art.get('comments', 0)
+        markdown_content += f"- **[{title}]({url})** ({tabcoins} tabcoins • {comments} comentários)\n"
+
+    markdown_content += f"""
+---
+
+## 🌐 Tendências na Web Global (Dev.to)
+Abaixo estão os tópicos quentes no ecossistema global de tecnologia:
+
+"""
+    for art in devto_articles[:8]:
         title = art.get('title', '')
         tags = ", ".join(art.get('tag_list', art.get('tags', [])))
         url = art.get('url', '#')
@@ -320,7 +373,7 @@ Abaixo estão os tópicos em alta identificados nas últimas 24 horas:
 
 ## 📅 Sugestão de 8 Pautas Inéditas Priorizadas (DevThru - {today_str})
 
-Abaixo estão 8 sugestões de artigos INÉDITOS (filtrados contra posts já existentes no blog), cruzados com os tópicos quentes do dia:
+Abaixo estão 8 sugestões de artigos INÉDITOS (filtrados contra posts já existentes no blog), combinando os contextos do mercado brasileiro com a web global:
 
 """
     for i, pauta in enumerate(selected_pautas, 1):
@@ -343,18 +396,19 @@ def main():
     
     os.makedirs(target_dir, exist_ok=True)
     
-    # 1. Carrega os slugs dos posts já publicados no blog
+    # 1. Carrega posts já publicados
     published_slugs = get_published_slugs(project_root)
     print(f"Posts já publicados detectados no blog: {len(published_slugs)}")
     
-    # 2. Busca tópicos quentes
-    trending = fetch_trending_topics()
+    # 2. Busca tendências (BR + Global)
+    tabnews = fetch_tabnews_topics()
+    devto = fetch_devto_topics()
     
-    # 3. Seleciona pautas inéditas
-    selected_pautas = select_dynamic_pautas(trending, published_slugs)
+    # 3. Seleciona pautas inéditas baseadas no cruzamento de dados
+    selected_pautas = select_dynamic_pautas(tabnews, devto, published_slugs)
     
-    # 4. Gera o markdown do calendário
-    content = generate_editorial_calendar(trending, selected_pautas)
+    # 4. Gera o documento markdown
+    content = generate_editorial_calendar(tabnews, devto, selected_pautas)
     
     dest_path = os.path.join(target_dir, "calendario_RASCUNHO.md")
     with open(dest_path, "w", encoding="utf-8") as f:
@@ -364,3 +418,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
