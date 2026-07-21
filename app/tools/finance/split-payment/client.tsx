@@ -100,9 +100,9 @@ export function SplitPaymentCalculatorPage() {
 
     const mockWebhookPayload = {
       event: "payment.settled_with_split",
-      timestamp: new Date().toISOString(),
+      timestamp: "2026-07-21T18:00:00.000Z",
       transaction: {
-        id: "tx_split_" + Math.random().toString(36).substring(2, 9),
+        id: "tx_split_7x892a",
         payment_method: paymentMethod,
         operation_type: operationType,
         gross_amount: amount,
