@@ -12,9 +12,10 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-# Catálogo de pautas Mapeado 100% para Ferramentas Existentes no DevThru
+# Catálogo expandido de pautas associadas às ferramentas do DevThru
 DEVTHRU_PAUTAS_POOL = [
     {
+        "slug": "guia-de-expressoes-cron-no-linux",
         "tool_name": "Gerador e Decodificador de Crontab",
         "tool_url": "https://www.devthru.com/tools/development/crontab-generator",
         "keywords": ["cron", "linux", "devops", "automation", "server", "docker", "bash"],
@@ -25,6 +26,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Explicar a sintaxe dos 5 campos do crontab, casos de uso em automação de servidores e como evitar erros clássicos em cron jobs.",
     },
     {
+        "slug": "jwt-na-pratica-estrutura-seguranca-e-decodificacao",
         "tool_name": "Debugger & Inspector de JWT",
         "tool_url": "https://www.devthru.com/tools/development/jwt-debugger",
         "keywords": ["jwt", "security", "auth", "node", "api", "backend", "webdev"],
@@ -35,6 +37,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Como funciona o Header, Payload e Signature do JWT, além das diferenças entre autenticação Stateful vs Stateless.",
     },
     {
+        "slug": "px-vs-rem-como-e-por-que-adotar-unidades-relativas-no-css",
         "tool_name": "Conversor de Pixel para REM",
         "tool_url": "https://www.devthru.com/tools/converters/pixel-to-rem",
         "keywords": ["css", "frontend", "webdev", "ui", "design", "react", "vue"],
@@ -45,6 +48,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Acessibilidade para leitores de tela, zoom do navegador e boas práticas de design responsivo no CSS moderno e Tailwind.",
     },
     {
+        "slug": "entendendo-base64-quando-usar-para-imagens-e-dados",
         "tool_name": "Conversor de Base (Base64, Hex, Binário)",
         "tool_url": "https://www.devthru.com/tools/converters/base",
         "keywords": ["base64", "webdev", "api", "data", "images", "performance", "crypto"],
@@ -55,6 +59,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "O overhead de 33% na conversão de dados para Base64, casos em que compensa para Data URLs em CSS/HTML e segurança na transferência.",
     },
     {
+        "slug": "dados-teste-lgpd",
         "tool_name": "Gerador de Perfil Completo (Pessoa Sintética)",
         "tool_url": "https://www.devthru.com/tools/personal/person-generator",
         "keywords": ["testing", "qa", "backend", "database", "python", "javascript", "dev"],
@@ -65,6 +70,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Importância de utilizar geradores de dados matematicamente válidos em rotinas de teste e staging sem usar dados reais.",
     },
     {
+        "slug": "como-formatar-e-validar-grandes-arquivos-json-sem-travamentos",
         "tool_name": "Formatador e Minificador de Código / JSON",
         "tool_url": "https://www.devthru.com/tools/development/minifier",
         "keywords": ["json", "api", "debug", "javascript", "typescript", "backend", "performance"],
@@ -75,6 +81,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Boas práticas ao consumir APIs REST/GraphQL, depuração de erros sintáticos e minificação para produção.",
     },
     {
+        "slug": "guia-de-regex-para-desenvolvedores",
         "tool_name": "Testador e Validador de Regex",
         "tool_url": "https://www.devthru.com/tools/development/regex",
         "keywords": ["regex", "python", "javascript", "backend", "ai", "llm"],
@@ -85,6 +92,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Como funcionam quantificadores, grupos de captura e como testar padrões Regex em tempo real sem travar a thread principal.",
     },
     {
+        "slug": "otimizacao-queries-sql-indentacao-performance",
         "tool_name": "Formatador de SQL Queries",
         "tool_url": "https://www.devthru.com/tools/development/sql-formatter",
         "keywords": ["sql", "database", "postgres", "mysql", "backend"],
@@ -95,6 +103,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Como a boa formatação de cláusulas JOIN, subselects e CTEs ajuda a identificar problemas de performance em bancos relacionais.",
     },
     {
+        "slug": "inscricao-estadual-guia",
         "tool_name": "Gerador de Inscrição Estadual",
         "tool_url": "https://www.devthru.com/tools/documents/inscricao-estadual",
         "keywords": ["nfe", "fiscal", "backend", "business", "testing"],
@@ -105,6 +114,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Diferenças nos dígitos verificadores da IE de cada estado brasileiro e como evitar rejeição em APIs da SEFAZ.",
     },
     {
+        "slug": "comparar-diferencas-texto-diff-checker",
         "tool_name": "Comparador de Diferenças de Texto (Diff Checker)",
         "tool_url": "https://www.devthru.com/tools/text/diff-checker",
         "keywords": ["diff", "git", "text", "code", "productivity", "debug"],
@@ -115,16 +125,18 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Como inspecionar divergências entre payloads JSON, variáveis de ambiente ou trechos de código em instantes.",
     },
     {
+        "slug": "entropia-e-seguranca-de-senhas",
         "tool_name": "Gerador de Senhas Seguras",
         "tool_url": "https://www.devthru.com/tools/utilities/password-generator",
         "keywords": ["security", "password", "crypto", "auth", "devops"],
-        "pauta_title": "Entropia e Segurança de Senhas: Como Gerar Chaves Forte no Desenvolvimento",
+        "pauta_title": "Entropia e Segurança de Senhas: Como Gerar Chaves Fortes no Desenvolvimento",
         "target_keyword": "gerador de senhas seguras, entropia de senha",
         "meta_title": "Como Gerar Senhas e Chaves de API Seguras",
         "meta_desc": "Entenda o conceito de entropia em senhas e aprenda a gerar chaves aleatórias e seguras para suas aplicações e ambientes de staging.",
         "focus": "Diferença entre caracteres aleatórios, frases secretas (passphrases) e como evitar chaves fracas em conexões com bancos e APIs.",
     },
     {
+        "slug": "algoritmo-luhn-validacao-cartao-credito",
         "tool_name": "Gerador de Cartão de Crédito para Testes",
         "tool_url": "https://www.devthru.com/tools/finance/credit-card-generator",
         "keywords": ["stripe", "payment", "finance", "testing", "qa", "ecommerce"],
@@ -133,8 +145,102 @@ DEVTHRU_PAUTAS_POOL = [
         "meta_title": "Testando Checkouts com Cartões de Crédito Fictícios Válidos",
         "meta_desc": "Aprenda a testar o fluxo de pagamento do seu e-commerce ou SaaS gerando números de cartão de teste válidos no algoritmo de Luhn.",
         "focus": "Como funciona o Algoritmo de Luhn para validação de números de cartão e boas práticas de sandbox em gateway de pagamento.",
+    },
+    # --- PAUTAS NOVAS INÉDITAS ---
+    {
+        "slug": "validacao-cnh-codigo-seguranca",
+        "tool_name": "Gerador e Validador de CNH",
+        "tool_url": "https://www.devthru.com/tools/documents/cnh",
+        "keywords": ["cnh", "documents", "validation", "backend", "python"],
+        "pauta_title": "Como Funciona o Algoritmo de Validação do Código de Segurança da CNH",
+        "target_keyword": "gerador de cnh valida, validar cnh online",
+        "meta_title": "Como Validar CNH em Aplicações Web e APIs",
+        "meta_desc": "Aprenda os conceitos por trás dos dígitos verificadores da Carteira Nacional de Habilitação (CNH) e como validar documentos em staging.",
+        "focus": "Estrutura de 11 dígitos da CNH, rotina de cálculo dos dígitos verificadores e casos de teste automatizados.",
+    },
+    {
+        "slug": "gerador-de-certificados-pdf-dinamico-node",
+        "tool_name": "Gerador de Certificados PDF",
+        "tool_url": "https://www.devthru.com/tools/documents/certificate-generator",
+        "keywords": ["pdf", "javascript", "node", "webdev", "automation"],
+        "pauta_title": "Como Gerar Certificados e Diplomas em PDF Dinamicamente no Node.js/Next.js",
+        "target_keyword": "gerar certificado pdf online, gerador de certificado nodejs",
+        "meta_title": "Gerando Certificados em PDF com HTML e CSS",
+        "meta_desc": "Guia prático para emitir certificados personalizados em PDF via backend sem depender de ferramentas pagas.",
+        "focus": "Uso de canvas HTML5, renderização estática em PDF e inclusão de QR Code de autenticidade no documento.",
+    },
+    {
+        "slug": "geracao-de-codigo-de-barras-ean13-code128",
+        "tool_name": "Gerador de Código de Barras",
+        "tool_url": "https://www.devthru.com/tools/business/barcode-generator",
+        "keywords": ["barcode", "ean13", "retail", "business", "javascript"],
+        "pauta_title": "EAN-13 vs Code 128: Diferenças e Como Gerar Códigos de Barra via Código",
+        "target_keyword": "gerador de codigo de barras ean13, barcode generator javascript",
+        "meta_title": "Guia de Códigos de Barra EAN-13 e Code 128",
+        "meta_desc": "Entenda as diferenças entre padrões de código de barra para varejo e logística e como renderizar imagens de barcode no frontend.",
+        "focus": "Algoritmo de cálculo do dígito verificador EAN-13 e renderização via SVG/Canvas.",
+    },
+    {
+        "slug": "correcao-de-erros-reed-solomon-qr-code",
+        "tool_name": "Gerador de QR Code",
+        "tool_url": "https://www.devthru.com/tools/business/qr-code",
+        "keywords": ["qrcode", "webdev", "mobile", "frontend", "design"],
+        "pauta_title": "Como Funciona a Correção de Erros Reed-Solomon em QR Codes",
+        "target_keyword": "gerador de qr code online, como funciona qr code",
+        "meta_title": "A Ciência por Trás dos QR Codes e Correção de Erros",
+        "meta_desc": "Descubra como os QR Codes continuam legíveis mesmo quando danificados ou com logotipo customizado no centro.",
+        "focus": "Níveis de correção de erro L, M, Q, H do QR Code e dicas para embutir logos sem inviabilizar a leitura por smartphones.",
+    },
+    {
+        "slug": "geracao-de-slugs-seo-friendly-nodejs",
+        "tool_name": "Gerador de Slugs SEO",
+        "tool_url": "https://www.devthru.com/tools/text/slug-generator",
+        "keywords": ["seo", "slug", "nodejs", "cms", "blog", "webdev"],
+        "pauta_title": "Como Criar Slugs SEO-Friendly em Node.js com Remoção de Acentos e Caracteres Especiais",
+        "target_keyword": "gerador de slug online, criar slug seo",
+        "meta_title": "Como Criar Slugs Amigáveis para SEO no Node.js",
+        "meta_desc": "Aprenda a sanitizar títulos em português, remover acentuação e caracteres especiais para gerar URLs limpas e otimizadas no Google.",
+        "focus": "Tratamento de unicode no JavaScript, remoção de stopwords e impacto dos slugs na arquitetura de URLs do seu site.",
+    },
+    {
+        "slug": "assinar-emails-html-responsivo-sem-quebrar",
+        "tool_name": "Gerador de Assinatura de E-mail HTML",
+        "tool_url": "https://www.devthru.com/tools/text/email-signature",
+        "keywords": ["html", "css", "email", "design", "frontend"],
+        "pauta_title": "Como Criar Assinaturas de E-mail em HTML Responsivas sem Quebrar no Outlook",
+        "target_keyword": "gerador de assinatura de email html, assinatura email responsiva",
+        "meta_title": "Como Criar Assinaturas de E-mail em HTML Limpo",
+        "meta_desc": "Descubra as regras de ouro do HTML para e-mails: uso de tabelas, CSS inline e hospedagem de imagens para evitar quebras no Outlook e Gmail.",
+        "focus": "Restrições de renderização dos clientes de e-mail tradicionais, CSS inlining e hospedagem de mídias leves.",
+    },
+    {
+        "slug": "conversao-de-casos-camelcase-kebab-snake-pascal",
+        "tool_name": "Conversor de Case (camelCase, snake_case)",
+        "tool_url": "https://www.devthru.com/tools/text/case-converter",
+        "keywords": ["clean-code", "javascript", "python", "productivity", "text"],
+        "pauta_title": "camelCase, snake_case, kebab-case e PascalCase: Quando Usar Cada Convenção",
+        "target_keyword": "converter camelcase para snake_case, conversoes de texto dev",
+        "meta_title": "Guia de Convenções de Nomenclatura no Código",
+        "meta_desc": "Entenda as principais convenções de nomes de variáveis, arquivos e rotas de API em JavaScript, Python, C# e Rust.",
+        "focus": "Padrões de mercado por linguagem de programação e como automatizar a transformação de chaves de JSON para APIs.",
     }
 ]
+
+def get_published_slugs(project_root):
+    """
+    Escaneia a pasta de posts do blog (lib/content/blog/posts) para mapear
+    todos os slugs de artigos que JÁ foram publicados no site.
+    """
+    posts_dir = os.path.join(project_root, "lib", "content", "blog", "posts")
+    published = set()
+    
+    if os.path.exists(posts_dir):
+        for fname in os.listdir(posts_dir):
+            if fname.endswith(".ts"):
+                slug = fname[:-3]  # remove extensao .ts
+                published.add(slug.lower())
+                
+    return published
 
 def fetch_trending_topics():
     print("Buscando tópicos em alta na Web (Dev.to)...")
@@ -152,7 +258,6 @@ def fetch_trending_topics():
     except Exception as e:
         print(f"Erro ao buscar tendências do Dev.to: {e}")
     
-    # Fallback dinâmico
     return [
         {"title": "Optimizing React Performance in 2026", "tag_list": ["react", "webdev"], "url": "https://dev.to"},
         {"title": "Mastering CSS Grid and Flexbox layouts", "tag_list": ["css", "frontend"], "url": "https://dev.to"},
@@ -160,15 +265,24 @@ def fetch_trending_topics():
         {"title": "How to design robust REST APIs", "tag_list": ["api", "backend"], "url": "https://dev.to"}
     ]
 
-def select_dynamic_pautas(trending_articles):
+def select_dynamic_pautas(trending_articles, published_slugs):
     trending_tags = set()
     for art in trending_articles:
         tags = art.get('tag_list', art.get('tags', []))
         for t in tags:
             trending_tags.add(t.lower())
             
-    scored_pautas = []
+    # Filtra APENAS as pautas que AINDA NÃO FORAM PUBLICADAS NO BLOG
+    available_pautas = []
     for pauta in DEVTHRU_PAUTAS_POOL:
+        p_slug = pauta["slug"].lower()
+        if p_slug in published_slugs:
+            print(f"  [Ignorado] Post já publicado anteriormente: {p_slug}")
+            continue
+        available_pautas.append(pauta)
+        
+    scored_pautas = []
+    for pauta in available_pautas:
         score = 0
         for kw in pauta["keywords"]:
             if kw.lower() in trending_tags:
@@ -204,9 +318,9 @@ Abaixo estão os tópicos em alta identificados nas últimas 24 horas:
     markdown_content += f"""
 ---
 
-## 📅 Sugestão de 8 Pautas Priorizadas (DevThru - {today_str})
+## 📅 Sugestão de 8 Pautas Inéditas Priorizadas (DevThru - {today_str})
 
-Abaixo estão 8 sugestões de artigos dinamicamente cruzadas com os tópicos quentes do dia e priorizadas para atrair tráfego orgânico via *Engineering as Marketing*:
+Abaixo estão 8 sugestões de artigos INÉDITOS (filtrados contra posts já existentes no blog), cruzados com os tópicos quentes do dia:
 
 """
     for i, pauta in enumerate(selected_pautas, 1):
@@ -229,8 +343,17 @@ def main():
     
     os.makedirs(target_dir, exist_ok=True)
     
+    # 1. Carrega os slugs dos posts já publicados no blog
+    published_slugs = get_published_slugs(project_root)
+    print(f"Posts já publicados detectados no blog: {len(published_slugs)}")
+    
+    # 2. Busca tópicos quentes
     trending = fetch_trending_topics()
-    selected_pautas = select_dynamic_pautas(trending)
+    
+    # 3. Seleciona pautas inéditas
+    selected_pautas = select_dynamic_pautas(trending, published_slugs)
+    
+    # 4. Gera o markdown do calendário
     content = generate_editorial_calendar(trending, selected_pautas)
     
     dest_path = os.path.join(target_dir, "calendario_RASCUNHO.md")
