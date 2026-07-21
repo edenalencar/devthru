@@ -55,8 +55,10 @@ import { postAITerminalToolsGeminiCLI } from './posts/ai-terminal-tools-gemini-c
 import { postWebMcpModelContextProtocolViaSse } from './posts/o-que-e-webmcp-model-context-protocol-via-sse'
 import { postSddSpecDrivenDevelopmentFocadoEmIa } from './posts/o-que-e-sdd-spec-driven-development-focado-em-ia'
 import { postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto } from './posts/skills-de-ia-e-progressive-disclosure-economia-de-contexto'
+import { postSplitPaymentReformaTributariaGuiaDev } from './posts/split-payment-reforma-tributaria-guia-desenvolvedor'
 
 export const blogPosts: BlogPost[] = [
+    postSplitPaymentReformaTributariaGuiaDev,
     postEntendendoBase64QuandoUsar,
     postComoFormatarEValidarGrandesArquivosJsonSemTravamentos,
     postGuiaDeRegexParaDesenvolvedores,

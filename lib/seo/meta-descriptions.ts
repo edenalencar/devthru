@@ -20,6 +20,7 @@ const GUIDE_TOOL_TERMS: Record<string, { verb: string; object: string }> = {
     "base64-encoder": { verb: "codificar e decodificar", object: "Base64" },
     "email-validator": { verb: "validar", object: "emails" },
     "credit-card-generator": { verb: "validar e gerar", object: "cartões" },
+    "split-payment": { verb: "simular e calcular", object: "Split Payment de IBS e CBS" },
     "url-encoder": { verb: "codificar e decodificar", object: "URLs" },
 }
 

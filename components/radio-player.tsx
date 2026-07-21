@@ -18,7 +18,10 @@ import {
   Flame,
   Keyboard,
   Bell,
-  RotateCcw
+  RotateCcw,
+  Radio,
+  X,
+  Sparkles
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { track } from "@vercel/analytics";
@@ -203,6 +206,22 @@ export function RadioPlayer() {
     return false;
   });
   const [activeStretchIndex, setActiveStretchIndex] = useState(0);
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  useEffect(() => {
+    if (isMounted) {
+      const dismissed = localStorage.getItem("devthru-radio-tooltip-dismissed");
+      if (!dismissed) {
+        setShowTooltip(true);
+      }
+    }
+  }, [isMounted]);
+
+  const dismissTooltip = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowTooltip(false);
+    localStorage.setItem("devthru-radio-tooltip-dismissed", "true");
+  };
 
   // Refs de áudio
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -917,60 +936,96 @@ export function RadioPlayer() {
           </div>
         </div>
       ) : (
-        /* ESTADO MINIMIZADO - Ícone Dinâmico */
-        <button
-          onClick={() => setIsOpen(true)}
-          className={cn(
-            "w-12 h-12 rounded-full flex items-center justify-center border border-border/50 bg-background/85 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-foreground hover:border-primary/45 relative",
-            (isPlaying || Object.values(ambientVolumes).some(v => v > 0)) && !isMuted && "border-primary/30"
-          )}
-          aria-label="Abrir central de foco"
-        >
-          {/* Badge Vermelho de Alerta de Postura */}
-          {postureAlertActive && (
-            <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-destructive border-2 border-background animate-pulse z-10" />
+        /* ESTADO MINIMIZADO - Pill Flutuante / Call-to-action */
+        <div className="relative flex flex-col items-end">
+          {/* Tooltip Chamativo de Boas-vindas (Exibido se ainda não dispensado e não tocando) */}
+          {showTooltip && !isPlaying && (
+            <div className="absolute bottom-full mb-3 right-0 bg-background/95 backdrop-blur-md border border-primary/30 shadow-xl rounded-xl p-3 text-xs w-64 animate-in fade-in slide-in-from-bottom-2 duration-300 z-50">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center space-x-1.5 text-primary font-semibold">
+                  <Radio className="w-4 h-4 animate-pulse shrink-0" />
+                  <span>DevThru Radio</span>
+                </div>
+                <button
+                  onClick={dismissTooltip}
+                  className="text-muted-foreground hover:text-foreground p-0.5 rounded transition-colors"
+                  aria-label="Fechar dica"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+              <p className="text-[11px] text-muted-foreground mt-1 leading-snug">
+                Músicas Lofi & Synthwave sem anúncios para manter o foco enquanto programa!
+              </p>
+              <div className="absolute -bottom-1.5 right-5 w-3 h-3 bg-background border-r border-b border-primary/30 rotate-45" />
+            </div>
           )}
 
-          {isLoading ? (
-            <Loader2 className="w-5 h-5 animate-spin text-primary" />
-          ) : isPlaying ? (
-            /* Equalizador visual animado */
-            <div className="flex items-end justify-center gap-0.5 h-4 w-4 text-primary">
-              <div 
-                className="w-0.5 bg-current eq-bar-anim" 
-                style={{ animationPlayState: isPlaying ? "running" : "paused" }} 
-              />
-              <div 
-                className="w-0.5 bg-current eq-bar-anim" 
-                style={{ animationPlayState: isPlaying ? "running" : "paused" }} 
-              />
-              <div 
-                className="w-0.5 bg-current eq-bar-anim" 
-                style={{ animationPlayState: isPlaying ? "running" : "paused" }} 
-              />
-              <div 
-                className="w-0.5 bg-current eq-bar-anim" 
-                style={{ animationPlayState: isPlaying ? "running" : "paused" }} 
-              />
+          <button
+            onClick={() => {
+              setIsOpen(true);
+              if (showTooltip) {
+                setShowTooltip(false);
+                localStorage.setItem("devthru-radio-tooltip-dismissed", "true");
+              }
+            }}
+            className={cn(
+              "h-11 px-4 rounded-full flex items-center space-x-2.5 border bg-background/90 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-foreground cursor-pointer group relative",
+              isPlaying || Object.values(ambientVolumes).some((v) => v > 0)
+                ? "border-primary/50 shadow-primary/10 ring-2 ring-primary/20"
+                : "border-border/60 hover:border-primary/40"
+            )}
+            aria-label="Abrir DevThru Radio e Central de Foco"
+          >
+            {/* Badge Vermelho de Alerta de Postura */}
+            {postureAlertActive && (
+              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-destructive border-2 border-background animate-pulse z-10" />
+            )}
+
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin text-primary shrink-0" />
+            ) : isPlaying ? (
+              /* Equalizador visual animado */
+              <div className="flex items-end justify-center gap-0.5 h-3.5 w-3.5 text-primary shrink-0">
+                <div 
+                  className="w-0.5 bg-current eq-bar-anim" 
+                  style={{ animationPlayState: isPlaying ? "running" : "paused" }} 
+                />
+                <div 
+                  className="w-0.5 bg-current eq-bar-anim" 
+                  style={{ animationPlayState: isPlaying ? "running" : "paused" }} 
+                />
+                <div 
+                  className="w-0.5 bg-current eq-bar-anim" 
+                  style={{ animationPlayState: isPlaying ? "running" : "paused" }} 
+                />
+                <div 
+                  className="w-0.5 bg-current eq-bar-anim" 
+                  style={{ animationPlayState: isPlaying ? "running" : "paused" }} 
+                />
+              </div>
+            ) : (
+              <div className="relative flex items-center justify-center shrink-0">
+                <Radio className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
+                {/* Ponto indicador de status / novidade */}
+                <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
+              </div>
+            )}
+
+            {/* Texto da Pill */}
+            <div className="flex items-center space-x-2">
+              <span className="text-xs font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors whitespace-nowrap">
+                {isPlaying ? CHANNELS[activeChannel].name : "Dev Radio"}
+              </span>
+
+              {!isPlaying && (
+                <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-primary/10 text-primary border border-primary/20">
+                  Lofi & Focus
+                </span>
+              )}
             </div>
-          ) : (
-            /* Ícone dinâmico com base na última aba aberta */
-            <>
-              {activeTab === "radio" && (
-                <Headphones className="w-5 h-5 text-zinc-600 dark:text-zinc-300 hover:text-primary transition-colors" />
-              )}
-              {activeTab === "notes" && (
-                <FileText className="w-5 h-5 text-zinc-600 dark:text-zinc-300 hover:text-primary transition-colors" />
-              )}
-              {activeTab === "goals" && (
-                <Target className="w-5 h-5 text-zinc-600 dark:text-zinc-300 hover:text-primary transition-colors" />
-              )}
-              {activeTab === "posture" && (
-                <Activity className="w-5 h-5 text-zinc-600 dark:text-zinc-300 hover:text-primary transition-colors" />
-              )}
-            </>
-          )}
-        </button>
+          </button>
+        </div>
       )}
     </div>
   );
