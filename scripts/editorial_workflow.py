@@ -1,7 +1,15 @@
 import os
 import json
+import sys
 import urllib.request
 from datetime import datetime
+
+# Assegura suporte a UTF-8 para logs no Windows Task Scheduler
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 
 def fetch_trending_topics():
     print("Buscando tópicos em alta no Dev.to...")
@@ -117,17 +125,17 @@ Abaixo estão 8 sugestões de artigos otimizados para atrair tráfego e promover
     return markdown_content
 
 def main():
-    # Cria o diretório de destino se não existir
-    os.makedirs("docs/editorial", exist_ok=True)
+    # Determina a raiz do projeto de forma robusta e independente do CWD do agendador
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(script_dir)
+    target_dir = os.path.join(project_root, "docs", "editorial")
     
-    # Busca tendências
+    os.makedirs(target_dir, exist_ok=True)
+    
     trending = fetch_trending_topics()
-    
-    # Gera o calendário
     content = generate_editorial_calendar(trending)
     
-    # Escreve o arquivo
-    dest_path = "docs/editorial/calendario_RASCUNHO.md"
+    dest_path = os.path.join(target_dir, "calendario_RASCUNHO.md")
     with open(dest_path, "w", encoding="utf-8") as f:
         f.write(content)
         
