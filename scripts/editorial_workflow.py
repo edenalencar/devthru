@@ -268,6 +268,28 @@ DEVTHRU_PAUTAS_POOL = [
         "meta_title": "Testando Emissão de NF-e em Staging e Homologação",
         "meta_desc": "Guia de homologação para sistemas fiscais: como estruturar XMLs de teste, gerar chaves de acesso válidas e evitar rejeições da SEFAZ.",
         "focus": "Estrutura da Chave de Acesso de 44 dígitos da NF-e, código de UF, lote de envio e ambiente de homologação sem valor fiscal.",
+    },
+    {
+        "slug": "split-payment-reforma-tributaria-guia-desenvolvedor",
+        "tool_name": "Gerador de NF-e e Calculadora Fiscal",
+        "tool_url": "https://www.devthru.com/tools/business/nfe-generator",
+        "keywords": ["split", "payment", "reforma", "tributaria", "ibs", "cbs", "nfe", "fiscal", "brasil"],
+        "pauta_title": "Split Payment na Reforma Tributária: Guia Técnico de Integração para Devs de ERP e E-commerce",
+        "target_keyword": "split payment reforma tributaria desenvolvedor, como implementar split payment erp",
+        "meta_title": "Split Payment na Reforma Tributária para Desenvolvedores",
+        "meta_desc": "Entenda como funciona o Split Payment no IBS e CBS, o impacto nos meios de pagamento (Pix, Cartão) e como adaptar seu ERP e e-commerce.",
+        "focus": "Mecanismo de retenção automática na liquidação financeira, comunicação entre adquirentes e SEFAZ, e impacto nos fluxos de caixa de e-commerce.",
+    },
+    {
+        "slug": "novas-tags-xml-nfe-reforma-tributaria-ibs-cbs",
+        "tool_name": "Gerador de NF-e e Validador XML",
+        "tool_url": "https://www.devthru.com/tools/business/nfe-generator",
+        "keywords": ["xml", "nfe", "reforma", "tributaria", "ibs", "cbs", "sefaz", "brasil"],
+        "pauta_title": "Novas Tags no XML da NF-e na Reforma Tributária: Como Estruturar IBS, CBS e Retenção",
+        "target_keyword": "xml nfe reforma tributaria split payment, tags ibs cbs nfe",
+        "meta_title": "Estrutura do XML da NF-e na Reforma Tributária (IBS/CBS)",
+        "meta_desc": "Guia prático sobre o novo esquema XML da SEFAZ para a Reforma Tributária. Aprenda a validar os novos campos de alíquota e retenção de IBS e CBS.",
+        "focus": "Inspeção dos grupos de retenção do Split Payment no XML, validação de schemas em homologação SEFAZ e campos de apuração do imposto.",
     }
 ]
 
