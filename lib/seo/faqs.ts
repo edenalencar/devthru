@@ -232,6 +232,16 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "Sim. Além de gerar o número do cartão estruturalmente correto, nossa ferramenta fornece um nome de portador fictício (John Doe), data de expiração futura válida e código de segurança (CVV) compatível com a bandeira selecionada. Isso é ideal para testar formulários que exigem o fluxo completo de pagamento e validações de endereço de faturamento (Billing Address)."
         }
     ],
+    "split-payment": [
+        {
+            "question": "O que é o Split Payment na Reforma Tributária?",
+            "answer": "O Split Payment é a retenção automática dos impostos IBS e CBS realizada diretamente pelas instituições financeiras e credenciadoras no momento do pagamento via Pix, cartão ou boleto."
+        },
+        {
+            "question": "Como o simulador calcula o valor líquido do vendedor?",
+            "answer": "A ferramenta aplica as alíquotas estimadas de IBS (Estadual/Municipal) e CBS (Federal) sobre o valor bruto da transação, subtraindo os impostos para exibir a quantia exata enviada para a conta bancária do vendedor."
+        }
+    ],
     "iban-validator": [
         {
             "question": "Como é a estrutura de um código IBAN?",

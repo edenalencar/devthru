@@ -511,6 +511,15 @@ export const tools: Tool[] = [
         href: "/tools/finance/credit-card-generator",
     },
     {
+        id: "split-payment",
+        name: "Simulador de Split Payment",
+        title: "Simulador de Split Payment (Reforma Tributária)",
+        description: "Calcule a retenção de IBS e CBS no ato do pagamento",
+        category: "financial",
+        icon: Calculator,
+        href: "/tools/finance/split-payment",
+    },
+    {
         id: "xml-validator",
         name: "Validador de XML",
         title: "Validador de XML",
