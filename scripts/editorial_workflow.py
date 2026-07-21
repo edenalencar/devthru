@@ -12,10 +12,10 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-# Catálogo expandido de pautas associadas às ferramentas do DevThru
+# Catálogo de pautas Mapeado 100% para Ferramentas Existentes no DevThru
 DEVTHRU_PAUTAS_POOL = [
     {
-        "tool_name": "Gerador de Crontab",
+        "tool_name": "Gerador e Decodificador de Crontab",
         "tool_url": "https://www.devthru.com/tools/development/crontab-generator",
         "keywords": ["cron", "linux", "devops", "automation", "server", "docker", "bash"],
         "pauta_title": "Como Configurar Cron Jobs no Linux: Guia Prático com Exemplo Real",
@@ -25,8 +25,8 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Explicar a sintaxe dos 5 campos do crontab, casos de uso em automação de servidores e como evitar erros clássicos em cron jobs.",
     },
     {
-        "tool_name": "Decodificador de JWT",
-        "tool_url": "https://www.devthru.com/tools/development/jwt-decoder",
+        "tool_name": "Debugger & Inspector de JWT",
+        "tool_url": "https://www.devthru.com/tools/development/jwt-debugger",
         "keywords": ["jwt", "security", "auth", "node", "api", "backend", "webdev"],
         "pauta_title": "JWT (JSON Web Tokens) na Prática: Estrutura, Segurança e Decodificação",
         "target_keyword": "decodificar jwt, como funciona jwt",
@@ -45,58 +45,38 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Acessibilidade para leitores de tela, zoom do navegador e boas práticas de design responsivo no CSS moderno e Tailwind.",
     },
     {
-        "tool_name": "Gerador de Hash MD5/SHA-256",
-        "tool_url": "https://www.devthru.com/tools/security/hash-generator",
-        "keywords": ["security", "crypto", "hash", "python", "backend", "cybersecurity"],
-        "pauta_title": "Diferença Prática entre Criptografia, Algoritmos de Hash e Codificação",
-        "target_keyword": "gerador de hash md5, diferenca hash e criptografia",
-        "meta_title": "Criptografia vs Hash vs Codificação: Qual a Diferença?",
-        "meta_desc": "Aprenda a diferença conceitual e prática entre criptografia, algoritmos de hash (como MD5/SHA) e codificações de dados no desenvolvimento.",
-        "focus": "Quando utilizar hash unidirecional (senhas/checksums) vs criptografia assimétrica e por que MD5 não deve ser usado para senhas.",
-    },
-    {
-        "tool_name": "Conversor de Base64",
-        "tool_url": "https://www.devthru.com/tools/converters/base64",
-        "keywords": ["base64", "webdev", "api", "data", "images", "performance"],
-        "pauta_title": "Entendendo Base64: Quando vale a pena converter Imagens e Dados?",
-        "target_keyword": "converter base64, imagem para base64",
+        "tool_name": "Conversor de Base (Base64, Hex, Binário)",
+        "tool_url": "https://www.devthru.com/tools/converters/base",
+        "keywords": ["base64", "webdev", "api", "data", "images", "performance", "crypto"],
+        "pauta_title": "Entendendo Base64 e Hexadecimal: Quando vale a pena converter Dados?",
+        "target_keyword": "converter base64, base64 para string",
         "meta_title": "Como Funciona a Codificação Base64 e Quando Utilizar?",
-        "meta_desc": "Entenda o que é Base64, como converter strings e imagens, e descubra os prós e contras de embutir mídia diretamente no seu código.",
+        "meta_desc": "Entenda o que é Base64, como converter strings e dados, e descubra os prós e contras de embutir mídia diretamente no seu código.",
         "focus": "O overhead de 33% na conversão de dados para Base64, casos em que compensa para Data URLs em CSS/HTML e segurança na transferência.",
     },
     {
-        "tool_name": "Gerador de Dados Pessoais (CPF/CNPJ)",
-        "tool_url": "https://www.devthru.com/tools/documents/cpf",
+        "tool_name": "Gerador de Perfil Completo (Pessoa Sintética)",
+        "tool_url": "https://www.devthru.com/tools/personal/person-generator",
         "keywords": ["testing", "qa", "backend", "database", "python", "javascript", "dev"],
         "pauta_title": "Como Automatizar Testes de Software com Dados Sintéticos Válidos (LGPD Compliant)",
-        "target_keyword": "gerador de cpf valido testes, dados sinteticos qa",
+        "target_keyword": "gerador de pessoa sintetica, dados para testes qa",
         "meta_title": "Gerando Dados de Teste Válidos para QA e Automação",
-        "meta_desc": "Aprenda a popular seus testes de software com CPFs e CNPJs válidos sem expor dados reais de usuários ou violar a LGPD.",
+        "meta_desc": "Aprenda a popular seus testes de software com perfis completos de teste sem expor dados reais de usuários ou violar a LGPD.",
         "focus": "Importância de utilizar geradores de dados matematicamente válidos em rotinas de teste e staging sem usar dados reais.",
     },
     {
-        "tool_name": "Formatador e Validador de JSON",
-        "tool_url": "https://www.devthru.com/tools/development/json-formatter",
-        "keywords": ["json", "api", "debug", "javascript", "typescript", "backend"],
-        "pauta_title": "Como Validar e Formatar Grandes Payloads JSON sem Travamentos no Navegador",
-        "target_keyword": "formatar json online, validador json",
-        "meta_title": "Como Validar e Formatar Arquivos JSON de Forma Rápida",
-        "meta_desc": "Precisa ler ou depurar um arquivo JSON grande? Aprenda a formatar, minificar e validar a estrutura JSON de forma rápida e segura.",
-        "focus": "Boas práticas ao consumir APIs REST/GraphQL, depuração de erros sintáticos comuns em JSONs e minificação para produção.",
+        "tool_name": "Formatador e Minificador de Código / JSON",
+        "tool_url": "https://www.devthru.com/tools/development/minifier",
+        "keywords": ["json", "api", "debug", "javascript", "typescript", "backend", "performance"],
+        "pauta_title": "Como Validar e Minificar Payloads de Código sem Travamentos no Navegador",
+        "target_keyword": "minificar codigo online, formatador json",
+        "meta_title": "Como Validar e Minificar Códigos de Forma Rápida",
+        "meta_desc": "Precisa ler ou otimizar arquivos grandes de código? Aprenda a formatar e minificar payloads de forma rápida e segura.",
+        "focus": "Boas práticas ao consumir APIs REST/GraphQL, depuração de erros sintáticos e minificação para produção.",
     },
     {
-        "tool_name": "Removedor de Linhas Duplicadas",
-        "tool_url": "https://www.devthru.com/tools/text/duplicate-remover",
-        "keywords": ["productivity", "data", "text", "logs", "devops", "bash"],
-        "pauta_title": "Limpeza Rápida de Logs e Listas: Como Organizar Textos Bagunçados sem Scripts",
-        "target_keyword": "remover linhas duplicadas, ordenar texto online",
-        "meta_title": "Como Limpar, Ordenar e Organizar Listas de Texto Facilmente",
-        "meta_desc": "Economize tempo limpando listas de texto. Aprenda a remover duplicatas, ordenar alfabeticamente e formatar blocos de texto rapidamente.",
-        "focus": "Técnicas de higienização de logs de servidor, ordenação alfabética e eliminação de registros duplicados em poucos segundos.",
-    },
-    {
-        "tool_name": "Testador de Expressões Regulares (Regex)",
-        "tool_url": "https://www.devthru.com/tools/development/regex-tester",
+        "tool_name": "Testador e Validador de Regex",
+        "tool_url": "https://www.devthru.com/tools/development/regex",
         "keywords": ["regex", "python", "javascript", "backend", "ai", "llm"],
         "pauta_title": "Dominando Regex no Desenvolvimento: Do Zero à Validação de Formatos Complexos",
         "target_keyword": "testar regex online, validador regex",
@@ -105,17 +85,7 @@ DEVTHRU_PAUTAS_POOL = [
         "focus": "Como funcionam quantificadores, grupos de captura e como testar padrões Regex em tempo real sem travar a thread principal.",
     },
     {
-        "tool_name": "Conversor de Markdown para HTML",
-        "tool_url": "https://www.devthru.com/tools/converters/markdown-to-html",
-        "keywords": ["markdown", "cms", "documentation", "blog", "react", "nextjs"],
-        "pauta_title": "Arquitetura Headless CMS & Markdown: Como Renderizar Documentações Rápidas",
-        "target_keyword": "converter markdown para html, gerador de html markdown",
-        "meta_title": "Como Converter Markdown em HTML para Blogs e Docs",
-        "meta_desc": "Descubra como estruturar documentações e posts em Markdown e convertê-los para HTML otimizado para SEO sem dependências pesadas.",
-        "focus": "Vantagens da escrita em Markdown para desenvolvedores e integração com geradores de sites estáticos (SSG).",
-    },
-    {
-        "tool_name": "Formatador de SQL Querys",
+        "tool_name": "Formatador de SQL Queries",
         "tool_url": "https://www.devthru.com/tools/development/sql-formatter",
         "keywords": ["sql", "database", "postgres", "mysql", "backend"],
         "pauta_title": "Boas Práticas de Leitura e Otimização de SQL Queries Complexas",
@@ -133,6 +103,36 @@ DEVTHRU_PAUTAS_POOL = [
         "meta_title": "Validação de Inscrição Estadual para Desenvolvedores",
         "meta_desc": "Entenda as regras de validação de Inscrição Estadual (IE) por UF e como testar seu sistema de emissão de NF-e com dados válidos.",
         "focus": "Diferenças nos dígitos verificadores da IE de cada estado brasileiro e como evitar rejeição em APIs da SEFAZ.",
+    },
+    {
+        "tool_name": "Comparador de Diferenças de Texto (Diff Checker)",
+        "tool_url": "https://www.devthru.com/tools/text/diff-checker",
+        "keywords": ["diff", "git", "text", "code", "productivity", "debug"],
+        "pauta_title": "Como Comparar Arquivos e Identificar Alterações de Código sem Instalar Git",
+        "target_keyword": "comparar textos online, diff checker",
+        "meta_title": "Como Comparar Diferenças entre Códigos e Textos",
+        "meta_desc": "Identifique rapidamente alterações entre dois blocos de código ou texto com um comparador visual de diff online gratuito.",
+        "focus": "Como inspecionar divergências entre payloads JSON, variáveis de ambiente ou trechos de código em instantes.",
+    },
+    {
+        "tool_name": "Gerador de Senhas Seguras",
+        "tool_url": "https://www.devthru.com/tools/utilities/password-generator",
+        "keywords": ["security", "password", "crypto", "auth", "devops"],
+        "pauta_title": "Entropia e Segurança de Senhas: Como Gerar Chaves Forte no Desenvolvimento",
+        "target_keyword": "gerador de senhas seguras, entropia de senha",
+        "meta_title": "Como Gerar Senhas e Chaves de API Seguras",
+        "meta_desc": "Entenda o conceito de entropia em senhas e aprenda a gerar chaves aleatórias e seguras para suas aplicações e ambientes de staging.",
+        "focus": "Diferença entre caracteres aleatórios, frases secretas (passphrases) e como evitar chaves fracas em conexões com bancos e APIs.",
+    },
+    {
+        "tool_name": "Gerador de Cartão de Crédito para Testes",
+        "tool_url": "https://www.devthru.com/tools/finance/credit-card-generator",
+        "keywords": ["stripe", "payment", "finance", "testing", "qa", "ecommerce"],
+        "pauta_title": "Como Testar Integrações de Checkout (Stripe/PagSeguro) sem Usar Cartões Reais",
+        "target_keyword": "gerador de cartao de credito teste, cartao sandbox stripe",
+        "meta_title": "Testando Checkouts com Cartões de Crédito Fictícios Válidos",
+        "meta_desc": "Aprenda a testar o fluxo de pagamento do seu e-commerce ou SaaS gerando números de cartão de teste válidos no algoritmo de Luhn.",
+        "focus": "Como funciona o Algoritmo de Luhn para validação de números de cartão e boas práticas de sandbox em gateway de pagamento.",
     }
 ]
 
@@ -161,14 +161,12 @@ def fetch_trending_topics():
     ]
 
 def select_dynamic_pautas(trending_articles):
-    # Coleta todas as tags em alta no dia
     trending_tags = set()
     for art in trending_articles:
         tags = art.get('tag_list', art.get('tags', []))
         for t in tags:
             trending_tags.add(t.lower())
             
-    # Pontua as pautas do pool com base nas tags em alta hoje
     scored_pautas = []
     for pauta in DEVTHRU_PAUTAS_POOL:
         score = 0
@@ -177,15 +175,12 @@ def select_dynamic_pautas(trending_articles):
                 score += 2
         scored_pautas.append((score, pauta))
         
-    # Ordena por relevância e aplica rotação baseada no dia do mês/ano para ser sempre fresco
     today_seed = int(datetime.now().strftime("%Y%m%d"))
     rng = random.Random(today_seed)
     
-    # Mistura pautas com a mesma pontuação usando o seed diário
     rng.shuffle(scored_pautas)
     scored_pautas.sort(key=lambda x: x[0], reverse=True)
     
-    # Retorna as 8 melhores pautas do dia
     selected = [p[1] for p in scored_pautas[:8]]
     return selected
 
