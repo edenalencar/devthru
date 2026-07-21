@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
+import { sendGTMEvent } from "@/lib/gtm"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -145,6 +146,19 @@ export function SplitPaymentCalculatorPage() {
     }
   }, [grossAmountStr, ibsRateStr, cbsRateStr, paymentMethod, operationType])
 
+  useEffect(() => {
+    if (calculations.amount > 0) {
+      sendGTMEvent({
+        event: "tool_interaction",
+        tool_name: "split-payment",
+        tool_action: "calculate_split",
+        tool_category: "finance",
+        gross_amount: calculations.amount,
+        payment_method: paymentMethod,
+      })
+    }
+  }, [calculations.amount, paymentMethod, operationType])
+
   const formatBRL = (val: number) => {
     return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(val)
   }
@@ -153,6 +167,12 @@ export function SplitPaymentCalculatorPage() {
     navigator.clipboard.writeText(JSON.stringify(calculations.mockWebhookPayload, null, 2))
     setCopiedJson(true)
     toast.success("Payload JSON do Split Payment copiado com sucesso!")
+    sendGTMEvent({
+      event: "tool_interaction",
+      tool_name: "split-payment",
+      tool_action: "copy_json",
+      tool_category: "finance",
+    })
     setTimeout(() => setCopiedJson(false), 2000)
   }
 
