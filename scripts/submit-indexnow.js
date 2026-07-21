@@ -63,6 +63,8 @@ const urls = [
     "https://devthru.com/tools/finance/boleto-validator",
     "https://devthru.com/tools/finance/credit-card-generator",
     "https://devthru.com/tools/finance/iban-validator",
+    "https://devthru.com/tools/finance/split-payment",
+    "https://devthru.com/blog/split-payment-reforma-tributaria-guia-desenvolvedor",
     "https://devthru.com/tools/finance/pix-parser",
     "https://devthru.com/tools/finance/tax-calculator",
 
