@@ -418,20 +418,22 @@ export function SplitPaymentCalculatorPage() {
           <Code2 className="w-5 h-5 text-blue-600" />
           <span>Exemplos de Implementação de Cálculo em Código</span>
         </h2>
-        <CodeExamplesAccordion
-          examples={[
-            {
-              language: "python",
-              label: "Python",
-              code: PYTHON_SPLIT_CODE
-            },
-            {
-              language: "javascript",
-              label: "Node.js / JS",
-              code: NODE_SPLIT_CODE
-            }
-          ]}
-        />
+        <Accordion type="single" collapsible className="w-full" defaultValue="code-examples">
+          <CodeExamplesAccordion
+            examples={[
+              {
+                language: "python",
+                label: "Python",
+                code: PYTHON_SPLIT_CODE
+              },
+              {
+                language: "javascript",
+                label: "Node.js / JS",
+                code: NODE_SPLIT_CODE
+              }
+            ]}
+          />
+        </Accordion>
       </div>
 
       {/* FAQ & Artigo de Apoio */}
