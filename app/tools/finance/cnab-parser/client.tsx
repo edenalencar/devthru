@@ -174,10 +174,6 @@ export function CnabParserPage() {
 
         {/* Hero Section */}
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold uppercase tracking-wider">
-            <Landmark className="w-3.5 h-3.5" />
-            <span>Formatos FEBRABAN 240 e 400</span>
-          </div>
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
             Leitor e Decodificador de CNAB Online
           </h1>
