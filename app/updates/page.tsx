@@ -27,6 +27,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "22 de Julho de 2026",
+        title: "Leitor de CNAB (240 / 400), Split Payment e VET Cambial",
+        description: "Lançamento do Leitor e Decodificador de CNAB (com parsing de arquivos de remessa e retorno FEBRABAN), Simulador de Split Payment da Reforma Tributária (IBS + CBS) e Simulador de VET e eFX Cambial do Banco Central. Inclui também 5 novos artigos técnicos no blog.",
+        type: "feature",
+        version: "1.46.0"
+    },
+    {
         date: "16 de Julho de 2026",
         title: "DevThru Radio: Lofi & Synthwave Integrado",
         description: "Lançamento da DevThru Radio, um player de áudio flutuante e persistente para te acompanhar durante o código. Ouça streams de Lofi Focus Beats e Retro Synthwave sem interrupções ao navegar pelas páginas. Inclui controle de volume, atalhos rápidos (Alt+P para tocar/pausar, Alt+M para mutar) e um equalizador visual animado.",

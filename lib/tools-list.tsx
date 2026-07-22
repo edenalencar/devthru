@@ -60,6 +60,7 @@ export const tools: Tool[] = [
     { slug: 'tax-calculator', category: 'finance', title: 'Calculadora de Impostos', icon: Calculator },
     { slug: 'split-payment', category: 'finance', title: 'Simulador Split Payment', icon: Calculator },
     { slug: 'vet-efx-calculator', category: 'finance', title: 'Simulador VET & eFX Cambial', icon: Calculator },
+    { slug: 'cnab-parser', category: 'finance', title: 'Leitor de CNAB', icon: FileText },
 
     // Image
     { slug: 'converter', category: 'image', title: 'Conversor de Imagem', icon: ImageIcon },

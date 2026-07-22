@@ -22,6 +22,7 @@ const GUIDE_TOOL_TERMS: Record<string, { verb: string; object: string }> = {
     "credit-card-generator": { verb: "validar e gerar", object: "cartões" },
     "split-payment": { verb: "simular e calcular", object: "Split Payment de IBS e CBS" },
     "vet-efx-calculator": { verb: "simular e calcular", object: "VET e eFX Cambial" },
+    "cnab-parser": { verb: "decodificar e inspecionar", object: "arquivos CNAB 240 e 400" },
     "url-encoder": { verb: "codificar e decodificar", object: "URLs" },
 }
 

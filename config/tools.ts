@@ -631,6 +631,15 @@ export const tools: Tool[] = [
         icon: Briefcase,
         href: "/tools/business/cnae-search",
     },
+    {
+        id: "cnab-parser",
+        name: "Leitor de CNAB",
+        title: "Leitor e Decodificador de CNAB (CNAB 240 / 400)",
+        description: "Decodifique, inspecione e valide arquivos de remessa e retorno CNAB 240 e CNAB 400 da FEBRABAN online.",
+        category: "business",
+        icon: FileText,
+        href: "/tools/finance/cnab-parser",
+    },
 ]
 
 export function getToolsByCategory(categoryId: string): Tool[] {

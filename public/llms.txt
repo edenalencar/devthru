@@ -37,6 +37,7 @@ O DevThru foi criado para fornecer utilitários rápidos e sem atrito, incluindo
 - [Calculadora Simples Nacional](https://www.devthru.com/tools/finance/tax-calculator) - Calculadora DAS
 - [Simulador de Split Payment](https://www.devthru.com/tools/finance/split-payment) - Simulador de retenção de IBS e CBS no ato do pagamento
 - [Simulador de VET e eFX Cambial](https://www.devthru.com/tools/finance/vet-efx-calculator) - Simulador de VET, IOF e Câmbio do Banco Central
+- [Leitor de CNAB](https://www.devthru.com/tools/finance/cnab-parser) - Decodificador e validador de CNAB 240 e 400 (FEBRABAN)
 
 ### Dados Pessoais
 - [Gerador de Pessoa Completa](https://www.devthru.com/tools/personal/person) - Gerador de perfil cadastral fictício

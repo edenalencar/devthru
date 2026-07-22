@@ -178,14 +178,13 @@ export function SplitPaymentCalculatorPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-5xl">
-      <Breadcrumbs items={[{ label: "Finanças", href: "/tools/finance" }, { label: "Simulador de Split Payment" }]} />
+      <Breadcrumbs
+        items={[{ label: "Finanças", href: "/tools/finance" }, { label: "Simulador de Split Payment" }]}
+        className="mb-6"
+      />
 
       {/* Hero Header */}
-      <div className="flex flex-col space-y-3 mb-8 text-center md:text-left border-b pb-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200 text-xs font-semibold w-fit mx-auto md:mx-0">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Reforma Tributária BR (IBS + CBS)</span>
-        </div>
+      <div className="flex flex-col space-y-3 mt-4 mb-8 text-center md:text-left border-b pb-6">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
           Simulador & Calculadora de Split Payment
         </h1>
