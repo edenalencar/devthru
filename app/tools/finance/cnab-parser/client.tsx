@@ -170,10 +170,11 @@ export function CnabParserPage() {
             { label: "Finanças", href: "/tools/finance" },
             { label: "Leitor e Decodificador de CNAB" }
           ]}
+          className="mb-6"
         />
 
         {/* Hero Section */}
-        <div className="text-center space-y-4">
+        <div className="text-center space-y-4 my-6">
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
             Leitor e Decodificador de CNAB Online
           </h1>
