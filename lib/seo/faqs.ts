@@ -242,6 +242,16 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "A ferramenta aplica as alíquotas estimadas de IBS (Estadual/Municipal) e CBS (Federal) sobre o valor bruto da transação, subtraindo os impostos para exibir a quantia exata enviada para a conta bancária do vendedor."
         }
     ],
+    "vet-efx-calculator": [
+        {
+            "question": "O que é o VET (Valor Efetivo Total) exige pelo Banco Central?",
+            "answer": "O Valor Efetivo Total (VET) representa o custo final em Reais de cada unidade de moeda estrangeira em operações de câmbio ou eFX, somando a taxa PTAX, spread da corretora e IOF."
+        },
+        {
+            "question": "O que são serviços de pagamento internacional eFX?",
+            "answer": "O eFX é a modalidade regulada pelo Banco Central que permite intermediar pagamentos internacionais de até US$ 10.000,00 por transação sem contrato formal de câmbio."
+        }
+    ],
     "iban-validator": [
         {
             "question": "Como é a estrutura de um código IBAN?",

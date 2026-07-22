@@ -36,6 +36,7 @@ O DevThru foi criado para fornecer utilitários rápidos e sem atrito, incluindo
 - [Validador de Boleto](https://www.devthru.com/tools/finance/boleto-validator) - Decodificador de boleto bancário
 - [Calculadora Simples Nacional](https://www.devthru.com/tools/finance/tax-calculator) - Calculadora DAS
 - [Simulador de Split Payment](https://www.devthru.com/tools/finance/split-payment) - Simulador de retenção de IBS e CBS no ato do pagamento
+- [Simulador de VET e eFX Cambial](https://www.devthru.com/tools/finance/vet-efx-calculator) - Simulador de VET, IOF e Câmbio do Banco Central
 
 ### Dados Pessoais
 - [Gerador de Pessoa Completa](https://www.devthru.com/tools/personal/person) - Gerador de perfil cadastral fictício

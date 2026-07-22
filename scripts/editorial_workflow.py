@@ -290,6 +290,28 @@ DEVTHRU_PAUTAS_POOL = [
         "meta_title": "Estrutura do XML da NF-e na Reforma Tributária (IBS/CBS)",
         "meta_desc": "Guia prático sobre o novo esquema XML da SEFAZ para a Reforma Tributária. Aprenda a validar os novos campos de alíquota e retenção de IBS e CBS.",
         "focus": "Inspeção dos grupos de retenção do Split Payment no XML, validação de schemas em homologação SEFAZ e campos de apuração do imposto.",
+    },
+    {
+        "slug": "normativa-efx-bacen-guia-desenvolvedor-pagamentos-internacionais",
+        "tool_name": "Simulador de VET e eFX Cambial",
+        "tool_url": "https://www.devthru.com/tools/finance/vet-efx-calculator",
+        "keywords": ["efx", "bacen", "vet", "cambio", "iof", "pagamentos", "internacional", "brasil"],
+        "pauta_title": "Normativa eFX do Banco Central: Guia Técnico de Pagamentos Internacionais para Devs",
+        "target_keyword": "efx banco central desenvolvedor, como implementar efx pagamentos internacionais",
+        "meta_title": "Normativa eFX do Banco Central para Desenvolvedores",
+        "meta_desc": "Entenda como funciona a regulamentação eFX do Banco Central, o cálculo obrigatório do VET no checkout e como integrar APIs de pagamento cross-border.",
+        "focus": "Regras do Banco Central para prestadores eFX, exibição obrigatória do VET (Valor Efetivo Total), alíquotas de IOF e limites de US$ 10.000,00.",
+    },
+    {
+        "slug": "como-calcular-vet-cambio-api-checkout-efx",
+        "tool_name": "Simulador de VET e eFX Cambial",
+        "tool_url": "https://www.devthru.com/tools/finance/vet-efx-calculator",
+        "keywords": ["vet", "efx", "cambio", "iof", "spread", "api", "checkout", "brasil"],
+        "pauta_title": "Como Calcular o VET (Valor Efetivo Total) em APIs de Câmbio e Checkout Cross-Border",
+        "target_keyword": "calcular vet cambio api, formula vet eFX",
+        "meta_title": "Como Calcular o VET (Valor Efetivo Total) via API",
+        "meta_desc": "Aprenda a fórmula oficial do VET exigida pelo Banco Central, integrando a cotação PTAX, spread da corretora e alíquotas de IOF em algoritmos.",
+        "focus": "Fórmula matemática do VET, enquadramento de IOF por natureza cambial e exemplos de código para checkout eFX em Python e Node.js.",
     }
 ]
 

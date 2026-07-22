@@ -56,8 +56,10 @@ import { postWebMcpModelContextProtocolViaSse } from './posts/o-que-e-webmcp-mod
 import { postSddSpecDrivenDevelopmentFocadoEmIa } from './posts/o-que-e-sdd-spec-driven-development-focado-em-ia'
 import { postSkillsDeIaEProgressiveDisclosureEconomiaDeContexto } from './posts/skills-de-ia-e-progressive-disclosure-economia-de-contexto'
 import { postSplitPaymentReformaTributariaGuiaDev } from './posts/split-payment-reforma-tributaria-guia-desenvolvedor'
+import { postNormativaEfxBacenGuiaDev } from './posts/normativa-efx-bacen-guia-desenvolvedor-pagamentos-internacionais'
 
 export const blogPosts: BlogPost[] = [
+    postNormativaEfxBacenGuiaDev,
     postSplitPaymentReformaTributariaGuiaDev,
     postEntendendoBase64QuandoUsar,
     postComoFormatarEValidarGrandesArquivosJsonSemTravamentos,

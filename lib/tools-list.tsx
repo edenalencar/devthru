@@ -59,6 +59,7 @@ export const tools: Tool[] = [
     { slug: 'pix-parser', category: 'finance', title: 'Decodificador Pix', icon: QrCode },
     { slug: 'tax-calculator', category: 'finance', title: 'Calculadora de Impostos', icon: Calculator },
     { slug: 'split-payment', category: 'finance', title: 'Simulador Split Payment', icon: Calculator },
+    { slug: 'vet-efx-calculator', category: 'finance', title: 'Simulador VET & eFX Cambial', icon: Calculator },
 
     // Image
     { slug: 'converter', category: 'image', title: 'Conversor de Imagem', icon: ImageIcon },
