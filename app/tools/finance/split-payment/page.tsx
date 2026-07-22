@@ -5,8 +5,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { SplitPaymentCalculatorPage } from "./client"
 
-const title = "Simulador e Calculadora de Split Payment (Reforma Tributária IBS/CBS)"
-const description = "Simulador de Split Payment online gratuito da Reforma Tributária. Calcule a retenção automática de IBS e CBS no ato do pagamento (Pix, Cartão, Boleto) e o repasse líquido no caixa do seu ERP ou e-commerce."
+const title = "Simulador e Calculadora de Split Payment"
+const description = "Simulador de Split Payment gratuito da Reforma Tributária. Calcule a retenção de IBS e CBS no pagamento (Pix, Cartão, Boleto) e o repasse líquido."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
@@ -30,7 +30,7 @@ export default function Page() {
         <>
             <JsonLd
                 data={getToolSchemaGraph({
-                    name: "Simulador de Split Payment (Reforma Tributária IBS/CBS)",
+                    name: "Simulador e Calculadora de Split Payment",
                     description,
                     categoryLabel: "Finanças",
                     path: "/tools/finance/split-payment",

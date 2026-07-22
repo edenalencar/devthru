@@ -5,8 +5,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CnabParserPage } from "./client"
 
-const title = "Leitor e Decodificador de CNAB Online (CNAB 240 / 400)"
-const description = "Decodifique, inspecione e valide arquivos de remessa e retorno CNAB 240 e CNAB 400 da FEBRABAN online. Analise posições, registros, ocorrências e erros de leiaute gratuitamente."
+const title = "Leitor e Decodificador de CNAB (240/400)"
+const description = "Decodifique, inspecione e valide arquivos de remessa e retorno CNAB 240 e 400 da FEBRABAN. Analise posições, ocorrências e erros de leiaute gratuitamente."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
@@ -30,7 +30,7 @@ export default function Page() {
             <JsonLd
                 data={getToolSchemaGraph({
                     name: "Leitor e Decodificador de CNAB (CNAB 240 / 400)",
-                    description: "Decodifique, inspecione e valide arquivos de remessa e retorno CNAB 240 e CNAB 400 da FEBRABAN online. Analise posições, registros, ocorrências e erros de leiaute gratuitamente.",
+                    description,
                     categoryLabel: "Finanças",
                     path: "/tools/finance/cnab-parser",
                     toolSlug: "cnab-parser"

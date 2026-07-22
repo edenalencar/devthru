@@ -5,8 +5,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { VetEfxCalculatorPage } from "./client"
 
-const title = "Simulador e Calculadora de VET & eFX Cambial (Banco Central)"
-const description = "Simulador de VET (Valor Efetivo Total) e eFX Cambial online gratuito. Calcule a cotação com IOF e Spread para pagamentos internacionais e checkouts cross-border segundo regras do Banco Central."
+const title = "Simulador e Calculadora de VET e eFX Cambial"
+const description = "Simulador de VET (Valor Efetivo Total) e eFX Cambial online. Calcule a cotação com IOF e Spread para pagamentos internacionais e regras do Banco Central."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
@@ -30,7 +30,7 @@ export default function Page() {
         <>
             <JsonLd
                 data={getToolSchemaGraph({
-                    name: "Simulador e Calculadora de VET & eFX Cambial (Banco Central)",
+                    name: "Simulador e Calculadora de VET e eFX Cambial",
                     description,
                     categoryLabel: "Finanças",
                     path: "/tools/finance/vet-efx-calculator",
