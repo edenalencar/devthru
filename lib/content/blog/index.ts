@@ -22,6 +22,8 @@ export const blogCategories: Record<BlogCategory, { label: string; color: string
 }
 
 // Import posts
+import { postComoFuncionaCorrecaoDeErrosReedSolomonQrCode } from './posts/como-funciona-correcao-de-erros-reed-solomon-qr-code'
+import { postEntendendoDigitosVerificadoresTituloDeEleitor } from './posts/entendendo-digitos-verificadores-titulo-de-eleitor-algoritmo'
 import { postEntendendoBase64QuandoUsar } from './posts/entendendo-base64-quando-usar-para-imagens-e-dados'
 import { postComoFormatarEValidarGrandesArquivosJsonSemTravamentos } from './posts/como-formatar-e-validar-grandes-arquivos-json-sem-travamentos'
 import { postGuiaDeRegexParaDesenvolvedores } from './posts/guia-de-regex-para-desenvolvedores'
@@ -59,6 +61,8 @@ import { postSplitPaymentReformaTributariaGuiaDev } from './posts/split-payment-
 import { postNormativaEfxBacenGuiaDev } from './posts/normativa-efx-bacen-guia-desenvolvedor-pagamentos-internacionais'
 
 export const blogPosts: BlogPost[] = [
+    postComoFuncionaCorrecaoDeErrosReedSolomonQrCode,
+    postEntendendoDigitosVerificadoresTituloDeEleitor,
     postNormativaEfxBacenGuiaDev,
     postSplitPaymentReformaTributariaGuiaDev,
     postEntendendoBase64QuandoUsar,
