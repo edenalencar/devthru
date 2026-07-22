@@ -6,6 +6,20 @@ export interface FAQItem {
 }
 
 export const TOOL_FAQS: Record<string, FAQItem[]> = {
+    "cnab-parser": [
+        {
+            "question": "Como identificar se um arquivo é CNAB 240 ou CNAB 400?",
+            "answer": "A forma mais direta é medindo a quantidade de caracteres de cada linha. No CNAB 240, todas as linhas possuem exatamente 240 caracteres. No CNAB 400, cada linha possui exatamente 400 caracteres."
+        },
+        {
+            "question": "O que significa o código de ocorrência nos arquivos de retorno?",
+            "answer": "O código de ocorrência indica qual ação foi efetuada pelo banco sobre o título. Por exemplo: o código 06 indica que o boleto foi pago (liquidado), o código 02 indica entrada confirmada e o código 03 sinaliza que a remessa foi rejeitada devido a algum erro cadastral."
+        },
+        {
+            "question": "Meus dados bancários são salvos nos servidores do DevThru?",
+            "answer": "Não. Todo o processo de leitura e decodificação do arquivo CNAB é executado exclusivamente no seu navegador via JavaScript client-side. Nenhum dado do seu arquivo é enviado para servidores externos."
+        }
+    ],
     "chassi": [
         {
             "question": "O que é o Chassi do Veículo (Código VIN)?",

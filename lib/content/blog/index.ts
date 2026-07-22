@@ -22,6 +22,9 @@ export const blogCategories: Record<BlogCategory, { label: string; color: string
 }
 
 // Import posts
+import { postCnab240VsCnab400DiferencasEstruturaPosicional } from './posts/cnab-240-vs-cnab-400-diferencas-e-estrutura-posicional'
+import { postComoParsearEValidarArquivosCnabRemessaERetornoNodejsPython } from './posts/como-parsear-e-validar-arquivos-cnab-remessa-e-retorno-nodejs-python'
+import { postComoGerarMassaDeDadosCnabParaTestesEmStaging } from './posts/como-gerar-massa-de-dados-cnab-para-testes-em-staging'
 import { postComoFuncionaCorrecaoDeErrosReedSolomonQrCode } from './posts/como-funciona-correcao-de-erros-reed-solomon-qr-code'
 import { postEntendendoDigitosVerificadoresTituloDeEleitor } from './posts/entendendo-digitos-verificadores-titulo-de-eleitor-algoritmo'
 import { postEntendendoBase64QuandoUsar } from './posts/entendendo-base64-quando-usar-para-imagens-e-dados'
@@ -61,6 +64,9 @@ import { postSplitPaymentReformaTributariaGuiaDev } from './posts/split-payment-
 import { postNormativaEfxBacenGuiaDev } from './posts/normativa-efx-bacen-guia-desenvolvedor-pagamentos-internacionais'
 
 export const blogPosts: BlogPost[] = [
+    postCnab240VsCnab400DiferencasEstruturaPosicional,
+    postComoParsearEValidarArquivosCnabRemessaERetornoNodejsPython,
+    postComoGerarMassaDeDadosCnabParaTestesEmStaging,
     postComoFuncionaCorrecaoDeErrosReedSolomonQrCode,
     postEntendendoDigitosVerificadoresTituloDeEleitor,
     postNormativaEfxBacenGuiaDev,
