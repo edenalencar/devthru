@@ -520,6 +520,15 @@ export const tools: Tool[] = [
         href: "/tools/finance/split-payment",
     },
     {
+        id: "vet-efx-calculator",
+        name: "Simulador VET & eFX Cambial",
+        title: "Simulador VET & eFX Cambial (Banco Central)",
+        description: "Calcule o VET, IOF e Spread em pagamentos internacionais",
+        category: "financial",
+        icon: Calculator,
+        href: "/tools/finance/vet-efx-calculator",
+    },
+    {
         id: "xml-validator",
         name: "Validador de XML",
         title: "Validador de XML",
