@@ -369,6 +369,7 @@ export function RadioPlayer() {
     if (!isMounted || postureAlertActive) return;
 
     const interval = setInterval(() => {
+      if (typeof document !== "undefined" && document.hidden) return;
       setPostureTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(interval);

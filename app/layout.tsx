@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/toaster";
@@ -7,12 +8,11 @@ import { siteConfig } from "@/config/site";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import { OnboardingTour } from "@/components/onboarding-tour";
 import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/analytics/google-tag-manager";
 import { CookieConsent } from "@/components/analytics/cookie-consent";
 import { createClient } from "@/lib/supabase/server";
 import { UserProvider } from "@/components/providers/user-provider";
-import { RadioPlayer } from "@/components/radio-player";
+import { LazyProviders } from "@/components/layout/lazy-providers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -74,8 +74,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const cookieStore = await cookies();
+  const hasAuthCookie = cookieStore.getAll().some((c) =>
+    c.name.startsWith("sb-") || c.name.includes("auth-token")
+  );
+
+  let user = null;
+  if (hasAuthCookie) {
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getUser();
+    user = data.user;
+  }
 
   return (
     <html lang="pt-BR" suppressHydrationWarning>
@@ -95,9 +104,8 @@ export default async function RootLayout({
         >
           <UserProvider initialUser={user}>
             {children}
-            <OnboardingTour />
             <Toaster />
-            <RadioPlayer />
+            <LazyProviders />
           </UserProvider>
         </ThemeProvider>
         <SpeedInsights />

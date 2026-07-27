@@ -8,7 +8,7 @@ export function GoogleTagManager({ userId }: { userId?: string }) {
     return (
         <Script
             id="gtm-script"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
                 __html: `
             window.dataLayer = window.dataLayer || [];
