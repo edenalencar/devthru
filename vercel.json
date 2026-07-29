@@ -4,5 +4,19 @@
       "path": "/api/cron/monthly-updates",
       "schedule": "0 9 1 * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "devthru.com"
+        }
+      ],
+      "destination": "https://www.devthru.com/:path*",
+      "statusCode": 301
+    }
   ]
 }
+
