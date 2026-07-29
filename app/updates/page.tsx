@@ -13,7 +13,13 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${siteConfig.url}/updates`,
     },
+    openGraph: {
+        title: "Atualizações - DevThru",
+        description: "Acompanhe as últimas novidades, melhorias e correções do DevThru.",
+        url: `${siteConfig.url}/updates`,
+    },
 }
+
 
 type UpdateType = "security" | "feature" | "fix" | "content"
 
