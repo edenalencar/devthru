@@ -55,21 +55,28 @@ export async function GET(req: NextRequest) {
         // Ferramentas em destaque do mês
         const newTools = [
             {
-                title: "Gerador de Crontab Online",
-                description: "Configure agendamentos cron de forma simples e gere a linha de comando linux na hora.",
-                url: "https://www.devthru.com/tools/development/crontab-generator"
+                title: "Simulador de Split Payment",
+                description: "Calcule a retenção de IBS e CBS no ato do pagamento de forma simples para adequar sistemas à Reforma Tributária.",
+                url: "https://www.devthru.com/tools/finance/split-payment"
             },
             {
-                title: "Gerador de QR Code",
-                description: "Crie códigos QR para links, Wi-Fi e textos com download em alta resolução (PNG e SVG).",
-                url: "https://www.devthru.com/tools/utilities/qrcode"
+                title: "Simulador VET & eFX Cambial",
+                description: "Simule o Valor Efetivo Total (VET), IOF e Spread em pagamentos e remessas internacionais conforme regras do BACEN.",
+                url: "https://www.devthru.com/tools/finance/vet-efx-calculator"
             },
             {
-                title: "Decodificador de Pix",
-                description: "Analise dados de chaves Pix e links copia e cola para verificar valores e destinatários.",
-                url: "https://www.devthru.com/tools/finance/pix-parser"
+                title: "Gerador de Chave NF-e",
+                description: "Crie chaves de acesso de 44 dígitos válidas para testes de emissão fiscal e homologação junto à SEFAZ.",
+                url: "https://www.devthru.com/tools/business/nfe-generator"
             }
         ];
+
+        // Destaque da Rádio Lo-Fi Dev & Central de Foco
+        const radioSpotlight = {
+            title: "Rádio Lo-Fi Dev & Central de Foco 🎧",
+            description: "Ouça canais de Lo-Fi e Synthwave, barulho de chuva, café e teclado com notas rápidas e alarme de postura direto no DevThru.",
+            url: "https://www.devthru.com"
+        };
 
         // 4. Preparar o envio em lotes usando a API de lote (Batch) do Resend
         const resend = new Resend(process.env.RESEND_API_KEY);
@@ -89,6 +96,7 @@ export async function GET(req: NextRequest) {
                     monthYear: currentMonthYear,
                     newTools: newTools,
                     blogPosts: recentPosts,
+                    radioSpotlight: radioSpotlight,
                     userEmail: email,
                 });
 
