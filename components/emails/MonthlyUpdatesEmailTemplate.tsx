@@ -25,6 +25,7 @@ interface MonthlyUpdatesEmailTemplateProps {
     introText?: string;
     newTools?: UpdateItem[];
     blogPosts?: UpdateItem[];
+    radioSpotlight?: UpdateItem;
     userEmail: string;
 }
 
@@ -33,6 +34,7 @@ export const MonthlyUpdatesEmailTemplate = ({
     introText = 'Temos o prazer de compartilhar as últimas novidades e ferramentas que lançamos neste mês no DevThru para tornar o seu fluxo de desenvolvimento ainda mais ágil.',
     newTools = [],
     blogPosts = [],
+    radioSpotlight,
     userEmail = '',
 }: MonthlyUpdatesEmailTemplateProps) => {
     // URL de descadastro com o e-mail do usuário em query string
@@ -107,6 +109,18 @@ export const MonthlyUpdatesEmailTemplate = ({
                                         <Link href={tool.url} style={toolLink}>Testar Ferramenta →</Link>
                                     </div>
                                 ))}
+                            </Section>
+                        )}
+
+                        {/* Destaque Especial: Rádio Dev & Foco */}
+                        {radioSpotlight && (
+                            <Section style={sectionWrapper}>
+                                <Heading style={sectionTitle}>🎧 Destaque: Rádio Dev & Central de Foco</Heading>
+                                <div style={radioCard}>
+                                    <Text style={toolName}>{radioSpotlight.title}</Text>
+                                    <Text style={toolDesc}>{radioSpotlight.description}</Text>
+                                    <Link href={radioSpotlight.url} style={radioLink}>Ouvir e Programar com Foco →</Link>
+                                </div>
                             </Section>
                         )}
 
@@ -289,6 +303,21 @@ const blogLink = {
     fontSize: '13px',
     fontWeight: '600',
     color: '#135bec',
+    textDecoration: 'none',
+};
+
+const radioCard = {
+    backgroundColor: '#f0f7ff',
+    border: '1px solid #bfdbfe',
+    borderRadius: '8px',
+    padding: '16px',
+    margin: '0 0 12px 0',
+};
+
+const radioLink = {
+    fontSize: '13px',
+    fontWeight: '700',
+    color: '#1d4ed8',
     textDecoration: 'none',
 };
 
