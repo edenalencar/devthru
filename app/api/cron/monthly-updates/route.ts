@@ -52,22 +52,22 @@ export async function GET(req: NextRequest) {
             url: `https://www.devthru.com/blog/${post.slug}`
         }));
 
-        // Ferramentas em destaque do mês
+        // Ferramentas em destaque do mês (Curadoria: Fintech, Meios de Pagamento & Arquivos Bancários)
         const newTools = [
             {
-                title: "Simulador de Split Payment",
-                description: "Calcule a retenção de IBS e CBS no ato do pagamento de forma simples para adequar sistemas à Reforma Tributária.",
-                url: "https://www.devthru.com/tools/finance/split-payment"
+                title: "Leitor e Decodificador de CNAB",
+                description: "Inspecione e valide arquivos de remessa e retorno CNAB 240 e CNAB 400 da FEBRABAN com visualização detalhada de lotes.",
+                url: "https://www.devthru.com/tools/finance/cnab-parser"
             },
             {
-                title: "Simulador VET & eFX Cambial",
-                description: "Simule o Valor Efetivo Total (VET), IOF e Spread em pagamentos e remessas internacionais conforme regras do BACEN.",
-                url: "https://www.devthru.com/tools/finance/vet-efx-calculator"
+                title: "Decodificador Pix (Copia e Cola)",
+                description: "Faça o parse de payloads Pix EMV, altere valores em tempo real, recalcule o CRC16 e gere o QR Code para testes.",
+                url: "https://www.devthru.com/tools/finance/pix-parser"
             },
             {
-                title: "Gerador de Chave NF-e",
-                description: "Crie chaves de acesso de 44 dígitos válidas para testes de emissão fiscal e homologação junto à SEFAZ.",
-                url: "https://www.devthru.com/tools/business/nfe-generator"
+                title: "Validador de Boletos Bancários",
+                description: "Valide linhas digitáveis e códigos de barras com cálculo automático de vencimento, valor e identificação do banco emissor.",
+                url: "https://www.devthru.com/tools/finance/boleto-validator"
             }
         ];
 
