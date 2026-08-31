@@ -43,6 +43,17 @@ export async function GET() {
 
         const generationsCount = historyError ? 0 : (totalGenerations || 0);
 
+        // 4. Count total feedbacks and average rating
+        const { data: feedbacks, error: feedbacksError } = await (supabase
+            .from('tool_feedbacks') as any)
+            .select('rating');
+
+        const totalFeedbacks = feedbacksError || !feedbacks ? 0 : feedbacks.length;
+        const averageRating =
+            totalFeedbacks > 0
+                ? Number((feedbacks!.reduce((acc: number, f: any) => acc + (f.rating || 0), 0) / totalFeedbacks).toFixed(1))
+                : 0;
+
         return NextResponse.json({
             stats: {
                 totalUsers,
@@ -50,7 +61,9 @@ export async function GET() {
                 proUsers,
                 businessUsers,
                 pendingMessages: pendingCount,
-                totalGenerations: generationsCount
+                totalGenerations: generationsCount,
+                totalFeedbacks,
+                averageRating
             }
         });
     } catch (error) {

@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, Mail, Zap, Shield, CircleAlert } from 'lucide-react';
+import { Users, Mail, Zap, Shield, CircleAlert, Star } from 'lucide-react';
 import { toast } from 'sonner';
+import Link from 'next/link';
 
 interface Stats {
     totalUsers: number;
@@ -12,6 +13,8 @@ interface Stats {
     businessUsers: number;
     pendingMessages: number;
     totalGenerations: number;
+    totalFeedbacks?: number;
+    averageRating?: number;
 }
 
 export function AdminDashboardClient() {
@@ -65,7 +68,7 @@ export function AdminDashboardClient() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                 <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm">
                     <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
                         <CardTitle className="text-sm font-semibold text-[#4c669a]">Total de Usuários</CardTitle>
@@ -73,29 +76,51 @@ export function AdminDashboardClient() {
                     </CardHeader>
                     <CardContent>
                         <div className="text-3xl font-bold text-[#0d121b]">{stats.totalUsers}</div>
-                        <p className="text-xs text-[#4c669a] mt-1">Usuários registrados no Supabase</p>
+                        <p className="text-xs text-[#4c669a] mt-1">Usuários no Supabase</p>
                     </CardContent>
                 </Card>
 
-                <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                        <CardTitle className="text-sm font-semibold text-[#4c669a]">Mensagens de Contato</CardTitle>
-                        <Mail className="h-4 w-4 text-[#135bec]" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-bold text-[#0d121b]">{stats.pendingMessages}</div>
-                        <p className="text-xs text-[#4c669a] mt-1">Aguardando resposta do suporte</p>
-                    </CardContent>
-                </Card>
+                <Link href="/admin/feedbacks">
+                    <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm hover:border-[#135bec]/40 transition-all cursor-pointer h-full">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Feedbacks</CardTitle>
+                            <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-3xl font-bold text-[#0d121b]">{stats.totalFeedbacks ?? 0}</span>
+                                {stats.averageRating !== undefined && stats.averageRating > 0 && (
+                                    <span className="text-xs font-semibold text-amber-600">
+                                        ({stats.averageRating} ★)
+                                    </span>
+                                )}
+                            </div>
+                            <p className="text-xs text-[#135bec] mt-1 hover:underline">Ver todas avaliações →</p>
+                        </CardContent>
+                    </Card>
+                </Link>
+
+                <Link href="/admin/messages">
+                    <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm hover:border-[#135bec]/40 transition-all cursor-pointer h-full">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Mensagens</CardTitle>
+                            <Mail className="h-4 w-4 text-[#135bec]" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-bold text-[#0d121b]">{stats.pendingMessages}</div>
+                            <p className="text-xs text-[#4c669a] mt-1">Pendentes de resposta</p>
+                        </CardContent>
+                    </Card>
+                </Link>
 
                 <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm">
                     <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                        <CardTitle className="text-sm font-semibold text-[#4c669a]">Total de Gerações</CardTitle>
+                        <CardTitle className="text-sm font-semibold text-[#4c669a]">Gerações</CardTitle>
                         <Zap className="h-4 w-4 text-[#135bec]" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-3xl font-bold text-[#0d121b]">{stats.totalGenerations}</div>
-                        <p className="text-xs text-[#4c669a] mt-1">Validações e gerações efetuadas</p>
+                        <p className="text-xs text-[#4c669a] mt-1">Gerações efetuadas</p>
                     </CardContent>
                 </Card>
 

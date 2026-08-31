@@ -188,6 +188,32 @@ export type Database = {
                     status?: string
                     created_at?: string
                 }
+            },
+            tool_feedbacks: {
+                Row: {
+                    id: string
+                    user_id: string | null
+                    tool_slug: string
+                    rating: number
+                    comment: string | null
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    user_id?: string | null
+                    tool_slug: string
+                    rating: number
+                    comment?: string | null
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    user_id?: string | null
+                    tool_slug?: string
+                    rating?: number
+                    comment?: string | null
+                    created_at?: string
+                }
             }
         }
     }
