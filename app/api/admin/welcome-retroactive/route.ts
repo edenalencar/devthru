@@ -38,15 +38,18 @@ export async function POST(req: Request) {
     try {
         const supabase = createAdminClient();
         const body = await req.json().catch(() => ({}));
-        const targetUserId = body.userId; // Opcional: enviar para um usuário específico
+        const targetUserId = body.userId; // Opcional: enviar/reenviar para um usuário específico
 
         let query = (supabase
             .from('profiles') as any)
-            .select('id, email, full_name, welcome_sent')
-            .eq('welcome_sent', false);
+            .select('id, email, full_name, welcome_sent');
 
         if (targetUserId) {
+            // Se um usuário específico for informado, permite envio mesmo se welcome_sent já for true (Reenvio)
             query = query.eq('id', targetUserId);
+        } else {
+            // Disparo em lote: filtra apenas os pendentes
+            query = query.eq('welcome_sent', false);
         }
 
         const { data: usersToSend, error } = await query;
@@ -56,7 +59,7 @@ export async function POST(req: Request) {
         if (!usersToSend || usersToSend.length === 0) {
             return NextResponse.json({
                 success: true,
-                message: 'Nenhum usuário pendente de e-mail de boas-vindas.',
+                message: targetUserId ? 'Usuário não encontrado.' : 'Nenhum usuário pendente de e-mail de boas-vindas.',
                 sentCount: 0
             });
         }
@@ -98,7 +101,7 @@ export async function POST(req: Request) {
             results
         });
     } catch (error) {
-        console.error('Erro ao enviar e-mails de boas-vindas retroativos:', error);
+        console.error('Erro ao processar envio de e-mails de boas-vindas:', error);
         return NextResponse.json({ error: 'Erro ao processar envio de boas-vindas' }, { status: 500 });
     }
 }
