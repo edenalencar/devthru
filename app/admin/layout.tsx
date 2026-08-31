@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutDashboard, Mail, Users, ArrowLeft } from 'lucide-react';
+import { LayoutDashboard, Mail, Users, ArrowLeft, Star } from 'lucide-react';
 import React from 'react';
 
 export default async function AdminLayout({
@@ -49,6 +49,13 @@ export default async function AdminLayout({
                     >
                         <LayoutDashboard className="h-4 w-4 text-[#135bec]" />
                         Visão Geral
+                    </Link>
+                    <Link
+                        href="/admin/feedbacks"
+                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg text-[#4c669a] hover:text-[#135bec] hover:bg-[#f6f6f8] transition-all duration-200"
+                    >
+                        <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
+                        Feedbacks
                     </Link>
                     <Link
                         href="/admin/messages"
