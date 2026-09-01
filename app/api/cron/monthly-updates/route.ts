@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { getAllPosts } from '@/lib/content/blog';
 import { MonthlyUpdatesEmailTemplate } from '@/components/emails/MonthlyUpdatesEmailTemplate';
+import { formatEmailSender } from '@/lib/email';
 import React from 'react';
 
 // Forçamos a execução como dinâmica para evitar cache de build da página da cron
@@ -85,8 +86,8 @@ export async function GET(req: NextRequest) {
 
         // 4. Preparar o envio em lotes usando a API de lote (Batch) do Resend
         const resend = new Resend(process.env.RESEND_API_KEY);
-        const fromEmail = process.env.MAIL_FROM_NEWSLETTER || 'DevThru <newsletter@devthru.com>';
-        const replyToEmail = process.env.MAIL_FROM || 'DevThru <contato@devthru.com>';
+        const fromEmail = formatEmailSender(process.env.MAIL_FROM_NEWSLETTER, 'DevThru', 'newsletter@devthru.com');
+        const replyToEmail = formatEmailSender(process.env.MAIL_FROM, 'DevThru', 'contato@devthru.com');
         
         // Formatar os e-mails para envio em blocos de até 100 destinatários por vez
         const emailList = users.map((u: any) => u.email).filter(Boolean);
@@ -109,7 +110,7 @@ export async function GET(req: NextRequest) {
                     from: fromEmail,
                     to: email,
                     replyTo: replyToEmail, // Direciona as respostas para o e-mail de contato de suporte
-                    subject: `Novidades do DevThru • ${currentMonthYear} 🚀`,
+                    subject: `🚀 Novas ferramentas e atualizações • ${currentMonthYear}`,
                     react: emailElement,
                 };
             });

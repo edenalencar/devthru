@@ -19,6 +19,39 @@ interface SendEmailParams {
 }
 
 /**
+ * Ensures an email sender has a friendly display name (e.g. 'DevThru <newsletter@devthru.com>').
+ * Handles cases where environment variables contain bare emails (e.g. 'newsletter@devthru.com')
+ * or already formatted strings (e.g. 'DevThru <newsletter@devthru.com>').
+ */
+export function formatEmailSender(
+    fromInput?: string,
+    defaultName: string = 'DevThru',
+    defaultEmail: string = 'contato@devthru.com'
+): string {
+    const raw = (fromInput || '').trim();
+    if (!raw) {
+        return `${defaultName} <${defaultEmail}>`;
+    }
+
+    // Check if input is in angle brackets format, e.g. "DevThru <email@domain.com>" or "<email@domain.com>"
+    const match = raw.match(/^(?:(.*)\s+)?<([^>]+)>$/);
+    if (match) {
+        const namePart = (match[1] || '').trim().replace(/^["']|["']$/g, '');
+        const emailPart = (match[2] || '').trim();
+        const finalName = namePart || defaultName;
+        return `${finalName} <${emailPart}>`;
+    }
+
+    // If input is a bare email address like "newsletter@devthru.com"
+    if (raw.includes('@')) {
+        return `${defaultName} <${raw}>`;
+    }
+
+    // Fallback if whatever was passed doesn't have an email
+    return `${defaultName} <${defaultEmail}>`;
+}
+
+/**
  * Core utility to send emails via Resend
  */
 export async function sendEmail({ to, subject, react, from }: SendEmailParams) {
@@ -33,11 +66,11 @@ export async function sendEmail({ to, subject, react, from }: SendEmailParams) {
         return { data: null, error: new Error('Failed to initialize Resend client') };
     }
 
-    const defaultFrom = process.env.MAIL_FROM || 'DevThru <contato@devthru.com>';
+    const formattedFrom = formatEmailSender(from || process.env.MAIL_FROM, 'DevThru', 'contato@devthru.com');
 
     try {
         const { data, error } = await resend.emails.send({
-            from: from || defaultFrom,
+            from: formattedFrom,
             to: Array.isArray(to) ? to : [to],
             subject,
             react,
