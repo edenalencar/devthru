@@ -4,8 +4,8 @@ import { Metadata } from "next"
 import { generateToolMetadata } from "@/lib/seo-config"
 import { CrontabGeneratorPage } from "./client"
 
-const title = "Gerador de Crontab Online"
-const description = "Crie, valide e decodifique expressões cron de forma simples e visual. Gere linhas de comando completas e entenda a recorrência em português brasileiro."
+const title = "Gerador de Expressão Cron (Crontab) Online - Grátis"
+const description = "Crie, visualize e valide expressões Cron e horários de agendamento Crontab de forma interativa com explicação de sintaxe em português."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

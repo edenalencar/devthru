@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CNHGeneratorPage } from "./client"
 
-const title = "Gerador de CNH Online"
-const description = "Gere números de CNH (Carteira Nacional de Habilitação) válidos para testes de software. Ferramenta com suporte à geração em massa, ideal para desenvolvedores e QA."
+const title = "Gerador e Validador de CNH para Testes - Grátis"
+const description = "Gere e valide números de Carteira Nacional de Habilitação (CNH) com cálculo oficial de dígitos verificadores para testes de cadastro."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de CNH Online para Testes de Software",

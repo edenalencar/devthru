@@ -14,6 +14,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { ptBR } from "date-fns/locale"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 
 // Common Brazilian Holidays (Fixed dates for simplicity, moving holidays require more logic)
@@ -190,6 +191,7 @@ export function DeadlineCalculatorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="deadline-calculator" />
                     <RelatedTools currentToolSlug="deadline-calculator" category="utilities" />
                 </div>
             </main >

@@ -416,36 +416,70 @@ export function PhoneGeneratorPage() {
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
-                                    O Gerador de Telefone cria números de celular e telefone fixo com códigos DDDs de todos os estados do Brasil e também números telefônicos dos Estados Unidos (EUA), formatados ou apenas números limpos.
+                                    O <strong>Gerador de Telefone e Celular do DevThru</strong> cria números válidos de acordo com as especificações oficiais da Anatel (Agência Nacional de Telecomunicações) para todos os 67 DDDs do Brasil e também números do Plano de Numeração da América do Norte (NANP - EUA), com formatação padrão ou apenas dígitos limpos.
                                 </p>
-                                <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Atenção:</strong> Os números são gerados dinamicamente seguindo os padrões e regras de prefixos oficiais apenas para <strong>fins de teste e desenvolvimento de software</strong> (mocks, automação QA, testes de API). Eles não correspondem a linhas ativas reais.
+                                <div className="p-3.5 rounded-lg bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200/60 dark:border-blue-900/40 text-blue-900 dark:text-blue-200 text-xs flex items-center justify-between gap-3">
+                                    <span>
+                                        💡 <strong>Quer implementar a validação em seu projeto?</strong> Confira nosso guia completo sobre como validar e formatar telefones com Regex em TypeScript e Python.
+                                    </span>
+                                    <Link
+                                        href="/blog/como-validar-formatar-telefone-celular-brasil-ddd"
+                                        className="font-semibold underline shrink-0 hover:text-primary transition-colors"
+                                    >
+                                        Ler Guia Técnico →
+                                    </Link>
+                                </div>
+                                <p className="text-amber-600 dark:text-amber-400 text-xs">
+                                    <strong>Atenção:</strong> Os números são gerados dinamicamente seguindo os padrões e regras de prefixos oficiais apenas para <strong>fins de teste e desenvolvimento de software</strong> (mocks, automação QA, testes de API e formulários). Eles não correspondem a linhas ativas reais.
                                 </p>
                             </div>
 
                             <Accordion type="single" collapsible className="w-full">
                                 <AccordionItem value="item-1">
-                                    <AccordionTrigger>Como funciona o gerador de telefone?</AccordionTrigger>
+                                    <AccordionTrigger>Como funciona o gerador de telefone e celular?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        Nossa ferramenta escolhe aleatoriamente um DDD válido da lista de estados brasileiros (ou código de área dos EUA) e gera uma sequência numérica de acordo com o tipo escolhido: celulares no Brasil sempre iniciam com o dígito 9 e possuem 9 dígitos após o DDD, enquanto telefones fixos são gerados com 8 dígitos iniciados de 2 a 5.
+                                        Nossa ferramenta seleciona um DDD válido entre os 67 códigos de área brasileiros (ou código de área dos EUA) e monta a sequência numérica segundo a regulamentação: celulares no Brasil sempre iniciam com o dígito 9 e possuem 9 dígitos após o DDD (formato <code>(XX) 9XXXX-XXXX</code>), enquanto telefones fixos possuem 8 dígitos com prefixos de 2 a 5 (formato <code>(XX) XXXX-XXXX</code>).
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-2">
-                                    <AccordionTrigger>Como é a estrutura de números dos EUA?</AccordionTrigger>
+                                    <AccordionTrigger>Qual é a regra do nono dígito (9) no celular brasileiro?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        Os números norte-americanos seguem o padrão do Plano de Numeração da América do Norte (NANP). Eles possuem 10 dígitos compostos por um código de área de 3 dígitos (Area Code), um código de escritório central de 3 dígitos (Central Office Code) e 4 dígitos para a linha. A formatação segue o modelo <code>+1 (Area Code) XXX-XXXX</code>.
+                                        Instituído pela Resolução nº 553/2010 da Anatel, o nono dígito é obrigatório em todas as linhas móveis do território nacional. Ele padronizou os números de celular com 11 algarismos (2 dígitos do DDD + dígito 9 + 8 dígitos da linha). Além disso, o segundo dígito após o 9 sempre pertence ao intervalo de 6 a 9 (ex: 96xxx, 97xxx, 98xxx ou 99xxx).
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-3">
-                                    <AccordionTrigger>Posso usar estes números para receber SMS de confirmação?</AccordionTrigger>
+                                    <AccordionTrigger>Qual a diferença entre telefone celular e telefone fixo no Brasil?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        <strong>Não.</strong> Esses números são fictícios e gerados por algoritmos matemáticos no seu próprio navegador. Como não estão vinculados a chips físicos (SIM cards) ou operadoras de telefonia ativa, não é possível receber mensagens SMS ou chamadas neles. Eles servem exclusivamente para testar máscaras de inputs e rotinas de validação de formulários locais.
+                                        A principal diferença estrutural está na quantidade de dígitos e nos prefixos:
+                                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                                            <li><strong>Celular (Móvel):</strong> 11 dígitos no total com DDD. O primeiro dígito após o DDD é obrigatoriamente 9 e o segundo dígito varia de 6 a 9.</li>
+                                            <li><strong>Telefone Fixo (STFC):</strong> 10 dígitos no total com DDD. O primeiro dígito após o DDD varia obrigatoriamente de 2 a 5.</li>
+                                        </ul>
                                     </AccordionContent>
                                 </AccordionItem>
                                 <AccordionItem value="item-4">
-                                    <AccordionTrigger>Como gerar telefones em lote?</AccordionTrigger>
+                                    <AccordionTrigger>Quais DDDs são suportados pela ferramenta?</AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        Utilize o card de **Geração em Massa** acima. Insira a quantidade desejada de telefones que deseja obter, e a ferramenta gerará uma lista completa contendo os números solicitados com ou sem formatação, pronta para ser copiada para planilhas ou arquivos de banco de dados.
+                                        A ferramenta suporta todos os 67 DDDs oficiais do Brasil distribuídos em todas as regiões:
+                                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                                            <li><strong>Sudeste:</strong> SP (11 a 19), RJ (21, 22, 24), ES (27, 28), MG (31 a 35, 37, 38).</li>
+                                            <li><strong>Sul:</strong> PR (41 a 46), SC (47 a 49), RS (51, 53 a 55).</li>
+                                            <li><strong>Centro-Oeste:</strong> DF (61), GO (62, 64), TO (63), MT (65, 66), MS (67).</li>
+                                            <li><strong>Nordeste:</strong> BA (71, 73 a 75, 77), SE (79), PE (81, 87), AL (82), PB (83), RN (84), CE (85, 88), PI (86, 89), MA (98, 99).</li>
+                                            <li><strong>Norte:</strong> PA (91, 93, 94), AM (92, 97), RR (95), AP (96), AC (68), RO (69).</li>
+                                        </ul>
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-5">
+                                    <AccordionTrigger>Posso usar estes números para receber SMS de confirmação ou WhatsApp?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        <strong>Não.</strong> Esses números são fictícios e gerados por algoritmos matemáticos diretamente no seu navegador. Como não estão vinculados a chips físicos (SIM cards) ou operadoras de telefonia ativas, não é possível receber mensagens SMS, chamadas ou códigos de verificação neles. Eles servem exclusivamente para testar validações em formulários, APIs e bancos de dados.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-6">
+                                    <AccordionTrigger>Como gerar números de telefone em lote?</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        Basta utilizar a seção de <strong>Geração em Massa</strong> acima. Informe a quantidade desejada de números e clique em Gerar. Você poderá copiar a lista completa com ou sem formatação, ideal para alimentar planilhas, seeders de testes e migrações de dados.
                                     </AccordionContent>
                                 </AccordionItem>
                                 <CodeExamplesAccordion

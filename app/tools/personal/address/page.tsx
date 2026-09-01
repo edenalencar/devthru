@@ -6,7 +6,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { AddressGeneratorPage } from "./client"
 
-const title = "Gerador de Endereço Aleatório"
+const title = "Gerador de Endereço e CEP Válido por Estado - Grátis"
 const description = "Gere endereços brasileiros completos com CEP, rua, bairro e cidade para testes de sistemas e formulários."
 
 export const metadata: Metadata = generateToolMetadata({

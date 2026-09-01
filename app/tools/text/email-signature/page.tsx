@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { EmailSignaturePage } from "./client"
 
-const title = "Gerador de Assinatura de Email"
-const description = "Crie assinaturas de email profissionais e personalizadas com nosso gerador gratuito. Compatível com Gmail, Outlook e outros. Adicione logo e links sociais."
+const title = "Gerador de Assinatura de E-mail Profissional em HTML - Grátis"
+const description = "Crie assinaturas de e-mail profissionais em HTML com foto, redes sociais, logotipo e telefone para Gmail, Outlook e Apple Mail."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Assinatura de Email",

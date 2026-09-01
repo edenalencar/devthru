@@ -7,7 +7,7 @@ import { TOOL_META_DESCRIPTIONS } from "@/lib/seo/meta-descriptions"
 
 import { FipePage } from "./client"
 
-const title = "Tabela FIPE: Preço de Veículos"
+const title = "Tabela FIPE Online: Consulta de Preço de Veículos - Grátis"
 const description = TOOL_META_DESCRIPTIONS.fipe
 
 export const metadata: Metadata = generateToolMetadata({

@@ -15,6 +15,7 @@ import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordio
 import { Accordion } from "@/components/ui/accordion"
 import Link from "next/link"
 import QRCode from "qrcode"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 const PIX_PARSER_JS = `// Função para calcular o CRC16 CCITT padrão EMV do Pix
 function calculateCRC16(data) {
@@ -591,6 +592,7 @@ export function PixParserPage() {
                         <ShareButtons url="https://www.devthru.com/tools/finance/pix-parser" title={title} />
                     </div>
 
+                    <ToolFaqSection toolSlug="pix-parser" />
                     <RelatedTools currentToolSlug="pix-parser" category="finance" />
                 </div>
             </main>

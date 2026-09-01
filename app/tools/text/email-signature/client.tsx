@@ -12,6 +12,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { toast } from "sonner"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function EmailSignaturePage() {
     const [name, setName] = useState("Seu Nome")
@@ -208,6 +209,7 @@ export function EmailSignaturePage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="email-signature" />
                     <RelatedTools currentToolSlug="email-signature" category="text" />
                 </div>
             </main>

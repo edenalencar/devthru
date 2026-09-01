@@ -5,8 +5,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PixParserPage } from "./client"
 
-const title = "Decodificador e Gerador de Pix"
-const description = "Cole uma string de Pix Copia e Cola para decodificar todos os dados do recebedor (nome, chave, valor), gerar o QR Code correspondente na tela ou alterar o valor de um Pix estático com recalculo de CRC16."
+const title = "Decodificador Pix Copia e Cola (EMV) e QR Code - Grátis"
+const description = "Decodifique payloads Pix EMV, altere valores em tempo real, recalcule o checksum CRC16 e visualize o QR Code para testes de pagamento."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

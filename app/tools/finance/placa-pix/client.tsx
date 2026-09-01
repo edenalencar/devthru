@@ -16,6 +16,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { toPng } from "html-to-image"
 import jsPDF from "jspdf"
 import QRCode from "qrcode"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 // Helper to calculate CRC16 CCITT standard
 function calculateCRC16(data: string): string {
@@ -632,6 +633,7 @@ export function PixPlatePage() {
                         </CardContent>
                     </Card>
 
+                    <ToolFaqSection toolSlug="placa-pix" />
                     <RelatedTools currentToolSlug="placa-pix" category="financial" />
                 </div>
             </main>

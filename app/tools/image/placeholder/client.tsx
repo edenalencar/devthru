@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function PlaceholderGeneratorPage() {
     const [width, setWidth] = useState<number>(600)
@@ -228,6 +229,7 @@ export function PlaceholderGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="placeholder" />
                     <RelatedTools currentToolSlug="placeholder" category="image" />
                 </div>
             </main>

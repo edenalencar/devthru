@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { DiffCheckerPage } from "./client"
 
-const title = "Comparador de Texto (Diff Checker)"
-const description = "Compare dois textos e visualize as diferenças instantaneamente com nosso Diff Checker online. Identifique adições e remoções por caractere, palavra ou linha."
+const title = "Comparador de Textos e Códigos Online (Diff Checker) - Grátis"
+const description = "Compare dois blocos de texto ou código lado a lado com destaque visual de alterações, adições e remoções de linhas em tempo real."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Comparador de Texto (Diff Checker)",

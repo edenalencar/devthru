@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { TaxCalculatorPage } from "./client"
 
-const title = "Calculadora Simples Nacional"
-const description = "Calcule facilmente o DAS e a alíquota efetiva do Simples Nacional. Simulador atualizado para 2024/2025, ideal para planejamento tributário e financeiro preciso."
+const title = "Calculadora do Simples Nacional (DAS e Alíquotas) - Grátis"
+const description = "Calcule a alíquota efetiva e o imposto DAS do Simples Nacional nos Anexos I a V da Lei Complementar 123/2006 com base no RBT12."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Calculadora Simples Nacional",

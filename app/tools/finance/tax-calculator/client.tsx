@@ -13,6 +13,7 @@ import { calculateSimplesNacional } from "@/lib/utils/calculators/tax"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function TaxCalculatorPage() {
     const [revenue12Months, setRevenue12Months] = useState("")
@@ -197,6 +198,7 @@ export function TaxCalculatorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="tax-calculator" />
                     <RelatedTools currentToolSlug="tax-calculator" category="finance" />
                 </div>
             </main>

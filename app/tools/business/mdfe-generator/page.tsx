@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { MdfeGeneratorPage } from "./client"
 
-const title = "Gerador de Chave MDF-e"
-const description = "Gere chaves de acesso do Manifesto Eletrônico de Documentos Fiscais (MDF-e) válidas para testes de integração e homologação. Ferramenta gratuita e sem cadastro."
+const title = "Gerador de Chave MDF-e Válida (Modelo 58) - Grátis"
+const description = "Gere chaves de acesso de Manifesto Eletrônico de Documentos Fiscais (MDF-e) com 44 dígitos válidos para testes e homologação fiscal."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

@@ -13,6 +13,7 @@ import { RelatedTools } from "@/components/tools/related-tools"
 
 import { Navbar } from "@/components/layout/navbar"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 type SqlDialect = "sql" | "postgresql" | "mysql" | "mariadb" | "sqlite"
 
@@ -154,6 +155,7 @@ export function SqlFormatterPage() {
                             <li><strong>Quebras de Linha:</strong>Cada cláusula principal começa em uma nova linha.</li>
                         </ul>
                     </article>
+                    <ToolFaqSection toolSlug="sql-formatter" />
                     <RelatedTools currentToolSlug="sql-formatter" category="development" />
                 </div>
             </main>

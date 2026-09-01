@@ -74,7 +74,7 @@ export const MonthlyUpdatesEmailTemplate = ({
                     fontStyle="normal"
                 />
             </Head>
-            <Preview>Confira as novidades e atualizações do DevThru - {monthYear}!</Preview>
+            <Preview>Confira as novas ferramentas para desenvolvedores, destaques da Rádio Dev e os últimos artigos técnicos do DevThru • {monthYear}</Preview>
             <Body style={main}>
                 <Container style={container}>
                     {/* Header */}

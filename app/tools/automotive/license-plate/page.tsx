@@ -5,8 +5,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { LicensePlatePage } from "./client"
 
-const title = "Gerador de Placa Mercosul"
-const description = "Gere placas de veículos nos padrões Mercosul e Antigo em lote. Ferramenta gratuita para testes de software, simulação de dados e homologação de APIs."
+const title = "Gerador de Placa Mercosul e Antiga - Válido e Grátis"
+const description = "Gere placas de veículos válidas no padrão Mercosul (Brasil) e modelo antigo cinza para testes de software, radares e sistemas de logística."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

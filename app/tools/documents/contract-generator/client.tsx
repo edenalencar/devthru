@@ -16,6 +16,7 @@ import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function ContractGeneratorPage() {
     const [selectedTemplateId, setSelectedTemplateId] = useState(CONTRACT_TEMPLATES[0].id)
@@ -172,6 +173,7 @@ export function ContractGeneratorPage() {
                     </Card>
                 </div>
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+                    <ToolFaqSection toolSlug="contract-generator" />
                     <RelatedTools currentToolSlug="contract-generator" category="documents" />
                 </div>
             </main>

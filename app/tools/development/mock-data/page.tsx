@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { MockDataGeneratorPage } from "./client"
 
-const title = "Gerador de Dados Mock (Fictícios)"
-const description = "Gere dados fictícios (Mock Data) em JSON para testes e protótipos de software. Crie usuários, produtos, endereços e mais com esquemas personalizáveis gratuitamente."
+const title = "Gerador de Dados de Teste (Mock Data) em JSON e CSV - Grátis"
+const description = "Gere massas de dados fictícios estruturados em JSON ou CSV contendo nomes, e-mails, números e datas para testes de APIs e desenvolvimento."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Dados Mock (Fictícios) - Exportação JSON",

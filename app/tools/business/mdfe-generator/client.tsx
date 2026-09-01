@@ -15,6 +15,7 @@ import Link from "next/link"
 import { toast } from "sonner"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 // UF Codes (IBGE)
 const ufCodes: Record<string, string> = {
@@ -281,6 +282,7 @@ export function MdfeGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="mdfe-generator" />
                     <RelatedTools currentToolSlug="mdfe-generator" category="business" />
                 </div>
             </main>

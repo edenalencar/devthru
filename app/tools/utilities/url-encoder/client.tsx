@@ -13,6 +13,7 @@ import { toast } from "sonner"
 import { Navbar } from "@/components/layout/navbar"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function UrlEncoderPage() {
     const [input, setInput] = useState("")
@@ -158,6 +159,7 @@ export function UrlEncoderPage() {
                             </div>
                         </div>
                     </article>
+                    <ToolFaqSection toolSlug="url-encoder" />
                     <RelatedTools currentToolSlug="url-encoder" category="utilities" />
                 </div>
             </main>

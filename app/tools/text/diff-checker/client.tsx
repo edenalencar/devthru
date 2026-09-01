@@ -11,6 +11,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function DiffCheckerPage() {
     const [original, setOriginal] = useState('')
@@ -175,6 +176,7 @@ export function DiffCheckerPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="diff-checker" />
                     <RelatedTools currentToolSlug="diff-checker" category="text" />
                 </div>
             </main>

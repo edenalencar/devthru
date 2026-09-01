@@ -10,6 +10,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function CharacterCounterPage() {
     const [text, setText] = useState('')
@@ -96,6 +97,7 @@ export function CharacterCounterPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="character-counter" />
                     <RelatedTools currentToolSlug="character-counter" category="text" />
                 </div>
             </main>

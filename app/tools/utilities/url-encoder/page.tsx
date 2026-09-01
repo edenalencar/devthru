@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { UrlEncoderPage } from "./client"
 
-const title = "URL Encode e Decode Online | Ferramenta Grátis"
-const description = "Codifique e decodifique URLs online. Converta caracteres especiais para o formato URL-safe e vice-versa. Ferramenta essencial para desenvolvedores web."
+const title = "URL Encoder e Decoder Online (encodeURIComponent) - Grátis"
+const description = "Codifique e decodifique URLs e parâmetros de query string online com suporte a caracteres especiais, UTF-8 e formato percent-encoding."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "URL Encode e Decode Online | Ferramenta Grátis",

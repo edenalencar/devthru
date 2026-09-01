@@ -14,6 +14,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 interface Currencies {
     [key: string]: string
@@ -235,6 +236,7 @@ export function CurrencyConverterPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="currency" />
                     <RelatedTools currentToolSlug="currency" category="converters" />
                 </div>
             </main>

@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { DeadlineCalculatorPage } from "./client"
 
-const title = "Calculadora de Prazos Online"
-const description = "Calcule prazos com precisão considerando feriados nacionais e fins de semana. Ferramenta essencial para advogados, gerenciamento de projetos e planejamento."
+const title = "Calculadora de Prazos em Dias Úteis e Corridos - Grátis"
+const description = "Calcule prazos contratuais e processuais em dias úteis ou corridos considerando feriados nacionais brasileiros e finais de semana."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Calculadora de Prazos Online",

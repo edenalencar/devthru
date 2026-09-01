@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { JSONFormatterPage } from "./client"
 
-const title = "JSON Formatter e Validator"
-const description = "Formate, valide e minifique código JSON online com nossa ferramenta gratuita. Visualize a estrutura, corrija erros de sintaxe e otimize seus dados para APIs."
+const title = "Formatador e Validador de JSON Online (Beautifier) - Grátis"
+const description = "Formate, valide, minifique e corrija arquivos JSON online com destaque de erros de sintaxe e total privacidade no navegador."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "JSON Formatter e Validator",

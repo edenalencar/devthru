@@ -4,8 +4,8 @@ import { Metadata } from 'next'
 import { PixPlatePage } from './client'
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = 'Gerador de Placa Pix de Balcão'
-const description = 'Crie e imprima sua Placa Pix de balcão grátis. Personalize com QR Code, logotipo, nome, redes sociais e baixe em PDF de alta qualidade ou PNG.'
+const title = "Gerador de Placa Pix de Balcão Personalizada - Grátis"
+const description = "Crie placas de Pix para balcão de lojas e estabelecimentos com QR Code, sua chave, logotipo e redes sociais para impressão em PDF e imagem."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

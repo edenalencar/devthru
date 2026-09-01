@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { UnitConverterPage } from "./client"
 
-const title = "Conversor de Medidas e Unidades Online [Grátis]"
-const description = "Conversor de medidas e unidades online gratuito. Converta unidades de comprimento, peso, volume, temperatura e área instantaneamente."
+const title = "Conversor de Unidades de Medida Online - Grátis"
+const description = "Converta unidades de comprimento, peso, volume, temperatura, área e velocidade entre sistemas métrico e imperial de forma precisa e rápida."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

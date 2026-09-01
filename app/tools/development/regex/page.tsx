@@ -6,7 +6,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { RegexGeneratorPage } from "./client"
 
-const title = "Gerador de Regex Online"
+const title = "Testador e Gerador de Regex Online - Grátis"
 const description = "Crie, teste e valide expressões regulares (Regex) em tempo real com nossa ferramenta online. Suporte completo a flags e exemplos práticos para desenvolvedores."
 
 export const metadata: Metadata = generateToolMetadata({

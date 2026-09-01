@@ -12,6 +12,7 @@ import { CopyButton } from "@/components/copy-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ShareButtons } from "@/components/share-buttons"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function TimestampConverterPage() {
     const [currentTimestamp, setCurrentTimestamp] = useState<number>(Math.floor(Date.now() / 1000))
@@ -192,6 +193,7 @@ export function TimestampConverterPage() {
                         </div>
                     </Card>
                 </div>
+                <ToolFaqSection toolSlug="timestamp" />
             </main>
 
         </div>

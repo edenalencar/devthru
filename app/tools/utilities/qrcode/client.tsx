@@ -12,6 +12,7 @@ import { QrCode, Download } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function QRCodePage() {
     const [input, setInput] = useState("")
@@ -188,6 +189,7 @@ export function QRCodePage() {
                         </CardContent>
                     </Card>
                 </div>
+                <ToolFaqSection toolSlug="qrcode" />
             </main>
 
 

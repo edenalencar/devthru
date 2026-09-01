@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { MinifierPage } from "./client"
 
-const title = "Minificador de Código - CSS, JSON, SQL, HTML e JS"
-const description = "Minifique e formate (beautify) códigos CSS, JSON, SQL, HTML e JavaScript online. Reduza o tamanho dos arquivos e melhore a performance do seu site gratuitamente."
+const title = "Minificador de CSS, HTML e JavaScript Online - Grátis"
+const description = "Minifique códigos CSS, HTML e JavaScript para reduzir o tamanho dos arquivos, otimizar a velocidade de carregamento e melhorar o Core Web Vitals."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Minificador de Código - CSS, JSON, SQL, HTML e JS",

@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { EmailValidatorPage } from "./client"
 
-const title = "Validador de Email"
-const description = "Verifique se um endereço de email é válido, se o formato está correto e se é um email temporário ou descartável. Validação gratuita com verificação de sintaxe e domínio."
+const title = "Validador de E-mail Online (Sintaxe e RFCs) - Grátis"
+const description = "Valide endereços de e-mail de acordo com os padrões RFC 5322, verificando formato, domínio, caracteres permitidos e estrutura de usuário."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Validador de Email",

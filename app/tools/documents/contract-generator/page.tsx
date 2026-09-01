@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { ContractGeneratorPage } from "./client"
 
-const title = "Gerador de Contratos Online"
-const description = "Crie contratos personalizados em minutos com nossos modelos editáveis. Ideal para prestação de serviços e locação. Gere documentos profissionais em PDF ou texto."
+const title = "Gerador de Contratos e Minutas Jurídicas para Testes - Grátis"
+const description = "Gere modelos de contratos de prestação de serviços, locação e acordos de confidencialidade (NDA) com cláusulas padrão editáveis."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Contratos Online",

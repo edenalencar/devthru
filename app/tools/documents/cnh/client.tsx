@@ -14,6 +14,7 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { Navbar } from "@/components/layout/navbar"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function CNHGeneratorPage() {
     const [cnh, setCnh] = useState<string>("")
@@ -157,6 +158,7 @@ export function CNHGeneratorPage() {
                     </Card>
                 </div>
                 <div className="container mx-auto pb-10">
+                    <ToolFaqSection toolSlug="cnh" />
                     <RelatedTools currentToolSlug="cnh" category="documents" />
                 </div>
             </main>
