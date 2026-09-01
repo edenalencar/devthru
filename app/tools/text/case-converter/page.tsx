@@ -7,7 +7,7 @@ import { TOOL_META_DESCRIPTIONS } from "@/lib/seo/meta-descriptions"
 
 import { CaseConverterPage } from "./client"
 
-const title = "Conversor de Case Online"
+const title = "Conversor de Texto: camelCase, snake_case, PascalCase - Grátis"
 const description = TOOL_META_DESCRIPTIONS.caseConverter
 
 export const metadata: Metadata = generateToolMetadata({

@@ -16,6 +16,7 @@ import { useUser } from "@/lib/hooks/use-user"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 type FieldType = "string" | "number" | "boolean" | "email" | "date" | "name" | "uuid"
 
@@ -253,6 +254,7 @@ export function MockDataGeneratorPage() {
                         </div>
 
                     </Card>
+                    <ToolFaqSection toolSlug="mock-data" />
                     <RelatedTools currentToolSlug="mock-data" category="development" />
                 </div>
             </main>

@@ -16,6 +16,7 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { sendGTMEvent } from "@/lib/gtm"
 import { CopyButton } from "@/components/copy-button"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function JSONFormatterPage() {
     const [input, setInput] = useState("")
@@ -280,6 +281,7 @@ export function JSONFormatterPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="json" />
                     <RelatedTools currentToolSlug="json" category="utilities" />
                 </div>
             </main>

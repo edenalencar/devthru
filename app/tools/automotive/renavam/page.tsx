@@ -5,8 +5,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { RenavamGeneratorPage } from "./client"
 
-const title = "Gerador de Renavam Válido Online"
-const description = "Gere números de Renavam válidos de 11 dígitos em lote ou único para testes de software automotivos. Ferramenta online gratuita para desenvolvedores e QAs."
+const title = "Gerador de Renavam Válido com Dígito Verificador - Grátis"
+const description = "Gere números de RENAVAM válidos com cálculo exato de Módulo 11 para testes de sistemas de frotas, despachantes, concessionárias e seguradoras."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

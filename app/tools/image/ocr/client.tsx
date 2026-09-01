@@ -14,6 +14,7 @@ import Tesseract from "tesseract.js"
 import { toast } from "sonner"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function OCRPage() {
     const [image, setImage] = useState<string | null>(null)
@@ -221,6 +222,7 @@ export function OCRPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="ocr" />
                     <RelatedTools currentToolSlug="ocr" category="image" />
                 </div>
             </main >

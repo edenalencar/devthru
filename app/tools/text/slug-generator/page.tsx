@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { SlugGeneratorPage } from "./client"
 
-const title = "Gerador de Slug Url Amigável Online"
-const description = "Transforme títulos e textos em URLs amigáveis (slugs) otimizadas para SEO. Remova acentos e caracteres especiais para links limpos."
+const title = "Gerador de Slug de URL Amigável para SEO - Grátis"
+const description = "Transforme títulos e textos em slugs de URLs limpas e otimizadas para SEO, removendo acentos, espaços e caracteres especiais."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Slug Url Amigável Online",

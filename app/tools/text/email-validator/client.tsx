@@ -14,6 +14,7 @@ import { Mail, CheckCircle2, XCircle, AlertTriangle } from "lucide-react"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 // Common disposable email domains
 const DISPOSABLE_DOMAINS = [
@@ -193,6 +194,7 @@ export function EmailValidatorPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="email-validator" />
                     <RelatedTools currentToolSlug="email-validator" category="text" />
                 </div>
             </main>

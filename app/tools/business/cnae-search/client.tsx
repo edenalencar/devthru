@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 interface Cnae {
     id: string
@@ -211,6 +212,7 @@ export function CnaeSearchPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="cnae-search" />
                     <RelatedTools currentToolSlug="cnae-search" category="business" />
                 </div>
             </main>

@@ -14,6 +14,7 @@ import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function CertificateGeneratorPage() {
     const [recipientName, setRecipientName] = useState("Nome do Aluno")
@@ -191,6 +192,7 @@ export function CertificateGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="certificate-generator" />
                     <RelatedTools currentToolSlug="certificate-generator" category="documents" />
                 </div>
             </main>

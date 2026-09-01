@@ -12,6 +12,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 // Interfaces for Parallelum API
 interface Brand {
@@ -371,6 +372,7 @@ export function FipePage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="fipe" />
                     <RelatedTools currentToolSlug="fipe" category="automotive" />
                 </div>
             </main>

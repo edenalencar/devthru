@@ -11,6 +11,7 @@ import { ToolResult } from '@/components/tools/tool-result'
 import { ShareButtons } from '@/components/share-buttons'
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function SlugGeneratorPage() {
     const [input, setInput] = useState('')
@@ -101,6 +102,7 @@ export function SlugGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="slug-generator" />
                     <RelatedTools currentToolSlug="slug-generator" category="text" />
                 </div>
             </main>

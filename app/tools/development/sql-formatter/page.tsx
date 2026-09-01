@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { SqlFormatterPage } from "./client"
 
-const title = "SQL Formatter Online"
-const description = "Formate, indente e organize suas queries SQL online. Suporte para PostgreSQL, MySQL, SQL Server e mais. Deixe seu código SQL legível instantaneamente."
+const title = "Formatador de SQL Online (SQL Beautifier) - Grátis"
+const description = "Formate e indente consultas SQL para PostgreSQL, MySQL, SQL Server, SQLite e Oracle com realce de sintaxe e palavras-chave em maiúsculas."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "SQL Formatter Online",

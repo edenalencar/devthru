@@ -15,6 +15,7 @@ import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function Base64Page() {
     const [encodeInput, setEncodeInput] = useState("")
@@ -197,6 +198,7 @@ export function Base64Page() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="base64" />
                     <RelatedTools currentToolSlug="base64" category="utilities" />
                 </div>
             </main>

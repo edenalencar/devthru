@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PasswordGeneratorPage } from "./client"
 
-const title = "Gerador de Senhas Seguras"
-const description = "Crie senhas fortes e invioláveis com nosso Gerador de Senhas gratuito. Personalize comprimento, símbolos e números para garantir a segurança máxima de suas contas."
+const title = "Gerador de Senhas Fortes e Seguras Online - Grátis"
+const description = "Gere senhas seguras e aleatórias com números, símbolos e letras maiúsculas/minúsculas usando criptografia segura no navegador."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Senhas Seguras",

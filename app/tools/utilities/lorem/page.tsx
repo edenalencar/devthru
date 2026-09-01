@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { LoremIpsumPage } from "./client"
 
-const title = "Gerador de Lorem Ipsum - Texto de Preenchimento"
-const description = "Gere texto Lorem Ipsum personalizado para seus projetos. Crie parágrafos, frases e listas aleatórias para preencher layouts e protótipos de design com facilidade."
+const title = "Gerador de Lorem Ipsum (Parágrafos e Palavras) - Grátis"
+const description = "Gere textos de preenchimento Lorem Ipsum personalizados por parágrafos, frases ou palavras para mockups de design e diagramação."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Lorem Ipsum - Texto de Preenchimento",

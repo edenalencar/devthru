@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { TimestampConverterPage } from "./client"
 
-const title = "Conversor de Timestamp Unix"
-const description = "Converta timestamps Unix (segundos/milissegundos) para datas legíveis e vice-versa. Ferramenta online essencial para desenvolvedores, com suporte a múltiplos formatos."
+const title = "Conversor de Unix Timestamp (Epoch) Online - Grátis"
+const description = "Converta timestamps Unix em datas legíveis e datas em segundos/milissegundos Epoch em tempo real com suporte a múltiplos fusos horários."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Conversor de Timestamp Unix",

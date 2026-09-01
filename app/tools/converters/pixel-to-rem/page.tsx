@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PixelToRemPage } from "./client"
 
-const title = "Conversor de Pixel para REM"
-const description = "Converta pixels (px) para rem e rem para pixels (px) facilmente. Calculadora essencial para desenvolvedores front-end e web designers."
+const title = "Conversor de Pixel (px) para REM e EM Online - Grátis"
+const description = "Converta valores de Pixels (px) para REM e EM com base de fonte configurável (16px) e gere regras CSS prontas para design responsivo."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Conversor de Pixel para REM",

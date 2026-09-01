@@ -13,6 +13,7 @@ import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 type ImageFormat = "png" | "jpeg" | "webp"
 
@@ -251,6 +252,7 @@ export function ImageConverterPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="converter" />
                     <RelatedTools currentToolSlug="converter" category="image" />
                 </div>
             </main>

@@ -14,6 +14,7 @@ import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function PasswordGeneratorPage() {
     const [password, setPassword] = useState("")
@@ -222,6 +223,7 @@ export function PasswordGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="password" />
                     <RelatedTools currentToolSlug="password" category="utilities" />
                 </div>
             </main>

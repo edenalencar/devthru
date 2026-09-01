@@ -13,6 +13,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { validateCron, parseCron, translateCron } from "@/lib/utils/cron-parser"
 import { toast } from "sonner"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function CrontabGeneratorPage() {
     // Inputs principais
@@ -651,6 +652,7 @@ export function CrontabGeneratorPage() {
                         </div>
                     </Card>
                 </div>
+                <ToolFaqSection toolSlug="crontab-generator" />
             </main>
         </div>
     )

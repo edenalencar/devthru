@@ -13,6 +13,7 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { Label } from "@/components/ui/label"
 import { toast } from 'sonner'
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function CaseConverterPage() {
     const [text, setText] = useState('')
@@ -126,6 +127,7 @@ export function CaseConverterPage() {
 
                         </div>
                     </div>
+                    <ToolFaqSection toolSlug="case-converter" />
                     <RelatedTools currentToolSlug="case-converter" category="text" />
                 </div>
             </main>

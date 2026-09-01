@@ -6,7 +6,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { JwtDebuggerPage } from "./client"
 
-const title = "JWT Debugger Online"
+const title = "JWT Debugger Online: Decodificador e Inspetor de Token - Grátis"
 const description = "Debugue e decodifique seus tokens JWT instantaneamente no navegador. Inspecione o Header, Payload e Signature de forma privada e livre de servidores."
 
 export const metadata: Metadata = generateToolMetadata({

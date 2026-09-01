@@ -6,7 +6,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { NameGeneratorPage } from "./client"
 
-const title = "Gerador de Nomes Brasileiros"
+const title = "Gerador de Nomes Brasileiros e Sobrenomes - Grátis"
 const description = "Gere nomes e sobrenomes brasileiros realistas de forma aleatória e em lote para simulações, preenchimento de cadastros e testes de bancos de dados."
 
 export const metadata: Metadata = generateToolMetadata({

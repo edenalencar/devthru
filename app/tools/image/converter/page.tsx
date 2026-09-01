@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { ImageConverterPage } from "./client"
 
-const title = "Conversor de Imagem Online"
-const description = "Converta imagens entre formatos PNG, JPG e WEBP rapidamente e sem perda de qualidade. Processamento seguro no navegador, sem upload para servidor. 100% gratuito."
+const title = "Conversor de Imagens Online (PNG, JPG, WebP, AVIF, ICO) - Grátis"
+const description = "Converta imagens entre formatos PNG, JPG, WebP, AVIF e ICO diretamente no navegador com compressão e privacidade garantida."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Conversor de Imagem Online",

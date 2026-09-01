@@ -14,6 +14,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { Accordion } from "@/components/ui/accordion"
 import Link from "next/link"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 const BOLETO_VALIDATOR_JS = `function validarBoleto(codigo) {
     const cleaned = codigo.replace(/\\D/g, "");
@@ -607,6 +608,7 @@ export function BoletoValidatorPage() {
                         <ShareButtons url="https://www.devthru.com/tools/finance/boleto-validator" title={title} />
                     </div>
 
+                    <ToolFaqSection toolSlug="boleto-validator" />
                     <RelatedTools currentToolSlug="boleto-validator" category="finance" />
                 </div>
             </main>

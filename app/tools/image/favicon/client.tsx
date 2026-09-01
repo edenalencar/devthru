@@ -14,6 +14,7 @@ import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 const FAVICON_SIZES = [16, 32, 180, 192, 512]
 
@@ -269,6 +270,7 @@ export function FaviconGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="favicon" />
                     <RelatedTools currentToolSlug="favicon" category="image" />
                 </div>
             </main>

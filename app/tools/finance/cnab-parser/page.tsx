@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CnabParserPage } from "./client"
 
-const title = "Leitor e Decodificador de CNAB (240/400)"
+const title = "Leitor e Decodificador de CNAB 240 e 400 Online - Grátis"
 const description = "Decodifique, inspecione e valide arquivos de remessa e retorno CNAB 240 e 400 da FEBRABAN. Analise posições, ocorrências e erros de leiaute gratuitamente."
 
 export const metadata: Metadata = generateToolMetadata({

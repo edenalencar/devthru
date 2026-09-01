@@ -14,6 +14,7 @@ import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function LoremIpsumPage() {
     const [text, setText] = useState("")
@@ -180,6 +181,7 @@ export function LoremIpsumPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="lorem" />
                     <RelatedTools currentToolSlug="lorem" category="utilities" />
                 </div>
             </main>

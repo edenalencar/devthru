@@ -10,6 +10,7 @@ import { useState, useEffect } from "react"
 import { Navbar } from "@/components/layout/navbar"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function PixelToRemPage() {
     const [pixels, setPixels] = useState<string>("16")
@@ -130,6 +131,7 @@ export function PixelToRemPage() {
                         <h3>Fórmula de Conversão</h3>
                         <pre><code>REM = Pixels / Base Size (16px)</code></pre>
                     </article>
+                    <ToolFaqSection toolSlug="pixel-to-rem" />
                     <RelatedTools currentToolSlug="pixel-to-rem" category="converters" />
                 </div>
             </main>

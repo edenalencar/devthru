@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PlaceholderGeneratorPage } from "./client"
 
-const title = "Gerador de Imagem Placeholder"
-const description = "Crie imagens placeholder (dummy image) com tamanho, cores e texto personalizados para protótipos e layouts."
+const title = "Gerador de Imagem Placeholder para Mockups - Grátis"
+const description = "Crie imagens de placeholder temporárias com dimensões, cores e textos personalizados para prototipagem de layouts e wireframes."
 
 export const metadata: Metadata = generateToolMetadata({
     title: "Gerador de Imagem Placeholder",

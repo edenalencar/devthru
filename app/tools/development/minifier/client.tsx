@@ -14,6 +14,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 type Language = "css" | "json" | "sql" | "html" | "javascript"
 
@@ -252,6 +253,7 @@ export function MinifierPage() {
                             </p>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="minifier" />
                     <RelatedTools currentToolSlug="minifier" category="development" />
                 </div>
             </main>
