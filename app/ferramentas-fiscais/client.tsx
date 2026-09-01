@@ -14,10 +14,18 @@ import {
     Sparkles,
     Clock,
     Shield,
-    Rocket
+    Rocket,
+    Barcode
 } from "lucide-react"
 
 const fiscalTools = [
+    {
+        title: "Decodificador de Chave SEFAZ",
+        description: "Desmembre chaves de 44 dígitos e valide o dígito verificador Módulo 11.",
+        icon: Barcode,
+        href: "/tools/business/nfe-decoder",
+        badge: "Novo"
+    },
     {
         title: "Gerador de NF-e",
         description: "Gere chaves de acesso para Nota Fiscal Eletrônica.",

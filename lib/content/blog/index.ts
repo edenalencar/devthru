@@ -21,7 +21,7 @@ export const blogCategories: Record<BlogCategory, { label: string; color: string
     'automotivo': { label: 'Automotivo', color: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' },
 }
 
-// Import posts
+import { postComoValidarTelefoneBrasil } from './posts/como-validar-formatar-telefone-celular-brasil-ddd'
 import { postCnab240VsCnab400DiferencasEstruturaPosicional } from './posts/cnab-240-vs-cnab-400-diferencas-e-estrutura-posicional'
 import { postComoParsearEValidarArquivosCnabRemessaERetornoNodejsPython } from './posts/como-parsear-e-validar-arquivos-cnab-remessa-e-retorno-nodejs-python'
 import { postComoGerarMassaDeDadosCnabParaTestesEmStaging } from './posts/como-gerar-massa-de-dados-cnab-para-testes-em-staging'
@@ -64,6 +64,7 @@ import { postSplitPaymentReformaTributariaGuiaDev } from './posts/split-payment-
 import { postNormativaEfxBacenGuiaDev } from './posts/normativa-efx-bacen-guia-desenvolvedor-pagamentos-internacionais'
 
 export const blogPosts: BlogPost[] = [
+    postComoValidarTelefoneBrasil,
     postCnab240VsCnab400DiferencasEstruturaPosicional,
     postComoParsearEValidarArquivosCnabRemessaERetornoNodejsPython,
     postComoGerarMassaDeDadosCnabParaTestesEmStaging,

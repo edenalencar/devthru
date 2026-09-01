@@ -30,7 +30,7 @@ interface MonthlyUpdatesEmailTemplateProps {
 }
 
 export const MonthlyUpdatesEmailTemplate = ({
-    monthYear = 'Julho/2026',
+    monthYear = 'Agosto/2026',
     introText = 'Temos o prazer de compartilhar as últimas novidades e ferramentas que lançamos neste mês no DevThru para tornar o seu fluxo de desenvolvimento ainda mais ágil.',
     newTools = [],
     blogPosts = [],
