@@ -24,6 +24,9 @@ const GUIDE_TOOL_TERMS: Record<string, { verb: string; object: string }> = {
     "vet-efx-calculator": { verb: "simular e calcular", object: "VET e eFX Cambial" },
     "cnab-parser": { verb: "decodificar e inspecionar", object: "arquivos CNAB 240 e 400" },
     "url-encoder": { verb: "codificar e decodificar", object: "URLs" },
+    "nfe-decoder": { verb: "decodificar e validar", object: "chaves de acesso SEFAZ de 44 dígitos" },
+    "whatsapp-link-generator": { verb: "gerar", object: "links diretos do WhatsApp wa.me" },
+    "curl-converter": { verb: "converter", object: "comandos cURL para código" },
 }
 
 export const GUIDE_CATEGORY_META_DESCRIPTIONS: Record<string, string> = {

@@ -30,6 +30,20 @@ O DevThru foi criado para fornecer utilitários rápidos e sem atrito, incluindo
 - [Gerador de Senhas](https://www.devthru.com/tools/utilities/password) - Gerador de senhas seguras
 - [Gerador de UUID](https://www.devthru.com/tools/utilities/uuid) - Gerador de UUID v4 e v7
 - [Validador de XML](https://www.devthru.com/tools/utilities/xml-validator) - Validador de XML online
+- [Gerador de Link WhatsApp](https://www.devthru.com/tools/utilities/whatsapp-link-generator) - Gerador de link wa.me com mensagem e QR Code
+
+### Desenvolvimento
+- [Conversor de cURL](https://www.devthru.com/tools/development/curl-converter) - Conversor de cURL para JavaScript Fetch, Axios, Python, Go e PHP
+- [JWT Debugger](https://www.devthru.com/tools/development/jwt-debugger) - Debugger e inspetor de JSON Web Tokens
+- [Formatador SQL](https://www.devthru.com/tools/development/sql-formatter) - Formatador e beautifier de queries SQL
+- [Testador de Regex](https://www.devthru.com/tools/development/regex) - Testador e gerador de expressões regulares
+
+### Negócios e Fiscal
+- [Decodificador de Chave SEFAZ](https://www.devthru.com/tools/business/nfe-decoder) - Decodificador de chaves de 44 dígitos de NF-e, NFC-e, CT-e e MDF-e
+- [Gerador de NF-e](https://www.devthru.com/tools/business/nfe-generator) - Gerador de chaves de acesso NF-e
+- [Gerador de NFC-e](https://www.devthru.com/tools/business/nfce-generator) - Gerador de chaves de acesso NFC-e
+- [Gerador de CT-e](https://www.devthru.com/tools/business/cte-generator) - Gerador de chaves de acesso CT-e
+- [Gerador de MDF-e](https://www.devthru.com/tools/business/mdfe-generator) - Gerador de chaves de acesso MDF-e
 
 ### Finanças
 - [Gerador de Cartão de Crédito](https://www.devthru.com/tools/finance/credit-card-generator) - Gerador de cartão (Luhn)

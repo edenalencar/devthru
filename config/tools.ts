@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase, Globe, Ruler } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase, Globe, Ruler, MessageSquare } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -639,6 +639,33 @@ export const tools: Tool[] = [
         category: "business",
         icon: FileText,
         href: "/tools/finance/cnab-parser",
+    },
+    {
+        id: "nfe-decoder",
+        name: "Decodificador de Chave SEFAZ",
+        title: "Decodificador de Chave de Acesso SEFAZ",
+        description: "Desmembre e valide chaves de acesso de 44 dígitos de NF-e, NFC-e, CT-e e MDF-e com cálculo de Módulo 11 e extração de CNPJ, UF e série.",
+        category: "business",
+        icon: Barcode,
+        href: "/tools/business/nfe-decoder",
+    },
+    {
+        id: "whatsapp-link-generator",
+        name: "Gerador de Link WhatsApp",
+        title: "Gerador de Link do WhatsApp (wa.me)",
+        description: "Crie links diretos personalizados para WhatsApp com mensagem pronta, preview de chat e QR Code para celular.",
+        category: "utilities",
+        icon: MessageSquare,
+        href: "/tools/utilities/whatsapp-link-generator",
+    },
+    {
+        id: "curl-converter",
+        name: "Conversor de cURL",
+        title: "Conversor de cURL para Código",
+        description: "Converta comandos cURL em código limpo para JavaScript (Fetch e Axios), Python Requests, Go e PHP.",
+        category: "development",
+        icon: Terminal,
+        href: "/tools/development/curl-converter",
     },
 ]
 

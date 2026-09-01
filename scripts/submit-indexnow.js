@@ -34,6 +34,7 @@ const urls = [
     "https://devthru.com/tools/business/mdfe-generator",
     "https://devthru.com/tools/business/nfce-generator",
     "https://devthru.com/tools/business/nfe-generator",
+    "https://devthru.com/tools/business/nfe-decoder",
 
     // Tools - Converters
     "https://devthru.com/tools/converters/base",
@@ -46,6 +47,12 @@ const urls = [
     "https://devthru.com/tools/development/regex",
     "https://devthru.com/tools/development/timestamp",
     "https://devthru.com/tools/development/crontab-generator",
+    "https://devthru.com/tools/development/jwt-debugger",
+    "https://devthru.com/tools/development/sql-formatter",
+    "https://devthru.com/tools/development/curl-converter",
+
+    // Tools - Utilities
+    "https://devthru.com/tools/utilities/whatsapp-link-generator",
 
     // Tools - Documents
     "https://devthru.com/tools/documents/certificate-generator",
@@ -88,7 +95,8 @@ const urls = [
 
     // Blog
     "https://devthru.com/blog/como-decodificar-boleto-bancario",
-    "https://devthru.com/blog/como-decodificar-pix-copia-e-cola"
+    "https://devthru.com/blog/como-decodificar-pix-copia-e-cola",
+    "https://devthru.com/blog/como-validar-formatar-telefone-celular-brasil-ddd"
 ];
 
 const key = process.env.INDEXNOW_KEY;

@@ -4,7 +4,7 @@ import {
     Award, CreditCard, Code2, Barcode, Image as ImageIcon,
     MapPin, Mail, User, Phone, Type, Lock, Binary,
     Calendar, Braces, Key, QrCode, Hash, Link, FileDiff, Briefcase,
-    Globe, Ruler
+    Globe, Ruler, MessageSquare
 } from "lucide-react"
 import { LucideIcon } from "lucide-react"
 
@@ -100,4 +100,7 @@ export const tools: Tool[] = [
     { slug: 'pixel-to-rem', category: 'converters', title: 'Pixel para REM', icon: Ruler },
     { slug: 'sql-formatter', category: 'development', title: 'SQL Formatter', icon: Database },
     { slug: 'jwt-debugger', category: 'development', title: 'JWT Debugger', icon: Shield },
+    { slug: 'nfe-decoder', category: 'business', title: 'Decodificador SEFAZ', icon: Barcode },
+    { slug: 'whatsapp-link-generator', category: 'utilities', title: 'Link do WhatsApp', icon: MessageSquare },
+    { slug: 'curl-converter', category: 'development', title: 'Conversor de cURL', icon: Terminal },
 ]

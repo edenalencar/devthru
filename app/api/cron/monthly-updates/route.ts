@@ -52,22 +52,27 @@ export async function GET(req: NextRequest) {
             url: `https://www.devthru.com/blog/${post.slug}`
         }));
 
-        // Ferramentas em destaque do mês (Curadoria: Fintech, Meios de Pagamento & Arquivos Bancários)
+        // Ferramentas em destaque do mês (Curadoria: Fiscal, Integração & Utilitários de Alta Produtividade)
         const newTools = [
             {
+                title: "Decodificador de Chave SEFAZ",
+                description: "Desmembre chaves de 44 dígitos de NF-e, NFC-e, CT-e e MDF-e com validação matemática de Módulo 11 e exportação JSON.",
+                url: "https://www.devthru.com/tools/business/nfe-decoder"
+            },
+            {
+                title: "Gerador de Link WhatsApp (wa.me)",
+                description: "Crie links diretos personalizados com mensagem pronta, preview em tempo real e QR Code dinâmico para smartphones.",
+                url: "https://www.devthru.com/tools/utilities/whatsapp-link-generator"
+            },
+            {
+                title: "Conversor de cURL para Código",
+                description: "Converta comandos cURL para JavaScript (Fetch e Axios), Python Requests, Go e PHP de forma instantânea.",
+                url: "https://www.devthru.com/tools/development/curl-converter"
+            },
+            {
                 title: "Leitor e Decodificador de CNAB",
-                description: "Inspecione e valide arquivos de remessa e retorno CNAB 240 e CNAB 400 da FEBRABAN com visualização detalhada de lotes.",
+                description: "Inspecione e valide arquivos de remessa e retorno CNAB 240 e CNAB 400 da FEBRABAN com visualização de lotes.",
                 url: "https://www.devthru.com/tools/finance/cnab-parser"
-            },
-            {
-                title: "Decodificador Pix (Copia e Cola)",
-                description: "Faça o parse de payloads Pix EMV, altere valores em tempo real, recalcule o CRC16 e gere o QR Code para testes.",
-                url: "https://www.devthru.com/tools/finance/pix-parser"
-            },
-            {
-                title: "Validador de Boletos Bancários",
-                description: "Valide linhas digitáveis e códigos de barras com cálculo automático de vencimento, valor e identificação do banco emissor.",
-                url: "https://www.devthru.com/tools/finance/boleto-validator"
             }
         ];
 

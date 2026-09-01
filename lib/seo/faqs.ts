@@ -6,6 +6,44 @@ export interface FAQItem {
 }
 
 export const TOOL_FAQS: Record<string, FAQItem[]> = {
+    "nfe-decoder": [
+        {
+            "question": "Como é formada a chave de acesso de 44 dígitos da SEFAZ?",
+            "answer": "A chave é composta por 8 blocos: cUF (2 dígitos do estado emissor), AAMM (ano e mês da emissão), CNPJ do emitente (14 dígitos), Modelo do documento (55 para NF-e, 65 para NFC-e, 57 para CT-e, 58 para MDF-e), Série (3 dígitos), Número do documento (9 dígitos), Tipo de emissão (1 dígito), Código numérico (8 dígitos) e Dígito Verificador Módulo 11 (1 dígito)."
+        },
+        {
+            "question": "Como funciona o cálculo do Dígito Verificador (Módulo 11)?",
+            "answer": "Multiplica-se cada um dos 43 primeiros dígitos da direita para a esquerda por uma sequência de pesos de 2 a 9. Soma-se os produtos e divide-se por 11. Se o resto for 0 ou 1, o DV é 0; caso contrário, o DV é 11 menos o resto."
+        },
+        {
+            "question": "Esta ferramenta consulta dados nos servidores da SEFAZ?",
+            "answer": "Não. O decodificador faz a análise estática e sintática dos 44 dígitos diretamente no navegador, sem expor chaves ou dados para servidores externos."
+        }
+    ],
+    "whatsapp-link-generator": [
+        {
+            "question": "Como funciona o link direto wa.me do WhatsApp?",
+            "answer": "O link no formato https://wa.me/<numero> é o padrão oficial desenvolvido pela Meta. Pelo celular, abre o aplicativo do WhatsApp diretamente na conversa com o número informado. No computador, abre o WhatsApp Web."
+        },
+        {
+            "question": "É necessário ter o número salvo na agenda para abrir a conversa?",
+            "answer": "Não! Essa é a grande vantagem do link wa.me: qualquer pessoa pode iniciar uma conversa sem salvar o número nos contatos."
+        },
+        {
+            "question": "Como colocar o link do WhatsApp na bio do Instagram?",
+            "answer": "Basta copiar o link gerado, abrir o Instagram, ir em Editar Perfil > Links > Adicionar Link Externo e colar a URL wa.me."
+        }
+    ],
+    "curl-converter": [
+        {
+            "question": "Como copiar uma requisição em cURL do navegador?",
+            "answer": "No navegador, abra as Ferramentas do Desenvolvedor (F12), vá até a aba Rede (Network), clique com o botão direito na requisição desejada e escolha Copiar > Copiar como cURL. Depois cole no DevThru."
+        },
+        {
+            "question": "O código convertido envia dados para algum servidor?",
+            "answer": "Não. Todo o processo de parsing da sintaxe cURL e a geração do código em JavaScript, Python, Go e PHP ocorre inteiramente no seu navegador de forma local e segura."
+        }
+    ],
     "cnab-parser": [
         {
             "question": "Como identificar se um arquivo é CNAB 240 ou CNAB 400?",

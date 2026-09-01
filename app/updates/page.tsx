@@ -33,6 +33,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "31 de Agosto de 2026",
+        title: "Decodificador SEFAZ, Link WhatsApp, Conversor de cURL e Guia de Telefonia",
+        description: "Lançamento de 3 novas ferramentas gratuitas: Decodificador de Chave de Acesso SEFAZ (com desmembramento visual de NF-e/NFC-e/CT-e/MDF-e e cálculo de Módulo 11), Gerador de Link Direto do WhatsApp (wa.me) com QR Code dinâmico e preview de balão, e Conversor de comandos cURL para Fetch, Axios, Python, Go e PHP. Inclui também o novo guia técnico de validação e formatação de telefones e DDDs brasileiros no blog.",
+        type: "feature",
+        version: "1.47.0"
+    },
+    {
         date: "22 de Julho de 2026",
         title: "Leitor de CNAB (240 / 400), Split Payment e VET Cambial",
         description: "Lançamento do Leitor e Decodificador de CNAB (com parsing de arquivos de remessa e retorno FEBRABAN), Simulador de Split Payment da Reforma Tributária (IBS + CBS) e Simulador de VET e eFX Cambial do Banco Central. Inclui também 5 novos artigos técnicos no blog.",
