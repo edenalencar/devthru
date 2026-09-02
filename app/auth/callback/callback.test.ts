@@ -59,6 +59,29 @@ describe('Auth Callback Logic & Welcome Email', () => {
         });
     });
 
+    describe('Auth Callback Parameter Resolution', () => {
+        function getAuthMethod(searchParams: URLSearchParams): 'code' | 'otp' | 'none' {
+            if (searchParams.get('code')) return 'code';
+            if (searchParams.get('token_hash') && searchParams.get('type')) return 'otp';
+            return 'none';
+        }
+
+        it('detects OAuth PKCE code flow', () => {
+            const params = new URLSearchParams('code=test-code-123&next=/dashboard');
+            expect(getAuthMethod(params)).toBe('code');
+        });
+
+        it('detects Supabase OTP / email confirmation token_hash flow', () => {
+            const params = new URLSearchParams('token_hash=pkce-token-hash-456&type=signup&next=/dashboard');
+            expect(getAuthMethod(params)).toBe('otp');
+        });
+
+        it('returns none when no valid auth parameters are present', () => {
+            const params = new URLSearchParams('error=access_denied');
+            expect(getAuthMethod(params)).toBe('none');
+        });
+    });
+
     describe('WelcomeEmailTemplate Element Rendering', () => {
         it('instantiates React element without errors', () => {
             const element = React.createElement(WelcomeEmailTemplate, {

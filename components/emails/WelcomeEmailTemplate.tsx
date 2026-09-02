@@ -91,7 +91,7 @@ export const WelcomeEmailTemplate = ({
                             <div style={toolCard}>
                                 <Text style={toolName}>📎 Gerador de CPF & CNPJ</Text>
                                 <Text style={toolDesc}>Gere dados de teste válidos em segundos para validar seus fluxos de cadastro localmente.</Text>
-                                <Link href="https://www.devthru.com/tools/documents/cpf-generator" style={toolLink}>Acessar Gerador →</Link>
+                                <Link href="https://www.devthru.com/tools/documents/cpf" style={toolLink}>Acessar Gerador →</Link>
                             </div>
 
                             <div style={toolCard}>
@@ -103,7 +103,7 @@ export const WelcomeEmailTemplate = ({
                             <div style={toolCard}>
                                 <Text style={toolName}>💳 Decodificador Pix</Text>
                                 <Text style={toolDesc}>Decodifique links e chaves copia e cola do Pix de forma limpa na tela.</Text>
-                                <Link href="https://www.devthru.com/tools/utilities/pix-decoder" style={toolLink}>Acessar Decodificador →</Link>
+                                <Link href="https://www.devthru.com/tools/finance/pix-parser" style={toolLink}>Acessar Decodificador →</Link>
                             </div>
                         </Section>
 
@@ -123,7 +123,7 @@ export const WelcomeEmailTemplate = ({
                     <Section style={footer}>
                         <Text style={footerText}>
                             DevThru - Dados rápidos pra viagem.<br />
-                            Acesse: <Link href="https://devthru.com.br" style={footerLink}>devthru.com.br</Link>
+                            Acesse: <Link href="https://www.devthru.com" style={footerLink}>devthru.com</Link>
                         </Text>
                     </Section>
                 </Container>
