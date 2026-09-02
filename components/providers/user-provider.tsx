@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { createContext, useContext, useEffect, useState } from "react"
@@ -50,6 +51,25 @@ export function UserProvider({
         setPermissions(perms)
         setIsPro(currentProfile?.subscription_tier === "pro" || currentProfile?.subscription_tier === "business" || isUserInTrial(currentProfile))
         setIsInTrial(isUserInTrial(currentProfile))
+
+        // Disparo automático e resiliente de boas-vindas caso ainda não enviado
+        if (currentUser && currentProfile && currentProfile.welcome_sent === false) {
+            fetch('/api/auth/welcome', { method: 'POST' })
+                .then(res => res.json())
+                .then(resData => {
+                    if (resData?.sent) {
+                        currentProfile.welcome_sent = true
+                        try {
+                            localStorage.setItem(`cached_profile_${currentUser.id}`, JSON.stringify(currentProfile))
+                        } catch {
+                            // Ignora erros de escrita no localStorage
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.warn('[UserProvider] Falha silenciosa ao disparar boas-vindas:', err)
+                })
+        }
     }
 
     // Fetch profile if we have a user but no profile
@@ -120,7 +140,7 @@ export function UserProvider({
                             timeoutPromise
                         ]) as any
                         currentUser = data.user
-                    } catch (error: any) {
+                    } catch {
                         console.warn("Auth check timed out or failed, checking local session...")
                         // Fallback: check for valid local session
                         const { data: { session } } = await supabase.auth.getSession()

@@ -5,6 +5,9 @@ import { stripe } from "@/lib/stripe/server"
 import { createClient } from "@supabase/supabase-js"
 import Stripe from "stripe"
 import { STRIPE_PLANS } from "@/lib/stripe/plans"
+import { sendEmail } from "@/lib/email"
+import { SubscriptionSuccessEmailTemplate } from "@/components/emails/SubscriptionSuccessEmailTemplate"
+import React from "react"
 
 export async function POST(req: Request) {
     const body = await req.text()
@@ -76,6 +79,41 @@ export async function POST(req: Request) {
                 throw error
             }
             console.log('[Webhook] Profile updated successfully')
+
+            // Envio do e-mail de confirmação e agradecimento de assinatura
+            try {
+                const { data: userProfile } = await supabase
+                    .from("profiles")
+                    .select("email, full_name")
+                    .eq("id", userId)
+                    .maybeSingle() as any
+
+                const recipientEmail = session.customer_details?.email || userProfile?.email
+                const recipientName = userProfile?.full_name || session.customer_details?.name || 'Desenvolvedor'
+                const planDisplayName = plan === 'business' ? 'Business' : 'Pro'
+
+                if (recipientEmail) {
+                    const emailElement = React.createElement(SubscriptionSuccessEmailTemplate, {
+                        userName: recipientName,
+                        planName: planDisplayName,
+                        planSlug: plan,
+                    })
+
+                    const { error: emailErr } = await sendEmail({
+                        to: recipientEmail,
+                        subject: `🎉 Sua assinatura do Plano ${planDisplayName} foi confirmada! • DevThru`,
+                        react: emailElement,
+                    })
+
+                    if (emailErr) {
+                        console.error('[Webhook] Erro ao enviar e-mail de confirmação de assinatura:', emailErr)
+                    } else {
+                        console.log(`[Webhook] E-mail de confirmação de assinatura enviado com sucesso para ${recipientEmail}`)
+                    }
+                }
+            } catch (emailException) {
+                console.error('[Webhook] Exceção inesperada ao enviar e-mail de confirmação:', emailException)
+            }
         } catch (error) {
             console.error('[Webhook] Error processing checkout session:', error)
             return new NextResponse('Error processing checkout session', { status: 500 })
