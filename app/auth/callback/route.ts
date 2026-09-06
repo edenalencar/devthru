@@ -1,11 +1,111 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@/lib/supabase/server';
-import { createAdminClient } from '@/lib/supabase/admin';
 import { NextResponse } from 'next/server';
-import { sendEmail } from '@/lib/email';
-import { WelcomeEmailTemplate } from '@/components/emails/WelcomeEmailTemplate';
+import { sendWelcomeEmailIfNeeded } from '@/lib/email/welcome';
 import { type EmailOtpType } from '@supabase/supabase-js';
-import React from 'react';
+
+function renderClientCallbackHtml(redirectTarget: string) {
+    const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Confirmando conta | DevThru</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #09090b;
+            color: #fafafa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            max-width: 420px;
+            width: 100%;
+            background: #121215;
+            border: 1px solid #27272a;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        .spinner {
+            width: 44px;
+            height: 44px;
+            border: 3px solid #27272a;
+            border-top: 3px solid #135bec;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1.25rem;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        h1 { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.5rem; color: #ffffff; }
+        p { font-size: 0.875rem; color: #a1a1aa; margin: 0; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="spinner"></div>
+        <h1>Confirmando sua conta</h1>
+        <p>Finalizando a validação e preparando seu acesso ao DevThru...</p>
+    </div>
+    <script>
+        (async function() {
+            try {
+                const rawHash = window.location.hash || '';
+                const hash = rawHash.startsWith('#') ? rawHash.substring(1) : rawHash;
+                const params = new URLSearchParams(hash);
+                const accessToken = params.get('access_token');
+                const refreshToken = params.get('refresh_token');
+                const error = params.get('error');
+                const errorDescription = params.get('error_description');
+
+                if (error) {
+                    window.location.href = '/login?error=' + encodeURIComponent(errorDescription || error);
+                    return;
+                }
+
+                if (accessToken && refreshToken) {
+                    const res = await fetch('/api/auth/confirm-session', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            access_token: accessToken,
+                            refresh_token: refreshToken,
+                            next: ${JSON.stringify(redirectTarget)}
+                        })
+                    });
+
+                    if (res.ok) {
+                        const data = await res.json();
+                        window.location.href = data.redirect || ${JSON.stringify(redirectTarget)};
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.error('[Auth Callback] Erro no processamento do hash client-side:', e);
+            }
+
+            // Fallback caso não haja hash de sessão
+            window.location.href = '/login';
+        })();
+    </script>
+</body>
+</html>`;
+
+    return new NextResponse(html, {
+        status: 200,
+        headers: {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': 'no-store, max-age=0',
+        },
+    });
+}
 
 export async function GET(request: Request) {
     const { searchParams, origin } = new URL(request.url);
@@ -28,22 +128,18 @@ export async function GET(request: Request) {
         if (!error && session?.user) {
             authUser = session.user;
         } else if (error) {
-            console.error('Erro ao trocar código por sessão no Supabase Auth:', error);
+            console.error('[Auth Callback] Erro ao trocar código por sessão:', error);
         }
     } else if (token_hash && type) {
         const { data: { session, user }, error } = await supabase.auth.verifyOtp({ token_hash, type });
         if (!error && (session?.user || user)) {
             authUser = session?.user || user;
         } else if (error) {
-            console.error('Erro ao verificar OTP com token_hash no Supabase Auth:', error);
+            console.error('[Auth Callback] Erro ao verificar OTP com token_hash:', error);
         }
     }
 
-    if (authUser) {
-        const userEmail = authUser.email;
-        const userId = authUser.id;
-
-        // Extrai o nome do usuário com suporte a Google (full_name, name) e GitHub (name, user_name, preferred_username)
+    if (authUser && authUser.email) {
         const userName = 
             authUser.user_metadata?.full_name || 
             authUser.user_metadata?.name || 
@@ -51,103 +147,18 @@ export async function GET(request: Request) {
             authUser.user_metadata?.preferred_username || 
             'Desenvolvedor';
 
-        // Processar o envio de boas-vindas aguardando a finalização da requisição do Resend
-        // antes de realizar o redirecionamento (evita o congelamento do processo no Vercel Serverless)
-        try {
-            let shouldSendWelcome = false;
-            let dbClient: any = null;
-
-            // 1. Tentar inicializar o cliente admin se a chave de serviço estiver disponível
-            try {
-                if (process.env.SUPABASE_SERVICE_ROLE_KEY) {
-                    dbClient = createAdminClient();
-                }
-            } catch (adminInitErr) {
-                console.warn('Aviso: Não foi possível instanciar adminSupabase, usando sessão do usuário:', adminInitErr);
-            }
-
-            // Fallback para o cliente autenticado de sessão
-            if (!dbClient) {
-                dbClient = supabase;
-            }
-
-            // 2. Buscar status de envio de boas-vindas
-            const { data: profile, error: fetchErr } = await (dbClient
-                .from('profiles') as any)
-                .select('welcome_sent')
-                .eq('id', userId)
-                .maybeSingle();
-
-            if (fetchErr) {
-                console.warn('Aviso ao consultar status de welcome_sent no banco:', fetchErr);
-                // Se o cliente admin falhou, tenta com o cliente de sessão do usuário
-                if (dbClient !== supabase) {
-                    const { data: userProfile, error: userFetchErr } = await (supabase
-                        .from('profiles') as any)
-                        .select('welcome_sent')
-                        .eq('id', userId)
-                        .maybeSingle();
-
-                    if (!userFetchErr && (!userProfile || !userProfile.welcome_sent)) {
-                        shouldSendWelcome = true;
-                    } else if (userFetchErr) {
-                        // Se ambos falharem mas o usuário é novo com e-mail válido, permite o envio
-                        shouldSendWelcome = true;
-                    }
-                } else {
-                    shouldSendWelcome = true;
-                }
-            } else {
-                if (!profile || !profile.welcome_sent) {
-                    shouldSendWelcome = true;
-                }
-            }
-
-            // 3. Enviar e-mail de boas-vindas caso ainda não tenha sido enviado
-            if (shouldSendWelcome && userEmail) {
-                const emailElement = React.createElement(WelcomeEmailTemplate, {
-                    userName: userName,
-                });
-
-                const { error: emailError } = await sendEmail({
-                    to: userEmail,
-                    subject: 'Bem-vindo ao DevThru! 🚀',
-                    react: emailElement,
-                });
-
-                if (!emailError) {
-                    console.log(`E-mail de boas-vindas enviado com sucesso para ${userEmail}`);
-
-                    // 4. Persistir a flag welcome_sent no banco via upsert resiliente
-                    const profileUpdate = {
-                        id: userId,
-                        email: userEmail,
-                        full_name: userName,
-                        welcome_sent: true,
-                        updated_at: new Date().toISOString(),
-                    };
-
-                    const { error: updateErr } = await (dbClient
-                        .from('profiles') as any)
-                        .upsert(profileUpdate, { onConflict: 'id' });
-
-                    if (updateErr) {
-                        console.warn('Aviso ao persistir welcome_sent com dbClient, tentando cliente de sessão:', updateErr);
-                        await (supabase
-                            .from('profiles') as any)
-                            .upsert(profileUpdate, { onConflict: 'id' });
-                    }
-                } else {
-                    console.error('Falha ao enviar e-mail de boas-vindas via Resend:', emailError);
-                }
-            }
-        } catch (welcomeErr) {
-            console.error('Erro inesperado no fluxo de e-mail de boas-vindas:', welcomeErr);
-        }
+        // Disparo resiliente e idempotente de boas-vindas
+        await sendWelcomeEmailIfNeeded({
+            userId: authUser.id,
+            userEmail: authUser.email,
+            userName,
+            supabaseClient: supabase,
+        });
 
         return NextResponse.redirect(`${baseUrl}${redirectTarget}`);
     }
 
-    // Retorna o usuário para a página de login com erro amigável em caso de falha de autenticação
-    return NextResponse.redirect(`${baseUrl}/login?error=auth-code-error`);
+    // Se authUser for nulo (seja por ausência de parâmetros ou falha de código),
+    // serve a ponte HTML para capturar tokens presentes no fragmento de hash (#access_token=...)
+    return renderClientCallbackHtml(redirectTarget);
 }
