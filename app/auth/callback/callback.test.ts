@@ -82,6 +82,84 @@ describe('Auth Callback Logic & Welcome Email', () => {
         });
     });
 
+    describe('Hash Fragment Parameter Resolution (Client Bridge)', () => {
+        function parseHashParams(rawHash: string) {
+            const hash = rawHash.startsWith('#') ? rawHash.substring(1) : rawHash;
+            const params = new URLSearchParams(hash);
+            return {
+                accessToken: params.get('access_token'),
+                refreshToken: params.get('refresh_token'),
+                type: params.get('type'),
+                error: params.get('error'),
+                errorDescription: params.get('error_description'),
+            };
+        }
+
+        it('parses valid Supabase confirmation hash fragment', () => {
+            const hash = '#access_token=mock-access-token-123&expires_at=1757116800&expires_in=3600&refresh_token=mock-refresh-token-456&token_type=bearer&type=signup';
+            const parsed = parseHashParams(hash);
+            expect(parsed.accessToken).toBe('mock-access-token-123');
+            expect(parsed.refreshToken).toBe('mock-refresh-token-456');
+            expect(parsed.type).toBe('signup');
+            expect(parsed.error).toBeNull();
+        });
+
+        it('parses error in hash fragment when confirmation token is expired or invalid', () => {
+            const hash = '#error=access_denied&error_code=otp_expired&error_description=Email+link+is+invalid+or+has+expired';
+            const parsed = parseHashParams(hash);
+            expect(parsed.accessToken).toBeNull();
+            expect(parsed.error).toBe('access_denied');
+            expect(parsed.errorDescription).toBe('Email link is invalid or has expired');
+        });
+
+        it('handles empty hash gracefully', () => {
+            const parsed = parseHashParams('');
+            expect(parsed.accessToken).toBeNull();
+            expect(parsed.refreshToken).toBeNull();
+            expect(parsed.error).toBeNull();
+        });
+    });
+
+    describe('sendWelcomeEmailIfNeeded Service', () => {
+        it('returns missing_user_info when userId or userEmail are missing', async () => {
+            const { sendWelcomeEmailIfNeeded } = await import('@/lib/email/welcome');
+            const res1 = await sendWelcomeEmailIfNeeded({ userId: '', userEmail: 'test@example.com' });
+            expect(res1.success).toBe(false);
+            expect(res1.reason).toBe('missing_user_info');
+
+            const res2 = await sendWelcomeEmailIfNeeded({ userId: 'user-1', userEmail: '' });
+            expect(res2.success).toBe(false);
+            expect(res2.reason).toBe('missing_user_info');
+        });
+
+        it('returns already_sent when profile.welcome_sent is true and force is false', async () => {
+            const { sendWelcomeEmailIfNeeded } = await import('@/lib/email/welcome');
+            const mockClient = {
+                from: () => ({
+                    select: () => ({
+                        eq: () => ({
+                            maybeSingle: async () => ({
+                                data: { welcome_sent: true, full_name: 'Usuário Existente' },
+                                error: null,
+                            }),
+                        }),
+                    }),
+                }),
+            };
+
+            const res = await sendWelcomeEmailIfNeeded({
+                userId: 'user-already-sent',
+                userEmail: 'user@example.com',
+                supabaseClient: mockClient,
+                force: false,
+            });
+
+            expect(res.success).toBe(true);
+            expect(res.sent).toBe(false);
+            expect(res.reason).toBe('already_sent');
+        });
+    });
+
     describe('WelcomeEmailTemplate Element Rendering', () => {
         it('instantiates React element without errors', () => {
             const element = React.createElement(WelcomeEmailTemplate, {

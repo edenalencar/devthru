@@ -34,6 +34,9 @@ function LoginForm() {
 
             if (error) throw error
 
+            // Disparo não-bloqueante de boas-vindas caso ainda pendente
+            fetch('/api/auth/welcome', { method: 'POST' }).catch(() => {})
+
             toast.success("Login realizado com sucesso!")
             router.push(redirectUrl)
             router.refresh()

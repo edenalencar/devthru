@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAdminClient } from '@/lib/supabase/admin';
 import { verifyAdmin } from '@/lib/api/admin-auth';
-import { sendEmail } from '@/lib/email';
-import { WelcomeEmailTemplate } from '@/components/emails/WelcomeEmailTemplate';
+import { sendWelcomeEmailIfNeeded } from '@/lib/email/welcome';
 import { NextResponse } from 'next/server';
-import React from 'react';
 
 export async function GET() {
     const { isAdmin, response } = await verifyAdmin();
@@ -70,27 +68,21 @@ export async function POST(req: Request) {
         for (const user of usersToSend) {
             if (!user.email) continue;
 
-            const userName = user.full_name || 'Desenvolvedor';
-            const emailElement = React.createElement(WelcomeEmailTemplate, {
-                userName: userName,
+            const sendResult = await sendWelcomeEmailIfNeeded({
+                userId: user.id,
+                userEmail: user.email,
+                userName: user.full_name,
+                supabaseClient: supabase,
+                force: !!targetUserId,
             });
 
-            const { error: sendError } = await sendEmail({
-                to: user.email,
-                subject: 'Bem-vindo ao DevThru! 🚀',
-                react: emailElement,
-            });
-
-            if (!sendError) {
-                await (supabase
-                    .from('profiles') as any)
-                    .update({ welcome_sent: true, updated_at: new Date().toISOString() })
-                    .eq('id', user.id);
-
+            if (sendResult.success && sendResult.sent) {
                 sentCount++;
                 results.push({ email: user.email, success: true });
+            } else if (sendResult.reason === 'already_sent') {
+                results.push({ email: user.email, success: true });
             } else {
-                results.push({ email: user.email, success: false, error: sendError });
+                results.push({ email: user.email, success: false, error: sendResult.error });
             }
         }
 
@@ -105,3 +97,4 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Erro ao processar envio de boas-vindas' }, { status: 500 });
     }
 }
+
