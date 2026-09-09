@@ -167,8 +167,7 @@ export function NfeDecoderPage() {
                 <div className="container mx-auto px-4 max-w-5xl space-y-6">
                     <Breadcrumbs
                         items={[
-                            { label: "Ferramentas", href: "/tools" },
-                            { label: "Negócios", href: "/tools/business" },
+                            { label: "Ferramentas Fiscais", href: "/ferramentas-fiscais" },
                             { label: "Decodificador de Chave SEFAZ" }
                         ]}
                     />

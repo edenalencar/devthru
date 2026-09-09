@@ -58,32 +58,23 @@ export function getToolSchemaGraph({
         }
     ];
 
-    if (pathParts.length >= 2) {
+    if (pathParts.length >= 2 && pathParts[1] === 'business') {
         itemListElement.push({
             "@type": "ListItem",
             "position": 2,
-            "name": "Ferramentas",
-            "item": "https://www.devthru.com/ferramentas"
+            "name": "Ferramentas Fiscais",
+            "item": "https://www.devthru.com/ferramentas-fiscais"
         });
-    }
-
-    if (pathParts.length >= 3) {
         itemListElement.push({
             "@type": "ListItem",
             "position": 3,
-            "name": categoryLabel,
-            "item": `https://www.devthru.com/tools/${pathParts[1]}`
-        });
-        itemListElement.push({
-            "@type": "ListItem",
-            "position": 4,
             "name": name,
             "item": appUrl
         });
-    } else if (pathParts.length === 2) {
+    } else {
         itemListElement.push({
             "@type": "ListItem",
-            "position": 3,
+            "position": 2,
             "name": name,
             "item": appUrl
         });

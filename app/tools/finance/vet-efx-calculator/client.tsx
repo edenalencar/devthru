@@ -185,7 +185,7 @@ export function VetEfxCalculatorPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-5xl">
       <Breadcrumbs
-        items={[{ label: "Finanças", href: "/tools/finance" }, { label: "Simulador VET & eFX Cambial" }]}
+        items={[{ label: "Ferramentas" }, { label: "Finanças" }, { label: "Simulador VET & eFX Cambial" }]}
         className="mb-6"
       />
 

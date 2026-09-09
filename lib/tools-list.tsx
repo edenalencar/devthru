@@ -103,4 +103,6 @@ export const tools: Tool[] = [
     { slug: 'nfe-decoder', category: 'business', title: 'Decodificador SEFAZ', icon: Barcode },
     { slug: 'whatsapp-link-generator', category: 'utilities', title: 'Link do WhatsApp', icon: MessageSquare },
     { slug: 'curl-converter', category: 'development', title: 'Conversor de cURL', icon: Terminal },
+    { slug: 'crontab-generator', category: 'development', title: 'Gerador de Crontab', icon: Clock },
+    { slug: 'placa-pix', category: 'finance', title: 'Placa Pix para Imprimir', icon: QrCode },
 ]

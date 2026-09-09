@@ -62,9 +62,8 @@ export function CNHGeneratorPage() {
             <main className="flex-1">
                 <div className="container mx-auto py-10 space-y-8">
                     <Breadcrumbs items={[
-                        { label: "Home", href: "/" },
-                        { label: "Ferramentas", href: "/ferramentas" },
-                        { label: "Documentos Pessoais", href: "/ferramentas-documentos" },
+                        { label: "Ferramentas" },
+                        { label: "Documentos Pessoais" },
                         { label: "Gerador de CNH" }
                     ]} className="mb-6" />
 

@@ -144,8 +144,8 @@ export function CurlConverterPage() {
                 <div className="container mx-auto px-4 max-w-5xl space-y-6">
                     <Breadcrumbs
                         items={[
-                            { label: "Ferramentas", href: "/tools" },
-                            { label: "Dev Tools", href: "/tools/development" },
+                            { label: "Ferramentas" },
+                            { label: "Dev Tools" },
                             { label: "Conversor de cURL" }
                         ]}
                     />

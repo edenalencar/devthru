@@ -7,6 +7,56 @@
   ],
   "redirects": [
     {
+      "source": "/ferramentas",
+      "destination": "https://www.devthru.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ferramentas-documentos",
+      "destination": "https://www.devthru.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ferramentas-pessoais",
+      "destination": "https://www.devthru.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ferramentas/inscricao-estadual",
+      "destination": "https://www.devthru.com/tools/documents/inscricao-estadual",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/business",
+      "destination": "https://www.devthru.com/ferramentas-fiscais",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/documents",
+      "destination": "https://www.devthru.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/personal",
+      "destination": "https://www.devthru.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/image",
+      "destination": "https://www.devthru.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/automotive/renavam-chassis",
+      "destination": "https://www.devthru.com/tools/automotive/renavam",
+      "statusCode": 301
+    },
+    {
+      "source": "/index.html",
+      "destination": "https://www.devthru.com/",
+      "statusCode": 301
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -19,4 +69,3 @@
     }
   ]
 }
-

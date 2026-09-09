@@ -44,8 +44,14 @@ const nextConfig: NextConfig = {
       },
       // Corrigir 404 GSC - index.html legado
       {
-        source: "/((?:index\\.html)$)", // Apenas para index.html na raiz (opcional: ou /*/index.html)
+        source: "/index.html",
         destination: "/",
+        permanent: true,
+      },
+      // Inscrição Estadual: redireciona subrota de estado para a rota canônica
+      {
+        source: "/tools/documents/inscricao-estadual/:state",
+        destination: "/ferramentas/inscricao-estadual/:state",
         permanent: true,
       },
       // Redirecionamentos para páginas reportadas como 404 no GSC

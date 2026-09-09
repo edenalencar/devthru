@@ -176,8 +176,8 @@ export function WhatsappLinkGeneratorPage() {
                 <div className="container mx-auto px-4 max-w-5xl space-y-6">
                     <Breadcrumbs
                         items={[
-                            { label: "Ferramentas", href: "/tools" },
-                            { label: "Utilidades", href: "/tools/utilities" },
+                            { label: "Ferramentas" },
+                            { label: "Utilidades" },
                             { label: "Gerador de Link WhatsApp" }
                         ]}
                     />

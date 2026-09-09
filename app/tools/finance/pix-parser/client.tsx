@@ -344,9 +344,8 @@ export function PixParserPage() {
                 <div className="container mx-auto max-w-5xl px-4">
                     <Breadcrumbs
                         items={[
-                            { label: "Home", href: "/" },
-                            { label: "Ferramentas", href: "/ferramentas" },
-                            { label: "Finanças", href: "/tools/finance" },
+                            { label: "Ferramentas" },
+                            { label: "Finanças" },
                             { label: "Decodificador Pix" }
                         ]}
                     />
