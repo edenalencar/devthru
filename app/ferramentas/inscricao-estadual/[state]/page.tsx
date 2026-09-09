@@ -35,6 +35,8 @@ export async function generateStaticParams() {
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { StateRegistrationLinks } from '@/components/tools/state-registration-links'
 import { RelatedTools } from "@/components/tools/related-tools"
+import { JsonLd } from "@/components/seo/json-ld"
+import { Graph } from "schema-dts"
 
 export default async function StatePage({ params }: PageProps) {
     const { state } = await params
@@ -44,14 +46,102 @@ export default async function StatePage({ params }: PageProps) {
         notFound()
     }
 
+    const stateUrl = `https://www.devthru.com/ferramentas/inscricao-estadual/${stateInfo.uf.toLowerCase()}`
+    const personId = "https://www.devthru.com/#person/edenalencar"
+
+    const schemaGraph: Graph = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": personId,
+                "name": "Eden Alencar",
+                "jobTitle": "Lead Developer & Founder",
+                "url": "https://github.com/edenalencar",
+                "sameAs": [
+                    "https://github.com/edenalencar",
+                    "https://www.linkedin.com/in/edenalencar"
+                ]
+            },
+            {
+                "@type": "SoftwareApplication",
+                "name": `Gerador e Validador de Inscrição Estadual ${stateInfo.uf} (${stateInfo.name}) - DevThru`,
+                "operatingSystem": "Web",
+                "applicationCategory": "BusinessApplication",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "BRL"
+                },
+                "description": `Gere números de Inscrição Estadual válidos para ${stateInfo.name} (${stateInfo.uf}). Ferramenta gratuita para testes de software com validação de algoritmo oficial da SEFAZ ${stateInfo.uf}.`,
+                "url": stateUrl,
+                "author": { "@id": personId },
+                "publisher": { "@id": personId }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.devthru.com"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Inscrição Estadual",
+                        "item": "https://www.devthru.com/tools/documents/inscricao-estadual"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": `Inscrição Estadual ${stateInfo.uf}`,
+                        "item": stateUrl
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "author": { "@id": personId },
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": `O que é a Inscrição Estadual de ${stateInfo.name} (${stateInfo.uf}) e para que serve?`,
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": `A inscrição estadual (IE) em ${stateInfo.name} é o registro obrigatório que as empresas com atividades de comércio, indústria e prestação de serviços de transporte intermunicipal ou interestadual devem manter junto à SEFAZ ${stateInfo.uf}. Esse registro identifica a empresa como contribuinte do ICMS, permitindo a emissão legal de documentos fiscais.`
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": `Como posso consultar uma Inscrição Estadual na SEFAZ ${stateInfo.uf}?`,
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": `Para consultar o status cadastral de um contribuinte em ${stateInfo.name}, você pode acessar o portal oficial da SEFAZ ${stateInfo.uf} ou o portal do Sintegra ${stateInfo.uf}. Também é possível efetuar a consulta no Cadastro Centralizado de Contribuintes (CCC) através do CNPJ.`
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": `Como funciona o cálculo de validação da IE de ${stateInfo.name}?`,
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": `O cálculo e o formato de dígitos da Inscrição Estadual variam em cada estado brasileiro. Este gerador foi desenvolvido para calcular números estruturalmente simulados segundo as regras e dígitos verificadores de ${stateInfo.name}, válidos para rotinas de testes de software e homologação.`
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+
     return (
         <div className="flex min-h-screen flex-col">
+            <JsonLd data={schemaGraph} />
             <Navbar />
             <main className="flex-1">
                 <div className="pt-6 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
                     <Breadcrumbs items={[
                         { label: "Home", href: "/" },
-                        { label: "Ferramentas", href: "/" },
                         { label: "Inscrição Estadual", href: "/tools/documents/inscricao-estadual" },
                         { label: stateInfo.uf }
                     ]} />

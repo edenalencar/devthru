@@ -1,10 +1,7 @@
 import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
-﻿import { siteConfig } from "@/config/site"
 import { Metadata } from 'next'
 import { generateToolMetadata } from "@/lib/seo-config"
-
 import { JsonLd } from "@/components/seo/json-ld"
-import { Graph } from "schema-dts"
 import { CteGeneratorPage } from "./client"
 
 export const metadata: Metadata = generateToolMetadata({
@@ -15,58 +12,6 @@ export const metadata: Metadata = generateToolMetadata({
 })
 
 export default function Page() {
-    const jsonLd: Graph = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "SoftwareApplication",
-                "name": "Gerador de Chave CT-e",
-                "description": "Gere chaves de acesso de Conhecimento de Transporte Eletrônico (CT-e) válidas para testes de integração.",
-                "applicationCategory": "BusinessApplication",
-                "operatingSystem": "Web",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "BRL"
-                },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "120"
-                            }
-            },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Home",
-                        "item": "https://www.devthru.com"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "name": "Ferramentas",
-                        "item": "https://www.devthru.com/ferramentas"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 3,
-                        "name": "Negócios",
-                        "item": "https://www.devthru.com/ferramentas-fiscais"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 4,
-                        "name": "Gerador de CT-e",
-                        "item": "https://www.devthru.com/tools/business/cte-generator"
-                    }
-                ]
-            }
-        ]
-    }
-
     return (
         <>
             <JsonLd

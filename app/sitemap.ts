@@ -22,9 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/privacy',
         '/terms',
         '/updates',
-        '/login',
-        '/register',
-        '/forgot-password',
         '/blog',
         '/guides',
     ].map((route) => ({
@@ -58,6 +55,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }))
 
+    // Guide category routes
+    const guideCategoryRoutes = Array.from(new Set(PROGRAMMATIC_CONTENT.map((c) => c.category))).map((category) => ({
+        url: `${baseUrl}/guides/${category}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }))
+
     // Guide routes
     const guideRoutes = PROGRAMMATIC_CONTENT.map((guide) => ({
         url: `${baseUrl}/guides/${guide.category}/${guide.toolId}/${guide.languageId}`,
@@ -66,5 +71,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }))
 
-    return [...coreRoutes, ...toolRoutes, ...ieStateRoutes, ...blogRoutes, ...guideRoutes]
+    return [...coreRoutes, ...toolRoutes, ...ieStateRoutes, ...blogRoutes, ...guideCategoryRoutes, ...guideRoutes]
 }

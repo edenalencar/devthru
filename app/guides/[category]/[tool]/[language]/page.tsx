@@ -98,7 +98,7 @@ export default async function GuidePage({ params }: PageProps) {
                 <Breadcrumbs
                     items={[
                         { label: "Guias", href: "/guides" },
-                        { label: category === "validation" ? "Validação" : category === "formatting" ? "Formatação" : category === "generation" ? "Geração" : category, href: `/guides` },
+                        { label: category === "validation" ? "Validação" : category === "formatting" ? "Formatação" : category === "generation" ? "Geração" : category, href: `/guides/${category}` },
                         { label: content.title }
                     ]}
                     className="mb-6"

@@ -166,8 +166,8 @@ export function CnabParserPage() {
       <main className="flex-1 container mx-auto px-4 py-8 max-w-6xl space-y-8">
         <Breadcrumbs
           items={[
-            { label: "Home", href: "/" },
-            { label: "Finanças", href: "/tools/finance" },
+            { label: "Ferramentas" },
+            { label: "Finanças" },
             { label: "Leitor e Decodificador de CNAB" }
           ]}
           className="mb-6"

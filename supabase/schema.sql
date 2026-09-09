@@ -21,23 +21,9 @@ create table if not exists public.generation_history (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
--- Create subscriptions table
-create table if not exists public.subscriptions (
-  id uuid default gen_random_uuid() primary key,
-  user_id uuid references auth.users on delete cascade not null,
-  stripe_customer_id text,
-  stripe_subscription_id text,
-  plan_id text,
-  status text,
-  current_period_end timestamp with time zone,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
-  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
-);
-
 -- Enable Row Level Security (RLS)
 alter table public.profiles enable row level security;
 alter table public.generation_history enable row level security;
-alter table public.subscriptions enable row level security;
 
 -- Create policies for profiles
 create policy "Public profiles are viewable by everyone."
@@ -60,11 +46,6 @@ create policy "Users can view their own history."
 create policy "Users can insert their own history."
   on public.generation_history for insert
   with check ( auth.uid() = user_id );
-
--- Create policies for subscriptions
-create policy "Users can view their own subscription."
-  on public.subscriptions for select
-  using ( auth.uid() = user_id );
 
 -- Create function to handle new user signup
 create or replace function public.handle_new_user()

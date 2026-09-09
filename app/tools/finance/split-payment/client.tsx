@@ -179,7 +179,7 @@ export function SplitPaymentCalculatorPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-5xl">
       <Breadcrumbs
-        items={[{ label: "Finanças", href: "/tools/finance" }, { label: "Simulador de Split Payment" }]}
+        items={[{ label: "Ferramentas" }, { label: "Finanças" }, { label: "Simulador de Split Payment" }]}
         className="mb-6"
       />
 

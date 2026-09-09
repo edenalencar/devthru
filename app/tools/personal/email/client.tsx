@@ -143,9 +143,8 @@ export function EmailGeneratorPage() {
             <main className="flex-1">
                 <div className="container mx-auto py-10 space-y-8">
                     <Breadcrumbs items={[
-                        { label: "Home", href: "/" },
-                        { label: "Ferramentas", href: "/ferramentas" },
-                        { label: "Dados Pessoais", href: "/ferramentas-pessoais" },
+                        { label: "Ferramentas" },
+                        { label: "Dados Pessoais" },
                         { label: "Gerador de Email" }
                     ]} className="mb-6" />
                     <div className="space-y-2">
