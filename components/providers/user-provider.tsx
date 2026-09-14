@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useRef, useState } from "react"
 import { User } from "@supabase/supabase-js"
 import { createClient } from "@/lib/supabase/client"
 import { getPlanPermissions, PlanPermissions, isUserInTrial } from "@/lib/permissions"
@@ -32,6 +32,7 @@ export function UserProvider({
     const [isPro, setIsPro] = useState(false)
     const [isInTrial, setIsInTrial] = useState(false)
     const [isLoading, setIsLoading] = useState(!initialUser)
+    const welcomeTriggeredRef = useRef<Record<string, boolean>>({})
     const supabase = createClient()
 
     useEffect(() => {
@@ -53,17 +54,25 @@ export function UserProvider({
         setIsInTrial(isUserInTrial(currentProfile))
 
         // Disparo automático e resiliente de boas-vindas caso ainda não enviado
-        if (currentUser && currentProfile && currentProfile.welcome_sent === false) {
+        if (
+            currentUser &&
+            currentProfile &&
+            currentProfile.welcome_sent === false &&
+            !welcomeTriggeredRef.current[currentUser.id]
+        ) {
+            welcomeTriggeredRef.current[currentUser.id] = true
+            currentProfile.welcome_sent = true
+            try {
+                localStorage.setItem(`cached_profile_${currentUser.id}`, JSON.stringify(currentProfile))
+            } catch {
+                // Ignora erros de escrita no localStorage
+            }
+
             fetch('/api/auth/welcome', { method: 'POST' })
                 .then(res => res.json())
                 .then(resData => {
                     if (resData?.sent) {
-                        currentProfile.welcome_sent = true
-                        try {
-                            localStorage.setItem(`cached_profile_${currentUser.id}`, JSON.stringify(currentProfile))
-                        } catch {
-                            // Ignora erros de escrita no localStorage
-                        }
+                        console.log('[UserProvider] Boas-vindas confirmadas pelo servidor')
                     }
                 })
                 .catch(err => {
