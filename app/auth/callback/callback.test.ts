@@ -158,6 +158,43 @@ describe('Auth Callback Logic & Welcome Email', () => {
             expect(res.sent).toBe(false);
             expect(res.reason).toBe('already_sent');
         });
+
+        it('intercepts race condition when atomic claim lock returns 0 rows', async () => {
+            const { sendWelcomeEmailIfNeeded } = await import('@/lib/email/welcome');
+            const mockClient = {
+                from: () => ({
+                    select: () => ({
+                        eq: () => ({
+                            maybeSingle: async () => ({
+                                data: { welcome_sent: false, full_name: 'Novo Usuário' },
+                                error: null,
+                            }),
+                        }),
+                    }),
+                    update: () => ({
+                        eq: () => ({
+                            or: () => ({
+                                select: async () => ({
+                                    data: [], // 0 linhas atualizadas: outra requisição concorrente acabou de adquirir a reserva
+                                    error: null,
+                                }),
+                            }),
+                        }),
+                    }),
+                }),
+            };
+
+            const res = await sendWelcomeEmailIfNeeded({
+                userId: 'user-concurrent-race',
+                userEmail: 'concurrent@example.com',
+                supabaseClient: mockClient,
+                force: false,
+            });
+
+            expect(res.success).toBe(true);
+            expect(res.sent).toBe(false);
+            expect(res.reason).toBe('already_sent');
+        });
     });
 
     describe('WelcomeEmailTemplate Element Rendering', () => {
