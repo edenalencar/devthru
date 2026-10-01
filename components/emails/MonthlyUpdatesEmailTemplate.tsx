@@ -20,9 +20,24 @@ interface UpdateItem {
     url: string;
 }
 
+export interface FeaturePoint {
+    title: string;
+    description: string;
+}
+
+export interface FeaturedSection {
+    badge?: string;
+    title: string;
+    subtitle?: string;
+    points: FeaturePoint[];
+    ctaText?: string;
+    ctaUrl?: string;
+}
+
 interface MonthlyUpdatesEmailTemplateProps {
     monthYear?: string;
     introText?: string;
+    featuredSection?: FeaturedSection;
     newTools?: UpdateItem[];
     blogPosts?: UpdateItem[];
     radioSpotlight?: UpdateItem;
@@ -30,8 +45,9 @@ interface MonthlyUpdatesEmailTemplateProps {
 }
 
 export const MonthlyUpdatesEmailTemplate = ({
-    monthYear = 'Agosto/2026',
-    introText = 'Temos o prazer de compartilhar as últimas novidades e ferramentas que lançamos neste mês no DevThru para tornar o seu fluxo de desenvolvimento ainda mais ágil.',
+    monthYear = 'Outubro/2026',
+    introText = 'Temos o prazer de compartilhar as últimas novidades e recursos no DevThru para acelerar e proteger o seu fluxo de desenvolvimento.',
+    featuredSection,
     newTools = [],
     blogPosts = [],
     radioSpotlight,
@@ -97,6 +113,34 @@ export const MonthlyUpdatesEmailTemplate = ({
                         <Text style={paragraph}>{introText}</Text>
                         
                         <Hr style={hr} />
+
+                        {/* Destaque Principal: Área do Usuário Logado */}
+                        {featuredSection && (
+                            <Section style={featuredCard}>
+                                {featuredSection.badge && (
+                                    <span style={featuredBadge}>{featuredSection.badge}</span>
+                                )}
+                                <Heading style={featuredTitle}>{featuredSection.title}</Heading>
+                                {featuredSection.subtitle && (
+                                    <Text style={featuredSubtitle}>{featuredSection.subtitle}</Text>
+                                )}
+                                <div style={pointsContainer}>
+                                    {featuredSection.points.map((pt, idx) => (
+                                        <div key={idx} style={pointCard}>
+                                            <Text style={pointTitle}>{pt.title}</Text>
+                                            <Text style={pointDesc}>{pt.description}</Text>
+                                        </div>
+                                    ))}
+                                </div>
+                                {featuredSection.ctaUrl && (
+                                    <div style={{ marginTop: '16px', textAlign: 'center' as const }}>
+                                        <Link href={featuredSection.ctaUrl} style={primaryButton}>
+                                            {featuredSection.ctaText || 'Acessar Meu Dashboard →'}
+                                        </Link>
+                                    </div>
+                                )}
+                            </Section>
+                        )}
 
                         {/* Novas Ferramentas */}
                         {newTools.length > 0 && (
@@ -358,3 +402,77 @@ const unsubscribeLink = {
     color: '#71717a',
     textDecoration: 'underline',
 };
+
+const featuredCard = {
+    backgroundColor: '#ffffff',
+    border: '2px solid #135bec',
+    borderRadius: '12px',
+    padding: '24px 20px',
+    margin: '0 0 28px 0',
+};
+
+const featuredBadge = {
+    display: 'inline-block',
+    backgroundColor: '#eff6ff',
+    color: '#135bec',
+    fontSize: '11px',
+    fontWeight: '800',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.05em',
+    padding: '4px 8px',
+    borderRadius: '4px',
+    marginBottom: '8px',
+};
+
+const featuredTitle = {
+    fontSize: '18px',
+    fontWeight: '800',
+    color: '#0d121b',
+    margin: '0 0 6px 0',
+    letterSpacing: '-0.02em',
+};
+
+const featuredSubtitle = {
+    fontSize: '14px',
+    lineHeight: '22px',
+    color: '#4c669a',
+    margin: '0 0 16px 0',
+};
+
+const pointsContainer = {
+    margin: '0 0 12px 0',
+};
+
+const pointCard = {
+    backgroundColor: '#f8fafc',
+    border: '1px solid #e2e8f0',
+    borderRadius: '8px',
+    padding: '12px 14px',
+    margin: '0 0 10px 0',
+};
+
+const pointTitle = {
+    fontSize: '13px',
+    fontWeight: '700',
+    color: '#0d121b',
+    margin: '0 0 4px 0',
+};
+
+const pointDesc = {
+    fontSize: '12px',
+    lineHeight: '18px',
+    color: '#4c669a',
+    margin: '0',
+};
+
+const primaryButton = {
+    display: 'inline-block',
+    backgroundColor: '#135bec',
+    color: '#ffffff',
+    fontSize: '14px',
+    fontWeight: '700',
+    padding: '12px 24px',
+    borderRadius: '8px',
+    textDecoration: 'none',
+};
+

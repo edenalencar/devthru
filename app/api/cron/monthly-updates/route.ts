@@ -46,36 +46,63 @@ export async function GET(req: NextRequest) {
         ];
         const currentMonthYear = `${monthNames[now.getMonth()]}/${now.getFullYear()}`;
 
+        // Destaque Editorial Principal: A Área Logada do DevThru (sem menções técnicas de infra/banco)
+        const featuredSection = {
+            badge: "Novidade & Produtividade",
+            title: "🚀 Conheça os Superpoderes da sua Conta no DevThru",
+            subtitle: "Você sabia que ter uma conta gratuita no DevThru desbloqueia recursos avançados para o seu fluxo de desenvolvimento?",
+            points: [
+                {
+                    title: "📂 Histórico Persistente e Sincronizado",
+                    description: "Suas gerações e dados de teste ficam salvos com segurança na nuvem, acessíveis de qualquer navegador ou dispositivo, sem o risco de perda ao limpar cookies."
+                },
+                {
+                    title: "📊 Exportação para CSV, JSON e Excel (.xlsx)",
+                    description: "Exporte históricos de dados com 1 clique para anexar em tarefas de homologação, tickets do Jira ou compartilhar massas de dados com o time de QA."
+                },
+                {
+                    title: "🔑 API Keys para Automação & Testes",
+                    description: "Gere sua chave de API pessoal na aba de configurações e consuma os geradores do DevThru diretamente em scripts, testes automatizados e pipelines."
+                },
+                {
+                    title: "⚡ Métricas de Produtividade & Atalhos",
+                    description: "Visualize sua ferramenta mais utilizada, o volume de gerações realizadas e acerte o atalho direto para o que você mais precisa."
+                }
+            ],
+            ctaText: "Acessar Meu Dashboard no DevThru →",
+            ctaUrl: "https://www.devthru.com/dashboard"
+        };
+
+        // Ferramentas inéditas em destaque (Curadoria de utilitários de alta demanda ainda não enviados)
+        const newTools = [
+            {
+                title: "Debugger de JWT (JSON Web Tokens)",
+                description: "Decodifique Header, Payload e valide assinaturas de JWT em tempo real com total privacidade — tudo executado 100% no seu navegador.",
+                url: "https://www.devthru.com/tools/development/jwt-debugger"
+            },
+            {
+                title: "Simulador de Split Payment (Reforma Tributária)",
+                description: "Simule a retenção automática de IBS e CBS na liquidação financeira e compreenda os impactos técnicos das novas regras tributárias brasileiras.",
+                url: "https://www.devthru.com/tools/finance/split-payment"
+            },
+            {
+                title: "Gerador e Testador de Regex",
+                description: "Crie e valide expressões regulares com destaque em tempo real, explicação de tokens e atalhos para padrões brasileiros (CPF, CNPJ, telefone, CEP).",
+                url: "https://www.devthru.com/tools/development/regex"
+            },
+            {
+                title: "Decodificador de Pix Copia e Cola & Placa Pix",
+                description: "Faça o parse de payloads EMVCo do Pix, inspecione parâmetros, valide o CRC16 e gere placas de balcão prontas para impressão.",
+                url: "https://www.devthru.com/tools/finance/pix-parser"
+            }
+        ];
+
         // Pegar os 3 posts de blog mais recentes
         const recentPosts = getAllPosts().slice(0, 3).map(post => ({
             title: post.title,
             description: post.description,
             url: `https://www.devthru.com/blog/${post.slug}`
         }));
-
-        // Ferramentas em destaque do mês (Curadoria: Fiscal, Integração & Utilitários de Alta Produtividade)
-        const newTools = [
-            {
-                title: "Decodificador de Chave SEFAZ",
-                description: "Desmembre chaves de 44 dígitos de NF-e, NFC-e, CT-e e MDF-e com validação matemática de Módulo 11 e exportação JSON.",
-                url: "https://www.devthru.com/tools/business/nfe-decoder"
-            },
-            {
-                title: "Gerador de Link WhatsApp (wa.me)",
-                description: "Crie links diretos personalizados com mensagem pronta, preview em tempo real e QR Code dinâmico para smartphones.",
-                url: "https://www.devthru.com/tools/utilities/whatsapp-link-generator"
-            },
-            {
-                title: "Conversor de cURL para Código",
-                description: "Converta comandos cURL para JavaScript (Fetch e Axios), Python Requests, Go e PHP de forma instantânea.",
-                url: "https://www.devthru.com/tools/development/curl-converter"
-            },
-            {
-                title: "Leitor e Decodificador de CNAB",
-                description: "Inspecione e valide arquivos de remessa e retorno CNAB 240 e CNAB 400 da FEBRABAN com visualização de lotes.",
-                url: "https://www.devthru.com/tools/finance/cnab-parser"
-            }
-        ];
 
         // Destaque da Rádio Lo-Fi Dev & Central de Foco
         const radioSpotlight = {
@@ -100,6 +127,8 @@ export async function GET(req: NextRequest) {
             const batchPayload = currentBatch.map((email: any) => {
                 const emailElement = React.createElement(MonthlyUpdatesEmailTemplate, {
                     monthYear: currentMonthYear,
+                    introText: "O DevThru segue evoluindo como a sua parada rápida para ferramentas de desenvolvimento. Nesta edição, apresentamos como aproveitar ao máximo a sua Área Logada e trazemos uma seleção especial de utilitários indispensáveis para acelerar o seu dia a dia.",
+                    featuredSection: featuredSection,
                     newTools: newTools,
                     blogPosts: recentPosts,
                     radioSpotlight: radioSpotlight,
@@ -110,7 +139,7 @@ export async function GET(req: NextRequest) {
                     from: fromEmail,
                     to: email,
                     replyTo: replyToEmail, // Direciona as respostas para o e-mail de contato de suporte
-                    subject: `🚀 Novas ferramentas e atualizações • ${currentMonthYear}`,
+                    subject: '🔑 Histórico na nuvem, exportação em Excel e API Keys: você já conhece a sua conta no DevThru?',
                     react: emailElement,
                 };
             });
