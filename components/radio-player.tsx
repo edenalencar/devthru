@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { track } from "@vercel/analytics";
+import { sendGTMEvent } from "@/lib/gtm";
 
 type ChannelType = "lofi" | "synthwave";
 type TabType = "radio" | "notes" | "goals" | "posture";
@@ -50,20 +51,11 @@ const trackRadioEvent = (action: string, channel: string) => {
     // Falha silenciosa
   }
 
-  try {
-    if (typeof window !== "undefined") {
-      const win = window as unknown as { dataLayer?: Array<Record<string, unknown>> };
-      if (win.dataLayer) {
-        win.dataLayer.push({
-          event: "radio_interaction",
-          radio_action: action,
-          radio_channel: channel,
-        });
-      }
-    }
-  } catch {
-    // Falha silenciosa
-  }
+  sendGTMEvent({
+    event: "radio_interaction",
+    radio_action: action,
+    radio_channel: channel,
+  });
 };
 
 const CHANNELS: Record<ChannelType, ChannelConfig> = {

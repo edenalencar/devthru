@@ -5,6 +5,10 @@ import { siteConfig } from "@/config/site"
 export const metadata: Metadata = {
     title: "Criar Conta Gratuita | DevThru",
     description: "Crie sua conta gratuita no DevThru e acesse ferramentas essenciais para desenvolvedores. Agilize seu fluxo de trabalho e testes com nossa plataforma unificada.",
+    robots: {
+        index: false,
+        follow: false,
+    },
     alternates: {
         canonical: `${siteConfig.url}/register`,
     },

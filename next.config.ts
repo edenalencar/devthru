@@ -36,6 +36,17 @@ const nextConfig: NextConfig = {
         destination: "/tools/documents/inscricao-estadual",
         permanent: true,
       },
+      // Corrigir 404 GSC - Ferramentas fiscais consolidadas
+      {
+        source: "/tools/business/cte-generator",
+        destination: "/ferramentas-fiscais",
+        permanent: true,
+      },
+      {
+        source: "/tools/business/nfce-generator",
+        destination: "/ferramentas-fiscais",
+        permanent: true,
+      },
       // Corrigir 404 GSC - Rota de diretório sem página
       {
         source: "/tools/business",
