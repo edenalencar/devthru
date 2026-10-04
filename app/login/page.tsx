@@ -5,6 +5,10 @@ import { siteConfig } from "@/config/site"
 export const metadata: Metadata = {
     title: "Entrar na Conta | DevThru",
     description: "Faça login no DevThru para acessar seu painel e utilizar todas as nossas ferramentas de desenvolvimento.",
+    robots: {
+        index: false,
+        follow: false,
+    },
     alternates: {
         canonical: `${siteConfig.url}/login`,
     },

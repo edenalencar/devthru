@@ -7,6 +7,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "devthru.com"
+        }
+      ],
+      "destination": "https://www.devthru.com/:path*",
+      "statusCode": 301
+    },
+    {
       "source": "/ferramentas",
       "destination": "https://www.devthru.com/",
       "statusCode": 301
@@ -22,8 +33,23 @@
       "statusCode": 301
     },
     {
+      "source": "/tools/documents/inscricao-estadual/:state",
+      "destination": "https://www.devthru.com/ferramentas/inscricao-estadual/:state",
+      "statusCode": 301
+    },
+    {
       "source": "/ferramentas/inscricao-estadual",
       "destination": "https://www.devthru.com/tools/documents/inscricao-estadual",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/business/cte-generator",
+      "destination": "https://www.devthru.com/ferramentas-fiscais",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/business/nfce-generator",
+      "destination": "https://www.devthru.com/ferramentas-fiscais",
       "statusCode": 301
     },
     {
@@ -54,17 +80,6 @@
     {
       "source": "/index.html",
       "destination": "https://www.devthru.com/",
-      "statusCode": 301
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "devthru.com"
-        }
-      ],
-      "destination": "https://www.devthru.com/:path*",
       "statusCode": 301
     }
   ]

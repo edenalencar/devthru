@@ -149,10 +149,10 @@ export default async function GuidePage({ params }: PageProps) {
                     </p>
                     <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
                         <Link
-                            href={`/tools/${content.toolCategory}/${tool}`}
+                            href={(tool === 'cte-generator' || tool === 'nfce-generator') ? '/ferramentas-fiscais' : `/tools/${content.toolCategory}/${tool}`}
                             className="flex items-center gap-2"
                         >
-                            Usar Ferramenta de {tool.toUpperCase()} Online
+                            {(tool === 'cte-generator' || tool === 'nfce-generator') ? 'Acessar Ferramentas Fiscais Online' : `Usar Ferramenta de ${tool.toUpperCase()} Online`}
                             <ArrowRight className="w-4 h-4" />
                         </Link>
                     </Button>

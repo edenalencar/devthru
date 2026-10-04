@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useRef, useState } from "react"
 import { User } from "@supabase/supabase-js"
 import { createClient } from "@/lib/supabase/client"
 import { getPlanPermissions, PlanPermissions, isUserInTrial } from "@/lib/permissions"
+import { sendGTMEvent } from "@/lib/gtm"
 
 type UserContextType = {
     user: User | null
@@ -36,13 +37,10 @@ export function UserProvider({
     const supabase = createClient()
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            window.dataLayer = window.dataLayer || []
-            window.dataLayer.push({
-                event: 'user_id_update',
-                user_id: user?.id || null
-            })
-        }
+        sendGTMEvent({
+            event: 'user_id_update',
+            user_id: user?.id || null
+        })
     }, [user?.id])
 
     // Function to calculate derived state from user and profile

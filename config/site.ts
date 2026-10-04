@@ -27,7 +27,7 @@ export const siteConfig = {
     },
     creator: {
         name: "DevThru Team",
-        url: "https://devthru.com",
+        url: "https://www.devthru.com",
     },
 }
 

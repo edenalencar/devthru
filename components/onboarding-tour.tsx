@@ -17,10 +17,15 @@ export function OnboardingTour() {
     const [step, setStep] = useState(0)
 
     useEffect(() => {
+        if (typeof window === "undefined") return
+        const isMobile = window.innerWidth < 768
+        const isHome = window.location.pathname === "/"
+        if (isMobile || !isHome) return
+
         const hasSeenTour = localStorage.getItem("devthru-tour-seen")
         if (!hasSeenTour) {
-            // Small delay to not overwhelm the user immediately
-            const timer = setTimeout(() => setOpen(true), 1000)
+            // Pequeno atraso apenas na home no desktop para não sobrecarregar a primeira pintura
+            const timer = setTimeout(() => setOpen(true), 2000)
             return () => clearTimeout(timer)
         }
     }, [])
