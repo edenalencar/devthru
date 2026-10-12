@@ -110,7 +110,7 @@ export function SettingsPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="bg-muted p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                                <pre>{`fetch('https://devthru.com/api/v1/generate/cpf', {
+                                <pre>{`fetch('https://www.devthru.com/api/v1/generate/cpf', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
