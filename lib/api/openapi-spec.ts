@@ -6,12 +6,12 @@ export const openApiSpec = {
         description: 'API REST para geração e validação de dados brasileiros',
         contact: {
             name: 'DevThru',
-            url: 'https://devthru.com',
+            url: 'https://www.devthru.com',
         },
     },
     servers: [
         {
-            url: 'https://devthru.com/api/v1',
+            url: 'https://www.devthru.com/api/v1',
             description: 'Production server',
         },
         {

@@ -70,10 +70,10 @@ export default async function BlogPostPage({ params }: PageProps) {
                     },
                     "datePublished": post.date,
                     "dateModified": post.date,
-                    "image": `https://devthru.com/api/og/blog?title=${encodeURIComponent(post.title)}`, // dynamic OG image
+                    "image": `${siteConfig.url}/api/og/blog?title=${encodeURIComponent(post.title)}`, // dynamic OG image
                     "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": `https://devthru.com/blog/${slug}`
+                        "@id": `${siteConfig.url}/blog/${slug}`
                     }
                 }}
             />
