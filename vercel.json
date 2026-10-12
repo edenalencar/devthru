@@ -41,6 +41,7 @@
       "source": "/ferramentas/inscricao-estadual",
       "destination": "https://www.devthru.com/tools/documents/inscricao-estadual",
       "statusCode": 301
+    },
     {
       "source": "/tools/business",
       "destination": "https://www.devthru.com/ferramentas-fiscais",
