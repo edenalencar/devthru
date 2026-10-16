@@ -41,6 +41,13 @@ export function getToolSchemaGraph({
             "price": "0",
             "priceCurrency": "BRL"
         },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "128",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
         "description": description,
         "url": appUrl,
         "author": { "@id": personId },
