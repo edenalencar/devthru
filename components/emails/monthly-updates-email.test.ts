@@ -39,8 +39,8 @@ describe('MonthlyUpdatesEmailTemplate', () => {
         });
 
         expect(element).toBeDefined();
-        expect(element.props.featuredSection.title).toContain('Superpoderes');
-        expect(element.props.featuredSection.points).toHaveLength(2);
-        expect(element.props.featuredSection.points[0].description).not.toContain('supabase');
+        expect(element.props.featuredSection?.title).toContain('Superpoderes');
+        expect(element.props.featuredSection?.points).toHaveLength(2);
+        expect(element.props.featuredSection?.points[0].description).not.toContain('supabase');
     });
 });

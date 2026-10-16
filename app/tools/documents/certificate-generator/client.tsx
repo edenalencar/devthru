@@ -171,17 +171,58 @@ export function CertificateGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Certificados</CardTitle>
+                            <CardTitle>Sobre o Gerador de Certificados de Conclusão</CardTitle>
+                            <CardDescription>
+                                Ferramenta online gratuita para criar, personalizar e exportar certificados profissionais em PDF e imagem de alta resolução.
+                            </CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                        <CardContent className="space-y-6">
+                            <div className="prose prose-sm max-w-none dark:prose-invert space-y-4">
                                 <p>
-                                    O Gerador de Certificados permite criar documentos profissionais para cursos, workshops e eventos.
-                                    Você pode personalizar o nome do aluno, curso, instrutor e organização, gerando um arquivo PDF pronto para impressão.
+                                    O <strong>Gerador de Certificados do DevThru</strong> foi projetado tanto para instrutores, organizadores de workshops e criadores de cursos livres quanto para <strong>desenvolvedores de software</strong> que precisam de modelos confiáveis para simular fluxos de emissão de certificados em plataformas LMS (Learning Management Systems), portais de membros e sistemas educacionais.
                                 </p>
-                                <p className="text-sm text-muted-foreground mt-4">
-                                    <strong>Nota:</strong> O certificado gerado é um modelo visual e não possui validação acadêmica oficial, a menos que emitido por uma instituição credenciada.
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 not-prose">
+                                    <div className="p-4 rounded-lg border bg-muted/40">
+                                        <h4 className="font-semibold text-sm mb-1 text-foreground">📄 Padrão A4 Paisagem</h4>
+                                        <p className="text-xs text-muted-foreground">
+                                            Proporção 297x210mm calibrada para exportação em PDF e impressão direta em gráficas ou impressoras convencionais.
+                                        </p>
+                                    </div>
+                                    <div className="p-4 rounded-lg border bg-muted/40">
+                                        <h4 className="font-semibold text-sm mb-1 text-foreground">⚡ Exportação em Alta Resolução</h4>
+                                        <p className="text-xs text-muted-foreground">
+                                            Renderização vetorial com densidade de pixels 2x para garantir textos nítidos e bordas de assinatura bem delineadas.
+                                        </p>
+                                    </div>
+                                    <div className="p-4 rounded-lg border bg-muted/40">
+                                        <h4 className="font-semibold text-sm mb-1 text-foreground">🔒 Privacidade e Segurança</h4>
+                                        <p className="text-xs text-muted-foreground">
+                                            Processamento 100% no navegador do cliente (client-side). Nenhum dado pessoal ou nome de aluno é enviado a servidores externos.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <h3 className="text-lg font-semibold pt-2 text-foreground">Validade Jurídica de Certificados de Cursos Livres</h3>
+                                <p>
+                                    No Brasil, os <strong>cursos livres</strong> são amparados pela <em>Lei de Diretrizes e Bases da Educação Nacional (Lei nº 9.394/96)</em> e pelo <em>Decreto Presidencial nº 5.154/04</em>. Eles não dependem de autorização prévia do MEC (Ministério da Educação) e os certificados emitidos possuem validade legal em todo o território nacional para:
                                 </p>
+                                <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
+                                    <li>Comprovação de horas complementares em cursos técnicos, graduações e faculdades;</li>
+                                    <li>Enriquecimento de currículo profissional e comprovação de qualificações no LinkedIn;</li>
+                                    <li>Pontuação em processos seletivos simplificados e provas de títulos que aceitem cursos de capacitação livre;</li>
+                                    <li>Treinamentos corporativos internos e homologação de competências operacionais.</li>
+                                </ul>
+
+                                <h3 className="text-lg font-semibold pt-2 text-foreground">Guia para Desenvolvedores: Testando Pipelines de Geração de PDF</h3>
+                                <p>
+                                    Integrar renderização de documentos dinâmicos em aplicações web exige atenção a armadilhas comuns. Utilize este modelo para validar:
+                                </p>
+                                <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
+                                    <li><strong>Tratamento de nomes longos:</strong> Valide se nomes com mais de 40 caracteres causam quebra indevida de layout ou sobreposição com a borda decorativa.</li>
+                                    <li><strong>CORS em fontes web e imagens:</strong> Na geração via canvas (html-to-image/html2canvas), certifique-se de que fontes do Google Fonts ou assets estáticos possuem cabeçalhos <code>Access-Control-Allow-Origin</code> liberados para evitar erros de renderização.</li>
+                                    <li><strong>Compactação de arquivos:</strong> Ao salvar em PDF via bibliotecas como <code>jsPDF</code>, avalie o equilíbrio entre qualidade do DPI e o peso final do documento para envios automatizados por e-mail (Resend, SendGrid).</li>
+                                </ul>
                             </div>
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
