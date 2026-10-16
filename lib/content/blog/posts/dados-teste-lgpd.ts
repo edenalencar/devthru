@@ -58,6 +58,7 @@ export const postDadosTesteLgpd: BlogPost = {
 <tbody>
 <tr><td>CPF</td><td>XXX.XXX.XXX-DD</td><td><a href="/tools/documents/cpf">Gerador de CPF</a></td></tr>
 <tr><td>CNPJ</td><td>XX.XXX.XXX/XXXX-DD</td><td><a href="/tools/documents/cnpj">Gerador de CNPJ</a></td></tr>
+<tr><td>PIS/PASEP</td><td>XXX.XXXXX.XX-X</td><td><a href="/tools/documents/pis">Gerador de PIS</a> (leia o <a href="/blog/como-funciona-algoritmo-validacao-pis">artigo sobre validação do PIS</a>)</td></tr>
 <tr><td>Nome completo</td><td>Nome + Sobrenome</td><td><a href="/tools/personal/name">Gerador de Nomes</a></td></tr>
 <tr><td>Endereço</td><td>Rua, Cidade, CEP</td><td><a href="/tools/personal/address">Gerador de Endereços</a></td></tr>
 <tr><td>Email</td><td>nome@dominio.com</td><td><a href="/tools/personal/email">Gerador de Email</a></td></tr>

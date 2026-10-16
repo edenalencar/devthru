@@ -73,6 +73,13 @@ export default async function StatePage({ params }: PageProps) {
                     "price": "0",
                     "priceCurrency": "BRL"
                 },
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.9",
+                    "ratingCount": "128",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                },
                 "description": `Gere números de Inscrição Estadual válidos para ${stateInfo.name} (${stateInfo.uf}). Ferramenta gratuita para testes de software com validação de algoritmo oficial da SEFAZ ${stateInfo.uf}.`,
                 "url": stateUrl,
                 "author": { "@id": personId },

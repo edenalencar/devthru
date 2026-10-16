@@ -33,3 +33,10 @@ A principal meta do blog é atuar como topo de funil para as ferramentas de dese
    * Adicione as URLs relativas das ferramentas relacionadas no array `relatedTools` do post.
    * O componente do blog ([page.tsx](file:///c:/Users/edena/Projetos/devhubtools/app/blog/[slug]/page.tsx)) importará esses caminhos e resolverá dinamicamente os botões na seção final do post com seus respectivos nomes configurados em `tools-list.tsx`.
    * Certifique-se de que a ferramenta de destino esteja corretamente cadastrada no [tools-list.tsx](file:///c:/Users/edena/Projetos/devhubtools/lib/tools-list.tsx) com seu respectivo slug.
+
+3. **Prevenção de Páginas Órfãs (Mínimo de 2 a 3 Links Internos Entrantes):**
+   * **NUNCA** deixe um post com apenas 1 link interno no site. Posts sem links internos suficientes disparam alertas no SEMrush (*Pages with only one internal link*) e sofrem atrasos severos de indexação e perda de PageRank no Google.
+   * **Ação Obrigatória:** Ao publicar um novo post, adicione links contextuais para ele em:
+     1. Na página da respectiva ferramenta (em `app/tools/<category>/<tool>/client.tsx` no bloco de Artigos Relacionados).
+     2. Em pelo menos 1 ou 2 posts existentes do blog sobre assuntos correlatos (ex: se o post for sobre PIS, referenciá-lo nos posts de CPF, dados fictícios ou testes de API).
+   * **Validação do Slug:** O link deve bater 100% com a propriedade `slug` do post (ex: `/blog/meu-slug`). Links com slugs divergentes geram 404 e erros de links internos quebrados no SEMrush.

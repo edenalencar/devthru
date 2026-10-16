@@ -81,6 +81,11 @@
       "source": "/settings",
       "destination": "https://www.devthru.com/dashboard/settings",
       "statusCode": 301
+    },
+    {
+      "source": "/blog/inscricao-estadual-guia",
+      "destination": "https://www.devthru.com/blog/inscricao-estadual-o-que-e-como-validar",
+      "statusCode": 301
     }
   ]
 }

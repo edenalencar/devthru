@@ -338,6 +338,54 @@ export function PricingPage() {
                             </CardFooter>
                         </Card>
                     </div>
+
+                    {/* FAQ & Billing Information Section */}
+                    <div className="mt-20 max-w-4xl mx-auto">
+                        <div className="text-center mb-10">
+                            <h2 className="text-3xl font-bold tracking-tight mb-3">Dúvidas Frequentes sobre Assinaturas</h2>
+                            <p className="text-muted-foreground text-base">
+                                Informações claras sobre faturamento, cancelamento e recursos para desenvolvedores
+                            </p>
+                        </div>
+
+                        <div className="grid gap-6 md:grid-cols-2">
+                            <Card className="border-muted/70">
+                                <CardHeader className="pb-2">
+                                    <CardTitle className="text-base font-semibold">Como funciona o período de teste de 7 dias?</CardTitle>
+                                </CardHeader>
+                                <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                                    Ao criar sua conta no DevThru, você ganha acesso imediato a todas as funcionalidades do plano Pro por 7 dias corridos. Não exigimos cartão de crédito antecipado para iniciar o teste. Ao fim do período, sua conta volta automaticamente para o plano gratuito sem surpresas.
+                                </CardContent>
+                            </Card>
+
+                            <Card className="border-muted/70">
+                                <CardHeader className="pb-2">
+                                    <CardTitle className="text-base font-semibold">Posso cancelar ou alterar meu plano quando quiser?</CardTitle>
+                                </CardHeader>
+                                <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                                    Sim, sem amarras nem multas de fidelidade. Você pode gerenciar seu plano diretamente pelo painel do usuário a qualquer momento. Ao cancelar, o plano contratado continuará ativo até o encerramento do período mensal já pago.
+                                </CardContent>
+                            </Card>
+
+                            <Card className="border-muted/70">
+                                <CardHeader className="pb-2">
+                                    <CardTitle className="text-base font-semibold">Quais formas de pagamento são aceitas?</CardTitle>
+                                </CardHeader>
+                                <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                                    Processamos pagamentos de forma segura através da Stripe, aceitando os principais cartões de crédito nacionais e internacionais (Visa, MasterCard, Elo, Hipercard, American Express). Para contratações corporativas anuais via PIX ou faturamento por boleto, entre em contato com nosso time comercial.
+                                </CardContent>
+                            </Card>
+
+                            <Card className="border-muted/70">
+                                <CardHeader className="pb-2">
+                                    <CardTitle className="text-base font-semibold">Como funciona a emissão de Nota Fiscal?</CardTitle>
+                                </CardHeader>
+                                <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                                    Emitimos nota fiscal de serviço para todas as assinaturas empresariais no Brasil. Os dados cadastrais da sua empresa (CNPJ e Razão Social) informados na contratação são vinculados aos recibos e notas fiscais encaminhados automaticamente por e-mail após a confirmação do pagamento.
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
                 </div>
             </main>
 

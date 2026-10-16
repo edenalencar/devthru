@@ -170,6 +170,89 @@ export function FiscalToolsHubPage() {
                     </div>
                 </section>
 
+                {/* Technical Guide Section */}
+                <section className="py-12 md:py-16">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+                        <div className="border rounded-2xl p-8 md:p-12 bg-card shadow-sm space-y-8">
+                            <div>
+                                <h2 className="text-3xl font-bold tracking-tight mb-4">
+                                    Guia Técnico: O Ecossistema de Documentos Fiscais Eletrônicos no Brasil
+                                </h2>
+                                <p className="text-muted-foreground leading-relaxed text-base">
+                                    No Brasil, o Sistema Público de Escrituração Digital (SPED) e o Projeto Nota Fiscal Eletrônica padronizaram o intercâmbio de dados fiscais entre contribuintes e as Secretarias da Fazenda (SEFAZ). Para desenvolvedores de software, ERPs, PDVs e gateways de e-commerce, testar regras tributárias e fluxos de emissão exige entender a estrutura dos principais documentos e chaves de acesso.
+                                </p>
+                            </div>
+
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <div className="border border-muted/80 rounded-xl p-5 bg-muted/20 space-y-2">
+                                    <h3 className="text-lg font-semibold flex items-center gap-2">
+                                        <FileText className="h-5 w-5 text-primary" />
+                                        NF-e (Modelo 55) & NFC-e (Modelo 65)
+                                    </h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        A <strong>NF-e (Modelo 55)</strong> documenta a circulação de mercadorias em transações B2B, atacado e comércio eletrônico, exigindo assinatura digital ICP-Brasil e autorização prévia da SEFAZ. Já a <strong>NFC-e (Modelo 65)</strong> é voltada para o varejo presencial ao consumidor final, dispensando a impressão de formulários tradicionais e permitindo contingência offline rápida.
+                                    </p>
+                                </div>
+
+                                <div className="border border-muted/80 rounded-xl p-5 bg-muted/20 space-y-2">
+                                    <h3 className="text-lg font-semibold flex items-center gap-2">
+                                        <Truck className="h-5 w-5 text-primary" />
+                                        CT-e (Modelo 57) & MDF-e (Modelo 58)
+                                    </h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        O <strong>CT-e (Modelo 57)</strong> é o documento emitido por transportadoras para serviços de transporte de carga em qualquer modal. O <strong>MDF-e (Modelo 58)</strong> consolida as informações de carga quando há mais de um CT-e ou NF-e no veículo, sendo obrigatório em operações interestaduais ou intermunicipais de transporte rodoviário.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="space-y-4 pt-4 border-t">
+                                <h3 className="text-xl font-bold">Composição da Chave de Acesso de 44 Dígitos</h3>
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                    A chave de acesso é a impressão digital única de cada documento fiscal emitido no Brasil. Sua estrutura de 44 dígitos decimais é estritamente formatada pelos manuais da SEFAZ:
+                                </p>
+                                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 text-xs font-mono">
+                                    <div className="p-3 bg-muted/50 rounded-lg border">
+                                        <div className="font-bold text-foreground">UF (2 dígitos)</div>
+                                        <div className="text-muted-foreground mt-1">Código do IBGE do estado emissor</div>
+                                    </div>
+                                    <div className="p-3 bg-muted/50 rounded-lg border">
+                                        <div className="font-bold text-foreground">AAMM (4 dígitos)</div>
+                                        <div className="text-muted-foreground mt-1">Ano e mês da emissão do documento</div>
+                                    </div>
+                                    <div className="p-3 bg-muted/50 rounded-lg border">
+                                        <div className="font-bold text-foreground">CNPJ (14 dígitos)</div>
+                                        <div className="text-muted-foreground mt-1">CNPJ do contribuinte emissor</div>
+                                    </div>
+                                    <div className="p-3 bg-muted/50 rounded-lg border">
+                                        <div className="font-bold text-foreground">Modelo (2 dígitos)</div>
+                                        <div className="text-muted-foreground mt-1">55 (NF-e), 65 (NFC-e), 57 (CT-e), 58 (MDF-e)</div>
+                                    </div>
+                                    <div className="p-3 bg-muted/50 rounded-lg border">
+                                        <div className="font-bold text-foreground">Série (3 dígitos)</div>
+                                        <div className="text-muted-foreground mt-1">Série fiscal da empresa emitente</div>
+                                    </div>
+                                    <div className="p-3 bg-muted/50 rounded-lg border">
+                                        <div className="font-bold text-foreground">Número (9 dígitos)</div>
+                                        <div className="text-muted-foreground mt-1">Numeração sequencial do documento</div>
+                                    </div>
+                                    <div className="p-3 bg-muted/50 rounded-lg border">
+                                        <div className="font-bold text-foreground">Tipo Emissão (1 dígito)</div>
+                                        <div className="text-muted-foreground mt-1">1=Normal, 9=Contingência offline</div>
+                                    </div>
+                                    <div className="p-3 bg-muted/50 rounded-lg border">
+                                        <div className="font-bold text-foreground">DV (1 dígito)</div>
+                                        <div className="text-muted-foreground mt-1">Dígito verificador via Módulo 11 (pesos 2 a 9)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-4 bg-primary/5 rounded-xl border border-primary/20 text-sm leading-relaxed text-muted-foreground">
+                                <strong className="text-foreground">Dica para Homologação:</strong> Ao testar sistemas em ambientes de homologação das SEFAZ estaduais, utilize sempre números de CNPJ e Inscrição Estadual sintéticos matematicamente válidos. Nossos geradores respeitam rigorosamente o cálculo de Módulo 11 dos órgãos oficiais, evitando rejeições prematuras de schema XML ou erro de checksum.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* CTA Section */}
                 <section className="py-16 md:py-24">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">

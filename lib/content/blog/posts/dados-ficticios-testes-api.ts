@@ -130,6 +130,7 @@ const usuarios = UsuarioFactory.criarLote(100);
 <tr><td><a href="/tools/development/mock-data">Mock Data (DevThru)</a></td><td>JSON/CSV com dados customizáveis</td><td>Popular bancos de dados</td></tr>
 <tr><td><a href="/tools/documents/cpf">Gerador de CPF (DevThru)</a></td><td>CPFs válidos para teste</td><td>Formulários de cadastro</td></tr>
 <tr><td><a href="/tools/documents/cnpj">Gerador de CNPJ (DevThru)</a></td><td>CNPJs válidos para teste</td><td>Sistemas fiscais/ERP</td></tr>
+<tr><td><a href="/tools/documents/pis">Gerador de PIS/PASEP (DevThru)</a></td><td>PIS/NIS válidos com Módulo 11</td><td>Sistemas de RH e folha (veja o guia de <a href="/blog/como-funciona-algoritmo-validacao-pis">validação de PIS</a>)</td></tr>
 </tbody>
 </table>
 

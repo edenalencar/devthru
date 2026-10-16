@@ -74,8 +74,8 @@ export default async function GuidePage({ params }: PageProps) {
                     "description": metaDescription,
                     "articleBody": content.content.intro, // Simplified body
                     "about": {
-                        "@type": "SoftwareApplication",
-                        "name": tool
+                        "@type": "Thing",
+                        "name": content.title
                     },
                     "author": {
                         "@type": "Person",

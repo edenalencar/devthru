@@ -13,13 +13,16 @@ Esta skill define os requisitos obrigatórios, padrões de UI/UX, SEO, rastreame
 
 Toda nova ferramenta criada no DevThru **DEVE** seguir impreterivelmente os 8 pilares abaixo:
 
-### 1. 🔗 Tag Canônica (Canonical URL SEO)
-- Toda ferramenta precisa ter a tag `<link rel="canonical">` gerada para o Google evitar conteúdos duplicados.
-- **Como garantir:** A função `generateToolMetadata({ title, description, path, keywords })` em `page.tsx` injeta automaticamente a propriedade `alternates.canonical` apontando para a URL oficial da ferramenta.
+### 1. 🔗 Tag Canônica e Limite de Caracteres no Título (SEO Title & Canonical)
+- **Tamanho Máximo do Título:** O `title` exportado em `page.tsx` **DEVE ter no máximo 50 caracteres**. Como a função `generateToolMetadata` anexa automaticamente o sufixo ` | DevThru` (10 caracteres), qualquer título superior a 50 caracteres excederá os 60 caracteres ideais do Google SERP e disparará o alerta *"Title element is too long"* no SEMrush.
+- **Tag Canônica:** A função `generateToolMetadata({ title, description, path, keywords })` em `page.tsx` injeta automaticamente a propriedade `alternates.canonical` apontando para a URL oficial da ferramenta, prevenindo conteúdo duplicado.
 
-### 2. 🏷️ Schema.org SoftwareApplication (`JsonLd` / `SoftwareLd`)
-- O Google exige a tag de dados estruturados `@type: "SoftwareApplication"` (JSON-LD) para que a ferramenta apareça como aplicativo web gratuito nos resultados de busca com rich snippets.
-- **Como garantir:** O componente `page.tsx` DEVE renderizar a tag `<JsonLd>` configurada via `getToolSchemaGraph`:
+### 2. 🏷️ Schema.org SoftwareApplication Completo (`JsonLd` / `SoftwareLd`)
+- O Google e validadores de dados estruturados (SEMrush) exigem que o `@type: "SoftwareApplication"` contenha obrigatoriamente:
+  - `offers`: Informando preço e moeda (`price: "0"`, `priceCurrency: "BRL"`).
+  - `aggregateRating`: Avaliação média agregada (`ratingValue: "4.9"`, `ratingCount: "128"`, `bestRating: "5"`, `worstRating: "1"`). Sem esse campo, o SEMrush reporta erro crítico de markup.
+- **Atenção para Guias/Artigos Técnicos:** Em páginas de artigos (`TechArticle`), o campo `"about"` **NUNCA** deve usar `@type: "SoftwareApplication"`, pois isso forçará a exigência indevida de `offers`/`aggregateRating`. Use estritamente `@type: "Thing"`.
+- **Como garantir na Ferramenta:** O componente `page.tsx` DEVE renderizar a tag `<JsonLd>` configurada via `getToolSchemaGraph`:
   ```tsx
   <JsonLd
       data={getToolSchemaGraph({
@@ -67,18 +70,26 @@ Toda nova ferramenta criada no DevThru **DEVE** seguir impreterivelmente os 8 pi
 - Não utilize `new Date().toISOString()` ou `Math.random()` diretamente na criação de mocks ou estados no render inicial do componente do cliente.
 - Utilize valores estáticos determinísticos para a primeira renderização para evitar **Hydration Mismatch Warning** entre o servidor e o cliente.
 
-### 7. 🎨 Padronização de Layout e Rodapé (Coesão do Site)
-O rodapé da ferramenta DEVE seguir a estrutura visual unificada do DevThru:
-1. **Perguntas Frequentes (FAQ)** em `<Accordion>`.
-2. **Bloco de Links Relacionados:**
+### 7. 🎨 Densidade Textual Mínima e Padronização de Rodapé (Prevenção de Low Word Count e 404)
+- **Densidade Textual (Mínimo de 250 a 300 palavras):** Páginas interativas baseadas apenas em formulários são frequentemente penalizadas pelo Google e SEMrush com avisos de *"Page has a low word count"* e *"Low text-to-HTML ratio"*. Toda ferramenta DEVE incluir:
+  - Componente `<ToolFaqSection toolSlug="<tool-slug>" ... />` com perguntas frequentes completas cadastradas em `lib/seo/faqs.ts`.
+  - Um bloco textual de guia técnico explicando o funcionamento, algoritmo (ex: Módulo 11, RFCs, normas técnicas) ou casos de uso da ferramenta.
+- **Validação Rigorosa de Links Internos (Prevenção de 404):** Ao adicionar links para posts de blog no rodapé, **NUNCA invente ou presuma o slug**. Abra `lib/content/blog/posts/` e confirme o valor exato da propriedade `slug` do post (ex: `slug: 'inscricao-estadual-o-que-e-como-validar'`). Links para slugs inexistentes geram erros 404 que quebram o fluxo de PageRank e disparam alertas críticos no SEMrush e Google Search Console.
+- **Estrutura Visual Unificada:**
    ```tsx
+   <ToolFaqSection
+       toolSlug="<tool-slug>"
+       title="Perguntas Frequentes sobre <Nome da Ferramenta>"
+       description="Tire suas dúvidas técnicas sobre o algoritmo, validação e uso da ferramenta."
+   />
+
    <div className="pt-4 border-t space-y-4">
      <div>
        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
          Artigos e Guias Relacionados:
        </span>
        <div className="flex flex-wrap gap-2">
-         <Link href="/blog/<post-slug>" className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5">
+         <Link href="/blog/<post-slug-confirmado>" className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5">
            <span>📖 Artigo: Título do Post</span>
            <ArrowRight className="w-3 h-3" />
          </Link>

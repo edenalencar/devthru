@@ -121,8 +121,8 @@ export function InscricaoEstadualPage() {
                     <div className="py-2 border-t">
                         <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Artigos Relacionados</h3>
                         <div className="flex flex-wrap gap-2">
-                            <Link href="/blog/inscricao-estadual-guia" className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded-md hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5">
-                                📖 Artigo: Guia Completo da Inscrição Estadual (IE) por Estado
+                            <Link href="/blog/inscricao-estadual-o-que-e-como-validar" className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded-md hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5">
+                                📖 Artigo: O que é e Como Validar Inscrição Estadual (Guia Completo)
                             </Link>
                         </div>
                     </div>
