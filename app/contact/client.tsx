@@ -80,7 +80,7 @@ export function ContactPage() {
                         <CardHeader>
                             <CardTitle>Envie uma mensagem</CardTitle>
                             <CardDescription>
-                                Preencha o formulário abaixo
+                                Preencha o formulário abaixo para falar diretamente com nosso time de engenharia e produto
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
@@ -99,7 +99,7 @@ export function ContactPage() {
                                 </div>
                                 <div className="space-y-2">
                                     <label htmlFor="message" className="text-sm font-medium">Mensagem</label>
-                                    <Textarea id="message" name="message" placeholder="Descreva sua dúvida ou sugestão..." className="min-h-[150px]" required />
+                                    <Textarea id="message" name="message" placeholder="Descreva sua dúvida, sugestão ou reporte de inconsistência em algoritmos..." className="min-h-[150px]" required />
                                 </div>
 
                                 <div className="flex justify-center py-2">
@@ -123,6 +123,54 @@ export function ContactPage() {
                             </form>
                         </CardContent>
                     </Card>
+                </div>
+
+                {/* Developer Support & Information Section */}
+                <div className="mt-16 max-w-4xl mx-auto">
+                    <h2 className="text-2xl font-bold text-center mb-8">Canais de Atendimento e Suporte Técnico</h2>
+                    <div className="grid gap-6 md:grid-cols-2">
+                        <Card className="border-muted/60">
+                            <CardHeader className="pb-2">
+                                <CardTitle className="text-lg flex items-center gap-2">
+                                    <MessageSquare className="h-5 w-5 text-primary" />
+                                    Suporte a Desenvolvedores e API
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                                Precisa de auxílio na integração da nossa API RESTful, esclarecimento sobre rate limits, chaves de autenticação de staging/produção ou geração de dados em lote no plano Business? Nosso suporte técnico responde diretamente com orientações de engenharia para agilizar seus testes automatizados e pipelines de CI/CD.
+                            </CardContent>
+                        </Card>
+
+                        <Card className="border-muted/60">
+                            <CardHeader className="pb-2">
+                                <CardTitle className="text-lg flex items-center gap-2">
+                                    <Mail className="h-5 w-5 text-primary" />
+                                    Reporte de Algoritmos e Regras Fiscais
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                                Notou alguma alteração recente nas notas técnicas da SEFAZ, Receita Federal ou Banco Central para documentos como Inscrição Estadual, NF-e, CT-e, PIX ou CNAB? Avaliamos e homologamos correções de algoritmos matemáticos com prioridade máxima para manter todas as ferramentas 100% atualizadas.
+                            </CardContent>
+                        </Card>
+
+                        <Card className="border-muted/60">
+                            <CardHeader className="pb-2">
+                                <CardTitle className="text-lg">Tempo de Resposta (SLA)</CardTitle>
+                            </CardHeader>
+                            <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                                Nosso time opera de segunda a sexta-feira, das 09h às 18h (horário de Brasília). Mensagens de usuários gratuitos são respondidas em até 24 horas úteis. Assinantes dos planos Pro e Business contam com fila prioritária com atendimento em até 4 horas úteis.
+                            </CardContent>
+                        </Card>
+
+                        <Card className="border-muted/60">
+                            <CardHeader className="pb-2">
+                                <CardTitle className="text-lg">Privacidade e Dados (LGPD)</CardTitle>
+                            </CardHeader>
+                            <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                                Em total conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), as informações preenchidas neste formulário são utilizadas única e exclusivamente para responder à sua solicitação de suporte, não sendo compartilhadas com terceiros nem utilizadas para disparo de spam.
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
             </main>
 

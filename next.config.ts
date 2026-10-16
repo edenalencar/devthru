@@ -87,6 +87,12 @@ const nextConfig: NextConfig = {
         destination: "/dashboard/settings",
         permanent: true,
       },
+      // Redirecionamento de slug antigo de post de blog reportado no SEMrush
+      {
+        source: "/blog/inscricao-estadual-guia",
+        destination: "/blog/inscricao-estadual-o-que-e-como-validar",
+        permanent: true,
+      },
     ];
   },
 };

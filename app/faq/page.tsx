@@ -1,6 +1,8 @@
 import { Metadata } from "next"
 import { FAQPage } from "./client"
 import { siteConfig } from "@/config/site"
+import { JsonLd } from "@/components/seo/json-ld"
+import { FAQS_DATA } from "./faqs-data"
 
 export const metadata: Metadata = {
     title: "Perguntas Frequentes (FAQ)",
@@ -11,5 +13,23 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <FAQPage />
+    return (
+        <>
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": FAQS_DATA.map((faq) => ({
+                        "@type": "Question",
+                        "name": faq.question,
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": faq.answer
+                        }
+                    }))
+                }}
+            />
+            <FAQPage />
+        </>
+    )
 }
