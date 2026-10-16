@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
-import { CreditCard, RefreshCw, Copy } from "lucide-react"
+import { CreditCard, RefreshCw, Copy, ShieldAlert, ShieldCheck, Lock } from "lucide-react"
 import { generateCreditCard, generateExpiryDate, generateCVV, CARD_BRANDS, CardBrand } from "@/lib/utils/generators/credit-card"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
@@ -17,6 +17,7 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 const LUHN_JS_CODE = `function validateLuhn(cardNumber) {
   const cleaned = cardNumber.replace(/\\D/g, "");
@@ -251,45 +252,85 @@ export function CreditCardGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
-                                {/* Info Section */}
-                    <Card className="mt-8">
+                    {/* Compliance & Security Banner */}
+                    <div className="mt-8 p-4 rounded-lg border border-amber-500/30 bg-amber-50/50 dark:bg-amber-950/20 flex flex-col sm:flex-row items-start gap-3.5">
+                        <div className="p-2 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 flex-shrink-0">
+                            <ShieldAlert className="w-5 h-5" />
+                        </div>
+                        <div className="space-y-1 text-sm">
+                            <h4 className="font-semibold text-amber-900 dark:text-amber-200">
+                                Aviso de Conformidade e Uso Exclusivo para Desenvolvimento
+                            </h4>
+                            <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm">
+                                Os números fabricados por este gerador são <strong>sintéticos e matematicamente válidos pelo Algoritmo de Luhn</strong>, desenhados unicamente para simulação de checkouts, validação sintática de formulários e testes de integração em ambiente de <strong>Sandbox / Homologação</strong> (Stripe, Pagar.me, Mercado Pago, Cielo). <strong>Nenhum número possui saldo, conta bancária ou titularidade civil real.</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Technical Brand & BIN Architecture */}
+                    <Card className="mt-8 border-border/60 shadow-sm">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Cartão de Crédito e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle className="text-xl flex items-center gap-2">
+                                <Lock className="w-5 h-5 text-primary" />
+                                <span>Estrutura de Bandeiras, BINs e Comprimento de Cartões</span>
+                            </CardTitle>
+                            <CardDescription>
+                                Especificação técnica do padrão internacional ISO/IEC 7812 para validação de cartões em gateways de pagamento.
+                            </CardDescription>
                         </CardHeader>
-                        <CardContent>
-                            <div className="space-y-3 text-sm text-muted-foreground">
+                        <CardContent className="space-y-6">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
                                 <p>
-                                    Entender como o <strong>número de cartão de crédito é uma ferramenta</strong> fundamental nos testes de checkout ajuda a prevenir falhas em produção. Nossa <strong>ferramenta gera</strong> dados fictícios completos para homologação, simulando bandeiras populares de mercado para testar seus sistemas em <strong>diferentes cenários</strong>.
-                                </p>
-                                <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Importante:</strong> Nenhum dos <strong>números são gerados</strong> para realizar <strong>transações reais</strong>. A proposta de <strong>usar um gerador</strong> é apenas facilitar a simulação de pagamentos simulados no seu gateway de teste local ou sandbox (como Stripe, Adyen, Mercado Pago).
+                                    O identificador de um cartão de crédito é composto pelo <strong>IIN/BIN (Issuer Identification Number)</strong> nos primeiros 6 a 8 dígitos, seguido pelo número de identificação da conta e finalizado pelo <strong>Dígito Verificador (DV)</strong> calculado pela fórmula de Luhn (Módulo 10).
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Para que serve esta ferramenta de geração de cartões?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground space-y-2">
-                                        <p>
-                                            Ela permite <strong>gerar cartões</strong> com dados fictícios para fins de testes. O desenvolvedor <strong>pode gerar</strong> dados simulando bandeiras como <strong>visa mastercard</strong> ou <strong>american express</strong> para validar se as integrações respondem corretamente aos formatos exigidos.
-                                        </p>
-                                        <p>
-                                            Os dados gerados vêm <strong>formatados corretamente</strong> segundo a estrutura lógica e comprimento de <strong>cada bandeira</strong>, assegurando que os campos de validação de formulários (como número do cartão, CVV e data de expiração) passem em testes sintáticos locais.
-                                        </p>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>O que é o Algoritmo de Luhn?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        O algoritmo de Luhn (também conhecido como fórmula &quot;módulo 10&quot;) é uma fórmula de soma de verificação simples usada para validar uma variedade de números de identificação, como números de cartões de crédito. A maioria das bandeiras de cartões (Visa, Mastercard, Discover, Amex) adota esse algoritmo para evitar erros acidentais de digitação.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>O gerador fornece dados completos de cobrança?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Sim. Além de gerar o número do cartão estruturalmente correto, nossa ferramenta fornece um nome de portador fictício (John Doe), data de expiração futura válida e código de segurança (CVV) compatível com a bandeira selecionada. Isso é ideal para testar formulários que exigem o fluxo completo de pagamento e validações de endereço de faturamento (Billing Address).
-                                    </AccordionContent>
-                                </AccordionItem>
+                            <div className="overflow-x-auto rounded-lg border bg-card">
+                                <table className="w-full text-sm text-left">
+                                    <thead className="bg-muted/70 text-xs uppercase text-muted-foreground border-b">
+                                        <tr>
+                                            <th className="py-3 px-4">Bandeira</th>
+                                            <th className="py-3 px-4">Prefixos / BIN Inicial</th>
+                                            <th className="py-3 px-4">Comprimento</th>
+                                            <th className="py-3 px-4">Código CVV/CVC</th>
+                                            <th className="py-3 px-4">Algoritmo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-border">
+                                        <tr className="hover:bg-muted/40 transition-colors">
+                                            <td className="py-3 px-4 font-semibold text-foreground">Visa</td>
+                                            <td className="py-3 px-4 font-mono text-xs">4</td>
+                                            <td className="py-3 px-4 text-muted-foreground">16 dígitos</td>
+                                            <td className="py-3 px-4 text-muted-foreground">3 dígitos (Verso)</td>
+                                            <td className="py-3 px-4 font-mono text-xs text-emerald-600 dark:text-emerald-400">Luhn (Mod 10)</td>
+                                        </tr>
+                                        <tr className="hover:bg-muted/40 transition-colors">
+                                            <td className="py-3 px-4 font-semibold text-foreground">Mastercard</td>
+                                            <td className="py-3 px-4 font-mono text-xs">51–55, 2221–2720</td>
+                                            <td className="py-3 px-4 text-muted-foreground">16 dígitos</td>
+                                            <td className="py-3 px-4 text-muted-foreground">3 dígitos (Verso)</td>
+                                            <td className="py-3 px-4 font-mono text-xs text-emerald-600 dark:text-emerald-400">Luhn (Mod 10)</td>
+                                        </tr>
+                                        <tr className="hover:bg-muted/40 transition-colors">
+                                            <td className="py-3 px-4 font-semibold text-foreground">American Express (Amex)</td>
+                                            <td className="py-3 px-4 font-mono text-xs">34, 37</td>
+                                            <td className="py-3 px-4 text-muted-foreground">15 dígitos</td>
+                                            <td className="py-3 px-4 text-muted-foreground">4 dígitos (Frente)</td>
+                                            <td className="py-3 px-4 font-mono text-xs text-emerald-600 dark:text-emerald-400">Luhn (Mod 10)</td>
+                                        </tr>
+                                        <tr className="hover:bg-muted/40 transition-colors">
+                                            <td className="py-3 px-4 font-semibold text-foreground">Discover</td>
+                                            <td className="py-3 px-4 font-mono text-xs">6011, 65, 644–649</td>
+                                            <td className="py-3 px-4 text-muted-foreground">16 dígitos</td>
+                                            <td className="py-3 px-4 text-muted-foreground">3 dígitos (Verso)</td>
+                                            <td className="py-3 px-4 font-mono text-xs text-emerald-600 dark:text-emerald-400">Luhn (Mod 10)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div className="pt-2">
+                                <h3 className="text-base font-semibold mb-3 text-foreground">Implementações do Algoritmo de Luhn em Código</h3>
                                 <CodeExamplesAccordion
                                     examples={[
                                         { language: "javascript", label: "JavaScript / TS", code: LUHN_JS_CODE },
@@ -298,21 +339,21 @@ export function CreditCardGeneratorPage() {
                                         { language: "java", label: "Java", code: LUHN_JAVA_CODE }
                                     ]}
                                 />
-                            </Accordion>
+                            </div>
 
                             <div className="pt-4 border-t">
-                                <h3 className="text-sm font-medium text-muted-foreground mb-3">Guias Relacionados</h3>
+                                <h3 className="text-sm font-medium text-muted-foreground mb-3">Guias Relacionados de Validação</h3>
                                 <div className="flex flex-wrap gap-2 mb-4">
-                                    <Link href="/guides/validation/credit-card-generator/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
+                                    <Link href="/guides/validation/credit-card-generator/python" className="text-xs px-2.5 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 transition-colors">
                                         Algoritmo de Luhn em Python
                                     </Link>
-                                    <Link href="/guides/validation/credit-card-generator/javascript" className="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors">
+                                    <Link href="/guides/validation/credit-card-generator/javascript" className="text-xs px-2.5 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-950/40 dark:text-yellow-300 rounded hover:bg-yellow-200 transition-colors">
                                         Algoritmo de Luhn em JavaScript
                                     </Link>
-                                    <Link href="/guides/validation/credit-card-generator/java" className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
+                                    <Link href="/guides/validation/credit-card-generator/java" className="text-xs px-2.5 py-1 bg-red-100 text-red-700 dark:bg-red-950/40 dark:text-red-300 rounded hover:bg-red-200 transition-colors">
                                         Algoritmo de Luhn em Java
                                     </Link>
-                                    <Link href="/guides/validation/credit-card-generator/csharp" className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors">
+                                    <Link href="/guides/validation/credit-card-generator/csharp" className="text-xs px-2.5 py-1 bg-purple-100 text-purple-700 dark:bg-purple-950/40 dark:text-purple-300 rounded hover:bg-purple-200 transition-colors">
                                         Algoritmo de Luhn em C#
                                     </Link>
                                 </div>
@@ -324,6 +365,13 @@ export function CreditCardGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+
+                    {/* SEO FAQs */}
+                    <ToolFaqSection
+                        toolSlug="credit-card-generator"
+                        title="Perguntas Frequentes sobre Validação de Cartões de Crédito"
+                        description="Esclarecimentos essenciais sobre o algoritmo de Luhn, testes em gateways de pagamento e conformidade de segurança."
+                    />
                     <RelatedTools currentToolSlug="credit-card-generator" category="finance" />
                 </div>
             </main>

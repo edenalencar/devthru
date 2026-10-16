@@ -1,5 +1,5 @@
 import { getToolSchemaGraph } from "@/lib/seo/schema-helper"
-﻿import { JsonLd } from "@/components/seo/json-ld"
+import { JsonLd } from "@/components/seo/json-ld"
 import { Metadata } from "next"
 import { CertificateGeneratorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
@@ -31,3 +31,4 @@ export default function Page() {
         </>
     )
 }
+

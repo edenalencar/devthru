@@ -162,6 +162,9 @@ export function UUIDGeneratorPage() {
                             <div className="mt-6 pt-4 border-t">
                                 <h3 className="text-sm font-semibold text-muted-foreground mb-3">Guias Relacionados</h3>
                                 <div className="flex flex-wrap gap-2">
+                                    <Link href="/blog/por-que-uuid-v7-esta-substituindo-uuid-v4" className="text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded font-medium hover:bg-emerald-200 transition-colors">
+                                        📖 Artigo: Por que o UUIDv7 está substituindo o UUIDv4?
+                                    </Link>
                                     <Link href="/guides/generation/uuid-generator/python" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">
                                         Como gerar UUID v4 em Python
                                     </Link>

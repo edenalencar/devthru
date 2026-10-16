@@ -217,8 +217,24 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "inscricao-estadual": [
         {
-            "question": "O que é a Inscrição Estadual (IE)?",
-            "answer": "É o número de registro das empresas contribuintes do ICMS junto à Secretaria da Fazenda de cada estado. Cada UF possui um formato e algoritmo de validação próprio."
+            "question": "O que é e para que serve a Inscrição Estadual (IE)?",
+            "answer": "A Inscrição Estadual é o registro formal do contribuinte junto à Secretaria de Estado da Fazenda (Sefaz) de cada UF. Ela é obrigatória para empresas que realizam circulação de mercadorias (comércio, indústria e transporte interestadual), permitindo a apuração e o recolhimento do ICMS."
+        },
+        {
+            "question": "Como consultar a Inscrição Estadual de uma empresa no Sintegra ou CCC?",
+            "answer": "A consulta pública pode ser realizada pelo portal do Sintegra de cada estado ou no Cadastro Centralizado de Contribuinte (CCC) mantido pela Sefaz Nacional, bastando informar o CNPJ da pessoa jurídica para verificar sua situação cadastral (Habilitado, Não Habilitado ou Baixado)."
+        },
+        {
+            "question": "Por que a Inscrição Estadual possui formato e regras de validação diferentes em cada estado?",
+            "answer": "Como o ICMS é um tributo de competência estadual, cada Secretaria de Fazenda instituiu sua própria regra de formação (variando de 8 dígitos no Rio de Janeiro a 14 dígitos no Amapá) e seus próprios algoritmos de dígitos verificadores (Módulo 11, Módulo 10 ou pesos ponderados específicos)."
+        },
+        {
+            "question": "Microempreendedor Individual (MEI) precisa ter Inscrição Estadual?",
+            "answer": "Somente o MEI que desempenha atividades de comércio, indústria ou transporte intermunicipal/interestadual possui Inscrição Estadual automática emitida no ato de abertura do CNPJ. Prestadores de serviços puros possuem apenas Inscrição Municipal (ISS)."
+        },
+        {
+            "question": "É obrigatório informar a Inscrição Estadual na emissão de NF-e e NFC-e?",
+            "answer": "Sim. Para destinatários contribuintes do ICMS, a identificação da IE é campo de preenchimento obrigatório no Schema XML da Nota Fiscal Eletrônica. Caso o destinatário não seja contribuinte ou isento, utiliza-se a indicação específica no documento fiscal."
         }
     ],
     "pis": [
@@ -236,7 +252,23 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "certificate-generator": [
         {
             "question": "Como gerar certificados digitais e de conclusão para testes?",
-            "answer": "Crie modelos de certificados personalizáveis com dados fictícios para validar módulos de cursos, LMS e emissão de diplomas em PDF."
+            "answer": "Crie modelos de certificados personalizáveis com dados fictícios para validar módulos de cursos, LMS e emissão de diplomas em PDF de alta resolução (A4 Paisagem)."
+        },
+        {
+            "question": "Qual a validade jurídica de um certificado de curso livre gerado online?",
+            "answer": "Certificados de cursos livres possuem validade para comprovação de horas complementares, atividades extracurriculares e capacitação profissional em conformidade com a Lei nº 9.394/96 (Diretrizes e Bases da Educação Nacional), desde que emitidos por instituição ou instrutor devidamente identificado."
+        },
+        {
+            "question": "Como testar a emissão de certificados em sistemas LMS e plataformas EAD?",
+            "answer": "Desenvolvedores utilizam o gerador para validar pipelines de renderização de PDF (como jsPDF, Puppeteer e html2pdf), testando o ajuste de nomes longos, quebra de linha de títulos de cursos e resolução de fontes antes de liberar o fluxo para produção."
+        },
+        {
+            "question": "Quais elementos são essenciais em um certificado de conclusão profissional?",
+            "answer": "Um certificado completo deve conter o nome do aluno, título do curso ou treinamento, carga horária total, data de conclusão, nome e assinatura do instrutor ou instituição emissora, além de identificador ou código de autenticidade."
+        },
+        {
+            "question": "Posso imprimir o certificado gerado diretamente em papel A4?",
+            "answer": "Sim. O gerador exporta o documento em dimensões padrão A4 no formato Paisagem (Landscape) e alta densidade de pixels (2x pixel ratio), permitindo impressão direta em papel offset, couchê ou diplomata com máxima nitidez."
         }
     ],
     "contract-generator": [
@@ -294,7 +326,23 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "credit-card-generator": [
         {
             "question": "Como funciona o algoritmo de Luhn nos cartões de crédito?",
-            "answer": "O Algoritmo de Luhn (Módulo 10) valida o número do cartão dobrando os dígitos alternados da direita para a esquerda e somando os resultados para verificar se a soma é múltipla de 10."
+            "answer": "O Algoritmo de Luhn (fórmula Módulo 10) valida o número do cartão dobrando os dígitos alternados da direita para a esquerda e somando os algarismos resultantes. Se a soma total for divisível por 10, o número é estruturalmente válido."
+        },
+        {
+            "question": "Os cartões de crédito gerados aqui possuem saldo ou realizam compras reais?",
+            "answer": "Não. Todos os números gerados são estritamente fictícios e matematicamente válidos pelo algoritmo de Luhn para fins de desenvolvimento de software, testes de QA e integração de checkouts. Não possuem vínculo bancário, saldo ou titularidade civil."
+        },
+        {
+            "question": "Como testar pagamentos em ambiente Sandbox de gateways (Stripe, Pagar.me, Mercado Pago)?",
+            "answer": "Ambientes de teste (sandbox) exigem que o número passe pela validação de máscara e checksum de Luhn no front-end antes de simular aprovações ou recusas no gateway. Além disso, as adquirentes fornecem códigos CVV específicos para simular cenários de aprovação, saldo insuficiente ou cartão recusado."
+        },
+        {
+            "question": "Qual é a estrutura do BIN/IIN nas principais bandeiras de cartão?",
+            "answer": "Os primeiros 6 a 8 dígitos correspondem ao BIN (Bank Identification Number). A bandeira Visa inicia com o prefixo 4; Mastercard utiliza prefixos de 51 a 55 e a faixa 2221 a 2720; American Express inicia com 34 ou 37; e a bandeira Elo possui faixas nacionais específicas como 401178, 5067 e 636368."
+        },
+        {
+            "question": "Para que serve o código CVV/CVC e a data de validade nos testes?",
+            "answer": "O CVV (Card Verification Value) e a expiração garantem a integridade dos dados durante transações 'card-not-present' (online). Nos testes, simulam a passagem correta do payload para tokens de pagamento criptografados em conformidade com o padrão PCI-DSS."
         }
     ],
     "tax-calculator": [
