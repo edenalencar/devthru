@@ -30,7 +30,7 @@ export const openApiSpec = {
                 type: 'apiKey',
                 in: 'header',
                 name: 'x-api-key',
-                description: 'API key for authentication. Get yours at /settings/api-keys',
+                description: 'API key for authentication. Get yours at /dashboard/settings',
             },
         },
         schemas: {

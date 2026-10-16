@@ -135,7 +135,7 @@ print(data)
                                 <div className="flex-1 min-w-0">
                                     <h3 className="font-semibold mb-1">Obtenha sua API Key</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Acesse <Link href="/settings/api-keys" className="text-primary hover:underline">/settings/api-keys</Link> e crie uma nova chave
+                                        Acesse <Link href="/dashboard/settings" className="text-primary hover:underline">/dashboard/settings</Link> e crie uma nova chave
                                     </p>
                                 </div>
                             </div>
