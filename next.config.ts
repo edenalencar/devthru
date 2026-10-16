@@ -76,6 +76,17 @@ const nextConfig: NextConfig = {
         destination: "/tools/automotive/renavam",
         permanent: true,
       },
+      // Corrigir 404 GSC - Redirecionamento da rota antiga de settings para dashboard
+      {
+        source: "/settings/api-keys",
+        destination: "/dashboard/settings",
+        permanent: true,
+      },
+      {
+        source: "/settings",
+        destination: "/dashboard/settings",
+        permanent: true,
+      },
     ];
   },
 };

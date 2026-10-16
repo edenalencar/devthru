@@ -71,6 +71,16 @@
       "source": "/index.html",
       "destination": "https://www.devthru.com/",
       "statusCode": 301
+    },
+    {
+      "source": "/settings/api-keys",
+      "destination": "https://www.devthru.com/dashboard/settings",
+      "statusCode": 301
+    },
+    {
+      "source": "/settings",
+      "destination": "https://www.devthru.com/dashboard/settings",
+      "statusCode": 301
     }
   ]
 }
