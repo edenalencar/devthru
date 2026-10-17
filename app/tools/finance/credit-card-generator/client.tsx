@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
-import { CreditCard, RefreshCw, Copy, ShieldAlert, ShieldCheck, Lock } from "lucide-react"
+import { CreditCard, RefreshCw, Copy, ShieldAlert, Lock } from "lucide-react"
 import { generateCreditCard, generateExpiryDate, generateCVV, CARD_BRANDS, CardBrand } from "@/lib/utils/generators/credit-card"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Accordion } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
@@ -331,14 +331,16 @@ export function CreditCardGeneratorPage() {
 
                             <div className="pt-2">
                                 <h3 className="text-base font-semibold mb-3 text-foreground">Implementações do Algoritmo de Luhn em Código</h3>
-                                <CodeExamplesAccordion
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: LUHN_JS_CODE },
-                                        { language: "python", label: "Python", code: LUHN_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: LUHN_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: LUHN_JAVA_CODE }
-                                    ]}
-                                />
+                                <Accordion type="single" collapsible className="w-full">
+                                    <CodeExamplesAccordion
+                                        examples={[
+                                            { language: "javascript", label: "JavaScript / TS", code: LUHN_JS_CODE },
+                                            { language: "python", label: "Python", code: LUHN_PYTHON_CODE },
+                                            { language: "csharp", label: "C#", code: LUHN_CSHARP_CODE },
+                                            { language: "java", label: "Java", code: LUHN_JAVA_CODE }
+                                        ]}
+                                    />
+                                </Accordion>
                             </div>
 
                             <div className="pt-4 border-t">
