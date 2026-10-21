@@ -20,10 +20,11 @@ export function ToolProCta({
     description = "Gere dados em grande volume (até 1.000 registros por vez), exporte instantaneamente para CSV, JSON e Excel e salve suas configurações personalizadas.",
     className = ""
 }: ToolProCtaProps) {
-    const { isPro } = useUser()
+    const { profile } = useUser()
 
-    // Assinantes do plano Pro ou Business não precisam ver o banner de upgrade
-    if (isPro) {
+    // Oculta apenas se o usuário já possuir uma assinatura paga ativa (pro ou business)
+    const isPayingSubscriber = profile?.subscription_tier === "pro" || profile?.subscription_tier === "business"
+    if (isPayingSubscriber) {
         return null
     }
 

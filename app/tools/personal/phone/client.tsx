@@ -379,6 +379,9 @@ export function PhoneGeneratorPage() {
                         </Card>
                     </div>
 
+                    {/* Pro Plan CTA - Imediatamente abaixo do resultado da ferramenta */}
+                    <ToolProCta toolName="Telefones e Contatos" />
+
                     {/* Configuration Manager */}
                     <div className="mt-8">
                         <Card>
@@ -407,9 +410,6 @@ export function PhoneGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
-
-                    {/* Pro Plan CTA */}
-                    <ToolProCta toolName="Telefones e Contatos" />
 
                     {/* Info Section & FAQ */}
                     <Card className="mt-8">

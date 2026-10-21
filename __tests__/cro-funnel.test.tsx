@@ -62,6 +62,22 @@ describe("CRO & Funil de Conversão - Testes Automatizados", () => {
             expect(html).toBe("")
         })
 
+        it("deve exibir o CTA para usuários em teste grátis (trial) convidando para assinar o Pro definitivo", () => {
+            mockUseUser.mockReturnValue({
+                user: { id: "user-trial" },
+                profile: { subscription_tier: "free", trial_ends_at: new Date(Date.now() + 500000).toISOString() },
+                isPro: true,
+                isInTrial: true,
+            })
+
+            const html = renderToString(
+                <ToolProCta toolName="Telefones" />
+            )
+
+            expect(html).toContain("Precisa de escala em testes com Telefones?")
+            expect(html).toContain("Conhecer Plano Pro")
+        })
+
         it("deve aceitar título customizado quando fornecido", () => {
             mockUseUser.mockReturnValue({
                 user: null,
