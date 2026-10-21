@@ -44,12 +44,14 @@ function LoginForm() {
         }
     }
 
+    const isPricingIntent = redirectUrl.includes('/pricing')
+
     const handleOAuthLogin = async (provider: "github" | "google") => {
         try {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider,
                 options: {
-                    redirectTo: `${window.location.origin}/auth/callback`,
+                    redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(redirectUrl)}`,
                 },
             })
 
@@ -70,9 +72,13 @@ function LoginForm() {
                             <div className="flex items-center justify-center mb-4">
                                 <Code2 className="h-12 w-12 text-primary" />
                             </div>
-                            <h1 className="text-2xl font-semibold text-center tracking-tight">Bem-vindo de volta</h1>
+                            <h1 className="text-2xl font-semibold text-center tracking-tight">
+                                {isPricingIntent ? "Acesse para assinar seu plano" : "Bem-vindo de volta"}
+                            </h1>
                             <CardDescription className="text-center">
-                                Entre com sua conta para continuar
+                                {isPricingIntent
+                                    ? "Conecte-se para continuar com sua assinatura no DevThru"
+                                    : "Entre com sua conta para continuar"}
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
@@ -111,7 +117,7 @@ function LoginForm() {
                                 </div>
 
                                 <Button type="submit" className="w-full" disabled={loading}>
-                                    {loading ? "Entrando..." : "Entrar"}
+                                    {loading ? "Entrando..." : (isPricingIntent ? "Entrar e Continuar" : "Entrar")}
                                 </Button>
                             </form>
 
@@ -164,7 +170,10 @@ function LoginForm() {
 
                             <div className="text-center text-sm">
                                 Não tem uma conta?{" "}
-                                <Link href="/register" className="text-primary hover:underline">
+                                <Link
+                                    href={isPricingIntent ? `/register?redirect=${encodeURIComponent(redirectUrl)}` : "/register"}
+                                    className="text-primary hover:underline"
+                                >
                                     Criar conta
                                 </Link>
                             </div>

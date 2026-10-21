@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
@@ -17,8 +17,12 @@ import ReCAPTCHA from "react-google-recaptcha"
 import { useRef } from "react"
 import { sendGTMEvent } from "@/lib/gtm"
 
-export function RegisterPage() {
+function RegisterContent() {
     const router = useRouter()
+    const searchParams = useSearchParams()
+    const redirectUrl = searchParams.get("redirect") || "/dashboard"
+    const isPricingIntent = redirectUrl.includes('/pricing')
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [fullName, setFullName] = useState("")
@@ -54,7 +58,7 @@ export function RegisterPage() {
                     data: {
                         full_name: fullName,
                     },
-                    emailRedirectTo: `${window.location.origin}/auth/callback`,
+                    emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(redirectUrl)}`,
                     captchaToken,
                 },
             })
@@ -63,7 +67,7 @@ export function RegisterPage() {
 
             sendGTMEvent({ event: 'sign_up' })
             toast.success("Conta criada! Verifique seu email para confirmar.")
-            router.push("/login")
+            router.push(`/login?redirect=${encodeURIComponent(redirectUrl)}`)
         } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             toast.error(error.message || "Erro ao criar conta")
         } finally {
@@ -77,7 +81,7 @@ export function RegisterPage() {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider,
                 options: {
-                    redirectTo: `${window.location.origin}/auth/callback`,
+                    redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(redirectUrl)}`,
                 },
             })
 
@@ -98,9 +102,13 @@ export function RegisterPage() {
                             <div className="flex items-center justify-center mb-4">
                                 <Code2 className="h-12 w-12 text-primary" />
                             </div>
-                            <h1 className="text-2xl font-semibold text-center tracking-tight">Criar conta</h1>
+                            <h1 className="text-2xl font-semibold text-center tracking-tight">
+                                {isPricingIntent ? "Crie sua conta para assinar" : "Criar conta"}
+                            </h1>
                             <CardDescription className="text-center">
-                                Comece a usar o DevThru gratuitamente
+                                {isPricingIntent
+                                    ? "Conclua seu cadastro rápido para desbloquear seu plano no DevThru"
+                                    : "Comece a usar o DevThru gratuitamente"}
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
@@ -117,6 +125,7 @@ export function RegisterPage() {
                                         disabled={loading}
                                     />
                                 </div>
+
 
                                 <div className="space-y-2">
                                     <Label htmlFor="email">Email</Label>
@@ -218,7 +227,10 @@ export function RegisterPage() {
 
                             <div className="text-center text-sm">
                                 Já tem uma conta?{" "}
-                                <Link href="/login" className="text-primary hover:underline">
+                                <Link
+                                    href={isPricingIntent ? `/login?redirect=${encodeURIComponent(redirectUrl)}` : "/login"}
+                                    className="text-primary hover:underline"
+                                >
                                     Fazer login
                                 </Link>
                             </div>
@@ -229,5 +241,13 @@ export function RegisterPage() {
 
             <Footer />
         </div>
+    )
+}
+
+export function RegisterPage() {
+    return (
+        <Suspense fallback={null}>
+            <RegisterContent />
+        </Suspense>
     )
 }

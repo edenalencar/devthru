@@ -1,22 +1,24 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef, Suspense } from "react"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check, Loader2 } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { toast } from "sonner"
 // import { stripePromise } from "@/lib/stripe/client"
 import { useUser } from "@/lib/hooks/use-user"
 import { differenceInDays } from "date-fns"
 import { STRIPE_PLANS } from "@/lib/stripe/plans"
 
-export function PricingPage() {
+function PricingContent() {
     const router = useRouter()
+    const searchParams = useSearchParams()
     const { user, profile, isInTrial, loading: userLoading } = useUser()
     const [loading, setLoading] = useState<string | null>(null)
+    const autoCheckoutTriggered = useRef(false)
 
     const daysRemaining = profile?.trial_ends_at
         ? Math.max(0, differenceInDays(new Date(profile.trial_ends_at), new Date()))
@@ -27,7 +29,8 @@ export function PricingPage() {
             setLoading(priceId)
 
             if (!user) {
-                router.push("/login?redirect=/pricing")
+                const checkoutRedirect = `/pricing?action=checkout&plan=${encodeURIComponent(priceId)}`
+                router.push(`/login?redirect=${encodeURIComponent(checkoutRedirect)}`)
                 return
             }
 
@@ -64,6 +67,18 @@ export function PricingPage() {
             setLoading(null)
         }
     }
+
+    // Auto-checkout após login com redirect
+    useEffect(() => {
+        if (userLoading || !user) return
+        const action = searchParams.get('action')
+        const plan = searchParams.get('plan')
+
+        if (action === 'checkout' && plan && !autoCheckoutTriggered.current) {
+            autoCheckoutTriggered.current = true
+            handleSubscribe(plan)
+        }
+    }, [user, userLoading, searchParams])
 
     const handlePortal = async () => {
         try {
@@ -107,7 +122,7 @@ export function PricingPage() {
             if (currentTier !== 'free') {
                 return handlePortal
             }
-            // Se é Free, vai pro Checkout assinar
+            // Se é Free ou Trial, vai pro Checkout assinar
             return () => handleSubscribe(targetPriceId)
         }
 
@@ -115,15 +130,15 @@ export function PricingPage() {
         if (isInTrial) {
             if (plan === 'pro') {
                 return {
-                    text: "Seu Plano Atual (Teste Grátis)",
-                    disabled: true,
+                    text: "Assinar Plano Pro",
+                    disabled: false,
                     variant: "default" as const,
-                    action: () => { }
+                    action: () => handleSubscribe(STRIPE_PLANS.PRO.priceId)
                 }
             }
             if (plan === 'business') {
                 return {
-                    text: "Fazer Upgrade",
+                    text: "Fazer Upgrade para Business",
                     disabled: false,
                     variant: "default" as const,
                     action: () => handleSubscribe(STRIPE_PLANS.BUSINESS.priceId)
@@ -131,10 +146,10 @@ export function PricingPage() {
             }
             // Free plan during trial
             return {
-                text: "Mudar para este plano",
-                disabled: false,
+                text: "Plano Gratuito",
+                disabled: true,
                 variant: "outline" as const,
-                action: () => { } // Free button logic usually distinct
+                action: () => { }
             }
         }
 
@@ -391,5 +406,13 @@ export function PricingPage() {
 
             <Footer />
         </div>
+    )
+}
+
+export function PricingPage() {
+    return (
+        <Suspense fallback={null}>
+            <PricingContent />
+        </Suspense>
     )
 }

@@ -15,6 +15,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
+import { ToolProCta } from "@/components/tools/tool-pro-cta"
 
 export function LicensePlatePage() {
     const [generatedPlate, setGeneratedPlate] = useState("")
@@ -222,6 +223,12 @@ export function LicensePlatePage() {
                             </Card>
                         </TabsContent>
                     </Tabs>
+
+                    {/* Pro Plan CTA */}
+                    <ToolProCta
+                        toolName="Placas e Frotas de Veículos"
+                        description="Gere lotes massivos de placas Mercosul e antigas para testes de pedágio, OCR, frotas e estacionamentos com exportação rápida para CSV e JSON."
+                    />
 
                     {/* Info Section */}
                     <Card className="mt-8">

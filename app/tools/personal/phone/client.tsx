@@ -18,6 +18,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
+import { ToolProCta } from "@/components/tools/tool-pro-cta"
 import Link from "next/link"
 
 const PHONE_JS_CODE = `function generateBrPhone(type = "mobile", formatted = true) {
@@ -406,6 +407,9 @@ export function PhoneGeneratorPage() {
                             </CardContent>
                         </Card>
                     </div>
+
+                    {/* Pro Plan CTA */}
+                    <ToolProCta toolName="Telefones e Contatos" />
 
                     {/* Info Section & FAQ */}
                     <Card className="mt-8">

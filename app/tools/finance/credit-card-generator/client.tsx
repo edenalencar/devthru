@@ -18,6 +18,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
+import { ToolProCta } from "@/components/tools/tool-pro-cta"
 
 const LUHN_JS_CODE = `function validateLuhn(cardNumber) {
   const cleaned = cardNumber.replace(/\\D/g, "");
@@ -266,6 +267,12 @@ export function CreditCardGeneratorPage() {
                             </p>
                         </div>
                     </div>
+
+                    {/* Pro Plan CTA */}
+                    <ToolProCta
+                        toolName="Cartões e Pagamentos em Massa"
+                        description="Valide checkouts e antifraude com geração massiva de cartões para sandbox de todas as bandeiras (Visa, Master, Elo, Amex) com exportação JSON/Excel."
+                    />
 
                     {/* Technical Brand & BIN Architecture */}
                     <Card className="mt-8 border-border/60 shadow-sm">

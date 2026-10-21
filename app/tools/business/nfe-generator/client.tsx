@@ -16,6 +16,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { toast } from "sonner"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { ToolProCta } from "@/components/tools/tool-pro-cta"
 
 // UF Codes (IBGE)
 const ufCodes: Record<string, string> = {
@@ -269,7 +270,11 @@ export function NfeGeneratorPage() {
                         )}
                     </div>
 
-
+                    {/* Pro Plan CTA */}
+                    <ToolProCta
+                        toolName="Chaves de NF-e e NFC-e"
+                        description="Gere lotes fiscais em massa para homologação e testes de estresse em ERPs, com exportação rápida para CSV, JSON e Excel."
+                    />
 
                     {/* FAQ & Info Section */}
                     <Card className="mt-8">
