@@ -16,6 +16,7 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { ToolProCta } from "@/components/tools/tool-pro-cta"
+import { SponsorBanner } from "@/components/marketing/sponsor-banner"
 
 export function LicensePlatePage() {
     const [generatedPlate, setGeneratedPlate] = useState("")
@@ -277,6 +278,9 @@ export function LicensePlatePage() {
                             </div>
                         </CardContent>
                     </Card>
+
+                    <SponsorBanner toolContext="Gerador de Placas de Veículos" className="my-6" />
+
                     <ToolFaqSection toolSlug="license-plate" />
                     <RelatedTools currentToolSlug="license-plate" category="automotive" />
                 </div>

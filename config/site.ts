@@ -45,6 +45,10 @@ export const navLinks = [
         href: "/pricing",
     },
     {
+        title: "Anuncie",
+        href: "/anuncie",
+    },
+    {
         title: "Contato",
         href: "/contact",
     },

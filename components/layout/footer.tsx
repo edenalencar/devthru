@@ -87,6 +87,12 @@ export function Footer() {
                                 </Link>
                             </li>
                             <li>
+                                <Link href="/anuncie" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5">
+                                    <span>Anuncie</span>
+                                    <span className="rounded bg-primary/10 px-1.5 py-0.2 text-[10px] font-semibold text-primary">Mídia Kit</span>
+                                </Link>
+                            </li>
+                            <li>
                                 <Link href="/updates" className="text-muted-foreground hover:text-primary transition-colors">
                                     Atualizações
                                 </Link>

@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Navbar } from "@/components/layout/navbar"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { SponsorBanner } from "@/components/marketing/sponsor-banner"
 import {
     FileText,
     Truck,
@@ -252,6 +253,10 @@ export function FiscalToolsHubPage() {
                         </div>
                     </div>
                 </section>
+
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pt-10">
+                    <SponsorBanner toolContext="Suíte de Ferramentas Fiscais e SPED" />
+                </div>
 
                 {/* CTA Section */}
                 <section className="py-16 md:py-24">

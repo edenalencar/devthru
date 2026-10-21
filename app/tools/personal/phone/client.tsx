@@ -19,6 +19,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ToolProCta } from "@/components/tools/tool-pro-cta"
+import { SponsorBanner } from "@/components/marketing/sponsor-banner"
 import Link from "next/link"
 
 const PHONE_JS_CODE = `function generateBrPhone(type = "mobile", formatted = true) {
@@ -520,6 +521,9 @@ export function PhoneGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+
+                    <SponsorBanner toolContext="Gerador de Telefone" className="my-6" />
+
                     <RelatedTools currentToolSlug="phone" category="personal" />
                 </div>
             </main>

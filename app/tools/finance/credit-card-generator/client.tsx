@@ -19,6 +19,7 @@ import { Accordion } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { ToolProCta } from "@/components/tools/tool-pro-cta"
+import { SponsorBanner } from "@/components/marketing/sponsor-banner"
 
 const LUHN_JS_CODE = `function validateLuhn(cardNumber) {
   const cleaned = cardNumber.replace(/\\D/g, "");
@@ -374,6 +375,8 @@ export function CreditCardGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+
+                    <SponsorBanner toolContext="Gerador de Cartão de Crédito" className="my-6" />
 
                     {/* SEO FAQs */}
                     <ToolFaqSection
