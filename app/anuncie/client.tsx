@@ -9,6 +9,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import {
     Sparkles,
     TrendingUp,
     Users,
@@ -390,11 +397,11 @@ ${message}
                         </Card>
 
                         {/* Formato 2 */}
-                        <Card className="flex flex-col relative border-primary shadow-md hover:border-primary transition-all">
-                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
+                        <Card className="flex flex-col relative border-primary border-2 shadow-lg hover:border-primary transition-all overflow-hidden">
+                            <div className="bg-primary text-primary-foreground py-1.5 text-center text-xs font-bold tracking-wider uppercase">
                                 Alto Valor B2B
                             </div>
-                            <CardHeader className="pt-8">
+                            <CardHeader className="pt-6">
                                 <div className="text-xs font-semibold uppercase text-primary tracking-wide">
                                     Público Corporativo
                                 </div>
@@ -547,26 +554,29 @@ ${message}
                                         <label htmlFor="format" className="text-sm font-medium">
                                             Formato de Interesse
                                         </label>
-                                        <select
-                                            id="format"
-                                            name="format"
+                                        <input type="hidden" name="format" value={selectedFormat} />
+                                        <Select
                                             value={selectedFormat}
-                                            onChange={(e) => setSelectedFormat(e.target.value)}
-                                            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                                            onValueChange={(val) => setSelectedFormat(val)}
                                         >
-                                            <option value="banner-ferramentas">
-                                                Banner em Ferramentas Populares (Telefones, Placas, Cartões)
-                                            </option>
-                                            <option value="suite-fiscal">
-                                                Patrocínio Exclusivo da Suíte Fiscal (NF-e, CT-e, IE)
-                                            </option>
-                                            <option value="artigo-blog">
-                                                Artigo Técnico & Co-Marketing no Blog
-                                            </option>
-                                            <option value="outro">
-                                                Outro / Pacote Personalizado
-                                            </option>
-                                        </select>
+                                            <SelectTrigger id="format" className="w-full">
+                                                <SelectValue placeholder="Selecione um formato de interesse" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="banner-ferramentas">
+                                                    Banner em Ferramentas Populares (Telefones, Placas, Cartões)
+                                                </SelectItem>
+                                                <SelectItem value="suite-fiscal">
+                                                    Patrocínio Exclusivo da Suíte Fiscal (NF-e, CT-e, IE)
+                                                </SelectItem>
+                                                <SelectItem value="artigo-blog">
+                                                    Artigo Técnico &amp; Co-Marketing no Blog
+                                                </SelectItem>
+                                                <SelectItem value="outro">
+                                                    Outro / Pacote Personalizado
+                                                </SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
 
                                     <div className="space-y-2">
