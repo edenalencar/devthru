@@ -11,6 +11,9 @@ import { PROGRAMMATIC_CONTENT } from '@/lib/content/programmatic'
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = siteConfig.url
 
+    // Data base estável de versão/atualização do catálogo para evitar penalização de 'lastmod' volátil pelo Googlebot
+    const catalogUpdateDate = new Date("2026-10-15T00:00:00.000Z")
+
     // Core static routes
     const coreRoutes = [
         '',
@@ -27,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/guides',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
-        lastModified: new Date(),
+        lastModified: catalogUpdateDate,
         changeFrequency: 'monthly' as const,
         priority: route === '' ? 1 : route === '/ferramentas-fiscais' ? 0.9 : 0.8,
     }))
@@ -35,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Tool routes
     const toolRoutes = tools.map((tool) => ({
         url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
-        lastModified: new Date(),
+        lastModified: catalogUpdateDate,
         changeFrequency: 'monthly' as const,
         priority: 0.8,
     }))
@@ -43,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Inscrição Estadual state-specific routes
     const ieStateRoutes = IE_STATES.map((state) => ({
         url: `${baseUrl}/ferramentas/inscricao-estadual/${state.uf.toLowerCase()}`,
-        lastModified: new Date(),
+        lastModified: catalogUpdateDate,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }))
@@ -59,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Guide category routes
     const guideCategoryRoutes = Array.from(new Set(PROGRAMMATIC_CONTENT.map((c) => c.category))).map((category) => ({
         url: `${baseUrl}/guides/${category}`,
-        lastModified: new Date(),
+        lastModified: catalogUpdateDate,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }))
@@ -67,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Guide routes
     const guideRoutes = PROGRAMMATIC_CONTENT.map((guide) => ({
         url: `${baseUrl}/guides/${guide.category}/${guide.toolId}/${guide.languageId}`,
-        lastModified: new Date(),
+        lastModified: catalogUpdateDate,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }))

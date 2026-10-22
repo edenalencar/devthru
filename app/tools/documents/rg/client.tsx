@@ -11,6 +11,7 @@ import { useUser } from "@/lib/hooks/use-user"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Navbar } from "@/components/layout/navbar"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs"
@@ -339,6 +340,7 @@ export function RGGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="rg" />
                     <RelatedTools currentToolSlug="rg" category="documents" />
                 </div>
             </main>

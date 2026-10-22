@@ -1,0 +1,8 @@
+Motivo,Fonte,Validação,Páginas
+Página com redirecionamento,Site,Falha,27
+"Rastreada, mas não indexada no momento",Sistemas do Google,Falha,39
+Página alternativa com tag canônica adequada,Site,Não foi iniciado,5
+Bloqueada pelo robots.txt,Site,Não foi iniciado,4
+Erro de redirecionamento,Site,Iniciado,14
+Não encontrado (404),Site,Iniciado,3
+"Cópia, o Google e o usuário selecionaram uma página canônica diferente",Sistemas do Google,Aprovado,0

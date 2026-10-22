@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
@@ -481,6 +482,7 @@ export function WhatsappLinkGeneratorPage() {
                         </div>
                     </div>
 
+                    <ToolFaqSection toolSlug="whatsapp-link-generator" />
                     <RelatedTools currentToolSlug="whatsapp-link-generator" category="utilities" />
                 </div>
             </main>

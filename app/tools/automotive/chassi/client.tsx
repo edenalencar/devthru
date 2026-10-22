@@ -12,6 +12,7 @@ import { Car, RefreshCw, Copy } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
@@ -477,6 +478,7 @@ export function ChassiGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="chassi" />
                     <RelatedTools currentToolSlug="chassi" category="automotive" customSlugs={['license-plate', 'renavam', 'fipe', 'cnh']} />
                 </div>
             </main>

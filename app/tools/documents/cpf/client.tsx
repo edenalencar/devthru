@@ -18,6 +18,7 @@ import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import Link from "next/link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -551,6 +552,7 @@ export function CPFGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="cpf" />
                     <RelatedTools currentToolSlug="cpf" category="documents" />
                 </div>
             </main>

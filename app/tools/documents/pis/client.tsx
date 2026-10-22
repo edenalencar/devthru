@@ -15,6 +15,7 @@ import { generatePIS, validatePIS, formatPIS } from '@/lib/utils/validators/pis'
 import { ShareButtons } from "@/components/share-buttons"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { useUser } from '@/lib/hooks/use-user'
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
@@ -344,6 +345,7 @@ export function PISPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="pis" />
                     <RelatedTools currentToolSlug="pis" category="documents" customSlugs={['cpf', 'rg', 'cnh', 'titulo-eleitor']} />
                 </div>
             </main>

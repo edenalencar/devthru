@@ -18,6 +18,16 @@
       "statusCode": 301
     },
     {
+      "source": "/tools/utilities/base64-encoder",
+      "destination": "https://www.devthru.com/tools/utilities/base64",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/utilities/uuid-generator",
+      "destination": "https://www.devthru.com/tools/utilities/uuid",
+      "statusCode": 301
+    },
+    {
       "source": "/ferramentas",
       "destination": "https://www.devthru.com/",
       "statusCode": 301

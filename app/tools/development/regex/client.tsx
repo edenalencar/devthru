@@ -12,6 +12,7 @@ import { Terminal, XCircle } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -246,6 +247,7 @@ export function RegexGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="regex" />
                     <RelatedTools currentToolSlug="regex" category="development" />
                 </div>
             </main>

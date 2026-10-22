@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Shield, RefreshCw } from "lucide-react"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
@@ -389,6 +390,7 @@ export function RenavamGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="renavam" />
                     <RelatedTools currentToolSlug="renavam" category="automotive" />
                 </div>
             </main>

@@ -14,6 +14,7 @@ import { RefreshCw, CheckCircle2, XCircle } from "lucide-react"
 import { generateTituloEleitor, validateTituloEleitor, formatTituloEleitor } from "@/lib/utils/validators/titulo-eleitor"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
@@ -495,6 +496,7 @@ export function TituloEleitorPage() {
                     </div>
 
                     <div className="border-t pt-8">
+                        <ToolFaqSection toolSlug="titulo-eleitor" />
                         <RelatedTools currentToolSlug="titulo-eleitor" category="documents" />
                     </div>
                 </div>

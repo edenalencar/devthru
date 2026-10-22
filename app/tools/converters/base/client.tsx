@@ -10,6 +10,7 @@ import { Calculator } from "lucide-react"
 import { Navbar } from "@/components/layout/navbar"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -333,6 +334,7 @@ export function BaseConverterPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="base" />
                     <RelatedTools currentToolSlug="base" category="converters" />
                 </div>
             </main>

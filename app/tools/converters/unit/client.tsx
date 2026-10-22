@@ -67,6 +67,7 @@ const categories = {
 import { Navbar } from "@/components/layout/navbar"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
@@ -273,6 +274,7 @@ export function UnitConverterPage() {
                         </div>
                     </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="unit" />
                     <RelatedTools currentToolSlug="unit" category="converters" />
                 </div>
             </main>

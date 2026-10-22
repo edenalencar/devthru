@@ -17,6 +17,16 @@ const nextConfig: NextConfig = {
       },
       // Redirecionamentos para páginas reportadas como 404 no SEMrush/GSC
       {
+        source: "/tools/utilities/base64-encoder",
+        destination: "/tools/utilities/base64",
+        permanent: true,
+      },
+      {
+        source: "/tools/utilities/uuid-generator",
+        destination: "/tools/utilities/uuid",
+        permanent: true,
+      },
+      {
         source: "/ferramentas",
         destination: "/",
         permanent: true,

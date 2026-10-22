@@ -10,6 +10,7 @@ import { generatePerson, Person } from "@/lib/utils/validators/person"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -394,6 +395,7 @@ export function PersonGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="person" />
                     <RelatedTools currentToolSlug="person" category="personal" />
                 </div>
             </main>

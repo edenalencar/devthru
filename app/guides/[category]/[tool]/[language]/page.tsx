@@ -86,8 +86,8 @@ export default async function GuidePage({ params }: PageProps) {
                             "https://github.com/edenalencar"
                         ]
                     },
-                    "datePublished": new Date().toISOString(), // In a real app this should be content.date
-                    "dateModified": new Date().toISOString(),
+                    "datePublished": "2026-08-15T00:00:00.000Z",
+                    "dateModified": "2026-10-15T00:00:00.000Z",
                     "mainEntityOfPage": {
                         "@type": "WebPage",
                         "@id": `https://www.devthru.com/guides/${category}/${tool}/${language}`
@@ -138,6 +138,21 @@ export default async function GuidePage({ params }: PageProps) {
                     <p className="mt-4 text-muted-foreground">
                         {content.content.explanation}
                     </p>
+                </section>
+
+                <section className="bg-muted/30 p-6 rounded-xl border border-border/80">
+                    <h2 className="text-2xl font-semibold mb-3">Boas Práticas de Implementação e Testes (QA)</h2>
+                    <ul className="space-y-3 text-muted-foreground leading-relaxed">
+                        <li>
+                            <strong className="text-foreground">Sanitização de Entrada:</strong> Sempre remova máscaras, pontuações e espaços antes de aplicar os cálculos matemáticos ou persistir em bancos de dados relacionais.
+                        </li>
+                        <li>
+                            <strong className="text-foreground">Cobertura de Casos de Borda (Edge Cases):</strong> Assegure que sua suíte de testes unitários cubra sequências repetidas (ex: dígitos idênticos como &quot;111...&quot;), valores nulos/vazios e strings com caracteres especiais.
+                        </li>
+                        <li>
+                            <strong className="text-foreground">Desempenho O(1):</strong> Este algoritmo executa em tempo constante com consumo mínimo de memória, sendo adequado para middlewares de API, funções serverless e validações de formulário em alta escala.
+                        </li>
+                    </ul>
                 </section>
 
                 <div className="bg-blue-50 dark:bg-blue-950 p-8 rounded-xl border border-blue-200 dark:border-blue-900 text-center">

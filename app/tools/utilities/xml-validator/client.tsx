@@ -10,6 +10,7 @@ import { FileCode, CheckCircle2, XCircle } from "lucide-react"
 import { ShareButtons } from "@/components/share-buttons"
 import { Label } from "@/components/ui/label"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
@@ -190,6 +191,7 @@ export function XMLValidatorPage() {
                     </div>
 
                     <div className="border-t pt-8">
+                        <ToolFaqSection toolSlug="xml-validator" />
                         <RelatedTools currentToolSlug="xml-validator" category="utilities" />
                     </div>
                 </div>

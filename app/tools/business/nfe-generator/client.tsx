@@ -15,6 +15,7 @@ import Link from "next/link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { toast } from "sonner"
 import { RelatedTools } from "@/components/tools/related-tools"
+import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { ToolProCta } from "@/components/tools/tool-pro-cta"
 
@@ -351,6 +352,7 @@ export function NfeGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="nfe-generator" />
                     <RelatedTools currentToolSlug="nfe-generator" category="business" />
                 </div>
             </main>
