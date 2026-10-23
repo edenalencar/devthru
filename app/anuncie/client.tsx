@@ -68,14 +68,19 @@ export function AnuncieClient() {
         const name = formData.get("name") as string
         const company = formData.get("company") as string
         const email = formData.get("email") as string
-        const website = formData.get("website") as string
+        const rawWebsite = (formData.get("website") as string)?.trim() || ""
+        const website = rawWebsite
+            ? rawWebsite.startsWith("http://") || rawWebsite.startsWith("https://")
+                ? rawWebsite
+                : `https://${rawWebsite}`
+            : "Não informado"
         const format = formData.get("format") as string
         const message = formData.get("message") as string
 
         const subject = `[Patrocínio DevThru] - ${company || name}`
         const fullMessage = `
 Empresa: ${company || "Não informada"}
-Site: ${website || "Não informado"}
+Site: ${website}
 Contato: ${name} (${email})
 Formato de Interesse: ${format}
 
@@ -544,8 +549,8 @@ ${message}
                                             <Input
                                                 id="website"
                                                 name="website"
-                                                type="url"
-                                                placeholder="https://empresa.com.br"
+                                                type="text"
+                                                placeholder="ex: empresa.com.br"
                                             />
                                         </div>
                                     </div>
