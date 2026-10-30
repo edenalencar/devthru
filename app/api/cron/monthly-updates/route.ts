@@ -51,15 +51,15 @@ export async function GET(req: NextRequest) {
         const featuredSection = {
             badge: "Novidade & Produtividade",
             title: "🚀 Conheça os Superpoderes da sua Conta no DevThru",
-            subtitle: "Você sabia que ter uma conta gratuita no DevThru desbloqueia recursos avançados para o seu fluxo de desenvolvimento?",
+            subtitle: "Você sabia que a sua conta no DevThru reúne recursos avançados para o seu fluxo de trabalho? Veja o que cada plano oferece.",
             points: [
                 {
                     title: "📂 Histórico Persistente e Sincronizado",
-                    description: "Suas gerações e dados de teste ficam salvos com segurança na nuvem, acessíveis de qualquer navegador ou dispositivo, sem o risco de perda ao limpar cookies."
+                    description: "Nos planos pagos, suas gerações e dados de teste ficam salvos com segurança na nuvem, acessíveis de qualquer navegador ou dispositivo, sem o risco de perda ao limpar cookies."
                 },
                 {
                     title: "📊 Exportação para CSV, JSON e Excel (.xlsx)",
-                    description: "Exporte históricos de dados com 1 clique para anexar em tarefas de homologação, tickets do Jira ou compartilhar massas de dados com o time de QA."
+                    description: "Nos planos pagos, exporte históricos de dados com 1 clique para anexar em tarefas de homologação, tickets do Jira ou compartilhar massas de dados com o time de QA."
                 },
                 {
                     title: "🔑 API Keys para Automação & Testes",
