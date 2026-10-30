@@ -142,14 +142,14 @@ ${message}
                         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground max-w-4xl mx-auto leading-tight">
                             Conecte sua marca a milhares de{" "}
                             <span className="text-primary underline decoration-primary/40 decoration-wavy">
-                                desenvolvedores
+                                profissionais e equipes
                             </span>{" "}
                             no Brasil
                         </h1>
 
                         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                            Alcance engenheiros de software, analistas de QA e arquitetos técnicos no exato momento
-                            em que estão construindo, testando e homologando sistemas. Formatos nativos, limpos e imunes a AdBlock.
+                            Alcance analistas de sistemas, profissionais fiscais, QAs, desenvolvedores e lideranças no momento exato
+                            em que estão operando, testando e validando suas rotinas de trabalho. Formatos nativos, limpos e imunes a AdBlock.
                         </p>
 
                         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -222,12 +222,12 @@ ${message}
                                         100%
                                     </CardTitle>
                                     <CardDescription className="font-medium text-foreground/80">
-                                        Público Técnico Especializado
+                                        Público Qualificado em Horário de Trabalho
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-xs text-muted-foreground">
-                                        Desenvolvedores Full Stack, Frontend, Backend, QAs e Engenheiros de Software em horário de trabalho.
+                                        Profissionais de tecnologia, analistas fiscais, QAs e gestores utilizando ferramentas ativamente durante o expediente.
                                     </p>
                                 </CardContent>
                             </Card>
@@ -281,7 +281,7 @@ ${message}
                             Por que Anunciar Diretamente no DevThru?
                         </h2>
                         <p className="text-muted-foreground mt-2 max-w-2xl mx-auto text-sm md:text-base">
-                            Redes programáticas comuns (como AdSense) falham com programadores. Veja por que nosso modelo nativo entrega resultados reais.
+                            Redes programáticas comuns (como AdSense) falham com profissionais e equipes em horário de trabalho. Veja por que nosso modelo nativo entrega resultados reais.
                         </p>
                     </div>
 
@@ -292,7 +292,7 @@ ${message}
                             </div>
                             <h3 className="text-lg font-bold">100% Imune a AdBlockers</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">
-                                Mais de 70% dos desenvolvedores usam bloqueadores de anúncios. No DevThru, seu patrocínio é
+                                Mais de 70% dos profissionais de tecnologia usam bloqueadores de anúncios. No DevThru, seu patrocínio é
                                 renderizado em HTML/CSS nativo, sem iframes invasivos ou rastreadores externos bloqueáveis.
                             </p>
                         </div>
@@ -301,10 +301,10 @@ ${message}
                             <div className="size-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold">
                                 <Laptop className="size-5" />
                             </div>
-                            <h3 className="text-lg font-bold">Contexto de Mão no Código</h3>
+                            <h3 className="text-lg font-bold">Contexto de Alta Produtividade</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">
-                                O desenvolvedor acessa o DevThru enquanto está configurando testes, integrando APIs ou corrigindo bugs.
-                                É o momento perfeito para apresentar soluções de Nuvem, APIs de pagamento ou ferramentas de produtividade.
+                                O usuário acessa o DevThru enquanto está validando dados, conferindo documentos fiscais ou testando fluxos de trabalho.
+                                É o momento ideal para apresentar soluções SaaS, ERPs, serviços em nuvem, meios de pagamento e ferramentas de produtividade.
                             </p>
                         </div>
 
@@ -328,7 +328,7 @@ ${message}
                             <span className="text-xs font-semibold text-primary uppercase tracking-wider">
                                 Demonstração em Tempo Real
                             </span>
-                            <h3 className="text-xl font-bold mt-1">Como o seu anúncio é exibido aos desenvolvedores</h3>
+                            <h3 className="text-xl font-bold mt-1">Como o seu anúncio é exibido aos usuários</h3>
                             <p className="text-xs text-muted-foreground mt-1">
                                 Um design perfeitamente integrado à identidade visual das ferramentas, elegante e de alta conversão.
                             </p>
@@ -423,7 +423,7 @@ ${message}
                                     </li>
                                     <li className="flex items-center gap-2">
                                         <Check className="size-4 text-green-500 shrink-0" />
-                                        Público: Desenvolvedores ERP, Fintechs e Conttechs
+                                        Público: Analistas Fiscais, Contadores, ERPs, Fintechs e Devs
                                     </li>
                                     <li className="flex items-center gap-2">
                                         <Check className="size-4 text-green-500 shrink-0" />
@@ -591,7 +591,7 @@ ${message}
                                         <Textarea
                                             id="message"
                                             name="message"
-                                            placeholder="Ex: Queremos divulgar nossa nova API de pagamentos para desenvolvedores que realizam testes em homologação..."
+                                            placeholder="Ex: Queremos divulgar nossa solução para profissionais e equipes que utilizam a plataforma no dia a dia..."
                                             className="min-h-[120px]"
                                             required
                                         />
@@ -665,9 +665,9 @@ ${message}
                                 Que tipos de empresas podem anunciar no DevThru?
                             </AccordionTrigger>
                             <AccordionContent className="text-muted-foreground leading-relaxed">
-                                Aceitamos empresas com produtos e serviços de alto valor para a comunidade de tecnologia: plataformas
-                                de cloud e hospedagem, APIs e gateways bancários, ferramentas de observabilidade, consultorias,
-                                recrutamento tech e escolas de programação. Recusamos apostas, cripto não-regulada ou qualquer
+                                Aceitamos empresas com produtos e serviços B2B de alto valor: softwares de gestão (ERP), soluções fiscais
+                                e contábeis, plataformas de nuvem, APIs de pagamento, ferramentas de automação e produtividade corporativa.
+                                Recusamos apostas, cripto não-regulada ou qualquer
                                 conteúdo enganoso.
                             </AccordionContent>
                         </AccordionItem>

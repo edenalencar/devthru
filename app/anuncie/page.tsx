@@ -3,14 +3,14 @@ import { siteConfig } from "@/config/site"
 import { AnuncieClient } from "./client"
 
 export const metadata: Metadata = {
-    title: "Anuncie no DevThru | Mídia Kit & Patrocínios para Empresas Tech",
-    description: "Conecte sua marca, API, nuvem ou produto diretamente a milhares de desenvolvedores, QAs e arquitetos de software em ambiente de trabalho no Brasil. Anúncios 100% nativos e imunes a AdBlock.",
+    title: "Anuncie no DevThru | Mídia Kit & Patrocínios B2B",
+    description: "Conecte sua marca ou produto B2B diretamente a milhares de profissionais, analistas fiscais, desenvolvedores e tomadores de decisão em ambiente de trabalho no Brasil. Anúncios 100% nativos e imunes a AdBlock.",
     alternates: {
         canonical: `${siteConfig.url}/anuncie`,
     },
     openGraph: {
-        title: "Anuncie no DevThru | Mídia Kit & Patrocínios Tech",
-        description: "Alcance desenvolvedores e tomadores de decisão técnica no momento em que estão codificando e testando sistemas. Formatos nativos e alta visibilidade.",
+        title: "Anuncie no DevThru | Mídia Kit & Patrocínios B2B",
+        description: "Alcance profissionais, analistas e tomadores de decisão no momento em que estão operando, testando e validando fluxos em suas rotinas de trabalho. Formatos nativos e alta visibilidade.",
         url: `${siteConfig.url}/anuncie`,
         siteName: siteConfig.name,
         locale: "pt_BR",
@@ -32,7 +32,7 @@ export default function AnunciePage() {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": "Espaços Publicitários e Patrocínio Nativo DevThru",
-        "description": "Formatos de patrocínio e banners nativos para empresas alcançarem desenvolvedores de software e equipes de engenharia no Brasil.",
+        "description": "Formatos de patrocínio e banners nativos para empresas alcançarem profissionais, analistas fiscais, equipes de tecnologia e tomadores de decisão no Brasil.",
         "brand": {
             "@type": "Brand",
             "name": siteConfig.name,
