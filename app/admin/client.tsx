@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, Mail, Zap, Shield, CircleAlert, Star } from 'lucide-react';
+import { Users, Mail, Zap, CircleAlert, Star, Briefcase, Megaphone, Clock } from 'lucide-react';
 import { toast } from 'sonner';
 import Link from 'next/link';
 
@@ -11,10 +11,15 @@ interface Stats {
     freeUsers: number;
     proUsers: number;
     businessUsers: number;
+    activeTrials?: number;
     pendingMessages: number;
     totalGenerations: number;
     totalFeedbacks?: number;
     averageRating?: number;
+    totalDeals?: number;
+    dealsPipelineValue?: number;
+    dealsWonValue?: number;
+    newsletterSubscribersCount?: number;
 }
 
 export function AdminDashboardClient() {
@@ -45,7 +50,7 @@ export function AdminDashboardClient() {
         return (
             <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
                 <div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-[#135bec] border-r-transparent"></div>
-                <p className="text-sm text-[#4c669a]">Carregando estatísticas...</p>
+                <p className="text-sm text-[#4c669a]">Carregando painel do CRM DevThru...</p>
             </div>
         );
     }
@@ -63,84 +68,125 @@ export function AdminDashboardClient() {
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="text-3xl font-bold tracking-tight text-[#0d121b]">Visão Geral</h1>
-                <p className="text-sm text-[#4c669a] mt-1">Estatísticas gerais de uso e cadastros do DevThru.</p>
+                <h1 className="text-3xl font-bold tracking-tight text-[#0d121b]">Visão Geral do CRM</h1>
+                <p className="text-sm text-[#4c669a] mt-1">Métricas de crescimento, oportunidades comerciais e retenção de usuários.</p>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {/* CRM Growth Highlights */}
+            <div className="grid gap-6 md:grid-cols-3">
+                <Link href="/admin/deals">
+                    <Card className="bg-white border-[#e2e6ea] shadow-sm hover:border-[#135bec]/40 hover:shadow-md transition-all cursor-pointer h-full">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Pipeline de Patrocínios B2B</CardTitle>
+                            <Briefcase className="h-4 w-4 text-[#135bec]" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-bold text-[#0d121b]">
+                                {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(stats.dealsPipelineValue || 0)}
+                            </div>
+                            <p className="text-xs text-[#135bec] mt-1 flex items-center gap-1 font-medium">
+                                {stats.totalDeals || 0} oportunidades no pipeline →
+                            </p>
+                        </CardContent>
+                    </Card>
+                </Link>
+
+                <Link href="/admin/users">
+                    <Card className="bg-white border-[#e2e6ea] shadow-sm hover:border-[#135bec]/40 hover:shadow-md transition-all cursor-pointer h-full">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Trials Ativos (Pro)</CardTitle>
+                            <Clock className="h-4 w-4 text-amber-500" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-bold text-[#0d121b]">{stats.activeTrials || 0}</div>
+                            <p className="text-xs text-[#4c669a] mt-1">
+                                {stats.proUsers + stats.businessUsers} assinantes pagos ativos
+                            </p>
+                        </CardContent>
+                    </Card>
+                </Link>
+
+                <Link href="/admin/campaigns">
+                    <Card className="bg-white border-[#e2e6ea] shadow-sm hover:border-[#135bec]/40 hover:shadow-md transition-all cursor-pointer h-full">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Audiência da Newsletter</CardTitle>
+                            <Megaphone className="h-4 w-4 text-[#135bec]" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-bold text-[#0d121b]">{stats.newsletterSubscribersCount || 0}</div>
+                            <p className="text-xs text-[#135bec] mt-1 flex items-center gap-1 font-medium">
+                                Criar novo disparo em lote →
+                            </p>
+                        </CardContent>
+                    </Card>
+                </Link>
+            </div>
+
+            {/* Core Stats Grid */}
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <Link href="/admin/users">
+                    <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm hover:border-[#135bec]/40 transition-all cursor-pointer h-full">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Total de Usuários</CardTitle>
+                            <Users className="h-4 w-4 text-[#135bec]" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold text-[#0d121b]">{stats.totalUsers}</div>
+                            <p className="text-xs text-[#4c669a] mt-1">Contas registradas</p>
+                        </CardContent>
+                    </Card>
+                </Link>
+
                 <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm">
                     <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                        <CardTitle className="text-sm font-semibold text-[#4c669a]">Total de Usuários</CardTitle>
-                        <Users className="h-4 w-4 text-[#135bec]" />
+                        <CardTitle className="text-sm font-semibold text-[#4c669a]">Total de Gerações</CardTitle>
+                        <Zap className="h-4 w-4 text-[#135bec]" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold text-[#0d121b]">{stats.totalUsers}</div>
-                        <p className="text-xs text-[#4c669a] mt-1">Usuários no Supabase</p>
+                        <div className="text-2xl font-bold text-[#0d121b]">{stats.totalGenerations}</div>
+                        <p className="text-xs text-[#4c669a] mt-1">Uso de ferramentas</p>
                     </CardContent>
                 </Card>
+
+                <Link href="/admin/messages">
+                    <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm hover:border-[#135bec]/40 transition-all cursor-pointer h-full">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Mensagens Pendentes</CardTitle>
+                            <Mail className="h-4 w-4 text-[#135bec]" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold text-[#0d121b]">{stats.pendingMessages}</div>
+                            <p className="text-xs text-[#4c669a] mt-1">Aguardando resposta</p>
+                        </CardContent>
+                    </Card>
+                </Link>
 
                 <Link href="/admin/feedbacks">
                     <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm hover:border-[#135bec]/40 transition-all cursor-pointer h-full">
                         <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Feedbacks</CardTitle>
+                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Avaliações</CardTitle>
                             <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
                         </CardHeader>
                         <CardContent>
                             <div className="flex items-baseline gap-2">
-                                <span className="text-3xl font-bold text-[#0d121b]">{stats.totalFeedbacks ?? 0}</span>
+                                <span className="text-2xl font-bold text-[#0d121b]">{stats.totalFeedbacks ?? 0}</span>
                                 {stats.averageRating !== undefined && stats.averageRating > 0 && (
                                     <span className="text-xs font-semibold text-amber-600">
                                         ({stats.averageRating} ★)
                                     </span>
                                 )}
                             </div>
-                            <p className="text-xs text-[#135bec] mt-1 hover:underline">Ver todas avaliações →</p>
+                            <p className="text-xs text-[#4c669a] mt-1">Feedbacks recebidos</p>
                         </CardContent>
                     </Card>
                 </Link>
-
-                <Link href="/admin/messages">
-                    <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm hover:border-[#135bec]/40 transition-all cursor-pointer h-full">
-                        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                            <CardTitle className="text-sm font-semibold text-[#4c669a]">Mensagens</CardTitle>
-                            <Mail className="h-4 w-4 text-[#135bec]" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-3xl font-bold text-[#0d121b]">{stats.pendingMessages}</div>
-                            <p className="text-xs text-[#4c669a] mt-1">Pendentes de resposta</p>
-                        </CardContent>
-                    </Card>
-                </Link>
-
-                <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                        <CardTitle className="text-sm font-semibold text-[#4c669a]">Gerações</CardTitle>
-                        <Zap className="h-4 w-4 text-[#135bec]" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-bold text-[#0d121b]">{stats.totalGenerations}</div>
-                        <p className="text-xs text-[#4c669a] mt-1">Gerações efetuadas</p>
-                    </CardContent>
-                </Card>
-
-                <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                        <CardTitle className="text-sm font-semibold text-[#4c669a]">Assinantes Pagos</CardTitle>
-                        <Shield className="h-4 w-4 text-[#135bec]" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-bold text-[#0d121b]">{stats.proUsers + stats.businessUsers}</div>
-                        <p className="text-xs text-[#4c669a] mt-1">{stats.proUsers} Pro / {stats.businessUsers} Business</p>
-                    </CardContent>
-                </Card>
             </div>
 
             {/* Distribution Card */}
             <Card className="bg-white border-[#e2e6ea] text-[#0d121b] shadow-sm">
                 <CardHeader>
-                    <CardTitle className="text-[#0d121b]">Distribuição de Planos</CardTitle>
-                    <CardDescription className="text-[#4c669a]">Proporção de usuários por tier de assinatura.</CardDescription>
+                    <CardTitle className="text-[#0d121b]">Distribuição de Planos & Assinaturas</CardTitle>
+                    <CardDescription className="text-[#4c669a]">Proporção de desenvolvedores por tier de monetização.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                     <div>

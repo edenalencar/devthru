@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAdminClient } from '@/lib/supabase/admin'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { sendEmail } from '@/lib/email'
 import { ConfirmEmailTemplate } from '@/components/emails/ConfirmEmailTemplate'
+import { parseSponsorshipMessage } from '@/lib/crm/deals'
 import React from 'react'
 
 // Schema for validation
@@ -55,14 +57,16 @@ export async function POST(req: Request) {
         const supabase = createAdminClient()
 
         // Insert message
-        const { error } = await supabase
-            .from('contact_messages')
+        const { data: insertedMessage, error } = await (supabase
+            .from('contact_messages') as any)
             .insert({
                 name,
                 email,
                 subject,
                 message,
-            } as any)
+            })
+            .select('id')
+            .maybeSingle()
 
         if (error) {
             console.error('Error saving contact message:', error)
@@ -70,6 +74,20 @@ export async function POST(req: Request) {
                 { error: 'Erro ao salvar mensagem' },
                 { status: 500 }
             )
+        }
+
+        // Se for um contato da página /anuncie ou assunto de patrocínio, registrar como oportunidade no CRM Deals
+        const isSponsorship = subject.toLowerCase().includes('patrocínio') || subject.toLowerCase().includes('patrocinio')
+        if (isSponsorship) {
+            try {
+                const dealData = parseSponsorshipMessage(name, email, message)
+                await (supabase.from('crm_deals') as any).insert({
+                    ...dealData,
+                    contact_message_id: insertedMessage?.id || null
+                })
+            } catch (dealErr) {
+                console.warn('Não foi possível registrar oportunidade em crm_deals automaticamente:', dealErr)
+            }
         }
 
         // Send automatic confirmation email to the sender asynchronously
