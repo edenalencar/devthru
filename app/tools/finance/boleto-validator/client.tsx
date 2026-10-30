@@ -34,8 +34,8 @@ const BOLETO_VALIDATOR_JS = `function validarBoleto(codigo) {
 function validarCobranca(ld) {
     const blocos = [
         { num: ld.substring(0, 9), dv: ld[9] },
-        { num: ld.substring(10, 19), dv: ld[20] },
-        { num: ld.substring(21, 30), dv: ld[31] }
+        { num: ld.substring(10, 20), dv: ld[20] },
+        { num: ld.substring(21, 31), dv: ld[31] }
     ];
 
     const blocosValidos = blocos.every(bloco => {
@@ -67,8 +67,8 @@ const BOLETO_VALIDATOR_PYTHON = `def validar_boleto(codigo: str) -> dict:
 def validar_cobranca(ld: str) -> dict:
     blocos = [
         (ld[0:9], ld[9]),
-        (ld[10:19], ld[20]),
-        (ld[21:30], ld[31])
+        (ld[10:20], ld[20]),
+        (ld[21:31], ld[31])
     ]
     
     for num, dv in blocos:
@@ -104,8 +104,8 @@ public class BoletoValidator
         var blocos = new[]
         {
             new { Num = ld.Substring(0, 9), Dv = ld[9] - '0' },
-            new { Num = ld.Substring(10, 9), Dv = ld[20] - '0' },
-            new { Num = ld.Substring(21, 9), Dv = ld[31] - '0' }
+            new { Num = ld.Substring(10, 10), Dv = ld[20] - '0' },
+            new { Num = ld.Substring(21, 10), Dv = ld[31] - '0' }
         };
 
         foreach (var bloco in blocos)

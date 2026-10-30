@@ -63,7 +63,7 @@ export async function GET(req: NextRequest) {
                 },
                 {
                     title: "🔑 API Keys para Automação & Testes",
-                    description: "Gere sua chave de API pessoal na aba de configurações e consuma os geradores do DevThru diretamente em scripts, testes automatizados e pipelines."
+                    description: "No plano Business, gere sua chave de API na aba de configurações e consuma os geradores do DevThru diretamente em scripts, testes automatizados e pipelines."
                 },
                 {
                     title: "⚡ Métricas de Produtividade & Atalhos",
@@ -141,7 +141,7 @@ export async function GET(req: NextRequest) {
                     from: fromEmail,
                     to: email,
                     replyTo: replyToEmail, // Direciona as respostas para o e-mail de contato de suporte
-                    subject: '🔑 Histórico na nuvem, exportação em Excel e API Keys: você já conhece a sua conta no DevThru?',
+                    subject: '🔑 Histórico na nuvem, exportação em Excel e mais: você já conhece a sua conta no DevThru?',
                     react: emailElement,
                 };
             });
