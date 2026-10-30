@@ -27,8 +27,8 @@ export default function ToolsLayout({
                 {showFeedback && toolSlug && (
                     <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-6">
                         <NewsletterCard
-                            title="Receba novos utilitários e dicas para desenvolvedores"
-                            description="Sem spam. Lançamentos de novas ferramentas, geradores e recursos técnicos do DevThru diretamente no seu e-mail."
+                            title="Receba novas ferramentas e atualizações úteis"
+                            description="Sem spam. Lançamentos de novas ferramentas, geradores práticos e melhorias do DevThru diretamente no seu e-mail."
                             source={`tool-${toolSlug}`}
                         />
                         <ToolFeedback toolSlug={toolSlug} />

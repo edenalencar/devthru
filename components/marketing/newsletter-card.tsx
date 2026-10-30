@@ -14,8 +14,8 @@ interface NewsletterCardProps {
 }
 
 export function NewsletterCard({
-    title = 'Receba novidades e utilitários para devs',
-    description = 'Sem spam. Apenas atualizações de novas ferramentas, geradores e recursos técnicos do DevThru diretamente na sua caixa de entrada.',
+    title = 'Receba novas ferramentas e atualizações úteis',
+    description = 'Sem spam. Lançamentos de novas ferramentas, geradores práticos e melhorias do DevThru diretamente no seu e-mail.',
     source = 'tool-footer',
     className = '',
 }: NewsletterCardProps) {
@@ -57,7 +57,7 @@ export function NewsletterCard({
                 <CheckCircle2 className="h-6 w-6 text-emerald-600 dark:text-emerald-400 mx-auto" />
                 <h4 className="text-sm font-bold text-emerald-900 dark:text-emerald-200">Inscrição Confirmada!</h4>
                 <p className="text-xs text-emerald-700 dark:text-emerald-300">
-                    Você receberá nossas novidades técnicas diretamente na sua caixa de entrada.
+                    Você receberá nossas novidades e atualizações diretamente na sua caixa de entrada.
                 </p>
             </div>
         );
@@ -77,7 +77,7 @@ export function NewsletterCard({
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 pt-1">
                 <Input
                     type="email"
-                    placeholder="seu.email@empresa.com"
+                    placeholder="seu.email@exemplo.com"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
@@ -93,7 +93,7 @@ export function NewsletterCard({
                     ) : (
                         <>
                             <Sparkles className="h-4 w-4 mr-1.5" />
-                            Inscrever na Newsletter
+                            Receber Novidades
                         </>
                     )}
                 </Button>
