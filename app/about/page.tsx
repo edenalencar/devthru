@@ -10,7 +10,7 @@ import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
     title: "Sobre o DevThru",
-    description: "Conheça o DevThru, uma plataforma de ferramentas para desenvolvedores criada para ser rápida, segura e sem anúncios. Saiba mais sobre nossa missão.",
+    description: "Conheça o DevThru, uma plataforma de ferramentas e utilitários criada para ser rápida, segura e sem anúncios. Saiba mais sobre nossa missão.",
     alternates: {
         canonical: `${siteConfig.url}/about`,
     },
@@ -30,7 +30,7 @@ export default function AboutPage() {
                                 Nossa Missão
                             </div>
                             <h1 className="text-3xl font-black tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-                                Simplificando a vida do desenvolvedor
+                                Simplificando o dia a dia de quem cria, analisa e testa sistemas
                             </h1>
                             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
                                 O DevThru nasceu da necessidade de ter ferramentas confiáveis, rápidas e seguras em um só lugar. Sem anúncios intrusivos, sem complicações.
@@ -44,7 +44,7 @@ export default function AboutPage() {
                     <div className="container px-4 md:px-6 mx-auto max-w-7xl">
                         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
                             <div className="space-y-4">
-                                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">DevThru: Agilidade para quem desenvolve</h2>
+                                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">DevThru: Agilidade para quem precisa de dados e validações</h2>
                                 <p className="text-muted-foreground text-lg">
                                     Cansados de procurar ferramentas espalhadas pela internet, muitas vezes repletas de anúncios ou com interfaces duvidosas, decidimos criar o DevThru.
                                 </p>

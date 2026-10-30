@@ -46,7 +46,7 @@ interface MonthlyUpdatesEmailTemplateProps {
 
 export const MonthlyUpdatesEmailTemplate = ({
     monthYear = 'Outubro/2026',
-    introText = 'Temos o prazer de compartilhar as últimas novidades e recursos no DevThru para acelerar e proteger o seu fluxo de desenvolvimento.',
+    introText = 'Temos o prazer de compartilhar as últimas novidades e recursos no DevThru para otimizar sua rotina e acelerar o seu fluxo de trabalho.',
     featuredSection,
     newTools = [],
     blogPosts = [],
@@ -90,7 +90,7 @@ export const MonthlyUpdatesEmailTemplate = ({
                     fontStyle="normal"
                 />
             </Head>
-            <Preview>Confira as novas ferramentas para desenvolvedores, destaques da Rádio Dev e os últimos artigos técnicos do DevThru • {monthYear}</Preview>
+            <Preview>Confira as novas ferramentas e utilitários, destaques da Rádio Dev e os últimos artigos técnicos do DevThru • {monthYear}</Preview>
             <Body style={main}>
                 <Container style={container}>
                     {/* Header */}

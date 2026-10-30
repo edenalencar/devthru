@@ -129,7 +129,7 @@ async function executeSendWelcomeEmail({
             userName?.trim() ||
             claimedRows?.[0]?.full_name?.trim() ||
             profile?.full_name?.trim() ||
-            'Desenvolvedor';
+            '';
 
         // 5. Renderizar o template de e-mail
         const emailElement = React.createElement(WelcomeEmailTemplate, {

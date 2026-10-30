@@ -9,7 +9,7 @@ const getBaseUrl = () => {
 
 export const siteConfig = {
     name: "DevThru",
-    description: "DevThru: Dados rápidos pra viagem. Plataforma moderna e ágil para desenvolvedores.",
+    description: "DevThru: Dados rápidos pra viagem. Geradores e utilitários essenciais para profissionais, analistas e equipes de tecnologia.",
     url: getBaseUrl(),
     ogImage: "/og-image.png",
     keywords: [

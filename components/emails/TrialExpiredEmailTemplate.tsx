@@ -19,7 +19,7 @@ interface TrialExpiredEmailTemplateProps {
 }
 
 export const TrialExpiredEmailTemplate = ({
-    userName = 'Desenvolvedor',
+    userName = '',
 }: TrialExpiredEmailTemplateProps) => {
     return (
         <Html lang="pt-BR">
@@ -68,7 +68,11 @@ export const TrialExpiredEmailTemplate = ({
                             Seu período de testes encerrou
                         </Heading>
                         <Text style={paragraph}>
-                            Olá, <strong>{userName}</strong>!
+                            {userName && userName !== 'Desenvolvedor' ? (
+                                <>Olá, <strong>{userName}</strong>!</>
+                            ) : (
+                                <>Olá!</>
+                            )}
                         </Text>
                         <Text style={paragraph}>
                             Seu período de testes gratuitos no <strong>DevThru Pro</strong> chegou ao fim. Sua conta agora voltou para o plano Gratuito.

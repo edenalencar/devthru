@@ -15,11 +15,11 @@ import {
 import * as React from 'react';
 
 interface WelcomeEmailTemplateProps {
-    userName: string;
+    userName?: string;
 }
 
 export const WelcomeEmailTemplate = ({
-    userName = 'Desenvolvedor',
+    userName = '',
 }: WelcomeEmailTemplateProps) => {
     return (
         <Html lang="pt-BR">
@@ -74,13 +74,15 @@ export const WelcomeEmailTemplate = ({
                     
                     {/* Content */}
                     <Section style={content}>
-                        <Heading style={greeting}>Bem-vindo ao DevThru, {userName}! 🚀</Heading>
+                        <Heading style={greeting}>
+                            {userName && userName !== 'Desenvolvedor' ? `Bem-vindo ao DevThru, ${userName}! 🚀` : 'Bem-vindo ao DevThru! 🚀'}
+                        </Heading>
                         <Text style={paragraph}>
-                            Ficamos muito felizes em ter você por aqui. Sua conta foi confirmada com sucesso e agora você tem acesso completo ao nosso toolkit de desenvolvimento.
+                            Ficamos muito felizes em ter você por aqui. Sua conta foi confirmada com sucesso e agora você tem acesso completo a todas as ferramentas e geradores da plataforma.
                         </Text>
                         
                         <Text style={paragraph}>
-                            O DevThru foi feito de desenvolvedores para desenvolvedores, com foco em velocidade, simplicidade e ferramentas que rodam direto no seu navegador.
+                            O DevThru foi projetado com foco em velocidade, simplicidade e privacidade total, com ferramentas que rodam direto no seu navegador.
                         </Text>
 
                         <Hr style={hr} />

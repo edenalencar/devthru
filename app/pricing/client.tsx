@@ -61,8 +61,8 @@ function PricingContent() {
             } else {
                 throw new Error("URL de redirecionamento não encontrada")
             }
-        } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
-            toast.error(error.message || "Erro ao processar pagamento")
+        } catch (err: unknown) {
+            toast.error(err instanceof Error ? err.message : "Erro ao processar pagamento")
         } finally {
             setLoading(null)
         }
@@ -96,7 +96,7 @@ function PricingContent() {
             if (data.url) {
                 window.location.href = data.url
             }
-        } catch (error: any) {
+        } catch {
             toast.error("Erro ao redirecionar para o portal")
         } finally {
             setLoading(null)
@@ -202,7 +202,7 @@ function PricingContent() {
                     <div className="text-center mb-12">
                         <h1 className="text-4xl font-bold mb-4">Planos e Preços</h1>
                         <p className="text-xl text-muted-foreground">
-                            Escolha o plano ideal para suas necessidades de desenvolvimento
+                            Escolha o plano ideal para a sua produtividade e fluxo de trabalho
                         </p>
                     </div>
 
@@ -211,7 +211,7 @@ function PricingContent() {
                         <Card className="flex flex-col">
                             <CardHeader>
                                 <CardTitle className="text-2xl">Gratuito</CardTitle>
-                                <CardDescription>Para desenvolvedores individuais</CardDescription>
+                                <CardDescription>Para uso pessoal e individual</CardDescription>
                                 <div className="mt-4">
                                     <span className="text-4xl font-bold">R$ 0</span>
                                     <span className="text-muted-foreground">/mês</span>
@@ -255,7 +255,7 @@ function PricingContent() {
                             )}
                             <CardHeader>
                                 <CardTitle className="text-2xl">Pro</CardTitle>
-                                <CardDescription>Para profissionais e freelancers</CardDescription>
+                                <CardDescription>Para profissionais autônomos e freelancers</CardDescription>
                                 <div className="mt-4">
                                     <span className="text-4xl font-bold">R$ 29</span>
                                     <span className="text-muted-foreground">/mês</span>
@@ -308,7 +308,7 @@ function PricingContent() {
                             {/* Trial Expirado moved to Pro Plan */}
                             <CardHeader className="pt-12">
                                 <CardTitle className="text-2xl">Business</CardTitle>
-                                <CardDescription>Para times e empresas</CardDescription>
+                                <CardDescription>Para equipes, escritórios e empresas</CardDescription>
                                 <div className="mt-4">
                                     <span className="text-4xl font-bold">R$ 99</span>
                                     <span className="text-muted-foreground">/mês</span>
@@ -359,7 +359,7 @@ function PricingContent() {
                         <div className="text-center mb-10">
                             <h2 className="text-3xl font-bold tracking-tight mb-3">Dúvidas Frequentes sobre Assinaturas</h2>
                             <p className="text-muted-foreground text-base">
-                                Informações claras sobre faturamento, cancelamento e recursos para desenvolvedores
+                                Informações claras sobre faturamento, cancelamento e recursos da plataforma
                             </p>
                         </div>
 

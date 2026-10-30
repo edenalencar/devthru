@@ -21,7 +21,7 @@ interface ReplyEmailTemplateProps {
 }
 
 export const ReplyEmailTemplate = ({
-    userName = 'Desenvolvedor',
+    userName = '',
     originalMessage = '',
     replyText = '',
 }: ReplyEmailTemplateProps) => {
@@ -76,7 +76,9 @@ export const ReplyEmailTemplate = ({
                     </Section>
                     
                     <Section style={content}>
-                        <Heading style={greeting}>Olá, {userName}!</Heading>
+                        <Heading style={greeting}>
+                            {userName && userName !== 'Desenvolvedor' ? `Olá, ${userName}!` : 'Olá!'}
+                        </Heading>
                         <Text style={paragraph}>
                             Agradecemos por entrar em contato conosco. Aqui está a resposta para a sua mensagem:
                         </Text>
@@ -90,7 +92,7 @@ export const ReplyEmailTemplate = ({
                         
                         <Section style={originalBox}>
                             <Text style={originalHeading}>Sua mensagem original:</Text>
-                            <Text style={originalBody}>"{originalMessage}"</Text>
+                            <Text style={originalBody}>&ldquo;{originalMessage}&rdquo;</Text>
                         </Section>
 
                         <Text style={paragraph}>

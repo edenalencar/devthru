@@ -20,7 +20,7 @@ interface TrialWarningEmailTemplateProps {
 }
 
 export const TrialWarningEmailTemplate = ({
-    userName = 'Desenvolvedor',
+    userName = '',
     daysRemaining = 3,
 }: TrialWarningEmailTemplateProps) => {
     return (
@@ -70,10 +70,14 @@ export const TrialWarningEmailTemplate = ({
                             Seu trial Pro encerra em {daysRemaining} dias ⏳
                         </Heading>
                         <Text style={paragraph}>
-                            Olá, <strong>{userName}</strong>!
+                            {userName && userName !== 'Desenvolvedor' ? (
+                                <>Olá, <strong>{userName}</strong>!</>
+                            ) : (
+                                <>Olá!</>
+                            )}
                         </Text>
                         <Text style={paragraph}>
-                            Esperamos que os recursos avançados do <strong>DevThru Pro</strong> estejam acelerando seu fluxo de desenvolvimento e testes.
+                            Esperamos que os recursos avançados do <strong>DevThru Pro</strong> estejam acelerando sua rotina e otimizando seu fluxo de trabalho.
                         </Text>
                         <Text style={paragraph}>
                             Este é um lembrete amigável de que seu período de testes gratuitos termina em <strong>{daysRemaining} dias</strong>. Para continuar com acesso ilimitado sem interrupções, você pode ativar sua assinatura por apenas <strong>R$ 29/mês</strong>.

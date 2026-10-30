@@ -21,7 +21,7 @@ interface SubscriptionSuccessEmailTemplateProps {
 }
 
 export const SubscriptionSuccessEmailTemplate = ({
-    userName = 'Desenvolvedor',
+    userName = '',
     planName = 'Pro',
     planSlug = 'pro',
 }: SubscriptionSuccessEmailTemplateProps) => {
@@ -83,10 +83,12 @@ export const SubscriptionSuccessEmailTemplate = ({
                     <Section style={content}>
                         <div style={badge}>Assinatura Confirmada ✨</div>
                         
-                        <Heading style={greeting}>Muito obrigado pelo apoio, {userName}! 🚀</Heading>
+                        <Heading style={greeting}>
+                            {userName && userName !== 'Desenvolvedor' ? `Muito obrigado pelo apoio, ${userName}! 🚀` : 'Muito obrigado pelo apoio! 🚀'}
+                        </Heading>
                         <Text style={paragraph}>
                             Seu pagamento foi processado com sucesso e sua conta foi atualizada para o <strong>Plano {planName}</strong>. 
-                            Estamos muito empolgados em acelerar o seu fluxo de desenvolvimento!
+                            Estamos muito felizes em fazer parte da sua rotina e apoiar sua produtividade!
                         </Text>
 
                         <Hr style={hr} />

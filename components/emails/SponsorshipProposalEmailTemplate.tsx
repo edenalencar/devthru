@@ -77,7 +77,7 @@ export const SponsorshipProposalEmailTemplate = ({
                             Olá, <strong>{contactName}</strong>! É um prazer conversar com a equipe da <strong>{companyName}</strong>.
                         </Text>
                         <Text style={paragraph}>
-                            Recebemos o seu interesse em anunciar no <strong>DevThru</strong> ({adFormat}). Agradecemos pela oportunidade de apresentar como podemos conectar sua marca diretamente a milhares de desenvolvedores, engenheiros e arquitetos de software em ambiente de trabalho.
+                            Recebemos o seu interesse em anunciar no <strong>DevThru</strong> ({adFormat}). Agradecemos pela oportunidade de apresentar como podemos conectar sua marca diretamente a milhares de profissionais, analistas e equipes de tecnologia em ambiente de trabalho.
                         </Text>
 
                         {customMessage ? (
@@ -90,7 +90,7 @@ export const SponsorshipProposalEmailTemplate = ({
                         <Section style={statsBox}>
                             <Text style={statsTitle}>Por que anunciar no DevThru?</Text>
                             <Text style={bulletPoint}>
-                                🎯 <strong>Audiência 100% Técnica:</strong> Desenvolvedores ativos utilizando ferramentas essenciais durante seu fluxo diário de desenvolvimento.
+                                🎯 <strong>Audiência Qualificada e Ativa:</strong> Profissionais, analistas e equipes utilizando ferramentas essenciais durante sua rotina diária de trabalho.
                             </Text>
                             <Text style={bulletPoint}>
                                 🛡️ <strong>Formatos Nativos & Imunes a AdBlock:</strong> Anúncios integrados diretamente ao layout, garantindo 100% de visibilidade real.

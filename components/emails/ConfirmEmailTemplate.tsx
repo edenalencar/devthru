@@ -21,7 +21,7 @@ interface ConfirmEmailTemplateProps {
 }
 
 export const ConfirmEmailTemplate = ({
-    userName = 'Desenvolvedor',
+    userName = '',
     originalSubject = '',
     originalMessage = '',
 }: ConfirmEmailTemplateProps) => {
@@ -76,7 +76,9 @@ export const ConfirmEmailTemplate = ({
                     </Section>
                     
                     <Section style={content}>
-                        <Heading style={greeting}>Olá, {userName}!</Heading>
+                        <Heading style={greeting}>
+                            {userName && userName !== 'Desenvolvedor' ? `Olá, ${userName}!` : 'Olá!'}
+                        </Heading>
                         <Text style={paragraph}>
                             Confirmamos o recebimento da sua mensagem de contato. Nossa equipe já está revisando as informações e responderá o mais breve possível.
                         </Text>
@@ -86,7 +88,7 @@ export const ConfirmEmailTemplate = ({
                         <Section style={originalBox}>
                             <Text style={originalHeading}>Detalhes do seu contato:</Text>
                             <Text style={detailsText}><strong>Assunto:</strong> {originalSubject}</Text>
-                            <Text style={originalBody}>"{originalMessage}"</Text>
+                            <Text style={originalBody}>&ldquo;{originalMessage}&rdquo;</Text>
                         </Section>
 
                         <Text style={paragraph}>

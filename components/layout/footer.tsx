@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { siteConfig } from "@/config/site"
 import Image from "next/image"
 import { DataGeneratedCounter } from "@/components/marketing/data-counter"
 import { Github } from "lucide-react"
@@ -24,7 +23,7 @@ export function Footer() {
                             <span className="font-bold text-xl">DevThru</span>
                         </Link>
                         <p className="text-sm text-muted-foreground">
-                            DevThru: Dados rápidos pra viagem. Plataforma moderna e ágil.
+                            DevThru: Dados rápidos pra viagem. Utilitários e geradores essenciais para o seu dia a dia.
                         </p>
                         <DataGeneratedCounter />
                         <div className="pt-2">
