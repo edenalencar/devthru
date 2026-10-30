@@ -27,15 +27,14 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
         try {
             setLoading(true)
             const updates = {
-                id: user.id,
                 full_name: fullName,
-                email: user.email, // Required field
                 updated_at: new Date().toISOString(),
             }
 
-            const { error } = await supabase
-                .from("profiles")
-                .upsert(updates as any)
+            const { error } = await (supabase
+                .from("profiles") as any)
+                .update(updates)
+                .eq("id", user.id)
 
             if (error) throw error
 
@@ -85,14 +84,13 @@ export function ProfileForm({ user, profile, onUpdate }: ProfileFormProps) {
             })
 
             // Update profiles table
-            await supabase
-                .from("profiles")
-                .upsert({
-                    id: user.id,
-                    email: user.email,
+            await (supabase
+                .from("profiles") as any)
+                .update({
                     avatar_url: publicUrl,
                     updated_at: new Date().toISOString(),
-                } as any)
+                })
+                .eq("id", user.id)
 
             toast.success("Foto de perfil atualizada!")
             onUpdate()

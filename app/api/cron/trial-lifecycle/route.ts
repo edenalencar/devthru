@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
         const isProd = process.env.NODE_ENV === 'production';
         const expectedToken = `Bearer ${process.env.CRON_SECRET}`;
 
-        if (isProd && authHeader !== expectedToken) {
+        if (isProd && (!process.env.CRON_SECRET || authHeader !== expectedToken)) {
             console.warn('Tentativa de execução de Cron de Trial não autorizada');
             return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
         }
@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
         const supabase = createAdminClient();
         const now = new Date();
         const inThreeDays = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
+        const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
         let warningsSent = 0;
         let expiredSent = 0;
@@ -73,6 +74,7 @@ export async function GET(req: NextRequest) {
             .select('id, email, full_name, trial_ends_at, subscription_tier')
             .not('trial_ends_at', 'is', null)
             .is('trial_expired_sent_at', null)
+            .gte('trial_ends_at', sevenDaysAgo.toISOString()) // Não notifica trials antigos, de antes da automação
             .lte('trial_ends_at', now.toISOString());
 
         if (expiredErr) {

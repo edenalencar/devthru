@@ -4,8 +4,17 @@ create table if not exists public.profiles (
   email text not null,
   full_name text,
   avatar_url text,
-  subscription_tier text check (subscription_tier in ('free', 'pro', 'enterprise')) default 'free',
+  subscription_tier text check (subscription_tier in ('free', 'pro', 'enterprise', 'business')) default 'free',
   api_key text,
+  stripe_customer_id text,
+  stripe_subscription_id text,
+  current_period_end timestamp with time zone,
+  cancel_at_period_end boolean default false,
+  trial_ends_at timestamp with time zone default (now() + interval '7 days'),
+  trial_warning_sent_at timestamp with time zone,
+  trial_expired_sent_at timestamp with time zone,
+  welcome_sent boolean default false,
+  newsletter_subscribed boolean default true,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
@@ -26,17 +35,19 @@ alter table public.profiles enable row level security;
 alter table public.generation_history enable row level security;
 
 -- Create policies for profiles
-create policy "Public profiles are viewable by everyone."
-  on public.profiles for select
-  using ( true );
-
-create policy "Users can insert their own profile."
-  on public.profiles for insert
-  with check ( auth.uid() = id );
+create policy "Users can view own profile."
+  on public.profiles for select to authenticated
+  using ( auth.uid() = id );
 
 create policy "Users can update own profile."
-  on public.profiles for update
-  using ( auth.uid() = id );
+  on public.profiles for update to authenticated
+  using ( auth.uid() = id )
+  with check ( auth.uid() = id );
+
+-- RLS filters rows, not columns: billing, trial and API key fields are service role only
+revoke all on public.profiles from anon;
+revoke insert, update, delete, truncate on public.profiles from authenticated;
+grant update (full_name, avatar_url, updated_at) on public.profiles to authenticated;
 
 -- Create policies for generation_history
 create policy "Users can view their own history."
