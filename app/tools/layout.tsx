@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import { ToolFeedback } from '@/components/tools/tool-feedback'
+import { NewsletterCard } from '@/components/marketing/newsletter-card'
 import { Footer } from '@/components/layout/footer'
 
 export default function ToolsLayout({
@@ -16,15 +17,7 @@ export default function ToolsLayout({
     const segments = pathname?.split('/').filter(Boolean) || []
     const toolSlug = segments.length > 0 ? segments[segments.length - 1] : null
 
-    // Don't show feedback on the main tools page or category pages if they exist
-    // Assuming tool pages are at least 3 levels deep: /tools/category/tool-name
-    // But let's be safer: if the last segment is 'tools' or a category name, maybe we shouldn't show it?
-    // Actually, checking if it's a leaf node is hard without knowing the route structure perfectly.
-    // However, most tool pages are distinct.
-    // Let's assume if it's not just "/tools", we show it.
-    // But wait, /tools/text is a category page. We probably don't want it there.
-    // Usually tool pages have a specific structure.
-    // Let's check if the path has at least 3 segments: tools, category, tool-name
+    // Show feedback and newsletter capture on tool pages (at least 3 segments: /tools/category/tool-name)
     const showFeedback = segments.length >= 3
 
     return (
@@ -32,7 +25,12 @@ export default function ToolsLayout({
             <div className="flex-1">
                 {children}
                 {showFeedback && toolSlug && (
-                    <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+                    <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-6">
+                        <NewsletterCard
+                            title="Receba novos utilitários e dicas para desenvolvedores"
+                            description="Sem spam. Lançamentos de novas ferramentas, geradores e recursos técnicos do DevThru diretamente no seu e-mail."
+                            source={`tool-${toolSlug}`}
+                        />
                         <ToolFeedback toolSlug={toolSlug} />
                     </div>
                 )}

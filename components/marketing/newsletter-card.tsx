@@ -15,8 +15,8 @@ interface NewsletterCardProps {
 
 export function NewsletterCard({
     title = 'Receba novidades e utilitários para devs',
-    description = 'Sem spam. Apenas atualizações de novas ferramentas, geradores e recursos técnicos do DevThru.',
-    source = 'tool-sidebar',
+    description = 'Sem spam. Apenas atualizações de novas ferramentas, geradores e recursos técnicos do DevThru diretamente na sua caixa de entrada.',
+    source = 'tool-footer',
     className = '',
 }: NewsletterCardProps) {
     const [email, setEmail] = useState('');
@@ -53,10 +53,10 @@ export function NewsletterCard({
 
     if (subscribed) {
         return (
-            <div className={`p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-center space-y-2 ${className}`}>
-                <CheckCircle2 className="h-6 w-6 text-emerald-600 mx-auto" />
-                <h4 className="text-sm font-bold text-emerald-900">Inscrição Confirmada!</h4>
-                <p className="text-xs text-emerald-700">
+            <div className={`p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-center space-y-2 ${className}`}>
+                <CheckCircle2 className="h-6 w-6 text-emerald-600 dark:text-emerald-400 mx-auto" />
+                <h4 className="text-sm font-bold text-emerald-900 dark:text-emerald-200">Inscrição Confirmada!</h4>
+                <p className="text-xs text-emerald-700 dark:text-emerald-300">
                     Você receberá nossas novidades técnicas diretamente na sua caixa de entrada.
                 </p>
             </div>
@@ -64,34 +64,36 @@ export function NewsletterCard({
     }
 
     return (
-        <div className={`p-5 bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/40 border border-[#e2e8f0] rounded-xl shadow-sm space-y-3 ${className}`}>
-            <div className="flex items-center gap-2">
-                <div className="p-1.5 bg-blue-100 rounded-lg text-[#135bec]">
+        <div className={`p-6 bg-gradient-to-r from-blue-500/5 via-primary/5 to-indigo-500/5 border border-border rounded-xl shadow-sm space-y-3 ${className}`}>
+            <div className="flex items-center gap-2.5">
+                <div className="p-2 bg-primary/10 rounded-lg text-primary">
                     <Mail className="h-4 w-4" />
                 </div>
-                <h4 className="text-sm font-bold text-[#0f172a]">{title}</h4>
+                <div>
+                    <h4 className="text-sm font-bold text-foreground">{title}</h4>
+                    <p className="text-xs text-muted-foreground mt-0.5">{description}</p>
+                </div>
             </div>
-            <p className="text-xs text-[#64748b] leading-relaxed">{description}</p>
-            <form onSubmit={handleSubmit} className="flex gap-2">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 pt-1">
                 <Input
                     type="email"
                     placeholder="seu.email@empresa.com"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
-                    className="h-9 text-xs bg-white"
+                    className="h-10 text-xs bg-background"
                 />
                 <Button
                     type="submit"
                     disabled={loading}
-                    className="h-9 px-3 text-xs bg-[#135bec] hover:bg-[#104ec8] text-white shrink-0"
+                    className="h-10 px-4 text-xs font-semibold shrink-0"
                 >
                     {loading ? (
-                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                        <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
                         <>
-                            <Sparkles className="h-3.5 w-3.5 mr-1" />
-                            Inscrever
+                            <Sparkles className="h-4 w-4 mr-1.5" />
+                            Inscrever na Newsletter
                         </>
                     )}
                 </Button>

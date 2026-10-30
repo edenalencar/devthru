@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Search, Send, CheckCircle2, Clock, Loader2, Sparkles, Flame, Crown, AlertTriangle } from 'lucide-react';
+import { Search, Send, CheckCircle2, Clock, Loader2, Sparkles, Zap, Flame, Crown, AlertTriangle } from 'lucide-react';
 import { toast } from 'sonner';
 import { differenceInDays } from 'date-fns';
 
@@ -27,6 +27,7 @@ export function AdminUsersClient() {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [lifecycleFilter, setLifecycleFilter] = useState<'all' | 'trial_active' | 'trial_expired' | 'paid' | 'power_user'>('all');
+    const [welcomeFilter, setWelcomeFilter] = useState<'all' | 'sent' | 'pending'>('all');
     const [sendingUserId, setSendingUserId] = useState<string | null>(null);
     const [sendingBulk, setSendingBulk] = useState(false);
 
@@ -61,6 +62,14 @@ export function AdminUsersClient() {
             });
         }
 
+        if (welcomeFilter !== 'all') {
+            result = result.filter(u => {
+                if (welcomeFilter === 'sent') return !!u.welcome_sent;
+                if (welcomeFilter === 'pending') return !u.welcome_sent;
+                return true;
+            });
+        }
+
         if (searchTerm.trim() !== '') {
             const term = searchTerm.toLowerCase();
             result = result.filter(
@@ -71,7 +80,7 @@ export function AdminUsersClient() {
         }
 
         setFilteredUsers(result);
-    }, [users, searchTerm, lifecycleFilter]);
+    }, [users, searchTerm, lifecycleFilter, welcomeFilter]);
 
     const pendingWelcomeCount = users.filter(u => !u.welcome_sent).length;
     const activeTrialCount = users.filter(u => u.lifecycle_stage === 'trial_active').length;
@@ -98,9 +107,9 @@ export function AdminUsersClient() {
 
             toast.success(`E-mail de boas-vindas enviado com sucesso para ${user.email}!`, { id: toastId });
             setUsers(prev => prev.map(u => (u.id === user.id ? { ...u, welcome_sent: true } : u)));
-        } catch (err: unknown) {
-            const message = err instanceof Error ? err.message : 'Erro ao disparar e-mail de boas-vindas';
-            toast.error(message, { id: toastId });
+        } catch (err: any) {
+            console.error(err);
+            toast.error(err.message || 'Erro ao disparar e-mail de boas-vindas', { id: toastId });
         } finally {
             setSendingUserId(null);
         }
@@ -130,9 +139,9 @@ export function AdminUsersClient() {
 
             toast.success(`Boas-vindas enviadas com sucesso para ${data.sentCount} usuários!`, { id: toastId });
             await loadUsers();
-        } catch (err: unknown) {
-            const message = err instanceof Error ? err.message : 'Erro ao enviar e-mails de boas-vindas';
-            toast.error(message, { id: toastId });
+        } catch (err: any) {
+            console.error(err);
+            toast.error(err.message || 'Erro ao enviar e-mails de boas-vindas', { id: toastId });
         } finally {
             setSendingBulk(false);
         }
@@ -401,11 +410,10 @@ export function AdminUsersClient() {
                                                         size="sm"
                                                         onClick={() => handleSendIndividual(user)}
                                                         disabled={isSending || sendingBulk}
-                                                        className={`h-8 px-2.5 text-xs font-semibold rounded-lg border-[#e2e6ea] ${
-                                                            user.welcome_sent
+                                                        className={`h-8 px-2.5 text-xs font-semibold rounded-lg border-[#e2e6ea] ${user.welcome_sent
                                                                 ? 'text-[#4c669a] hover:text-[#0d121b] hover:bg-[#f6f6f8]'
                                                                 : 'bg-[#135bec]/10 text-[#135bec] border-[#135bec]/30 hover:bg-[#135bec] hover:text-white'
-                                                        }`}
+                                                            }`}
                                                         title={user.welcome_sent ? 'Reenviar e-mail de boas-vindas' : 'Enviar e-mail de boas-vindas'}
                                                     >
                                                         {isSending ? (

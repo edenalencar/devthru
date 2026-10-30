@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAdminClient } from '@/lib/supabase/admin';
 import { verifyAdmin } from '@/lib/api/admin-auth';
 import { NextResponse } from 'next/server';

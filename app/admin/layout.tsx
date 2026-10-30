@@ -1,7 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import { LayoutDashboard, Mail, Users, ArrowLeft, Star, Briefcase, Megaphone } from 'lucide-react';
 import React from 'react';
 
@@ -30,10 +29,10 @@ export default async function AdminLayout({
             <aside className="w-64 bg-white border-r border-[#e2e6ea] flex flex-col fixed h-screen z-20">
                 <div className="p-6 border-b border-[#e2e6ea]">
                     <Link href="/admin" className="flex items-center gap-2">
-                        <Image
+                        <img
                             src="/logo-optimized.png"
-                            width={28}
-                            height={28}
+                            width="28"
+                            height="28"
                             alt="DevThru Logo"
                             className="inline-block"
                         />
@@ -42,7 +41,7 @@ export default async function AdminLayout({
                         </span>
                     </Link>
                 </div>
-                
+
                 <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
                     <div className="text-[10px] uppercase font-bold text-[#94a3b8] px-4 py-1">
                         Principal
@@ -98,7 +97,7 @@ export default async function AdminLayout({
                         Feedbacks
                     </Link>
                 </nav>
-                
+
                 <div className="p-4 border-t border-[#e2e6ea]">
                     <Link
                         href="/"
