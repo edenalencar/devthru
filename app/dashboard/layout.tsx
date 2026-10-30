@@ -1,6 +1,14 @@
+import type { Metadata } from "next"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { DashboardSidebar } from "@/components/layout/dashboard-sidebar"
+
+export const metadata: Metadata = {
+    robots: {
+        index: false,
+        follow: false,
+    },
+}
 
 export default function DashboardLayout({
     children,

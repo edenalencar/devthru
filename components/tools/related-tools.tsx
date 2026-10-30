@@ -43,7 +43,7 @@ export function RelatedTools({ currentToolSlug, category, customSlugs }: Related
     if (relatedTools.length === 0) return null
 
     return (
-        <section className="mt-12">
+        <section className="mt-12 [content-visibility:auto] [contain-intrinsic-size:1px_300px]">
             <JsonLd
                 data={{
                     "@context": "https://schema.org",

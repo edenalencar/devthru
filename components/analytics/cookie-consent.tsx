@@ -30,6 +30,7 @@ function gtag(...args: any[]) {
 
     window.gtag(...args)
 }
+
 type ConsentState = {
     ad_storage: "granted" | "denied"
     analytics_storage: "granted" | "denied"
@@ -96,9 +97,22 @@ export function CookieConsent() {
     }
 
     const saveConsent = (consent: ConsentState) => {
-        localStorage.setItem("cookie_consent", JSON.stringify(consent))
-        gtag("consent", "update", consent)
         setShowBanner(false)
+        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+            (window as any).requestIdleCallback(() => {
+                try {
+                    localStorage.setItem("cookie_consent", JSON.stringify(consent))
+                    gtag("consent", "update", consent)
+                } catch {}
+            }, { timeout: 1000 })
+        } else {
+            setTimeout(() => {
+                try {
+                    localStorage.setItem("cookie_consent", JSON.stringify(consent))
+                    gtag("consent", "update", consent)
+                } catch {}
+            }, 0)
+        }
     }
 
     if (!showBanner) return null

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Menu, X, User, LogOut, Settings, LayoutDashboard, History, LogIn } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { navLinks } from "@/config/site"
@@ -43,6 +43,7 @@ export function Navbar() {
     const { user, profile, isInTrial } = useUser()
     const router = useRouter()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [, startTransition] = useTransition()
     const [mounted, setMounted] = useState(false)
     const supabase = createClient()
 
@@ -137,25 +138,25 @@ export function Navbar() {
                                     </DropdownMenuLabel>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem asChild>
-                                        <Link href="/dashboard">
+                                        <Link href="/dashboard" rel="nofollow">
                                             <LayoutDashboard className="mr-2 h-4 w-4" />
                                             <span>Dashboard</span>
                                         </Link>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem asChild>
-                                        <Link href="/dashboard/history">
+                                        <Link href="/dashboard/history" rel="nofollow">
                                             <History className="mr-2 h-4 w-4" />
                                             <span>Histórico</span>
                                         </Link>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem asChild>
-                                        <Link href="/dashboard/profile">
+                                        <Link href="/dashboard/profile" rel="nofollow">
                                             <User className="mr-2 h-4 w-4" />
                                             <span>Perfil</span>
                                         </Link>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem asChild>
-                                        <Link href="/dashboard/settings">
+                                        <Link href="/dashboard/settings" rel="nofollow">
                                             <Settings className="mr-2 h-4 w-4" />
                                             <span>Configurações</span>
                                         </Link>
@@ -188,7 +189,7 @@ export function Navbar() {
                     <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        onClick={() => startTransition(() => setMobileMenuOpen((prev) => !prev))}
                         className="rounded-lg"
                     >
                         {mobileMenuOpen ? (
@@ -217,7 +218,7 @@ export function Navbar() {
                         <div className="flex gap-2 mt-2">
                             {mounted && user ? (
                                 <>
-                                    <Link href="/dashboard" className="flex-1 flex items-center justify-center rounded-lg h-10 bg-secondary text-secondary-foreground text-sm font-bold">Dashboard</Link>
+                                    <Link href="/dashboard" rel="nofollow" className="flex-1 flex items-center justify-center rounded-lg h-10 bg-secondary text-secondary-foreground text-sm font-bold">Dashboard</Link>
                                     <Button variant="ghost" onClick={handleSignOut} className="flex-1 text-destructive">
                                         Sair
                                     </Button>

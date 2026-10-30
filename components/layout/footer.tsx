@@ -6,7 +6,7 @@ import { Github } from "lucide-react"
 
 export function Footer() {
     return (
-        <footer className="mt-auto border-t bg-muted/20">
+        <footer className="mt-auto border-t bg-muted/20 [content-visibility:auto] [contain-intrinsic-size:1px_400px]">
             <div className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-4 mb-8">
                     {/* Brand */}

@@ -73,7 +73,7 @@ print(data)
                             API REST para geração e validação de dados brasileiros. Rápida, confiável e fácil de usar.
                         </p>
                         <div className="flex gap-4 justify-center mt-6">
-                            <Link href="/dashboard/settings">
+                            <Link href="/dashboard/settings" rel="nofollow">
                                 <Button size="lg" className="gap-2">
                                     <Key className="h-4 w-4" />
                                     Obter API Key
@@ -135,7 +135,7 @@ print(data)
                                 <div className="flex-1 min-w-0">
                                     <h3 className="font-semibold mb-1">Obtenha sua API Key</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Acesse <Link href="/dashboard/settings" className="text-primary hover:underline">/dashboard/settings</Link> e crie uma nova chave
+                                        Acesse <Link href="/dashboard/settings" rel="nofollow" className="text-primary hover:underline">/dashboard/settings</Link> e crie uma nova chave
                                     </p>
                                 </div>
                             </div>

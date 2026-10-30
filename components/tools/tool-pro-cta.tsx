@@ -35,7 +35,7 @@ export function ToolProCta({
     return (
         <section
             aria-label="Vantagens do Plano Pro"
-            className={`relative overflow-hidden rounded-xl border border-primary/20 bg-gradient-to-r from-primary/5 via-card to-primary/10 p-5 md:p-6 shadow-sm my-8 ${className}`}
+            className={`relative overflow-hidden rounded-xl border border-primary/20 bg-gradient-to-r from-primary/5 via-card to-primary/10 p-5 md:p-6 shadow-sm my-8 [content-visibility:auto] [contain-intrinsic-size:1px_200px] ${className}`}
         >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="space-y-2">

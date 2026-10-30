@@ -29,7 +29,7 @@ export function ToolFaqSection({
     }
 
     return (
-        <Card className={`mt-8 border-border/60 shadow-sm ${className || ""}`}>
+        <Card className={`mt-8 border-border/60 shadow-sm [content-visibility:auto] [contain-intrinsic-size:1px_300px] ${className || ""}`}>
             <CardHeader className="pb-3">
                 <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
                     <HelpCircle className="w-5 h-5 text-primary" />
