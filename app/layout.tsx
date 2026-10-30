@@ -116,21 +116,29 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": siteConfig.name,
-              "applicationCategory": "DeveloperApplication",
-              "operatingSystem": "Web",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "BRL"
-              },
-              "description": siteConfig.description,
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "ratingCount": "1250"
-              }
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": `${siteConfig.url}/#website`,
+                  "url": siteConfig.url,
+                  "name": siteConfig.name,
+                  "description": siteConfig.description,
+                  "publisher": {
+                    "@id": `${siteConfig.url}/#organization`
+                  }
+                },
+                {
+                  "@type": "Organization",
+                  "@id": `${siteConfig.url}/#organization`,
+                  "name": siteConfig.name,
+                  "url": siteConfig.url,
+                  "logo": `${siteConfig.url}/icon.svg`,
+                  "sameAs": [
+                    siteConfig.links.twitter,
+                    siteConfig.links.github
+                  ]
+                }
+              ]
             })
           }}
         />

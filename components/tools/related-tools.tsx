@@ -51,8 +51,8 @@ export function RelatedTools({ currentToolSlug, category, customSlugs }: Related
                     "itemListElement": relatedTools.map((tool, index) => ({
                         "@type": "ListItem",
                         "position": index + 1,
-                        "url": `https://www.devthru.com/tools/${tool.category}/${tool.slug}`,
-                        "name": tool.title
+                        "name": tool.title,
+                        "item": `https://www.devthru.com/tools/${tool.category}/${tool.slug}`
                     }))
                 }}
             />
