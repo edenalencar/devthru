@@ -61,3 +61,4 @@ export const postDrexTokenizacaoRealDigitalBancoCentralArquitetura: BlogPost = {
 </ol>
 `
 }
+

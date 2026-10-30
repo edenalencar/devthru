@@ -48,3 +48,4 @@ describe('Barcode Engine (EAN-13 & Code 128)', () => {
         expect(result.svg).toContain('DEVTHRU-LOG-2026');
     });
 });
+

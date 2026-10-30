@@ -105,3 +105,4 @@ Código EAN-13 completo: 7891000315507</code></pre>
 <p>Para gerar e baixar códigos de barras vetoriais prontos para impressão em SVG ou PNG, utilize o <a href="/tools/utilities/barcode-generator">Gerador de Código de Barras do DevThru</a>.</p>
 `
 }
+

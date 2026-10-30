@@ -97,3 +97,4 @@ describe("Teste de Contrato de API", () =&gt; {
 <p>Quando você estiver investigando bugs em homologação ou comparando saídas gigantes de webhooks, você pode utilizar o <a href="/tools/development/json-diff">JSON Diff Online do DevThru</a>. Ele processa ambos os arquivos inteiramente na sua máquina (sem enviar nada para servidores terceiros), destaca alterações visuais com contadores e ignora variações irrelevantes de formato.</p>
 `
 }
+

@@ -84,3 +84,4 @@ def verify_webhook(raw_payload: str, received_signature: str, secret_key: str) -
 <p>Durante a criação de testes locais ou simulações com cURL e Postman, você não precisa ficar disparando eventos reais no painel do gateway para gerar assinaturas de teste. Você pode utilizar o <a href="/tools/development/hmac-generator">Gerador e Validador de HMAC Online do DevThru</a> para calcular assinaturas instantaneamente em SHA-256 ou SHA-512 e testar a reação do seu webhook.</p>
 `
 }
+

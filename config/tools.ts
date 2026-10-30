@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase, Globe, Ruler, MessageSquare } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase, Globe, Ruler, MessageSquare, Lock } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -667,6 +667,34 @@ export const tools: Tool[] = [
         icon: Terminal,
         href: "/tools/development/curl-converter",
     },
+    {
+        id: "json-diff",
+        name: "Comparador de JSON (JSON Diff)",
+        title: "Comparador Semântico de JSON (JSON Diff)",
+        description: "Compare payloads JSON estruturalmente, detectando chaves adicionadas, removidas e modificadas sem falsos positivos por ordenação.",
+        category: "development",
+        icon: GitCompare,
+        href: "/tools/development/json-diff",
+    },
+    {
+        id: "hmac-generator",
+        name: "Gerador de Assinatura HMAC",
+        title: "Gerador de Assinatura HMAC & Webhook Tester",
+        description: "Calcule e valide assinaturas criptográficas de webhooks (SHA-256 e SHA-512) para Stripe, GitHub e APIs com código protegido contra timing attacks.",
+        category: "development",
+        icon: Lock,
+        href: "/tools/development/hmac-generator",
+    },
+    {
+        id: "barcode-generator",
+        name: "Gerador de Código de Barras",
+        title: "Gerador de Código de Barras (EAN-13 & Code 128)",
+        description: "Gere códigos de barras com cálculo automático do dígito verificador padrão GS1 Brasil e exporte em SVG e PNG de alta resolução.",
+        category: "utilities",
+        icon: Barcode,
+        href: "/tools/utilities/barcode-generator",
+    },
+
 ]
 
 export function getToolsByCategory(categoryId: string): Tool[] {

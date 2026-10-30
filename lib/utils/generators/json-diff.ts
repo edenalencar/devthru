@@ -297,3 +297,4 @@ export function computeJSONDiff(rawOriginal: string, rawModified: string): JSOND
         flatChanges: flatChanges.filter(c => c.type !== 'unchanged'),
     };
 }
+

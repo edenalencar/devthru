@@ -215,3 +215,4 @@ export function generateBarcodeSVG(options: BarcodeSVGOptions): { svg: string; f
 
     return { svg, formattedValue, isValid: true };
 }
+

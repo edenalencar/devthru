@@ -31,8 +31,11 @@ O DevThru foi criado para fornecer utilitários rápidos e sem atrito, incluindo
 - [Gerador de UUID](https://www.devthru.com/tools/utilities/uuid) - Gerador de UUID v4 e v7
 - [Validador de XML](https://www.devthru.com/tools/utilities/xml-validator) - Validador de XML online
 - [Gerador de Link WhatsApp](https://www.devthru.com/tools/utilities/whatsapp-link-generator) - Gerador de link wa.me com mensagem e QR Code
+- [Gerador de Código de Barras](https://www.devthru.com/tools/utilities/barcode-generator) - Gerador de códigos de barras EAN-13 (GS1 Brasil) e Code 128 com exportação SVG e PNG
 
 ### Desenvolvimento
+- [Comparador Semântico de JSON](https://www.devthru.com/tools/development/json-diff) - Comparador estrutural e semântico de JSON (JSON Diff)
+- [Gerador de HMAC e Webhook Tester](https://www.devthru.com/tools/development/hmac-generator) - Calculadora de assinaturas HMAC-SHA256 para webhooks e APIs
 - [Conversor de cURL](https://www.devthru.com/tools/development/curl-converter) - Conversor de cURL para JavaScript Fetch, Axios, Python, Go e PHP
 - [JWT Debugger](https://www.devthru.com/tools/development/jwt-debugger) - Debugger e inspetor de JSON Web Tokens
 - [Formatador SQL](https://www.devthru.com/tools/development/sql-formatter) - Formatador e beautifier de queries SQL
