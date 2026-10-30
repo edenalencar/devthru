@@ -32,9 +32,10 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
-  description: "Ferramentas essenciais para devs: Gerador de CPF, CNPJ, Formatador JSON, Validador de Cartão de Crédito e mais. Gratuito, rápido e sem login.",
+  description: siteConfig.description,
   keywords: [
-    "ferramentas para desenvolvedores",
+    "ferramentas online",
+    "utilitários profissionais",
     "gerador de cpf",
     "gerador de cnpj",
     "gerador de nota fiscal",

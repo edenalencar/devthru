@@ -1,7 +1,7 @@
 {
   "name": "DevThru",
   "short_name": "DevThru",
-  "description": "Dados rápidos pra viagem. Plataforma moderna e ágil para desenvolvedores.",
+  "description": "DevThru: Dados rápidos pra viagem. Geradores e utilitários essenciais para profissionais, analistas e equipes de tecnologia.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
