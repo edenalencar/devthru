@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postGuiaDeRegexParaDesenvolvedores: BlogPost = {
     slug: 'guia-de-regex-para-desenvolvedores',
-    title: 'Guia de Regex para Desenvolvedores',
+    title: 'Guia de Expressões Regulares (Regex): Do Básico ao Avançado',
     description: 'Aprenda os conceitos fundamentais de expressões regulares (Regex). Entenda âncoras, classes de caracteres, quantificadores e grupos.',
     date: '2026-07-16',
     author: 'DevThru',
@@ -13,7 +13,7 @@ export const postGuiaDeRegexParaDesenvolvedores: BlogPost = {
     content: `
 <p>As <strong>Expressões Regulares</strong>, amplamente conhecidas como <strong>Regex</strong> (do inglês *Regular Expressions*), são padrões textuais definidos por meio de uma sintaxe especial, usados para buscar, extrair, substituir ou validar blocos de texto. Elas estão presentes nativamente em praticamente todas as linguagens de programação modernas.</p>
 
-<p>Embora as expressões regulares sejam incrivelmente poderosas para tarefas como validação de e-mails, análise de logs ou substituições de texto em lote, elas são frequentemente vistas como "um idioma alienígena" por muitos desenvolvedores. Neste guia prático, vamos decifrar a sintaxe básica das expressões regulares e aprender a ler padrões comuns.</p>
+<p>Embora as expressões regulares sejam incrivelmente poderosas para tarefas como validação de dados, análise de relatórios, logs ou substituições de texto em lote, elas são frequentemente vistas como "um idioma alienígena" por muitos profissionais. Neste guia prático, vamos decifrar a sintaxe básica das expressões regulares e aprender a ler padrões comuns.</p>
 
 <h2>1. A Anatomia Básica de um Regex</h2>
 

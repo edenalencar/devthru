@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postSplitPaymentReformaTributariaGuiaDev: BlogPost = {
     slug: 'split-payment-reforma-tributaria-guia-desenvolvedor',
-    title: 'Split Payment na Reforma Tributária: Guia Técnico para Desenvolvedores de ERP e E-commerce',
+    title: 'Split Payment na Reforma Tributária: Guia Completo para Sistemas, ERPs e E-commerce',
     description: 'Entenda como funciona o Split Payment no IBS e CBS, o impacto nos meios de pagamento (Pix, Cartão) e como adaptar seu ERP e e-commerce com exemplos práticos.',
     date: '2026-07-21',
     author: 'DevThru',
@@ -13,7 +13,7 @@ export const postSplitPaymentReformaTributariaGuiaDev: BlogPost = {
     content: `
 <p>A Reforma Tributária no Brasil trouxe uma das maiores mudanças arquiteturais na história dos sistemas de pagamento e ERPs nacionais: o <strong>Split Payment</strong>. Diferente do modelo legado, onde a empresa recebia o valor bruto da venda e apurava os impostos (ICMS, ISS, PIS, COFINS) ao final do mês, a nova sistemática realiza a retenção dos impostos estaduais, municipais (IBS) e federais (CBS) <strong>no momento exato da liquidação financeira</strong>.</p>
 
-<p>Para equipes de engenharia de software, CTOs e desenvolvedores de e-commerce, o Split Payment exige reformular conciliações bancárias, rotinas de webhook e integrações com adquirentes e a SEFAZ. Neste guia técnico, analisamos a arquitetura do Split Payment e como adaptar suas aplicações.</p>
+<p>Para analistas fiscais, equipes de sistemas, lideranças técnicas e negócios de e-commerce, o Split Payment exige reformular conciliações bancárias, rotinas de webhook e integrações com adquirentes e a SEFAZ. Neste guia técnico, analisamos a arquitetura do Split Payment e como adaptar suas aplicações.</p>
 
 <h2>1. O que é o Split Payment e por que ele muda o fluxo do ERP?</h2>
 

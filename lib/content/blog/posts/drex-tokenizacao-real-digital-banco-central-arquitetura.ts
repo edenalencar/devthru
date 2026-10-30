@@ -3,7 +3,7 @@ import { BlogPost } from '../index'
 export const postDrexTokenizacaoRealDigitalBancoCentralArquitetura: BlogPost = {
     slug: 'drex-tokenizacao-real-digital-banco-central-arquitetura',
     title: 'DREX e Real Digital: Guia da Arquitetura do Banco Central',
-    description: 'Conheça a infraestrutura técnica do DREX (Real Digital), compatibilidade EVM, privacidade com ZK-SNARKs e o impacto para desenvolvedores e fintechs.',
+    description: 'Conheça a infraestrutura técnica do DREX (Real Digital), compatibilidade EVM, privacidade com ZK-SNARKs e o impacto para sistemas financeiros, profissionais e fintechs.',
     date: '2026-10-30',
     author: 'DevThru',
     category: 'dev-tools',
@@ -13,7 +13,7 @@ export const postDrexTokenizacaoRealDigitalBancoCentralArquitetura: BlogPost = {
     content: `
 <p>Após a revolução do <strong>Pix</strong> e a consolidação do <strong>Open Finance</strong>, o Banco Central do Brasil (Bacen) avança para a próxima fronteira da infraestrutura financeira nacional: o <strong>DREX</strong> (anteriormente chamado de Real Digital). Diferente de uma simples atualização de pagamentos instantâneos, o DREX é uma plataforma de <strong>dinheiro programável e liquidação atômica de ativos tokenizados</strong>.</p>
 
-<p>Para engenheiros de software, arquitetos de soluções e CTOs de fintechs e ERPs, compreender a arquitetura técnica do DREX é fundamental para desenhar produtos financeiros aderentes às novas diretrizes do Sistema Financeiro Nacional (SFN). Neste artigo técnico, desvendamos a pilha tecnológica por trás do DREX.</p>
+<p>Para analistas do mercado financeiro, arquitetos de soluções e equipes de fintechs e ERPs, compreender a arquitetura técnica do DREX é fundamental para desenhar produtos financeiros aderentes às novas diretrizes do Sistema Financeiro Nacional (SFN). Neste artigo técnico, desvendamos a pilha tecnológica por trás do DREX.</p>
 
 <h2>1. O que é o DREX e qual a diferença em relação ao Pix?</h2>
 

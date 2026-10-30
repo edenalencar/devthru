@@ -16,7 +16,7 @@ export type BlogCategory = 'documentos' | 'dev-tools' | 'testes-qa' | 'automotiv
 
 export const blogCategories: Record<BlogCategory, { label: string; color: string }> = {
     'documentos': { label: 'Documentos', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' },
-    'dev-tools': { label: 'Dev Tools', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200' },
+    'dev-tools': { label: 'Utilitários & Ferramentas', color: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200' },
     'testes-qa': { label: 'Testes & QA', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200' },
     'automotivo': { label: 'Automotivo', color: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' },
 }

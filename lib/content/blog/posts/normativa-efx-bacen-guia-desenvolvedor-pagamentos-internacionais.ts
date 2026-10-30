@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postNormativaEfxBacenGuiaDev: BlogPost = {
     slug: 'normativa-efx-bacen-guia-desenvolvedor-pagamentos-internacionais',
-    title: 'Normativa eFX do Banco Central: Guia Técnico de Pagamentos Internacionais para Desenvolvedores',
+    title: 'Normativa eFX do Banco Central: Guia de Pagamentos Internacionais e VET',
     description: 'Entenda como funciona a regulamentação eFX do Banco Central, o cálculo obrigatório do VET no checkout e como integrar APIs de pagamento cross-border com exemplos práticos.',
     date: '2026-07-22',
     author: 'DevThru',
@@ -13,7 +13,7 @@ export const postNormativaEfxBacenGuiaDev: BlogPost = {
     content: `
 <p>No mercado de fintechs, e-commerce cross-border e aplicativos de remessas internacionais, poucas regulamentações têm tanto impacto na experiência de checkout e na arquitetura de software quanto as normativas de <strong>eFX (Electronic Foreign Exchange)</strong> publicadas pelo Banco Central do Brasil (Resoluções BCB nº 148, 277 e 561).</p>
 
-<p>Essas regras estabelecem o arcabouço regulatório para que plataformas brasileiras e estrangeiras cobrem em reais (BRL) por serviços e bens vendidos por empresas no exterior. Para desenvolvedores, entender o eFX é vital para integrar gateways de pagamento cross-border, evitar rejeições regulatórias e implementar o cálculo transparente do <strong>VET (Valor Efetivo Total)</strong>.</p>
+<p>Essas regras estabelecem o arcabouço regulatório para que plataformas brasileiras e estrangeiras cobrem em reais (BRL) por serviços e bens vendidos por empresas no exterior. Para analistas financeiros, operadores de câmbio e equipes de tecnologia, entender o eFX é vital para integrar gateways de pagamento cross-border, evitar rejeições regulatórias e implementar o cálculo transparente do <strong>VET (Valor Efetivo Total)</strong>.</p>
 
 <h2>1. O que é o eFX e Quem são as Prestadoras de Pagamento Internacional?</h2>
 

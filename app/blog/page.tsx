@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
     title: "Blog",
-    description: "Tutoriais, guias e artigos sobre desenvolvimento, validação de documentos brasileiros, testes de software e ferramentas para desenvolvedores.",
+    description: "Artigos práticos, guias e tutoriais sobre regras e validação de documentos brasileiros, dados fiscais, testes e utilitários essenciais.",
     alternates: {
         canonical: `${siteConfig.url}/blog`,
     },
@@ -36,10 +36,10 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
                         <span>Blog DevThru</span>
                     </div>
                     <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
-                        Tutoriais & Guias para Devs
+                        Tutoriais & Guias Práticos
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Artigos práticos sobre validação de documentos, engenharia de prompts, MCP, automação e ferramentas developer.
+                        Artigos práticos sobre validação de documentos, regras fiscais, automação de dados, testes e ferramentas essenciais.
                     </p>
                 </div>
             </section>
