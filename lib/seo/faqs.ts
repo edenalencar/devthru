@@ -7,6 +7,48 @@ export interface FAQItem {
 }
 
 export const TOOL_FAQS: Record<string, FAQItem[]> = {
+    "barcode-generator": [
+        {
+            "question": "O que é o código de barras EAN-13 e o que significa o prefixo 789?",
+            "answer": "O EAN-13 (GS1) é o padrão global de código de barras para produtos comerciais. No Brasil, os prefixos 789 e 790 indicam que a empresa associada foi cadastrada na GS1 Brasil, facilitando a identificação em caixas e supermercados."
+        },
+        {
+            "question": "Como funciona o cálculo do dígito verificador no EAN-13?",
+            "answer": "O 13º dígito é calculado através do algoritmo Módulo 10 da GS1: multiplica-se os dígitos de posições ímpares por 1 e os de posições pares por 3. A soma total é subtraída do próximo múltiplo de 10."
+        },
+        {
+            "question": "Qual a diferença entre EAN-13 e Code 128?",
+            "answer": "O EAN-13 é estritamente numérico e fixo em 13 dígitos para comércio varejista (PDV). Já o Code 128 é alfanumérico e de tamanho variável, ideal para etiquetas de transporte, rastreamento de encomendas e inventário."
+        }
+    ],
+    "hmac-generator": [
+        {
+            "question": "O que é HMAC e para que serve em APIs?",
+            "answer": "HMAC (Hash-based Message Authentication Code) é um padrão criptográfico que combina uma função de hash (como SHA-256 ou SHA-512) com uma chave secreta compartilhada. Ele é amplamente utilizado por gateways (Stripe, Asaas, Mercado Pago, GitHub) para autenticar webhooks e garantir que a requisição não foi adulterada."
+        },
+        {
+            "question": "Por que webhooks usam HMAC em vez de hash simples?",
+            "answer": "Um hash simples pode ser recalculado por qualquer interceptador. O HMAC garante a autenticidade da origem porque somente quem tem posse da chave secreta (secret key) consegue gerar uma assinatura válida para aquele payload específico."
+        },
+        {
+            "question": "Como prevenir Timing Attacks na validação de webhooks?",
+            "answer": "Evite operadores normais de igualdade como ===, que encerram no primeiro caractere divergente. Sempre utilize funções de tempo constante como crypto.timingSafeEqual no Node.js ou hmac.compare_digest no Python."
+        }
+    ],
+    "json-diff": [
+        {
+            "question": "O que é um comparador semântico de JSON?",
+            "answer": "É uma ferramenta que analisa a árvore de dados de dois arquivos JSON estruturalmente, identificando valores modificados, chaves adicionadas e removidas, sem gerar falsos positivos caso as propriedades estejam em ordens diferentes ou com quebras de linha distintas."
+        },
+        {
+            "question": "Por que a ordem das chaves não altera o resultado no JSON Diff?",
+            "answer": "Segundo a especificação RFC 8259, objetos JSON são coleções não ordenadas de pares chave/valor. Nossa ferramenta normaliza os nós antes da comparação, garantindo que { a: 1, b: 2 } seja reconhecido como semanticamente idêntico a { b: 2, a: 1 }."
+        },
+        {
+            "question": "Meus dados de JSON são enviados para algum servidor?",
+            "answer": "Não. Todo o processamento, parse e comparação do JSON Diff acontecem de forma 100% segura e privada diretamente no seu próprio navegador (client-side), sem tráfego de dados para servidores externos."
+        }
+    ],
     "license-plate": [
         {
             "question": "Qual é o padrão da Placa Mercosul no Brasil?",

@@ -105,4 +105,7 @@ export const tools: Tool[] = [
     { slug: 'curl-converter', category: 'development', title: 'Conversor de cURL', icon: Terminal },
     { slug: 'crontab-generator', category: 'development', title: 'Gerador de Crontab', icon: Clock },
     { slug: 'placa-pix', category: 'finance', title: 'Placa Pix para Imprimir', icon: QrCode },
+    { slug: 'json-diff', category: 'development', title: 'JSON Diff', icon: FileDiff },
+    { slug: 'hmac-generator', category: 'development', title: 'Gerador de HMAC', icon: Lock },
+    { slug: 'barcode-generator', category: 'utilities', title: 'Código de Barras', icon: Barcode },
 ]

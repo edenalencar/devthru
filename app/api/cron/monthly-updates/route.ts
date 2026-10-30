@@ -76,27 +76,27 @@ export async function GET(req: NextRequest) {
         // Ferramentas inéditas em destaque (Curadoria de utilitários de alta demanda ainda não enviados)
         const newTools = [
             {
+                title: "JSON Diff (Comparador Semântico de JSON)",
+                description: "Compare payloads JSON estruturalmente, detectando chaves adicionadas, removidas e valores modificados sem falsos positivos por ordenação.",
+                url: "https://www.devthru.com/tools/development/json-diff"
+            },
+            {
+                title: "Gerador de Código de Barras (EAN-13 & Code 128)",
+                description: "Gere códigos de barras com cálculo automático do dígito verificador padrão GS1 Brasil e exporte em SVG e PNG de alta resolução.",
+                url: "https://www.devthru.com/tools/utilities/barcode-generator"
+            },
+            {
+                title: "Gerador de Assinatura HMAC & Webhook Tester",
+                description: "Calcule e valide assinaturas criptográficas de webhooks (SHA-256 e SHA-512) para Stripe, GitHub e APIs com código protegido contra timing attacks.",
+                url: "https://www.devthru.com/tools/development/hmac-generator"
+            },
+            {
                 title: "Debugger de JWT (JSON Web Tokens)",
                 description: "Decodifique Header, Payload e valide assinaturas de JWT em tempo real com total privacidade — tudo executado 100% no seu navegador.",
                 url: "https://www.devthru.com/tools/development/jwt-debugger"
-            },
-            {
-                title: "Simulador de Split Payment (Reforma Tributária)",
-                description: "Simule a retenção automática de IBS e CBS na liquidação financeira e compreenda os impactos técnicos das novas regras tributárias brasileiras.",
-                url: "https://www.devthru.com/tools/finance/split-payment"
-            },
-            {
-                title: "Gerador e Testador de Regex",
-                description: "Crie e valide expressões regulares com destaque em tempo real, explicação de tokens e atalhos para padrões brasileiros (CPF, CNPJ, telefone, CEP).",
-                url: "https://www.devthru.com/tools/development/regex"
-            },
-            {
-                title: "Decodificador de Pix Copia e Cola & Placa Pix",
-                description: "Faça o parse de payloads EMVCo do Pix, inspecione parâmetros, valide o CRC16 e gere placas de balcão prontas para impressão.",
-                url: "https://www.devthru.com/tools/finance/pix-parser"
             }
         ];
-
+        
         // Pegar os 3 posts de blog mais recentes
         const recentPosts = getAllPosts().slice(0, 3).map(post => ({
             title: post.title,

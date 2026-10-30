@@ -33,6 +33,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "30 de Outubro de 2026",
+        title: "JSON Diff, Gerador de Código de Barras (EAN-13), HMAC Webhooks e Novos Guias",
+        description: "Lançamento de 3 novas ferramentas gratuitas de alta produtividade: JSON Diff (comparador semântico estrutural com detecção de chaves adicionadas, removidas e modificadas ignorando ordenação), Gerador e Validador de Código de Barras EAN-13 e Code 128 (com cálculo automático do dígito verificador módulo 10 e exportação SVG/PNG) e o Gerador de HMAC com Webhook Tester (com cálculo Web Crypto API em SHA-256/SHA-512 e gerador de código com timingSafeEqual). Acompanha 4 novos artigos técnicos no blog cobrindo DREX, arquitetura de webhooks, testes semânticos de APIs e padrões GS1 Brasil.",
+        type: "feature",
+        version: "1.49.0"
+    },
+    {
         date: "31 de Agosto de 2026",
         title: "Decodificador SEFAZ, Link WhatsApp, Conversor de cURL e Guia de Telefonia",
         description: "Lançamento de 3 novas ferramentas gratuitas: Decodificador de Chave de Acesso SEFAZ (com desmembramento visual de NF-e/NFC-e/CT-e/MDF-e e cálculo de Módulo 11), Gerador de Link Direto do WhatsApp (wa.me) com QR Code dinâmico e preview de balão, e Conversor de comandos cURL para Fetch, Axios, Python, Go e PHP. Inclui também o novo guia técnico de validação e formatação de telefones e DDDs brasileiros no blog.",
