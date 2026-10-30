@@ -78,7 +78,7 @@ export const TrialExpiredEmailTemplate = ({
                             Seu período de testes gratuitos no <strong>DevThru Pro</strong> chegou ao fim. Sua conta agora voltou para o plano Gratuito.
                         </Text>
                         <Text style={paragraph}>
-                            Você ainda pode continuar usando todas as ferramentas de forma gratuita. Mas se você precisa de <strong>geração em lote de até 1.000 itens</strong>, <strong>histórico na nuvem permanente</strong> e <strong>chaves de API</strong> para seus testes, você pode desbloquear o Pro agora mesmo:
+                            Você ainda pode continuar usando todas as ferramentas de forma gratuita. Mas se você precisa de <strong>geração em lote de até 1.000 itens</strong>, <strong>histórico na nuvem permanente</strong> e <strong>configurações salvas</strong> para seus testes, você pode desbloquear o Pro agora mesmo:
                         </Text>
 
                         <Section style={ctaContainer}>

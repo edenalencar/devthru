@@ -96,7 +96,7 @@ export const TrialWarningEmailTemplate = ({
                                 📊 <strong>Exportação com 1 Clique:</strong> Baixe massas em CSV, JSON e Excel (.xlsx).
                             </Text>
                             <Text style={bulletPoint}>
-                                🔑 <strong>Chave de API Pessoal:</strong> Integre geradores e validadores aos seus scripts e pipelines CI/CD.
+                                💾 <strong>Configurações Salvas:</strong> Guarde seus presets e aplique em 1 clique nas próximas gerações.
                             </Text>
                         </Section>
 
