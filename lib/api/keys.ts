@@ -1,6 +1,7 @@
 "use server"
 
 import { createClient } from "../supabase/server"
+import { createAdminClient } from "../supabase/admin"
 import { randomBytes } from "crypto"
 
 export async function generateApiKey() {
@@ -14,7 +15,8 @@ export async function generateApiKey() {
     // Generate a random API key
     const apiKey = `dk_${randomBytes(24).toString('hex')}`
 
-    const { error } = await supabase
+    // api_key is not writable by end users, so the write goes through the service role
+    const { error } = await createAdminClient()
         .from('profiles')
         // @ts-expect-error
         .update({ api_key: apiKey })
@@ -25,20 +27,6 @@ export async function generateApiKey() {
     return apiKey
 }
 
-export async function validateApiKey(apiKey: string): Promise<{ id: string; subscription_tier: string } | null> {
-    const supabase = await createClient()
-
-    const { data, error } = await supabase
-        .from('profiles')
-        .select('id, subscription_tier')
-        .eq('api_key', apiKey)
-        .single()
-
-    if (error || !data) return null
-
-    return data
-}
-
 export async function revokeApiKey() {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
@@ -47,7 +35,7 @@ export async function revokeApiKey() {
         throw new Error("Unauthorized")
     }
 
-    const { error } = await supabase
+    const { error } = await createAdminClient()
         .from('profiles')
         // @ts-expect-error
         .update({ api_key: null })

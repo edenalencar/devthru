@@ -4,6 +4,7 @@ import { Resend } from 'resend';
 import { getAllPosts } from '@/lib/content/blog';
 import { MonthlyUpdatesEmailTemplate } from '@/components/emails/MonthlyUpdatesEmailTemplate';
 import { formatEmailSender } from '@/lib/email';
+import { buildUnsubscribeUrl } from '@/lib/newsletter/unsubscribe-token';
 import React from 'react';
 
 // Forçamos a execução como dinâmica para evitar cache de build da página da cron
@@ -16,7 +17,7 @@ export async function GET(req: NextRequest) {
         const isProd = process.env.NODE_ENV === 'production';
         const expectedToken = `Bearer ${process.env.CRON_SECRET}`;
 
-        if (isProd && authHeader !== expectedToken) {
+        if (isProd && (!process.env.CRON_SECRET || authHeader !== expectedToken)) {
             console.warn('Tentativa de execução de Cron Job não autorizada');
             return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
         }
@@ -133,6 +134,7 @@ export async function GET(req: NextRequest) {
                     blogPosts: recentPosts,
                     radioSpotlight: radioSpotlight,
                     userEmail: email,
+                    unsubscribeUrl: buildUnsubscribeUrl(email),
                 });
 
                 return {

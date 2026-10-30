@@ -42,6 +42,7 @@ interface MonthlyUpdatesEmailTemplateProps {
     blogPosts?: UpdateItem[];
     radioSpotlight?: UpdateItem;
     userEmail: string;
+    unsubscribeUrl?: string;
 }
 
 export const MonthlyUpdatesEmailTemplate = ({
@@ -52,10 +53,9 @@ export const MonthlyUpdatesEmailTemplate = ({
     blogPosts = [],
     radioSpotlight,
     userEmail = '',
+    // Sem URL assinada, o link cai no fluxo de confirmação por e-mail
+    unsubscribeUrl = `https://www.devthru.com/newsletter/unsubscribe?email=${encodeURIComponent(userEmail)}`,
 }: MonthlyUpdatesEmailTemplateProps) => {
-    // URL de descadastro com o e-mail do usuário em query string
-    const unsubscribeUrl = `https://www.devthru.com/newsletter/unsubscribe?email=${encodeURIComponent(userEmail)}`;
-
     return (
         <Html lang="pt-BR">
             <Head>

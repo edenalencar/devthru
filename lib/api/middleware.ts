@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { createClient } from '../supabase/server'
+import { createAdminClient } from '../supabase/admin'
 import { invalidApiKey } from './error-handler'
 
 export interface AuthResult {
@@ -15,7 +15,8 @@ export async function validateApiKey(request: NextRequest): Promise<AuthResult> 
         throw invalidApiKey('API key is required. Include it in the x-api-key header.')
     }
 
-    const supabase = await createClient()
+    // API requests have no user session, and RLS only exposes a profile to its owner
+    const supabase = createAdminClient()
 
     // Check if using old system (api_key in profiles)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

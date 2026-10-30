@@ -18,16 +18,18 @@ interface BroadcastEmailTemplateProps {
     subject: string;
     content: string;
     recipientEmail?: string;
+    unsubscribeUrl?: string;
 }
 
 export const BroadcastEmailTemplate = ({
     subject,
     content,
     recipientEmail = '',
+    // Sem URL assinada, o link cai no fluxo de confirmação por e-mail
+    unsubscribeUrl = `https://www.devthru.com/newsletter/unsubscribe?email=${encodeURIComponent(recipientEmail)}`,
 }: BroadcastEmailTemplateProps) => {
     // Process content paragraphs
     const paragraphs = content.split(/\n\s*\n/).filter(p => p.trim().length > 0);
-    const unsubscribeUrl = `https://www.devthru.com/newsletter/unsubscribe?email=${encodeURIComponent(recipientEmail)}`;
 
     return (
         <Html lang="pt-BR">

@@ -4,6 +4,7 @@ import { verifyAdmin } from '@/lib/api/admin-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { formatEmailSender } from '@/lib/email';
+import { buildUnsubscribeUrl } from '@/lib/newsletter/unsubscribe-token';
 import { BroadcastEmailTemplate } from '@/components/emails/BroadcastEmailTemplate';
 import { z } from 'zod';
 import React from 'react';
@@ -54,6 +55,9 @@ export async function GET() {
             if (p.newsletter_subscribed && email) {
                 allNewsletterEmails.add(email);
             }
+
+            // Quem cancelou a inscrição não entra em nenhum segmento de campanha
+            if (p.newsletter_subscribed === false) return;
 
             const tier = (p.subscription_tier || 'free').toLowerCase();
             if (tier === 'pro') proCount++;
@@ -125,6 +129,7 @@ export async function POST(req: NextRequest) {
             const { data: profs } = await (supabase
                 .from('profiles') as any)
                 .select('email')
+                .eq('newsletter_subscribed', true)
                 .eq('subscription_tier', 'pro');
 
             (profs || []).forEach((p: any) => {
@@ -134,6 +139,7 @@ export async function POST(req: NextRequest) {
             const { data: profs } = await (supabase
                 .from('profiles') as any)
                 .select('email')
+                .eq('newsletter_subscribed', true)
                 .or('subscription_tier.eq.business,subscription_tier.eq.enterprise');
 
             (profs || []).forEach((p: any) => {
@@ -143,6 +149,7 @@ export async function POST(req: NextRequest) {
             const { data: profs } = await (supabase
                 .from('profiles') as any)
                 .select('email, trial_ends_at, subscription_tier')
+                .eq('newsletter_subscribed', true)
                 .not('trial_ends_at', 'is', null)
                 .lte('trial_ends_at', now.toISOString());
 
@@ -155,7 +162,8 @@ export async function POST(req: NextRequest) {
         } else if (target_segment === 'free_users') {
             const { data: profs } = await (supabase
                 .from('profiles') as any)
-                .select('email, subscription_tier');
+                .select('email, subscription_tier')
+                .eq('newsletter_subscribed', true);
 
             (profs || []).forEach((p: any) => {
                 const tier = (p.subscription_tier || 'free').toLowerCase();
@@ -196,6 +204,7 @@ export async function POST(req: NextRequest) {
                     subject,
                     content,
                     recipientEmail: toEmail,
+                    unsubscribeUrl: buildUnsubscribeUrl(toEmail),
                 }),
             }));
 

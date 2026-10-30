@@ -10,8 +10,9 @@ import Link from 'next/link';
 function UnsubscribeContent() {
     const searchParams = useSearchParams();
     const email = searchParams.get('email');
+    const token = searchParams.get('token');
 
-    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'confirmation' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleUnsubscribe = async () => {
@@ -26,15 +27,16 @@ function UnsubscribeContent() {
             const res = await fetch('/api/newsletter/unsubscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, token: token ?? undefined }),
             });
 
+            const data = await res.json();
+
             if (!res.ok) {
-                const data = await res.json();
                 throw new Error(data.error || 'Erro ao processar descadastro.');
             }
 
-            setStatus('success');
+            setStatus(data.confirmationRequired ? 'confirmation' : 'success');
         } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             console.error(err);
             setStatus('error');
@@ -64,7 +66,23 @@ function UnsubscribeContent() {
                         <CheckCircle2 className="h-12 w-12 text-[#10b981] mx-auto" />
                         <h2 className="text-xl font-bold text-[#0d121b]">Inscrição Cancelada</h2>
                         <p className="text-sm text-[#4c669a] leading-relaxed">
-                            O e-mail <strong>{email}</strong> foi removido da nossa lista de novidades. Você não receberá mais os e-mails mensais de atualizações do DevThru.
+                            O e-mail <strong>{email}</strong> foi removido da nossa lista de novidades. Você não receberá mais os e-mails de atualizações e campanhas do DevThru.
+                        </p>
+                        <div className="pt-4">
+                            <Button asChild className="w-full bg-[#135bec] hover:bg-[#135bec]/90 text-white font-semibold">
+                                <Link href="/">
+                                    <ArrowLeft className="mr-2 h-4 w-4" />
+                                    Voltar para o Site
+                                </Link>
+                            </Button>
+                        </div>
+                    </CardContent>
+                ) : status === 'confirmation' ? (
+                    <CardContent className="pt-6 text-center space-y-4">
+                        <CheckCircle2 className="h-12 w-12 text-[#135bec] mx-auto" />
+                        <h2 className="text-xl font-bold text-[#0d121b]">Confira seu E-mail</h2>
+                        <p className="text-sm text-[#4c669a] leading-relaxed">
+                            Se <strong>{email}</strong> estiver na nossa lista, enviamos um link para confirmar o cancelamento.
                         </p>
                         <div className="pt-4">
                             <Button asChild className="w-full bg-[#135bec] hover:bg-[#135bec]/90 text-white font-semibold">
