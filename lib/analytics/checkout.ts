@@ -1,3 +1,4 @@
+import { sendClarityEvent } from '@/lib/analytics/clarity'
 import { sendGTMEvent } from '@/lib/gtm'
 import { ANNUAL_PLANS, AnnualPlan, MONTHLY_PLAN_PRICES } from '@/lib/stripe/plans'
 
@@ -26,6 +27,7 @@ function getEcommerce(plan: AnnualPlan, billing: BillingPeriod) {
 
 export function trackBeginCheckout(plan: AnnualPlan, billing: BillingPeriod) {
     sendGTMEvent({ event: 'begin_checkout', ecommerce: getEcommerce(plan, billing) })
+    sendClarityEvent('begin_checkout')
 }
 
 export function trackPurchase(transactionId: string, plan: AnnualPlan, billing: BillingPeriod) {
@@ -33,4 +35,5 @@ export function trackPurchase(transactionId: string, plan: AnnualPlan, billing: 
         event: 'purchase',
         ecommerce: { transaction_id: transactionId, ...getEcommerce(plan, billing) },
     })
+    sendClarityEvent('purchase')
 }
