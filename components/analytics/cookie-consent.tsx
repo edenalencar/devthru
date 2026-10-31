@@ -16,19 +16,29 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { cn } from "@/lib/utils"
 
-// Helper to safely call gtag
-function gtag(...args: any[]) {
+// O GTM só processa comandos gtag (consent default/update) quando recebe o
+// objeto `arguments`. Um array comum é ignorado, e o consentimento nunca chega
+// ao GTM na página em que o visitante clicou em "Aceitar".
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function gtag(..._args: unknown[]) {
     if (typeof window === "undefined") return
 
     window.dataLayer = window.dataLayer || []
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer.push(arguments)
+}
 
-    if (!window.gtag) {
-        window.gtag = function (...args: any[]) {
-            window.dataLayer.push(args)
-        }
-    }
+// Avisa o GTM que o consentimento mudou, para que as tags que dependem de
+// analytics_storage (como a configuração do GA4) possam disparar na mesma página.
+export function pushConsentUpdateEvent(consent: ConsentState) {
+    if (typeof window === "undefined") return
 
-    window.gtag(...args)
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+        event: "consent_update",
+        analytics_storage: consent.analytics_storage,
+        ad_storage: consent.ad_storage,
+    })
 }
 
 type ConsentState = {
@@ -98,21 +108,13 @@ export function CookieConsent() {
 
     const saveConsent = (consent: ConsentState) => {
         setShowBanner(false)
-        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-            (window as any).requestIdleCallback(() => {
-                try {
-                    localStorage.setItem("cookie_consent", JSON.stringify(consent))
-                    gtag("consent", "update", consent)
-                } catch {}
-            }, { timeout: 1000 })
-        } else {
-            setTimeout(() => {
-                try {
-                    localStorage.setItem("cookie_consent", JSON.stringify(consent))
-                    gtag("consent", "update", consent)
-                } catch {}
-            }, 0)
-        }
+        // Atualiza o consentimento na hora: se esperar o navegador ficar ocioso,
+        // o visitante pode sair ou navegar antes de o GA4 receber o page_view.
+        try {
+            localStorage.setItem("cookie_consent", JSON.stringify(consent))
+        } catch {}
+        gtag("consent", "update", consent)
+        pushConsentUpdateEvent(consent)
     }
 
     if (!showBanner) return null
@@ -204,7 +206,6 @@ export function CookieConsent() {
 // Extend window interface
 declare global {
     interface Window {
-        dataLayer: any[]
-        gtag: (...args: any[]) => void
+        dataLayer: unknown[]
     }
 }
