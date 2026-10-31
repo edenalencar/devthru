@@ -8,11 +8,13 @@ export function GoogleTagManager({ userId }: { userId?: string }) {
     return (
         <Script
             id="gtm-script"
-            strategy="lazyOnload"
+            // afterInteractive: com lazyOnload o GTM só carregava quando o navegador
+            // ficava ocioso, e visitas rápidas (gera, copia, sai) não eram medidas.
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
                 __html: `
             window.dataLayer = window.dataLayer || [];
-            ${userId ? `window.dataLayer.push({ 'user_id': '${userId}' });` : ''}
+            ${userId ? `window.dataLayer.push({ 'user_id': ${JSON.stringify(userId)} });` : ''}
             function gtag(){dataLayer.push(arguments);}
             gtag('consent', 'default', {
                 'ad_storage': 'denied',
