@@ -40,7 +40,7 @@ describe("CRO & Funil de Conversão - Testes Automatizados", () => {
             // Valida link e botão para /pricing
             expect(html).toContain('href="/pricing"')
             expect(html).toContain("Conhecer Plano Pro")
-            expect(html).toContain("A partir de R$ 29/mês")
+            expect(html).toContain("R$ 29/mês ou R$ 290/ano com 2 meses grátis")
         })
 
         it("NÃO deve renderizar nada (retorna string vazia) quando o usuário já for assinante Pro", () => {

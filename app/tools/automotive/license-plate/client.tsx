@@ -17,12 +17,17 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { ToolProCta } from "@/components/tools/tool-pro-cta"
 import { SponsorBanner } from "@/components/marketing/sponsor-banner"
+import { BulkGenerator } from "@/components/tools/bulk-generator"
+import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
+import { generateLicensePlate } from "@/lib/utils/generators/license-plate"
 
 export function LicensePlatePage() {
     const [generatedPlate, setGeneratedPlate] = useState("")
     const [plateType, setPlateType] = useState<"mercosul" | "old">("mercosul")
     const [inputPlate, setInputPlate] = useState("")
     const [convertedPlate, setConvertedPlate] = useState("")
+    const { isPro, limit } = useUser()
 
     const generateRandomLetter = () => String.fromCharCode(65 + Math.floor(Math.random() * 26))
     const generateRandomNumber = () => Math.floor(Math.random() * 10).toString()
@@ -225,10 +230,29 @@ export function LicensePlatePage() {
                         </TabsContent>
                     </Tabs>
 
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Geração em Massa</CardTitle>
+                            <CardDescription>
+                                {getPlanLimitMessage(limit)} Usa o tipo de placa escolhido na aba Gerar.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <BulkGenerator
+                                generatorFn={() => generateLicensePlate(plateType)}
+                                label="Placas"
+                                limit={limit}
+                                isPro={isPro}
+                            />
+                        </CardContent>
+                    </Card>
+
                     {/* Pro Plan CTA */}
                     <ToolProCta
                         toolName="Placas e Frotas de Veículos"
-                        description="Gere lotes massivos de placas Mercosul e antigas para testes de pedágio, OCR, frotas e estacionamentos com exportação rápida para CSV e JSON."
+                        toolSlug="license-plate"
+                        title="Precisa de uma massa de placas para testar?"
+                        description="Gere até 1.000 placas Mercosul ou antigas para testes de frotas, pedágio e estacionamento, e baixe em CSV ou JSON."
                     />
 
                     {/* Info Section */}

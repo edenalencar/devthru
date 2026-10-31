@@ -20,6 +20,9 @@ import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordio
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { ToolProCta } from "@/components/tools/tool-pro-cta"
 import { SponsorBanner } from "@/components/marketing/sponsor-banner"
+import { BulkGenerator } from "@/components/tools/bulk-generator"
+import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 const LUHN_JS_CODE = `function validateLuhn(cardNumber) {
   const cleaned = cardNumber.replace(/\\D/g, "");
@@ -116,6 +119,7 @@ const LUHN_JAVA_CODE = `public class LuhnValidator {
 export function CreditCardGeneratorPage() {
     const [brand, setBrand] = useState<CardBrand>('visa')
     const [cardData, setCardData] = useState<{ number: string, expiry: string, cvv: string } | null>(null)
+    const { isPro, limit } = useUser()
 
     const handleGenerate = () => {
         const number = generateCreditCard(brand)
@@ -269,10 +273,29 @@ export function CreditCardGeneratorPage() {
                         </div>
                     </div>
 
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Geração em Massa</CardTitle>
+                            <CardDescription>
+                                {getPlanLimitMessage(limit)} Usa a bandeira selecionada, no formato número | validade | CVV.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <BulkGenerator
+                                generatorFn={() => `${generateCreditCard(brand)} | ${generateExpiryDate()} | ${generateCVV(brand)}`}
+                                label="Cartões"
+                                limit={limit}
+                                isPro={isPro}
+                            />
+                        </CardContent>
+                    </Card>
+
                     {/* Pro Plan CTA */}
                     <ToolProCta
                         toolName="Cartões e Pagamentos em Massa"
-                        description="Valide checkouts e antifraude com geração massiva de cartões para sandbox de todas as bandeiras (Visa, Master, Elo, Amex) com exportação JSON/Excel."
+                        toolSlug="credit-card-generator"
+                        title="Precisa testar seu checkout com muitos cartões?"
+                        description="Gere até 1.000 cartões fictícios de Visa, Mastercard, Amex e Discover para ambientes de teste, e baixe em CSV ou JSON."
                     />
 
                     {/* Technical Brand & BIN Architecture */}
