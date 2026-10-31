@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Sparkles, ArrowRight, Zap, FileSpreadsheet, History } from "lucide-react"
 import { useUser } from "@/lib/hooks/use-user"
 import { sendGTMEvent } from "@/lib/gtm"
+import { sendClarityEvent } from "@/lib/analytics/clarity"
 
 interface ToolProCtaProps {
     toolName?: string
@@ -42,6 +43,7 @@ export function ToolProCta({
             tool_action: "pro_cta_click",
             tool_category: "conversion",
         })
+        sendClarityEvent("pro_cta_click")
     }
 
     return (
