@@ -4,9 +4,11 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sparkles, ArrowRight, Zap, FileSpreadsheet, History } from "lucide-react"
 import { useUser } from "@/lib/hooks/use-user"
+import { sendGTMEvent } from "@/lib/gtm"
 
 interface ToolProCtaProps {
     toolName?: string
+    toolSlug?: string
     badge?: string
     title?: string
     description?: string
@@ -15,6 +17,7 @@ interface ToolProCtaProps {
 
 export function ToolProCta({
     toolName,
+    toolSlug,
     badge = "Recursos Avançados",
     title,
     description = "Gere dados em grande volume (até 1.000 registros por vez), exporte instantaneamente para CSV, JSON e Excel e salve suas configurações personalizadas.",
@@ -31,6 +34,15 @@ export function ToolProCta({
     const heading = title || (toolName
         ? `Precisa de escala em testes com ${toolName}?`
         : "Precisa de maior escala para seus testes de software?")
+
+    const handleCtaClick = () => {
+        sendGTMEvent({
+            event: "tool_interaction",
+            tool_name: toolSlug || toolName || "unknown",
+            tool_action: "pro_cta_click",
+            tool_category: "conversion",
+        })
+    }
 
     return (
         <section
@@ -70,12 +82,12 @@ export function ToolProCta({
 
                 <div className="flex flex-col sm:flex-row md:flex-col items-start md:items-end justify-center gap-2 shrink-0">
                     <Button asChild size="lg" className="w-full sm:w-auto shadow-sm">
-                        <Link href="/pricing">
+                        <Link href="/pricing" onClick={handleCtaClick}>
                             Conhecer Plano Pro
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
-                    <span className="text-xs text-muted-foreground">A partir de R$ 29/mês • Sem fidelidade</span>
+                    <span className="text-xs text-muted-foreground">R$ 29/mês ou R$ 290/ano com 2 meses grátis</span>
                 </div>
             </div>
         </section>

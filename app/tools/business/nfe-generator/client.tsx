@@ -18,6 +18,9 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { ToolProCta } from "@/components/tools/tool-pro-cta"
+import { BulkGenerator } from "@/components/tools/bulk-generator"
+import { useUser } from "@/lib/hooks/use-user"
+import { getPlanLimitMessage } from "@/lib/constants"
 
 // UF Codes (IBGE)
 const ufCodes: Record<string, string> = {
@@ -37,6 +40,7 @@ export function NfeGeneratorPage() {
     const [number, setNumber] = useState("")
     const [emissionType, setEmissionType] = useState("1")
     const [generatedKey, setGeneratedKey] = useState("")
+    const { isPro, limit } = useUser()
 
     const generateRandomCNPJ = () => {
         const n = 9
@@ -77,20 +81,13 @@ export function NfeGeneratorPage() {
         return digit.toString()
     }
 
-    const generateKey = () => {
+    const buildKey = (cleanCNPJ: string, documentNumber: string) => {
         // 1. cUF - Código da UF do emitente do Documento Fiscal (2 digits)
         const cUF = ufCodes[uf]
 
         // 2. AAMM - Ano e Mês de emissão da NF-e (4 digits)
         const [year, month] = date.split('-')
         const AAMM = `${year.slice(2)}${month}`
-
-        // 3. CNPJ - CNPJ do emitente (14 digits)
-        let cleanCNPJ = cnpj.replace(/\D/g, '')
-        if (cleanCNPJ.length !== 14) {
-            cleanCNPJ = generateRandomCNPJ()
-            setCnpj(cleanCNPJ.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5"))
-        }
 
         // 4. mod - Modelo do Documento Fiscal (2 digits)
         const mod = model
@@ -99,12 +96,7 @@ export function NfeGeneratorPage() {
         const serie = series.padStart(3, '0')
 
         // 6. nNF - Número do Documento Fiscal (9 digits)
-        let nNF = number.replace(/\D/g, '')
-        if (!nNF) {
-            nNF = Math.floor(Math.random() * 999999999).toString()
-            setNumber(nNF)
-        }
-        nNF = nNF.padStart(9, '0')
+        const nNF = documentNumber.padStart(9, '0')
 
         // 7. tpEmis - Forma de emissão da NF-e (1 digit)
         const tpEmis = emissionType
@@ -118,8 +110,34 @@ export function NfeGeneratorPage() {
         // 9. cDV - Dígito Verificador da Chave de Acesso (1 digit)
         const cDV = calculateCheckDigit(keyBase)
 
-        setGeneratedKey(`${keyBase}${cDV}`)
+        return `${keyBase}${cDV}`
+    }
+
+    const generateKey = () => {
+        // 3. CNPJ - CNPJ do emitente (14 digits)
+        let cleanCNPJ = cnpj.replace(/\D/g, '')
+        if (cleanCNPJ.length !== 14) {
+            cleanCNPJ = generateRandomCNPJ()
+            setCnpj(cleanCNPJ.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5"))
+        }
+
+        let nNF = number.replace(/\D/g, '')
+        if (!nNF) {
+            nNF = Math.floor(Math.random() * 999999999).toString()
+            setNumber(nNF)
+        }
+
+        setGeneratedKey(buildKey(cleanCNPJ, nNF))
         toast.success("Chave de acesso gerada com sucesso!")
+    }
+
+    const generateBulkKey = () => {
+        const cleanCNPJ = cnpj.replace(/\D/g, '')
+
+        return buildKey(
+            cleanCNPJ.length === 14 ? cleanCNPJ : generateRandomCNPJ(),
+            Math.floor(Math.random() * 999999999).toString()
+        )
     }
 
     return (
@@ -269,12 +287,31 @@ export function NfeGeneratorPage() {
                                 </CardContent>
                             </Card>
                         )}
+
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Geração em Massa</CardTitle>
+                                <CardDescription>
+                                    {getPlanLimitMessage(limit)} Usa os dados do formulário, com número da nota aleatório em cada chave.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <BulkGenerator
+                                    generatorFn={generateBulkKey}
+                                    label="Chaves"
+                                    limit={limit}
+                                    isPro={isPro}
+                                />
+                            </CardContent>
+                        </Card>
                     </div>
 
                     {/* Pro Plan CTA */}
                     <ToolProCta
                         toolName="Chaves de NF-e e NFC-e"
-                        description="Gere lotes fiscais em massa para homologação e testes de estresse em ERPs, com exportação rápida para CSV, JSON e Excel."
+                        toolSlug="nfe-generator"
+                        title="Precisa de muitas chaves de NF-e para homologar?"
+                        description="Gere até 1.000 chaves com dígito verificador correto para testar ERPs e integrações fiscais, e baixe em CSV ou JSON."
                     />
 
                     {/* FAQ & Info Section */}

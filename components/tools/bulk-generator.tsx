@@ -174,7 +174,7 @@ export function BulkGenerator({ generatorFn, label, limit, isPro, quantity: prop
                     <div className="py-4 text-center">
                         <p className="text-muted-foreground mb-4">
                             {upgradeReason === 'limit'
-                                ? 'Faça upgrade para o plano Pro para gerar até 10.000 registros de uma vez e desbloquear exportações.'
+                                ? 'Faça upgrade para o plano Pro para gerar até 1.000 registros de uma vez e desbloquear exportações.'
                                 : 'Faça upgrade para o plano Pro para exportar seus dados em CSV e JSON e aumentar seus limites de geração.'}
                         </p>
                         <Button className="w-full" onClick={() => window.location.href = '/pricing'}>

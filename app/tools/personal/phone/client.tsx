@@ -382,7 +382,12 @@ export function PhoneGeneratorPage() {
                     </div>
 
                     {/* Pro Plan CTA - Imediatamente abaixo do resultado da ferramenta */}
-                    <ToolProCta toolName="Telefones e Contatos" />
+                    <ToolProCta
+                        toolName="Telefones e Contatos"
+                        toolSlug="phone"
+                        title="Precisa de centenas de telefones para testar?"
+                        description="Gere até 1.000 telefones válidos por DDD, baixe em CSV ou JSON e salve suas configurações para repetir o teste."
+                    />
 
                     {/* Configuration Manager */}
                     <div className="mt-8">
