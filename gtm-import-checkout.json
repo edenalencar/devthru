@@ -1,0 +1,173 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2026-10-31 12:00:00",
+    "containerVersion": {
+        "path": "accounts/0000000000/containers/00000000",
+        "accountId": "0000000000",
+        "containerId": "00000000",
+        "containerVersionId": "1",
+        "name": "DevThru - Checkout Ecommerce Extension",
+        "container": {
+            "path": "accounts/0000000000/containers/00000000",
+            "accountId": "0000000000",
+            "containerId": "00000000",
+            "name": "devthru.com",
+            "publicId": "GTM-WDR9XJZ7",
+            "usageContext": [
+                "WEB"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "tagId": "201",
+                "name": "GA4 Event - Begin Checkout",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "begin_checkout"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{GA4 Measurement ID}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "getEcommerceDataFrom",
+                        "value": "dataLayer"
+                    }
+                ],
+                "fingerprint": "1",
+                "firingTriggerId": [
+                    "201"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NEEDED",
+                    "consentType": {
+                        "type": "LIST",
+                        "list": [
+                            {
+                                "type": "TEMPLATE",
+                                "value": "analytics_storage"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "tagId": "202",
+                "name": "GA4 Event - Purchase",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "purchase"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{GA4 Measurement ID}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "getEcommerceDataFrom",
+                        "value": "dataLayer"
+                    }
+                ],
+                "fingerprint": "1",
+                "firingTriggerId": [
+                    "202"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NEEDED",
+                    "consentType": {
+                        "type": "LIST",
+                        "list": [
+                            {
+                                "type": "TEMPLATE",
+                                "value": "analytics_storage"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "triggerId": "201",
+                "name": "Event - Begin Checkout",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "begin_checkout"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1"
+            },
+            {
+                "accountId": "0000000000",
+                "containerId": "00000000",
+                "triggerId": "202",
+                "name": "Event - Purchase",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "purchase"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1"
+            }
+        ]
+    }
+}

@@ -13,6 +13,8 @@ export const STRIPE_PLANS = {
 
 export type StripePlan = keyof typeof STRIPE_PLANS
 
+export const MONTHLY_PLAN_PRICES = { pro: 29, business: 99 } as const
+
 // Pagamento único de 12 meses, com valores em centavos
 export const ANNUAL_PLANS = {
     pro: { name: 'Pro', amount: 29000, label: 'R$ 290' },
