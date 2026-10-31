@@ -11,7 +11,8 @@ import { toast } from "sonner"
 // import { stripePromise } from "@/lib/stripe/client"
 import { useUser } from "@/lib/hooks/use-user"
 import { differenceInDays } from "date-fns"
-import { ANNUAL_PLANS, AnnualPlan, STRIPE_PLANS } from "@/lib/stripe/plans"
+import { ANNUAL_PLANS, AnnualPlan, STRIPE_PLANS, isAnnualPlan } from "@/lib/stripe/plans"
+import { trackBeginCheckout } from "@/lib/analytics/checkout"
 
 // Ligar somente depois que a Stripe liberar o Pix na conta
 const PIX_ENABLED = process.env.NEXT_PUBLIC_PIX_ENABLED === "true"
@@ -42,6 +43,12 @@ function PricingContent() {
             const annualPlan = priceId.startsWith(ANNUAL_CHECKOUT_PREFIX)
                 ? priceId.slice(ANNUAL_CHECKOUT_PREFIX.length)
                 : undefined
+
+            if (isAnnualPlan(annualPlan)) {
+                trackBeginCheckout(annualPlan, 'annual')
+            } else {
+                trackBeginCheckout(priceId === STRIPE_PLANS.BUSINESS.priceId ? 'business' : 'pro', 'monthly')
+            }
 
             const response = await fetch("/api/stripe/checkout", {
                 method: "POST",

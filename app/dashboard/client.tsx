@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState, useCallback, Suspense } from "react"
 import { useUser } from "@/lib/hooks/use-user"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Badge } from "@/components/ui/badge"
 import { HistoryLocked } from "@/components/tools/history-locked"
+import { CheckoutTracker } from "@/components/analytics/checkout-tracker"
 
 export function DashboardPage() {
     const [history, setHistory] = useState<GenerationHistory[]>([])
@@ -97,6 +98,9 @@ export function DashboardPage() {
 
     return (
         <div className="space-y-8 max-w-7xl mx-auto w-full">
+            <Suspense fallback={null}>
+                <CheckoutTracker />
+            </Suspense>
             <div>
                 <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
                 <p className="text-muted-foreground">

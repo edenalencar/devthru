@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { ANNUAL_PLANS, isAnnualPlan } from '@/lib/stripe/plans'
+import { ANNUAL_PLANS, STRIPE_PLANS, isAnnualPlan } from '@/lib/stripe/plans'
 
 
 export async function POST(req: Request) {
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
                     },
                 ],
                 mode: 'payment',
-                success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true`,
+                success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true&plan=${annualPlan}&billing=annual&session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/pricing?canceled=true`,
                 metadata: {
                     userId: user.id,
@@ -85,6 +85,8 @@ export async function POST(req: Request) {
 
             return NextResponse.json({ sessionId: session.id, url: session.url })
         }
+
+        const monthlyPlan = priceId === STRIPE_PLANS.BUSINESS.priceId ? STRIPE_PLANS.BUSINESS.slug : STRIPE_PLANS.PRO.slug
 
         const session = await stripe.checkout.sessions.create({
             customer_email: user.email,
@@ -96,7 +98,7 @@ export async function POST(req: Request) {
                 },
             ],
             mode: 'subscription',
-            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true`,
+            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true&plan=${monthlyPlan}&billing=monthly&session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/pricing?canceled=true`,
             metadata: {
                 userId: user.id,
