@@ -25,7 +25,7 @@ export function HistoryButton({
     disabled = false,
 }: HistoryButtonProps) {
     const router = useRouter()
-    const { user } = useUser()
+    const { user, isPro } = useUser()
     const [state, setState] = useState<'idle' | 'saving' | 'saved'>('idle')
 
     const handleSave = async () => {
@@ -55,7 +55,9 @@ export function HistoryButton({
             if (result) {
                 setState('saved')
                 toast.success('Salvo no histórico!', {
-                    description: 'Você pode acessar em Dashboard > Histórico',
+                    description: isPro
+                        ? 'Você pode acessar em Dashboard > Histórico'
+                        : 'Faça upgrade para o plano Pro para acessar seu histórico',
                 })
 
                 // Reset to idle after 2 seconds
