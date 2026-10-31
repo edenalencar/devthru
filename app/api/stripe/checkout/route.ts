@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { ANNUAL_PLANS, isAnnualPlan } from '@/lib/stripe/plans'
 
 
 export async function POST(req: Request) {
@@ -32,12 +33,57 @@ export async function POST(req: Request) {
             throw new Error('Empty request body')
         }
 
-        const { priceId } = JSON.parse(bodyText)
+        const { priceId, annualPlan } = JSON.parse(bodyText)
         console.log('[Checkout] Price ID:', priceId)
         console.log('Site URL:', process.env.NEXT_PUBLIC_APP_URL)
 
         if (!process.env.NEXT_PUBLIC_APP_URL) {
             throw new Error('NEXT_PUBLIC_APP_URL is not defined')
+        }
+
+        if (annualPlan !== undefined) {
+            if (!isAnnualPlan(annualPlan)) {
+                return NextResponse.json({ error: 'Plano anual inválido' }, { status: 400 })
+            }
+
+            const { data: profile } = await (supabase
+                .from('profiles') as any) // eslint-disable-line @typescript-eslint/no-explicit-any
+                .select('subscription_tier')
+                .eq('id', user.id)
+                .single()
+
+            // Evita cobrar duas vezes quem já tem um plano pago ativo
+            if (profile?.subscription_tier && profile.subscription_tier !== 'free') {
+                return NextResponse.json({ error: 'Sua conta já possui um plano pago ativo' }, { status: 400 })
+            }
+
+            const plan = ANNUAL_PLANS[annualPlan]
+
+            // Sem payment_method_types, o Checkout usa os meios ativos na conta Stripe, incluindo o Pix quando liberado
+            const session = await stripe.checkout.sessions.create({
+                customer_email: user.email,
+                customer_creation: 'always',
+                client_reference_id: user.id,
+                line_items: [
+                    {
+                        price_data: {
+                            currency: 'brl',
+                            unit_amount: plan.amount,
+                            product_data: { name: `DevThru ${plan.name} Anual (12 meses)` },
+                        },
+                        quantity: 1,
+                    },
+                ],
+                mode: 'payment',
+                success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true`,
+                cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/pricing?canceled=true`,
+                metadata: {
+                    userId: user.id,
+                    plan: annualPlan,
+                },
+            })
+
+            return NextResponse.json({ sessionId: session.id, url: session.url })
         }
 
         const session = await stripe.checkout.sessions.create({

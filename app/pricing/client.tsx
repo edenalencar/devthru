@@ -11,7 +11,11 @@ import { toast } from "sonner"
 // import { stripePromise } from "@/lib/stripe/client"
 import { useUser } from "@/lib/hooks/use-user"
 import { differenceInDays } from "date-fns"
-import { STRIPE_PLANS } from "@/lib/stripe/plans"
+import { ANNUAL_PLANS, AnnualPlan, STRIPE_PLANS } from "@/lib/stripe/plans"
+
+// Ligar somente depois que a Stripe liberar o Pix na conta
+const PIX_ENABLED = process.env.NEXT_PUBLIC_PIX_ENABLED === "true"
+const ANNUAL_CHECKOUT_PREFIX = "annual-"
 
 function PricingContent() {
     const router = useRouter()
@@ -34,12 +38,16 @@ function PricingContent() {
                 return
             }
 
+            const annualPlan = priceId.startsWith(ANNUAL_CHECKOUT_PREFIX)
+                ? priceId.slice(ANNUAL_CHECKOUT_PREFIX.length)
+                : undefined
+
             const response = await fetch("/api/stripe/checkout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ priceId }),
+                body: JSON.stringify(annualPlan ? { annualPlan } : { priceId }),
             })
 
             let data
@@ -193,6 +201,24 @@ function PricingContent() {
     const proConfig = getButtonConfig('pro')
     const businessConfig = getButtonConfig('business')
 
+    const canBuyAnnual = !userLoading && (profile?.subscription_tier || 'free') === 'free'
+
+    const renderAnnualOption = (plan: AnnualPlan) => {
+        const target = `${ANNUAL_CHECKOUT_PREFIX}${plan}`
+
+        return canBuyAnnual && (
+            <Button
+                className="w-full h-auto whitespace-normal py-2"
+                variant="ghost"
+                onClick={() => handleSubscribe(target)}
+                disabled={!!loading}
+            >
+                {loading === target && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Pagar 1 ano por {ANNUAL_PLANS[plan].label}{PIX_ENABLED ? " no Pix ou cartão" : ""}: 2 meses grátis
+            </Button>
+        )
+    }
+
     return (
         <div className="flex min-h-screen flex-col">
             <Navbar />
@@ -285,7 +311,7 @@ function PricingContent() {
                                     </li>
                                 </ul>
                             </CardContent>
-                            <CardFooter className="mt-auto">
+                            <CardFooter className="mt-auto flex-col gap-2">
                                 <Button
                                     className="w-full"
                                     variant={proConfig.variant}
@@ -297,6 +323,7 @@ function PricingContent() {
                                     )}
                                     {proConfig.text}
                                 </Button>
+                                {renderAnnualOption('pro')}
                             </CardFooter>
                         </Card>
 
@@ -338,7 +365,7 @@ function PricingContent() {
                                     </li>
                                 </ul>
                             </CardContent>
-                            <CardFooter className="mt-auto">
+                            <CardFooter className="mt-auto flex-col gap-2">
                                 <Button
                                     className="w-full"
                                     variant={businessConfig.variant}
@@ -350,6 +377,7 @@ function PricingContent() {
                                     )}
                                     {businessConfig.text}
                                 </Button>
+                                {renderAnnualOption('business')}
                             </CardFooter>
                         </Card>
                     </div>
@@ -378,7 +406,7 @@ function PricingContent() {
                                     <CardTitle className="text-base font-semibold">Posso cancelar ou alterar meu plano quando quiser?</CardTitle>
                                 </CardHeader>
                                 <CardContent className="text-sm text-muted-foreground leading-relaxed">
-                                    Sim, sem amarras nem multas de fidelidade. Você pode gerenciar seu plano diretamente pelo painel do usuário a qualquer momento. Ao cancelar, o plano contratado continuará ativo até o encerramento do período mensal já pago.
+                                    Sim, sem amarras nem multas de fidelidade. Você pode gerenciar seu plano diretamente pelo painel do usuário a qualquer momento. Ao cancelar, o plano contratado continuará ativo até o encerramento do período mensal já pago. O plano anual é um pagamento único de 12 meses, sem renovação automática.
                                 </CardContent>
                             </Card>
 
@@ -387,7 +415,7 @@ function PricingContent() {
                                     <CardTitle className="text-base font-semibold">Quais formas de pagamento são aceitas?</CardTitle>
                                 </CardHeader>
                                 <CardContent className="text-sm text-muted-foreground leading-relaxed">
-                                    Processamos pagamentos de forma segura através da Stripe, aceitando os principais cartões de crédito nacionais e internacionais (Visa, MasterCard, Elo, Hipercard, American Express). Para contratações corporativas anuais via PIX ou faturamento por boleto, entre em contato com nosso time comercial.
+                                    Processamos pagamentos de forma segura através da Stripe, aceitando os principais cartões de crédito nacionais e internacionais (Visa, MasterCard, Elo, Hipercard, American Express){PIX_ENABLED ? ". O plano anual também pode ser pago via Pix" : ""}. Para faturamento por boleto, entre em contato com nosso time comercial.
                                 </CardContent>
                             </Card>
 
