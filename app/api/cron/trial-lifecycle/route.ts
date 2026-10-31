@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email';
 import { TrialWarningEmailTemplate } from '@/components/emails/TrialWarningEmailTemplate';
 import { TrialExpiredEmailTemplate } from '@/components/emails/TrialExpiredEmailTemplate';
+import { AnnualPlanExpiredEmailTemplate } from '@/components/emails/AnnualPlanExpiredEmailTemplate';
 import { differenceInDays } from 'date-fns';
 import React from 'react';
 
@@ -105,11 +106,46 @@ export async function GET(req: NextRequest) {
             }
         }
 
+        // 4. Encerrar planos anuais vencidos: sem assinatura na Stripe, nenhum evento faz esse downgrade
+        let annualExpired = 0;
+
+        const { data: expiredAnnualUsers, error: annualErr } = await (supabase
+            .from('profiles') as any)
+            .select('id, email, subscription_tier')
+            .in('subscription_tier', ['pro', 'business'])
+            .is('stripe_subscription_id', null)
+            .lte('current_period_end', now.toISOString());
+
+        if (annualErr) {
+            console.error('Erro ao buscar planos anuais vencidos:', annualErr);
+        } else {
+            for (const user of expiredAnnualUsers || []) {
+                const { error: downgradeErr } = await (supabase.from('profiles') as any)
+                    .update({ subscription_tier: 'free', cancel_at_period_end: false })
+                    .eq('id', user.id);
+
+                if (downgradeErr) {
+                    console.error('Erro ao encerrar plano anual:', downgradeErr);
+                    continue;
+                }
+
+                annualExpired++;
+                await sendEmail({
+                    to: user.email,
+                    subject: 'Seu plano anual do DevThru terminou',
+                    react: React.createElement(AnnualPlanExpiredEmailTemplate, {
+                        planName: user.subscription_tier === 'business' ? 'Business' : 'Pro',
+                    }),
+                });
+            }
+        }
+
         return NextResponse.json({
             success: true,
             warningsSent,
             expiredSent,
-            message: `Automação executada: ${warningsSent} alertas de fim de trial e ${expiredSent} avisos de expiração enviados.`
+            annualExpired,
+            message: `Automação executada: ${warningsSent} alertas de fim de trial, ${expiredSent} avisos de expiração enviados e ${annualExpired} planos anuais encerrados.`
         });
     } catch (error) {
         console.error('Erro inesperado na Cron de Trial Lifecycle:', error);

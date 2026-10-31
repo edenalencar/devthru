@@ -12,6 +12,8 @@ export function useUser() {
         isPro: context.isPro,
         isInTrial: context.isInTrial,
         loading: context.isLoading,
+        // isPro só é confiável depois que o perfil do usuário logado carrega
+        planLoading: context.isLoading || (!!context.user && !context.profile),
         limit: context.limit,
         refreshUser: context.refreshUser
     }

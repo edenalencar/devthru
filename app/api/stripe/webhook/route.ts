@@ -4,10 +4,46 @@ import { NextResponse } from "next/server"
 import { stripe } from "@/lib/stripe/server"
 import { createClient } from "@supabase/supabase-js"
 import Stripe from "stripe"
-import { STRIPE_PLANS } from "@/lib/stripe/plans"
+import { STRIPE_PLANS, getAnnualPeriodEnd, getSubscriptionPeriodEnd, isAnnualPlan } from "@/lib/stripe/plans"
 import { sendEmail } from "@/lib/email"
 import { SubscriptionSuccessEmailTemplate } from "@/components/emails/SubscriptionSuccessEmailTemplate"
 import React from "react"
+
+async function sendSubscriptionConfirmation(supabase: any, session: Stripe.Checkout.Session, userId: string, plan: string) {
+    try {
+        const { data: userProfile } = await supabase
+            .from("profiles")
+            .select("email, full_name")
+            .eq("id", userId)
+            .maybeSingle() as any
+
+        const recipientEmail = session.customer_details?.email || userProfile?.email
+        const recipientName = userProfile?.full_name || session.customer_details?.name || 'Desenvolvedor'
+        const planDisplayName = plan === 'business' ? 'Business' : 'Pro'
+
+        if (recipientEmail) {
+            const emailElement = React.createElement(SubscriptionSuccessEmailTemplate, {
+                userName: recipientName,
+                planName: planDisplayName,
+                planSlug: plan,
+            })
+
+            const { error: emailErr } = await sendEmail({
+                to: recipientEmail,
+                subject: `🎉 Sua assinatura do Plano ${planDisplayName} foi confirmada! • DevThru`,
+                react: emailElement,
+            })
+
+            if (emailErr) {
+                console.error('[Webhook] Erro ao enviar e-mail de confirmação de assinatura:', emailErr)
+            } else {
+                console.log(`[Webhook] E-mail de confirmação de assinatura enviado com sucesso para ${recipientEmail}`)
+            }
+        }
+    } catch (emailException) {
+        console.error('[Webhook] Exceção inesperada ao enviar e-mail de confirmação:', emailException)
+    }
+}
 
 export async function POST(req: Request) {
     const body = await req.text()
@@ -35,6 +71,47 @@ export async function POST(req: Request) {
         process.env.SUPABASE_SERVICE_ROLE_KEY!
     )
 
+    const isPaymentCheckout = session?.mode === "payment"
+
+    if (
+        isPaymentCheckout &&
+        (event.type === "checkout.session.completed" || event.type === "checkout.session.async_payment_succeeded")
+    ) {
+        const userId = session.metadata?.userId
+        const plan = session.metadata?.plan
+
+        if (!userId || !isAnnualPlan(plan)) {
+            console.error('[Webhook] Invalid annual plan metadata')
+            return new NextResponse("Invalid annual plan metadata", { status: 400 })
+        }
+
+        // No Pix, o checkout termina antes do pagamento: a ativação vem em async_payment_succeeded
+        if (session.payment_status !== "paid") {
+            console.log(`[Webhook] Annual payment pending for user: ${userId}`)
+            return new NextResponse(null, { status: 200 })
+        }
+
+        const { error } = await supabase
+            .from("profiles")
+            .update({
+                subscription_tier: plan,
+                stripe_subscription_id: null,
+                ...(session.customer ? { stripe_customer_id: session.customer as string } : {}),
+                trial_ends_at: null,
+                current_period_end: getAnnualPeriodEnd(new Date(session.created * 1000)).toISOString(),
+                cancel_at_period_end: true,
+            } as any)
+            .eq("id", userId)
+
+        if (error) {
+            console.error('[Webhook] Error activating annual plan:', error)
+            return new NextResponse('Error activating annual plan', { status: 500 })
+        }
+
+        await sendSubscriptionConfirmation(supabase, session, userId, plan)
+        return new NextResponse(null, { status: 200 })
+    }
+
     if (event.type === "checkout.session.completed") {
         const userId = session?.metadata?.userId
         console.log(`[Webhook] checkout.session.completed for user: ${userId}`)
@@ -60,7 +137,8 @@ export async function POST(req: Request) {
             }
 
             console.log(`[Webhook] Updating profile for user ${userId} to plan ${plan}`)
-            console.log(`[Webhook] Sub details - current_period: ${sub.current_period_end}, cancel_at: ${sub.cancel_at}`)
+            const periodEnd = getSubscriptionPeriodEnd(sub)
+            console.log(`[Webhook] Sub details - current_period: ${periodEnd}, cancel_at: ${sub.cancel_at}`)
 
             const { error } = await supabase
                 .from("profiles")
@@ -69,7 +147,7 @@ export async function POST(req: Request) {
                     stripe_subscription_id: subscriptionId,
                     stripe_customer_id: sub.customer as string,
                     trial_ends_at: null, // Clear trial if they subscribed
-                    current_period_end: (sub.cancel_at ? new Date(sub.cancel_at * 1000) : (sub.current_period_end ? new Date(sub.current_period_end * 1000) : new Date())).toISOString(),
+                    current_period_end: (sub.cancel_at ? new Date(sub.cancel_at * 1000) : (periodEnd ? new Date(periodEnd * 1000) : new Date())).toISOString(),
                     cancel_at_period_end: sub.cancel_at_period_end || (sub.cancel_at !== null && sub.cancel_at !== undefined)
                 } as any)
                 .eq("id", userId)
@@ -81,39 +159,7 @@ export async function POST(req: Request) {
             console.log('[Webhook] Profile updated successfully')
 
             // Envio do e-mail de confirmação e agradecimento de assinatura
-            try {
-                const { data: userProfile } = await supabase
-                    .from("profiles")
-                    .select("email, full_name")
-                    .eq("id", userId)
-                    .maybeSingle() as any
-
-                const recipientEmail = session.customer_details?.email || userProfile?.email
-                const recipientName = userProfile?.full_name || session.customer_details?.name || 'Desenvolvedor'
-                const planDisplayName = plan === 'business' ? 'Business' : 'Pro'
-
-                if (recipientEmail) {
-                    const emailElement = React.createElement(SubscriptionSuccessEmailTemplate, {
-                        userName: recipientName,
-                        planName: planDisplayName,
-                        planSlug: plan,
-                    })
-
-                    const { error: emailErr } = await sendEmail({
-                        to: recipientEmail,
-                        subject: `🎉 Sua assinatura do Plano ${planDisplayName} foi confirmada! • DevThru`,
-                        react: emailElement,
-                    })
-
-                    if (emailErr) {
-                        console.error('[Webhook] Erro ao enviar e-mail de confirmação de assinatura:', emailErr)
-                    } else {
-                        console.log(`[Webhook] E-mail de confirmação de assinatura enviado com sucesso para ${recipientEmail}`)
-                    }
-                }
-            } catch (emailException) {
-                console.error('[Webhook] Exceção inesperada ao enviar e-mail de confirmação:', emailException)
-            }
+            await sendSubscriptionConfirmation(supabase, session, userId, plan)
         } catch (error) {
             console.error('[Webhook] Error processing checkout session:', error)
             return new NextResponse('Error processing checkout session', { status: 500 })
@@ -147,13 +193,15 @@ export async function POST(req: Request) {
                 console.log(`[Webhook] Updating subscription for user ${profile.id} to ${plan}`)
                 console.log(`[Webhook] Sub details - cancel_at_period_end: ${latestSub.cancel_at_period_end}, cancel_at: ${latestSub.cancel_at}`)
 
+                const periodEnd = getSubscriptionPeriodEnd(latestSub)
+
                 const { error } = await supabase
                     .from("profiles")
                     .update({
                         subscription_tier: plan,
                         current_period_end: (latestSub.cancel_at
                             ? new Date(latestSub.cancel_at * 1000)
-                            : (latestSub.current_period_end ? new Date(latestSub.current_period_end * 1000) : new Date())
+                            : (periodEnd ? new Date(periodEnd * 1000) : new Date())
                         ).toISOString(),
                         cancel_at_period_end: !!latestSub.cancel_at
                     } as any)

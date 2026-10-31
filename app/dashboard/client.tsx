@@ -20,11 +20,12 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Badge } from "@/components/ui/badge"
+import { HistoryLocked } from "@/components/tools/history-locked"
 
 export function DashboardPage() {
     const [history, setHistory] = useState<GenerationHistory[]>([])
     const [stats, setStats] = useState<any>(null) // eslint-disable-line @typescript-eslint/no-explicit-any
-    const { user } = useUser()
+    const { user, isPro, planLoading } = useUser()
     const supabase = createClient()
 
     const loadData = useCallback(async (currentUser: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -167,33 +168,37 @@ export function DashboardPage() {
                                 Suas últimas 10 gerações de conteúdo.
                             </CardDescription>
                         </div>
-                        <div className="flex gap-2">
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" size="sm">
-                                        <Download className="mr-2 h-4 w-4" />
-                                        Exportar
-                                    </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="bg-[hsl(var(--popover))] text-[hsl(var(--popover-foreground))]">
-                                    <DropdownMenuItem onClick={() => handleExport('csv')}>
-                                        Exportar CSV
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={() => handleExport('excel')}>
-                                        Exportar Excel
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
+                        {isPro && (
+                            <div className="flex gap-2">
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button variant="outline" size="sm">
+                                            <Download className="mr-2 h-4 w-4" />
+                                            Exportar
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent className="bg-[hsl(var(--popover))] text-[hsl(var(--popover-foreground))]">
+                                        <DropdownMenuItem onClick={() => handleExport('csv')}>
+                                            Exportar CSV
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem onClick={() => handleExport('excel')}>
+                                            Exportar Excel
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
 
-                            <Button variant="destructive" size="sm" onClick={handleClearHistory}>
-                                <Trash2 className="mr-2 h-4 w-4" />
-                                Limpar
-                            </Button>
-                        </div>
+                                <Button variant="destructive" size="sm" onClick={handleClearHistory}>
+                                    <Trash2 className="mr-2 h-4 w-4" />
+                                    Limpar
+                                </Button>
+                            </div>
+                        )}
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-4">
-                            {history.length === 0 ? (
+                            {!planLoading && !isPro ? (
+                                <HistoryLocked />
+                            ) : history.length === 0 ? (
                                 <div className="text-center py-8 text-muted-foreground">
                                     Nenhum histórico encontrado. Comece a usar as ferramentas!
                                 </div>

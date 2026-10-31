@@ -7,6 +7,7 @@ import { Download, Loader2, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { HistoryCard } from '@/components/tools/history-card'
 import { HistoryFilters } from '@/components/tools/history-filters'
+import { HistoryLocked } from '@/components/tools/history-locked'
 
 import { toast } from 'sonner'
 import {
@@ -36,7 +37,7 @@ const ITEMS_PER_PAGE = 12
 
 export function HistoryPage() {
     const router = useRouter()
-    const { user, loading: userLoading } = useUser()
+    const { user, loading: userLoading, isPro, planLoading } = useUser()
     const [history, setHistory] = useState<GenerationHistory[]>([])
     const [loading, setLoading] = useState(true)
     const [totalCount, setTotalCount] = useState(0)
@@ -92,10 +93,10 @@ export function HistoryPage() {
     }, [currentPage, searchQuery, selectedTool, dateFrom, dateTo, user?.id])
 
     useEffect(() => {
-        if (user?.id) {
+        if (user?.id && isPro) {
             loadHistory()
         }
-    }, [loadHistory, user?.id])
+    }, [loadHistory, user?.id, isPro])
 
 
 
@@ -167,6 +168,23 @@ export function HistoryPage() {
     }
 
     const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
+
+    if (planLoading) {
+        return (
+            <div className="flex justify-center items-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            </div>
+        )
+    }
+
+    if (!isPro) {
+        return (
+            <div className="space-y-8 max-w-6xl">
+                <h1 className="text-3xl font-bold">Histórico de Gerações</h1>
+                <HistoryLocked />
+            </div>
+        )
+    }
 
     return (
         <div className="space-y-8 max-w-6xl">
