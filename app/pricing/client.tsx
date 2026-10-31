@@ -22,6 +22,7 @@ function PricingContent() {
     const searchParams = useSearchParams()
     const { user, profile, isInTrial, loading: userLoading } = useUser()
     const [loading, setLoading] = useState<string | null>(null)
+    const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly')
     const autoCheckoutTriggered = useRef(false)
 
     const daysRemaining = profile?.trial_ends_at
@@ -202,22 +203,24 @@ function PricingContent() {
     const businessConfig = getButtonConfig('business')
 
     const canBuyAnnual = !userLoading && (profile?.subscription_tier || 'free') === 'free'
+    const showAnnual = canBuyAnnual && billing === 'annual'
 
-    const renderAnnualOption = (plan: AnnualPlan) => {
-        const target = `${ANNUAL_CHECKOUT_PREFIX}${plan}`
+    const annualTarget = (plan: AnnualPlan) => `${ANNUAL_CHECKOUT_PREFIX}${plan}`
 
-        return canBuyAnnual && (
-            <Button
-                className="w-full h-auto whitespace-normal py-2"
-                variant="ghost"
-                onClick={() => handleSubscribe(target)}
-                disabled={!!loading}
-            >
-                {loading === target && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Pagar 1 ano por {ANNUAL_PLANS[plan].label}{PIX_ENABLED ? " no Pix ou cartão" : ""}: 2 meses grátis
-            </Button>
-        )
-    }
+    const monthlyEquivalent = (plan: AnnualPlan) =>
+        (ANNUAL_PLANS[plan].amount / 1200).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+
+    const renderPrice = (plan: AnnualPlan, monthlyLabel: string) => (
+        <div className="mt-4">
+            <span className="text-4xl font-bold">{showAnnual ? ANNUAL_PLANS[plan].label : monthlyLabel}</span>
+            <span className="text-muted-foreground">{showAnnual ? "/ano" : "/mês"}</span>
+            {showAnnual && (
+                <p className="text-sm text-muted-foreground mt-1">
+                    Equivale a {monthlyEquivalent(plan)}/mês
+                </p>
+            )}
+        </div>
+    )
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -231,6 +234,34 @@ function PricingContent() {
                             Escolha o plano ideal para a sua produtividade e fluxo de trabalho
                         </p>
                     </div>
+
+                    {canBuyAnnual && (
+                        <div className="flex flex-col items-center gap-2 mb-10">
+                            <div role="group" aria-label="Período de cobrança" className="inline-flex gap-1 rounded-lg border p-1">
+                                <Button
+                                    size="sm"
+                                    variant={billing === 'monthly' ? 'default' : 'ghost'}
+                                    aria-pressed={billing === 'monthly'}
+                                    onClick={() => setBilling('monthly')}
+                                >
+                                    Mensal
+                                </Button>
+                                <Button
+                                    size="sm"
+                                    variant={billing === 'annual' ? 'default' : 'ghost'}
+                                    aria-pressed={billing === 'annual'}
+                                    onClick={() => setBilling('annual')}
+                                >
+                                    Anual: 2 meses grátis
+                                </Button>
+                            </div>
+                            {showAnnual && (
+                                <p className="text-sm text-muted-foreground text-center">
+                                    Pagamento único de 12 meses{PIX_ENABLED ? " no Pix ou cartão" : ""}, sem renovação automática.
+                                </p>
+                            )}
+                        </div>
+                    )}
 
                     <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                         {/* Free Plan */}
@@ -282,10 +313,7 @@ function PricingContent() {
                             <CardHeader>
                                 <CardTitle className="text-2xl">Pro</CardTitle>
                                 <CardDescription>Para profissionais autônomos e freelancers</CardDescription>
-                                <div className="mt-4">
-                                    <span className="text-4xl font-bold">R$ 29</span>
-                                    <span className="text-muted-foreground">/mês</span>
-                                </div>
+                                {renderPrice('pro', 'R$ 29')}
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2">
@@ -311,19 +339,18 @@ function PricingContent() {
                                     </li>
                                 </ul>
                             </CardContent>
-                            <CardFooter className="mt-auto flex-col gap-2">
+                            <CardFooter className="mt-auto">
                                 <Button
                                     className="w-full"
                                     variant={proConfig.variant}
-                                    onClick={proConfig.action}
-                                    disabled={proConfig.disabled || !!loading}
+                                    onClick={showAnnual ? () => handleSubscribe(annualTarget('pro')) : proConfig.action}
+                                    disabled={(!showAnnual && proConfig.disabled) || !!loading}
                                 >
-                                    {loading === (proConfig.action === handlePortal ? 'portal' : STRIPE_PLANS.PRO.priceId) && (
+                                    {loading === (showAnnual ? annualTarget('pro') : (proConfig.action === handlePortal ? 'portal' : STRIPE_PLANS.PRO.priceId)) && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
-                                    {proConfig.text}
+                                    {showAnnual ? 'Pagar 1 ano do Pro' : proConfig.text}
                                 </Button>
-                                {renderAnnualOption('pro')}
                             </CardFooter>
                         </Card>
 
@@ -336,10 +363,7 @@ function PricingContent() {
                             <CardHeader className="pt-12">
                                 <CardTitle className="text-2xl">Business</CardTitle>
                                 <CardDescription>Para equipes, escritórios e empresas</CardDescription>
-                                <div className="mt-4">
-                                    <span className="text-4xl font-bold">R$ 99</span>
-                                    <span className="text-muted-foreground">/mês</span>
-                                </div>
+                                {renderPrice('business', 'R$ 99')}
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2">
@@ -365,19 +389,18 @@ function PricingContent() {
                                     </li>
                                 </ul>
                             </CardContent>
-                            <CardFooter className="mt-auto flex-col gap-2">
+                            <CardFooter className="mt-auto">
                                 <Button
                                     className="w-full"
                                     variant={businessConfig.variant}
-                                    onClick={businessConfig.action}
-                                    disabled={businessConfig.disabled || !!loading}
+                                    onClick={showAnnual ? () => handleSubscribe(annualTarget('business')) : businessConfig.action}
+                                    disabled={(!showAnnual && businessConfig.disabled) || !!loading}
                                 >
-                                    {loading === (businessConfig.action === handlePortal ? 'portal' : STRIPE_PLANS.BUSINESS.priceId) && (
+                                    {loading === (showAnnual ? annualTarget('business') : (businessConfig.action === handlePortal ? 'portal' : STRIPE_PLANS.BUSINESS.priceId)) && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
-                                    {businessConfig.text}
+                                    {showAnnual ? 'Pagar 1 ano do Business' : businessConfig.text}
                                 </Button>
-                                {renderAnnualOption('business')}
                             </CardFooter>
                         </Card>
                     </div>
