@@ -4,8 +4,8 @@ import { Metadata } from "next"
 import { PhoneGeneratorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Gerador de Telefone e Celular Válido (com DDD) - Grátis"
-const description = "Gere números de celular e telefone fixo válidos do Brasil (com 67 DDDs) e EUA para testes de software. Obtenha números limpos ou formatados em lote grátis."
+const title = "Gerador de Número de Telefone e Celular (com DDD)"
+const description = "Gere números de telefone e celular válidos com DDD (Brasil e EUA) para testes de software. Fixo ou celular, formatados ou limpos, em lote e grátis."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
