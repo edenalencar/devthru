@@ -6,8 +6,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CreditCardGeneratorPage } from "./client"
 
-const title = "Gerador de Cartão de Crédito Válido (Luhn) para Testes - Grátis"
-const description = "Gerador de cartão de crédito online gratuito. Gere números de cartão de crédito válidos com nome, validade, CVV e endereço para testes de sistemas de pagamento."
+const title = "Gerador de Cartão de Crédito Válido para Testes"
+const description = "Cartões de crédito válidos (Luhn) com nome, validade e CVV: Visa, Mastercard, Amex e Discover. Dados fictícios para testes; não funcionam em compras reais."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
