@@ -30,18 +30,16 @@ export const metadata: Metadata = {
 export default function AnunciePage() {
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "Product",
+        "@type": "Service",
         "name": "Espaços Publicitários e Patrocínio Nativo DevThru",
         "description": "Formatos de patrocínio e banners nativos para empresas alcançarem profissionais, analistas fiscais, equipes de tecnologia e tomadores de decisão no Brasil.",
-        "brand": {
-            "@type": "Brand",
+        "serviceType": "Publicidade e patrocínio B2B",
+        "areaServed": "BR",
+        "url": `${siteConfig.url}/anuncie`,
+        "provider": {
+            "@type": "Organization",
             "name": siteConfig.name,
-        },
-        "offers": {
-            "@type": "Offer",
-            "priceCurrency": "BRL",
-            "availability": "https://schema.org/InStock",
-            "url": `${siteConfig.url}/anuncie`,
+            "url": siteConfig.url,
         },
     }
 
