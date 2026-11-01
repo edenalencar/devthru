@@ -12,7 +12,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { 
     parseCurl, 
@@ -248,70 +247,51 @@ export function CurlConverterPage() {
                     </Card>
 
                     {/* Implementação em Código */}
-                    <Accordion type="single" collapsible className="w-full">
-                        <CodeExamplesAccordion examples={CODE_EXAMPLES} />
-                    </Accordion>
 
-                    {/* FAQ */}
-                    <Card className="border-border/60">
+                    {/* Info Section */}
+                    <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle className="text-xl">Perguntas Frequentes sobre Conversão de cURL</CardTitle>
-                            <CardDescription>
-                                Como aproveitar comandos cURL no fluxo de desenvolvimento.
-                            </CardDescription>
+                            <CardTitle>Sobre o Conversor de cURL para Código</CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="faq-1">
-                                    <AccordionTrigger>Como copiar uma requisição em cURL diretamente do navegador?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground text-sm">
-                                        No Chrome, Firefox, Edge ou Safari, abra as <strong>Ferramentas do Desenvolvedor (F12)</strong>, vá até a aba <strong>Rede (Network)</strong>, realize a ação desejada no site, clique com o botão direito na requisição e selecione <strong>Copiar &gt; Copiar como cURL (Copy as cURL)</strong>. Em seguida, cole aqui no DevThru.
-                                    </AccordionContent>
-                                </AccordionItem>
-
-                                <AccordionItem value="faq-2">
-                                    <AccordionTrigger>O código convertido envia dados para algum servidor?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground text-sm">
-                                        Não! Todo o processo de parsing da sintaxe cURL e a geração do código em JavaScript, Python, Go e PHP ocorre inteiramente no seu navegador de forma local e segura.
-                                    </AccordionContent>
-                                </AccordionItem>
-                            </Accordion>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Conversor de cURL transforma um comando cURL em código pronto para usar em JavaScript (Fetch e Axios), Python (Requests), Go (net/http) e PHP. Ele interpreta o método HTTP, a URL, os cabeçalhos (-H), o corpo da requisição (-d) e a autenticação, o que acelera a reprodução de chamadas copiadas do navegador ou da documentação de uma API.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> A conversão acontece no seu navegador e o comando não é enviado a nenhum servidor. Revise o código gerado e troque credenciais por variáveis de ambiente antes de usá-lo em produção.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t space-y-4">
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Ferramentas Relacionadas:</Label>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link
+                                            href="/tools/development/jwt-debugger"
+                                            className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
+                                        >
+                                            <span>⚙️ Debugger e Inspetor de JWT</span>
+                                            <ArrowRight className="w-3 h-3" />
+                                        </Link>
+                                        <Link
+                                            href="/blog/como-formatar-e-validar-grandes-arquivos-json-sem-travamentos"
+                                            className="text-xs px-2.5 py-1.5 bg-blue-100 text-blue-800 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
+                                        >
+                                            <span>📖 Como Formatar e Validar Grandes Payloads JSON</span>
+                                            <ArrowRight className="w-3 h-3" />
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                    <ShareButtons title="Conversor de cURL para Código - DevThru" />
+                                </div>
+                            </div>
                         </CardContent>
                     </Card>
-
-                    {/* Rodapé e Links Relacionados */}
-                    <div className="pt-4 border-t space-y-4">
-                        <div>
-                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                                Artigos e Ferramentas Relacionadas:
-                            </span>
-                            <div className="flex flex-wrap gap-2">
-                                <Link
-                                    href="/tools/development/jwt-debugger"
-                                    className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
-                                >
-                                    <span>⚙️ Debugger e Inspetor de JWT</span>
-                                    <ArrowRight className="w-3 h-3" />
-                                </Link>
-                                <Link
-                                    href="/blog/como-formatar-e-validar-grandes-arquivos-json-sem-travamentos"
-                                    className="text-xs px-2.5 py-1.5 bg-blue-100 text-blue-800 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
-                                >
-                                    <span>📖 Como Formatar e Validar Grandes Payloads JSON</span>
-                                    <ArrowRight className="w-3 h-3" />
-                                </Link>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                                Compartilhe esta ferramenta:
-                            </span>
-                            <ShareButtons title="Conversor de cURL para Código - DevThru" />
-                        </div>
-                    </div>
-
-                    <ToolFaqSection toolSlug="curl-converter" />
+                    <ToolFaqSection toolSlug="curl-converter">
+                        <CodeExamplesAccordion examples={CODE_EXAMPLES} />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="curl-converter" category="development" />
                 </div>
             </main>

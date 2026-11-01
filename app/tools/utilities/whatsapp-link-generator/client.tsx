@@ -13,7 +13,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { generateQRCode } from "@/lib/utils/generators/qrcode"
 import { sendGTMEvent } from "@/lib/gtm"
@@ -412,77 +411,51 @@ export function WhatsappLinkGeneratorPage() {
                     </div>
 
                     {/* Implementação em Código */}
-                    <Accordion type="single" collapsible className="w-full">
-                        <CodeExamplesAccordion examples={CODE_EXAMPLES} />
-                    </Accordion>
 
-                    {/* FAQ */}
-                    <Card className="border-border/60">
+                    {/* Info Section */}
+                    <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle className="text-xl">Perguntas Frequentes sobre Links do WhatsApp</CardTitle>
-                            <CardDescription>
-                                Como usar o link oficial wa.me para turbinar seu atendimento e campanhas.
-                            </CardDescription>
+                            <CardTitle>Sobre o Gerador de Link do WhatsApp</CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="faq-1">
-                                    <AccordionTrigger>Como funciona o link direto wa.me do WhatsApp?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground text-sm">
-                                        O link no formato <code className="text-foreground">https://wa.me/&lt;numero&gt;</code> é o padrão oficial desenvolvido pela Meta. Quando alguém clica no link pelo celular, o aplicativo do WhatsApp abre diretamente na conversa com o número informado. Pelo computador, o link redireciona para o WhatsApp Web ou para o aplicativo de desktop.
-                                    </AccordionContent>
-                                </AccordionItem>
-
-                                <AccordionItem value="faq-2">
-                                    <AccordionTrigger>É necessário ter o número salvo na agenda para abrir a conversa?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground text-sm">
-                                        Não! Essa é a principal vantagem do link wa.me: qualquer pessoa pode iniciar uma conversa com você sem precisar salvar seu número na agenda telefônica do smartphone.
-                                    </AccordionContent>
-                                </AccordionItem>
-
-                                <AccordionItem value="faq-3">
-                                    <AccordionTrigger>Como colocar o link do WhatsApp na bio do Instagram?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground text-sm">
-                                        Basta gerar o link com seu número e mensagem desejada, clicar em <strong>Copiar Link</strong>, abrir o Instagram, ir em <strong>Editar Perfil</strong> &gt; <strong>Links</strong> &gt; <strong>Adicionar Link Externo</strong> e colar a URL.
-                                    </AccordionContent>
-                                </AccordionItem>
-                            </Accordion>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Gerador de Link do WhatsApp cria links no formato wa.me que abrem uma conversa diretamente com o número informado, com uma mensagem inicial opcional já preenchida. A ferramenta também gera o QR Code do link, que pode ser escaneado pelo celular. É útil para botões de contato em sites, bio de redes sociais, assinaturas de e-mail e materiais impressos.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> Informe o número com código do país e DDD. O link apenas abre a conversa; ele não envia mensagens automaticamente.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t space-y-4">
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link
+                                            href="/blog/como-validar-formatar-telefone-celular-brasil-ddd"
+                                            className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
+                                        >
+                                            <span>📖 Como Validar e Formatar Telefones e Celulares no Brasil com Regex</span>
+                                            <ArrowRight className="w-3 h-3" />
+                                        </Link>
+                                        <Link
+                                            href="/tools/personal/phone"
+                                            className="text-xs px-2.5 py-1.5 bg-blue-100 text-blue-800 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
+                                        >
+                                            <span>⚙️ Gerador e Validador de Telefones Brasileiros</span>
+                                            <ArrowRight className="w-3 h-3" />
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                    <ShareButtons title="Gerador de Link do WhatsApp (wa.me) - DevThru" />
+                                </div>
+                            </div>
                         </CardContent>
                     </Card>
-
-                    {/* Rodapé e Links Relacionados */}
-                    <div className="pt-4 border-t space-y-4">
-                        <div>
-                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                                Artigos e Guias Relacionados:
-                            </span>
-                            <div className="flex flex-wrap gap-2">
-                                <Link
-                                    href="/blog/como-validar-formatar-telefone-celular-brasil-ddd"
-                                    className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
-                                >
-                                    <span>📖 Como Validar e Formatar Telefones e Celulares no Brasil com Regex</span>
-                                    <ArrowRight className="w-3 h-3" />
-                                </Link>
-                                <Link
-                                    href="/tools/personal/phone"
-                                    className="text-xs px-2.5 py-1.5 bg-blue-100 text-blue-800 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
-                                >
-                                    <span>⚙️ Gerador e Validador de Telefones Brasileiros</span>
-                                    <ArrowRight className="w-3 h-3" />
-                                </Link>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                                Compartilhe esta ferramenta:
-                            </span>
-                            <ShareButtons title="Gerador de Link do WhatsApp (wa.me) - DevThru" />
-                        </div>
-                    </div>
-
-                    <ToolFaqSection toolSlug="whatsapp-link-generator" />
+                    <ToolFaqSection toolSlug="whatsapp-link-generator">
+                        <CodeExamplesAccordion examples={CODE_EXAMPLES} />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="whatsapp-link-generator" category="utilities" />
                 </div>
             </main>

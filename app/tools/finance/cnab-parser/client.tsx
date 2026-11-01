@@ -6,13 +6,12 @@ import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { FileText, CheckCircle2, AlertTriangle, ArrowRight, ShieldCheck, Copy, Check, Upload, RefreshCw, Landmark, HelpCircle, Code2 } from "lucide-react"
+import { FileText, CheckCircle2, AlertTriangle, ArrowRight, ShieldCheck, Copy, Check, Upload, RefreshCw, Landmark } from "lucide-react"
 import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import Link from "next/link"
 import { sendGTMEvent } from "@/lib/gtm"
 
@@ -372,66 +371,20 @@ export function CnabParserPage() {
           </CardContent>
         </Card>
 
-        {/* Code Examples Section */}
+        {/* Info Section */}
         <Card className="border-border shadow-sm">
           <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
-              <Code2 className="w-5 h-5 text-emerald-500" />
-              Exemplos de Código para Desenvolvedores
-            </CardTitle>
-            <CardDescription>
-              Aprenda a fatiar e parsear arquivos CNAB posicionais em Node.js e Python.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="single" collapsible className="w-full">
-              <CodeExamplesAccordion
-                examples={[
-                  { language: "javascript", label: "TypeScript / Node.js", code: CODE_JS },
-                  { language: "python", label: "Python", code: CODE_PYTHON }
-                ]}
-              />
-            </Accordion>
-          </CardContent>
-        </Card>
-
-        {/* FAQ & Social Sharing Section */}
-        <Card className="border-border shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
-              <HelpCircle className="w-5 h-5 text-emerald-500" />
-              Perguntas Frequentes (FAQ)
-            </CardTitle>
+            <CardTitle>Sobre o Leitor de CNAB</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <Accordion type="single" collapsible className="w-full space-y-2">
-              <AccordionItem value="faq-1">
-                <AccordionTrigger className="text-sm font-medium">
-                  Como identificar se um arquivo é CNAB 240 ou CNAB 400?
-                </AccordionTrigger>
-                <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-                  A forma mais direta é medindo a quantidade de caracteres de cada linha. No <strong>CNAB 240</strong>, todas as linhas possuem exatamente 240 caracteres. No <strong>CNAB 400</strong>, cada linha possui exatamente 400 caracteres.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-2">
-                <AccordionTrigger className="text-sm font-medium">
-                  O que significa o código de ocorrência nos arquivos de retorno?
-                </AccordionTrigger>
-                <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-                  O código de ocorrência indica qual ação foi efetuada pelo banco sobre o título. Por exemplo: o código <strong>06</strong> indica que o boleto foi pago (liquidado), o código <strong>02</strong> indica entrada confirmada e o código <strong>03</strong> sinaliza que a remessa foi rejeitada devido a algum erro cadastral.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-3">
-                <AccordionTrigger className="text-sm font-medium">
-                  Meus dados bancários são salvos nos servidores do DevThru?
-                </AccordionTrigger>
-                <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-                  <strong>Não.</strong> Todo o processo de leitura e decodificação do arquivo CNAB é executado exclusivamente no seu navegador via JavaScript client-side. Nenhum dado do seu arquivo é enviado para servidores externos.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <div className="prose prose-sm max-w-none dark:prose-invert">
+              <p>
+                O Leitor de CNAB lê arquivos de remessa e de retorno nos padrões CNAB 240 e CNAB 400, separa cada linha em seus campos posicionais e permite inspecionar a estrutura linha a linha. É útil para conferir arquivos enviados e recebidos de bancos, entender códigos de ocorrência e depurar integrações de cobrança.
+              </p>
+              <p className="text-sm text-muted-foreground mt-4">
+                <strong>Nota:</strong> A leitura acontece no seu navegador e o arquivo não é enviado a nenhum servidor. A ferramenta interpreta o layout posicional, mas cada banco pode ter particularidades; confira o manual do seu banco.
+              </p>
+            </div>
 
             {/* Related Articles & Shared Footer Component */}
             <div className="pt-4 border-t space-y-4">
@@ -473,11 +426,18 @@ export function CnabParserPage() {
                 <ShareButtons title="Leitor e Decodificador de CNAB (CNAB 240 / 400) - DevThru" />
               </div>
             </div>
-
-            <ToolFaqSection toolSlug="cnab-parser" />
-            <RelatedTools currentToolSlug="cnab-parser" category="finance" />
           </CardContent>
         </Card>
+
+        <ToolFaqSection toolSlug="cnab-parser">
+          <CodeExamplesAccordion
+            examples={[
+              { language: "javascript", label: "TypeScript / Node.js", code: CODE_JS },
+              { language: "python", label: "Python", code: CODE_PYTHON }
+            ]}
+          />
+        </ToolFaqSection>
+        <RelatedTools currentToolSlug="cnab-parser" category="finance" />
       </main>
 
       <Footer />

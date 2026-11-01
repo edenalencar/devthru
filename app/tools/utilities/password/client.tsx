@@ -203,7 +203,7 @@ export function PasswordGeneratorPage() {
 
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Dicas para Senhas Fortes</CardTitle>
+                            <CardTitle>Sobre Senhas Fortes: dicas de segurança</CardTitle>
                         </CardHeader>
                         <CardContent className="prose prose-sm max-w-none dark:prose-invert">
                             <ul>

@@ -13,7 +13,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Accordion } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { 
   Calculator, 
@@ -23,8 +23,7 @@ import {
   Globe2, 
   DollarSign, 
   Receipt, 
-  Code2, 
-  HelpCircle, 
+  Code2, 
   Building2, 
   Percent, 
   ShieldCheck, 
@@ -459,65 +458,40 @@ export function VetEfxCalculatorPage() {
         </Accordion>
       </div>
 
-      {/* FAQ & Artigos Relacionados */}
-      <div className="mb-12 space-y-6">
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <HelpCircle className="w-5 h-5 text-blue-600" />
-          <span>Perguntas Frequentes sobre VET e Regulamentação eFX</span>
-        </h2>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="text-sm font-semibold">
-              O que é o VET (Valor Efetivo Total) exigido pelo Banco Central?
-            </AccordionTrigger>
-            <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-              O <strong>Valor Efetivo Total (VET)</strong> representa o custo total em Reais de cada unidade de moeda estrangeira comprada ou vendida, englobando a taxa de câmbio comercial, as tarifas/spread da instituição e o IOF incidente. O Banco Central torna obrigatória a exibição clara do VET ao cliente antes da finalização de qualquer operação de câmbio ou eFX.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-2">
-            <AccordionTrigger className="text-sm font-semibold">
-              O que é uma prestadora eFX e quem pode atuar?
-            </AccordionTrigger>
-            <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-              As prestadoras <strong>eFX (Electronic Foreign Exchange)</strong> são instituições autorizadas pelo Banco Central a realizar serviços de pagamento internacional, como viabilização de compras em sites estrangeiros, transferências unilaterais e envio de remessas sem a necessidade de celebração de um contrato formal de câmbio tradicional para valores de até US$ 10.000,00.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-3">
-            <AccordionTrigger className="text-sm font-semibold">
-              Qual a alíquota atual do IOF para e-commerce e serviços no exterior?
-            </AccordionTrigger>
-            <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-              Para aquisição de bens e serviços no exterior via e-commerce/SaaS, a alíquota padrão do IOF é de <strong>4,38%</strong> (seguindo o cronograma de redução gradual do governo). Para transferências de disponibilidade no exterior entre contas do mesmo titular, a alíquota é de <strong>1,10%</strong>, e para demais remessas padrão é de <strong>0,38%</strong>.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-
-        <div className="pt-4 border-t space-y-4">
-          <div>
-            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-              Artigos e Guias Relacionados:
-            </span>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/blog/normativa-efx-bacen-guia-desenvolvedor-pagamentos-internacionais"
-                className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
-              >
-                <span>📖 Artigo: Normativa eFX do Banco Central para Desenvolvedores</span>
-                <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
-          </div>
-
-          <div>
-            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-              Compartilhe esta ferramenta:
-            </span>
-            <ShareButtons title="Simulador de VET & eFX Cambial - DevThru" />
-          </div>
-        </div>
-      </div>
+      {/* Info Section */}
+      <Card className="mt-8">
+          <CardHeader>
+              <CardTitle>Sobre a Calculadora de VET e eFX</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+              <div className="prose prose-sm max-w-none dark:prose-invert">
+                  <p>
+                      A Calculadora de VET calcula o Valor Efetivo Total de uma operação de câmbio, somando a taxa de câmbio, as tarifas ou spread da instituição e o IOF. A ferramenta também gera um payload JSON no formato de uma resposta de API cambial eFX, útil para testar integrações de pagamentos internacionais.
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-4">
+                      <strong>Nota:</strong> O cálculo é uma simulação. Os valores e alíquotas oficiais dependem da instituição e da regulamentação vigente.
+                  </p>
+              </div>
+              <div className="pt-4 border-t space-y-4">
+                  <div>
+                      <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
+                      <div className="flex flex-wrap gap-2">
+                        <Link
+                          href="/blog/normativa-efx-bacen-guia-desenvolvedor-pagamentos-internacionais"
+                          className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
+                        >
+                          <span>📖 Artigo: Normativa eFX do Banco Central para Desenvolvedores</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      </div>
+                  </div>
+                  <div>
+                      <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                      <ShareButtons title="Simulador de VET & eFX Cambial - DevThru" />
+                  </div>
+              </div>
+          </CardContent>
+      </Card>
 
       <ToolFaqSection toolSlug="vet-efx-calculator" />
       <RelatedTools currentToolSlug="vet-efx-calculator" category="finance" />

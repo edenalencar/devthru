@@ -16,7 +16,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 const EMAIL_JS_CODE = `function generateRandomEmail(domainType = "random", customDomain = "") {
@@ -227,7 +226,7 @@ export function EmailGeneratorPage() {
                     {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de E-mails e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de E-mails</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
@@ -235,36 +234,6 @@ export function EmailGeneratorPage() {
                                     O Gerador de Email cria endereços de correio eletrônico fictícios e temporários para preenchimento rápido de cadastros em ambientes de desenvolvimento e controle de qualidade (QA).
                                 </p>
                             </div>
-
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>O que é um e-mail fictício/fake?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        É um endereço de e-mail estruturalmente válido, contendo um nome de usuário gerado aleatoriamente e um provedor comum ou personalizado. O objetivo principal é satisfazer a validação sintática de formulários de cadastro durante fases de testes de software.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Estes e-mails gerados possuem caixa de entrada ativa?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Não. Nossos e-mails são **fictícios (mocks)** e não possuem servidores de correio eletrônico ou caixas de entrada associadas para receber mensagens. Se o seu fluxo de teste exige a verificação ou o recebimento de mensagens (como validação de Token/OTP, redefinição de senha ou links de confirmação), você deve utilizar serviços especializados em caixas temporárias ("temp mail").
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Posso gerar e-mails com domínios corporativos personalizados?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Sim. Ao alterar a opção "Domínio" para **Personalizado**, você pode digitar qualquer extensão de domínio (ex: <code>empresa.com.br</code>) e a ferramenta gerará e-mails aleatórios utilizando esse domínio específico. Isso é muito útil para testar regras internas de negócio em fluxos corporativos (B2B).
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    title="Como gerar e-mails aleatórios? (Exemplos de Código)"
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: EMAIL_JS_CODE },
-                                        { language: "python", label: "Python", code: EMAIL_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: EMAIL_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: EMAIL_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
 
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
@@ -275,7 +244,17 @@ export function EmailGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="email" />
+                    <ToolFaqSection toolSlug="email">
+                        <CodeExamplesAccordion
+                            title="Como gerar e-mails aleatórios? (Exemplos de Código)"
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: EMAIL_JS_CODE },
+                                { language: "python", label: "Python", code: EMAIL_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: EMAIL_CSHARP_CODE },
+                                { language: "java", label: "Java", code: EMAIL_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="email" category="personal" />
                 </div>
             </main>

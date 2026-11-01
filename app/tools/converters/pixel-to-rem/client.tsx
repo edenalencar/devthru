@@ -119,7 +119,7 @@ export function PixelToRemPage() {
                     </Card>
 
                     <article className="prose dark:prose-invert max-w-none">
-                        <h2>Por que usar REM ao invés de Pixels?</h2>
+                        <h2>Sobre o REM: por que usar ao invés de Pixels?</h2>
                         <p>
                             O uso de <strong>REM (Root EM)</strong> é recomendado para acessibilidade e design responsivo.
                             Ao contrário do Pixel (uma unidade absoluta), o REM é relativo ao tamanho da fonte do elemento raiz (<code>html</code>).

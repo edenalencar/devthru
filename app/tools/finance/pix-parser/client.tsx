@@ -12,7 +12,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
-import { Accordion } from "@/components/ui/accordion"
 import Link from "next/link"
 import QRCode from "qrcode"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
@@ -560,38 +559,48 @@ export function PixParserPage() {
                         </div>
                     </div>
 
-                    {/* Guias do Blog de Integração */}
-                    <div className="pt-4 border-t my-8">
-                        <Label className="text-base text-foreground font-semibold mb-2 block">
-                            Artigos e Guias Relacionados:
-                        </Label>
-                        <div className="flex flex-wrap gap-2">
-                            <Link href="/blog/como-decodificar-pix-copia-e-cola" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
-                                📖 Artigo: Como Decodificar String Pix Copia e Cola Programaticamente
-                            </Link>
-                            <Link href="/tools/utilities/qrcode" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                🛠️ Ferramenta: Gerador de QR Code
-                            </Link>
-                        </div>
-                    </div>
-
-                    <div className="mb-8">
-                        <Accordion type="single" collapsible className="w-full">
-                            <CodeExamplesAccordion
-                                title="Como decodificar o Pix no seu código? (Exemplos de Código)"
-                                examples={[
-                                    { language: "javascript", label: "JavaScript (Node)", code: PIX_PARSER_JS },
-                                    { language: "python", label: "Python", code: PIX_PARSER_PYTHON }
-                                ]}
-                            />
-                        </Accordion>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row items-center justify-between border-t py-6 gap-4">
-                        <ShareButtons url="https://www.devthru.com/tools/finance/pix-parser" title={title} />
-                    </div>
-
-                    <ToolFaqSection toolSlug="pix-parser" />
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Decodificador de Pix Copia e Cola</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Decodificador de Pix lê a string do Pix Copia e Cola, no padrão EMV usado pelo QR Code, e mostra cada campo do payload: chave Pix, valor, identificador da transação e o checksum CRC16. Em um Pix estático, também é possível alterar o valor e recalcular o CRC16 e o QR Code. A ferramenta ajuda a depurar integrações e a entender o que há dentro de um código Pix.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> A decodificação acontece no seu navegador. A ferramenta não consulta o banco nem confirma pagamentos.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t space-y-4">
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link href="/blog/como-decodificar-pix-copia-e-cola" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
+                                            📖 Artigo: Como Decodificar String Pix Copia e Cola Programaticamente
+                                        </Link>
+                                        <Link href="/tools/utilities/qrcode" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                            🛠️ Ferramenta: Gerador de QR Code
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                    <ShareButtons url="https://www.devthru.com/tools/finance/pix-parser" title={title} />
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <ToolFaqSection toolSlug="pix-parser">
+                        <CodeExamplesAccordion
+                            title="Como decodificar o Pix no seu código? (Exemplos de Código)"
+                            examples={[
+                                { language: "javascript", label: "JavaScript (Node)", code: PIX_PARSER_JS },
+                                { language: "python", label: "Python", code: PIX_PARSER_PYTHON }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="pix-parser" category="finance" />
                 </div>
             </main>

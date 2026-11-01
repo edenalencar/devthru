@@ -17,7 +17,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 const IBAN_JS_CODE = `function validateIBAN(iban) {
@@ -315,7 +314,7 @@ export function IBANValidatorPage() {
                     {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o IBAN e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o IBAN</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="prose prose-sm max-w-none dark:prose-invert">
@@ -327,41 +326,6 @@ export function IBANValidatorPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Como é a estrutura de um código IBAN?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Um código IBAN tem comprimento variável (de até 34 caracteres alfanuméricos) dependendo do país. Ele é composto por:
-                                        <ul className="list-disc pl-5 space-y-1 mt-2">
-                                            <li><strong>Código do país:</strong> 2 letras (ex: BR, PT, DE).</li>
-                                            <li><strong>Dígito verificador:</strong> 2 números calculados matematicamente.</li>
-                                            <li><strong>BBAN (Basic Bank Account Number):</strong> Identificador local da conta bancária que inclui o código do banco, agência e conta.</li>
-                                        </ul>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Como funciona a validação matemática do IBAN (Modulo 97)?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        A validação segue o padrão ISO 7064 (Mod 97-10). Para validar, movemos os 4 primeiros caracteres (país e dígitos verificadores) para o final do código, convertemos todas as letras em valores numéricos (A=10, B=11 ... Z=35) e efetuamos a operação <code>número % 97</code>. O resultado deve ser exatamente igual a 1 para o IBAN ser considerado válido.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Qual o tamanho do IBAN no Brasil?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        No Brasil, o IBAN é padronizado com **29 caracteres** alfanuméricos, iniciando sempre com <code>BR</code> nas duas primeiras posições, seguidos por 2 dígitos verificadores e os dados completos da conta bancária nacional.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    title="Como validar IBAN programaticamente? (Exemplos de Código)"
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: IBAN_JS_CODE },
-                                        { language: "python", label: "Python", code: IBAN_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: IBAN_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: IBAN_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
-
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -371,7 +335,17 @@ export function IBANValidatorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="iban-validator" />
+                    <ToolFaqSection toolSlug="iban-validator">
+                        <CodeExamplesAccordion
+                            title="Como validar IBAN programaticamente? (Exemplos de Código)"
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: IBAN_JS_CODE },
+                                { language: "python", label: "Python", code: IBAN_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: IBAN_CSHARP_CODE },
+                                { language: "java", label: "Java", code: IBAN_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="iban-validator" category="finance" />
                 </div>
             </main>

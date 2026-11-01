@@ -303,7 +303,7 @@ export function CreditCardGeneratorPage() {
                         <CardHeader>
                             <CardTitle className="text-xl flex items-center gap-2">
                                 <Lock className="w-5 h-5 text-primary" />
-                                <span>Estrutura de Bandeiras, BINs e Comprimento de Cartões</span>
+                                <span>Sobre Bandeiras, BINs e Comprimento de Cartões</span>
                             </CardTitle>
                             <CardDescription>
                                 Especificação técnica do padrão internacional ISO/IEC 7812 para validação de cartões em gateways de pagamento.
