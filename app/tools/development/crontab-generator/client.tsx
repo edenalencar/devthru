@@ -13,6 +13,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { validateCron, parseCron, translateCron } from "@/lib/utils/cron-parser"
 import { toast } from "sonner"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function CrontabGeneratorPage() {
@@ -651,8 +652,9 @@ export function CrontabGeneratorPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="crontab-generator" />
+                    <RelatedTools currentToolSlug="crontab-generator" category="development" />
                 </div>
-                <ToolFaqSection toolSlug="crontab-generator" />
             </main>
         </div>
     )
