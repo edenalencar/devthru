@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -605,7 +604,6 @@ export function PixParserPage() {
                 </div>
             </main>
             
-            <Footer />
         </div>
     )
 }
