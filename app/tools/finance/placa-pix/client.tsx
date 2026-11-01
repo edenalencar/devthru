@@ -634,7 +634,7 @@ export function PixPlatePage() {
                     </Card>
 
                     <ToolFaqSection toolSlug="placa-pix" />
-                    <RelatedTools currentToolSlug="placa-pix" category="financial" />
+                    <RelatedTools currentToolSlug="placa-pix" category="finance" />
                 </div>
             </main>
         </div>

@@ -12,6 +12,7 @@ import { CopyButton } from "@/components/copy-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ShareButtons } from "@/components/share-buttons"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function TimestampConverterPage() {
@@ -192,8 +193,9 @@ export function TimestampConverterPage() {
                             />
                         </div>
                     </Card>
+                    <ToolFaqSection toolSlug="timestamp" />
+                    <RelatedTools currentToolSlug="timestamp" category="development" />
                 </div>
-                <ToolFaqSection toolSlug="timestamp" />
             </main>
 
         </div>
