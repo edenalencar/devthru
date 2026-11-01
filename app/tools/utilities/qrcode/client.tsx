@@ -12,6 +12,7 @@ import { QrCode, Download } from "lucide-react"
 import { toast } from "sonner"
 import { ShareButtons } from "@/components/share-buttons"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
 export function QRCodePage() {
@@ -188,8 +189,9 @@ export function QRCodePage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <ToolFaqSection toolSlug="qrcode" />
+                    <RelatedTools currentToolSlug="qrcode" category="utilities" />
                 </div>
-                <ToolFaqSection toolSlug="qrcode" />
             </main>
 
 
