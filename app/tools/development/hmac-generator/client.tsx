@@ -431,6 +431,23 @@ export function HMACGeneratorPage() {
                     description="Automatize a geração de chaves criptográficas e teste fluxos de webhook com dados sintéticos e mock data sem expor credenciais reais de produção."
                 />
 
+                {/* Info Section */}
+                <Card className="mt-8">
+                    <CardHeader>
+                        <CardTitle>Sobre o Gerador de HMAC</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de HMAC calcula assinaturas a partir de uma mensagem e de uma chave secreta, com algoritmos como SHA-256 e SHA-512, e mostra o resultado em hexadecimal e em Base64, formatos usados por webhooks de gateways de pagamento e plataformas de e-commerce. A ferramenta também valida uma assinatura recebida e traz trechos de código em Node.js e Python.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> O cálculo acontece no seu navegador. Use chaves de teste e evite colar segredos de produção em qualquer ferramenta online.
+                            </p>
+                        </div>
+                    </CardContent>
+                </Card>
+
                 {/* Seção de FAQ E-E-A-T */}
                 <ToolFaqSection
                     toolSlug="hmac-generator"

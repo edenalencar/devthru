@@ -11,7 +11,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 import { ToolResult } from "@/components/tools/tool-result"
@@ -20,7 +19,6 @@ import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { useUser } from "@/lib/hooks/use-user"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { generateRenavam, formatRenavam } from "@/lib/utils/validators/renavam"
-import Link from "next/link"
 
 const RENAVAM_JS_CODE = `function validateRenavam(renavam) {
   if (!renavam) return false;
@@ -336,7 +334,7 @@ export function RenavamGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de RENAVAM e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de RENAVAM</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
@@ -348,39 +346,7 @@ export function RenavamGeneratorPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="faq-1">
-                                    <AccordionTrigger>Como funciona o cálculo do dígito verificador do RENAVAM?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        O RENAVAM possui 11 dígitos. Os primeiros 10 dígitos representam o número identificador e o 11º dígito é o Dígito Verificador (DV). O DV é calculado utilizando uma variante do algoritmo de módulo 11, multiplicando os dígitos de trás para frente pelos pesos de 2 a 9 e reiniciando a sequência em 2. A soma dessas multiplicações é multiplicada por 10 e depois dividida por 11. O resto é o dígito verificador. Se o resto for maior ou igual a 10, assume-se o dígito verificador como 0.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="faq-2">
-                                    <AccordionTrigger>Para que serve o RENAVAM de teste?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Ele é amplamente utilizado por desenvolvedores de software, analistas de qualidade (QA) e engenheiros de sistemas para validar campos cadastrais em ERPs, sistemas de transportes, multas e faturamento automotivo, evitando o uso de dados de veículos reais.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: RENAVAM_JS_CODE },
-                                        { language: "python", label: "Python", code: RENAVAM_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: RENAVAM_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: RENAVAM_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
-
                             <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    <Link href="/tools/automotive/license-plate" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        🚗 Gerador de Placa Mercosul
-                                    </Link>
-                                    <Link href="/tools/automotive/chassi" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        🔍 Gerador de Chassi (VIN)
-                                    </Link>
-                                </div>
 
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -390,7 +356,16 @@ export function RenavamGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="renavam" />
+                    <ToolFaqSection toolSlug="renavam">
+                        <CodeExamplesAccordion
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: RENAVAM_JS_CODE },
+                                { language: "python", label: "Python", code: RENAVAM_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: RENAVAM_CSHARP_CODE },
+                                { language: "java", label: "Java", code: RENAVAM_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="renavam" category="automotive" />
                 </div>
             </main>

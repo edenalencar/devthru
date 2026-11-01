@@ -390,6 +390,23 @@ export function JSONDiffPage() {
                     description="Otimize seus testes de regressão de microsserviços e integração de APIs. Exporte diffs com 1 clique e automatize comparações com nossa API para desenvolvedores."
                 />
 
+                {/* Info Section */}
+                <Card className="mt-8">
+                    <CardHeader>
+                        <CardTitle>Sobre o JSON Diff</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O JSON Diff compara dois documentos JSON de forma semântica: a ordem das chaves é ignorada e a ferramenta lista as chaves adicionadas, removidas e modificadas, com o valor antigo e o novo. É útil para testes de regressão de APIs, para revisar mudanças em arquivos de configuração e para comparar respostas de ambientes diferentes.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> A comparação acontece no seu navegador e os dados não são enviados a nenhum servidor.
+                            </p>
+                        </div>
+                    </CardContent>
+                </Card>
+
                 {/* Seção de FAQ E-E-A-T */}
                 <ToolFaqSection
                     toolSlug="json-diff"

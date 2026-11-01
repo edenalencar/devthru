@@ -13,7 +13,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 const BOLETO_JS_CODE = `function validateBoletoLd(linhaDigitavel) {
@@ -338,7 +337,7 @@ export function BoletoGeneratorPage() {
                     {/* Info Section & FAQ */}
                     <Card className="mt-8 print:hidden">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Boleto e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de Boleto</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="prose prose-sm max-w-none dark:prose-invert">
@@ -350,36 +349,6 @@ export function BoletoGeneratorPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Como é calculada a linha digitável e o código de barras de um boleto?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        O código de barras oficial contém 44 dígitos numéricos estruturados com dados do banco, moeda, data de vencimento, valor e conta. A linha digitável de 47 dígitos é uma representação do código de barras dividida em 3 blocos de 9 dígitos (cada um com seu próprio dígito verificador módulo 10), mais o dígito verificador geral no meio e o fator de vencimento no fim.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Para que serve um gerador de boleto mock?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Desenvolvedores utilizam essa ferramenta para simular a emissão de boletos, testar o alinhamento de impressão, exportação para PDF, e validar se o leitor de código de barras ou a câmera de aplicativos bancários em ambiente de homologação leem a linha digitável simulada sem problemas de layout.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Qual a diferença do boleto mock para um boleto registrado?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Boletos registrados são cadastrados na rede bancária via APIs da instituição ou arquivos de remessa CNAB. Boletos mock são gerados apenas na interface (HTML/CSS) com números estáticos ou aleatórios. Eles não existem para a rede bancária e qualquer tentativa de pagamento resultará em erro de "Boleto não encontrado".
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    title="Como validar linha digitável de boleto? (Exemplos de Código)"
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: BOLETO_JS_CODE },
-                                        { language: "python", label: "Python", code: BOLETO_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: BOLETO_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: BOLETO_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
-
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -389,7 +358,17 @@ export function BoletoGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="boleto-generator" />
+                    <ToolFaqSection toolSlug="boleto-generator">
+                        <CodeExamplesAccordion
+                            title="Como validar linha digitável de boleto? (Exemplos de Código)"
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: BOLETO_JS_CODE },
+                                { language: "python", label: "Python", code: BOLETO_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: BOLETO_CSHARP_CODE },
+                                { language: "java", label: "Java", code: BOLETO_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="boleto-generator" category="finance" />
                 </div>
             </main>

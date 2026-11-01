@@ -14,7 +14,6 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const streetTypes = ["Rua", "Avenida", "Travessa", "Alameda", "Praça", "Rodovia"]
 const streetNames = [
@@ -126,7 +125,7 @@ export function AddressGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Endereços e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de Endereços</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
@@ -134,21 +133,6 @@ export function AddressGeneratorPage() {
                                     O Gerador de Endereços cria endereços brasileiros fictícios completos, incluindo rua, número, bairro, cidade, estado e CEP, seguindo o padrão oficial dos Correios.
                                 </p>
                             </div>
-
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Como usar este gerador de endereços para testes de sistema?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Durante a homologação de sistemas de entrega, e-commerce ou cadastros em geral, desenvolvedores e analistas de QA necessitam preencher endereços estruturados de forma ágil. Em vez de preencher manualmente campo por campo, você pode gerar um endereço completo aleatório (ou em lote na aba ao lado) e simplesmente copiá-lo.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Os CEPs e endereços gerados são reais?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Os endereços gerados são totalmente <strong>fictícios</strong> e gerados combinando logradouros, bairros, cidades e estados reais de forma aleatória. Os CEPs são gerados com a máscara correta e no intervalo correspondente às regiões (como SP, RJ, MG), mas podem não estar ativamente cadastrados na base de dados oficial dos Correios. Use apenas para fins de simulação.
-                                    </AccordionContent>
-                                </AccordionItem>
-                            </Accordion>
 
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>

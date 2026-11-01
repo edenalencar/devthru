@@ -12,7 +12,6 @@ import { CopyButton } from "@/components/copy-button"
 import { ShareButtons } from "@/components/share-buttons"
 import { RefreshCw, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { toast } from "sonner"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
@@ -326,45 +325,6 @@ export function NfeGeneratorPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Como testar a chave de acesso em ambiente de homologação?</AccordionTrigger>
-                                    <AccordionContent>
-                                        <div className="prose prose-sm max-w-none dark:prose-invert">
-                                            <p>
-                                                Ao preencher formulários do seu sistema emissor de nota ou portal do ERP em ambiente de <strong>homologação</strong>, insira a chave com 44 dígitos numéricos gerada nesta ferramenta.
-                                            </p>
-                                            <p>
-                                                Nós garantimos que o cálculo do último algarismo (o dígito verificador - DV) esteja 100% correto de acordo com a base de regras e documentação técnica da Secretaria de Estado da Fazenda (SEFAZ), garantindo aprovação em rotinas de verificação local do seu software.
-                                            </p>
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Qual a diferença do Modelo 55 (NF-e) e 65 (NFC-e)?</AccordionTrigger>
-                                    <AccordionContent>
-                                        <div className="prose prose-sm max-w-none dark:prose-invert">
-                                            <p>A estrutura de uma chave de 44 posições suporta a identificação do modelo da nota inserida (do pŕoximo ao centro da chave):</p>
-                                            <ul className="list-disc pl-4 space-y-1">
-                                                <li><strong>Modelo 55 (NF-e):</strong> É a Nota Fiscal Eletrônica tradicional, comummente utilizada em vendas B2B e envio por transportadoras.</li>
-                                                <li><strong>Modelo 65 (NFC-e):</strong> É a Nota Fiscal de Consumidor Eletrônica, focada no varejo presencial B2C e transações diárias (o antigo cupom fiscal).</li>
-                                            </ul>
-                                            <p>Nossa ferramenta permite gerar livremente qualquer um dos dois modelos, ajustando a estrutura de 44 dígitos instantaneamente.</p>
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>A chave de acesso gerada é verdadeira?</AccordionTrigger>
-                                    <AccordionContent>
-                                        <div className="prose prose-sm max-w-none dark:prose-invert">
-                                            <p>
-                                                <strong>Não.</strong> A chave é válida formatando-se do ponto de vista matemático, contendo um dígito verificador calculado. Contudo, ela é composta de numeração fictícia e aleatória e <strong>não possui validade tributária ou legal</strong> na base de dados receptora da SEFAZ na produção. Ela serve estritamente para simulação em rotinas de teste.
-                                            </p>
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                            </Accordion>
-
                             <div className="pt-6 border-t mt-6">
                                 <Label className="text-sm font-semibold mb-3 block text-primary">Guias Técnicos Recomendados:</Label>
                                 <div className="flex flex-wrap gap-2 mb-6">
@@ -393,8 +353,6 @@ export function NfeGeneratorPage() {
                     <RelatedTools currentToolSlug="nfe-generator" category="business" />
                 </div>
             </main>
-
-
 
         </div >
     )

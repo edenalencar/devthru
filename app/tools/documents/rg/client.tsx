@@ -15,7 +15,6 @@ import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Navbar } from "@/components/layout/navbar"
 import { getPlanLimitMessage } from "@/lib/constants"
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 const RG_JS_CODE = `function validateRG(rg) {
@@ -296,7 +295,7 @@ export function RGGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de RG e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de RG</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
@@ -308,29 +307,6 @@ export function RGGeneratorPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="faq-1">
-                                    <AccordionTrigger>Como é calculada a validação do RG?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Como a emissão do RG é de responsabilidade de cada Estado, não há uma regra única nacional. No entanto, o padrão mais comum em validadores baseia-se nas diretrizes do Estado de São Paulo. Ele usa uma fórmula de soma ponderada com pesos de 2 a 9 aplicada aos primeiros 8 dígitos, calculando o resto da divisão por 11. O dígito verificador final pode ser de 0 a 9 ou a letra &quot;X&quot; quando o resto é 10.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="faq-2">
-                                    <AccordionTrigger>Para que usar dados de RG fictícios em testes?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Para assegurar a conformidade com a LGPD (Lei Geral de Proteção de Dados) no desenvolvimento de software, QAs e desenvolvedores usam chaves de RG sintéticas em bancos de dados de teste, garantindo que o fluxo cadastral do sistema funcione sem expor dados pessoais reais.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: RG_JS_CODE },
-                                        { language: "python", label: "Python", code: RG_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: RG_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: RG_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
-
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -340,7 +316,16 @@ export function RGGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="rg" />
+                    <ToolFaqSection toolSlug="rg">
+                        <CodeExamplesAccordion
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: RG_JS_CODE },
+                                { language: "python", label: "Python", code: RG_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: RG_CSHARP_CODE },
+                                { language: "java", label: "Java", code: RG_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="rg" category="documents" />
                 </div>
             </main>

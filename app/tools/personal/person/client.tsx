@@ -13,7 +13,6 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 const PERSON_JS_CODE = `function generatePersonDataset() {
@@ -344,7 +343,7 @@ export function PersonGeneratorPage() {
                     {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Pessoa Completa e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de Pessoa Completa</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
@@ -356,36 +355,6 @@ export function PersonGeneratorPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Para que serve esta ferramenta de simulação de perfil?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Ela serve para apoiar desenvolvedores de software, analistas de qualidade (QA) e administradores de banco de dados na criação de dados sintéticos realistas. Popula tabelas locais para simular fluxos completos de checkout, faturamento e entrega em e-commerces ou CRMs de forma simplificada.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Como exportar os dados da pessoa gerada em JSON?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Assim que você gera um perfil de pessoa, a ferramenta monta automaticamente um objeto no formato JSON estruturado na lateral esquerda. Você pode copiar o conteúdo inteiro de forma estruturada em apenas um clique para usar em requisições de API ou scripts de carga.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Esta ferramenta está em conformidade com a LGPD?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Sim. Por gerar dados de forma 100% sintética baseados em listas genéricas e algoritmos matemáticos públicos (sem vazamento de pessoas reais), a ferramenta elimina qualquer risco de exposição de dados sensíveis e ajuda a manter seu ambiente de desenvolvimento em plena conformidade com a LGPD.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    title="Como estruturar um gerador de pessoas? (Exemplos de Código)"
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: PERSON_JS_CODE },
-                                        { language: "python", label: "Python", code: PERSON_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: PERSON_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: PERSON_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
-
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -395,7 +364,17 @@ export function PersonGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="person" />
+                    <ToolFaqSection toolSlug="person">
+                        <CodeExamplesAccordion
+                            title="Como estruturar um gerador de pessoas? (Exemplos de Código)"
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: PERSON_JS_CODE },
+                                { language: "python", label: "Python", code: PERSON_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: PERSON_CSHARP_CODE },
+                                { language: "java", label: "Java", code: PERSON_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="person" category="personal" />
                 </div>
             </main>

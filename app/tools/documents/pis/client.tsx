@@ -13,7 +13,6 @@ import { BulkGenerator } from '@/components/tools/bulk-generator'
 import { RefreshCw, CheckCircle2, XCircle } from 'lucide-react'
 import { generatePIS, validatePIS, formatPIS } from '@/lib/utils/validators/pis'
 import { ShareButtons } from "@/components/share-buttons"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { useUser } from '@/lib/hooks/use-user'
@@ -265,7 +264,7 @@ export function PISPage() {
                     {/* Info Card & FAQ */}
                     <Card className="mt-6">
                         <CardHeader>
-                            <CardTitle>Gerador de PIS/PASEP para Desenvolvedores e QA (Perguntas Frequentes)</CardTitle>
+                            <CardTitle>Sobre o Gerador de PIS/PASEP</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
@@ -280,53 +279,7 @@ export function PISPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Para que serve um gerador de PIS?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Ele é ideal para testar telas de cadastro e fluxos de <strong>folha de pagamento</strong> de empresas. Fornecendo um <strong>pis pasep válido</strong>, você pode validar o comportamento das suas APIs locais e processos de eSocial sem expor dados reais de colaboradores durante o desenvolvimento de software.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Qual a diferença entre PIS, PASEP, NIS e NIT?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Na prática computacional e sistêmica, nenhuma. PIS (iniciativa privada), PASEP (servidor público), NIS (projetos sociais) e NIT (autônomos) compartilham a mesma estrutura de 11 dígitos numéricos e a mesma regra de cálculo para o dígito verificador. O gerador atende a todos esses casos.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Como é calculado o dígito verificador do PIS?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        O 11º dígito de um PIS é um &quot;módulo matemático&quot;. Ele é calculado multiplicando os 10 primeiros dígitos da esquerda para a direita por pesos específicos (3, 2, 9, 8, 7, 6, 5, 4, 3, 2). A soma dos resultados é dividida por 11, e o resto da divisão define o dígito final. Nosso gerador de PIS implementa 100% dessa regra oficial.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-4">
-                                    <AccordionTrigger>Como gerar PIS em lote para testes em massa?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Nossa ferramenta possui uma aba dedicada de <strong>&quot;Geração em Lote&quot;</strong>. Com ela, você pode escolher a quantidade desejada de números de PIS/PASEP e NIS válidos e gerá-los todos de uma vez, copiando ou salvando com facilidade para utilizar em cargas de homologação e testes de banco de dados.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: PIS_JS_CODE },
-                                        { language: "python", label: "Python", code: PIS_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: PIS_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: PIS_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
-
                             <div className="pt-4 border-t space-y-4">
-                                <div>
-                                    <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
-                                    <div className="flex flex-wrap gap-2">
-                                        <Link href="/tools/documents/cpf" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                            📋 Gerador de CPF
-                                        </Link>
-                                        <Link href="/tools/documents/cnpj" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                            🏢 Gerador de CNPJ
-                                        </Link>
-                                    </div>
-                                </div>
                                 <div>
                                     <Label className="text-sm text-muted-foreground mb-2 block">Artigos Relacionados:</Label>
                                     <div className="flex flex-wrap gap-2">
@@ -345,11 +298,19 @@ export function PISPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="pis" />
+                    <ToolFaqSection toolSlug="pis">
+                        <CodeExamplesAccordion
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: PIS_JS_CODE },
+                                { language: "python", label: "Python", code: PIS_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: PIS_CSHARP_CODE },
+                                { language: "java", label: "Java", code: PIS_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="pis" category="documents" customSlugs={['cpf', 'rg', 'cnh', 'titulo-eleitor']} />
                 </div>
             </main>
-
 
         </div>
     )

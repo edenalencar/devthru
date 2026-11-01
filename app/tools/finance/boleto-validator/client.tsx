@@ -12,7 +12,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
-import { Accordion } from "@/components/ui/accordion"
 import Link from "next/link"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 
@@ -575,39 +574,49 @@ export function BoletoValidatorPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Guias do Blog de Integração */}
-                    <div className="pt-4 border-t mb-8">
-                        <Label className="text-base text-foreground font-semibold mb-2 block">
-                            Artigos e Guias Relacionados:
-                        </Label>
-                        <div className="flex flex-wrap gap-2">
-                            <Link href="/blog/como-decodificar-boleto-bancario" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
-                                📖 Artigo: Como Decodificar Boleto Bancário Programaticamente
-                            </Link>
-                            <Link href="/tools/finance/boleto-generator" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                🛠️ Ferramenta: Gerador de Boleto para Testes
-                            </Link>
-                        </div>
-                    </div>
-
-                    <div className="mb-8">
-                        <Accordion type="single" collapsible className="w-full">
-                            <CodeExamplesAccordion
-                                title="Como validar boletos no seu sistema? (Exemplos de Código)"
-                                examples={[
-                                    { language: "javascript", label: "JavaScript", code: BOLETO_VALIDATOR_JS },
-                                    { language: "python", label: "Python", code: BOLETO_VALIDATOR_PYTHON },
-                                    { language: "csharp", label: "C#", code: BOLETO_VALIDATOR_CSHARP }
-                                ]}
-                            />
-                        </Accordion>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row items-center justify-between border-t py-6 gap-4">
-                        <ShareButtons url="https://www.devthru.com/tools/finance/boleto-validator" title={title} />
-                    </div>
-
-                    <ToolFaqSection toolSlug="boleto-validator" />
+                    {/* Info Section */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Validador de Boleto</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Validador de Boleto confere a linha digitável (47 ou 48 dígitos) ou o código de barras (44 dígitos) de um boleto, verificando os dígitos verificadores de cada campo e extraindo informações como banco emissor, valor e vencimento quando elas estão presentes. É útil para testar integrações de pagamento e conferir um boleto antes de usá-lo em um fluxo automatizado.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> A validação é estrutural e matemática. A ferramenta não consulta o banco nem confirma se o boleto foi registrado ou já foi pago.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t space-y-4">
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link href="/blog/como-decodificar-boleto-bancario" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
+                                            📖 Artigo: Como Decodificar Boleto Bancário Programaticamente
+                                        </Link>
+                                        <Link href="/tools/finance/boleto-generator" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
+                                            🛠️ Ferramenta: Gerador de Boleto para Testes
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                    <ShareButtons url="https://www.devthru.com/tools/finance/boleto-validator" title={title} />
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <ToolFaqSection toolSlug="boleto-validator">
+                        <CodeExamplesAccordion
+                            title="Como validar boletos no seu sistema? (Exemplos de Código)"
+                            examples={[
+                                { language: "javascript", label: "JavaScript", code: BOLETO_VALIDATOR_JS },
+                                { language: "python", label: "Python", code: BOLETO_VALIDATOR_PYTHON },
+                                { language: "csharp", label: "C#", code: BOLETO_VALIDATOR_CSHARP }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="boleto-validator" category="finance" />
                 </div>
             </main>

@@ -14,7 +14,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 const LGPD_JS_CODE = `function anonymizeText(text) {
@@ -272,7 +271,7 @@ export function LGPDDataPage() {
                     {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre as Ferramentas LGPD e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre as Ferramentas LGPD</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
@@ -280,36 +279,6 @@ export function LGPDDataPage() {
                                     As Ferramentas LGPD auxiliam desenvolvedores, administradores de sistemas e analistas de segurança a simular dados cadastrais ou sanitizar textos brutos mascarando dados pessoais sensíveis (PII).
                                 </p>
                             </div>
-
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>O que é anonimização de dados sob a LGPD?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Segundo a Lei Geral de Proteção de Dados (LGPD), a anonimização é o processo pelo qual um dado perde a possibilidade de associação, direta ou indireta, a um indivíduo. Uma vez anonimizado, o dado deixa de ser considerado dado pessoal para fins da lei.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Como funciona o Anonimizador de Texto (mascaramento)?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Nossa ferramenta analisa o texto de entrada em busca de padrões sintáticos definidos (regex) para CPFs (com e sem pontos), e-mails e telefones formatados. Quando um desses padrões é encontrado, ele é substituído por uma máscara de asteriscos, preservando a estrutura de layout do texto original sem expor a informação sensível.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Esta ferramenta envia os dados colados para algum servidor?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Não. Toda a operação de geração e anonimização de texto é feita **100% no lado do cliente (client-side)** utilizando Javascript no seu próprio navegador. As informações nunca são enviadas a servidores externos ou gravadas em bancos de dados, oferecendo total privacidade e segurança.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    title="Como criar uma função de anonimização (mascaramento) em código?"
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: LGPD_JS_CODE },
-                                        { language: "python", label: "Python", code: LGPD_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: LGPD_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: LGPD_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
 
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
@@ -320,7 +289,17 @@ export function LGPDDataPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="lgpd-data" />
+                    <ToolFaqSection toolSlug="lgpd-data">
+                        <CodeExamplesAccordion
+                            title="Como criar uma função de anonimização (mascaramento) em código?"
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: LGPD_JS_CODE },
+                                { language: "python", label: "Python", code: LGPD_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: LGPD_CSHARP_CODE },
+                                { language: "java", label: "Java", code: LGPD_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="lgpd-data" category="personal" />
                 </div>
             </main>

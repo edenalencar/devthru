@@ -12,7 +12,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { decodeSefazKey, SefazKeyDecoded } from "@/lib/utils/validators/sefaz-key"
 import { sendGTMEvent } from "@/lib/gtm"
@@ -425,89 +424,52 @@ export function NfeDecoderPage() {
                         </div>
                     )}
 
-                    {/* Implementação em Código */}
-                    <Accordion type="single" collapsible className="w-full">
-                        <CodeExamplesAccordion examples={CODE_EXAMPLES} />
-                    </Accordion>
-
-                    {/* FAQ */}
-                    <Card className="border-border/60">
+                    {/* Info Section */}
+                    <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle className="text-xl">Perguntas Frequentes sobre Chaves de Acesso SEFAZ</CardTitle>
-                            <CardDescription>
-                                Tire suas dúvidas sobre a composição e validação de chaves de documentos fiscais.
-                            </CardDescription>
+                            <CardTitle>Sobre o Decodificador de Chave de Acesso SEFAZ</CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="faq-1">
-                                    <AccordionTrigger>Como é formada a chave de acesso de 44 dígitos da SEFAZ?</AccordionTrigger>
-                                    <AccordionContent className="space-y-2 text-muted-foreground text-sm">
-                                        <p>A chave é uma concatenação rigorosa de 8 blocos de informação:</p>
-                                        <ol className="list-decimal pl-5 space-y-1">
-                                            <li><strong className="text-foreground">cUF (2 dígitos):</strong> Código IBGE do estado emissor (ex: 35 para SP).</li>
-                                            <li><strong className="text-foreground">AAMM (4 dígitos):</strong> Ano e mês da emissão da nota fiscal.</li>
-                                            <li><strong className="text-foreground">CNPJ (14 dígitos):</strong> Cadastro Nacional da Pessoa Jurídica da empresa emissora.</li>
-                                            <li><strong className="text-foreground">Modelo (2 dígitos):</strong> 55 para NF-e, 65 para NFC-e, 57 para CT-e e 58 para MDF-e.</li>
-                                            <li><strong className="text-foreground">Série (3 dígitos):</strong> Série do documento fiscal (001 a 999).</li>
-                                            <li><strong className="text-foreground">Número da Nota (9 dígitos):</strong> Sequencial da nota no emissor.</li>
-                                            <li><strong className="text-foreground">Tipo de Emissão (1 dígito):</strong> Normal (1) ou modalidades de contingência (2 a 9).</li>
-                                            <li><strong className="text-foreground">Código Numérico (8 dígitos):</strong> Código aleatório para dificultar a adivinhação de chaves.</li>
-                                            <li><strong className="text-foreground">Dígito Verificador (1 dígito):</strong> Checksum calculado com o algoritmo Módulo 11.</li>
-                                        </ol>
-                                    </AccordionContent>
-                                </AccordionItem>
-
-                                <AccordionItem value="faq-2">
-                                    <AccordionTrigger>Como funciona o cálculo do Dígito Verificador (Módulo 11)?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground text-sm">
-                                        Multiplica-se cada um dos 43 primeiros dígitos da direita para a esquerda por uma sequência de pesos de 2 a 9 (reiniciando em 2 ao atingir 9). Soma-se todos os produtos e divide-se por 11. Se o resto da divisão for 0 ou 1, o dígito verificador é 0. Nos demais casos, o DV é 11 menos o resto.
-                                    </AccordionContent>
-                                </AccordionItem>
-
-                                <AccordionItem value="faq-3">
-                                    <AccordionTrigger>Esta ferramenta consulta dados diretamente no servidor da SEFAZ?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground text-sm">
-                                        Não. Este decodificador faz a análise estática e sintática da string de 44 dígitos diretamente no seu navegador, sem expor chaves ou dados de sua empresa para servidores externos.
-                                    </AccordionContent>
-                                </AccordionItem>
-                            </Accordion>
+                        <CardContent className="space-y-4">
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                                <p>
+                                    O Decodificador de Chave de Acesso lê as 44 posições de uma chave de NF-e, NFC-e, CT-e ou MDF-e e mostra cada bloco de informação:
+                                    UF do emitente, ano e mês de emissão, CNPJ, modelo, série, número do documento, tipo de emissão, código numérico e dígito verificador.
+                                    Ele também recalcula o dígito pelo algoritmo Módulo 11 e compara com o informado na chave.
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-4">
+                                    <strong>Nota:</strong> A decodificação acontece no seu navegador e não consulta a SEFAZ. A ferramenta confere a estrutura e o dígito verificador, mas não confirma se o documento existe ou está autorizado.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t space-y-4">
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Fiscais Relacionados:</Label>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link
+                                            href="/blog/como-testar-fluxos-nfe-cte-mdfe-homologacao"
+                                            className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
+                                        >
+                                            <span>📖 Como Testar Emissão de NF-e, CT-e e MDF-e em Homologação SEFAZ</span>
+                                            <ArrowRight className="w-3 h-3" />
+                                        </Link>
+                                        <Link
+                                            href="/blog/split-payment-reforma-tributaria-guia-desenvolvedor"
+                                            className="text-xs px-2.5 py-1.5 bg-blue-100 text-blue-800 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
+                                        >
+                                            <span>📖 Split Payment na Reforma Tributária para Devs</span>
+                                            <ArrowRight className="w-3 h-3" />
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                    <ShareButtons title="Decodificador de Chave de Acesso SEFAZ - DevThru" />
+                                </div>
+                            </div>
                         </CardContent>
                     </Card>
-
-                    {/* Rodapé e Links Relacionados */}
-                    <div className="pt-4 border-t space-y-4">
-                        <div>
-                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                                Artigos e Guias Fiscais Relacionados:
-                            </span>
-                            <div className="flex flex-wrap gap-2">
-                                <Link
-                                    href="/blog/como-testar-fluxos-nfe-cte-mdfe-homologacao"
-                                    className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
-                                >
-                                    <span>📖 Como Testar Emissão de NF-e, CT-e e MDF-e em Homologação SEFAZ</span>
-                                    <ArrowRight className="w-3 h-3" />
-                                </Link>
-                                <Link
-                                    href="/blog/split-payment-reforma-tributaria-guia-desenvolvedor"
-                                    className="text-xs px-2.5 py-1.5 bg-blue-100 text-blue-800 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
-                                >
-                                    <span>📖 Split Payment na Reforma Tributária para Devs</span>
-                                    <ArrowRight className="w-3 h-3" />
-                                </Link>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                                Compartilhe esta ferramenta:
-                            </span>
-                            <ShareButtons title="Decodificador de Chave de Acesso SEFAZ - DevThru" />
-                        </div>
-                    </div>
-
-                    <ToolFaqSection toolSlug="nfe-decoder" />
+                    <ToolFaqSection toolSlug="nfe-decoder">
+                        <CodeExamplesAccordion examples={CODE_EXAMPLES} />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="nfe-decoder" category="business" />
                 </div>
             </main>

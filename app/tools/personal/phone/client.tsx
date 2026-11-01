@@ -16,7 +16,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { ConfigurationManager } from "@/components/tools/configuration-manager"
 import { ToolProCta } from "@/components/tools/tool-pro-cta"
@@ -421,7 +420,7 @@ export function PhoneGeneratorPage() {
                     {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Telefone e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de Telefone</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
@@ -444,80 +443,7 @@ export function PhoneGeneratorPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Como funciona o gerador de telefone e celular?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Nossa ferramenta seleciona um DDD válido entre os 67 códigos de área brasileiros (ou código de área dos EUA) e monta a sequência numérica segundo a regulamentação: celulares no Brasil sempre iniciam com o dígito 9 e possuem 9 dígitos após o DDD (formato <code>(XX) 9XXXX-XXXX</code>), enquanto telefones fixos possuem 8 dígitos com prefixos de 2 a 5 (formato <code>(XX) XXXX-XXXX</code>).
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Qual é a regra do nono dígito (9) no celular brasileiro?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Instituído pela Resolução nº 553/2010 da Anatel, o nono dígito é obrigatório em todas as linhas móveis do território nacional. Ele padronizou os números de celular com 11 algarismos (2 dígitos do DDD + dígito 9 + 8 dígitos da linha). Além disso, o segundo dígito após o 9 sempre pertence ao intervalo de 6 a 9 (ex: 96xxx, 97xxx, 98xxx ou 99xxx).
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Qual a diferença entre telefone celular e telefone fixo no Brasil?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        A principal diferença estrutural está na quantidade de dígitos e nos prefixos:
-                                        <ul className="list-disc pl-5 mt-2 space-y-1">
-                                            <li><strong>Celular (Móvel):</strong> 11 dígitos no total com DDD. O primeiro dígito após o DDD é obrigatoriamente 9 e o segundo dígito varia de 6 a 9.</li>
-                                            <li><strong>Telefone Fixo (STFC):</strong> 10 dígitos no total com DDD. O primeiro dígito após o DDD varia obrigatoriamente de 2 a 5.</li>
-                                        </ul>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-4">
-                                    <AccordionTrigger>Quais DDDs são suportados pela ferramenta?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        A ferramenta suporta todos os 67 DDDs oficiais do Brasil distribuídos em todas as regiões:
-                                        <ul className="list-disc pl-5 mt-2 space-y-1">
-                                            <li><strong>Sudeste:</strong> SP (11 a 19), RJ (21, 22, 24), ES (27, 28), MG (31 a 35, 37, 38).</li>
-                                            <li><strong>Sul:</strong> PR (41 a 46), SC (47 a 49), RS (51, 53 a 55).</li>
-                                            <li><strong>Centro-Oeste:</strong> DF (61), GO (62, 64), TO (63), MT (65, 66), MS (67).</li>
-                                            <li><strong>Nordeste:</strong> BA (71, 73 a 75, 77), SE (79), PE (81, 87), AL (82), PB (83), RN (84), CE (85, 88), PI (86, 89), MA (98, 99).</li>
-                                            <li><strong>Norte:</strong> PA (91, 93, 94), AM (92, 97), RR (95), AP (96), AC (68), RO (69).</li>
-                                        </ul>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-5">
-                                    <AccordionTrigger>Posso usar estes números para receber SMS de confirmação ou WhatsApp?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        <strong>Não.</strong> Esses números são fictícios e gerados por algoritmos matemáticos diretamente no seu navegador. Como não estão vinculados a chips físicos (SIM cards) ou operadoras de telefonia ativas, não é possível receber mensagens SMS, chamadas ou códigos de verificação neles. Eles servem exclusivamente para testar validações em formulários, APIs e bancos de dados.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-6">
-                                    <AccordionTrigger>Como gerar números de telefone em lote?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Basta utilizar a seção de <strong>Geração em Massa</strong> acima. Informe a quantidade desejada de números e clique em Gerar. Você poderá copiar a lista completa com ou sem formatação, ideal para alimentar planilhas, seeders de testes e migrações de dados.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: PHONE_JS_CODE },
-                                        { language: "python", label: "Python", code: PHONE_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: PHONE_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: PHONE_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
-
                             <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    <Link href="/tools/personal/name" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        👤 Gerador de Nomes
-                                    </Link>
-                                    <Link href="/tools/personal/person" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        👥 Gerador de Pessoas (Dados Completos)
-                                    </Link>
-                                    <Link href="/tools/documents/cpf" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        📋 Gerador de CPF
-                                    </Link>
-                                    <Link href="/tools/documents/rg" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        🪪 Gerador de RG
-                                    </Link>
-                                </div>
 
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                 <ShareButtons
@@ -530,7 +456,16 @@ export function PhoneGeneratorPage() {
 
                     <SponsorBanner toolContext="Gerador de Telefone" className="my-6" />
 
-                    <ToolFaqSection toolSlug="phone" />
+                    <ToolFaqSection toolSlug="phone">
+                        <CodeExamplesAccordion
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: PHONE_JS_CODE },
+                                { language: "python", label: "Python", code: PHONE_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: PHONE_CSHARP_CODE },
+                                { language: "java", label: "Java", code: PHONE_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="phone" category="personal" />
                 </div>
             </main>

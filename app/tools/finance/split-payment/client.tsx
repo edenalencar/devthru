@@ -13,7 +13,7 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Accordion } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { 
   Calculator, 
@@ -456,74 +456,40 @@ export function SplitPaymentCalculatorPage() {
         </Accordion>
       </div>
 
-      {/* FAQ & Artigos Relacionados */}
-      <div className="mb-12 space-y-6">
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <HelpCircle className="w-5 h-5 text-blue-600" />
-          <span>Perguntas Frequentes sobre Split Payment</span>
-        </h2>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="text-sm font-semibold">
-              O que é o Split Payment na Reforma Tributária?
-            </AccordionTrigger>
-            <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-              O Split Payment é o mecanismo em que o imposto (IBS + CBS) é separado e recolhido automaticamente pelos bancos, credenciadoras de cartão ou arranjos de pagamento no exato momento da liquidação financeira da transação.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-2">
-            <AccordionTrigger className="text-sm font-semibold">
-              Qual a diferença entre IBS e CBS?
-            </AccordionTrigger>
-            <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-              O <strong>IBS (Imposto sobre Bens e Serviços)</strong> substitui o ICMS estadual e o ISS municipal. Já a <strong>CBS (Contribuição sobre Bens e Serviços)</strong> substitui o PIS e a COFINS federais.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-3">
-            <AccordionTrigger className="text-sm font-semibold">
-              Como o Split Payment afeta o desenvolvimento de ERPs e E-commerces?
-            </AccordionTrigger>
-            <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-              Os sistemas precisarão ajustar os fluxos de conciliação bancária: a conta da empresa não receberá mais o valor bruto da venda para depois pagar a guia de imposto. O valor que entra na conta será o líquido, exigindo integração de webhooks e relatórios detalhados de retenção da adquirente.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-4">
-            <AccordionTrigger className="text-sm font-semibold">
-              Como testar a retenção em ambiente de desenvolvimento (Staging)?
-            </AccordionTrigger>
-            <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
-              Recomendamos utilizar o payload JSON simulado gerado nesta ferramenta para criar testes unitários e testes de integração de conciliação bancária na sua aplicação.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-
-        <div className="pt-4 border-t space-y-4">
-          <div>
-            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-              Artigos e Guias Relacionados:
-            </span>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/blog/split-payment-reforma-tributaria-guia-desenvolvedor"
-                className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
-              >
-                <span>📖 Artigo: Split Payment na Reforma Tributária para Devs</span>
-                <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
-          </div>
-
-          <div>
-            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-              Compartilhe esta ferramenta:
-            </span>
-            <ShareButtons title="Simulador de Split Payment (IBS/CBS) - DevThru" />
-          </div>
-        </div>
-      </div>
+      {/* Info Section */}
+      <Card className="mt-8">
+          <CardHeader>
+              <CardTitle>Sobre o Simulador de Split Payment</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+              <div className="prose prose-sm max-w-none dark:prose-invert">
+                  <p>
+                      O Simulador de Split Payment calcula como fica a divisão de um pagamento com a retenção de IBS e CBS no momento da liquidação, prevista na Reforma Tributária. A ferramenta mostra o valor líquido, a alíquota efetiva e um payload JSON de exemplo para criar testes de conciliação bancária e de integração com webhooks.
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-4">
+                      <strong>Nota:</strong> O cálculo é uma simulação para testes e estudo. Alíquotas e regras podem mudar com a regulamentação, então confirme os valores com seu contador.
+                  </p>
+              </div>
+              <div className="pt-4 border-t space-y-4">
+                  <div>
+                      <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
+                      <div className="flex flex-wrap gap-2">
+                        <Link
+                          href="/blog/split-payment-reforma-tributaria-guia-desenvolvedor"
+                          className="text-xs px-2.5 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium inline-flex items-center gap-1.5"
+                        >
+                          <span>📖 Artigo: Split Payment na Reforma Tributária para Devs</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      </div>
+                  </div>
+                  <div>
+                      <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                      <ShareButtons title="Simulador de Split Payment (IBS/CBS) - DevThru" />
+                  </div>
+              </div>
+          </CardContent>
+      </Card>
 
       <ToolFaqSection toolSlug="split-payment" />
       <RelatedTools currentToolSlug="split-payment" category="finance" />
