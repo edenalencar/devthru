@@ -15,7 +15,6 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const COMMON_PATTERNS = [
     { name: "Email", pattern: "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$" },
@@ -200,7 +199,7 @@ export function RegexGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Regex e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de Regex</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
@@ -208,31 +207,6 @@ export function RegexGeneratorPage() {
                                     O Gerador e Testador de Regex é uma ferramenta projetada para construir, testar e depurar expressões regulares (Regex) em tempo real diretamente no seu navegador.
                                 </p>
                             </div>
-
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Qual a diferença entre os seletores `.+` e `.*` no Regex?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground prose prose-sm max-w-none dark:prose-invert">
-                                        <p>
-                                            Ambos são quantificadores usados combinando o caractere ponto (<code>.</code> - que representa qualquer caractere) com um quantificador de repetição:
-                                        </p>
-                                        <ul className="list-disc pl-4 space-y-1">
-                                            <li><strong><code>.+</code> (Um ou mais):</strong> O sinal de adição (<code>+</code>) exige que ocorra <strong>pelo menos um</strong> caractere correspondente. A busca falhará se a linha estiver vazia.</li>
-                                            <li><strong><code>.*</code> (Zero ou mais):</strong> O asterisco (<code>*</code>) permite que ocorra <strong>qualquer quantidade</strong> de caracteres correspondentes, incluindo **nenhuma** (zero). Ele corresponderá a linhas vazias.</li>
-                                        </ul>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>O que fazem as flags `g`, `i` e `m` no Regex?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        <ul className="list-disc pl-4 space-y-2">
-                                            <li><strong><code>g</code> (Global):</strong> Procura todas as correspondências no texto de entrada em vez de parar após encontrar a primeira ocorrência.</li>
-                                            <li><strong><code>i</code> (Case Insensitive):</strong> Ignora a diferença entre letras maiúsculas e minúsculas durante a busca (ex: <code>/abc/i</code> encontrará "ABC").</li>
-                                            <li><strong><code>m</code> (Multiline):</strong> Faz com que os caracteres de início (<code>^</code>) e fim (<code>$</code>) correspondam ao início e fim de cada linha individual do texto, e não apenas ao início e fim do texto completo.</li>
-                                        </ul>
-                                    </AccordionContent>
-                                </AccordionItem>
-                            </Accordion>
 
                             <p className="text-sm text-muted-foreground mt-4 pt-4 border-t">
                                 <strong>Nota de segurança:</strong> Nossos testes rodam 100% do lado do cliente (Client-Side) no motor JavaScript do seu próprio navegador. Suas expressões e dados de teste nunca são enviados ao servidor.

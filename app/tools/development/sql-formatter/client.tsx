@@ -145,7 +145,7 @@ export function SqlFormatterPage() {
                     </Card>
 
                     <article className="prose dark:prose-invert max-w-none">
-                        <h2>Boas práticas de formatação SQL</h2>
+                        <h2>Sobre a formatação de SQL: boas práticas</h2>
                         <p>
                             Escrever SQL legível é crucial para manutenção e colaboração. Algumas regras que esta ferramenta aplica:
                         </p>

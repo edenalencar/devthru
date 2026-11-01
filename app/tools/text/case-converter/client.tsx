@@ -104,29 +104,30 @@ export function CaseConverterPage() {
                                 <CaseOption type="title" label="Title Case" description="Primeira Letra Maiúscula" />
                                 <CaseOption type="sentence" label="Sentence case" description="Apenas a primeira letra da frase" />
                                 <CaseOption type="camel" label="camelCase" description="Padrão para variáveis em JS/Java" />
-                                <Card>
-                                    <CardContent className="prose prose-sm max-w-none dark:prose-invert">
-                                        <p>
-                                            O Conversor de Case é uma ferramenta essencial para desenvolvedores e redatores que precisam ajustar a capitalização de textos rapidamente.
-                                            Com suporte a diversos formatos como UPPERCASE, lowercase, camelCase e snake_case, ele agiliza a formatação de variáveis, títulos e documentos.
-                                        </p>
-                                        <p className="text-sm text-muted-foreground mt-4">
-                                            <strong>Nota:</strong> O processamento é feito inteiramente no seu navegador, garantindo que seus textos permaneçam privados e seguros.
-                                        </p>
-                                        <div className="pt-4 border-t mt-4">
-                                            <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
-                                            <ShareButtons
-                                                title="Conversor de Case"
-                                                description="Transforme textos para UPPERCASE, lowercase, CamelCase e mais."
-                                            />
-                                        </div>
-                                    </CardContent>
-                                </Card>
                             </div>
-
 
                         </div>
                     </div>
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>Sobre o Conversor de Case</CardTitle>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Conversor de Case é uma ferramenta essencial para desenvolvedores e redatores que precisam ajustar a capitalização de textos rapidamente. Com suporte a diversos formatos como UPPERCASE, lowercase, camelCase e snake_case, ele agiliza a formatação de variáveis, títulos e documentos.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> O processamento é feito inteiramente no seu navegador, garantindo que seus textos permaneçam privados e seguros.
+                            </p>
+                            <div className="pt-4 border-t mt-4">
+                                <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
+                                <ShareButtons
+                                    title="Conversor de Case"
+                                    description="Transforme textos para UPPERCASE, lowercase, CamelCase e mais."
+                                />
+                            </div>
+                        </CardContent>
+                    </Card>
                     <ToolFaqSection toolSlug="case-converter" />
                     <RelatedTools currentToolSlug="case-converter" category="text" />
                 </div>

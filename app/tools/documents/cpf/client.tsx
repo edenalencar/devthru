@@ -21,7 +21,6 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import Link from "next/link"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 const CPF_JS_CODE = `function validateCPF(cpf) {
@@ -414,7 +413,7 @@ export function CPFGeneratorPage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de CPF e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de CPF</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
@@ -427,111 +426,7 @@ export function CPFGeneratorPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Para que serve um gerador de CPF?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Nossa ferramenta fornece CPFs válidos instantaneamente para preenchimento de formulários de cadastro em sistemas em fase de testes (QA) ou desenvolvimento local. Isso impede a utilização de dados reais de pessoas físicas durante o ciclo de homologação do software.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>É possível gerar CPF de um estado/região específico?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground space-y-4">
-                                        <p>
-                                            <strong>Sim!</strong> No Brasil, o nono dígito do CPF (o número que antecede o traço e os dois dígitos verificadores) indica a Região Fiscal onde o CPF foi emitido. Por exemplo, CPFs emitidos em São Paulo (SP) possuem o nono dígito igual a <strong>8</strong>, enquanto no <strong>rio de janeiro</strong> (RJ) e Espírito Santo (ES) possuem o nono dígito igual a <strong>7</strong>.
-                                        </p>
-                                        <p>
-                                            Selecionando o estado no nosso gerador, você obtém códigos válidos simulando a emissão daquela região fiscal específica. Veja a tabela de correspondência completa das Regiões Fiscais do CPF:
-                                        </p>
-                                        <div className="overflow-x-auto border rounded-lg my-2">
-                                            <table className="w-full text-sm text-left border-collapse">
-                                                <thead>
-                                                    <tr className="border-b bg-muted/40">
-                                                        <th className="p-2 font-medium">Nono Dígito</th>
-                                                        <th className="p-2 font-medium">Estados / Região Fiscal</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody className="divide-y">
-                                                    <tr>
-                                                        <td className="p-2 font-mono">1</td>
-                                                        <td className="p-2">Distrito <strong>federal goiás mato grosso</strong>, <strong>distrito federal goiás mato</strong>, <strong>mato grosso do sul</strong>, <strong>sul e tocantins</strong> (DF, GO, MS, MT, TO)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="p-2 font-mono">2</td>
-                                                        <td className="p-2"><strong>amazonas acre amapá rondônia</strong>, <strong>amapá rondônia e roraima</strong>, Pará e Acre (AC, AM, AP, PA, RO, RR)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="p-2 font-mono">3</td>
-                                                        <td className="p-2">Ceará, Maranhão e Piauí (CE, MA, PI)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="p-2 font-mono">4</td>
-                                                        <td className="p-2">Alagoas, Paraíba, Pernambuco e <strong>grande do norte paraíba</strong>, <strong>norte paraíba e alagoas</strong>, <strong>pernambuco rio grande</strong> do norte (AL, PB, PE, RN)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="p-2 font-mono">5</td>
-                                                        <td className="p-2">Bahia e Sergipe (BA, SE)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="p-2 font-mono">6</td>
-                                                        <td className="p-2">Minas Gerais (MG)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="p-2 font-mono">7</td>
-                                                        <td className="p-2">Espírito Santo e <strong>rio de janeiro</strong> (ES, RJ)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="p-2 font-mono">8</td>
-                                                        <td className="p-2">São Paulo (SP)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="p-2 font-mono">9</td>
-                                                        <td className="p-2">Paraná e Santa Catarina (PR, SC)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="p-2 font-mono">0</td>
-                                                        <td className="p-2"><strong>rio grande do sul</strong>, ou seja, <strong>0 rio grande do sul</strong> (RS)</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Por que gerar um CPF inválido?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Durante o desenvolvimento de validações de formulários e APIs, é essencial verificar se o seu sistema rejeita de forma correta dados errados ou corrompidos. Com a nossa ferramenta, você pode gerar um CPF inválido matematicamente (com dígitos verificadores incorretos) para rodar testes negativos no fluxo da sua aplicação.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-4">
-                                    <AccordionTrigger>Como funciona o cálculo do dígito verificador do CPF?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        O CPF possui 11 dígitos, sendo os dois últimos os dígitos verificadores (DV1 e DV2). Eles são calculados por meio de uma operação matemática (&quot;módulo 11&quot;) com pesos decrescentes baseados nos 9 dígitos iniciais. Nosso gerador calcula esses dígitos automaticamente segundo as regras oficiais da Receita Federal.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: CPF_JS_CODE },
-                                        { language: "python", label: "Python", code: CPF_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: CPF_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: CPF_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
-
                             <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    <Link href="/tools/documents/rg" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        🪪 Gerador de RG (Registro Geral)
-                                    </Link>
-                                    <Link href="/tools/documents/cnpj" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        🏢 Gerador de CNPJ
-                                    </Link>
-                                    <Link href="/tools/personal/person" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        👤 Gerador de Pessoas (Dados Completos)
-                                    </Link>
-                                </div>
                                 <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     <Link href="/blog/validacao-cpf-algoritmo-completo" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
@@ -552,7 +447,16 @@ export function CPFGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="cpf" />
+                    <ToolFaqSection toolSlug="cpf">
+                        <CodeExamplesAccordion
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: CPF_JS_CODE },
+                                { language: "python", label: "Python", code: CPF_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: CPF_CSHARP_CODE },
+                                { language: "java", label: "Java", code: CPF_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="cpf" category="documents" />
                 </div>
             </main>

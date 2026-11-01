@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
@@ -14,7 +13,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 import { BulkGenerator } from '@/components/tools/bulk-generator'
 import { useUser } from '@/lib/hooks/use-user'
@@ -364,91 +362,9 @@ export function ChassiGeneratorPage() {
                     {/* FAQ & Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <h2 className="text-2xl font-semibold leading-none tracking-tight">Perguntas Frequentes sobre Chassi de Veículos</h2>
+                            <h2 className="text-2xl font-semibold leading-none tracking-tight">Sobre o Gerador de Chassi</h2>
                         </CardHeader>
                         <CardContent className="space-y-6">
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>O que é o Chassi do Veículo (Código VIN)?</AccordionTrigger>
-                                    <AccordionContent>
-                                        <div className="prose prose-sm max-w-none dark:prose-invert">
-                                            <p>
-                                                O número de chassi, também conhecido como VIN (Vehicle Identification Number), é um código único de 17 caracteres que identifica cada veículo fabricado no mundo. É como se fosse o &quot;CPF&quot; ou RG do veículo.
-                                            </p>
-                                            <h4 className="font-semibold mt-2">Estrutura do VIN:</h4>
-                                            <ul className="list-disc pl-4 space-y-1">
-                                                <li><strong>WMI (1-3):</strong> Identificador do fabricante mundial (World Manufacturer Identifier).</li>
-                                                <li><strong>VDS (4-9):</strong> Seção descritiva do veículo (modelo, motor, tipo de carroceria).</li>
-                                                <li><strong>VIS (10-17):</strong> Seção indicadora do veículo (ano de fabricação, código da planta fabril e número de série).</li>
-                                            </ul>
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>É possível gerar um chassi fictício válido?</AccordionTrigger>
-                                    <AccordionContent>
-                                        <div className="prose prose-sm max-w-none dark:prose-invert">
-                                            <p>
-                                                <strong>Sim.</strong> O nosso **gerador de chassi de veículos** utiliza a regra matemática e o padrão internacional ISO 3779 para criar um código com 17 dígitos onde o nono dígito (dígito verificador) é precisamente calculado com base em pesos pré-definidos.
-                                            </p>
-                                            <p>
-                                                Dessa forma, você obtém um chassi fictício, porém estruturalmente idêntico e válido para passar pelas validações de formulários de software e banco de dados.
-                                            </p>
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Como usar este gerador de chassi para testes de software?</AccordionTrigger>
-                                    <AccordionContent>
-                                        <div className="prose prose-sm max-w-none dark:prose-invert">
-                                            <p>
-                                                Para desenvolvedores, QAs (Analistas de Qualidade) e equipes de TI, testar formulários de cadastro de frotas de ERPs, seguradoras e sistemas automotivos exige dados em formato realista.
-                                            </p>
-                                            <p>
-                                                Basta clicar no botão **&quot;Gerar Chassi&quot;** (ou utilizar a aba **&quot;Geração em Lote&quot;** para obter múltiplos códigos) e copiar o código de 17 caracteres oferecido. Nós aplicamos cálculos para garantir que softwares de validação de concessionárias e detrans o validem corretamente nos testes de homologação.
-                                            </p>
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-4">
-                                    <AccordionTrigger>Por que as letras I, O e Q não são permitidas no número de chassi (VIN)?</AccordionTrigger>
-                                    <AccordionContent>
-                                        <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
-                                            <p>
-                                                De acordo com a norma internacional ISO 3779, as letras <strong>I (i)</strong>, <strong>O (o)</strong> e <strong>Q (q)</strong> são estritamente proibidas em qualquer número de chassi. 
-                                            </p>
-                                            <p>
-                                                Essa restrição existe para evitar fraudes e erros de leitura humana ou de escaneamento ótico (OCR), pois a letra <strong>I</strong> pode ser facilmente confundida com o número <strong>1</strong>, e as letras <strong>O</strong> e <strong>Q</strong> com o número <strong>0</strong>. Nosso gerador de chassi segue rigorosamente essa especificação internacional.
-                                            </p>
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-5">
-                                    <AccordionTrigger>Como o chassi de moto se diferencia do de carro?</AccordionTrigger>
-                                    <AccordionContent>
-                                        <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
-                                            <p>
-                                                A principal diferença está no código WMI (os 3 primeiros dígitos do VIN). No Brasil:
-                                            </p>
-                                            <ul className="list-disc pl-4 space-y-1">
-                                                <li><strong>Carros:</strong> Normalmente utilizam WMIs como `9BW` (Volkswagen), `9BD` (Fiat) ou `9BG` (General Motors).</li>
-                                                <li><strong>Motos:</strong> Frequentemente utilizam o prefixo `9C` (como `9C2` para Honda e `9CD` para Yamaha).</li>
-                                            </ul>
-                                            <p>
-                                                Ambos os tipos de veículos seguem a mesma regra matemática de verificação no 9º dígito. Nosso gerador permite selecionar a categoria específica do veículo para trazer mais realismo às suas simulações de homologação.
-                                            </p>
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: CHASSI_JS_CODE },
-                                        { language: "python", label: "Python", code: CHASSI_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: CHASSI_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: CHASSI_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
 
                             <div className="prose prose-sm max-w-none dark:prose-invert pt-4">
                                 <p className="text-sm text-muted-foreground border-l-4 border-muted pl-4">
@@ -457,17 +373,6 @@ export function ChassiGeneratorPage() {
                             </div>
 
                             <div className="pt-6 border-t mt-6 space-y-4">
-                                <div>
-                                    <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
-                                    <div className="flex flex-wrap gap-2">
-                                        <Link href="/tools/automotive/license-plate" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                            🚗 Gerador de Placa Mercosul e Antiga
-                                        </Link>
-                                        <Link href="/tools/automotive/renavam" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                            📋 Gerador de Renavam
-                                        </Link>
-                                    </div>
-                                </div>
                                 <div>
                                     <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta utilitária:</Label>
                                     <ShareButtons
@@ -478,7 +383,16 @@ export function ChassiGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="chassi" />
+                    <ToolFaqSection toolSlug="chassi">
+                        <CodeExamplesAccordion
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: CHASSI_JS_CODE },
+                                { language: "python", label: "Python", code: CHASSI_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: CHASSI_CSHARP_CODE },
+                                { language: "java", label: "Java", code: CHASSI_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="chassi" category="automotive" customSlugs={['license-plate', 'renavam', 'fipe', 'cnh']} />
                 </div>
             </main>

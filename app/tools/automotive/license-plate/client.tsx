@@ -258,7 +258,7 @@ export function LicensePlatePage() {
                     {/* Info Section */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Gerador de Placa de Veículo para Desenvolvimento e QA</CardTitle>
+                            <CardTitle>Sobre o Gerador de Placa de Veículo</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
@@ -273,17 +273,6 @@ export function LicensePlatePage() {
                                 </p>
                             </div>
                             <div className="pt-4 border-t space-y-4">
-                                <div>
-                                    <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
-                                    <div className="flex flex-wrap gap-2">
-                                        <Link href="/tools/automotive/chassi" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                            🚗 Gerador de Chassi (VIN)
-                                        </Link>
-                                        <Link href="/tools/automotive/renavam" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                            📋 Gerador de Renavam
-                                        </Link>
-                                    </div>
-                                </div>
                                 <div>
                                     <Label className="text-sm text-muted-foreground mb-2 block">Artigos Relacionados:</Label>
                                     <div className="flex flex-wrap gap-2">
@@ -309,7 +298,6 @@ export function LicensePlatePage() {
                     <RelatedTools currentToolSlug="license-plate" category="automotive" />
                 </div>
             </main>
-
 
         </div>
     )

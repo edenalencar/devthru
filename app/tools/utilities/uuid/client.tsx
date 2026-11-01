@@ -17,7 +17,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export function UUIDGeneratorPage() {
     const [generatedUUIDs, setGeneratedUUIDs] = useState<string[]>([])
@@ -125,7 +124,7 @@ export function UUIDGeneratorPage() {
 
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre UUIDs e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre UUIDs</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
@@ -133,32 +132,6 @@ export function UUIDGeneratorPage() {
                                     UUID (Universally Unique Identifier) é um identificador de 128 bits padronizado e usado para identificar de forma exclusiva informações em sistemas computacionais sem necessidade de coordenação central.
                                 </p>
                             </div>
-
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>O que é um UUID v4 e qual o seu tamanho?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground prose prose-sm max-w-none dark:prose-invert">
-                                        <p>
-                                            O UUID Versão 4 é um identificador gerado de forma puramente aleatória. Ele possui o tamanho exato de **36 caracteres**, contendo 32 caracteres hexadecimais separados por 4 hifens no formato: <code>xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx</code>.
-                                        </p>
-                                        <p>
-                                            O dígito "4" na terceira seção indica que se trata de uma versão 4, e o caractere "y" na quarta seção é restrito aos valores 8, 9, a ou b.
-                                        </p>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Existe o risco de colisão ao usar UUID v4?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Na prática, o risco de colisão (gerar dois UUIDs iguais) é matematicamente desprezível. Com 122 bits de aleatoriedade, você precisaria gerar bilhões de UUIDs por segundo durante centenas de anos para ter 50% de chance de uma única colisão. Por isso, são ideais como chaves primárias em bancos de dados distribuídos.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Qual a diferença de UUID v4 para UUID v7?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Diferente do UUID v4 (que é 100% aleatório), o <strong>UUID v7</strong> incorpora um carimbo de data/hora (timestamp) de milissegundos nas primeiras posições. Isso torna o UUID v7 ordenável no tempo (time-ordered), o que melhora consideravelmente o desempenho de indexação em bancos de dados relacionais (evitando a fragmentação do índice B-Tree causada pela inserção aleatória do v4).
-                                    </AccordionContent>
-                                </AccordionItem>
-                            </Accordion>
 
                             <div className="mt-6 pt-4 border-t">
                                 <h3 className="text-sm font-semibold text-muted-foreground mb-3">Guias Relacionados</h3>

@@ -377,6 +377,23 @@ export function BarcodeGeneratorPage() {
                     description="Gere etiquetas em grande volume para estoque, cadastro de produtos e emissão de notas fiscais com exportação direta para CSV, planilhas e nossa API."
                 />
 
+                {/* Info Section */}
+                <Card className="mt-8">
+                    <CardHeader>
+                        <CardTitle>Sobre o Gerador de Código de Barras</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="prose prose-sm max-w-none dark:prose-invert">
+                            <p>
+                                O Gerador de Código de Barras cria códigos EAN-13, padrão do varejo que no Brasil usa os prefixos 789 e 790, e Code 128, alfanumérico e muito usado em logística e etiquetas. A ferramenta valida o dígito verificador e permite baixar a imagem em PNG ou SVG para usar em embalagens, catálogos e testes de leitura.
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-4">
+                                <strong>Nota:</strong> Os códigos gerados servem para testes e protótipos. Para vender produtos no varejo, o registro oficial dos códigos é feito na GS1 Brasil.
+                            </p>
+                        </div>
+                    </CardContent>
+                </Card>
+
                 {/* Seção de FAQ E-E-A-T */}
                 <ToolFaqSection
                     toolSlug="barcode-generator"

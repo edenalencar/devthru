@@ -129,7 +129,7 @@ export function UrlEncoderPage() {
                     </Card>
 
                     <article className="prose dark:prose-invert max-w-none">
-                        <h2>O que é URL Encoding?</h2>
+                        <h2>Sobre URL Encoding: o que é?</h2>
                         <p>
                             URL encoding (ou Percent-encoding) é um mecanismo para codificar informações em uma Uniform Resource Identifier (URI).
                             Caracteres que não são permitidos em uma URL devem ser convertidos para um formato permitido.

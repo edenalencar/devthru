@@ -15,7 +15,6 @@ import { ShareButtons } from "@/components/share-buttons"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 const NAME_JS_CODE = `function generateRandomBrName(gender = "all") {
@@ -259,7 +258,7 @@ export function NameGeneratorPage() {
                     {/* Info Section & FAQ */}
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de Nomes e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de Nomes</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
@@ -267,36 +266,6 @@ export function NameGeneratorPage() {
                                     O Gerador de Nomes cria nomes e sobrenomes brasileiros aleatórios para preenchimento de mock data, testes de usabilidade e simulação de dados em ambientes de homologação.
                                 </p>
                             </div>
-
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Para que serve um gerador de nomes aleatórios?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Esta ferramenta ajuda programadores e analistas de QA a criar rapidamente massa de dados fictícios para testar a validação de formulários, persistência em bancos de dados, renderização de layouts com diferentes tamanhos de nomes e exportação de relatórios sem infringir a LGPD (Lei Geral de Proteção de Dados).
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>Como a filtragem por gênero funciona?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Ao selecionar "Masculino" ou "Feminino", a ferramenta restringe o primeiro nome à lista correspondente de nomes comuns no Brasil, mantendo a aleatoriedade e integridade estrutural dos sobrenomes gerados.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Como gerar nomes em lote?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Use a aba **Geração em Massa** na lateral direita. Defina a quantidade de nomes que precisa e a ferramenta gerará uma lista contínua pronta para copiar, perfeita para popular bases SQL, planilhas ou arquivos JSON.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    title="Como gerar nomes brasileiros aleatórios? (Exemplos de Código)"
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: NAME_JS_CODE },
-                                        { language: "python", label: "Python", code: NAME_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: NAME_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: NAME_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
 
                             <div className="pt-4 border-t">
                                 <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
@@ -307,7 +276,17 @@ export function NameGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="name" />
+                    <ToolFaqSection toolSlug="name">
+                        <CodeExamplesAccordion
+                            title="Como gerar nomes brasileiros aleatórios? (Exemplos de Código)"
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: NAME_JS_CODE },
+                                { language: "python", label: "Python", code: NAME_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: NAME_CSHARP_CODE },
+                                { language: "java", label: "Java", code: NAME_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="name" category="personal" />
                 </div>
             </main>

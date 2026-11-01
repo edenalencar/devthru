@@ -66,11 +66,23 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "chassi": [
         {
             "question": "O que é o Chassi do Veículo (Código VIN)?",
-            "answer": "O número de chassi, também conhecido como VIN (Vehicle Identification Number), é um código único de 17 caracteres que identifica cada veículo fabricado no mundo. Estrutura: WMI (1-3: Fabricante), VDS (4-9: Modelo e motor) e VIS (10-17: Ano e série)."
+            "answer": "O número de chassi, também conhecido como VIN (Vehicle Identification Number), é um código único de 17 caracteres que identifica cada veículo fabricado no mundo. É como se fosse o \"CPF\" ou RG do veículo.\n\nEstrutura do VIN:\n\n• WMI (1-3): Identificador do fabricante mundial (World Manufacturer Identifier).\n• VDS (4-9): Seção descritiva do veículo (modelo, motor, tipo de carroceria).\n• VIS (10-17): Seção indicadora do veículo (ano de fabricação, código da planta fabril e número de série)."
         },
         {
-            "question": "Por que as letras I, O e Q não são permitidas no chassi?",
-            "answer": "Segundo a norma ISO 3779, as letras I, O e Q são proibidas em números de chassi para evitar fraudes e erros de leitura ótica (OCR), pois se confundem com os números 1 e 0."
+            "question": "É possível gerar um chassi fictício válido?",
+            "answer": "Sim. O nosso gerador de chassi de veículos utiliza a regra matemática e o padrão internacional ISO 3779 para criar um código com 17 dígitos onde o nono dígito (dígito verificador) é precisamente calculado com base em pesos pré-definidos.\n\nDessa forma, você obtém um chassi fictício, porém estruturalmente idêntico e válido para passar pelas validações de formulários de software e banco de dados."
+        },
+        {
+            "question": "Como usar este gerador de chassi para testes de software?",
+            "answer": "Para desenvolvedores, QAs (Analistas de Qualidade) e equipes de TI, testar formulários de cadastro de frotas de ERPs, seguradoras e sistemas automotivos exige dados em formato realista.\n\nBasta clicar no botão \"Gerar Chassi\" (ou utilizar a aba \"Geração em Lote\" para obter múltiplos códigos) e copiar o código de 17 caracteres oferecido. Nós aplicamos cálculos para garantir que softwares de validação de concessionárias e detrans o validem corretamente nos testes de homologação."
+        },
+        {
+            "question": "Por que as letras I, O e Q não são permitidas no número de chassi (VIN)?",
+            "answer": "De acordo com a norma internacional ISO 3779, as letras I (i), O (o) e Q (q) são estritamente proibidas em qualquer número de chassi.\n\nEssa restrição existe para evitar fraudes e erros de leitura humana ou de escaneamento ótico (OCR), pois a letra I pode ser facilmente confundida com o número 1, e as letras O e Q com o número 0. Nosso gerador de chassi segue rigorosamente essa especificação internacional."
+        },
+        {
+            "question": "Como o chassi de moto se diferencia do de carro?",
+            "answer": "A principal diferença está no código WMI (os 3 primeiros dígitos do VIN). No Brasil:\n\n• Carros: Normalmente utilizam WMIs como 9BW (Volkswagen), 9BD (Fiat) ou 9BG (General Motors).\n• Motos: Frequentemente utilizam o prefixo 9C (como 9C2 para Honda e 9CD para Yamaha).\n\nAmbos os tipos de veículos seguem a mesma regra matemática de verificação no 9º dígito. Nosso gerador permite selecionar a categoria específica do veículo para trazer mais realismo às suas simulações de homologação."
         },
         {
             "question": "Como funciona o cálculo do dígito verificador do chassi?",
@@ -80,11 +92,11 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "renavam": [
         {
             "question": "Como funciona o cálculo do dígito verificador do RENAVAM?",
-            "answer": "O RENAVAM possui 11 dígitos, sendo os 10 primeiros o identificador e o 11º o Dígito Verificador (DV), calculado por um algoritmo de Módulo 11 com pesos de 2 a 9."
+            "answer": "O RENAVAM possui 11 dígitos. Os primeiros 10 dígitos representam o número identificador e o 11º dígito é o Dígito Verificador (DV). O DV é calculado utilizando uma variante do algoritmo de módulo 11, multiplicando os dígitos de trás para frente pelos pesos de 2 a 9 e reiniciando a sequência em 2. A soma dessas multiplicações é multiplicada por 10 e depois dividida por 11. O resto é o dígito verificador. Se o resto for maior ou igual a 10, assume-se o dígito verificador como 0."
         },
         {
-            "question": "Para que serve o gerador de RENAVAM para testes?",
-            "answer": "Permite simular cadastros em sistemas de despachantes, concessionárias, seguradoras e sistemas de multas sem utilizar dados de veículos reais."
+            "question": "Para que serve o RENAVAM de teste?",
+            "answer": "Ele é amplamente utilizado por desenvolvedores de software, analistas de qualidade (QA) e engenheiros de sistemas para validar campos cadastrais em ERPs, sistemas de transportes, multas e faturamento automotivo, evitando o uso de dados de veículos reais."
         }
     ],
     "fipe": [
@@ -100,25 +112,33 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "nfe-decoder": [
         {
             "question": "Como é formada a chave de acesso de 44 dígitos da SEFAZ?",
-            "answer": "A chave é composta por 8 blocos: cUF (2 dígitos do estado), AAMM (ano e mês), CNPJ do emitente (14 dígitos), Modelo (55 para NF-e, 65 para NFC-e, 57 para CT-e, 58 para MDF-e), Série (3 dígitos), Número da nota (9 dígitos), Tipo de emissão (1 dígito), Código numérico (8 dígitos) e DV Módulo 11 (1 dígito)."
+            "answer": "A chave é uma concatenação rigorosa de 8 blocos de informação:\n\n• cUF (2 dígitos): Código IBGE do estado emissor (ex: 35 para SP).\n• AAMM (4 dígitos): Ano e mês da emissão da nota fiscal.\n• CNPJ (14 dígitos): Cadastro Nacional da Pessoa Jurídica da empresa emissora.\n• Modelo (2 dígitos): 55 para NF-e, 65 para NFC-e, 57 para CT-e e 58 para MDF-e.\n• Série (3 dígitos): Série do documento fiscal (001 a 999).\n• Número da Nota (9 dígitos): Sequencial da nota no emissor.\n• Tipo de Emissão (1 dígito): Normal (1) ou modalidades de contingência (2 a 9).\n• Código Numérico (8 dígitos): Código aleatório para dificultar a adivinhação de chaves.\n• Dígito Verificador (1 dígito): Checksum calculado com o algoritmo Módulo 11."
         },
         {
             "question": "Como funciona o cálculo do Dígito Verificador (Módulo 11)?",
-            "answer": "Multiplica-se os 43 primeiros dígitos da direita para a esquerda por pesos de 2 a 9. Divide-se a soma por 11; se o resto for 0 ou 1, o DV é 0; caso contrário, é 11 menos o resto."
+            "answer": "Multiplica-se cada um dos 43 primeiros dígitos da direita para a esquerda por uma sequência de pesos de 2 a 9 (reiniciando em 2 ao atingir 9). Soma-se todos os produtos e divide-se por 11. Se o resto da divisão for 0 ou 1, o dígito verificador é 0. Nos demais casos, o DV é 11 menos o resto."
         },
         {
-            "question": "Esta ferramenta consulta dados nos servidores da SEFAZ?",
-            "answer": "Não. A análise sintática e o cálculo do DV ocorrem 100% no seu navegador de forma instantânea e segura, sem trafegar dados para servidores."
+            "question": "Esta ferramenta consulta dados diretamente no servidor da SEFAZ?",
+            "answer": "Não. Este decodificador faz a análise estática e sintática da string de 44 dígitos diretamente no seu navegador, sem expor chaves ou dados de sua empresa para servidores externos."
         }
     ],
     "nfe-generator": [
         {
-            "question": "Como funciona o gerador de chave de acesso NF-e?",
-            "answer": "Gera chaves estruturadas no padrão oficial da SEFAZ com 44 dígitos numéricos, incluindo UF, data, CNPJ, modelo 55, série, número da nota, código aleatório e DV calculado via Módulo 11."
+            "question": "Como testar a chave de acesso em ambiente de homologação?",
+            "answer": "Ao preencher formulários do seu sistema emissor de nota ou portal do ERP em ambiente de homologação, insira a chave com 44 dígitos numéricos gerada nesta ferramenta.\n\nNós garantimos que o cálculo do último algarismo (o dígito verificador - DV) esteja 100% correto de acordo com a base de regras e documentação técnica da Secretaria de Estado da Fazenda (SEFAZ), garantindo aprovação em rotinas de verificação local do seu software."
         },
         {
-            "question": "Qual a diferença entre o Modelo 55 (NF-e) e 65 (NFC-e)?",
-            "answer": "O Modelo 55 é a Nota Fiscal Eletrônica tradicional para operações B2B e transporte de cargas. O Modelo 65 é a Nota Fiscal de Consumidor Eletrônica usada no varejo direto ao consumidor."
+            "question": "Qual a diferença do Modelo 55 (NF-e) e 65 (NFC-e)?",
+            "answer": "A estrutura de uma chave de 44 posições suporta a identificação do modelo da nota inserida (do pŕoximo ao centro da chave):\n\n• Modelo 55 (NF-e): É a Nota Fiscal Eletrônica tradicional, comummente utilizada em vendas B2B e envio por transportadoras.\n• Modelo 65 (NFC-e): É a Nota Fiscal de Consumidor Eletrônica, focada no varejo presencial B2C e transações diárias (o antigo cupom fiscal).\n\nNossa ferramenta permite gerar livremente qualquer um dos dois modelos, ajustando a estrutura de 44 dígitos instantaneamente."
+        },
+        {
+            "question": "A chave de acesso gerada é verdadeira?",
+            "answer": "Não. A chave é válida formatando-se do ponto de vista matemático, contendo um dígito verificador calculado. Contudo, ela é composta de numeração fictícia e aleatória e não possui validade tributária ou legal na base de dados receptora da SEFAZ na produção. Ela serve estritamente para simulação em rotinas de teste."
+        },
+        {
+            "question": "Como funciona o gerador de chave de acesso NF-e?",
+            "answer": "Gera chaves estruturadas no padrão oficial da SEFAZ com 44 dígitos numéricos, incluindo UF, data, CNPJ, modelo 55, série, número da nota, código aleatório e DV calculado via Módulo 11."
         }
     ],
     "cte-generator": [
@@ -172,19 +192,19 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         },
         {
             "question": "Qual a diferença entre telefone celular e telefone fixo no Brasil?",
-            "answer": "Celulares possuem 11 dígitos no total com DDD e primeiro dígito móvel 9 (seguido de 6 a 9). Telefones fixos (STFC) possuem 10 dígitos no total com DDD e primeiro dígito entre 2 e 5."
+            "answer": "A principal diferença estrutural está na quantidade de dígitos e nos prefixos:\n\n• Celular (Móvel): 11 dígitos no total com DDD. O primeiro dígito após o DDD é obrigatoriamente 9 e o segundo dígito varia de 6 a 9.\n• Telefone Fixo (STFC): 10 dígitos no total com DDD. O primeiro dígito após o DDD varia obrigatoriamente de 2 a 5."
         },
         {
             "question": "Quais DDDs são suportados pela ferramenta?",
-            "answer": "A ferramenta suporta todos os 67 DDDs oficiais do Brasil (SP 11-19, RJ 21-24, MG 31-38, PR 41-46, RS 51-55, DF 61, BA 71-77, PE 81-87, AM 92-97, PA 91-94, etc.)."
+            "answer": "A ferramenta suporta todos os 67 DDDs oficiais do Brasil distribuídos em todas as regiões:\n\n• Sudeste: SP (11 a 19), RJ (21, 22, 24), ES (27, 28), MG (31 a 35, 37, 38).\n• Sul: PR (41 a 46), SC (47 a 49), RS (51, 53 a 55).\n• Centro-Oeste: DF (61), GO (62, 64), TO (63), MT (65, 66), MS (67).\n• Nordeste: BA (71, 73 a 75, 77), SE (79), PE (81, 87), AL (82), PB (83), RN (84), CE (85, 88), PI (86, 89), MA (98, 99).\n• Norte: PA (91, 93, 94), AM (92, 97), RR (95), AP (96), AC (68), RO (69)."
         },
         {
             "question": "Posso usar estes números para receber SMS de confirmação ou WhatsApp?",
-            "answer": "Não. Esses números são fictícios e gerados por algoritmos matemáticos no navegador para fins de testes de software e validação de formulários. Eles não possuem chips nem linhas ativas em operadoras."
+            "answer": "Não. Esses números são fictícios e gerados por algoritmos matemáticos diretamente no seu navegador. Como não estão vinculados a chips físicos (SIM cards) ou operadoras de telefonia ativas, não é possível receber mensagens SMS, chamadas ou códigos de verificação neles. Eles servem exclusivamente para testar validações em formulários, APIs e bancos de dados."
         },
         {
             "question": "Como gerar números de telefone em lote?",
-            "answer": "Utilize o card de Geração em Massa, defina a quantidade desejada e copie a lista pronta para testes em planilhas ou seeders de banco de dados."
+            "answer": "Basta utilizar a seção de Geração em Massa acima. Informe a quantidade desejada de números e clique em Gerar. Você poderá copiar a lista completa com ou sem formatação, ideal para alimentar planilhas, seeders de testes e migrações de dados."
         }
     ],
     "address": [
@@ -193,42 +213,102 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "Ele gera endereços realistas com CEPs de formato válido, logradouro, bairro, cidade e estado brasileiros correspondentes aos padrões dos Correios."
         },
         {
-            "question": "Os CEPs gerados são reais?",
-            "answer": "Os CEPs seguem a faixa geográfica oficial de cada unidade federativa do Brasil para testes cadastrais e cálculo de frete simulado."
+            "question": "Como usar este gerador de endereços para testes de sistema?",
+            "answer": "Durante a homologação de sistemas de entrega, e-commerce ou cadastros em geral, desenvolvedores e analistas de QA necessitam preencher endereços estruturados de forma ágil. Em vez de preencher manualmente campo por campo, você pode gerar um endereço completo aleatório (ou em lote na aba ao lado) e simplesmente copiá-lo."
+        },
+        {
+            "question": "Os CEPs e endereços gerados são reais?",
+            "answer": "Os endereços gerados são totalmente fictícios e gerados combinando logradouros, bairros, cidades e estados reais de forma aleatória. Os CEPs são gerados com a máscara correta e no intervalo correspondente às regiões (como SP, RJ, MG), mas podem não estar ativamente cadastrados na base de dados oficial dos Correios. Use apenas para fins de simulação."
         }
     ],
     "person": [
         {
-            "question": "O que inclui o gerador de pessoa completa?",
-            "answer": "Gera um perfil cadastral completo para testes contendo nome, CPF válido, RG, data de nascimento, gênero, e-mail, telefone celular com DDD, endereço completo e dados profissionais."
+            "question": "Para que serve esta ferramenta de simulação de perfil?",
+            "answer": "Ela serve para apoiar desenvolvedores de software, analistas de qualidade (QA) e administradores de banco de dados na criação de dados sintéticos realistas. Popula tabelas locais para simular fluxos completos de checkout, faturamento e entrega em e-commerces ou CRMs de forma simplificada."
         },
         {
-            "question": "O uso destes dados está em conformidade com a LGPD?",
-            "answer": "Sim. Todos os dados são 100% fictícios e gerados sinteticamente por algoritmos para desenvolvimento e testes de software, sem expor dados de pessoas reais."
+            "question": "Como exportar os dados da pessoa gerada em JSON?",
+            "answer": "Assim que você gera um perfil de pessoa, a ferramenta monta automaticamente um objeto no formato JSON estruturado na lateral esquerda. Você pode copiar o conteúdo inteiro de forma estruturada em apenas um clique para usar em requisições de API ou scripts de carga."
+        },
+        {
+            "question": "Esta ferramenta está em conformidade com a LGPD?",
+            "answer": "Sim. Por gerar dados de forma 100% sintética baseados em listas genéricas e algoritmos matemáticos públicos (sem vazamento de pessoas reais), a ferramenta elimina qualquer risco de exposição de dados sensíveis e ajuda a manter seu ambiente de desenvolvimento em plena conformidade com a LGPD."
+        },
+        {
+            "question": "O que inclui o gerador de pessoa completa?",
+            "answer": "Gera um perfil cadastral completo para testes contendo nome, CPF válido, RG, data de nascimento, gênero, e-mail, telefone celular com DDD, endereço completo e dados profissionais."
         }
     ],
     "name": [
         {
             "question": "Como são gerados os nomes brasileiros?",
             "answer": "A ferramenta combina os primeiros nomes e sobrenomes mais comuns do Brasil com base nos censos do IBGE, permitindo filtrar por gênero masculino, feminino ou aleatório."
+        },
+        {
+            "question": "Para que serve um gerador de nomes aleatórios?",
+            "answer": "Esta ferramenta ajuda programadores e analistas de QA a criar rapidamente massa de dados fictícios para testar a validação de formulários, persistência em bancos de dados, renderização de layouts com diferentes tamanhos de nomes e exportação de relatórios sem infringir a LGPD (Lei Geral de Proteção de Dados)."
+        },
+        {
+            "question": "Como a filtragem por gênero funciona?",
+            "answer": "Ao selecionar \"Masculino\" ou \"Feminino\", a ferramenta restringe o primeiro nome à lista correspondente de nomes comuns no Brasil, mantendo a aleatoriedade e integridade estrutural dos sobrenomes gerados."
+        },
+        {
+            "question": "Como gerar nomes em lote?",
+            "answer": "Use a aba Geração em Massa na lateral direita. Defina a quantidade de nomes que precisa e a ferramenta gerará uma lista contínua pronta para copiar, perfeita para popular bases SQL, planilhas ou arquivos JSON."
         }
     ],
     "email": [
         {
             "question": "Para que serve o gerador de e-mail?",
             "answer": "Cria endereços de e-mail sintéticos com domínios variados para preenchimento de formulários, testes de fluxo de cadastro e automação QA."
+        },
+        {
+            "question": "O que é um e-mail fictício/fake?",
+            "answer": "É um endereço de e-mail estruturalmente válido, contendo um nome de usuário gerado aleatoriamente e um provedor comum ou personalizado. O objetivo principal é satisfazer a validação sintática de formulários de cadastro durante fases de testes de software."
+        },
+        {
+            "question": "Estes e-mails gerados possuem caixa de entrada ativa?",
+            "answer": "Não. Nossos e-mails são fictícios (mocks) e não possuem servidores de correio eletrônico ou caixas de entrada associadas para receber mensagens. Se o seu fluxo de teste exige a verificação ou o recebimento de mensagens (como validação de Token/OTP, redefinição de senha ou links de confirmação), você deve utilizar serviços especializados em caixas temporárias (\"temp mail\")."
+        },
+        {
+            "question": "Posso gerar e-mails com domínios corporativos personalizados?",
+            "answer": "Sim. Ao alterar a opção \"Domínio\" para Personalizado, você pode digitar qualquer extensão de domínio (ex: empresa.com.br) e a ferramenta gerará e-mails aleatórios utilizando esse domínio específico. Isso é muito útil para testar regras internas de negócio em fluxos corporativos (B2B)."
         }
     ],
     "lgpd-data": [
         {
             "question": "Como funciona a geração de dados de teste aderentes à LGPD?",
             "answer": "Gera massas de dados totalmente anonimizadas e sintéticas para que equipes de tecnologia testem sistemas em staging sem violar a Lei Geral de Proteção de Dados (Lei 13.709/2018)."
+        },
+        {
+            "question": "O que é anonimização de dados sob a LGPD?",
+            "answer": "Segundo a Lei Geral de Proteção de Dados (LGPD), a anonimização é o processo pelo qual um dado perde a possibilidade de associação, direta ou indireta, a um indivíduo. Uma vez anonimizado, o dado deixa de ser considerado dado pessoal para fins da lei."
+        },
+        {
+            "question": "Como funciona o Anonimizador de Texto (mascaramento)?",
+            "answer": "Nossa ferramenta analisa o texto de entrada em busca de padrões sintáticos definidos (regex) para CPFs (com e sem pontos), e-mails e telefones formatados. Quando um desses padrões é encontrado, ele é substituído por uma máscara de asteriscos, preservando a estrutura de layout do texto original sem expor a informação sensível."
+        },
+        {
+            "question": "Esta ferramenta envia os dados colados para algum servidor?",
+            "answer": "Não. Toda a operação de geração e anonimização de texto é feita 100% no lado do cliente (client-side) utilizando Javascript no seu próprio navegador. As informações nunca são enviadas a servidores externos ou gravadas em bancos de dados, oferecendo total privacidade e segurança."
         }
     ],
     "cpf": [
         {
-            "question": "Como funciona a validação do CPF?",
-            "answer": "O CPF possui 11 dígitos onde os 9 primeiros são a base e os 2 últimos são Dígitos Verificadores calculados por Módulo 11 com pesos decrescentes de 10 a 2 e de 11 a 2."
+            "question": "Para que serve um gerador de CPF?",
+            "answer": "Nossa ferramenta fornece CPFs válidos instantaneamente para preenchimento de formulários de cadastro em sistemas em fase de testes (QA) ou desenvolvimento local. Isso impede a utilização de dados reais de pessoas físicas durante o ciclo de homologação do software."
+        },
+        {
+            "question": "É possível gerar CPF de um estado/região específico?",
+            "answer": "Sim! No Brasil, o nono dígito do CPF (o número que antecede o traço e os dois dígitos verificadores) indica a Região Fiscal onde o CPF foi emitido. Por exemplo, CPFs emitidos em São Paulo (SP) possuem o nono dígito igual a 8, enquanto no Rio de Janeiro (RJ) e Espírito Santo (ES) possuem o nono dígito igual a 7.\n\nSelecionando o estado no nosso gerador, você obtém códigos válidos simulando a emissão daquela região fiscal específica. Correspondência completa das Regiões Fiscais do CPF:\n\n• 1 — Distrito Federal, Goiás, Mato Grosso do Sul, Mato Grosso e Tocantins (DF, GO, MS, MT, TO)\n• 2 — Amazonas, Acre, Amapá, Pará, Rondônia e Roraima (AC, AM, AP, PA, RO, RR)\n• 3 — Ceará, Maranhão e Piauí (CE, MA, PI)\n• 4 — Alagoas, Paraíba, Pernambuco e Rio Grande do Norte (AL, PB, PE, RN)\n• 5 — Bahia e Sergipe (BA, SE)\n• 6 — Minas Gerais (MG)\n• 7 — Espírito Santo e Rio de Janeiro (ES, RJ)\n• 8 — São Paulo (SP)\n• 9 — Paraná e Santa Catarina (PR, SC)\n• 0 — Rio Grande do Sul (RS)"
+        },
+        {
+            "question": "Por que gerar um CPF inválido?",
+            "answer": "Durante o desenvolvimento de validações de formulários e APIs, é essencial verificar se o seu sistema rejeita de forma correta dados errados ou corrompidos. Com a nossa ferramenta, você pode gerar um CPF inválido matematicamente (com dígitos verificadores incorretos) para rodar testes negativos no fluxo da sua aplicação."
+        },
+        {
+            "question": "Como funciona o cálculo do dígito verificador do CPF?",
+            "answer": "O CPF possui 11 dígitos, sendo os dois últimos os dígitos verificadores (DV1 e DV2). Eles são calculados por meio de uma operação matemática (\"módulo 11\") com pesos decrescentes baseados nos 9 dígitos iniciais. Nosso gerador calcula esses dígitos automaticamente segundo as regras oficiais da Receita Federal."
         },
         {
             "question": "O que é a região fiscal indicada pelo nono dígito do CPF?",
@@ -237,15 +317,39 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "cnpj": [
         {
-            "question": "Como funciona o cálculo do CNPJ?",
-            "answer": "O CNPJ possui 14 dígitos (8 do número base, 4 da filial e 2 de dígitos verificadores calculados por Módulo 11 com pesos de 2 a 9)."
+            "question": "Para que serve um gerador de CNPJ?",
+            "answer": "Ele é utilizado por programadores, testadores e analistas de qualidade (QA) para preencher campos obrigatórios de CNPJ de forma ágil em ambientes de testes e homologação local, sem expor dados reais de empresas."
         },
         {
-            "question": "O que muda com o CNPJ Alfanumérico da Receita Federal?",
-            "answer": "A partir de 2026, a Receita Federal introduziu letras no número base do CNPJ para expandir a quantidade de registros empresariais disponíveis no Brasil."
+            "question": "O que é o CNPJ Alfanumérico?",
+            "answer": "Devido ao esgotamento das combinações puramente numéricas, a Receita Federal do Brasil implementou uma nova regra que permite a inserção de letras de A a Z nas primeiras 8 posições do CNPJ (mantendo apenas números nas posições de ordem e dígitos verificadores). Se você está testando integrações modernas, nosso gerador permite gerar este novo cnpj alfanumérico, garantindo a validação de um cnpj válido em sistemas atualizados."
+        },
+        {
+            "question": "Qual a diferença entre CNPJ Matriz e Filial?",
+            "answer": "O CNPJ possui 14 dígitos. Os dígitos da 9ª à 12ª posição (logo após a barra) identificam a ordem do estabelecimento. A matriz de uma empresa sempre possui o código de ordem 0001 (ex: /0001-xx). As filiais da mesma empresa possuem ordens subsequentes como 0002, 0003 e assim por diante. Nosso gerador permite selecionar explicitamente se você deseja obter um CNPJ de matriz ou filial para seus cenários de teste de faturamento."
+        },
+        {
+            "question": "Por que gerar um CNPJ inválido?",
+            "answer": "Ao construir formulários e integrações de APIs, é fundamental validar se o sistema rejeita corretamente dados corrompidos. Com a nossa ferramenta, você pode gerar um CNPJ inválido estruturalmente (com dígitos verificadores incorretos) para testar os caminhos de erro das suas validações e garantir a blindagem do seu código."
+        },
+        {
+            "question": "Como é feito o cálculo do dígito verificador do CNPJ?",
+            "answer": "O CNPJ possui 14 dígitos, onde os dígitos 13 e 14 são os verificadores. O cálculo utiliza um módulo matemático com pesos específicos aplicados aos 12 primeiros caracteres. Na versão alfanumérica, as letras são convertidas para seus valores numéricos correspondentes (ASCII - 48)."
+        },
+        {
+            "question": "Como validar o CNPJ Alfanumérico em Java, Python ou JavaScript?",
+            "answer": "De acordo com a norma da Receita Federal, a validação do CNPJ alfanumérico mantém os mesmos pesos do cálculo tradicional. A única diferença é a conversão das letras nas 12 primeiras posições para números, utilizando a fórmula Valor = Código ASCII do caractere - 48.\n\nNossos exemplos de código abaixo (em Java, Python, JavaScript e C#) já contemplam essa regra de forma otimizada. Por exemplo, em Java/C#, a conversão é feita nativamente subtraindo o char de '0' (ou ASCII 48), garantindo que tanto números ('0' a '9') quanto letras ('A' a 'Z') tenham os valores corretos."
         }
     ],
     "rg": [
+        {
+            "question": "Como é calculada a validação do RG?",
+            "answer": "Como a emissão do RG é de responsabilidade de cada Estado, não há uma regra única nacional. No entanto, o padrão mais comum em validadores baseia-se nas diretrizes do Estado de São Paulo. Ele usa uma fórmula de soma ponderada com pesos de 2 a 9 aplicada aos primeiros 8 dígitos, calculando o resto da divisão por 11. O dígito verificador final pode ser de 0 a 9 ou a letra \"X\" quando o resto é 10."
+        },
+        {
+            "question": "Para que usar dados de RG fictícios em testes?",
+            "answer": "Para assegurar a conformidade com a LGPD (Lei Geral de Proteção de Dados) no desenvolvimento de software, QAs e desenvolvedores usam chaves de RG sintéticas em bancos de dados de teste, garantindo que o fluxo cadastral do sistema funcione sem expor dados pessoais reais."
+        },
         {
             "question": "Como funciona o número de RG no Brasil?",
             "answer": "O Registro Geral é emitido pelas Secretarias de Segurança Pública (SSP) de cada estado e normalmente possui 8 a 9 dígitos mais um dígito verificador."
@@ -281,11 +385,35 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "pis": [
         {
-            "question": "Como é calculado o PIS/PASEP/NIT?",
-            "answer": "O PIS possui 11 dígitos, onde os 10 primeiros são o número sequencial e o 11º é o dígito verificador calculado por Módulo 11 com pesos de 3, 2, 9, 8, 7, 6, 5, 4, 3, 2."
+            "question": "Para que serve um gerador de PIS?",
+            "answer": "Ele é ideal para testar telas de cadastro e fluxos de folha de pagamento de empresas. Fornecendo um pis pasep válido, você pode validar o comportamento das suas APIs locais e processos de eSocial sem expor dados reais de colaboradores durante o desenvolvimento de software."
+        },
+        {
+            "question": "Qual a diferença entre PIS, PASEP, NIS e NIT?",
+            "answer": "Na prática computacional e sistêmica, nenhuma. PIS (iniciativa privada), PASEP (servidor público), NIS (projetos sociais) e NIT (autônomos) compartilham a mesma estrutura de 11 dígitos numéricos e a mesma regra de cálculo para o dígito verificador. O gerador atende a todos esses casos."
+        },
+        {
+            "question": "Como é calculado o dígito verificador do PIS?",
+            "answer": "O 11º dígito de um PIS é um \"módulo matemático\". Ele é calculado multiplicando os 10 primeiros dígitos da esquerda para a direita por pesos específicos (3, 2, 9, 8, 7, 6, 5, 4, 3, 2). A soma dos resultados é dividida por 11, e o resto da divisão define o dígito final. Nosso gerador de PIS implementa 100% dessa regra oficial."
+        },
+        {
+            "question": "Como gerar PIS em lote para testes em massa?",
+            "answer": "Nossa ferramenta possui uma aba dedicada de \"Geração em Lote\". Com ela, você pode escolher a quantidade desejada de números de PIS/PASEP e NIS válidos e gerá-los todos de uma vez, copiando ou salvando com facilidade para utilizar em cargas de homologação e testes de banco de dados."
         }
     ],
     "titulo-eleitor": [
+        {
+            "question": "O documento gerado tem valor civil na Justiça?",
+            "answer": "De forma alguma. Nossos geradores de dados fabricam dígitos a partir de matrizes matemáticas locais que servem exclusivamente para saltar barreiras de validação (Front-End e Back-End) e Regras de Negócio na hora em que o programador está testando os próprios formulários. Nenhum dos Títulos de Eleitor gerados pertence ao cadastro real do TSE."
+        },
+        {
+            "question": "O que significam os dois últimos dígitos do Título de Eleitor?",
+            "answer": "Os últimos dois algarismos formam o dígito verificador (\"Checksum\"). A estrutura completa retém 12 números: os primeiros oito (8) representam o código sequencial único do eleitor, os dois sub-consequentes (nono e décimo) declaram o código do estado de origem (UF, selecionado no nosso painel acima), e os dois terminais blindam o código como uma chave inquebrável por chute, utilizando cálculo de mod 11."
+        },
+        {
+            "question": "Para que usar um gerador de Título?",
+            "answer": "Ao construir ERPs de companhias de RH, agências bancárias ou softwares de admissão é recorrente a requisição do Título de Eleitor em cadastros \"E2E\". Para não expor repetidamente os dados verídicos e sensíveis dos Devs nos bancos de dados temporários de Homologação, é padrão da indústria automatizar e submeter massivamente dados mockados limpos."
+        },
         {
             "question": "Como funciona a estrutura do Título de Eleitor?",
             "answer": "Possui 12 dígitos: 8 dígitos sequenciais, 2 dígitos indicando o estado de emissão (código de 01 a 28) e 2 dígitos verificadores calculados por Módulo 11."
@@ -326,11 +454,11 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         },
         {
             "question": "O que significa o código de ocorrência nos arquivos de retorno?",
-            "answer": "O código de ocorrência indica qual ação foi efetuada pelo banco sobre o título. Por exemplo: o código 06 indica que o boleto foi pago (liquidado), o código 02 indica entrada confirmada e o código 03 sinaliza que a remessa foi rejeitada."
+            "answer": "O código de ocorrência indica qual ação foi efetuada pelo banco sobre o título. Por exemplo: o código 06 indica que o boleto foi pago (liquidado), o código 02 indica entrada confirmada e o código 03 sinaliza que a remessa foi rejeitada devido a algum erro cadastral."
         },
         {
             "question": "Meus dados bancários são salvos nos servidores do DevThru?",
-            "answer": "Não. Todo o processo de leitura e decodificação do arquivo CNAB é executado exclusivamente no seu navegador via JavaScript client-side."
+            "answer": "Não. Todo o processo de leitura e decodificação do arquivo CNAB é executado exclusivamente no seu navegador via JavaScript client-side. Nenhum dado do seu arquivo é enviado para servidores externos."
         }
     ],
     "boleto-validator": [
@@ -344,6 +472,18 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         }
     ],
     "boleto-generator": [
+        {
+            "question": "Como é calculada a linha digitável e o código de barras de um boleto?",
+            "answer": "O código de barras oficial contém 44 dígitos numéricos estruturados com dados do banco, moeda, data de vencimento, valor e conta. A linha digitável de 47 dígitos é uma representação do código de barras dividida em 3 blocos de 9 dígitos (cada um com seu próprio dígito verificador módulo 10), mais o dígito verificador geral no meio e o fator de vencimento no fim."
+        },
+        {
+            "question": "Para que serve um gerador de boleto mock?",
+            "answer": "Desenvolvedores utilizam essa ferramenta para simular a emissão de boletos, testar o alinhamento de impressão, exportação para PDF, e validar se o leitor de código de barras ou a câmera de aplicativos bancários em ambiente de homologação leem a linha digitável simulada sem problemas de layout."
+        },
+        {
+            "question": "Qual a diferença do boleto mock para um boleto registrado?",
+            "answer": "Boletos registrados são cadastrados na rede bancária via APIs da instituição ou arquivos de remessa CNAB. Boletos mock são gerados apenas na interface (HTML/CSS) com números estáticos ou aleatórios. Eles não existem para a rede bancária e qualquer tentativa de pagamento resultará em erro de \"Boleto não encontrado\"."
+        },
         {
             "question": "Como gerar boletos bancários para testes?",
             "answer": "A ferramenta gera linhas digitáveis e códigos de barras no padrão FEBRABAN com valores e datas de vencimento configuráveis para testes de checkout e conciliação."
@@ -395,20 +535,48 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "split-payment": [
         {
-            "question": "O que é o Split Payment na Reforma Tributária (IBS e CBS)?",
-            "answer": "É o mecanismo onde o imposto (IBS e CBS) é retido e recolhido automaticamente pelas instituições financeiras no ato da liquidação do pagamento eletrônico."
+            "question": "O que é o Split Payment na Reforma Tributária?",
+            "answer": "O Split Payment é o mecanismo em que o imposto (IBS + CBS) é separado e recolhido automaticamente pelos bancos, credenciadoras de cartão ou arranjos de pagamento no exato momento da liquidação financeira da transação."
+        },
+        {
+            "question": "Qual a diferença entre IBS e CBS?",
+            "answer": "O IBS (Imposto sobre Bens e Serviços) substitui o ICMS estadual e o ISS municipal. Já a CBS (Contribuição sobre Bens e Serviços) substitui o PIS e a COFINS federais."
+        },
+        {
+            "question": "Como o Split Payment afeta o desenvolvimento de ERPs e E-commerces?",
+            "answer": "Os sistemas precisarão ajustar os fluxos de conciliação bancária: a conta da empresa não receberá mais o valor bruto da venda para depois pagar a guia de imposto. O valor que entra na conta será o líquido, exigindo integração de webhooks e relatórios detalhados de retenção da adquirente."
+        },
+        {
+            "question": "Como testar a retenção em ambiente de desenvolvimento (Staging)?",
+            "answer": "Recomendamos utilizar o payload JSON simulado gerado nesta ferramenta para criar testes unitários e testes de integração de conciliação bancária na sua aplicação."
         }
     ],
     "vet-efx-calculator": [
         {
-            "question": "O que é o Valor Efetivo Total (VET) em operações de câmbio?",
-            "answer": "O VET representa o custo real de uma operação de câmbio em reais por moeda estrangeira, considerando a taxa de câmbio, tarifas bancárias e o IOF."
+            "question": "O que é o VET (Valor Efetivo Total) exigido pelo Banco Central?",
+            "answer": "O Valor Efetivo Total (VET) representa o custo total em Reais de cada unidade de moeda estrangeira comprada ou vendida, englobando a taxa de câmbio comercial, as tarifas/spread da instituição e o IOF incidente. O Banco Central torna obrigatória a exibição clara do VET ao cliente antes da finalização de qualquer operação de câmbio ou eFX."
+        },
+        {
+            "question": "O que é uma prestadora eFX e quem pode atuar?",
+            "answer": "As prestadoras eFX (Electronic Foreign Exchange) são instituições autorizadas pelo Banco Central a realizar serviços de pagamento internacional, como viabilização de compras em sites estrangeiros, transferências unilaterais e envio de remessas sem a necessidade de celebração de um contrato formal de câmbio tradicional para valores de até US$ 10.000,00."
+        },
+        {
+            "question": "Qual a alíquota atual do IOF para e-commerce e serviços no exterior?",
+            "answer": "Para aquisição de bens e serviços no exterior via e-commerce/SaaS, a alíquota padrão do IOF é de 4,38% (seguindo o cronograma de redução gradual do governo). Para transferências de disponibilidade no exterior entre contas do mesmo titular, a alíquota é de 1,10%, e para demais remessas padrão é de 0,38%."
         }
     ],
     "iban-validator": [
         {
-            "question": "Como validar o código bancário IBAN internacional?",
-            "answer": "O IBAN possui até 34 caracteres alfanuméricos com código do país e dois dígitos de controle calculados pelo algoritmo MOD-97 (ISO 7064)."
+            "question": "Como é a estrutura de um código IBAN?",
+            "answer": "Um código IBAN tem comprimento variável (de até 34 caracteres alfanuméricos) dependendo do país. Ele é composto por:\n\n• Código do país: 2 letras (ex: BR, PT, DE).\n• Dígito verificador: 2 números calculados matematicamente.\n• BBAN (Basic Bank Account Number): Identificador local da conta bancária que inclui o código do banco, agência e conta."
+        },
+        {
+            "question": "Como funciona a validação matemática do IBAN (Modulo 97)?",
+            "answer": "A validação segue o padrão ISO 7064 (Mod 97-10). Para validar, movemos os 4 primeiros caracteres (país e dígitos verificadores) para o final do código, convertemos todas as letras em valores numéricos (A=10, B=11 ... Z=35) e efetuamos a operação número % 97. O resultado deve ser exatamente igual a 1 para o IBAN ser considerado válido."
+        },
+        {
+            "question": "Qual o tamanho do IBAN no Brasil?",
+            "answer": "No Brasil, o IBAN é padronizado com 29 caracteres alfanuméricos, iniciando sempre com BR nas duas primeiras posições, seguidos por 2 dígitos verificadores e os dados completos da conta bancária nacional."
         }
     ],
     "json": [
@@ -444,17 +612,25 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "whatsapp-link-generator": [
         {
             "question": "Como funciona o link direto wa.me do WhatsApp?",
-            "answer": "O link no formato https://wa.me/<numero> abre diretamente a conversa no WhatsApp Mobile ou Web com a mensagem predefinida."
+            "answer": "O link no formato https://wa.me/<numero> é o padrão oficial desenvolvido pela Meta. Quando alguém clica no link pelo celular, o aplicativo do WhatsApp abre diretamente na conversa com o número informado. Pelo computador, o link redireciona para o WhatsApp Web ou para o aplicativo de desktop."
         },
         {
-            "question": "É necessário ter o número salvo na agenda para iniciar a conversa?",
-            "answer": "Não. O link wa.me permite iniciar conversas instantaneamente com qualquer número sem precisar adicioná-lo aos contatos."
+            "question": "É necessário ter o número salvo na agenda para abrir a conversa?",
+            "answer": "Não! Essa é a principal vantagem do link wa.me: qualquer pessoa pode iniciar uma conversa com você sem precisar salvar seu número na agenda telefônica do smartphone."
+        },
+        {
+            "question": "Como colocar o link do WhatsApp na bio do Instagram?",
+            "answer": "Basta gerar o link com seu número e mensagem desejada, clicar em Copiar Link, abrir o Instagram, ir em Editar Perfil > Links > Adicionar Link Externo e colar a URL."
         }
     ],
     "curl-converter": [
         {
-            "question": "Como copiar uma requisição cURL do navegador?",
-            "answer": "Abra o DevTools (F12), vá em Rede (Network), clique com o botão direito na requisição e selecione Copiar > Copiar como cURL."
+            "question": "Como copiar uma requisição em cURL diretamente do navegador?",
+            "answer": "No Chrome, Firefox, Edge ou Safari, abra as Ferramentas do Desenvolvedor (F12), vá até a aba Rede (Network), realize a ação desejada no site, clique com o botão direito na requisição e selecione Copiar > Copiar como cURL (Copy as cURL). Em seguida, cole aqui no DevThru."
+        },
+        {
+            "question": "O código convertido envia dados para algum servidor?",
+            "answer": "Não! Todo o processo de parsing da sintaxe cURL e a geração do código em JavaScript, Python, Go e PHP ocorre inteiramente no seu navegador de forma local e segura."
         },
         {
             "question": "Quais linguagens são suportadas no conversor de cURL?",
@@ -507,14 +683,38 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "uuid": [
         {
-            "question": "Qual a diferença entre UUID v4 e UUID v7?",
-            "answer": "O UUID v4 é 100% aleatório. O UUID v7 é ordenável no tempo (time-ordered), combinando timestamp Unix com aleatoriedade, ideal para chaves primárias em bancos de dados."
+            "question": "O que é um UUID v4 e qual o seu tamanho?",
+            "answer": "O UUID Versão 4 é um identificador gerado de forma puramente aleatória. Ele possui o tamanho exato de 36 caracteres, contendo 32 caracteres hexadecimais separados por 4 hifens no formato: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx.\n\nO dígito \"4\" na terceira seção indica que se trata de uma versão 4, e o caractere \"y\" na quarta seção é restrito aos valores 8, 9, a ou b."
+        },
+        {
+            "question": "Existe o risco de colisão ao usar UUID v4?",
+            "answer": "Na prática, o risco de colisão (gerar dois UUIDs iguais) é matematicamente desprezível. Com 122 bits de aleatoriedade, você precisaria gerar bilhões de UUIDs por segundo durante centenas de anos para ter 50% de chance de uma única colisão. Por isso, são ideais como chaves primárias em bancos de dados distribuídos."
+        },
+        {
+            "question": "Qual a diferença de UUID v4 para UUID v7?",
+            "answer": "Diferente do UUID v4 (que é 100% aleatório), o UUID v7 incorpora um carimbo de data/hora (timestamp) de milissegundos nas primeiras posições. Isso torna o UUID v7 ordenável no tempo (time-ordered), o que melhora consideravelmente o desempenho de indexação em bancos de dados relacionais (evitando a fragmentação do índice B-Tree causada pela inserção aleatória do v4)."
         }
     ],
     "xml-validator": [
         {
             "question": "Como validar e formatar um arquivo XML?",
             "answer": "O validador checa se as tags estão devidamente fechadas, se a estrutura hierárquica é válida e aponta erros de parse diretamente no código."
+        },
+        {
+            "question": "Meu XML de Nota Fiscal (NF-e) é enviado para a nuvem?",
+            "answer": "Não, em hipótese alguma. Seu código XML de Nota Fiscal, CT-e ou código privado nunca sai da sua máquina. Esta ferramenta foi construída utilizando arquitetura estrita em Client-Side (através do DOMParser nativo do seu navegador). Toda a validação acontece de forma local e offline na exata hora em que você clica em \"Validar\", protegendo dados críticos de integração."
+        },
+        {
+            "question": "Como é feita a validação das Tags?",
+            "answer": "A ferramenta opera uma verificação de well-formedness (boa formação de raiz). Isso significa que nosso parser inteligente busca erros clássicos de sintaxe, como: tags que foram abertas mas não fechadas, atributos corrompidos sem aspas, nós sobrepostos e quebras nulas que anulam a compilação do arquivo pelo receptor da fazenda."
+        },
+        {
+            "question": "É confiável colar código privado de sistemas bancários?",
+            "answer": "Sim. Nossa infraestrutura do site preza pela máxima confidencialidade em ferramentas para desenvolvedores (\"Dev Tools\"). Diferente das dezenas de sites pesados na rede, nós não rodamos bancos de dados SQL/NoSQL em background capturando dados submetidos anonimamente, tampouco guardamos histórico (logs) do payload (conteúdo cru) colado aqui. Sinta-se a vontade para debugar envios XML/SOAP sigilosos antes da homologação final em produção!"
+        },
+        {
+            "question": "Como encontrar e corrigir erros de estrutura no validador?",
+            "answer": "Ao colar o código e clicar em \"Validar\", caso o XML possua erros, o validador indicará a linha exata e a mensagem de erro fornecida pelo parser (ex: \"Mismatch tag\" ou \"Attribute value expected\"). A causa mais comum é a falta de fechamento de alguma tag ou caracteres especiais inválidos como o & que deve ser escrito como &amp; no padrão XML."
         }
     ],
     "crontab-generator": [
@@ -531,8 +731,16 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "jwt-debugger": [
         {
-            "question": "O que é um JSON Web Token (JWT)?",
-            "answer": "É um padrão aberto (RFC 7519) composto por três partes separadas por pontos: Header (cabeçalho), Payload (dados) e Signature (assinatura)."
+            "question": "O que é um JSON Web Token (JWT) e sua estrutura?",
+            "answer": "Um JWT é um padrão aberto (RFC 7519) usado para transmitir de forma segura informações estruturadas como um objeto JSON. Ele é composto por três partes separadas por pontos (.): Header (indica o algoritmo de criptografia e tipo de token), Payload (dados do usuário e metadados de sessão, conhecidos como claims) e Signature (garante que o token não foi adulterado)."
+        },
+        {
+            "question": "Como funciona a decodificação local e qual a garantia de privacidade?",
+            "answer": "Nesta ferramenta, toda a decodificação é feita diretamente no navegador utilizando JavaScript local (atob e jwt-decode). Seu token nunca é enviado ou transmitido para servidores de terceiros, o que garante 100% de privacidade para inspecionar payloads de teste e tokens de APIs em desenvolvimento."
+        },
+        {
+            "question": "Por que a assinatura (Signature) não é validada aqui?",
+            "answer": "Para verificar a assinatura de um token criptografado simetricamente (como HS256), seria necessário que você inserisse a sua chave secreta (secret key) no navegador. Inserir chaves privadas em ferramentas web terceiras é uma prática de alto risco de segurança. Por esse motivo, limitamos a depuração à visualização do Header e Payload, mantendo o processo seguro."
         }
     ],
     "minifier": [
@@ -555,6 +763,14 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "regex": [
         {
+            "question": "Qual a diferença entre os seletores .+ e .* no Regex?",
+            "answer": "Ambos são quantificadores usados combinando o caractere ponto (. - que representa qualquer caractere) com um quantificador de repetição:\n\n• .+ (Um ou mais): O sinal de adição (+) exige que ocorra pelo menos um caractere correspondente. A busca falhará se a linha estiver vazia.\n• .* (Zero ou mais): O asterisco (*) permite que ocorra qualquer quantidade de caracteres correspondentes, incluindo nenhuma (zero). Ele corresponderá a linhas vazias."
+        },
+        {
+            "question": "O que fazem as flags g, i e m no Regex?",
+            "answer": "• g (Global): Procura todas as correspondências no texto de entrada em vez de parar após encontrar a primeira ocorrência.\n• i (Case Insensitive): Ignora a diferença entre letras maiúsculas e minúsculas durante a busca (ex: /abc/i encontrará \"ABC\").\n• m (Multiline): Faz com que os caracteres de início (^) e fim ($) correspondam ao início e fim de cada linha individual do texto, e não apenas ao início e fim do texto completo."
+        },
+        {
             "question": "Como testar expressões regulares online?",
             "answer": "Permite testar e validar padrões de Regex em tempo real com explicação de grupos de captura, flags (g, i, m) e substituições de texto."
         }
@@ -575,9 +791,33 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         {
             "question": "Quais unidades de medida podem ser convertidas?",
             "answer": "Suporta conversão entre unidades de comprimento, peso, volume, temperatura, área e velocidade nos sistemas métrico e imperial."
+        },
+        {
+            "question": "Como converter unidades usando esta ferramenta?",
+            "answer": "Basta selecionar a aba correspondente à categoria da grandeza (como Peso ou Temperatura), definir a unidade de origem no campo \"De\" e a de destino no campo \"Para\". O cálculo é exibido instantaneamente à medida que você insere os valores."
+        },
+        {
+            "question": "Quais unidades de comprimento posso converter?",
+            "answer": "Nosso sistema suporta a conversão de diversas unidades de comprimento, abrangendo desde o sistema métrico (metros, quilômetros, centímetros e milímetros) até o sistema imperial (milhas, jardas, pés e polegadas), facilitando o trabalho em projetos de engenharia ou desenvolvimento global."
+        },
+        {
+            "question": "Como é garantida a precisão da conversão de unidades?",
+            "answer": "Todas as operações para converter unidades utilizam fatores de conversão baseados nos padrões internacionais de pesos e medidas do SI (Sistema Internacional de Unidades), garantindo cálculos precisos para o seu dia a dia profissional."
         }
     ],
     "base": [
+        {
+            "question": "O que são bases numéricas (Base 2, 8, 10, 16)?",
+            "answer": "Bases numéricas (ou sistemas de numeração) representam a quantidade de símbolos distintos utilizados para expressar valores numéricos. Na computação, as principais bases são a Binária (base 2 - usa apenas 0 e 1), Octal (base 8 - dígitos de 0 a 7), Decimal (base 10 - sistema tradicional do dia a dia de 0 a 9) e Hexadecimal (base 16 - inclui letras de A a F para representar valores de 10 a 15)."
+        },
+        {
+            "question": "Como funciona a conversão manual de decimal para binário ou hexadecimal?",
+            "answer": "Para converter manualmente um número Decimal para outra base, realizamos divisões sucessivas pelo número da base desejada (2 para binário, 16 para hexadecimal) até obter quociente zero. O resultado é composto pelos restos dessas divisões lidos de trás para frente. Para o hexadecimal, os valores de 10 a 15 são mapeados para as letras A a F, respectivamente."
+        },
+        {
+            "question": "Esta ferramenta suporta números muito grandes ou negativos?",
+            "answer": "Esta ferramenta online é projetada especificamente para conversões rápidas de números inteiros positivos e não-negativos. Para números que excedem os limites padrão de precisão de inteiros do JavaScript, recomendamos o uso de tipos de dados dedicados no seu código backend (como BigInt em JS/Python, ou BigInteger em Java/C#)."
+        },
         {
             "question": "Como converter números entre diferentes bases numéricas?",
             "answer": "Converte instantaneamente valores entre Binário (base 2), Octal (base 8), Decimal (base 10) e Hexadecimal (base 16)."

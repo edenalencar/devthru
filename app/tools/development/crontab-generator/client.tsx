@@ -614,7 +614,7 @@ export function CrontabGeneratorPage() {
                     {/* Seção 5: Info e SEO On-Page */}
                     <Card className="mt-8 border border-muted-foreground/20 rounded-[2px] shadow-none bg-muted/5">
                         <CardHeader className="border-b border-muted-foreground/10 pb-4">
-                            <CardTitle className="text-lg font-bold">O que é um Crontab e como funciona?</CardTitle>
+                            <CardTitle className="text-lg font-bold">Sobre o Crontab: o que é e como funciona</CardTitle>
                         </CardHeader>
                         <CardContent className="prose prose-sm max-w-none dark:prose-invert pt-6 space-y-4 text-sm text-muted-foreground">
                             <p>

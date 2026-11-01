@@ -49,7 +49,7 @@ export function ToolFaqSection({
                                 <AccordionTrigger className="text-left font-medium text-sm sm:text-base hover:no-underline">
                                     {faq.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-muted-foreground text-sm leading-relaxed">
+                                <AccordionContent forceMount className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
                                     {faq.answer}
                                 </AccordionContent>
                             </AccordionItem>

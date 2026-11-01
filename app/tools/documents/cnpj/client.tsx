@@ -22,7 +22,6 @@ import { getPlanLimitMessage } from "@/lib/constants"
 import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordion"
 
 const CNPJ_JS_CODE = `function validateCNPJ(cnpj) {
@@ -360,7 +359,7 @@ export function CNPJGeneratorPage() {
 
                     <Card className="mt-8">
                         <CardHeader>
-                            <CardTitle>Sobre o Gerador de CNPJ e Perguntas Frequentes (FAQ)</CardTitle>
+                            <CardTitle>Sobre o Gerador de CNPJ</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
@@ -372,68 +371,7 @@ export function CNPJGeneratorPage() {
                                 </p>
                             </div>
 
-                            <Accordion type="single" collapsible className="w-full">
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>Para que serve um gerador de CNPJ?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Ele é utilizado por programadores, testadores e analistas de qualidade (QA) para preencher campos obrigatórios de CNPJ de forma ágil em ambientes de testes e homologação local, sem expor dados reais de empresas.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-2">
-                                    <AccordionTrigger>O que é o CNPJ Alfanumérico?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Devido ao esgotamento das combinações puramente numéricas, a Receita Federal do Brasil implementou uma nova regra que permite a inserção de letras de A a Z nas primeiras 8 posições do CNPJ (mantendo apenas números nas posições de ordem e dígitos verificadores). Se você está testando integrações modernas, nosso gerador permite gerar este <strong>novo cnpj</strong> alfanumérico, garantindo a validação de um <strong>cnpj válido</strong> em sistemas atualizados.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-3">
-                                    <AccordionTrigger>Qual a diferença entre CNPJ Matriz e Filial?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        O CNPJ possui 14 dígitos. Os dígitos da 9ª à 12ª posição (logo após a barra) identificam a ordem do estabelecimento. A matriz de uma empresa sempre possui o código de ordem `0001` (ex: `/0001-xx`). As filiais da mesma empresa possuem ordens subsequentes como `0002`, `0003` e assim por diante. Nosso gerador permite selecionar explicitamente se você deseja obter um CNPJ de matriz ou filial para seus cenários de teste de faturamento.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-4">
-                                    <AccordionTrigger>Por que gerar um CNPJ inválido?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        Ao construir formulários e integrações de APIs, é fundamental validar se o sistema rejeita corretamente dados corrompidos. Com a nossa ferramenta, você pode gerar um CNPJ inválido estruturalmente (com dígitos verificadores incorretos) para testar os caminhos de erro das suas validações e garantir a blindagem do seu código.
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-5">
-                                    <AccordionTrigger>Como é feito o cálculo do dígito verificador do CNPJ?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground">
-                                        O CNPJ possui 14 dígitos, onde os dígitos 13 e 14 são os verificadores. O cálculo utiliza um módulo matemático com pesos específicos aplicados aos 12 primeiros caracteres. Na versão alfanumérica, as letras são convertidas para seus valores numéricos correspondentes (ASCII - 48).
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <AccordionItem value="item-6">
-                                    <AccordionTrigger>Como validar o CNPJ Alfanumérico em Java, Python ou JavaScript?</AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground prose prose-sm max-w-none dark:prose-invert">
-                                        <p>
-                                            De acordo com a norma da Receita Federal, a validação do CNPJ alfanumérico mantém os mesmos pesos do cálculo tradicional. A única diferença é a conversão das letras nas 12 primeiras posições para números, utilizando a fórmula <code>Valor = Código ASCII do caractere - 48</code>.
-                                        </p>
-                                        <p>
-                                            Nossos exemplos de código abaixo (em Java, Python, JavaScript e C#) já contemplam essa regra de forma otimizada. Por exemplo, em Java/C#, a conversão é feita nativamente subtraindo o char de &apos;0&apos; (ou ASCII 48), garantindo que tanto números (&apos;0&apos; a &apos;9&apos;) quanto letras (&apos;A&apos; a &apos;Z&apos;) tenham os valores corretos.
-                                        </p>
-                                    </AccordionContent>
-                                </AccordionItem>
-                                <CodeExamplesAccordion
-                                    examples={[
-                                        { language: "javascript", label: "JavaScript / TS", code: CNPJ_JS_CODE },
-                                        { language: "python", label: "Python", code: CNPJ_PYTHON_CODE },
-                                        { language: "csharp", label: "C#", code: CNPJ_CSHARP_CODE },
-                                        { language: "java", label: "Java", code: CNPJ_JAVA_CODE }
-                                    ]}
-                                />
-                            </Accordion>
-
                             <div className="pt-4 border-t">
-                                <Label className="text-sm text-muted-foreground mb-2 block">Ferramentas Relacionadas:</Label>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    <Link href="/tools/documents/cpf" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        📋 Gerador de CPF
-                                    </Link>
-                                    <Link href="/tools/documents/inscricao-estadual" className="text-xs px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors font-medium">
-                                        🏢 Gerador de Inscrição Estadual (IE)
-                                    </Link>
-                                </div>
 
                                 <Label className="text-sm text-muted-foreground mb-2 block">Artigos e Guias Relacionados:</Label>
                                 <div className="flex flex-wrap gap-2 mb-4">
@@ -455,11 +393,19 @@ export function CNPJGeneratorPage() {
                             </div>
                         </CardContent>
                     </Card>
-                    <ToolFaqSection toolSlug="cnpj" />
+                    <ToolFaqSection toolSlug="cnpj">
+                        <CodeExamplesAccordion
+                            examples={[
+                                { language: "javascript", label: "JavaScript / TS", code: CNPJ_JS_CODE },
+                                { language: "python", label: "Python", code: CNPJ_PYTHON_CODE },
+                                { language: "csharp", label: "C#", code: CNPJ_CSHARP_CODE },
+                                { language: "java", label: "Java", code: CNPJ_JAVA_CODE }
+                            ]}
+                        />
+                    </ToolFaqSection>
                     <RelatedTools currentToolSlug="cnpj" category="documents" />
                 </div>
             </main>
-
 
         </div>
     )
