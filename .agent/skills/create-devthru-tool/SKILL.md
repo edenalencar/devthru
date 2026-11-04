@@ -121,3 +121,6 @@ Ao criar uma nova ferramenta com o slug `<tool-slug>` na categoria `<category>`,
 10. `app/updates/page.tsx` (entrada no changelog com a nova versão do `package.json`)
 
 > Cores do tema (`bg-primary`, `text-muted-foreground`, `border-border`...) vêm do `tailwind.config.ts`, carregado pelo `@config` em `app/globals.css`. Não remova essa linha.
+
+### 9. 📣 DIVULGAÇÃO APÓS O DEPLOY
+Siga a skill [publish-new-pages](file:///.agent/skills/publish-new-pages/SKILL.md): entrada em Atualizações no mesmo PR e, depois do deploy em produção, envio ao IndexNow e solicitação de indexação no Google Search Console.

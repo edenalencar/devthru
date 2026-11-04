@@ -4,7 +4,7 @@ A modern, fast, and secure developer toolkit. DevThru: Quick data for the road. 
 
 ## ✨ Features
 
-- **76 tools in 10 categories** (`automotive`, `business`, `converters`, `development`, `documents`, `finance`, `image`, `personal`, `text`, `utilities`), cataloged in `config/tools.ts`
+- **78 tools in 10 categories** (`automotive`, `business`, `converters`, `development`, `documents`, `finance`, `image`, `personal`, `text`, `utilities`), cataloged in `config/tools.ts`
 - **Brazilian data focus**: CPF, CNPJ, NF-e/CT-e/MDF-e, boleto, Pix, CNAB, vehicle documents and test data
 - **Bulk generation and export** to CSV, JSON, Excel and SQL on paid plans
 - **REST API** (`/api/v1/generate`, `/api/v1/validate`, `/api/v1/usage`) on the Business plan

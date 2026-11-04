@@ -31,3 +31,4 @@ Selecione a seção desejada e utilize a ferramenta `view_file` para ler as inst
 * Criação do arquivo físico em `lib/content/blog/posts/`.
 * Importação e registro no índice `lib/content/blog/index.ts`.
 * Processo de build e homologação local.
+* Divulgação: página Atualizações, IndexNow e Google Search Console (skill [publish-new-pages](file:///.agent/skills/publish-new-pages/SKILL.md)).

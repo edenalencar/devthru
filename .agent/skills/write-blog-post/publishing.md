@@ -44,3 +44,6 @@ npm run dev
 ```
 
 Acesse o endereço local correspondente (geralmente `http://localhost:3001` ou `http://localhost:3000`) na subrota `/blog/[seu-slug]` e verifique se tudo é renderizado sem problemas de layout ou CSS.
+
+### 5. Divulgação (Atualizações, IndexNow e Search Console)
+Siga a skill [publish-new-pages](file:///.agent/skills/publish-new-pages/SKILL.md): entrada em `app/updates/page.tsx` (tipo `content`) e URL do post em `scripts/submit-indexnow.js` no mesmo PR; depois do deploy em produção, envio ao IndexNow e solicitação de indexação no Google Search Console.
