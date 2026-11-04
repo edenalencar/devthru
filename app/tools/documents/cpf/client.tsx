@@ -150,10 +150,10 @@ export function CPFGeneratorPage() {
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <FileText className="h-8 w-8 text-primary" />
-                            <h1 className="text-4xl font-bold">Gerador de CPF</h1>
+                            <h1 className="text-4xl font-bold">Gerador de CPF Válido</h1>
                         </div>
                         <p className="text-lg text-muted-foreground">
-                            Gere CPFs válidos para testes e desenvolvimento. Valide CPFs existentes.
+                            Gere CPF válido e aleatório (com ou sem pontuação, por estado ou em lote) para testes e desenvolvimento, e valide CPFs existentes.
                         </p>
                     </div>
 

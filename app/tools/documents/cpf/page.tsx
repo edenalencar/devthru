@@ -5,14 +5,14 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CPFGeneratorPage } from "./client"
 
-const title = "Gerador e Validador de CPF Válido Online - Grátis"
-const description = "Gerador de CPF online gratuito. Gere e valide CPFs válidos em 1 clique para testes de software, QA e desenvolvimento com algoritmo oficial."
+const title = "Gerador de CPF Válido e Aleatório Online"
+const description = "Gerador de CPF válido e aleatório: gere CPF com ou sem pontuação, por estado e em lote, e valide CPFs em 1 clique. Grátis, para testes de software e QA."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
     description,
     path: "/tools/documents/cpf",
-    keywords: ["gerador de cpf", "validador de cpf", "gerar cpf valido", "testar cpf", "gerador cpf", "cpf generator", "massa de dados", "dev tools"]
+    keywords: ["gerador de cpf", "gerar cpf", "cpf válido", "gerador de cpf válido", "cpf aleatório", "validador de cpf", "gerar cpf valido", "gerador cpf", "cpf generator", "massa de dados"]
 })
 
 export default function Page() {
@@ -21,8 +21,8 @@ export default function Page() {
             
             <JsonLd
                 data={getToolSchemaGraph({
-                    name: "Gerador e Validador de CPF Válido Online [Grátis]",
-                    description: "Gerador de CPF online gratuito. Gere e valide CPFs válidos em 1 clique para testes de software, QA e desenvolvimento com algoritmo oficial.",
+                    name: "Gerador de CPF Válido Online",
+                    description,
                     categoryLabel: "Documentos",
                     path: "/tools/documents/cpf",
                     toolSlug: "cpf"

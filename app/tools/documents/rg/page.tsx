@@ -6,7 +6,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { RGGeneratorPage } from "./client"
 
-const title = "Gerador e Validador de RG Online por Estado - Grátis"
+const title = "Gerador de RG Válido e Aleatório por Estado"
 const description = "Gere e valide números de RG (Registro Geral) válidos com dígito verificador em 1 clique. Ferramenta online gratuita para testes e homologação de sistemas."
 
 export const metadata: Metadata = generateToolMetadata({
