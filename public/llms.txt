@@ -38,6 +38,7 @@ O DevThru foi criado para fornecer utilitários rápidos e sem atrito, incluindo
 
 ### Texto e Conversão
 - [Letras Diferentes](https://www.devthru.com/tools/text/fancy-letters) - Letras bonitas em 17 estilos Unicode para copiar e colar
+- [Gerador de Nicks](https://www.devthru.com/tools/text/nick-generator) - Nicks gamer, fofos, sombrios ou engraçados para jogos e redes sociais
 - [Contador de Caracteres](https://www.devthru.com/tools/text/character-counter) - Contador de caracteres, palavras, linhas e parágrafos
 - [Maiúsculas e Minúsculas](https://www.devthru.com/tools/text/case-converter) - Conversor de letra maiúscula, minúscula, camelCase e snake_case
 - [Número por Extenso](https://www.devthru.com/tools/converters/number-to-words) - Números e valores em reais por extenso
@@ -68,6 +69,7 @@ O DevThru foi criado para fornecer utilitários rápidos e sem atrito, incluindo
 ### Dados Pessoais
 - [Gerador de Pessoa Completa](https://www.devthru.com/tools/personal/person) - Gerador de perfil cadastral fictício
 - [Gerador de Endereço](https://www.devthru.com/tools/personal/address) - Gerador de endereços brasileiros
+- [Gerador de CEP](https://www.devthru.com/tools/personal/cep) - CEPs válidos por estado e consulta de UF pela faixa dos Correios
 - [Gerador de Nomes](https://www.devthru.com/tools/personal/name) - Gerador de nomes brasileiros
 - [Gerador de Telefone](https://www.devthru.com/tools/personal/phone) - Gerador de telefone e celular
 - [Gerador de E-mail](https://www.devthru.com/tools/personal/email) - Gerador de e-mail temporário

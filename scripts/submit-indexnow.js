@@ -75,6 +75,7 @@ const urls = [
     "https://www.devthru.com/tools/text/email-signature",
     "https://www.devthru.com/tools/text/email-validator",
     "https://www.devthru.com/tools/text/fancy-letters",
+    "https://www.devthru.com/tools/text/nick-generator",
     "https://www.devthru.com/tools/text/slug-generator",
 
     // Tools - Documents
@@ -113,6 +114,7 @@ const urls = [
     "https://www.devthru.com/tools/personal/name",
     "https://www.devthru.com/tools/personal/person",
     "https://www.devthru.com/tools/personal/phone",
+    "https://www.devthru.com/tools/personal/cep",
 
     // Blog
     "https://www.devthru.com/blog/como-decodificar-boleto-bancario",

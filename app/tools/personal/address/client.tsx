@@ -14,6 +14,7 @@ import { RelatedTools } from "@/components/tools/related-tools"
 import { ToolFaqSection } from "@/components/tools/tool-faq-section"
 import { Label } from "@/components/ui/label"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { generateCepForCity, type UF } from "@/lib/utils/generators/cep"
 
 const streetTypes = ["Rua", "Avenida", "Travessa", "Alameda", "Praça", "Rodovia"]
 const streetNames = [
@@ -45,10 +46,7 @@ export function AddressGeneratorPage() {
         const neighborhood = neighborhoods[Math.floor(Math.random() * neighborhoods.length)]
         const city = cities[Math.floor(Math.random() * cities.length)]
 
-        // Generate random CEP
-        const cepPrefix = Math.floor(Math.random() * 90000) + 10000
-        const cepSuffix = Math.floor(Math.random() * 900) + 100
-        const cep = `${cepPrefix}-${cepSuffix}`
+        const cep = generateCepForCity(city.name, city.uf as UF)
 
         return `${type} ${name}, ${number} - ${neighborhood}, ${city.name} - ${city.uf}, ${cep}`
     }

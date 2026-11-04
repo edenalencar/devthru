@@ -859,6 +859,42 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "Calcula a data final de um prazo considerando apenas dias úteis e excluindo finais de semana e feriados nacionais brasileiros."
         }
     ],
+    "nick-generator": [
+        {
+            "question": "Como criar um nick legal para jogos?",
+            "answer": "Escolha um estilo (gamer, fofo, sombrio ou engraçado), digite seu nome ou apelido se quiser personalizar e clique em Gerar nicks. O gerador combina palavras, prefixos e sufixos do estilo escolhido. Clique várias vezes até achar um que combine com você."
+        },
+        {
+            "question": "Qual o limite de caracteres do nick no Free Fire?",
+            "answer": "O Free Fire aceita nicks de até 12 caracteres. Letras diferentes e símbolos contam como caracteres e alguns podem não ser aceitos; se o jogo recusar, troque o estilo de letra para Normal, Negrito ou Versalete."
+        },
+        {
+            "question": "Posso usar letras diferentes no nick?",
+            "answer": "Sim. Use o campo \"Letras diferentes\" para aplicar estilos como negrito, cursiva, gótica ou círculos a todos os nicks gerados. São caracteres Unicode, que funcionam na maioria dos jogos, no Discord e no Instagram."
+        },
+        {
+            "question": "O nick gerado é único?",
+            "answer": "Os nicks são combinações aleatórias e não verificamos a disponibilidade em cada jogo. Se o nick já estiver em uso, ligue a opção de números ou gere outra lista."
+        }
+    ],
+    "cep": [
+        {
+            "question": "O CEP gerado existe de verdade?",
+            "answer": "O CEP gerado fica dentro da faixa oficial dos Correios para o estado escolhido e tem formato válido, mas não há garantia de que corresponda a um logradouro real. Ele é feito para testes de software, como preencher formulários e validar regras por UF."
+        },
+        {
+            "question": "Como saber de qual estado é um CEP?",
+            "answer": "Pelos 5 primeiros dígitos. Cada estado tem uma faixa: São Paulo vai de 01000-000 a 19999-999, Rio de Janeiro de 20000-000 a 28999-999, Minas Gerais de 30000-000 a 39999-999 e assim por diante. Digite o CEP no campo \"Descobrir o estado de um CEP\" para ver a UF."
+        },
+        {
+            "question": "O que significam os dígitos do CEP?",
+            "answer": "O primeiro dígito indica a região (ex.: 0 e 1 para São Paulo), o segundo a sub-região, o terceiro o setor, o quarto o subsetor e o quinto o divisor de subsetor. Os três últimos (sufixo) identificam o logradouro; sufixos de 900 a 999 são usados para CEPs especiais, como Caixas Postais e grandes usuários."
+        },
+        {
+            "question": "Como validar CEP em formulários?",
+            "answer": "Verifique se o valor tem 8 dígitos (com ou sem hífen, regex /^\\d{5}-?\\d{3}$/) e, se precisar conferir o estado, compare o prefixo com a faixa da UF. Para confirmar o endereço completo, consulte uma base atualizada dos Correios."
+        }
+    ],
     "fancy-letters": [
         {
             "question": "Como usar letras diferentes no Instagram?",

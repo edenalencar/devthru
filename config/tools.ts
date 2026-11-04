@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase, Globe, Ruler, MessageSquare, Lock, Percent, Shuffle, Sparkles, SpellCheck, Divide } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase, Globe, Ruler, MessageSquare, Lock, Percent, Shuffle, Sparkles, SpellCheck, Divide, Mailbox, Gamepad2 } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -119,6 +119,15 @@ export const tools: Tool[] = [
         href: "/tools/personal/address",
     },
     {
+        id: "cep",
+        name: "Gerador de CEP",
+        title: "Gerador de CEP",
+        description: "Gere CEPs válidos por estado e descubra a UF de qualquer CEP pela faixa dos Correios",
+        category: "personal",
+        icon: Mailbox,
+        href: "/tools/personal/cep",
+    },
+    {
         id: "phone",
         name: "Gerador de Telefone",
         title: "Gerador de Telefone",
@@ -155,6 +164,15 @@ export const tools: Tool[] = [
         category: "text",
         icon: Sparkles,
         href: "/tools/text/fancy-letters",
+    },
+    {
+        id: "nick-generator",
+        name: "Gerador de Nicks",
+        title: "Gerador de Nicks",
+        description: "Crie nicks gamer, fofos, sombrios ou engraçados, com seu nome e em letras diferentes, para jogos e redes sociais.",
+        category: "text",
+        icon: Gamepad2,
+        href: "/tools/text/nick-generator",
     },
     {
         id: "case-converter",
