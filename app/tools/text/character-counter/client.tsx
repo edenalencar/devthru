@@ -47,9 +47,9 @@ export function CharacterCounterPage() {
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
                     <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Texto e Conversão" }, { "label": "Contador de Caracteres" }]} className="mb-6" />
                     <div className="mb-8">
-                        <h1 className="text-3xl font-bold mb-2">Contador de Caracteres</h1>
+                        <h1 className="text-3xl font-bold mb-2">Contador de Caracteres Online</h1>
                         <p className="text-muted-foreground">
-                            Conte caracteres, palavras, linhas e parágrafos do seu texto em tempo real.
+                            Conte letras, caracteres (com e sem espaço), palavras, linhas e parágrafos do seu texto em tempo real.
                         </p>
                     </div>
 
@@ -85,6 +85,14 @@ export function CharacterCounterPage() {
                                 Ele fornece estatísticas em tempo real sobre o número de caracteres, palavras, linhas e parágrafos,
                                 ajudando você a ajustar seu conteúdo para limites específicos de redes sociais ou documentos.
                             </p>
+                            <h3 className="text-base font-semibold mt-4">Limites de caracteres mais buscados</h3>
+                            <ul>
+                                <li><strong>X (Twitter):</strong> 280 caracteres por post (contas gratuitas).</li>
+                                <li><strong>Instagram:</strong> 2.200 caracteres na legenda e 150 na bio.</li>
+                                <li><strong>Title tag (SEO):</strong> cerca de 50 a 60 caracteres para não ser cortado no Google.</li>
+                                <li><strong>Meta description:</strong> cerca de 150 a 160 caracteres.</li>
+                                <li><strong>SMS:</strong> 160 caracteres por mensagem (70 com acentos/emojis em UCS-2).</li>
+                            </ul>
                             <p className="text-sm text-muted-foreground mt-4">
                                 <strong>Nota:</strong> A contagem é realizada localmente no seu navegador para garantir privacidade e velocidade.
                             </p>

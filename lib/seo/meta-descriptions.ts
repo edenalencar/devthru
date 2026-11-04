@@ -36,7 +36,7 @@ export const GUIDE_CATEGORY_META_DESCRIPTIONS: Record<string, string> = {
 }
 
 export const TOOL_META_DESCRIPTIONS = {
-    caseConverter: "Transforme textos para UPPERCASE, lowercase, camelCase, PascalCase e snake_case em segundos. Conversor de texto online gratuito, sem cadastro e no navegador.",
+    caseConverter: "Converta texto para letra maiúscula, minúscula, Primeira Letra Maiúscula, camelCase, PascalCase e snake_case em 1 clique. Grátis, sem cadastro e no navegador.",
     fipe: "Consulte a Tabela FIPE com preços médios de carros, motos e caminhões no mercado brasileiro. Pesquise por marca, modelo e ano de fabricação grátis no DevThru.",
 } as const
 

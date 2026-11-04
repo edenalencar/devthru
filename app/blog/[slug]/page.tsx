@@ -162,6 +162,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                 prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
                                 prose-pre:bg-zinc-950 prose-pre:text-zinc-50 prose-pre:rounded-xl prose-pre:border prose-pre:border-zinc-800
                                 prose-pre:overflow-x-auto prose-pre:text-sm
+                                [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:rounded-none
                                 prose-table:border-collapse prose-th:border prose-th:px-4 prose-th:py-2 prose-th:bg-muted
                                 prose-td:border prose-td:px-4 prose-td:py-2
                                 prose-strong:text-foreground

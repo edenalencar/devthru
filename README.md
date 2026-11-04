@@ -4,7 +4,7 @@ A modern, fast, and secure developer toolkit. DevThru: Quick data for the road. 
 
 ## ✨ Features
 
-- **71 tools in 10 categories** (`automotive`, `business`, `converters`, `development`, `documents`, `finance`, `image`, `personal`, `text`, `utilities`), cataloged in `config/tools.ts`
+- **76 tools in 10 categories** (`automotive`, `business`, `converters`, `development`, `documents`, `finance`, `image`, `personal`, `text`, `utilities`), cataloged in `config/tools.ts`
 - **Brazilian data focus**: CPF, CNPJ, NF-e/CT-e/MDF-e, boleto, Pix, CNAB, vehicle documents and test data
 - **Bulk generation and export** to CSV, JSON, Excel and SQL on paid plans
 - **REST API** (`/api/v1/generate`, `/api/v1/validate`, `/api/v1/usage`) on the Business plan
@@ -15,7 +15,7 @@ A modern, fast, and secure developer toolkit. DevThru: Quick data for the road. 
 
 - **Framework:** [Next.js 16](https://nextjs.org/) with App Router
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS v4
+- **Styling:** Tailwind CSS v4 (theme colors live in `tailwind.config.ts`, loaded via `@config` in `app/globals.css`)
 - **UI Components:** Radix UI primitives
 - **Authentication:** Supabase Auth
 - **Database:** Supabase (PostgreSQL)
@@ -110,7 +110,8 @@ devhubtools/
 │   ├── tools/            # Tool-specific components
 │   └── ui/               # Reusable UI components
 ├── config/               # Site and tool catalog
-├── docs/specs/           # Tool specs, mirroring app/tools
+├── docs/specs/           # Tool specs, mirroring app/tools (check with `node scripts/verify-specs.js`)
+├── docs/                 # Also: SEO growth plan (seo-plano-crescimento-2026-11.md)
 ├── lib/                   # Business logic
 │   ├── api/              # Public API auth, rate limit and generators
 │   ├── content/          # Blog posts and programmatic content

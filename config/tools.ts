@@ -1,4 +1,4 @@
-import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase, Globe, Ruler, MessageSquare, Lock } from "lucide-react"
+import { FileText, Code2, Hash, Key, Type, User, MapPin, Phone, Mail, CreditCard, Car, Shield, Binary, QrCode, Braces, AlignLeft, GitCompare, Link, CaseSensitive, ArrowRightLeft, Calculator, Coins, Terminal, FileCode, Database, Clock, Image, Barcode, Award, Calendar, Briefcase, Globe, Ruler, MessageSquare, Lock, Percent, Shuffle, Sparkles, SpellCheck, Divide } from "lucide-react"
 
 export interface Tool {
     id: string
@@ -148,6 +148,15 @@ export const tools: Tool[] = [
         href: "/tools/text/character-counter",
     },
     {
+        id: "fancy-letters",
+        name: "Letras Diferentes",
+        title: "Letras Diferentes",
+        description: "Gere letras diferentes e bonitas (negrito, cursiva, gótica, riscada) para copiar e colar no Instagram, nicks de jogos e WhatsApp.",
+        category: "text",
+        icon: Sparkles,
+        href: "/tools/text/fancy-letters",
+    },
+    {
         id: "case-converter",
         name: "Conversor de Case",
         title: "Conversor de Case",
@@ -193,6 +202,15 @@ export const tools: Tool[] = [
         category: "converters",
         icon: Calculator,
         href: "/tools/converters/base",
+    },
+    {
+        id: "number-to-words",
+        name: "Número por Extenso",
+        title: "Número por Extenso",
+        description: "Escreva números e valores em reais por extenso, para cheques, contratos e recibos",
+        category: "converters",
+        icon: SpellCheck,
+        href: "/tools/converters/number-to-words",
     },
     {
         id: "currency-converter",
@@ -318,6 +336,33 @@ export const tools: Tool[] = [
         category: "utilities",
         icon: Key,
         href: "/tools/utilities/password",
+    },
+    {
+        id: "percentage-calculator",
+        name: "Calculadora de Porcentagem",
+        title: "Calculadora de Porcentagem",
+        description: "Calcule X% de um valor, aumento, desconto e variação percentual",
+        category: "utilities",
+        icon: Percent,
+        href: "/tools/utilities/percentage-calculator",
+    },
+    {
+        id: "rule-of-three",
+        name: "Regra de 3",
+        title: "Calculadora de Regra de 3",
+        description: "Resolva regra de três simples direta e inversa com passo a passo",
+        category: "utilities",
+        icon: Divide,
+        href: "/tools/utilities/rule-of-three",
+    },
+    {
+        id: "random-number",
+        name: "Número Aleatório",
+        title: "Gerador de Número Aleatório",
+        description: "Sorteie números aleatórios em qualquer intervalo, com ou sem repetição",
+        category: "utilities",
+        icon: Shuffle,
+        href: "/tools/utilities/random-number",
     },
     {
         id: "lorem",
