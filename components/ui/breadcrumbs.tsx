@@ -15,7 +15,7 @@ interface BreadcrumbsProps {
 export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
     return (
         <nav aria-label="Breadcrumb" className={cn("flex", className)}>
-            <ol className="flex items-center space-x-2">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
                 <li>
                     <Link
                         href="/"
