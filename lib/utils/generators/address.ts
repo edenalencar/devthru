@@ -1,3 +1,5 @@
+import { generateCepForCity, type UF } from './cep'
+
 export interface Address {
     street: string
     number: number
@@ -33,7 +35,7 @@ export function generateAddress(): Address {
     const neighborhood = neighborhoods[Math.floor(Math.random() * neighborhoods.length)]
     const location = cities[Math.floor(Math.random() * cities.length)]
     const number = Math.floor(Math.random() * 2000) + 1
-    const cep = `${Math.floor(Math.random() * 89999) + 10000}-${Math.floor(Math.random() * 999).toString().padStart(3, '0')}`
+    const cep = generateCepForCity(location.city, location.state as UF)
 
     return {
         street: `${type} ${name}`,

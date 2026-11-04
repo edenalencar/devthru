@@ -21,6 +21,8 @@ const pages = [
     { path: "app/tools/utilities/rule-of-three/page.tsx", query: "regra de 3" },
     { path: "app/tools/utilities/percentage-calculator/page.tsx", query: "calculadora de porcentagem" },
     { path: "app/tools/utilities/random-number/page.tsx", query: "número aleatório" },
+    { path: "app/tools/personal/cep/page.tsx", query: "gerador de cep" },
+    { path: "app/tools/text/nick-generator/page.tsx", query: "gerador de nicks" },
 ]
 
 function read(path: string) {

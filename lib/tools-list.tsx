@@ -4,7 +4,7 @@ import {
     Award, CreditCard, Code2, Barcode, Image as ImageIcon,
     MapPin, Mail, User, Phone, Type, Lock, Binary,
     Calendar, Braces, Key, QrCode, Hash, Link, FileDiff, Briefcase,
-    Globe, Ruler, MessageSquare, Percent, Shuffle, Sparkles, SpellCheck, Divide
+    Globe, Ruler, MessageSquare, Percent, Shuffle, Sparkles, SpellCheck, Divide, Mailbox, Gamepad2
 } from "lucide-react"
 import { LucideIcon } from "lucide-react"
 
@@ -71,6 +71,7 @@ export const tools: Tool[] = [
 
     // Personal
     { slug: 'address', category: 'personal', title: 'Endereço (CEP)', icon: MapPin },
+    { slug: 'cep', category: 'personal', title: 'Gerador de CEP', icon: Mailbox },
     { slug: 'email', category: 'personal', title: 'Gerador de Email', icon: Mail },
     { slug: 'lgpd-data', category: 'personal', title: 'Dados LGPD', icon: Shield },
     { slug: 'name', category: 'personal', title: 'Gerador de Nomes', icon: User },
@@ -81,6 +82,7 @@ export const tools: Tool[] = [
     { slug: 'case-converter', category: 'text', title: 'Maiúsculas/Minúsculas', icon: Type },
     { slug: 'character-counter', category: 'text', title: 'Contador de Caracteres', icon: Type },
     { slug: 'fancy-letters', category: 'text', title: 'Letras Diferentes', icon: Sparkles },
+    { slug: 'nick-generator', category: 'text', title: 'Gerador de Nicks', icon: Gamepad2 },
     { slug: 'diff-checker', category: 'text', title: 'Comparador de Texto', icon: FileDiff },
     { slug: 'email-signature', category: 'text', title: 'Assinatura de Email', icon: Mail },
     { slug: 'email-validator', category: 'text', title: 'Validador de Email', icon: Mail },

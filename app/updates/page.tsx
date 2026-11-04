@@ -34,6 +34,13 @@ interface UpdateItem {
 const updates: UpdateItem[] = [
     {
         date: "04 de Novembro de 2026",
+        title: "Gerador de CEP por Estado e Gerador de Nicks",
+        description: "Lançamento de 2 novas ferramentas gratuitas: Gerador de CEP (CEPs válidos dentro da faixa oficial dos Correios de cada estado, com ou sem hífen e em lote, além de consulta da UF de qualquer CEP) e Gerador de Nicks (estilos gamer, fofo, sombrio e engraçado, com seu nome e letras diferentes para Free Fire, Roblox, Discord e Instagram). Também corrigimos os geradores de endereço e de pessoa, que agora geram CEPs do mesmo estado e da mesma capital do endereço.",
+        type: "feature",
+        version: "1.51.0"
+    },
+    {
+        date: "04 de Novembro de 2026",
         title: "Letras Diferentes, Regra de 3, Porcentagem, Número por Extenso e Número Aleatório",
         description: "Lançamento de 5 novas ferramentas gratuitas: Letras Diferentes para copiar e colar (17 estilos Unicode como negrito, cursiva, gótica e riscado, para Instagram, nicks e WhatsApp), Calculadora de Regra de 3 (direta e inversa, com passo a passo), Calculadora de Porcentagem (X% de um valor, aumento, desconto e variação percentual), Número por Extenso (inteiros até trilhões e valores em reais com centavos) e Gerador de Número Aleatório (sorteios com ou sem repetição usando criptografia do navegador). Também reforçamos o Contador de Caracteres (limites de X, Instagram e SEO), o Gerador de Senha e o Conversor de Maiúsculas e Minúsculas, e corrigimos as cores do tema, que voltam a destacar botões, abas selecionadas e textos secundários em todo o site.",
         type: "feature",
