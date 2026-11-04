@@ -108,11 +108,16 @@ Toda nova ferramenta criada no DevThru **DEVE** seguir impreterivelmente os 8 pi
    ```
 
 ### 8. 📁 REGISTROS GLOBAIS OBRIGATÓRIOS
-Ao criar uma nova ferramenta com o slug `<tool-slug>` na categoria `<category>`, registre-a em todos os 7 locais:
+Ao criar uma nova ferramenta com o slug `<tool-slug>` na categoria `<category>`, registre-a em todos os 10 locais:
 1. `app/tools/<category>/<tool-slug>/page.tsx`
 2. `app/tools/<category>/<tool-slug>/client.tsx`
 3. `config/tools.ts`
-4. `lib/tools-list.tsx`
+4. `lib/tools-list.tsx` (alimenta o sitemap e as ferramentas relacionadas)
 5. `lib/seo/meta-descriptions.ts` e `lib/seo/faqs.ts`
 6. `public/llms.txt`
 7. `scripts/submit-indexnow.js`
+8. `docs/specs/<category>/<tool-slug>.md` (confira com `node scripts/verify-specs.js`)
+9. `__tests__/seo-top-pages.test.ts` (título + " | DevThru" ≤ 60 caracteres, descrição de 70 a 160, consulta principal no título)
+10. `app/updates/page.tsx` (entrada no changelog com a nova versão do `package.json`)
+
+> Cores do tema (`bg-primary`, `text-muted-foreground`, `border-border`...) vêm do `tailwind.config.ts`, carregado pelo `@config` em `app/globals.css`. Não remova essa linha.
