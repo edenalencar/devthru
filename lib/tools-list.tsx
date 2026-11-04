@@ -4,7 +4,7 @@ import {
     Award, CreditCard, Code2, Barcode, Image as ImageIcon,
     MapPin, Mail, User, Phone, Type, Lock, Binary,
     Calendar, Braces, Key, QrCode, Hash, Link, FileDiff, Briefcase,
-    Globe, Ruler, MessageSquare
+    Globe, Ruler, MessageSquare, Percent, Shuffle, Sparkles, SpellCheck, Divide
 } from "lucide-react"
 import { LucideIcon } from "lucide-react"
 
@@ -33,6 +33,7 @@ export const tools: Tool[] = [
     { slug: 'base', category: 'converters', title: 'Conversor de Base', icon: Calculator },
     { slug: 'currency', category: 'converters', title: 'Conversor de Moeda', icon: Coins },
     { slug: 'unit', category: 'converters', title: 'Conversor de Unidades', icon: ArrowRightLeft },
+    { slug: 'number-to-words', category: 'converters', title: 'Número por Extenso', icon: SpellCheck },
 
     // Development
     { slug: 'minifier', category: 'development', title: 'Minificador', icon: FileCode },
@@ -79,6 +80,7 @@ export const tools: Tool[] = [
     // Text
     { slug: 'case-converter', category: 'text', title: 'Maiúsculas/Minúsculas', icon: Type },
     { slug: 'character-counter', category: 'text', title: 'Contador de Caracteres', icon: Type },
+    { slug: 'fancy-letters', category: 'text', title: 'Letras Diferentes', icon: Sparkles },
     { slug: 'diff-checker', category: 'text', title: 'Comparador de Texto', icon: FileDiff },
     { slug: 'email-signature', category: 'text', title: 'Assinatura de Email', icon: Mail },
     { slug: 'email-validator', category: 'text', title: 'Validador de Email', icon: Mail },
@@ -91,6 +93,9 @@ export const tools: Tool[] = [
     { slug: 'json', category: 'utilities', title: 'Formatador JSON', icon: Braces },
     { slug: 'lorem', category: 'utilities', title: 'Lorem Ipsum', icon: Type },
     { slug: 'password', category: 'utilities', title: 'Gerador de Senha', icon: Key },
+    { slug: 'percentage-calculator', category: 'utilities', title: 'Calculadora de Porcentagem', icon: Percent },
+    { slug: 'random-number', category: 'utilities', title: 'Número Aleatório', icon: Shuffle },
+    { slug: 'rule-of-three', category: 'utilities', title: 'Regra de 3', icon: Divide },
     { slug: 'qrcode', category: 'utilities', title: 'QR Code', icon: QrCode },
     { slug: 'uuid', category: 'utilities', title: 'Gerador de UUID', icon: Hash },
     { slug: 'xml-validator', category: 'utilities', title: 'Validador XML', icon: FileCode },
