@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Tailwind v4 só lê o tailwind.config.ts (cores do tema, radius, animações) com @config. */
+@config "../tailwind.config.ts";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));

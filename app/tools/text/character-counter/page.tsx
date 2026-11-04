@@ -4,14 +4,14 @@ import { Metadata } from "next"
 import { CharacterCounterPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Contador de Caracteres, Palavras e Linhas Online - Grátis"
-const description = "Conte caracteres, palavras, espaços, linhas, parágrafos e tempo estimado de leitura de textos online em tempo real com precisão."
+const title = "Contador de Caracteres Online e de Palavras"
+const description = "Contador de caracteres online: conte letras, caracteres com e sem espaço, palavras, linhas e parágrafos em tempo real. Ideal para Instagram, X, SEO e redações."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
     description,
     path: "/tools/text/character-counter",
-    keywords: ["contador caracteres", "contador palavras", "analise texto", "seo tools"]
+    keywords: ["contador de caracteres", "contador de caracteres online", "contar caracteres", "contador de letras", "contador de palavras", "caracteres com espaço", "limite de caracteres instagram"]
 })
 
 export default function Page() {
@@ -21,7 +21,7 @@ export default function Page() {
             <JsonLd
                 data={getToolSchemaGraph({
                     name: "Contador de Caracteres Online",
-                    description: "Conte caracteres, palavras, linhas e parágrafos do seu texto em tempo real. Ferramenta online gratuita ideal para redatores, estudantes e profissionais de SEO.",
+                    description,
                     categoryLabel: "Texto",
                     path: "/tools/text/character-counter",
                     toolSlug: "character-counter"

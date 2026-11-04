@@ -47,7 +47,7 @@ export function PasswordGeneratorPage() {
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-4">
                             <Key className="h-8 w-8 text-primary" />
-                            <h1 className="text-4xl font-bold">Gerador de Senhas</h1>
+                            <h1 className="text-4xl font-bold">Gerador de Senha Forte</h1>
                         </div>
                         <p className="text-lg text-muted-foreground">
                             Crie senhas fortes e seguras personalizadas para suas contas.

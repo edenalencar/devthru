@@ -7,13 +7,14 @@ import { TOOL_META_DESCRIPTIONS } from "@/lib/seo/meta-descriptions"
 
 import { CaseConverterPage } from "./client"
 
-const title = "Conversor de Texto: camelCase, snake_case, PascalCase - Grátis"
+const title = "Converter Letra Maiúscula e Minúscula Online"
 const description = TOOL_META_DESCRIPTIONS.caseConverter
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Conversor de Case: Maiúsculas, Minúsculas e camelCase",
+    title,
     description,
     path: "/tools/text/case-converter",
+    keywords: ["letra maiúscula", "converter maiúsculas e minúsculas", "texto em minúsculo", "deixar tudo maiúsculo", "camelCase", "snake_case"]
 })
 
 export default function Page() {
@@ -22,8 +23,8 @@ export default function Page() {
 
             <JsonLd
                 data={getToolSchemaGraph({
-                    name: "Conversor de Case Online",
-                    description: "Ferramenta online gratuita para Conversor de Case Online.",
+                    name: "Conversor de Maiúsculas e Minúsculas Online",
+                    description,
                     categoryLabel: "Texto",
                     path: "/tools/text/case-converter",
                     toolSlug: "case-converter"

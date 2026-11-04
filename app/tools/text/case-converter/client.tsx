@@ -67,9 +67,9 @@ export function CaseConverterPage() {
                 <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
                     <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Texto e Conversão" }, { "label": "Maiúsculas/Minúsculas" }]} className="mb-6" />
                     <div className="mb-8">
-                        <h1 className="text-3xl font-bold mb-2">Conversor de Case</h1>
+                        <h1 className="text-3xl font-bold mb-2">Converter Maiúsculas e Minúsculas</h1>
                         <p className="text-muted-foreground">
-                            Transforme seus textos para diferentes formatos de capitalização instantaneamente.
+                            Transforme seu texto em letra maiúscula, minúscula, Primeira Letra Maiúscula ou formatos de código (camelCase, snake_case) instantaneamente.
                         </p>
                     </div>
 

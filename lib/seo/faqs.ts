@@ -645,6 +645,18 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         {
             "question": "As senhas geradas são armazenadas?",
             "answer": "Não. Todo o processo é executado na memória do cliente e nenhuma senha gerada é gravada ou enviada para servidores."
+        },
+        {
+            "question": "Qual o tamanho ideal de uma senha forte?",
+            "answer": "Use pelo menos 12 caracteres, de preferência 16 ou mais, combinando letras maiúsculas, minúsculas, números e símbolos. Cada caractere extra multiplica o número de combinações possíveis e torna ataques de força bruta inviáveis."
+        },
+        {
+            "question": "Devo usar a mesma senha em vários sites?",
+            "answer": "Não. Se um site vazar sua senha, todas as contas que a reutilizam ficam expostas. Gere uma senha aleatória diferente para cada serviço e guarde-as em um gerenciador de senhas, ativando a verificação em duas etapas sempre que possível."
+        },
+        {
+            "question": "Uma senha aleatória é melhor que uma frase-senha?",
+            "answer": "Ambas são seguras se forem longas. Senhas aleatórias de 16+ caracteres são ideais para guardar em gerenciadores; frases-senha com 4 ou mais palavras aleatórias são mais fáceis de memorizar para a senha mestra."
         }
     ],
     "hash": [
@@ -661,6 +673,18 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         {
             "question": "Quais formatos de texto são suportados no conversor?",
             "answer": "Converte textos para camelCase, snake_case, PascalCase, kebab-case, UPPERCASE, lowercase, Title Case e CONSTANT_CASE."
+        },
+        {
+            "question": "Como transformar um texto todo em letra maiúscula?",
+            "answer": "Cole o texto na caixa e escolha a opção MAIÚSCULAS (UPPERCASE). O resultado aparece na hora e pode ser copiado com um clique. Acentos e cedilha são preservados (ex.: \"ação\" vira \"AÇÃO\")."
+        },
+        {
+            "question": "Como converter texto de maiúsculo para minúsculo?",
+            "answer": "Selecione a opção minúsculas (lowercase). É útil para corrigir textos digitados com o Caps Lock ligado. Para deixar só a primeira letra de cada palavra maiúscula, use Title Case."
+        },
+        {
+            "question": "Existe atalho no Word ou Google Docs para mudar maiúsculas e minúsculas?",
+            "answer": "No Word, selecione o texto e pressione Shift + F3 para alternar entre maiúsculas, minúsculas e iniciais maiúsculas. No Google Docs, use o menu Formatar > Texto > Maiúsculas e minúsculas. O conversor online funciona em qualquer lugar, sem instalar nada."
         }
     ],
     "diff-checker": [
@@ -835,10 +859,108 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "Calcula a data final de um prazo considerando apenas dias úteis e excluindo finais de semana e feriados nacionais brasileiros."
         }
     ],
+    "fancy-letters": [
+        {
+            "question": "Como usar letras diferentes no Instagram?",
+            "answer": "Digite seu texto, escolha o estilo e clique em copiar. Depois cole na bio, no nome de perfil, na legenda ou nos comentários do Instagram. Funciona porque as letras são caracteres Unicode, não uma fonte."
+        },
+        {
+            "question": "As letras diferentes funcionam em nick de Free Fire e outros jogos?",
+            "answer": "Na maioria dos jogos e apps, sim. Alguns jogos limitam os caracteres aceitos no nick; se um estilo aparecer como quadrado ou for recusado, teste outro, como Versalete, Negrito ou Círculos."
+        },
+        {
+            "question": "Por que algumas letras aparecem como quadrados?",
+            "answer": "O aparelho ou aplicativo não tem uma fonte com aquele caractere Unicode. Celulares mais antigos podem não exibir alfabetos raros. Estilos como Negrito, Itálico e Versalete têm a maior compatibilidade."
+        },
+        {
+            "question": "Letras com acento funcionam?",
+            "answer": "Sim. O acento é preservado como um sinal combinante sobre a letra estilizada (ex.: ã, é, ç). A aparência pode variar um pouco entre aplicativos."
+        }
+    ],
+    "number-to-words": [
+        {
+            "question": "Como escrever um valor em reais por extenso?",
+            "answer": "Escreva a parte inteira seguida de \"real\" ou \"reais\" e os centavos seguidos de \"centavo\" ou \"centavos\", ligados por \"e\". Ex.: R$ 1.250,99 = mil duzentos e cinquenta reais e noventa e nove centavos."
+        },
+        {
+            "question": "Quando usar \"cem\" e quando usar \"cento\"?",
+            "answer": "Use \"cem\" só para o número 100 exato. De 101 a 199 usa-se \"cento\": cento e um, cento e cinquenta, cento e noventa e nove."
+        },
+        {
+            "question": "Escreve-se \"mil\" ou \"um mil\"?",
+            "answer": "O correto é apenas \"mil\" (1.000 = mil; 1.500 = mil e quinhentos). A forma \"um mil\" aparece às vezes em cheques para evitar fraudes, mas não é a norma padrão."
+        },
+        {
+            "question": "Quando vai \"de\" antes de reais?",
+            "answer": "Quando o valor termina em milhão, bilhão ou trilhão exatos: R$ 2.000.000,00 = dois milhões de reais. Já R$ 2.500.000,00 = dois milhões e quinhentos mil reais."
+        }
+    ],
+    "rule-of-three": [
+        {
+            "question": "Como fazer regra de 3 simples?",
+            "answer": "Monte a proporção A está para B assim como C está para X. Na regra direta, multiplique em cruz: X = (B × C) ÷ A. Ex.: se 2 kg custam R$ 10, 5 kg custam (10 × 5) ÷ 2 = R$ 25."
+        },
+        {
+            "question": "Qual a diferença entre regra de 3 direta e inversa?",
+            "answer": "Na direta, as grandezas crescem juntas (mais quilos, maior preço). Na inversa, quando uma cresce a outra diminui (mais trabalhadores, menos dias). Na inversa a conta é X = (A × B) ÷ C."
+        },
+        {
+            "question": "Como usar regra de 3 para calcular porcentagem?",
+            "answer": "Use 100% como um dos termos. Ex.: se 200 é 100%, quanto é 30? 200 está para 100 assim como 30 está para X: X = (100 × 30) ÷ 200 = 15%. Para isso também existe a Calculadora de Porcentagem."
+        }
+    ],
+    "percentage-calculator": [
+        {
+            "question": "Como calcular porcentagem de um valor?",
+            "answer": "Multiplique o valor pela porcentagem e divida por 100. Ex.: 15% de 200 = (15 × 200) ÷ 100 = 30."
+        },
+        {
+            "question": "Como calcular desconto em porcentagem?",
+            "answer": "Multiplique o valor por (1 − desconto ÷ 100). Ex.: R$ 200 com 10% de desconto = 200 × 0,9 = R$ 180. Para aumento, use (1 + aumento ÷ 100)."
+        },
+        {
+            "question": "Como calcular a variação percentual entre dois valores?",
+            "answer": "Subtraia o valor antigo do novo, divida pelo antigo e multiplique por 100. Ex.: de 80 para 100 = (100 − 80) ÷ 80 × 100 = 25% de aumento."
+        },
+        {
+            "question": "Um aumento de 10% seguido de desconto de 10% volta ao valor original?",
+            "answer": "Não. 100 + 10% = 110; 110 − 10% = 99. O desconto incide sobre um valor maior, então o resultado final fica 1% abaixo do original."
+        }
+    ],
+    "random-number": [
+        {
+            "question": "Como sortear um número aleatório entre 1 e 100?",
+            "answer": "Deixe o mínimo em 1, o máximo em 100, a quantidade em 1 e clique em Sortear. Para sortear vários números sem repetir, aumente a quantidade e mantenha \"Sem repetição\" ligado."
+        },
+        {
+            "question": "O sorteio é realmente aleatório?",
+            "answer": "Sim. Usamos crypto.getRandomValues, o gerador criptográfico do navegador, com descarte de valores para eliminar o viés de módulo. Todos os números do intervalo têm a mesma probabilidade."
+        },
+        {
+            "question": "Posso usar para sorteio de rifa ou de Instagram?",
+            "answer": "Sim. Numere os participantes, defina o intervalo (ex.: 1 a 350) e sorteie. Para mais transparência, grave a tela no momento do sorteio."
+        }
+    ],
     "character-counter": [
         {
             "question": "O que é medido no contador de caracteres?",
             "answer": "Conta o número total de caracteres, palavras, linhas, parágrafos e tempo estimado de leitura de qualquer bloco de texto."
+        },
+        {
+            "question": "Espaços contam como caracteres?",
+            "answer": "Sim. Espaços, quebras de linha e pontuação contam como caracteres na maioria das plataformas (X, Instagram, formulários). Por isso o contador mostra dois números: caracteres com espaço e caracteres sem espaço."
+        },
+        {
+            "question": "Quantos caracteres cabem em um post do X (Twitter) e do Instagram?",
+            "answer": "No X, o limite é de 280 caracteres por post para contas gratuitas. No Instagram, a legenda aceita até 2.200 caracteres e a bio até 150. Links no X contam sempre como 23 caracteres, independente do tamanho real."
+        },
+        {
+            "question": "Qual o tamanho ideal de title e meta description para SEO?",
+            "answer": "O title deve ter entre 50 e 60 caracteres e a meta description entre 150 e 160 caracteres para não serem cortados nos resultados do Google. O limite real é medido em pixels, então letras largas (como M e W) ocupam mais espaço."
+        },
+        {
+            "question": "Meu texto é enviado para algum servidor?",
+            "answer": "Não. A contagem é feita localmente no seu navegador, em tempo real. Nenhum texto digitado é armazenado ou transmitido."
         }
     ],
     "email-signature": [

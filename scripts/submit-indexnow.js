@@ -29,12 +29,15 @@ const urls = [
     "https://www.devthru.com/tools/business/mdfe-generator",
     "https://www.devthru.com/tools/business/nfe-generator",
     "https://www.devthru.com/tools/business/nfe-decoder",
+    "https://www.devthru.com/tools/business/cte-generator",
+    "https://www.devthru.com/tools/business/nfce-generator",
 
     // Tools - Converters
     "https://www.devthru.com/tools/converters/base",
     "https://www.devthru.com/tools/converters/currency",
     "https://www.devthru.com/tools/converters/unit",
     "https://www.devthru.com/tools/converters/pixel-to-rem",
+    "https://www.devthru.com/tools/converters/number-to-words",
 
     // Tools - Development
     "https://www.devthru.com/tools/development/minifier",
@@ -45,6 +48,8 @@ const urls = [
     "https://www.devthru.com/tools/development/jwt-debugger",
     "https://www.devthru.com/tools/development/sql-formatter",
     "https://www.devthru.com/tools/development/curl-converter",
+    "https://www.devthru.com/tools/development/json-diff",
+    "https://www.devthru.com/tools/development/hmac-generator",
 
     // Tools - Utilities
     "https://www.devthru.com/tools/utilities/whatsapp-link-generator",
@@ -58,6 +63,19 @@ const urls = [
     "https://www.devthru.com/tools/utilities/uuid",
     "https://www.devthru.com/tools/utilities/xml-validator",
     "https://www.devthru.com/tools/utilities/url-encoder",
+    "https://www.devthru.com/tools/utilities/percentage-calculator",
+    "https://www.devthru.com/tools/utilities/random-number",
+    "https://www.devthru.com/tools/utilities/rule-of-three",
+    "https://www.devthru.com/tools/utilities/barcode-generator",
+
+    // Tools - Text
+    "https://www.devthru.com/tools/text/case-converter",
+    "https://www.devthru.com/tools/text/character-counter",
+    "https://www.devthru.com/tools/text/diff-checker",
+    "https://www.devthru.com/tools/text/email-signature",
+    "https://www.devthru.com/tools/text/email-validator",
+    "https://www.devthru.com/tools/text/fancy-letters",
+    "https://www.devthru.com/tools/text/slug-generator",
 
     // Tools - Documents
     "https://www.devthru.com/tools/documents/certificate-generator",
