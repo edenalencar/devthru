@@ -74,7 +74,20 @@ export async function updateSession(request: NextRequest) {
     return response
 }
 
+// Rotas sem nenhuma Server Action. POSTs com header Next-Action nelas vêm de
+// bots/scanners ou de abas abertas em deploys antigos e geravam
+// "Failed to find Server Action" + fallback 500 quebrado nos logs da Vercel.
+const ROUTES_WITHOUT_SERVER_ACTIONS = new Set(['/'])
+
 export async function proxy(request: NextRequest) {
+    if (
+        request.method === 'POST' &&
+        request.headers.has('next-action') &&
+        ROUTES_WITHOUT_SERVER_ACTIONS.has(request.nextUrl.pathname)
+    ) {
+        return new NextResponse(null, { status: 404 })
+    }
+
     return await updateSession(request)
 }
 
