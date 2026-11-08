@@ -1,7 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
 import { DataGeneratedCounter } from "@/components/marketing/data-counter"
-import { Github } from "lucide-react"
+import { Github, Youtube } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 export function Footer() {
     return (
@@ -26,7 +27,16 @@ export function Footer() {
                             DevThru: Dados rápidos pra viagem. Utilitários e geradores essenciais para o seu dia a dia.
                         </p>
                         <DataGeneratedCounter />
-                        <div className="pt-2">
+                        <div className="pt-2 flex items-center gap-4">
+                            <Link
+                                href={siteConfig.links.youtube}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                <Youtube className="size-5" />
+                                <span className="sr-only">YouTube</span>
+                            </Link>
                             <Link
                                 href="https://github.com/edenalencar/devthru"
                                 target="_blank"
