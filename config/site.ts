@@ -24,6 +24,7 @@ export const siteConfig = {
     links: {
         twitter: "https://twitter.com/devthru",
         github: "https://github.com/devthru",
+        youtube: "https://www.youtube.com/@Devthru",
     },
     creator: {
         name: "DevThru Team",

@@ -136,7 +136,8 @@ export default async function RootLayout({
                   "logo": `${siteConfig.url}/icon.svg`,
                   "sameAs": [
                     siteConfig.links.twitter,
-                    siteConfig.links.github
+                    siteConfig.links.github,
+                    siteConfig.links.youtube
                   ]
                 }
               ]
