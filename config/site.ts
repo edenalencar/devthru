@@ -22,9 +22,10 @@ export const siteConfig = {
         "brasil",
     ],
     links: {
-        twitter: "https://twitter.com/devthru",
-        github: "https://github.com/devthru",
+        github: "https://github.com/edenalencar/devthru",
         youtube: "https://www.youtube.com/@Devthru",
+        tiktok: "https://www.tiktok.com/@devthru",
+        instagram: "https://www.instagram.com/devthru.br/",
     },
     creator: {
         name: "DevThru Team",
