@@ -65,7 +65,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@devthru",
   },
 
 };
@@ -135,9 +134,10 @@ export default async function RootLayout({
                   "url": siteConfig.url,
                   "logo": `${siteConfig.url}/icon.svg`,
                   "sameAs": [
-                    siteConfig.links.twitter,
-                    siteConfig.links.github,
-                    siteConfig.links.youtube
+                    siteConfig.links.youtube,
+                    siteConfig.links.tiktok,
+                    siteConfig.links.instagram,
+                    siteConfig.links.github
                   ]
                 }
               ]
