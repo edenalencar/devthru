@@ -1,8 +1,25 @@
 import Link from "next/link"
 import Image from "next/image"
 import { DataGeneratedCounter } from "@/components/marketing/data-counter"
-import { Github, Youtube } from "lucide-react"
+import { Github, Instagram, Youtube } from "lucide-react"
 import { siteConfig } from "@/config/site"
+
+function TikTokIcon({ className }: { className?: string }) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={className}
+            aria-hidden="true"
+        >
+            <path d="M9 12a4 4 0 1 0 4 4V2a5 5 0 0 0 5 5" />
+        </svg>
+    )
+}
 
 export function Footer() {
     return (
@@ -38,7 +55,25 @@ export function Footer() {
                                 <span className="sr-only">YouTube</span>
                             </Link>
                             <Link
-                                href="https://github.com/edenalencar/devthru"
+                                href={siteConfig.links.tiktok}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                <TikTokIcon className="size-5" />
+                                <span className="sr-only">TikTok</span>
+                            </Link>
+                            <Link
+                                href={siteConfig.links.instagram}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                <Instagram className="size-5" />
+                                <span className="sr-only">Instagram</span>
+                            </Link>
+                            <Link
+                                href={siteConfig.links.github}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="text-muted-foreground hover:text-primary transition-colors"

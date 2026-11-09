@@ -4,8 +4,8 @@ import { HomePageClient } from "@/app/_components/home-page"
 import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
-  title: "DevThru: Ferramentas Online para Devs",
-  description: "Acesse nossa coleção completa de ferramentas para desenvolvedores: geradores de CPF/CNPJ, formatadores JSON, conversores e muito mais. Gratuito e rápido.",
+  title: "DevThru: Ferramentas Online Grátis para Gerar e Validar Dados",
+  description: "Geradores e validadores grátis de CPF, CNPJ, link do WhatsApp, placa Pix, conversores e muito mais. Direto no navegador, rápido e sem cadastro.",
   alternates: {
     canonical: siteConfig.url,
   },
