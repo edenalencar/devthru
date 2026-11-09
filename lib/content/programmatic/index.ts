@@ -1,6 +1,8 @@
 
 export interface ProgrammaticContent {
     toolId: string
+    /** Slug da ferramenta em /tools quando difere do toolId (que também é a URL do guia) */
+    toolSlug?: string
     languageId: string
     title: string
     description: string
@@ -757,6 +759,7 @@ console.log(formatJSON(raw));`,
     // UUID - Python
     {
         toolId: "uuid-generator",
+        toolSlug: "uuid",
         languageId: "python",
         title: "Como Gerar UUID v4 em Python",
         description: "Gere identificadores únicos universais (UUIDs) em Python usando o módulo nativo `uuid`.",
@@ -784,6 +787,7 @@ print(f"UUID v5: {name_uuid}")`,
     // UUID - JavaScript
     {
         toolId: "uuid-generator",
+        toolSlug: "uuid",
         languageId: "javascript",
         title: "Como Gerar UUID v4 em JavaScript/Node.js",
         description: "Métodos modernos para gerar UUIDs em JavaScript usando `crypto.randomUUID()`.",
@@ -810,6 +814,7 @@ console.log(generateUUID());`,
     // UUID - Java
     {
         toolId: "uuid-generator",
+        toolSlug: "uuid",
         languageId: "java",
         title: "Como Gerar UUID em Java",
         description: "Use a classe `java.util.UUID` para criar identificadores únicos em aplicações Java.",
@@ -841,6 +846,7 @@ public class UUIDGenerator {
     // UUID - C#
     {
         toolId: "uuid-generator",
+        toolSlug: "uuid",
         languageId: "csharp",
         title: "Como Gerar GUID/UUID em C# .NET",
         description: "Em .NET, UUIDs são chamados de GUIDs. Veja como gerá-los e formatá-los.",
@@ -874,6 +880,7 @@ public class Program
     // Base64 - Python
     {
         toolId: "base64-encoder",
+        toolSlug: "base64",
         languageId: "python",
         title: "Como Codificar e Decodificar Base64 em Python",
         description: "Tutorial completo sobre o módulo `base64` do Python para conversão de strings e binários.",
@@ -903,6 +910,7 @@ print(f"Decodificado: {decoded_str}")`,
     // Base64 - JavaScript
     {
         toolId: "base64-encoder",
+        toolSlug: "base64",
         languageId: "javascript",
         title: "Base64 em JavaScript: btoa() e atob()",
         description: "Entenda como usar as funções nativas `btoa` e `atob` no navegador e `Buffer` no Node.js.",
@@ -932,6 +940,7 @@ console.log(fromBase64);`,
     // Base64 - Java
     {
         toolId: "base64-encoder",
+        toolSlug: "base64",
         languageId: "java",
         title: "Guia de Base64 em Java (java.util.Base64)",
         description: "Use a classe `java.util.Base64` introduzida no Java 8 para codificação e decodificação eficiente.",
@@ -964,6 +973,7 @@ public class Base64Example {
     // Base64 - C#
     {
         toolId: "base64-encoder",
+        toolSlug: "base64",
         languageId: "csharp",
         title: "Base64 em C#: Convert.ToBase64String",
         description: "Aprenda a converter arrays de bytes para strings Base64 e vice-versa em .NET.",

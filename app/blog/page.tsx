@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { getAllPosts, blogCategories, type BlogCategory } from "@/lib/content/blog"
 import { Calendar, Clock, ArrowRight, BookOpen, ChevronLeft, ChevronRight } from "lucide-react"
 import { siteConfig } from "@/config/site"
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 }
 
 const ITEMS_PER_PAGE = 9
+const pagerButtonClass = "flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-colors"
 
 export default async function BlogPage(props: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     const searchParams = await props.searchParams
@@ -20,7 +22,10 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
 
     const allPosts = getAllPosts()
     const totalPages = Math.ceil(allPosts.length / ITEMS_PER_PAGE)
-    
+
+    // Páginas além da última não existem: sem isso, ?page=N responde 200 vazio para qualquer N
+    if (page > Math.max(1, totalPages)) notFound()
+
     // Calcula o slice correto dos pots
     const startIndex = (page - 1) * ITEMS_PER_PAGE
     const endIndex = startIndex + ITEMS_PER_PAGE
@@ -105,22 +110,26 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
                 {/* Controles de Paginação */}
                 {totalPages > 1 && (
                     <div className="flex items-center justify-center gap-4 mt-16 pt-8 border-t">
-                        <Link 
-                            href={`/blog?page=${page - 1}`}
-                            aria-disabled={page <= 1}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-colors hover:bg-muted ${
-                                page <= 1 ? "pointer-events-none opacity-50" : ""
-                            }`}
-                        >
-                            <ChevronLeft className="w-4 h-4" />
-                            Anterior
-                        </Link>
+                        {page > 1 ? (
+                            <Link
+                                href={page - 1 === 1 ? "/blog" : `/blog?page=${page - 1}`}
+                                className={`${pagerButtonClass} hover:bg-muted`}
+                            >
+                                <ChevronLeft className="w-4 h-4" />
+                                Anterior
+                            </Link>
+                        ) : (
+                            <span aria-disabled="true" className={`${pagerButtonClass} opacity-50`}>
+                                <ChevronLeft className="w-4 h-4" />
+                                Anterior
+                            </span>
+                        )}
                         
                         <div className="flex items-center gap-2">
                             {Array.from({ length: totalPages }).map((_, i) => (
                                 <Link
                                     key={i}
-                                    href={`/blog?page=${i + 1}`}
+                                    href={i === 0 ? "/blog" : `/blog?page=${i + 1}`}
                                     className={`w-10 h-10 flex items-center justify-center rounded-lg border text-sm transition-colors hover:bg-muted ${
                                         page === i + 1 
                                         ? "bg-blue-600 border-blue-600 text-white pointer-events-none hover:bg-blue-600" 
@@ -132,16 +141,20 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
                             ))}
                         </div>
 
-                        <Link 
-                            href={`/blog?page=${page + 1}`}
-                            aria-disabled={page >= totalPages}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-colors hover:bg-muted ${
-                                page >= totalPages ? "pointer-events-none opacity-50" : ""
-                            }`}
-                        >
-                            Próxima
-                            <ChevronRight className="w-4 h-4" />
-                        </Link>
+                        {page < totalPages ? (
+                            <Link
+                                href={`/blog?page=${page + 1}`}
+                                className={`${pagerButtonClass} hover:bg-muted`}
+                            >
+                                Próxima
+                                <ChevronRight className="w-4 h-4" />
+                            </Link>
+                        ) : (
+                            <span aria-disabled="true" className={`${pagerButtonClass} opacity-50`}>
+                                Próxima
+                                <ChevronRight className="w-4 h-4" />
+                            </span>
+                        )}
                     </div>
                 )}
             </section>
