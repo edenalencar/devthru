@@ -164,7 +164,7 @@ export default async function GuidePage({ params }: PageProps) {
                     </p>
                     <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
                         <Link
-                            href={`/tools/${content.toolCategory}/${tool}`}
+                            href={`/tools/${content.toolCategory}/${content.toolSlug ?? tool}`}
                             className="flex items-center gap-2"
                         >
                             Usar Ferramenta de {tool.toUpperCase()} Online
