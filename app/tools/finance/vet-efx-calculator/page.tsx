@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { VetEfxCalculatorPage } from "./client"
 
-const title = "Simulador de VET e eFX Cambial do Banco Central - Grátis"
+const title = "Simulador de VET e eFX Cambial do Banco Central"
 const description = "Calcule o Valor Efetivo Total (VET), IOF e taxas de câmbio em remessas internacionais e pagamentos eFX conforme as regras do Banco Central."
 
 export const metadata: Metadata = generateToolMetadata({

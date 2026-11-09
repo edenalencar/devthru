@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postDrexTokenizacaoRealDigitalBancoCentralArquitetura: BlogPost = {
     slug: 'drex-tokenizacao-real-digital-banco-central-arquitetura',
-    title: 'DREX e Real Digital: Guia da Arquitetura do Banco Central',
+    title: 'DREX e Real Digital: Arquitetura do Banco Central',
     description: 'Conheça a infraestrutura técnica do DREX (Real Digital), compatibilidade EVM, privacidade com ZK-SNARKs e o impacto para sistemas financeiros, profissionais e fintechs.',
     date: '2026-10-30',
     author: 'DevThru',

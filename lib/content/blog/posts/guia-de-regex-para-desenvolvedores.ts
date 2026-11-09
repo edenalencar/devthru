@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postGuiaDeRegexParaDesenvolvedores: BlogPost = {
     slug: 'guia-de-regex-para-desenvolvedores',
-    title: 'Guia de Expressões Regulares (Regex): Do Básico ao Avançado',
+    title: 'Guia de Expressões Regulares: Básico ao Avançado',
     description: 'Aprenda os conceitos fundamentais de expressões regulares (Regex). Entenda âncoras, classes de caracteres, quantificadores e grupos.',
     date: '2026-07-16',
     author: 'DevThru',

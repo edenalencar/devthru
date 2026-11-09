@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postNormativaEfxBacenGuiaDev: BlogPost = {
     slug: 'normativa-efx-bacen-guia-desenvolvedor-pagamentos-internacionais',
-    title: 'Normativa eFX do Banco Central: Guia de Pagamentos Internacionais e VET',
+    title: 'eFX do Banco Central: Pagamentos Internacionais',
     description: 'Entenda como funciona a regulamentação eFX do Banco Central, o cálculo obrigatório do VET no checkout e como integrar APIs de pagamento cross-border com exemplos práticos.',
     date: '2026-07-22',
     author: 'DevThru',

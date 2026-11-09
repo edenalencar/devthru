@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postComoValidarTelefoneBrasil: BlogPost = {
     slug: 'como-validar-formatar-telefone-celular-brasil-ddd',
-    title: 'Como Validar e Formatar Telefones e Celulares no Brasil com Regex',
+    title: 'Como Validar e Formatar Telefone no Brasil (Regex)',
     description: 'Aprenda as regras oficiais da Anatel para validação de telefones fixos e celulares no Brasil. Padrões de Regex, validação de DDDs e exemplos prontos em TypeScript e Python.',
     date: '2026-08-31',
     author: 'DevThru',

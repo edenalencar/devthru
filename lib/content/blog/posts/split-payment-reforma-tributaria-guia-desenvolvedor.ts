@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postSplitPaymentReformaTributariaGuiaDev: BlogPost = {
     slug: 'split-payment-reforma-tributaria-guia-desenvolvedor',
-    title: 'Split Payment na Reforma Tributária: Guia Completo para Sistemas, ERPs e E-commerce',
+    title: 'Split Payment na Reforma Tributária: Guia Completo',
     description: 'Entenda como funciona o Split Payment no IBS e CBS, o impacto nos meios de pagamento (Pix, Cartão) e como adaptar seu ERP e e-commerce com exemplos práticos.',
     date: '2026-07-21',
     author: 'DevThru',

@@ -7,7 +7,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 import { OCRPage } from "./client"
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "OCR Online Gratuito",
+    title: "OCR Online Grátis: Converter Imagem em Texto",
     description: "Extraia texto de imagens (JPG, PNG) e documentos instantaneamente com OCR gratuito. Converta fotos em texto editável sem instalar programas.",
     path: "/tools/image/ocr",
 })
