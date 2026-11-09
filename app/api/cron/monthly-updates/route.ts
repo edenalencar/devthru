@@ -128,7 +128,7 @@ export async function GET(req: NextRequest) {
             const batchPayload = currentBatch.map((email: any) => {
                 const emailElement = React.createElement(MonthlyUpdatesEmailTemplate, {
                     monthYear: currentMonthYear,
-                    introText: "O DevThru segue evoluindo como a sua parada rápida para ferramentas de desenvolvimento. Nesta edição, apresentamos como aproveitar ao máximo a sua Área Logada e trazemos uma seleção especial de utilitários indispensáveis para acelerar o seu dia a dia.",
+                    introText: "O DevThru segue evoluindo como a sua parada rápida para gerar e validar dados. Nesta edição, apresentamos como aproveitar ao máximo a sua Área Logada e trazemos uma seleção especial de utilitários indispensáveis para acelerar o seu dia a dia.",
                     featuredSection: featuredSection,
                     newTools: newTools,
                     blogPosts: recentPosts,

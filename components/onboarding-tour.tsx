@@ -46,7 +46,7 @@ export function OnboardingTour() {
     const steps = [
         {
             title: "Bem-vindo ao DevThru!",
-            description: "Sua coleção completa de ferramentas de desenvolvimento em um só lugar. Vamos fazer um tour rápido?",
+            description: "Ferramentas grátis para gerar e validar dados, todas em um só lugar. Vamos fazer um tour rápido?",
             icon: Rocket,
         },
         {
@@ -56,7 +56,7 @@ export function OnboardingTour() {
         },
         {
             title: "Categorias",
-            description: "Explore ferramentas organizadas por categorias como Desenvolvimento, Imagem, Conversores e Documentos.",
+            description: "Explore ferramentas organizadas por categorias como Documentos Pessoais, Dados Financeiros, Veículos e Utilidades.",
             icon: LayoutGrid,
         },
     ]
