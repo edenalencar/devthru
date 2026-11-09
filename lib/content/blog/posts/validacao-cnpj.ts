@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postValidacaoCnpj: BlogPost = {
     slug: 'validacao-cnpj-algoritmo-completo',
-    title: 'Como Validar CNPJ',
+    title: 'Como Validar CNPJ: Algoritmo Completo',
     description: 'Aprenda o algoritmo oficial de validação de CNPJ passo a passo. Com implementações prontas em JavaScript, Python e Java para usar no seu sistema fiscal ou ERP.',
     date: '2026-02-28',
     author: 'DevThru',

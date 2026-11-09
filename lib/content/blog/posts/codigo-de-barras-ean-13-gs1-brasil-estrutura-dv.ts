@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postCodigoDeBarrasEan13Gs1BrasilEstruturaDv: BlogPost = {
     slug: 'codigo-de-barras-ean-13-gs1-brasil-estrutura-dv',
-    title: 'Código de Barras EAN-13 e GS1: Estrutura e Cálculo do Dígito Verificador',
+    title: 'Código de Barras EAN-13: Estrutura e Cálculo do DV',
     description: 'Entenda a anatomia do código de barras EAN-13 (GTIN), o significado dos prefixos brasileiros 789 e 790 e o algoritmo oficial do dígito verificador.',
     date: '2026-10-30',
     author: 'DevThru',

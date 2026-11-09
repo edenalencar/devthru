@@ -4,7 +4,7 @@ import { Metadata } from "next"
 import { CertificateGeneratorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Gerador de Certificados de Conclusão Personalizáveis - Grátis"
+const title = "Gerador de Certificados de Conclusão - Grátis"
 const description = "Crie e baixe certificados de conclusão de cursos e treinamentos personalizáveis em PDF e imagem com dados fictícios para testes."
 
 export const metadata: Metadata = generateToolMetadata({

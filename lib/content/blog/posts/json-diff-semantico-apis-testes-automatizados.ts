@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postJsonDiffSemanticoApisTestesAutomatizados: BlogPost = {
     slug: 'json-diff-semantico-apis-testes-automatizados',
-    title: 'JSON Diff Semântico: Como Comparar Payloads de APIs em Testes',
+    title: 'JSON Diff Semântico: Comparar Payloads de APIs',
     description: 'Aprenda como comparar estruturas JSON de forma semântica em pipelines de testes e CI/CD, eliminando falsos positivos causados por ordenação de chaves e formatação.',
     date: '2026-10-30',
     author: 'DevThru',
