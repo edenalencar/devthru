@@ -10,7 +10,7 @@ const title = "Validador de E-mail Online (Sintaxe e RFCs) - Grátis"
 const description = "Valide endereços de e-mail de acordo com os padrões RFC 5322, verificando formato, domínio, caracteres permitidos e estrutura de usuário."
 
 export const metadata: Metadata = generateToolMetadata({
-    title: "Validador de Email",
+    title: "Validador de Email Online - Verificar Email Válido",
     description: "Verifique se um email é válido, se o formato está correto e se é temporário ou descartável. Validação gratuita com verificação de sintaxe e de domínio.",
     path: "/tools/text/email-validator",
 })

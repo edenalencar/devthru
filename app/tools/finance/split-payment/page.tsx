@@ -5,7 +5,7 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { SplitPaymentCalculatorPage } from "./client"
 
-const title = "Simulador de Split Payment (IBS e CBS) - Reforma Tributária"
+const title = "Simulador de Split Payment da Reforma Tributária"
 const description = "Simule o impacto do Split Payment da Reforma Tributária com retenção automática de IBS e CBS na liquidação financeira de pagamentos."
 
 export const metadata: Metadata = generateToolMetadata({

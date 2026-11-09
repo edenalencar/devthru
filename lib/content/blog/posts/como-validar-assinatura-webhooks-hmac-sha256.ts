@@ -2,7 +2,7 @@ import { BlogPost } from '../index'
 
 export const postComoValidarAssinaturaWebhooksHmacSha256: BlogPost = {
     slug: 'como-validar-assinatura-webhooks-hmac-sha256',
-    title: 'Como Validar Assinatura de Webhooks (HMAC SHA-256) com Segurança',
+    title: 'Como Validar Assinatura de Webhooks (HMAC SHA-256)',
     description: 'Guia definitivo para validar assinaturas criptográficas de webhooks em Node.js e Python, prevenindo vulnerabilidades de timing attack e falsificação de requisições.',
     date: '2026-10-30',
     author: 'DevThru',
