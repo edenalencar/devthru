@@ -6,7 +6,6 @@ import { useState, useEffect, useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { navLinks } from "@/config/site"
-import { createClient } from "@/lib/supabase/client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
     DropdownMenu,
@@ -45,7 +44,6 @@ export function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [, startTransition] = useTransition()
     const [mounted, setMounted] = useState(false)
-    const supabase = createClient()
 
     useEffect(() => {
         setMounted(true)
@@ -56,8 +54,9 @@ export function Navbar() {
         try {
             // First, try to sign out normally with a timeout
             const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 2000))
+            const { createClient } = await import("@/lib/supabase/client")
             await Promise.race([
-                supabase.auth.signOut(),
+                createClient().auth.signOut(),
                 timeoutPromise
             ])
         } catch (error) {
