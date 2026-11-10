@@ -217,10 +217,10 @@ export function RGGeneratorPage() {
                         { label: "Gerador de RG" }
                     ]} className="mb-6" />
                     <div className="space-y-2">
-                        <h1 className="text-3xl font-bold">Gerador de RG</h1>
+                        <h1 className="text-3xl font-bold">Gerador de RG Válido</h1>
                         <p className="text-muted-foreground">
                             Gere números de Registro Geral (RG) válidos para testes.
-                            Nota: O algoritmo de RG varia por estado, este gerador cria um formato genérico válido.
+                            Cada estado tem sua própria regra; o dígito verificador segue o padrão de São Paulo, o mais aceito pelos validadores.
                         </p>
                     </div>
 

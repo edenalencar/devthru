@@ -233,7 +233,7 @@ export function PhoneGeneratorPage() {
                     ]} className="mb-6" />
                     
                     <div className="space-y-2">
-                        <h1 className="text-3xl font-bold">Gerador de Telefone e Celular</h1>
+                        <h1 className="text-3xl font-bold">Gerador de Número de Celular e Telefone</h1>
                         <p className="text-muted-foreground">
                             Gere números de telefone celular e fixo do Brasil (com DDD por estado) e dos Estados Unidos (EUA) para testes.
                         </p>

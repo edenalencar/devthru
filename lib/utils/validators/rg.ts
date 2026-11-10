@@ -1,3 +1,5 @@
+import { generateRG as generateRGBase } from "../generators/rg"
+
 const BRAZILIAN_STATES = [
     { code: "AC", name: "Acre" },
     { code: "AL", name: "Alagoas" },
@@ -29,25 +31,18 @@ const BRAZILIAN_STATES = [
 ]
 
 /**
- * Gera um RG válido
+ * Gera um RG válido (padrão SP, ver generators/rg)
  */
-export function generateRG(stateCode?: string): string {
-    // Gera 8 dígitos aleatórios
-    const digits = Array.from({ length: 8 }, () => Math.floor(Math.random() * 10))
-
-    // Calcula o dígito verificador (simplificado)
-    const sum = digits.reduce((acc, digit, index) => acc + digit * (9 - index), 0)
-    const checkDigit = sum % 11
-
-    return [...digits, checkDigit].join("")
+export function generateRG(): string {
+    return generateRGBase()
 }
 
 /**
  * Formata um RG
  */
 export function formatRG(rg: string): string {
-    const cleaned = rg.replace(/\D/g, "")
-    return cleaned.replace(/(\d{2})(\d{3})(\d{3})(\d{1})/, "$1.$2.$3-$4")
+    const cleaned = rg.toUpperCase().replace(/[^0-9X]/g, "")
+    return cleaned.replace(/(\d{2})(\d{3})(\d{3})([\dX])/, "$1.$2.$3-$4")
 }
 
 /**
