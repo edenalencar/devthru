@@ -169,6 +169,9 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
                     <p>
                         Também publicamos tutoriais de testes e qualidade, como gerar massa de dados para homologação sem usar informações reais, e textos sobre ferramentas de produtividade e automação. Os artigos são escritos em português, com exemplos práticos, e cada um aponta para a ferramenta online relacionada, para você testar o que leu na hora.
                     </p>
+                    <p>
+                        Os artigos estão separados em quatro categorias: Documentos, Utilitários & Ferramentas, Testes & QA e Automotivo. Use a numeração no fim da lista para ver os textos mais antigos. Se tiver uma dúvida sobre algum cálculo ou quiser sugerir um assunto, fale com a gente pela página de contato: muitos dos artigos publicados nasceram de perguntas de quem usa as ferramentas no dia a dia.
+                    </p>
                 </div>
             </section>
         </div>

@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/footer"
 import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
-    title: "Termos de Uso",
+    title: "Termos de Uso: Regras e Condições do Serviço",
     description: "Termos de serviço e condições de uso da plataforma DevThru.",
     alternates: {
         canonical: `${siteConfig.url}/terms`,
