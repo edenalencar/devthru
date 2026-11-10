@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import Link from "next/link"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import { GUIDE_CATEGORY_META_DESCRIPTIONS } from "@/lib/seo/meta-descriptions"
+import { GUIDE_CATEGORY_INFO, guideCategoryName } from "@/lib/content/guides-intro"
 
 interface PageProps {
     params: Promise<{
@@ -22,10 +23,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { category } = await params
-    const categoryName = category === 'validation' ? 'Validação' : category === 'formatting' ? 'Formatação' : category
+    const categoryName = guideCategoryName(category)
 
     return {
-        title: `Guias de ${categoryName} | DevThru`,
+        title: `Guias de ${categoryName} com Exemplos de Código`,
         description: GUIDE_CATEGORY_META_DESCRIPTIONS[category] ?? `Aprenda a implementar algoritmos de ${categoryName.toLowerCase()} em diversas linguagens.`,
         alternates: {
             canonical: `https://www.devthru.com/guides/${category}`,
@@ -37,7 +38,7 @@ export default async function CategoryPage({ params }: PageProps) {
     const { category } = await params
 
     const guides = PROGRAMMATIC_CONTENT.filter(c => c.category === category)
-    const categoryName = category === 'validation' ? 'Validação' : category === 'formatting' ? 'Formatação' : category
+    const categoryName = guideCategoryName(category)
 
     if (guides.length === 0) {
         notFound()
@@ -54,12 +55,18 @@ export default async function CategoryPage({ params }: PageProps) {
             />
 
             <div className="mb-12">
-                <h1 className="text-4xl font-bold mb-4 capitalize">Guias de {categoryName}</h1>
-                <p className="text-xl text-muted-foreground">
+                <h1 className="text-4xl font-bold mb-4">Guias de {categoryName}</h1>
+                <p className="text-xl text-muted-foreground mb-6">
                     Tutoriais e snippets para {categoryName.toLowerCase()}.
                 </p>
+                <div className="max-w-3xl space-y-4 text-muted-foreground leading-relaxed">
+                    {(GUIDE_CATEGORY_INFO[category]?.intro ?? []).map((paragraph) => (
+                        <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                    ))}
+                </div>
             </div>
 
+            <h2 className="text-2xl font-semibold mb-6">Escolha um guia</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {guides.map((guide) => (
                     <Link

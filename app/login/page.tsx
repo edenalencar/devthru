@@ -3,7 +3,7 @@ import { LoginPage } from "./client"
 import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
-    title: "Entrar na Conta | DevThru",
+    title: "Entrar na Conta",
     description: "Faça login no DevThru para acessar seu painel e usar todas as nossas ferramentas.",
     robots: {
         index: false,

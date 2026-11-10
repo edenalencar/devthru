@@ -35,7 +35,7 @@ const Logo = () => (
             quality={100}
             unoptimized
         />
-        <h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">DevThru</h2>
+        <span className="text-lg font-bold leading-tight tracking-[-0.015em]">DevThru</span>
     </div>
 );
 

@@ -33,7 +33,7 @@ export function FAQPage() {
                                 <AccordionTrigger className="text-left text-lg font-medium">
                                     {faq.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-muted-foreground text-base">
+                                <AccordionContent forceMount className="text-muted-foreground text-base">
                                     {faq.answer}
                                 </AccordionContent>
                             </AccordionItem>
