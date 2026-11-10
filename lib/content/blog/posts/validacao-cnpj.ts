@@ -203,7 +203,7 @@ print(validar_cnpj('00.000.000/0000-00'))  # False
 <li><strong>Não rejeitar dígitos repetidos:</strong> CNPJs como <code>11.111.111/1111-11</code> passam no módulo 11 por coincidência matemática.</li>
 <li><strong>Confundir máscara com valor:</strong> Sempre limpe a string antes de validar (<code>replace(/\\D/g, '')</code>).</li>
 <li><strong>Ignorar o número de ordem:</strong> CNPJs com ordem <code>0000</code> são inválidos (deve ser pelo menos <code>0001</code>).</li>
-<li><strong>Usar dados reais em testes:</strong> Use <a href="/tools/documents/cnpj">geradores de CNPJ</a> para criar dados fictícios válidos.</li>
+<li><strong>Usar dados reais em testes:</strong> Use um <a href="/tools/documents/cnpj">gerador de CNPJ válido</a> para criar dados fictícios que passam na validação.</li>
 </ol>
 
 <h2>Perguntas Frequentes</h2>

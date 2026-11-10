@@ -33,6 +33,13 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
     {
+        date: "10 de Novembro de 2026",
+        title: "Contador de Dias e Calculadora de Rescisão",
+        description: "Lançamento de 2 novas ferramentas gratuitas: Contador de Dias (dias corridos e dias úteis entre duas datas, descontando fins de semana e feriados nacionais, inclusive os móveis como Sexta-feira Santa, com opção para Carnaval e Corpus Christi) e Calculadora de Rescisão Trabalhista (saldo de salário, aviso prévio proporcional, 13º, férias com 1/3 e multa do FGTS para demissão sem justa causa, pedido de demissão, acordo e justa causa). Também deixamos o site mais rápido no celular, com páginas servidas direto do cache, e corrigimos o Gerador de RG, que passa a calcular o dígito verificador.",
+        type: "feature",
+        version: "1.52.0"
+    },
+    {
         date: "04 de Novembro de 2026",
         title: "Gerador de CEP por Estado e Gerador de Nicks",
         description: "Lançamento de 2 novas ferramentas gratuitas: Gerador de CEP (CEPs válidos dentro da faixa oficial dos Correios de cada estado, com ou sem hífen e em lote, além de consulta da UF de qualquer CEP) e Gerador de Nicks (estilos gamer, fofo, sombrio e engraçado, com seu nome e letras diferentes para Free Fire, Roblox, Discord e Instagram). Também corrigimos os geradores de endereço e de pessoa, que agora geram CEPs do mesmo estado e da mesma capital do endereço.",

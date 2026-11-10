@@ -997,6 +997,46 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "Use 100% como um dos termos. Ex.: se 200 é 100%, quanto é 30? 200 está para 100 assim como 30 está para X: X = (100 × 30) ÷ 200 = 15%. Para isso também existe a Calculadora de Porcentagem."
         }
     ],
+    "day-counter": [
+        {
+            "question": "Como contar os dias entre duas datas?",
+            "answer": "Informe a data inicial e a final. A ferramenta mostra os dias corridos, os dias úteis, a quantidade de fins de semana e a diferença em semanas, meses e anos. Por padrão o primeiro dia entra na conta e o último não: de 1º a 3 de janeiro são 2 dias."
+        },
+        {
+            "question": "Devo incluir o dia final na contagem?",
+            "answer": "Depende do uso. Para saber quantos dias faltam para uma data ou calcular uma idade, não inclua. Para contar a duração de uma viagem, de um evento ou de um período de férias em que os dois dias contam, marque a opção de incluir o dia final."
+        },
+        {
+            "question": "Quais feriados são descontados dos dias úteis?",
+            "answer": "Os feriados nacionais: 1º de janeiro, Sexta-feira Santa, 21 de abril, 1º de maio, 7 de setembro, 12 de outubro, 2 de novembro, 15 de novembro, 20 de novembro (desde 2024) e 25 de dezembro. Carnaval e Corpus Christi são pontos facultativos e só entram se você marcar a opção. Feriados estaduais e municipais não são considerados."
+        },
+        {
+            "question": "Como saber quantos dias faltam para uma data?",
+            "answer": "Deixe a data inicial como hoje (botão Hoje) e escolha a data do evento como data final. O resultado em dias corridos é quanto falta; os dias úteis mostram quantos dias de trabalho há até lá."
+        }
+    ],
+    "severance-calculator": [
+        {
+            "question": "Como calcular a rescisão trabalhista?",
+            "answer": "Some o saldo de salário dos dias trabalhados no mês, o aviso prévio indenizado (quando houver), o 13º proporcional, as férias vencidas e proporcionais com o adicional de 1/3 e, na demissão sem justa causa, a multa de 40% do FGTS. Quais verbas entram depende do motivo da saída, e a calculadora aplica essas regras automaticamente."
+        },
+        {
+            "question": "Quantos dias de aviso prévio eu tenho?",
+            "answer": "São 30 dias mais 3 dias por ano completo trabalhado na mesma empresa, com limite de 90 dias, conforme a Lei 12.506/2011. Com 2 anos completos, por exemplo, o aviso é de 36 dias. O acréscimo vale para o aviso dado pela empresa; no pedido de demissão o aviso é de 30 dias."
+        },
+        {
+            "question": "O que recebo no pedido de demissão?",
+            "answer": "Saldo de salário, 13º proporcional, férias vencidas e proporcionais com 1/3. Não há multa do FGTS, saque do fundo nem seguro-desemprego. Se o aviso de 30 dias não for cumprido, a empresa pode descontar o valor de até um salário."
+        },
+        {
+            "question": "O que muda no acordo entre empregado e empresa?",
+            "answer": "No acordo do art. 484-A da CLT, o aviso prévio indenizado e a multa do FGTS são pagos pela metade (a multa cai para 20%), as demais verbas são pagas integralmente, o saque do FGTS fica limitado a 80% do saldo e não há seguro-desemprego."
+        },
+        {
+            "question": "Os valores já têm desconto de INSS e Imposto de Renda?",
+            "answer": "Não. A calculadora mostra os valores brutos. O desconto de INSS e de Imposto de Renda depende do valor de cada verba e da sua situação, e não considera horas extras, comissões, adicionais nem regras da convenção coletiva. Use o resultado como estimativa e confira o termo de rescisão."
+        }
+    ],
     "percentage-calculator": [
         {
             "question": "Como calcular porcentagem de um valor?",

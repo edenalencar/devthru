@@ -20,7 +20,7 @@ export const postValidacaoCpf: BlogPost = {
 <p>O CPF é um número de 11 dígitos no formato <code>XXX.XXX.XXX-DD</code>, onde os dois últimos dígitos (<code>DD</code>) são <strong>dígitos verificadores</strong> calculados a partir dos 9 primeiros. É esse cálculo que permite validar se um CPF é matematicamente válido.</p>
 
 <div class="info-box">
-<strong>💡 Importante:</strong> Validação matemática ≠ CPF real. Um CPF pode ser matematicamente válido sem estar cadastrado na Receita Federal. Para testes de software, usamos CPFs válidos mas fictícios.
+<strong>💡 Importante:</strong> Validação matemática ≠ CPF real. Um CPF pode ser matematicamente válido sem estar cadastrado na Receita Federal. Para testes de software, usamos CPFs válidos mas fictícios. Se só precisa de números para testar, dá para <a href="/tools/documents/cpf">gerar CPF online</a> com ou sem pontuação.
 </div>
 
 <h2>Como Funciona o Algoritmo</h2>
@@ -169,7 +169,7 @@ print(validar_cpf('111.111.111-11'))  # False
 <li><strong>Não rejeitar CPFs com dígitos iguais:</strong> CPFs como <code>000.000.000-00</code> e <code>111.111.111-11</code> passam no algoritmo de módulo 11 mas são inválidos.</li>
 <li><strong>Esquecer de limpar a máscara:</strong> Sempre remova pontos e traços antes de validar.</li>
 <li><strong>Confundir validação com verificação:</strong> Validar matematicamente é diferente de consultar na Receita Federal.</li>
-<li><strong>Usar dados reais em testes:</strong> Use geradores de CPF para criar dados fictícios válidos.</li>
+<li><strong>Usar dados reais em testes:</strong> Use um <a href="/tools/documents/cpf">gerador de CPF válido</a> para criar dados fictícios que passam na validação.</li>
 </ol>
 
 <h2>Perguntas Frequentes</h2>

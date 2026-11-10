@@ -365,6 +365,15 @@ export const tools: Tool[] = [
         href: "/tools/utilities/percentage-calculator",
     },
     {
+        id: "day-counter",
+        name: "Contador de Dias",
+        title: "Contador de Dias entre Datas",
+        description: "Conte dias corridos e dias úteis entre duas datas, sem feriados nacionais",
+        category: "utilities",
+        icon: Calendar,
+        href: "/tools/utilities/day-counter",
+    },
+    {
         id: "rule-of-three",
         name: "Regra de 3",
         title: "Calculadora de Regra de 3",
@@ -456,6 +465,15 @@ export const tools: Tool[] = [
         category: "financial",
         icon: Calculator,
         href: "/tools/finance/tax-calculator",
+    },
+    {
+        id: "severance-calculator",
+        name: "Calculadora de Rescisão",
+        title: "Calculadora de Rescisão Trabalhista",
+        description: "Simule saldo de salário, aviso prévio, 13º, férias com 1/3 e multa do FGTS",
+        category: "financial",
+        icon: Briefcase,
+        href: "/tools/finance/severance-calculator",
     },
     {
         id: "boleto-generator",
