@@ -59,6 +59,7 @@ export const tools: Tool[] = [
     { slug: 'iban-validator', category: 'finance', title: 'Validador IBAN', icon: CreditCard },
     { slug: 'pix-parser', category: 'finance', title: 'Decodificador Pix', icon: QrCode },
     { slug: 'tax-calculator', category: 'finance', title: 'Calculadora de Impostos', icon: Calculator },
+    { slug: 'severance-calculator', category: 'finance', title: 'Calculadora de Rescisão', icon: Briefcase },
     { slug: 'split-payment', category: 'finance', title: 'Simulador Split Payment', icon: Calculator },
     { slug: 'vet-efx-calculator', category: 'finance', title: 'Simulador VET & eFX Cambial', icon: Calculator },
     { slug: 'cnab-parser', category: 'finance', title: 'Leitor de CNAB', icon: FileText },
@@ -90,6 +91,7 @@ export const tools: Tool[] = [
 
     // Utilities
     { slug: 'base64', category: 'utilities', title: 'Base64', icon: Binary },
+    { slug: 'day-counter', category: 'utilities', title: 'Contador de Dias', icon: Calendar },
     { slug: 'deadline-calculator', category: 'utilities', title: 'Calculadora de Prazo', icon: Calendar },
     { slug: 'hash', category: 'utilities', title: 'Gerador de Hash', icon: Hash },
     { slug: 'json', category: 'utilities', title: 'Formatador JSON', icon: Braces },
