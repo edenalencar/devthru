@@ -88,6 +88,18 @@ export async function proxy(request: NextRequest) {
         return new NextResponse(null, { status: 404 })
     }
 
+    // Sem cookie do Supabase não há sessão para renovar: evita criar o cliente e
+    // chamar getUser em toda visita anônima (a maioria do tráfego).
+    const hasAuthCookie = request.cookies.getAll().some(
+        (c) => c.name.startsWith('sb-') || c.name.includes('auth-token')
+    )
+    if (!hasAuthCookie) {
+        if (request.nextUrl.pathname.startsWith('/dashboard')) {
+            return NextResponse.redirect(new URL('/login', request.url))
+        }
+        return NextResponse.next()
+    }
+
     return await updateSession(request)
 }
 

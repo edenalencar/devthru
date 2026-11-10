@@ -5,7 +5,7 @@ import { PhoneGeneratorPage } from "./client"
 import { generateToolMetadata } from "@/lib/seo-config"
 
 const title = "Gerador de Número de Telefone e Celular com DDD"
-const description = "Gerador de número de telefone e celular válido com DDD de todos os estados. Fixo ou celular, com ou sem máscara, em lote. Grátis, para testes de software."
+const description = "Gere números de celular e telefone fixo aleatórios com DDD de todos os estados, com ou sem máscara e em lote. Grátis, para testes de software."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

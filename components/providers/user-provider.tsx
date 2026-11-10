@@ -3,9 +3,19 @@
 
 import { createContext, useContext, useEffect, useRef, useState } from "react"
 import { User } from "@supabase/supabase-js"
-import { createClient } from "@/lib/supabase/client"
 import { getPlanPermissions, PlanPermissions, isUserInTrial } from "@/lib/permissions"
 import { sendGTMEvent } from "@/lib/gtm"
+
+// O SDK do Supabase (~50 KB gzip) é carregado sob demanda: visitantes sem sessão
+// não precisam dele para ver a página, então ele sai do caminho crítico no celular.
+const getSupabase = () => import("@/lib/supabase/client").then((m) => m.createClient())
+
+const hasAuthCookie = () =>
+    typeof document !== "undefined" &&
+    document.cookie.split(";").some((c) => {
+        const name = c.trim().split("=")[0]
+        return name.startsWith("sb-") || name.includes("auth-token")
+    })
 
 type UserContextType = {
     user: User | null
@@ -34,7 +44,6 @@ export function UserProvider({
     const [isInTrial, setIsInTrial] = useState(false)
     const [isLoading, setIsLoading] = useState(!initialUser)
     const welcomeTriggeredRef = useRef<Record<string, boolean>>({})
-    const supabase = createClient()
 
     useEffect(() => {
         sendGTMEvent({
@@ -82,6 +91,7 @@ export function UserProvider({
     // Fetch profile if we have a user but no profile
     const refreshProfile = async (currentUser: User) => {
         try {
+            const supabase = await getSupabase()
             const { data } = await Promise.race([
                 supabase
                     .from("profiles")
@@ -126,7 +136,27 @@ export function UserProvider({
     }
 
     useEffect(() => {
+        let cancelled = false
+        let unsubscribe: (() => void) | undefined
+
         const init = async () => {
+            const supabase = await getSupabase()
+            if (cancelled) return
+
+            const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+                const currentUser = session?.user ?? null
+                setUser(currentUser)
+
+                if (currentUser) {
+                    // For SIGNed_IN or TOKEN_REFRESHED, we usually want fresh profile data
+                    await refreshProfile(currentUser)
+                } else {
+                    updateDerivedState(null, null)
+                }
+                setIsLoading(false)
+            })
+            unsubscribe = () => subscription.unsubscribe()
+
             if (initialUser) {
                 // If we have an initial user, we just need the profile
                 await refreshProfile(initialUser)
@@ -172,23 +202,28 @@ export function UserProvider({
             }
         }
 
-        init()
-
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-            const currentUser = session?.user ?? null
-            setUser(currentUser)
-
-            if (currentUser) {
-                // For SIGNed_IN or TOKEN_REFRESHED, we usually want fresh profile data
-                await refreshProfile(currentUser)
-            } else {
-                updateDerivedState(null, null)
-            }
+        // Sem cookie de sessão o visitante é anônimo: mostra o estado deslogado na hora
+        // e só carrega o Supabase quando o navegador estiver ocioso (para o login feito
+        // depois, nesta mesma aba, ainda ser percebido via onAuthStateChange).
+        let idleHandle: number | undefined
+        let timer: ReturnType<typeof setTimeout> | undefined
+        if (initialUser || hasAuthCookie()) {
+            init()
+        } else {
+            updateDerivedState(null, null)
             setIsLoading(false)
-        })
+            if ("requestIdleCallback" in window) {
+                idleHandle = window.requestIdleCallback(() => init(), { timeout: 4000 })
+            } else {
+                timer = setTimeout(() => init(), 2500)
+            }
+        }
 
         return () => {
-            subscription.unsubscribe()
+            cancelled = true
+            if (idleHandle !== undefined) window.cancelIdleCallback(idleHandle)
+            if (timer) clearTimeout(timer)
+            unsubscribe?.()
         }
     }, [initialUser]) // eslint-disable-line react-hooks/exhaustive-deps
 

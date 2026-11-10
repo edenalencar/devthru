@@ -50,7 +50,7 @@ export function DiffCheckerPage() {
                     <Breadcrumbs items={[{ "label": "Ferramentas" }, { "label": "Texto e Conversão" }, { "label": "Comparador de Texto" }]} className="mb-6" />
                     <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div>
-                            <h1 className="text-3xl font-bold mb-2">Comparador de Texto (Diff)</h1>
+                            <h1 className="text-3xl font-bold mb-2">Comparar Textos Online</h1>
                             <p className="text-muted-foreground">
                                 Compare dois textos e visualize as diferenças (adições e remoções).
                             </p>

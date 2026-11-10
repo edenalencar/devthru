@@ -353,6 +353,14 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         {
             "question": "Como funciona o número de RG no Brasil?",
             "answer": "O Registro Geral é emitido pelas Secretarias de Segurança Pública (SSP) de cada estado e normalmente possui 8 a 9 dígitos mais um dígito verificador."
+        },
+        {
+            "question": "O RG gerado vale para qual estado?",
+            "answer": "O número segue o padrão de São Paulo: 8 dígitos e um dígito verificador, que pode ser de 0 a 9 ou a letra X. É o formato aceito pela maioria dos validadores e formulários. Outros estados, como Rio de Janeiro e Minas Gerais, usam regras e tamanhos próprios, então confira a regra do sistema que você está testando."
+        },
+        {
+            "question": "Como gerar vários RGs de uma vez?",
+            "answer": "Use o bloco de geração em massa ao lado do gerador individual. No plano grátis dá para gerar até 5 números por vez e, no Pro, até 1.000. Marque a opção de pontuação para receber os números no formato 00.000.000-0 ou deixe desmarcada para só os dígitos."
         }
     ],
     "cnh": [
