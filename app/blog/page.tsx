@@ -14,7 +14,15 @@ export const metadata: Metadata = {
 }
 
 const ITEMS_PER_PAGE = 9
-const pagerButtonClass = "flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-colors"
+// Texto da seção "Sobre o blog", um card por categoria (mesmos selos da grade de posts)
+const aboutCategories: { key: BlogCategory; text: string }[] = [
+    { key: 'documentos', text: 'Como funciona o dígito verificador de CPF, CNPJ, PIS e título de eleitor, como ler um boleto ou um Pix copia e cola e a estrutura dos arquivos CNAB 240 e 400.' },
+    { key: 'dev-tools', text: 'Textos sobre ferramentas de produtividade e automação: JSON, regex, expressões cron, Base64, JWT e a montagem do código de barras EAN-13.' },
+    { key: 'testes-qa', text: 'Tutoriais de testes e qualidade, como gerar massa de dados para homologação sem usar informações reais de pessoas ou empresas.' },
+    { key: 'automotivo', text: 'O que significa cada parte de um chassi (VIN), como é calculado o dígito do RENAVAM e as diferenças entre a placa Mercosul e o padrão antigo.' },
+]
+
+const pagerButtonClass = "flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border text-sm font-medium transition-colors"
 
 export default async function BlogPage(props: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     const searchParams = await props.searchParams
@@ -109,19 +117,20 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
 
                 {/* Controles de Paginação */}
                 {totalPages > 1 && (
-                    <div className="flex items-center justify-center gap-4 mt-16 pt-8 border-t">
+                    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-16 pt-8 border-t">
                         {page > 1 ? (
                             <Link
                                 href={page - 1 === 1 ? "/blog" : `/blog?page=${page - 1}`}
+                                aria-label="Página anterior"
                                 className={`${pagerButtonClass} hover:bg-muted`}
                             >
                                 <ChevronLeft className="w-4 h-4" />
-                                Anterior
+                                <span className="hidden sm:inline">Anterior</span>
                             </Link>
                         ) : (
                             <span aria-disabled="true" className={`${pagerButtonClass} opacity-50`}>
                                 <ChevronLeft className="w-4 h-4" />
-                                Anterior
+                                <span className="hidden sm:inline">Anterior</span>
                             </span>
                         )}
                         
@@ -144,14 +153,15 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
                         {page < totalPages ? (
                             <Link
                                 href={`/blog?page=${page + 1}`}
+                                aria-label="Próxima página"
                                 className={`${pagerButtonClass} hover:bg-muted`}
                             >
-                                Próxima
+                                <span className="hidden sm:inline">Próxima</span>
                                 <ChevronRight className="w-4 h-4" />
                             </Link>
                         ) : (
                             <span aria-disabled="true" className={`${pagerButtonClass} opacity-50`}>
-                                Próxima
+                                <span className="hidden sm:inline">Próxima</span>
                                 <ChevronRight className="w-4 h-4" />
                             </span>
                         )}
@@ -159,19 +169,45 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
                 )}
             </section>
 
-            {/* Sobre o blog: texto fixo, já que a grade acima é só de links */}
-            <section className="border-t">
-                <div className="container mx-auto max-w-3xl px-4 py-12 space-y-4 text-muted-foreground leading-relaxed">
-                    <h2 className="text-2xl font-semibold text-foreground">Sobre o blog do DevThru</h2>
-                    <p>
-                        O blog explica as regras por trás das ferramentas do DevThru. Aqui você encontra como funciona o dígito verificador de CPF, CNPJ, PIS e RENAVAM, o que significa cada parte de um chassi (VIN), como ler um boleto ou um Pix copia e cola, a estrutura dos arquivos CNAB 240 e 400 e a montagem do código de barras EAN-13.
-                    </p>
-                    <p>
-                        Também publicamos tutoriais de testes e qualidade, como gerar massa de dados para homologação sem usar informações reais, e textos sobre ferramentas de produtividade e automação. Os artigos são escritos em português, com exemplos práticos, e cada um aponta para a ferramenta online relacionada, para você testar o que leu na hora.
-                    </p>
-                    <p>
-                        Os artigos estão separados em quatro categorias: Documentos, Utilitários & Ferramentas, Testes & QA e Automotivo. Use a numeração no fim da lista para ver os textos mais antigos. Se tiver uma dúvida sobre algum cálculo ou quiser sugerir um assunto, fale com a gente pela página de contato: muitos dos artigos publicados nasceram de perguntas de quem usa as ferramentas no dia a dia.
-                    </p>
+            {/* Sobre o blog: texto fixo para SEO (a grade acima é só de links), no mesmo padrão visual da página */}
+            <section className="border-t bg-gradient-to-b from-background to-blue-50/50 dark:to-blue-950/20">
+                <div className="container mx-auto max-w-5xl px-4 py-16">
+                    <div className="text-center mb-10">
+                        <div className="inline-flex items-center gap-2 rounded-full border bg-background px-4 py-1.5 text-sm text-muted-foreground mb-4">
+                            <BookOpen className="w-4 h-4" />
+                            <span>Sobre o blog</span>
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+                            Sobre o blog do DevThru
+                        </h2>
+                        <p className="text-muted-foreground max-w-2xl mx-auto">
+                            O blog explica as regras por trás das ferramentas do DevThru. Os artigos são escritos em português, com exemplos práticos, e cada um aponta para a ferramenta online relacionada, para você testar o que leu na hora.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                        {aboutCategories.map(({ key, text }) => (
+                            <div key={key} className="flex flex-col rounded-xl border bg-card p-6 shadow-sm">
+                                <span className={`inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-xs font-medium mb-3 ${blogCategories[key].color}`}>
+                                    {blogCategories[key].label}
+                                </span>
+                                <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="mt-6 flex flex-col gap-4 rounded-xl border bg-card p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                            Use a numeração no fim da lista para ver os textos mais antigos. Tem uma dúvida sobre algum cálculo ou quer sugerir um assunto? Muitos dos artigos publicados nasceram de perguntas de quem usa as ferramentas no dia a dia.
+                        </p>
+                        <Link
+                            href="/contact"
+                            className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-blue-600 dark:text-blue-400 hover:gap-2 transition-all"
+                        >
+                            Fale com a gente
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>
