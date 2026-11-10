@@ -55,6 +55,7 @@ const urls = [
     "https://www.devthru.com/tools/utilities/whatsapp-link-generator",
     "https://www.devthru.com/tools/utilities/base64",
     "https://www.devthru.com/tools/utilities/deadline-calculator",
+    "https://www.devthru.com/tools/utilities/day-counter",
     "https://www.devthru.com/tools/utilities/hash",
     "https://www.devthru.com/tools/utilities/json",
     "https://www.devthru.com/tools/utilities/lorem",
@@ -99,6 +100,7 @@ const urls = [
     "https://www.devthru.com/tools/finance/vet-efx-calculator",
     "https://www.devthru.com/tools/finance/pix-parser",
     "https://www.devthru.com/tools/finance/tax-calculator",
+    "https://www.devthru.com/tools/finance/severance-calculator",
     "https://www.devthru.com/tools/finance/placa-pix",
 
     // Tools - Image
