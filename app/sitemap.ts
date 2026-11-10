@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/blog',
         '/guides',
     ].map((route) => ({
-        url: `${baseUrl}${route}`,
+        url: `${baseUrl}${route || "/"}`,
         lastModified: catalogUpdateDate,
         changeFrequency: 'monthly' as const,
         priority: route === '' ? 1 : route === '/ferramentas-fiscais' ? 0.9 : 0.8,

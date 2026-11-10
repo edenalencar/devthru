@@ -6,7 +6,7 @@ import { Calendar, Clock, ArrowRight, BookOpen, ChevronLeft, ChevronRight } from
 import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
-    title: "Blog",
+    title: "Blog: Guias sobre Documentos, Dados e Ferramentas",
     description: "Artigos práticos, guias e tutoriais sobre regras e validação de documentos brasileiros, dados fiscais, testes e utilitários essenciais.",
     alternates: {
         canonical: `${siteConfig.url}/blog`,
@@ -157,6 +157,19 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
                         )}
                     </div>
                 )}
+            </section>
+
+            {/* Sobre o blog: texto fixo, já que a grade acima é só de links */}
+            <section className="border-t">
+                <div className="container mx-auto max-w-3xl px-4 py-12 space-y-4 text-muted-foreground leading-relaxed">
+                    <h2 className="text-2xl font-semibold text-foreground">Sobre o blog do DevThru</h2>
+                    <p>
+                        O blog explica as regras por trás das ferramentas do DevThru. Aqui você encontra como funciona o dígito verificador de CPF, CNPJ, PIS e RENAVAM, o que significa cada parte de um chassi (VIN), como ler um boleto ou um Pix copia e cola, a estrutura dos arquivos CNAB 240 e 400 e a montagem do código de barras EAN-13.
+                    </p>
+                    <p>
+                        Também publicamos tutoriais de testes e qualidade, como gerar massa de dados para homologação sem usar informações reais, e textos sobre ferramentas de produtividade e automação. Os artigos são escritos em português, com exemplos práticos, e cada um aponta para a ferramenta online relacionada, para você testar o que leu na hora.
+                    </p>
+                </div>
             </section>
         </div>
     )

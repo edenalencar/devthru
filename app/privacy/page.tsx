@@ -4,7 +4,7 @@ import { Metadata } from "next"
 import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
-    title: "Política de Privacidade | DevThru",
+    title: "Política de Privacidade",
     description: "Política de Privacidade do DevThru. Saiba como coletamos, usamos e protegemos seus dados.",
     alternates: {
         canonical: `${siteConfig.url}/privacy`,

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: "Calculadora de Impostos (CLT/PJ) | DevThru",
+    title: "Calculadora de Impostos (CLT/PJ)",
     description: "Simule cálculos de impostos e verifique prazos fiscais de forma simples. Ferramenta prática para desenvolvedores e freelancers.",
     keywords: ["calculadora impostos", "clt x pj", "imposto renda", "simulador salario"]
 }

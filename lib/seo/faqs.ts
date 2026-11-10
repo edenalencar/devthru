@@ -690,7 +690,19 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "diff-checker": [
         {
             "question": "Como funciona o comparador de texto e código?",
-            "answer": "Analisa dois blocos de texto linha por linha ou caractere por caractere, destacando adições em verde e remoções em vermelho com visualização lado a lado."
+            "answer": "Você cola a versão original de um lado e a versão nova do outro. A ferramenta compara os dois blocos e destaca em verde o que foi adicionado e em vermelho o que foi removido, para você enxergar as diferenças sem ler tudo de novo."
+        },
+        {
+            "question": "Qual a diferença entre comparar por linhas, palavras e caracteres?",
+            "answer": "A comparação por linhas é a mais indicada para código, arquivos de configuração e listas, porque mostra quais linhas mudaram. Por palavras funciona melhor para textos corridos, como contratos e artigos. Por caracteres revela mudanças mínimas, como uma vírgula, um acento ou um espaço a mais."
+        },
+        {
+            "question": "Os textos que comparo ficam salvos ou são enviados para algum servidor?",
+            "answer": "Não. A comparação roda inteiramente no seu navegador, então você pode comparar trechos de código, documentos internos ou listas de clientes sem que o conteúdo saia do seu computador."
+        },
+        {
+            "question": "Para que serve comparar dois textos?",
+            "answer": "Serve para revisar alterações num contrato, conferir o que mudou entre duas versões de um arquivo, achar diferenças entre listas exportadas de sistemas, validar a revisão de um texto e checar respostas de APIs antes e depois de uma mudança."
         }
     ],
     "email-validator": [
@@ -750,7 +762,15 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "sql-formatter": [
         {
             "question": "Quais dialetos SQL são suportados no formatador?",
-            "answer": "Formata e indenta consultas para PostgreSQL, MySQL, SQL Server (T-SQL), SQLite, Oracle e MariaDB."
+            "answer": "Você pode escolher entre SQL padrão, MySQL, PostgreSQL, SQLite e MariaDB. O dialeto define quais palavras-chave e funções são reconhecidas, o que deixa a indentação mais precisa."
+        },
+        {
+            "question": "O que o formatador muda na minha consulta?",
+            "answer": "Ele quebra a consulta em linhas, indenta cláusulas como SELECT, FROM, JOIN, WHERE e GROUP BY e organiza as subconsultas. A lógica da consulta não muda: só a forma como ela é exibida, o que facilita a leitura e a revisão."
+        },
+        {
+            "question": "Minha consulta é enviada para algum servidor?",
+            "answer": "Não. A formatação é feita no seu navegador com a biblioteca de código aberto sql-formatter, então nomes de tabelas, colunas e valores da sua consulta não saem do seu computador."
         }
     ],
     "jwt-debugger": [
@@ -770,13 +790,29 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "minifier": [
         {
             "question": "Para que serve a minificação de código?",
-            "answer": "Remove espaços em branco, comentários e quebras de linha de arquivos CSS, JavaScript e HTML para reduzir o tamanho do payload e acelerar o carregamento web."
+            "answer": "Remove espaços em branco, comentários e quebras de linha desnecessárias para reduzir o tamanho do arquivo. Arquivos menores carregam mais rápido no navegador e consomem menos banda."
+        },
+        {
+            "question": "Quais linguagens a ferramenta aceita?",
+            "answer": "Você pode minificar ou embelezar (formatar com indentação) códigos em CSS, JavaScript, HTML, JSON e SQL. Basta escolher a linguagem e o modo, colar o código e copiar o resultado."
+        },
+        {
+            "question": "Qual a diferença entre minificar e embelezar?",
+            "answer": "Minificar deixa o código o mais compacto possível, ideal para publicar em produção. Embelezar faz o caminho inverso: adiciona quebras de linha e indentação para deixar legível um código que veio compactado, o que ajuda a entender e depurar."
         }
     ],
     "timestamp": [
         {
             "question": "O que é o Unix Timestamp Epoch?",
-            "answer": "É a contagem de segundos (ou milissegundos) decorridos desde 1 de Janeiro de 1970 UTC. É o formato padrão para armazenamento de datas em bancos de dados e APIs."
+            "answer": "É a contagem de segundos (ou milissegundos) decorridos desde 1º de janeiro de 1970, às 00:00 UTC. É o formato mais usado para guardar datas em bancos de dados, logs e APIs, porque não depende de fuso horário nem de formato regional."
+        },
+        {
+            "question": "Como saber se o timestamp está em segundos ou milissegundos?",
+            "answer": "Um timestamp atual em segundos tem 10 dígitos, enquanto em milissegundos tem 13. Na ferramenta você escolhe a unidade antes de converter; se a data resultante aparecer em 1970 ou muito no futuro, provavelmente a unidade escolhida está errada."
+        },
+        {
+            "question": "Como converter uma data para timestamp?",
+            "answer": "Escolha a data e a hora no campo de entrada e a ferramenta mostra o timestamp correspondente. O caminho inverso também funciona: cole um timestamp e veja a data por extenso no formato brasileiro."
         }
     ],
     "mock-data": [
@@ -802,7 +838,15 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "currency": [
         {
             "question": "Como funciona o conversor de moedas do DevThru?",
-            "answer": "Converte valores entre Real (BRL), Dólar (USD), Euro (EUR), Libra (GBP) e outras moedas com base em cotações cambiais atualizadas."
+            "answer": "Você informa o valor, a moeda de origem e a de destino, e a ferramenta calcula a conversão com a cotação de referência mais recente. Estão disponíveis o Real (BRL), o Dólar (USD), o Euro (EUR), a Libra (GBP) e dezenas de outras moedas."
+        },
+        {
+            "question": "De onde vêm as cotações?",
+            "answer": "As taxas vêm da API pública Frankfurter, que divulga as cotações de referência do Banco Central Europeu. Elas são atualizadas uma vez por dia útil, por isso servem como referência e podem diferir do valor cobrado por bancos, corretoras ou cartões de crédito, que somam spread e IOF."
+        },
+        {
+            "question": "Posso usar a cotação para fechar uma operação de câmbio?",
+            "answer": "Use o resultado como estimativa. Para uma compra, remessa ou fatura de cartão no exterior, consulte o valor final na instituição financeira, que inclui taxas próprias e impostos."
         }
     ],
     "pixel-to-rem": [
@@ -1008,31 +1052,71 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     "slug-generator": [
         {
             "question": "O que é um Slug de URL amigável?",
-            "answer": "É a parte da URL que identifica uma página com palavras legíveis separadas por hífens, sem caracteres especiais ou acentos, otimizado para SEO."
+            "answer": "É a parte da URL que identifica uma página com palavras legíveis separadas por hífens, sem acentos nem caracteres especiais. Em \"devthru.com/blog/como-validar-cpf\", o slug é \"como-validar-cpf\"."
+        },
+        {
+            "question": "Por que usar slugs em vez de números ou IDs na URL?",
+            "answer": "Slugs descritivos ajudam quem vê o link a entender do que trata a página antes de clicar e ajudam os buscadores a relacionar a página ao assunto. Também evitam problemas com acentos e espaços, que viram códigos como %C3%A7 quando aparecem numa URL."
+        },
+        {
+            "question": "Como a ferramenta trata acentos e caracteres especiais?",
+            "answer": "Letras acentuadas são trocadas pela versão sem acento (\"ação\" vira \"acao\"), as letras ficam minúsculas, espaços viram hífens e símbolos como pontuação são removidos. O resultado pode ser usado direto em URLs, nomes de arquivos e identificadores."
         }
     ],
     "converter": [
         {
             "question": "Quais formatos de imagem podem ser convertidos?",
-            "answer": "Converte imagens entre PNG, JPG, WebP, AVIF e ICO diretamente no navegador sem enviar arquivos para servidores."
+            "answer": "Você pode converter imagens para PNG, JPEG ou WebP. A conversão acontece no seu navegador, sem enviar o arquivo para servidores."
+        },
+        {
+            "question": "Qual formato escolher: PNG, JPEG ou WebP?",
+            "answer": "Use JPEG para fotos, quando o tamanho do arquivo importa mais que a perfeição de cada pixel. Use PNG para capturas de tela, logotipos e imagens com transparência. O WebP costuma gerar arquivos menores que os dois com qualidade parecida e é aceito pelos navegadores atuais."
+        },
+        {
+            "question": "A conversão perde qualidade?",
+            "answer": "Converter para PNG não perde qualidade. JPEG e WebP comprimem a imagem e podem perder detalhes finos, principalmente em textos e bordas. Se a imagem tiver transparência, ao converter para JPEG o fundo transparente vira uma cor sólida."
         }
     ],
     "favicon": [
         {
             "question": "Como gerar um Favicon para sites?",
-            "answer": "Gera o pacote completo de ícones em formatos .ico, .png (16x16, 32x32, 192x192) e apple-touch-icon para navegadores modernos."
+            "answer": "Envie uma imagem quadrada, de preferência com pelo menos 512 pixels de lado, e a ferramenta gera os tamanhos usados por navegadores e celulares. Você baixa tudo num arquivo .zip pronto para colocar na pasta pública do site."
+        },
+        {
+            "question": "Quais arquivos vêm no pacote?",
+            "answer": "O pacote traz PNGs em 16x16, 32x32, 180x180 (apple-touch-icon), 192x192 e 512x512, um favicon.ico e o arquivo site.webmanifest. A página também mostra o trecho de código para adicionar ao <head> do site."
+        },
+        {
+            "question": "Minha imagem é enviada para algum servidor?",
+            "answer": "Não. Os ícones são gerados no navegador, a partir da imagem que você seleciona, e o .zip é montado no seu próprio computador."
         }
     ],
     "ocr": [
         {
             "question": "Como extrair texto de imagens com OCR online?",
-            "answer": "Utiliza reconhecimento ótico de caracteres (OCR) para extrair textos legíveis de fotos, documentos escaneados e capturas de tela."
+            "answer": "Envie uma foto, um documento escaneado ou uma captura de tela e a ferramenta reconhece os caracteres e devolve o texto pronto para copiar. O reconhecimento usa o Tesseract, motor de OCR de código aberto, configurado para português e inglês."
+        },
+        {
+            "question": "Como melhorar o resultado do OCR?",
+            "answer": "Prefira imagens nítidas, bem iluminadas e com o texto reto. Recorte só a área que interessa, evite fundos com desenhos e use boa resolução: letras pequenas ou borradas são as que mais geram erros. Textos manuscritos costumam ter reconhecimento bem pior que textos impressos."
+        },
+        {
+            "question": "A imagem é enviada para algum servidor?",
+            "answer": "Não. O reconhecimento roda no seu navegador, então documentos e prints com informações pessoais não são enviados a terceiros. Por isso a primeira leitura pode demorar alguns segundos, enquanto o motor de OCR é carregado."
         }
     ],
     "placeholder": [
         {
-            "question": "Como gerar imagens de placeholder para desenvolvimento?",
-            "answer": "Cria imagens temporárias com dimensões, cores e textos personalizados para mockup de interfaces e wireframes."
+            "question": "Como gerar imagens de placeholder?",
+            "answer": "Defina a largura, a altura, a cor de fundo, a cor do texto e o texto que deve aparecer na imagem. A ferramenta mostra a prévia na hora e permite baixar o resultado."
+        },
+        {
+            "question": "Em quais formatos posso baixar o placeholder?",
+            "answer": "Você pode baixar em PNG, JPG ou SVG. O SVG é vetorial, fica leve e não perde nitidez em nenhum tamanho; PNG e JPG são melhores quando o programa de destino só aceita imagens comuns."
+        },
+        {
+            "question": "Para que servem imagens de placeholder?",
+            "answer": "Elas ocupam o lugar de fotos e banners que ainda não existem em protótipos, wireframes, apresentações e páginas em construção. Assim dá para validar o layout e as proporções de cada área antes de ter as imagens finais."
         }
     ]
 };

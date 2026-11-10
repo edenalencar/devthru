@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { ShieldCheck, Zap, Wrench, FileText } from "lucide-react"
 import { Navbar } from "@/components/layout/navbar"
@@ -8,13 +8,13 @@ import { Metadata } from "next"
 import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
-    title: "Atualizações - DevThru",
+    title: "Atualizações e Changelog",
     description: "Acompanhe as últimas novidades, melhorias e correções do DevThru.",
     alternates: {
         canonical: `${siteConfig.url}/updates`,
     },
     openGraph: {
-        title: "Atualizações - DevThru",
+        title: "Atualizações e Changelog",
         description: "Acompanhe as últimas novidades, melhorias e correções do DevThru.",
         url: `${siteConfig.url}/updates`,
     },
@@ -246,7 +246,7 @@ export default function UpdatesPage() {
                                         <CardHeader className="pb-2">
                                             <div className="flex items-center justify-between flex-wrap gap-2">
                                                 <div className="flex items-center gap-2">
-                                                    <CardTitle className="text-lg">{update.title}</CardTitle>
+                                                    <h2 className="text-lg font-semibold leading-none tracking-tight">{update.title}</h2>
                                                     {update.version && (
                                                         <code className="text-xs bg-muted px-1.5 py-0.5 rounded text-muted-foreground">
                                                             v{update.version}

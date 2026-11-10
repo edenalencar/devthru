@@ -9,7 +9,7 @@ import { Metadata } from "next"
 import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
-    title: "Sobre o DevThru",
+    title: "Sobre o DevThru: Ferramentas Online Grátis e Seguras",
     description: "Conheça o DevThru, uma plataforma de ferramentas e utilitários criada para ser rápida, segura e sem anúncios. Saiba mais sobre nossa missão.",
     alternates: {
         canonical: `${siteConfig.url}/about`,
