@@ -5,8 +5,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CNPJGeneratorPage } from "./client"
 
-const title = "Gerador e Validador de CNPJ Válido Online - Grátis"
-const description = "Gerador de CNPJ online gratuito. Gere e valide CNPJs tradicionais e alfanuméricos válidos em lote ou individualmente para testes de sistemas e APIs."
+const title = "Gerador de CNPJ Válido: Gerar CNPJ Online Grátis"
+const description = "Gere CNPJ válido, tradicional ou alfanumérico, um a um ou em lote, e valide CNPJs em 1 clique. Grátis e sem cadastro, para testes de sistemas e APIs."
 
 export const metadata: Metadata = generateToolMetadata({
     title,

@@ -5,8 +5,8 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { CPFGeneratorPage } from "./client"
 
-const title = "Gerador de CPF Válido e Aleatório Online"
-const description = "Gerador de CPF válido e aleatório: gere CPF com ou sem pontuação, por estado e em lote, e valide CPFs em 1 clique. Grátis, para testes de software e QA."
+const title = "Gerador de CPF Válido: Gerar CPF Online Grátis"
+const description = "Gere CPF válido e aleatório com ou sem pontuação, por estado e em lote, e valide CPFs em 1 clique. Grátis e sem cadastro, para testes de software e QA."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
