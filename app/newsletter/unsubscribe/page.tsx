@@ -1,7 +1,7 @@
 import { UnsubscribeClient } from './client';
 
 export const metadata = {
-    title: 'Cancelar Inscrição - DevThru',
+    title: 'Cancelar Inscrição',
     description: 'Cancele sua inscrição e pare de receber os e-mails mensais de novidades do DevThru.',
 };
 

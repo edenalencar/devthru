@@ -3,7 +3,7 @@ import { RegisterPage } from "./client"
 import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
-    title: "Criar Conta Gratuita | DevThru",
+    title: "Criar Conta Gratuita",
     description: "Crie sua conta gratuita no DevThru e acesse ferramentas essenciais para validações, geração de dados e testes. Agilize seu fluxo de trabalho com nossa plataforma unificada.",
     robots: {
         index: false,

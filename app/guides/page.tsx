@@ -4,9 +4,10 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { PROGRAMMATIC_CONTENT } from "@/lib/content/programmatic"
 import { Metadata } from 'next'
 import { siteConfig } from "@/config/site"
+import { GUIDES_INDEX_INTRO, guideCategoryName } from "@/lib/content/guides-intro"
 
 export const metadata: Metadata = {
-    title: "Guias de Implementação | DevThru",
+    title: "Guias de Código em JavaScript, Python, Java e C#",
     description: "Aprenda a implementar algoritmos de validação e geração de documentos em diversas linguagens de programação.",
     alternates: {
         canonical: `${siteConfig.url}/guides`,
@@ -23,6 +24,13 @@ export default function GuidesIndex() {
                 </p>
             </div>
 
+            <div className="max-w-3xl mx-auto mb-12 space-y-4 text-muted-foreground leading-relaxed">
+                {GUIDES_INDEX_INTRO.map((paragraph) => (
+                    <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                ))}
+            </div>
+
+            <h2 className="text-2xl font-semibold mb-6">Escolha um guia</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {PROGRAMMATIC_CONTENT.map((guide) => (
                     <Link
@@ -37,7 +45,7 @@ export default function GuidesIndex() {
                                         {guide.languageId}
                                     </span>
                                     <span className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground capitalize">
-                                        {guide.category === 'validation' ? 'Validação' : guide.category === 'formatting' ? 'Formatação' : guide.category}
+                                        {guideCategoryName(guide.category)}
                                     </span>
                                 </div>
                                 <CardTitle className="group-hover:text-primary transition-colors">

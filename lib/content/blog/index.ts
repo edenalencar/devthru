@@ -129,10 +129,37 @@ export function getPostsByCategory(category: BlogCategory): BlogPost[] {
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
+const byDateThenSlug = (a: BlogPost, b: BlogPost) =>
+    new Date(b.date).getTime() - new Date(a.date).getTime() || a.slug.localeCompare(b.slug)
+
+/** Os `limit` posts seguintes ao atual numa lista circular (sem incluir o próprio). */
+function nextInCycle(list: BlogPost[], currentSlug: string, limit: number): BlogPost[] {
+    const index = list.findIndex(post => post.slug === currentSlug)
+    const result: BlogPost[] = []
+    for (let step = 1; step < list.length && result.length < limit; step++) {
+        result.push(list[(index + step) % list.length])
+    }
+    return result
+}
+
+/**
+ * Relacionados em rodízio: cada post mostra os vizinhos seguintes da sua categoria
+ * (completando com o blog todo se a categoria for pequena). Assim todo post recebe
+ * links internos de outros posts, em vez de só os primeiros da categoria.
+ */
 export function getRelatedPosts(currentSlug: string, limit = 3): BlogPost[] {
     const current = getPostBySlug(currentSlug)
     if (!current) return []
-    return blogPosts
-        .filter(post => post.slug !== currentSlug && post.category === current.category)
-        .slice(0, limit)
+
+    const sameCategory = blogPosts.filter(post => post.category === current.category).sort(byDateThenSlug)
+    const related = nextInCycle(sameCategory, currentSlug, limit)
+
+    if (related.length < limit) {
+        const all = [...blogPosts].sort(byDateThenSlug)
+        for (const post of nextInCycle(all, currentSlug, all.length)) {
+            if (related.length >= limit) break
+            if (!related.some(r => r.slug === post.slug)) related.push(post)
+        }
+    }
+    return related
 }

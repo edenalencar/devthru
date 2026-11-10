@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: "Crie sua Conta | DevThru",
+    title: "Crie sua Conta",
     description: "Cadastre-se no DevThru para acessar ferramentas exclusivas, salvar configurações e aumentar seus limites de uso.",
 }
 
