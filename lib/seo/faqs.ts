@@ -515,6 +515,14 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "credit-card-generator": [
         {
+            "question": "Por que meu gateway recusa o cartão gerado?",
+            "answer": "Porque o gerador produz apenas um número estruturalmente válido: bandeira, tamanho e dígito de Luhn corretos. Ele não existe em nenhum emissor. Em sandbox, o gateway reconhece os números de teste que ele mesmo publica, e cada um dispara um resultado definido. Use os cartões da documentação do gateway (Stripe, Mercado Pago, Cielo e outros) para simular aprovação e recusa, e use o gerador do DevThru para testar a validação do formulário."
+        },
+        {
+            "question": "Qual a diferença entre cartão gerado e cartão de teste do gateway?",
+            "answer": "O cartão gerado serve para o front-end: passa na máscara, na detecção de bandeira e no Luhn. O cartão de teste do gateway serve para o back-end: é um número reservado na documentação do gateway que produz um resultado previsível no sandbox, como aprovado, recusado ou saldo insuficiente. Um não substitui o outro."
+        },
+        {
             "question": "Como funciona o algoritmo de Luhn nos cartões de crédito?",
             "answer": "O Algoritmo de Luhn (fórmula Módulo 10) valida o número do cartão dobrando os dígitos alternados da direita para a esquerda e somando os algarismos resultantes. Se a soma total for divisível por 10, o número é estruturalmente válido."
         },
@@ -523,8 +531,8 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "Não. Todos os números gerados são estritamente fictícios e matematicamente válidos pelo algoritmo de Luhn para fins de desenvolvimento de software, testes de QA e integração de checkouts. Não possuem vínculo bancário, saldo ou titularidade civil."
         },
         {
-            "question": "Como testar pagamentos em ambiente Sandbox de gateways (Stripe, Pagar.me, Mercado Pago)?",
-            "answer": "Ambientes de teste (sandbox) exigem que o número passe pela validação de máscara e checksum de Luhn no front-end antes de simular aprovações ou recusas no gateway. Além disso, as adquirentes fornecem códigos CVV específicos para simular cenários de aprovação, saldo insuficiente ou cartão recusado."
+            "question": "Como testar pagamentos em ambiente sandbox de gateways (Stripe, Pagar.me, Mercado Pago)?",
+            "answer": "1) Use as chaves de API de teste do gateway, nunca as de produção. 2) Para simular aprovação ou recusa, use os cartões de teste da documentação dele; alguns, como o Mercado Pago, também definem o resultado pelo nome do titular (por exemplo, APRO para aprovado). 3) Use o gerador do DevThru para testar a validação do formulário antes de chamar o gateway. 4) Não use dados de cartão real em testes: o Stripe, por exemplo, proíbe em contrato testar em produção com dados reais."
         },
         {
             "question": "Qual é a estrutura do BIN/IIN nas principais bandeiras de cartão?",
@@ -532,7 +540,7 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         },
         {
             "question": "Para que serve o código CVV/CVC e a data de validade nos testes?",
-            "answer": "O CVV (Card Verification Value) e a expiração garantem a integridade dos dados durante transações 'card-not-present' (online). Nos testes, simulam a passagem correta do payload para tokens de pagamento criptografados em conformidade com o padrão PCI-DSS."
+            "answer": "O CVV (Card Verification Value) e a expiração garantem a integridade dos dados durante transações 'card-not-present' (online). Nos testes, simulam a passagem correta do payload para tokens de pagamento criptografados."
         }
     ],
     "tax-calculator": [
