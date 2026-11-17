@@ -108,7 +108,7 @@ export const ReplyEmailTemplate = ({
                     <Section style={footer}>
                         <Text style={footerText}>
                             DevThru - Dados rápidos pra viagem.<br />
-                            Acesse: <Link href="https://devthru.com.br" style={footerLink}>devthru.com.br</Link>
+                            Acesse: <Link href="https://www.devthru.com" style={footerLink}>devthru.com</Link>
                         </Text>
                     </Section>
                 </Container>
