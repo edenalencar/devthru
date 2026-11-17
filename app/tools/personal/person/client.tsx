@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Navbar } from "@/components/layout/navbar"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -17,7 +18,7 @@ import { CodeExamplesAccordion } from "@/components/tools/code-examples-accordio
 
 const PERSON_JS_CODE = `function generatePersonDataset() {
   const names = ["João Silva", "Maria Santos", "Pedro Oliveira"];
-  const cpfs = ["111.111.111-11", "222.222.222-22", "333.333.333-33"];
+  const cpfs = ["529.982.247-25", "111.444.777-35", "390.533.447-05"];
   const rgs = ["12.345.678-9", "98.765.432-1", "55.555.555-5"];
   const birthDates = ["15/05/1990", "22/10/1985", "03/12/1998"];
   const emails = ["joao.silva@exemplo.com", "maria.santos@exemplo.com", "pedro.oliveira@exemplo.com"];
@@ -45,7 +46,7 @@ const PERSON_PYTHON_CODE = `import random
 
 def generate_person_dataset():
     names = ["João Silva", "Maria Santos", "Pedro Oliveira"]
-    cpfs = ["111.111.111-11", "222.222.222-22", "333.333.333-33"]
+    cpfs = ["529.982.247-25", "111.444.777-35", "390.533.447-05"]
     rgs = ["12.345.678-9", "98.765.432-1", "55.555.555-5"]
     birth_dates = ["15/05/1990", "22/10/1985", "03/12/1998"]
     emails = ["joao.silva@exemplo.com", "maria.santos@exemplo.com", "pedro.oliveira@exemplo.com"]
@@ -85,7 +86,7 @@ public class Person
 public static class PersonGenerator
 {
     private static readonly string[] Names = { "João Silva", "Maria Santos", "Pedro Oliveira" };
-    private static readonly string[] Cpfs = { "111.111.111-11", "222.222.222-22", "333.333.333-33" };
+    private static readonly string[] Cpfs = { "529.982.247-25", "111.444.777-35", "390.533.447-05" };
     private static readonly string[] Rgs = { "12.345.678-9", "98.765.432-1", "55.555.555-5" };
     private static readonly string[] BirthDates = { "15/05/1990", "22/10/1985", "03/12/1998" };
     private static readonly string[] Emails = { "joao.silva@exemplo.com", "maria.santos@exemplo.com", "pedro.oliveira@exemplo.com" };
@@ -121,7 +122,7 @@ import java.util.Map;
 
 public class PersonGenerator {
     private static final String[] NAMES = { "João Silva", "Maria Santos", "Pedro Oliveira" };
-    private static final String[] CPFS = { "111.111.111-11", "222.222.222-22", "333.333.333-33" };
+    private static final String[] CPFS = { "529.982.247-25", "111.444.777-35", "390.533.447-05" };
     private static final String[] RGS = { "12.345.678-9", "98.765.432-1", "55.555.555-5" };
     private static final String[] BIRTH_DATES = { "15/05/1990", "22/10/1985", "03/12/1998" };
     private static final String[] EMAILS = { "joao.silva@exemplo.com", "maria.santos@exemplo.com", "pedro.oliveira@exemplo.com" };
@@ -209,6 +210,11 @@ export function PersonGeneratorPage() {
                         <p className="text-lg text-muted-foreground">
                             Gere identidades e perfis de teste com dados aleatórios de endereço, contatos e documentos.
                         </p>
+                        <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900/30 dark:bg-amber-950/10 dark:text-amber-200">
+                            <p>
+                                <strong>Dados fictícios para testar sistemas.</strong> Esta ferramenta não gera fotos nem rostos e não consulta, localiza ou descobre dados de pessoas reais. Nome, CPF, RG e endereço são combinações aleatórias: use só em ambientes de teste, nunca para criar cadastros reais nem para se passar por alguém.
+                            </p>
+                        </div>
                     </div>
 
                     <div className="grid gap-8 md:grid-cols-[300px_1fr]">
@@ -346,13 +352,30 @@ export function PersonGeneratorPage() {
                             <CardTitle>Sobre o Gerador de Pessoa Completa</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground space-y-3">
                                 <p>
-                                    Esta ferramenta de simulação de identidades cria perfis fictícios contendo dados de nascimento, contatos e endereços estruturados. Ela é ideal para quem precisa <strong>gerar cpf</strong> e outros documentos válidos matematicamente para preenchimento de cadastros de teste.
+                                    O gerador monta uma pessoa fictícia para <strong>teste de sistemas</strong>: nome, sexo, data de nascimento, pais, <strong>CPF com dígitos verificadores corretos</strong>, RG, e-mail, telefones, endereço e dados físicos como altura, peso e tipo sanguíneo. Serve para preencher cadastros, popular bancos de homologação e alimentar testes automatizados com dados pessoais que não pertencem a ninguém.
+                                </p>
+                                <p>
+                                    O CPF segue o cálculo de módulo 11 (veja <Link href="/blog/validacao-cpf-algoritmo-completo" className="underline font-medium hover:text-primary">como funciona o algoritmo do CPF</Link>), então passa em validações de formulário. O RG sai no formato 00.000.000-0, com dígito verificador no padrão de São Paulo, e não corresponde a nenhum registro. Para gerar cada documento separadamente ou em lote, use o <Link href="/tools/documents/cpf" className="underline font-medium hover:text-primary">gerador de CPF</Link> e o <Link href="/tools/documents/rg" className="underline font-medium hover:text-primary">gerador de RG</Link>.
                                 </p>
                                 <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Termos de Uso:</strong> Toda identidade fornecida é composta por dados gerados sinteticamente. O gerador calcula um <strong>cpf válido</strong> de forma isolada segundo o algoritmo do Ministério da Fazenda para aceitação em fluxos de validação locais, sem qualquer relação com indivíduos reais.
+                                    <strong>Atenção:</strong> um CPF que passa no cálculo não é prova de que foi emitido, e um número gerado pode coincidir, por acaso, com o de uma pessoa real. Por isso, não use esses dados em produção nem em cadastros de verdade.
                                 </p>
+                            </div>
+
+                            <div className="pt-4 border-t space-y-3">
+                                <Label className="text-sm text-muted-foreground block">Ferramentas e guias relacionados:</Label>
+                                <div className="flex flex-wrap gap-2 text-xs">
+                                    <Link href="/tools/documents/cpf" className="px-2 py-1 rounded bg-muted hover:bg-muted/70 transition-colors">Gerador de CPF</Link>
+                                    <Link href="/tools/documents/rg" className="px-2 py-1 rounded bg-muted hover:bg-muted/70 transition-colors">Gerador de RG</Link>
+                                    <Link href="/tools/documents/pis" className="px-2 py-1 rounded bg-muted hover:bg-muted/70 transition-colors">Gerador de PIS/NIS</Link>
+                                    <Link href="/tools/personal/phone" className="px-2 py-1 rounded bg-muted hover:bg-muted/70 transition-colors">Gerador de telefone e celular</Link>
+                                    <Link href="/tools/personal/address" className="px-2 py-1 rounded bg-muted hover:bg-muted/70 transition-colors">Gerador de endereço</Link>
+                                    <Link href="/tools/personal/name" className="px-2 py-1 rounded bg-muted hover:bg-muted/70 transition-colors">Gerador de nomes</Link>
+                                    <Link href="/blog/gerar-massa-dados-teste-cypress-selenium-cpf-cnpj-endereco" className="px-2 py-1 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 hover:bg-emerald-200 transition-colors">📖 Massa de dados para Cypress e Selenium</Link>
+                                    <Link href="/blog/dados-ficticios-testes-lgpd" className="px-2 py-1 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 hover:bg-emerald-200 transition-colors">📖 Dados fictícios em testes e LGPD</Link>
+                                </div>
                             </div>
 
                             <div className="pt-4 border-t">

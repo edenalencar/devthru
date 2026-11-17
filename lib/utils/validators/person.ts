@@ -1,15 +1,13 @@
 import { generateCPF, formatCPF } from './cpf'
-import { generateRG } from '../generators/rg' // I need to check if RG generator is in validators or if I should move it
+import { generateRG } from '../generators/rg'
 import { generateName } from '../generators/names'
 import { generateBirthDate, generateSign, generateHeight, generateWeight, generateBloodType } from '../generators/personal'
 import { generateEmail, generatePhone } from '../generators/contact'
 import { generateAddress } from '../generators/address'
 
-// Helper for RG since it was inline in generators.ts
+// RG formatado com dígito verificador (padrão SP), o mesmo do gerador de RG
 function generateRGString(): string {
-    const digits = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10))
-    const rg = digits.join('')
-    return `${rg.slice(0, 2)}.${rg.slice(2, 5)}.${rg.slice(5, 8)}-${rg.slice(8)}`
+    return generateRG(true)
 }
 
 export interface Person {

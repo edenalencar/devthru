@@ -1,7 +1,7 @@
 export type PhoneType = "mobile" | "landline"
 
-// DDDs mais comuns do Brasil
-const COMMON_DDDS = [
+// Os 67 DDDs em uso no Brasil
+export const COMMON_DDDS = [
     "11", "12", "13", "14", "15", "16", "17", "18", "19", // SP
     "21", "22", "24", // RJ
     "27", "28", // ES

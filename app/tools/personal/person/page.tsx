@@ -6,14 +6,14 @@ import { generateToolMetadata } from "@/lib/seo-config"
 
 import { PersonGeneratorPage } from "./client"
 
-const title = "Gerador de Pessoa: Nome, CPF e RG Fictícios"
-const description = "Gere pessoas fictícias com nome, CPF, RG, endereço e contato. Dados pessoais completos, individuais ou em lote, para testar sistemas e formulários, grátis."
+const title = "Gerador de Pessoa Fictícia para Teste de Sistemas"
+const description = "Gere pessoa fictícia com nome, CPF, RG, endereço e contato para testar sistemas e formulários. Dados pessoais sintéticos, em JSON. Sem fotos nem dados reais."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
     description,
     path: "/tools/personal/person",
-    keywords: ["gerador de pessoa", "gerador de pessoas", "gerador de pessoa completa", "dados de teste", "gerador cpf rg endereco"]
+    keywords: ["gerador de pessoa", "gerador de pessoas", "gerador de pessoa completa", "dados de teste", "gerador cpf rg endereco", "gerador de dados pessoais"]
 })
 
 export default function Page() {
