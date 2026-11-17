@@ -393,16 +393,28 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "pis": [
         {
+            "question": "Este gerador consulta ou descobre o PIS de alguém?",
+            "answer": "Não. Ele não consulta nenhuma base e não tem acesso a dados de pessoas reais: os números são sorteados no seu navegador e recebem o dígito verificador calculado. Para saber o seu próprio PIS ou NIS, use os canais oficiais do governo ou da Caixa."
+        },
+        {
+            "question": "O PIS desta página é o mesmo PIS/Pasep ou PIS/Cofins cobrado das empresas?",
+            "answer": "Não. Aqui, PIS é o número de identificação do trabalhador, com 11 dígitos. A contribuição PIS/Pasep e o PIS/Cofins são tributos pagos pelas empresas e não têm relação com este número."
+        },
+        {
+            "question": "Posso usar um PIS gerado em cadastro real ou no eSocial de produção?",
+            "answer": "Não. O número passa no cálculo do dígito verificador, mas não foi emitido por nenhum órgão. Sistemas que consultam a base oficial podem rejeitá-lo e, se ele coincidir com um número existente, ele pertenceria a outra pessoa. Use só em ambientes de teste e homologação."
+        },
+        {
             "question": "Para que serve um gerador de PIS?",
             "answer": "Ele é ideal para testar telas de cadastro e fluxos de folha de pagamento de empresas. Fornecendo um pis pasep válido, você pode validar o comportamento das suas APIs locais e processos de eSocial sem expor dados reais de colaboradores durante o desenvolvimento de software."
         },
         {
             "question": "Qual a diferença entre PIS, PASEP, NIS e NIT?",
-            "answer": "Na prática computacional e sistêmica, nenhuma. PIS (iniciativa privada), PASEP (servidor público), NIS (projetos sociais) e NIT (autônomos) compartilham a mesma estrutura de 11 dígitos numéricos e a mesma regra de cálculo para o dígito verificador. O gerador atende a todos esses casos."
+            "answer": "São cadastros diferentes que, na prática, aparecem com a mesma numeração de 11 dígitos. O PIS é voltado a trabalhadores da iniciativa privada e é administrado pela Caixa. O PASEP é voltado a servidores públicos, com o Banco do Brasil como instituição responsável. O NIS é o Número de Identificação Social atribuído pela Caixa, usado, por exemplo, no Cadastro Único. O NIT identifica o trabalhador na Previdência Social e é usado por autônomos e contribuintes individuais. Para o gerador e para o validador, o formato e o cálculo do dígito são os mesmos."
         },
         {
             "question": "Como é calculado o dígito verificador do PIS?",
-            "answer": "O 11º dígito de um PIS é um \"módulo matemático\". Ele é calculado multiplicando os 10 primeiros dígitos da esquerda para a direita por pesos específicos (3, 2, 9, 8, 7, 6, 5, 4, 3, 2). A soma dos resultados é dividida por 11, e o resto da divisão define o dígito final. Nosso gerador de PIS implementa 100% dessa regra oficial."
+            "answer": "O 11º dígito é calculado com módulo 11. Multiplique os 10 primeiros dígitos, da esquerda para a direita, pelos pesos 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 e some os produtos. Divida a soma por 11 e subtraia o resto de 11. Se o resultado for 10 ou 11, o dígito é 0. Exemplo: a base 1201234567 soma 119, o resto é 9, e o dígito é 11 − 9 = 2, formando 120.12345.67-2."
         },
         {
             "question": "Como gerar PIS em lote para testes em massa?",
