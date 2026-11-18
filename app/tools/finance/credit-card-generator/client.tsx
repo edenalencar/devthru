@@ -399,6 +399,58 @@ export function CreditCardGeneratorPage() {
                         </CardContent>
                     </Card>
 
+                    {/* Cartão gerado × cartão de teste do gateway */}
+                    <Card className="mt-8 border-border/60 shadow-sm">
+                        <CardHeader>
+                            <CardTitle className="text-xl">Cartão gerado × cartão de teste do gateway</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-5">
+                            <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground space-y-3">
+                                <p>
+                                    O gerador cria um número com <strong>prefixo de bandeira, tamanho e dígito de Luhn corretos</strong>, mais uma validade futura e um CVV aleatório. Isso basta para a camada de formulário: máscara, detecção de bandeira e validação do checksum. O número não existe em nenhum emissor, então nenhum gateway tem como reconhecê-lo.
+                                </p>
+                                <p>
+                                    Em sandbox, o gateway funciona de outro jeito: a documentação dele publica números (e, em alguns casos, nomes de titular) reservados, e cada um dispara um resultado definido, como aprovado, recusado ou saldo insuficiente. O Stripe pede que se usem os números de teste dele com as chaves de teste. No Mercado Pago, o nome do titular define o resultado: <strong>APRO</strong> aprova e <strong>OTHE</strong> recusa por erro geral. Um número que só passa no Luhn não faz parte dessas listas.
+                                </p>
+                            </div>
+
+                            <div className="overflow-x-auto rounded-lg border bg-card">
+                                <table className="w-full text-sm text-left">
+                                    <thead className="bg-muted/70 text-xs uppercase text-muted-foreground border-b">
+                                        <tr>
+                                            <th className="py-3 px-4">Você quer</th>
+                                            <th className="py-3 px-4">Use</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-border">
+                                        <tr><td className="py-3 px-4">Testar máscara, bandeira e Luhn no formulário</td><td className="py-3 px-4 font-semibold text-foreground">Cartão gerado aqui</td></tr>
+                                        <tr><td className="py-3 px-4">Testes unitários e e2e que não chamam o gateway</td><td className="py-3 px-4 font-semibold text-foreground">Cartão gerado aqui</td></tr>
+                                        <tr><td className="py-3 px-4">Simular aprovação, recusa ou saldo insuficiente no sandbox</td><td className="py-3 px-4 font-semibold text-foreground">Cartão de teste do gateway</td></tr>
+                                        <tr><td className="py-3 px-4">Validar a integração de ponta a ponta (webhook, status do pedido)</td><td className="py-3 px-4 font-semibold text-foreground">Cartão de teste do gateway</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div className="text-sm text-muted-foreground space-y-2">
+                                <p className="font-medium text-foreground">Cartões de teste na documentação oficial:</p>
+                                <ul className="list-disc pl-5 space-y-1">
+                                    <li><a href="https://docs.stripe.com/testing" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">Stripe — Testing</a></li>
+                                    <li><a href="https://www.mercadopago.com.br/developers/pt/docs/checkout-api-orders/resources/test-cards" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">Mercado Pago — Cartões de teste</a></li>
+                                    <li><a href="https://docs.cielo.com.br/gateway/v1.0-en/reference/test-cards-simulado" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">Cielo Gateway — Cartões de teste (sandbox)</a></li>
+                                </ul>
+                                <p>Usa Pagar.me, PagBank ou outro gateway? Procure a seção de testes ou sandbox na documentação dele.</p>
+                            </div>
+
+                            <p className="text-sm text-muted-foreground">
+                                Quer entender o cálculo do dígito verificador? Leia <Link href="/blog/algoritmo-luhn-validacao-cartao-credito" className="underline font-medium hover:text-primary">como funciona o algoritmo de Luhn</Link>.
+                            </p>
+
+                            <p className="text-sm text-amber-700 dark:text-amber-400">
+                                <strong>Uso exclusivo para testes.</strong> Estes números não têm saldo, conta nem titular e não funcionam em compras reais. Usá-los para tentar burlar cobrança, período de teste ou cadastro em serviços de terceiros viola os termos desses serviços e pode caracterizar fraude.
+                            </p>
+                        </CardContent>
+                    </Card>
+
                     <SponsorBanner toolContext="Gerador de Cartão de Crédito" className="my-6" />
 
                     {/* SEO FAQs */}
