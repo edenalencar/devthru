@@ -223,6 +223,22 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "person": [
         {
+            "question": "Os CPF e RG gerados são de pessoas reais?",
+            "answer": "Não. Nome, CPF, RG e endereço são combinados de forma aleatória no seu navegador. O CPF é calculado para passar na validação dos dígitos verificadores, e o RG sai com dígito verificador no padrão de São Paulo. Como qualquer número que passa no cálculo pode, por acaso, ter sido emitido para alguém, use os dados somente em ambientes de teste, nunca em produção ou em cadastros reais."
+        },
+        {
+            "question": "O gerador de pessoa cria foto ou rosto?",
+            "answer": "Não. A ferramenta gera apenas dados de cadastro (nome, documentos, contato, endereço e dados físicos em texto) para testes de software. Para imagens, é preciso usar outra ferramenta."
+        },
+        {
+            "question": "Dá para descobrir os dados de uma pessoa real por aqui?",
+            "answer": "Não. O gerador não consulta nenhuma base e não tem acesso a dados de pessoas reais: tudo é sorteado na hora. Ele também não serve para localizar alguém a partir de nome ou CPF."
+        },
+        {
+            "question": "Como usar as pessoas geradas em testes automatizados (Cypress, Playwright)?",
+            "answer": "Gere uma pessoa, copie o JSON e salve como fixture do teste (no Cypress, por exemplo, na pasta cypress/fixtures). Se o teste cria cadastros, gere uma pessoa nova a cada execução para evitar conflito de CPF ou e-mail duplicado. O artigo sobre massa de dados para Cypress e Selenium, linkado acima, mostra o fluxo completo."
+        },
+        {
             "question": "Para que serve esta ferramenta de simulação de perfil?",
             "answer": "Ela serve para apoiar desenvolvedores de software, analistas de qualidade (QA) e administradores de banco de dados na criação de dados sintéticos realistas. Popula tabelas locais para simular fluxos completos de checkout, faturamento e entrega em e-commerces ou CRMs de forma simplificada."
         },
@@ -231,12 +247,12 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "Assim que você gera um perfil de pessoa, a ferramenta monta automaticamente um objeto no formato JSON estruturado na lateral esquerda. Você pode copiar o conteúdo inteiro de forma estruturada em apenas um clique para usar em requisições de API ou scripts de carga."
         },
         {
-            "question": "Esta ferramenta está em conformidade com a LGPD?",
-            "answer": "Sim. Por gerar dados de forma 100% sintética baseados em listas genéricas e algoritmos matemáticos públicos (sem vazamento de pessoas reais), a ferramenta elimina qualquer risco de exposição de dados sensíveis e ajuda a manter seu ambiente de desenvolvimento em plena conformidade com a LGPD."
+            "question": "Usar este gerador ajuda a cumprir a LGPD nos testes?",
+            "answer": "Ajuda a evitar o problema mais comum: copiar dados reais de produção para ambientes de teste. Os dados gerados aqui são sintéticos e não identificam ninguém, então não vêm de nenhum titular. Isso não é uma garantia de conformidade: a LGPD (Lei 13.709/2018) depende de como a sua empresa trata os dados em todo o processo, e um número gerado pode coincidir por acaso com o de uma pessoa real. Em caso de dúvida, consulte o jurídico ou o encarregado de dados da sua organização."
         },
         {
             "question": "O que inclui o gerador de pessoa completa?",
-            "answer": "Gera um perfil cadastral completo para testes contendo nome, CPF válido, RG, data de nascimento, gênero, e-mail, telefone celular com DDD, endereço completo e dados profissionais."
+            "answer": "Gera um perfil cadastral completo para testes contendo nome, CPF válido, RG, data de nascimento, sexo, nomes dos pais, e-mail, senha aleatória, telefone fixo e celular, endereço completo, altura, peso e tipo sanguíneo."
         }
     ],
     "name": [
