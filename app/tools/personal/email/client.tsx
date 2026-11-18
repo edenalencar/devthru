@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -232,6 +233,9 @@ export function EmailGeneratorPage() {
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
                                 <p>
                                     O Gerador de Email cria endereços de correio eletrônico fictícios e temporários para preenchimento rápido de cadastros em ambientes de desenvolvimento e controle de qualidade (QA).
+                                </p>
+                                <p>
+                                    Precisa de uma pessoa completa, com todos os dados juntos? Use o <Link href="/tools/personal/person" className="underline font-medium hover:text-primary">gerador de pessoa</Link>.
                                 </p>
                             </div>
 

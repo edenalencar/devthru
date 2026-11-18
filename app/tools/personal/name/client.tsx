@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -264,6 +265,9 @@ export function NameGeneratorPage() {
                             <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground">
                                 <p>
                                     O Gerador de Nomes cria nomes e sobrenomes brasileiros aleatórios para preenchimento de mock data, testes de usabilidade e simulação de dados em ambientes de homologação.
+                                </p>
+                                <p>
+                                    Precisa de uma pessoa completa, com todos os dados juntos? Use o <Link href="/tools/personal/person" className="underline font-medium hover:text-primary">gerador de pessoa</Link>. Para o cadastro de teste, também há o <Link href="/tools/documents/pis" className="underline font-medium hover:text-primary">gerador de PIS/NIS</Link>.
                                 </p>
                             </div>
 

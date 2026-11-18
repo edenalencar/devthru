@@ -223,6 +223,22 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "person": [
         {
+            "question": "Os CPF e RG gerados são de pessoas reais?",
+            "answer": "Não. Nome, CPF, RG e endereço são combinados de forma aleatória no seu navegador. O CPF é calculado para passar na validação dos dígitos verificadores, e o RG sai com dígito verificador no padrão de São Paulo. Como qualquer número que passa no cálculo pode, por acaso, ter sido emitido para alguém, use os dados somente em ambientes de teste, nunca em produção ou em cadastros reais."
+        },
+        {
+            "question": "O gerador de pessoa cria foto ou rosto?",
+            "answer": "Não. A ferramenta gera apenas dados de cadastro (nome, documentos, contato, endereço e dados físicos em texto) para testes de software. Para imagens, é preciso usar outra ferramenta."
+        },
+        {
+            "question": "Dá para descobrir os dados de uma pessoa real por aqui?",
+            "answer": "Não. O gerador não consulta nenhuma base e não tem acesso a dados de pessoas reais: tudo é sorteado na hora. Ele também não serve para localizar alguém a partir de nome ou CPF."
+        },
+        {
+            "question": "Como usar as pessoas geradas em testes automatizados (Cypress, Playwright)?",
+            "answer": "Gere uma pessoa, copie o JSON e salve como fixture do teste (no Cypress, por exemplo, na pasta cypress/fixtures). Se o teste cria cadastros, gere uma pessoa nova a cada execução para evitar conflito de CPF ou e-mail duplicado. O artigo sobre massa de dados para Cypress e Selenium, linkado acima, mostra o fluxo completo."
+        },
+        {
             "question": "Para que serve esta ferramenta de simulação de perfil?",
             "answer": "Ela serve para apoiar desenvolvedores de software, analistas de qualidade (QA) e administradores de banco de dados na criação de dados sintéticos realistas. Popula tabelas locais para simular fluxos completos de checkout, faturamento e entrega em e-commerces ou CRMs de forma simplificada."
         },
@@ -231,12 +247,12 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "Assim que você gera um perfil de pessoa, a ferramenta monta automaticamente um objeto no formato JSON estruturado na lateral esquerda. Você pode copiar o conteúdo inteiro de forma estruturada em apenas um clique para usar em requisições de API ou scripts de carga."
         },
         {
-            "question": "Esta ferramenta está em conformidade com a LGPD?",
-            "answer": "Sim. Por gerar dados de forma 100% sintética baseados em listas genéricas e algoritmos matemáticos públicos (sem vazamento de pessoas reais), a ferramenta elimina qualquer risco de exposição de dados sensíveis e ajuda a manter seu ambiente de desenvolvimento em plena conformidade com a LGPD."
+            "question": "Usar este gerador ajuda a cumprir a LGPD nos testes?",
+            "answer": "Ajuda a evitar o problema mais comum: copiar dados reais de produção para ambientes de teste. Os dados gerados aqui são sintéticos e não identificam ninguém, então não vêm de nenhum titular. Isso não é uma garantia de conformidade: a LGPD (Lei 13.709/2018) depende de como a sua empresa trata os dados em todo o processo, e um número gerado pode coincidir por acaso com o de uma pessoa real. Em caso de dúvida, consulte o jurídico ou o encarregado de dados da sua organização."
         },
         {
             "question": "O que inclui o gerador de pessoa completa?",
-            "answer": "Gera um perfil cadastral completo para testes contendo nome, CPF válido, RG, data de nascimento, gênero, e-mail, telefone celular com DDD, endereço completo e dados profissionais."
+            "answer": "Gera um perfil cadastral completo para testes contendo nome, CPF válido, RG, data de nascimento, sexo, nomes dos pais, e-mail, senha aleatória, telefone fixo e celular, endereço completo, altura, peso e tipo sanguíneo."
         }
     ],
     "name": [
@@ -393,16 +409,28 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "pis": [
         {
+            "question": "Este gerador consulta ou descobre o PIS de alguém?",
+            "answer": "Não. Ele não consulta nenhuma base e não tem acesso a dados de pessoas reais: os números são sorteados no seu navegador e recebem o dígito verificador calculado. Para saber o seu próprio PIS ou NIS, use os canais oficiais do governo ou da Caixa."
+        },
+        {
+            "question": "O PIS desta página é o mesmo PIS/Pasep ou PIS/Cofins cobrado das empresas?",
+            "answer": "Não. Aqui, PIS é o número de identificação do trabalhador, com 11 dígitos. A contribuição PIS/Pasep e o PIS/Cofins são tributos pagos pelas empresas e não têm relação com este número."
+        },
+        {
+            "question": "Posso usar um PIS gerado em cadastro real ou no eSocial de produção?",
+            "answer": "Não. O número passa no cálculo do dígito verificador, mas não foi emitido por nenhum órgão. Sistemas que consultam a base oficial podem rejeitá-lo e, se ele coincidir com um número existente, ele pertenceria a outra pessoa. Use só em ambientes de teste e homologação."
+        },
+        {
             "question": "Para que serve um gerador de PIS?",
             "answer": "Ele é ideal para testar telas de cadastro e fluxos de folha de pagamento de empresas. Fornecendo um pis pasep válido, você pode validar o comportamento das suas APIs locais e processos de eSocial sem expor dados reais de colaboradores durante o desenvolvimento de software."
         },
         {
             "question": "Qual a diferença entre PIS, PASEP, NIS e NIT?",
-            "answer": "Na prática computacional e sistêmica, nenhuma. PIS (iniciativa privada), PASEP (servidor público), NIS (projetos sociais) e NIT (autônomos) compartilham a mesma estrutura de 11 dígitos numéricos e a mesma regra de cálculo para o dígito verificador. O gerador atende a todos esses casos."
+            "answer": "São cadastros diferentes que, na prática, aparecem com a mesma numeração de 11 dígitos. O PIS é voltado a trabalhadores da iniciativa privada e é administrado pela Caixa. O PASEP é voltado a servidores públicos, com o Banco do Brasil como instituição responsável. O NIS é o Número de Identificação Social atribuído pela Caixa, usado, por exemplo, no Cadastro Único. O NIT identifica o trabalhador na Previdência Social e é usado por autônomos e contribuintes individuais. Para o gerador e para o validador, o formato e o cálculo do dígito são os mesmos."
         },
         {
             "question": "Como é calculado o dígito verificador do PIS?",
-            "answer": "O 11º dígito de um PIS é um \"módulo matemático\". Ele é calculado multiplicando os 10 primeiros dígitos da esquerda para a direita por pesos específicos (3, 2, 9, 8, 7, 6, 5, 4, 3, 2). A soma dos resultados é dividida por 11, e o resto da divisão define o dígito final. Nosso gerador de PIS implementa 100% dessa regra oficial."
+            "answer": "O 11º dígito é calculado com módulo 11. Multiplique os 10 primeiros dígitos, da esquerda para a direita, pelos pesos 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 e some os produtos. Divida a soma por 11 e subtraia o resto de 11. Se o resultado for 10 ou 11, o dígito é 0. Exemplo: a base 1201234567 soma 119, o resto é 9, e o dígito é 11 − 9 = 2, formando 120.12345.67-2."
         },
         {
             "question": "Como gerar PIS em lote para testes em massa?",
@@ -515,6 +543,14 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     ],
     "credit-card-generator": [
         {
+            "question": "Por que meu gateway recusa o cartão gerado?",
+            "answer": "Porque o gerador produz apenas um número estruturalmente válido: bandeira, tamanho e dígito de Luhn corretos. Ele não existe em nenhum emissor. Em sandbox, o gateway reconhece os números de teste que ele mesmo publica, e cada um dispara um resultado definido. Use os cartões da documentação do gateway (Stripe, Mercado Pago, Cielo e outros) para simular aprovação e recusa, e use o gerador do DevThru para testar a validação do formulário."
+        },
+        {
+            "question": "Qual a diferença entre cartão gerado e cartão de teste do gateway?",
+            "answer": "O cartão gerado serve para o front-end: passa na máscara, na detecção de bandeira e no Luhn. O cartão de teste do gateway serve para o back-end: é um número reservado na documentação do gateway que produz um resultado previsível no sandbox, como aprovado, recusado ou saldo insuficiente. Um não substitui o outro."
+        },
+        {
             "question": "Como funciona o algoritmo de Luhn nos cartões de crédito?",
             "answer": "O Algoritmo de Luhn (fórmula Módulo 10) valida o número do cartão dobrando os dígitos alternados da direita para a esquerda e somando os algarismos resultantes. Se a soma total for divisível por 10, o número é estruturalmente válido."
         },
@@ -523,8 +559,8 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
             "answer": "Não. Todos os números gerados são estritamente fictícios e matematicamente válidos pelo algoritmo de Luhn para fins de desenvolvimento de software, testes de QA e integração de checkouts. Não possuem vínculo bancário, saldo ou titularidade civil."
         },
         {
-            "question": "Como testar pagamentos em ambiente Sandbox de gateways (Stripe, Pagar.me, Mercado Pago)?",
-            "answer": "Ambientes de teste (sandbox) exigem que o número passe pela validação de máscara e checksum de Luhn no front-end antes de simular aprovações ou recusas no gateway. Além disso, as adquirentes fornecem códigos CVV específicos para simular cenários de aprovação, saldo insuficiente ou cartão recusado."
+            "question": "Como testar pagamentos em ambiente sandbox de gateways (Stripe, Pagar.me, Mercado Pago)?",
+            "answer": "1) Use as chaves de API de teste do gateway, nunca as de produção. 2) Para simular aprovação ou recusa, use os cartões de teste da documentação dele; alguns, como o Mercado Pago, também definem o resultado pelo nome do titular (por exemplo, APRO para aprovado). 3) Use o gerador do DevThru para testar a validação do formulário antes de chamar o gateway. 4) Não use dados de cartão real em testes: o Stripe, por exemplo, proíbe em contrato testar em produção com dados reais."
         },
         {
             "question": "Qual é a estrutura do BIN/IIN nas principais bandeiras de cartão?",
@@ -532,7 +568,7 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         },
         {
             "question": "Para que serve o código CVV/CVC e a data de validade nos testes?",
-            "answer": "O CVV (Card Verification Value) e a expiração garantem a integridade dos dados durante transações 'card-not-present' (online). Nos testes, simulam a passagem correta do payload para tokens de pagamento criptografados em conformidade com o padrão PCI-DSS."
+            "answer": "O CVV (Card Verification Value) e a expiração garantem a integridade dos dados durante transações 'card-not-present' (online). Nos testes, simulam a passagem correta do payload para tokens de pagamento criptografados."
         }
     ],
     "tax-calculator": [
