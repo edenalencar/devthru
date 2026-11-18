@@ -4,8 +4,8 @@ import { Metadata } from 'next'
 import { PISPage } from './client'
 import { generateToolMetadata } from "@/lib/seo-config"
 
-const title = "Gerador de PIS Válido – PIS/PASEP e NIS"
-const description = "Gere PIS/PASEP e NIS válidos e aleatórios, com ou sem pontuação, um a um ou em lote, e valide números existentes. Grátis, para testes de software."
+const title = "Gerador de PIS/NIS Aleatório e Válido"
+const description = "Gere PIS/NIS aleatório e válido (PIS, PASEP e NIT), com ou sem pontuação, um a um ou em lote. Grátis, para testes; não consulta o PIS de ninguém."
 
 export const metadata: Metadata = generateToolMetadata({
     title,
@@ -37,7 +37,7 @@ export default function Page() {
             <JsonLd
                 data={getToolSchemaGraph({
                     name: "Pis",
-                    description: "Gerador de PIS online gratuito. Gere números de PIS/PASEP e NIS válidos em lote ou individualmente para testes de software com nosso algoritmo oficial.",
+                    description,
                     categoryLabel: "Documentos",
                     path: "/tools/documents/pis",
                     toolSlug: "pis"

@@ -269,13 +269,34 @@ export function PISPage() {
                         <CardContent className="space-y-6">
                             <div className="space-y-3 text-sm text-muted-foreground">
                                 <p>
-                                    Entender as regras <strong>sobre o gerador de pis pasep</strong> é muito útil para desenvolvedores que lidam com sistemas de recursos humanos e ERP. O <strong>PIS PASEP é</strong> um número identificador essencial para cadastros trabalhistas.
+                                    O gerador cria números de <strong>PIS/PASEP/NIS</strong> aleatórios com o dígito verificador correto, para testar cadastros, folha de pagamento e integrações de RH sem usar o número de nenhum trabalhador. A aba de validação confere um número que você já tenha.
                                 </p>
                                 <p>
-                                    Nossa ferramenta fornece <strong>números gerados</strong> de forma aleatória que são <strong>matematicamente válidos</strong> segundo o <strong>algoritmo oficial</strong> (Módulo 11) do Ministério do Trabalho e Previdência.
+                                    <strong>&quot;Válido&quot; aqui significa que o número passa no cálculo do dígito verificador.</strong> Isso não prova que ele foi emitido: o DevThru não consulta nenhuma base, e um número gerado pode coincidir, por acaso, com um existente.
                                 </p>
                                 <p className="text-amber-600 dark:text-amber-400">
-                                    <strong>Aviso de Uso:</strong> Os dados gerados aqui são fictícios e devem ser usados apenas para simular cadastros e homologações. Eles não possuem vínculo ativo com a Caixa Econômica Federal ou outros órgãos públicos.
+                                    <strong>Aviso de uso:</strong> os números são fictícios e servem só para testes e homologação. Esta ferramenta <strong>não consulta nem descobre o PIS ou NIS de ninguém</strong>, e este PIS é o número de identificação do trabalhador, não a contribuição PIS/Pasep ou PIS/Cofins cobrada das empresas. Para consultar o seu número, use os canais oficiais do governo ou da Caixa.
+                                </p>
+                            </div>
+
+                            <div className="space-y-3 text-sm text-muted-foreground">
+                                <h3 className="text-base font-semibold text-foreground">Como o dígito verificador é calculado</h3>
+                                <p>
+                                    O PIS tem 11 dígitos: 10 de base e 1 verificador. O cálculo é um módulo 11: multiplique cada um dos 10 primeiros dígitos pelos pesos <code>3, 2, 9, 8, 7, 6, 5, 4, 3, 2</code>, some os produtos e calcule o resto da divisão por 11. O dígito é <code>11 − resto</code>; se o resultado for 10 ou 11 (resto 1 ou 0), o dígito é 0.
+                                </p>
+                                <div className="overflow-x-auto rounded-lg border bg-card">
+                                    <table className="w-full text-xs font-mono text-left">
+                                        <tbody className="divide-y divide-border">
+                                            <tr><td className="py-2 px-3">Base</td><td className="py-2 px-3">1 2 0 1 2 3 4 5 6 7</td></tr>
+                                            <tr><td className="py-2 px-3">Pesos</td><td className="py-2 px-3">3 2 9 8 7 6 5 4 3 2</td></tr>
+                                            <tr><td className="py-2 px-3">Produtos</td><td className="py-2 px-3">3 + 4 + 0 + 8 + 14 + 18 + 20 + 20 + 18 + 14 = 119</td></tr>
+                                            <tr><td className="py-2 px-3">Resto</td><td className="py-2 px-3">119 mod 11 = 9</td></tr>
+                                            <tr><td className="py-2 px-3">Dígito</td><td className="py-2 px-3">11 − 9 = 2 → <strong>120.12345.67-2</strong></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>
+                                    PIS, PASEP, NIS e NIT usam a mesma numeração de 11 dígitos e, na prática dos validadores, o mesmo cálculo. Quer o código? Veja os exemplos abaixo (JavaScript, Python, Java e C#) e o artigo <Link href="/blog/como-funciona-algoritmo-validacao-pis" className="underline font-medium hover:text-primary">Como validar PIS/PASEP</Link>.
                                 </p>
                             </div>
 
@@ -286,12 +307,15 @@ export function PISPage() {
                                         <Link href="/blog/como-funciona-algoritmo-validacao-pis" className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/60 transition-colors font-medium">
                                             📖 Artigo: Como Validar PIS/PASEP (Algoritmo Completo)
                                         </Link>
+                                        <Link href="/tools/documents/cpf" className="text-xs px-2 py-1 rounded bg-muted hover:bg-muted/70 transition-colors">Gerador de CPF</Link>
+                                        <Link href="/tools/personal/person" className="text-xs px-2 py-1 rounded bg-muted hover:bg-muted/70 transition-colors">Gerador de pessoa</Link>
+                                        <Link href="/tools/documents/rg" className="text-xs px-2 py-1 rounded bg-muted hover:bg-muted/70 transition-colors">Gerador de RG</Link>
                                     </div>
                                 </div>
                                 <div>
                                     <Label className="text-sm text-muted-foreground mb-2 block">Compartilhe esta ferramenta:</Label>
                                     <ShareButtons
-                                        title="Gerador de PIS Válido"
+                                        title="Gerador de PIS/NIS Aleatório e Válido"
                                         description="Gere e valide números de PIS/PASEP para testes de sistema."
                                     />
                                 </div>
@@ -308,7 +332,7 @@ export function PISPage() {
                             ]}
                         />
                     </ToolFaqSection>
-                    <RelatedTools currentToolSlug="pis" category="documents" customSlugs={['cpf', 'rg', 'cnh', 'titulo-eleitor']} />
+                    <RelatedTools currentToolSlug="pis" category="documents" customSlugs={['cpf', 'rg', 'cnh', 'titulo-eleitor', 'person']} />
                 </div>
             </main>
 
