@@ -188,11 +188,11 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         },
         {
             "question": "Qual é a regra do nono dígito (9) no celular brasileiro?",
-            "answer": "Instituído pela Resolução nº 553/2010 da Anatel, o nono dígito é obrigatório em todas as linhas móveis do território nacional. Ele padronizou os números de celular com 11 algarismos (2 dígitos do DDD + dígito 9 + 8 dígitos da linha). Além disso, o segundo dígito após o 9 sempre pertence ao intervalo de 6 a 9 (ex: 96xxx, 97xxx, 98xxx ou 99xxx)."
+            "answer": "O nono dígito foi introduzido pela Anatel na Resolução nº 553/2010 (já revogada), que alterou o Regulamento de Numeração do Serviço Móvel Pessoal. Hoje a numeração está no Regulamento de Numeração aprovado pela Resolução nº 749/2022, que reserva os dígitos 7, 8 e 9 ao Serviço Móvel Pessoal no número de 9 dígitos. Na prática, celulares no Brasil têm 11 dígitos com o DDD e começam com 9 depois dele."
         },
         {
             "question": "Qual a diferença entre telefone celular e telefone fixo no Brasil?",
-            "answer": "A principal diferença estrutural está na quantidade de dígitos e nos prefixos:\n\n• Celular (Móvel): 11 dígitos no total com DDD. O primeiro dígito após o DDD é obrigatoriamente 9 e o segundo dígito varia de 6 a 9.\n• Telefone Fixo (STFC): 10 dígitos no total com DDD. O primeiro dígito após o DDD varia obrigatoriamente de 2 a 5."
+            "answer": "A principal diferença estrutural está na quantidade de dígitos e nos prefixos:\n\n• Celular (Móvel): 11 dígitos no total com DDD. O primeiro dígito após o DDD é 9.\n• Telefone Fixo (STFC): 10 dígitos no total com DDD. Este gerador usa primeiro dígito de 2 a 5 depois do DDD."
         },
         {
             "question": "Quais DDDs são suportados pela ferramenta?",
