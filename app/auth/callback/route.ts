@@ -148,15 +148,27 @@ export async function GET(request: Request) {
             'Desenvolvedor';
 
         // Disparo resiliente e idempotente de boas-vindas
-        await sendWelcomeEmailIfNeeded({
+        const welcome = await sendWelcomeEmailIfNeeded({
             userId: authUser.id,
             userEmail: authUser.email,
             userName,
             supabaseClient: supabase,
         });
+        console.log('[Auth Callback] Boas-vindas:', {
+            userId: authUser.id,
+            provider: authUser.app_metadata?.provider,
+            sent: welcome.sent,
+            reason: welcome.reason,
+        });
 
         return NextResponse.redirect(`${baseUrl}${redirectTarget}`);
     }
+
+    console.warn('[Auth Callback] Sem sessão no servidor, servindo ponte de hash:', {
+        hasCode: !!code,
+        hasTokenHash: !!token_hash,
+        type,
+    });
 
     // Se authUser for nulo (seja por ausência de parâmetros ou falha de código),
     // serve a ponte HTML para capturar tokens presentes no fragmento de hash (#access_token=...)
