@@ -23,13 +23,14 @@ export const postDanfseNt009ValidacaoXmlIbsCbs: BlogPost = {
 
 <p>A tabela abaixo resume o que muda no leiaute da Declaração de Prestação de Serviços (DPS) e da NFS-e conforme a <strong>NT 009 v1.01</strong> (11/09/2026) e o impacto registrado na issue #11 do gerador oficial de DANFSe:</p>
 
-<table>
+<div class="overflow-x-auto my-6">
+<table class="w-full [&_code]:break-all">
   <thead>
     <tr>
       <th>Campo no DANFSe</th>
       <th>Caminho / tag anterior</th>
       <th>Caminho / tag na NT 009 v1.01</th>
-      <th>Seção da NT 009</th>
+      <th class="whitespace-nowrap">Seção da NT 009</th>
     </tr>
   </thead>
   <tbody>
@@ -37,28 +38,29 @@ export const postDanfseNt009ValidacaoXmlIbsCbs: BlogPost = {
       <td><strong>Finalidade</strong></td>
       <td><code>infDPS/IBSCBS/finNFSe</code></td>
       <td><code>NFSe/infNFSe/DPS/infDPS/finNFSe</code> (domínio: <code>0</code> regular, <code>1</code> crédito, <code>2</code> débito)</td>
-      <td>§2.2 (p. 4)</td>
+      <td class="whitespace-nowrap">§2.2 (p. 4)</td>
     </tr>
     <tr>
       <td><strong>CST e cClassTrib</strong></td>
       <td><code>IBSCBS/valores/trib/gIBSCBS/</code></td>
       <td><code>NFSe/infNFSe/DPS/infDPS/IBSCBS/valores/trib/</code> (antes de <code>gIBSCBS</code>, que passa a ser opcional <code>0-1</code>)</td>
-      <td>§2.16 (p. 21–22)</td>
+      <td class="whitespace-nowrap">§2.16 (p. 21–22)</td>
     </tr>
     <tr>
       <td><strong>Total Deduções / Reduções (ISSQN)</strong></td>
       <td><code>vDedRed</code> (DPS) e <code>vCalcDR</code> (NFS-e)</td>
       <td><code>vAjusteBC</code> (DPS) e <code>NFSe/infNFSe/valores/vCalcAjusteBCISSQN</code> (NFS-e)</td>
-      <td>§2.3 (p. 4–8)</td>
+      <td class="whitespace-nowrap">§2.3 (p. 4–8)</td>
     </tr>
     <tr>
       <td><strong>Exclusões e Reduções da BC (IBS/CBS)</strong></td>
       <td><code>gReeRepRes</code> (DPS) e <code>vCalcReeRepRes</code> (NFS-e)</td>
       <td>Unificado em <code>vAjusteBC</code> (DPS) e <code>NFSe/infNFSe/IBSCBS/valores/vCalcAjusteBCIBSCBS</code> (NFS-e)</td>
-      <td>§2.3 (p. 4–8)</td>
+      <td class="whitespace-nowrap">§2.3 (p. 4–8)</td>
     </tr>
   </tbody>
 </table>
+</div>
 
 <p>O reposicionamento de <code>CST</code> e <code>cClassTrib</code> para fora de <code>gIBSCBS</code> (§2.16) tem um motivo prático: permitir que o sistema identifique o enquadramento tributário antes de decidir se o grupo detalhado <code>gIBSCBS</code> deve existir no XML. Em casos como <strong>CST 400</strong> (Isenção), <strong>CST 410</strong> (Imunidade e não incidência) e <strong>CST 820</strong> (Tributação em documento específico), o grupo <code>gIBSCBS</code> pode ser omitido conforme o indicador <code>ind_gIBSCBS</code> da tabela oficial.</p>
 
