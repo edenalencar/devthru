@@ -2,6 +2,7 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email';
+import { sendPendingWelcomeEmails } from '@/lib/email/welcome';
 import { TrialWarningEmailTemplate } from '@/components/emails/TrialWarningEmailTemplate';
 import { TrialExpiredEmailTemplate } from '@/components/emails/TrialExpiredEmailTemplate';
 import { AnnualPlanExpiredEmailTemplate } from '@/components/emails/AnnualPlanExpiredEmailTemplate';
@@ -140,12 +141,16 @@ export async function GET(req: NextRequest) {
             }
         }
 
+        // 5. Rede de segurança: boas-vindas que o fluxo de login não chegou a enviar
+        const welcome = await sendPendingWelcomeEmails();
+
         return NextResponse.json({
             success: true,
             warningsSent,
             expiredSent,
             annualExpired,
-            message: `Automação executada: ${warningsSent} alertas de fim de trial, ${expiredSent} avisos de expiração enviados e ${annualExpired} planos anuais encerrados.`
+            welcomeSent: welcome.sent,
+            message: `Automação executada: ${warningsSent} alertas de fim de trial, ${expiredSent} avisos de expiração enviados, ${annualExpired} planos anuais encerrados e ${welcome.sent} boas-vindas pendentes enviadas.`
         });
     } catch (error) {
         console.error('Erro inesperado na Cron de Trial Lifecycle:', error);

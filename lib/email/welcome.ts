@@ -208,6 +208,64 @@ async function executeSendWelcomeEmail({
     }
 }
 
+export interface PendingWelcomeOptions {
+    /** Só considera contas criadas há pelo menos este tempo (dá chance ao fluxo normal). */
+    minAgeMinutes?: number;
+    /** Ignora contas mais antigas que isso, para nunca disparar boas-vindas atrasadas demais. */
+    maxAgeDays?: number;
+}
+
+export interface PendingWelcomeResult {
+    pending: number;
+    sent: number;
+    failed: number;
+}
+
+/**
+ * Rede de segurança: envia as boas-vindas para contas recentes que ficaram com
+ * welcome_sent = false porque o envio no callback/login não aconteceu.
+ */
+export async function sendPendingWelcomeEmails({
+    minAgeMinutes = 30,
+    maxAgeDays = 7,
+}: PendingWelcomeOptions = {}): Promise<PendingWelcomeResult> {
+    const supabase = createAdminClient();
+    const now = Date.now();
+    const newest = new Date(now - minAgeMinutes * 60 * 1000).toISOString();
+    const oldest = new Date(now - maxAgeDays * 24 * 60 * 60 * 1000).toISOString();
+
+    const { data: users, error } = await (supabase.from('profiles') as any)
+        .select('id, email, full_name')
+        .or('welcome_sent.is.null,welcome_sent.eq.false')
+        .gte('created_at', oldest)
+        .lte('created_at', newest);
+
+    if (error) {
+        console.error('[Welcome Service] Erro ao buscar boas-vindas pendentes:', error);
+        return { pending: 0, sent: 0, failed: 0 };
+    }
+
+    let sent = 0;
+    let failed = 0;
+    for (const user of users || []) {
+        if (!user.email) continue;
+        const result = await sendWelcomeEmailIfNeeded({
+            userId: user.id,
+            userEmail: user.email,
+            userName: user.full_name || undefined,
+            supabaseClient: supabase,
+        });
+        if (result.sent) {
+            sent++;
+            console.warn(`[Welcome Service] Boas-vindas enviadas pela rede de segurança para ${user.id}: o fluxo de login não enviou.`);
+        } else if (!result.success) {
+            failed++;
+        }
+    }
+
+    return { pending: users?.length || 0, sent, failed };
+}
+
 /**
  * Envia o e-mail de boas-vindas para um usuário caso ele ainda não tenha recebido.
  * Garante idempotência absoluta combinando:
